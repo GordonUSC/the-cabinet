@@ -1,0 +1,91 @@
+/* ============================================================================
+   MOTION-2026 · the CSS half of the shared interaction layer.
+   Pairs with motion-2026.js. Safe to load on any site: everything is
+   namespaced .m26-* or scoped to the data attributes the script stamps on
+   <html>, so it cannot collide with a site's own classes.
+   ========================================================================= */
+
+/* The cursor-reactive field.
+   It deliberately sits ABOVE the page rather than behind it. Behind would have
+   meant rewriting the stacking context of five different sites; above means it
+   drops in anywhere and touches nothing. pointer-events:none, so it never eats
+   a click.
+
+   The blend has to match the ground, which is the part I got wrong first time:
+   `screen` only ever ADDS light, so on a dark site it reads as dust in the air
+   and on a light site it is completely invisible. A page on paper sets
+   data-m26-ground="light" and gets `multiply` with dark motes instead, which
+   reads as specks in the fibre. Assume nothing about the ground. */
+.m26-field{
+  position:fixed; inset:0; z-index:3;
+  pointer-events:none;
+  opacity:.38;
+  mix-blend-mode:screen;
+}
+:root[data-m26-ground="light"] .m26-field{
+  mix-blend-mode:multiply;
+  opacity:.30;
+}
+
+/* Magnetic controls and tilting cards need a transition for the SNAP BACK.
+   The lean itself is driven per-frame by script; this handles the release,
+   which is the half that makes it feel physical instead of glued. */
+.m26-magnetic{ transition:transform .35s cubic-bezier(.2,.9,.25,1); will-change:transform; }
+.m26-magnetic:active{ transition:transform .08s ease; }
+.m26-tilt{ transition:transform .5s cubic-bezier(.2,.9,.25,1); will-change:transform; transform-style:preserve-3d; }
+
+/* Scroll choreography hook. --m26-progress runs 0 to 1 down the page, so a
+   site can drive anything from the read position: a hue shift, a horizon
+   moving, a chapter marker filling. Sites opt in by using the variable. */
+.m26-progress-bar{
+  position:fixed; top:0; left:0; height:2px; width:100%; z-index:70;
+  transform-origin:0 50%;
+  transform:scaleX(var(--m26-progress,0));
+  pointer-events:none;
+  background:currentColor;
+}
+
+/* Content that greets a returning visitor. Hidden by default so a first-time
+   viewer never sees a flash of the wrong copy before the script decides. */
+.m26-returning, .m26-first{ display:none; }
+:root[data-m26-visit="returning"] .m26-returning{ display:revert; }
+:root[data-m26-visit="first"] .m26-first{ display:revert; }
+
+/* Time-of-day hooks, for copy or color that knows when it is being read. */
+:root[data-m26-when="night"]   .m26-when-night,
+:root[data-m26-when="morning"] .m26-when-morning,
+:root[data-m26-when="afternoon"] .m26-when-afternoon,
+:root[data-m26-when="evening"] .m26-when-evening{ display:revert; }
+.m26-when-night,.m26-when-morning,.m26-when-afternoon,.m26-when-evening{ display:none; }
+
+/* Nothing above is allowed to move for someone who asked it not to. */
+@media (prefers-reduced-motion: reduce){
+  .m26-field{ display:none; }
+  .m26-magnetic,.m26-tilt{ transition:none; transform:none !important; }
+  .m26-progress-bar{ transform:scaleX(1); opacity:.4; }
+}
+
+/* ---- kinetic type ----------------------------------------------------
+   Each word assembles as the headline enters the viewport. Driven by a CSS
+   scroll timeline on the parent, with a per-word delay expressed through
+   --w, so the whole line is one compositor animation and not N timers.
+   The @supports guard means a browser without scroll timelines simply shows
+   the finished headline, which was never hidden in the first place. */
+.m26-kinetic .m26-word{ display:inline-block; will-change:transform,opacity; }
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .m26-kinetic{ view-timeline-name:--kin; }
+    .m26-kinetic .m26-word{
+      animation:m26-wordin linear both;
+      animation-timeline:--kin;
+      animation-range:entry 0% entry calc(38% + var(--w,0) * 5%);
+    }
+    @keyframes m26-wordin{
+      from{ opacity:0; transform:translateY(0.42em) rotate(1.2deg); }
+      to  { opacity:1; transform:none; }
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce){
+  .m26-kinetic .m26-word{ animation:none; opacity:1; transform:none; }
+}

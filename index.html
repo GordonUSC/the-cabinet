@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THE CABINET · Gordon Bellamy</title>
+<meta name="description" content="Twenty-three things Gordon Bellamy and Darby built in the summer of 2026. A select screen for the ones anybody can play.">
+<meta name="theme-color" content="#0b0a0e">
+<meta property="og:title" content="THE CABINET">
+<meta property="og:description" content="Twenty-three things built in one summer. Pick one. They all run in the browser.">
+<meta property="og:image" content="https://gordonusc.github.io/the-cabinet/art/hero.jpg">
+<meta property="og:url" content="https://gordonusc.github.io/the-cabinet/">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%230b0a0e'/><rect x='8' y='7' width='16' height='11' rx='2' fill='%23ffb64d'/><rect x='11' y='21' width='10' height='4' rx='1' fill='%23e0559b'/></svg>">
+<link rel="stylesheet" href="motion-2026.css">
+<style>
+@font-face{font-family:'Clash Display';src:url('fonts/ClashDisplay-Variable.woff2') format('woff2-variations');font-weight:200 700;font-display:swap}
+@font-face{font-family:'Switzer';src:url('fonts/Switzer-Variable.woff2') format('woff2-variations');font-weight:100 900;font-display:swap}
+
+:root{
+  color-scheme:dark;
+  --ink:oklch(0.96 0.012 85);
+  --ink-2:oklch(0.74 0.02 85);
+  --ink-3:oklch(0.58 0.02 85);
+  --ground:oklch(0.15 0.018 300);
+  --ground-2:oklch(0.19 0.022 300);
+  --line:oklch(0.30 0.02 300);
+  --amber:oklch(0.82 0.155 72);
+  --magenta:oklch(0.68 0.185 350);
+  --glow:color-mix(in oklch, var(--amber) 40%, transparent);
+  --pad:clamp(1.1rem, 4vw, 3.5rem);
+  --r:2px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:'Switzer',system-ui,sans-serif;font-weight:380;
+  font-size:clamp(0.98rem,0.93rem + 0.25vw,1.06rem);line-height:1.6;
+  overflow-x:hidden;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--amber);color:#14121a}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+
+/* grain, the cheapest expensive signal there is */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.055;mix-blend-mode:overlay}
+
+h1,h2,h3,.face{font-family:'Clash Display','Switzer',sans-serif;font-weight:600;letter-spacing:-0.015em;text-wrap:balance}
+p{text-wrap:pretty}
+.kicker{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3);font-weight:600;margin:0}
+
+/* ---------------- hero ---------------- */
+.hero{position:relative;min-height:min(92svh,860px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero>video,.hero>img.plate{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    radial-gradient(120% 90% at 22% 42%, transparent 0%, color-mix(in oklch, var(--ground) 55%, transparent) 55%, var(--ground) 100%),
+    linear-gradient(to top, var(--ground) 2%, color-mix(in oklch, var(--ground) 20%, transparent) 46%, transparent 78%);
+}
+.hero-in{padding:var(--pad);padding-bottom:clamp(2rem,6vh,4.5rem);max-width:72rem;width:100%;margin-inline:auto}
+.hero h1{
+  font-size:clamp(3.4rem,15vw,11rem);line-height:.82;margin:.28em 0 .18em;font-weight:650;
+  letter-spacing:-0.03em;
+  background:linear-gradient(178deg, oklch(0.99 0.02 85) 18%, var(--amber) 62%, var(--magenta) 122%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 42px color-mix(in oklch, var(--amber) 22%, transparent));
+}
+.lede{max-width:44ch;color:var(--ink-2);font-size:clamp(1rem,0.95rem + 0.4vw,1.24rem);margin:0 0 1.6rem}
+.lede b{color:var(--ink);font-weight:600}
+.row{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
+.btn{
+  font:inherit;font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.85em 1.5em;border:1px solid var(--line);border-radius:var(--r);background:color-mix(in oklch, var(--ground-2) 70%, transparent);
+  color:var(--ink);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.6em;
+  transition:background .25s, border-color .25s, color .25s, transform .25s;
+  backdrop-filter:blur(6px);
+}
+.btn:hover{border-color:var(--amber);color:var(--amber)}
+.btn.primary{background:var(--amber);color:#17131a;border-color:var(--amber)}
+.btn.primary:hover{background:oklch(from var(--amber) calc(l + .07) c h);color:#17131a}
+.btn .dot{width:.42em;height:.42em;border-radius:50%;background:currentColor;opacity:.55}
+.btn[aria-pressed="true"] .dot{opacity:1;background:var(--amber);box-shadow:0 0 10px var(--amber)}
+.stats{display:flex;flex-wrap:wrap;gap:1.4rem;margin:1.9rem 0 0;padding:0;list-style:none;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.stats b{font-family:'Clash Display';font-size:1.5rem;letter-spacing:-0.02em;color:var(--ink);display:block;font-variant-numeric:tabular-nums;font-weight:600}
+.credit{position:absolute;right:var(--pad);top:var(--pad);margin:0;font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-3);opacity:.75;text-align:right;max-width:14rem}
+
+/* ---------------- select ---------------- */
+.select{max-width:82rem;margin-inline:auto;padding:clamp(2.6rem,7vh,5rem) var(--pad) 4rem}
+.sectionhead{display:flex;flex-wrap:wrap;gap:1rem;align-items:baseline;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:1rem}
+.sectionhead h2{margin:0;font-size:clamp(1.3rem,1.1rem + 1vw,2rem)}
+.stages{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.4rem 0 2rem}
+.chip{font:inherit;font-size:.7rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  padding:.62em 1.05em;border:1px solid var(--line);border-radius:var(--r);background:transparent;color:var(--ink-3);cursor:pointer;
+  transition:color .2s,border-color .2s,background .2s}
+.chip:hover{color:var(--ink)}
+.chip[aria-selected="true"]{color:#17131a;background:var(--ink);border-color:var(--ink)}
+
+.board{display:grid;gap:clamp(1.4rem,3vw,2.6rem);align-items:start}
+@media (min-width:1000px){.board{grid-template-columns:minmax(0,1.02fr) minmax(0,1fr)}}
+
+/* the screen */
+.screen{position:relative;border:1px solid var(--line);background:var(--ground-2);border-radius:var(--r);overflow:hidden}
+@media (min-width:1000px){.screen{position:sticky;top:1.6rem}}
+.screen-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000}
+.screen-img img{width:100%;height:100%;object-fit:cover;object-position:top center;
+  filter:saturate(1.04) contrast(1.03);transition:opacity .16s ease}
+.screen-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0,0,0,.16) 2px 3px);
+  mix-blend-mode:multiply;opacity:.5}
+.screen-img::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(120% 100% at 50% 0%, transparent 55%, rgba(0,0,0,.55) 100%)}
+.screen.flick .screen-img img{opacity:.25}
+.screen-body{padding:clamp(1.1rem,2.4vw,1.7rem)}
+.screen-body h3{margin:.35rem 0 .5rem;font-size:clamp(1.35rem,1.1rem + 1.4vw,2.1rem);line-height:1.02}
+.screen-body p{margin:0 0 1.2rem;color:var(--ink-2);max-width:46ch}
+.tag{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);font-weight:600}
+.hint{margin:1rem 0 0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.hint kbd{font:inherit;border:1px solid var(--line);border-radius:2px;padding:.1em .45em;color:var(--ink-2)}
+.hint-touch{display:none}
+@media (hover:none),(max-width:999px){.hint{display:none}.hint-touch{display:block}}
+
+/* the grid of cabinets */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,148px),1fr));gap:.7rem;margin:0;padding:0;list-style:none}
+.cab{position:relative;display:block;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background:var(--ground-2);text-decoration:none;transform-style:preserve-3d;
+  transition:border-color .25s, transform .25s, box-shadow .25s}
+.cab img{aspect-ratio:16/10;object-fit:cover;object-position:top center;width:100%;height:auto;
+  filter:saturate(.35) brightness(.62) contrast(1.05);transition:filter .3s}
+.cab-label{padding:.55rem .65rem .7rem;display:block}
+.cab-name{font-family:'Clash Display';font-size:.82rem;font-weight:600;letter-spacing:-0.005em;line-height:1.15;display:block}
+.cab-stage{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3);display:block;margin-top:.28rem}
+.cab:hover img,.cab:focus-visible img,.cab[aria-current="true"] img{filter:saturate(1) brightness(1) contrast(1)}
+.cab:hover,.cab:focus-visible{border-color:color-mix(in oklch, var(--amber) 55%, var(--line))}
+.cab[aria-current="true"]{border-color:var(--amber);box-shadow:0 0 0 1px var(--amber), 0 14px 40px -22px var(--glow)}
+.cab[hidden]{display:none}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:2.6rem var(--pad) 4rem;max-width:82rem;margin-inline:auto;color:var(--ink-3);font-size:.82rem}
+footer p{margin:0 0 .7rem;max-width:60ch}
+footer a{color:var(--ink-2);text-underline-offset:3px}
+footer a:hover{color:var(--amber)}
+
+/* entrances, guarded */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .cab,.screen{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 42%}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  }
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-m26="tilt,magnetic" data-m26-ground="dark" data-m26-tilt=".cab" data-m26-magnetic=".btn">
+
+<svg class="grain" aria-hidden="true"><filter id="g"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="3"/></filter><rect width="100%" height="100%" filter="url(#g)"/></svg>
+
+<header class="hero">
+  <video src="art/hero-loop.mp4" poster="art/hero.jpg" autoplay muted loop playsinline aria-hidden="true"></video>
+  <p class="credit">Marquee art generated with Higgsfield AI, on a prompt written for this page</p>
+  <div class="hero-in">
+    <p class="kicker">gordonusc.github.io · may to august 2026</p>
+    <h1>THE<br>CABINET</h1>
+    <p class="lede">Twenty-three things <b>Gordon Bellamy</b> and his AI built in one summer. A game show you can play, an NFL team drawn in Genesis sprites, a World Cup guide, a record collection that makes noise. <b>Pick one. They all run in the browser.</b></p>
+    <div class="row">
+      <a class="btn primary" href="#select">Press start</a>
+      <button class="btn" id="sound" type="button" aria-pressed="false"><span class="dot"></span>Sound off</button>
+      <button class="btn" id="random" type="button">Surprise me</button>
+    </div>
+    <ul class="stats">
+      <li><b>23</b>sites</li>
+      <li><b>6</b>stages</li>
+      <li><b>0</b>downloads</li>
+      <li><b>1</b>summer</li>
+    </ul>
+  </div>
+</header>
+
+<main class="select" id="select">
+  <div class="sectionhead">
+    <h2>Select your site</h2>
+    <p class="kicker" id="count">23 loaded</p>
+  </div>
+
+  <div class="stages" role="tablist" aria-label="Filter by stage"><button class="chip" role="tab" data-stage="all" aria-selected="true">All</button>
+      <button class="chip" role="tab" data-stage="arcade" aria-selected="false">The Arcade <span aria-hidden="true">5</span></button>
+      <button class="chip" role="tab" data-stage="stadium" aria-selected="false">The Stadium <span aria-hidden="true">4</span></button>
+      <button class="chip" role="tab" data-stage="afterdark" aria-selected="false">After Dark <span aria-hidden="true">3</span></button>
+      <button class="chip" role="tab" data-stage="record" aria-selected="false">The Record <span aria-hidden="true">3</span></button>
+      <button class="chip" role="tab" data-stage="mission" aria-selected="false">The Mission <span aria-hidden="true">3</span></button>
+      <button class="chip" role="tab" data-stage="workshop" aria-selected="false">The Workshop <span aria-hidden="true">5</span></button></div>
+
+  <div class="board">
+    <aside class="screen" id="screen" aria-live="polite">
+      <div class="screen-img"><img id="sImg" src="" alt=""></div>
+      <div class="screen-body">
+        <span class="tag" id="sTag"></span>
+        <h3 id="sTitle"></h3>
+        <p id="sLine"></p>
+        <div class="row">
+          <a class="btn primary" id="sGo" href="#" target="_blank" rel="noopener">Enter</a>
+          <a class="btn" id="sCode" href="#" target="_blank" rel="noopener">Source</a>
+        </div>
+        <p class="hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> to browse, <kbd>enter</kbd> to open</p>
+        <p class="hint hint-touch">Tap any cabinet below to open it</p>
+      </div>
+    </aside>
+
+    <ul class="grid" id="grid"></ul>
+  </div>
+</main>
+
+<footer>
+  <p><b>What this is.</b> Between May and August 2026, Gordon and Darby (his AI) built these as gifts, guides, tributes and toys. Every one is a plain web page on GitHub Pages. Nothing to install, nothing to sign up for.</p>
+  <p>This is the shareable shelf. Other pages from the same summer were made for one person or one household, and those stay with the people they were made for.</p>
+  <p>Built August 20, 2026 · type is Clash Display and Switzer · <a href="https://github.com/GordonUSC">github.com/GordonUSC</a></p>
+</footer>
+
+<script src="motion-2026.js" defer></script>
+<script>
+const SITES = [{"id":"tape-log","title":"THE TAPE LOG","line":"Eight game shows, fourteen years, two wins. Play his actual questions off the surviving tapes.","stage":"arcade","stageName":"The Arcade","url":"https://gordonusc.github.io/tape-log/","repo":"https://github.com/GordonUSC/tape-log"},{"id":"gridiron-16","title":"GRIDIRON 16","line":"58 teams drawn as Sega Genesis sprites, inside the real 512-colour limits of the VDP.","stage":"arcade","stageName":"The Arcade","url":"https://gordonusc.github.io/gridiron-16/","repo":"https://github.com/GordonUSC/gridiron-16"},{"id":"foster-studio","title":"EVERY SOUND I'VE LOVED","line":"Foster's record collection, made playable. Press the drop.","stage":"arcade","stageName":"The Arcade","url":"https://gordonusc.github.io/foster-studio/","repo":"https://github.com/GordonUSC/foster-studio"},{"id":"gordtopia-builds","title":"GORDTOPIA BUILDS","line":"Three build plans for the Minecraft world.","stage":"arcade","stageName":"The Arcade","url":"https://gordonusc.github.io/gordtopia-builds/","repo":"https://github.com/GordonUSC/gordtopia-builds"},{"id":"joe-kaminkow","title":"JOE KAMINKOW","line":"Forty years on the floor. Pinball wizard, slot pioneer, six-time hall of famer.","stage":"arcade","stageName":"The Arcade","url":"https://gordonusc.github.io/joe-kaminkow/","repo":"https://github.com/GordonUSC/joe-kaminkow"},{"id":"usa-26","title":"USA / 26","line":"The full guide to a World Cup at home. Groups, kits, supporters, lore.","stage":"stadium","stageName":"The Stadium","url":"https://gordonusc.github.io/usa-26/","repo":"https://github.com/GordonUSC/usa-26"},{"id":"usmnt-2026-public","title":"THE SUPPORTERS' PATH","line":"USMNT 2026, written for the people in the stands.","stage":"stadium","stageName":"The Stadium","url":"https://gordonusc.github.io/usmnt-2026-public/","repo":"https://github.com/GordonUSC/usmnt-2026-public"},{"id":"switzerland-bosnia-wc","title":"SUI v BIH","line":"A fact-checked match guide for one afternoon at SoFi.","stage":"stadium","stageName":"The Stadium","url":"https://gordonusc.github.io/switzerland-bosnia-wc/","repo":"https://github.com/GordonUSC/switzerland-bosnia-wc"},{"id":"robot-soccer-cup","title":"THE MATCH PLAN","line":"AI LA x Qualcomm Robot Soccer Cup: box of parts at 9am, trophy at 6pm.","stage":"stadium","stageName":"The Stadium","url":"https://gordonusc.github.io/robot-soccer-cup/","repo":"https://github.com/GordonUSC/robot-soccer-cup"},{"id":"weho-guide","title":"THE BOYSTOWN FIELD GUIDE","line":"WeHo, block by block.","stage":"afterdark","stageName":"After Dark","url":"https://gordonusc.github.io/weho-guide/","repo":"https://github.com/GordonUSC/weho-guide"},{"id":"chris-lake-tonight","title":"CHRIS LAKE, TONIGHT","line":"One night, one set, the definitive field guide.","stage":"afterdark","stageName":"After Dark","url":"https://gordonusc.github.io/chris-lake-tonight/","repo":"https://github.com/GordonUSC/chris-lake-tonight"},{"id":"gordon-pride-2026","title":"PRIDE 2026","line":"His month. The people, the places, and why this one mattered more.","stage":"afterdark","stageName":"After Dark","url":"https://gordonusc.github.io/gordon-pride-2026/","repo":"https://github.com/GordonUSC/gordon-pride-2026"},{"id":"media-log","title":"THE RECORD","line":"50 documented appearances across 33 years, charted. He is not a talking head, he is a room.","stage":"record","stageName":"The Record","url":"https://gordonusc.github.io/media-log/","repo":"https://github.com/GordonUSC/media-log"},{"id":"gordon-media-research","title":"THE RESEARCH FILE","line":"The sourced quote bank behind The Record. Every claim carries a receipt.","stage":"record","stageName":"The Record","url":"https://gordonusc.github.io/gordon-media-research/","repo":"https://github.com/GordonUSC/gordon-media-research"},{"id":"grand-tour-2026","title":"THE GRAND TOUR","line":"Sixty days, four worlds, two weddings, one summer, receipted.","stage":"record","stageName":"The Record","url":"https://gordonusc.github.io/grand-tour-2026/","repo":"https://github.com/GordonUSC/grand-tour-2026"},{"id":"collegiate-games-challenge","title":"THE COLLEGIATE GAMES CHALLENGE","line":"$90,000 to college game developers. GGP x Raw Thrills, inaugural year.","stage":"mission","stageName":"The Mission","url":"https://gordonusc.github.io/collegiate-games-challenge/","repo":"https://github.com/GordonUSC/collegiate-games-challenge"},{"id":"g4c-play-the-issue","title":"PLAY THE ISSUE","line":"Rapid game design for civic imagination. The Games for Change workshop companion.","stage":"mission","stageName":"The Mission","url":"https://gordonusc.github.io/g4c-play-the-issue/","repo":"https://github.com/GordonUSC/g4c-play-the-issue"},{"id":"ggp-website-preview","title":"GGP, SINCE 2006","line":"A redesign preview for Gay Gaming Professionals.","stage":"mission","stageName":"The Mission","url":"https://gordonusc.github.io/ggp-website-preview/","repo":"https://github.com/GordonUSC/ggp-website-preview"},{"id":"skill-tree","title":"THE SKILL TREE","line":"Everything Darby can do, as one tree. Lit nodes are unlocked.","stage":"workshop","stageName":"The Workshop","url":"https://gordonusc.github.io/skill-tree/","repo":"https://github.com/GordonUSC/skill-tree"},{"id":"darby-dispatch","title":"THE DARBY DISPATCH","line":"No. 1. The house newsletter of an AI that works for one person.","stage":"workshop","stageName":"The Workshop","url":"https://gordonusc.github.io/darby-dispatch/","repo":"https://github.com/GordonUSC/darby-dispatch"},{"id":"openclaw-showcase","title":"WHAT I LEARNED ABOUT MYSELF","line":"Darby reads its own nervous system and tunes it.","stage":"workshop","stageName":"The Workshop","url":"https://gordonusc.github.io/openclaw-showcase/","repo":"https://github.com/GordonUSC/openclaw-showcase"},{"id":"brian-darby-demo","title":"DARBY x BRIAN","line":"A live demo, built in the room.","stage":"workshop","stageName":"The Workshop","url":"https://gordonusc.github.io/brian-darby-demo/","repo":"https://github.com/GordonUSC/brian-darby-demo"},{"id":"alex-builds-a-darby","title":"ALEX BUILDS A DARBY","line":"The OpenClaw dossier: how to stand one of these up yourself.","stage":"workshop","stageName":"The Workshop","url":"https://gordonusc.github.io/alex-builds-a-darby/","repo":"https://github.com/GordonUSC/alex-builds-a-darby"}];
+const grid=document.getElementById('grid'), screenEl=document.getElementById('screen');
+const sImg=document.getElementById('sImg'), sTag=document.getElementById('sTag'), sTitle=document.getElementById('sTitle');
+const sLine=document.getElementById('sLine'), sGo=document.getElementById('sGo'), sCode=document.getElementById('sCode');
+const countEl=document.getElementById('count');
+let cur=0, filter='all';
+
+/* --- sound: synthesised, no files, off until asked for --- */
+let ac=null, on=false;
+const soundBtn=document.getElementById('sound');
+function tone(f,t,dur=0.09,type='triangle',gain=0.045){
+  if(!on) return; if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)();
+  const o=ac.createOscillator(), g=ac.createGain(), now=ac.currentTime;
+  o.type=type; o.frequency.setValueAtTime(f,now); o.frequency.exponentialRampToValueAtTime(t,now+dur);
+  g.gain.setValueAtTime(0,now); g.gain.linearRampToValueAtTime(gain,now+0.008);
+  g.gain.exponentialRampToValueAtTime(0.0001,now+dur);
+  o.connect(g).connect(ac.destination); o.start(now); o.stop(now+dur+0.02);
+}
+soundBtn.addEventListener('click',()=>{
+  on=!on; soundBtn.setAttribute('aria-pressed',String(on));
+  soundBtn.lastChild.textContent = on?'Sound on':'Sound off';
+  if(on){ if(!ac) ac=new (window.AudioContext||window.webkitAudioContext)(); ac.resume();
+    [523,659,784,1046].forEach((f,i)=>setTimeout(()=>tone(f,f*1.01,0.11,'triangle',0.04),i*70)); }
+});
+
+/* --- build the grid --- */
+grid.innerHTML = SITES.map((s,i)=>`<li><a class="cab" href="${s.url}" target="_blank" rel="noopener"
+   data-i="${i}" data-stage="${s.stage}" tabindex="${i?-1:0}">
+   <img src="shots/${s.id}.jpg" alt="Screenshot of ${s.title}" loading="lazy" width="760" height="475">
+   <span class="cab-label"><span class="cab-name">${s.title}</span><span class="cab-stage">${s.stageName}</span></span>
+ </a></li>`).join('');
+const cards=[...grid.querySelectorAll('.cab')];
+
+function visible(){ return cards.filter(c=>!c.hidden); }
+function show(i,quiet){
+  const s=SITES[i]; if(!s) return;
+  cur=i;
+  screenEl.classList.add('flick');
+  setTimeout(()=>{ sImg.src=`shots/${s.id}.jpg`; sImg.alt=`Screenshot of ${s.title}`; screenEl.classList.remove('flick'); },90);
+  sTag.textContent=s.stageName; sTitle.textContent=s.title; sLine.textContent=s.line;
+  sGo.href=s.url; sCode.href=s.repo;
+  cards.forEach(c=>c.setAttribute('aria-current', c.dataset.i===String(i)?'true':'false'));
+  cards.forEach(c=>c.tabIndex = c.dataset.i===String(i)?0:-1);
+  if(!quiet) tone(760,1180,0.07,'square',0.035);
+}
+cards.forEach(c=>{
+  const i=+c.dataset.i;
+  c.addEventListener('mouseenter',()=>show(i));
+  c.addEventListener('focus',()=>show(i));
+  c.addEventListener('click',()=>tone(420,980,0.16,'triangle',0.05));
+});
+
+/* --- filters --- */
+document.querySelectorAll('.chip').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    filter=ch.dataset.stage;
+    document.querySelectorAll('.chip').forEach(o=>o.setAttribute('aria-selected',String(o===ch)));
+    cards.forEach(c=>{ c.hidden = !(filter==='all' || c.dataset.stage===filter); });
+    const v=visible(); countEl.textContent=`${v.length} loaded`;
+    if(v.length) show(+v[0].dataset.i,true);
+    tone(300,640,0.08,'square',0.03);
+  });
+});
+
+/* --- keyboard: a select screen should feel like one --- */
+grid.addEventListener('keydown',e=>{
+  const v=visible(); if(!v.length) return;
+  const at=v.findIndex(c=>c.dataset.i===String(cur));
+  const cols=Math.max(1,Math.round(grid.clientWidth/(v[0].clientWidth+11)));
+  let next=null;
+  if(e.key==='ArrowRight') next=v[Math.min(v.length-1,at+1)];
+  if(e.key==='ArrowLeft')  next=v[Math.max(0,at-1)];
+  if(e.key==='ArrowDown')  next=v[Math.min(v.length-1,at+cols)];
+  if(e.key==='ArrowUp')    next=v[Math.max(0,at-cols)];
+  if(next){ e.preventDefault(); next.focus(); }
+});
+
+/* --- surprise me --- */
+document.getElementById('random').addEventListener('click',()=>{
+  const v=visible(); const pick=v[Math.floor(Math.random()*v.length)];
+  pick.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'});
+  pick.focus({preventScroll:true}); tone(520,1320,0.22,'triangle',0.05);
+});
+
+/* --- respect the setting, and the battery --- */
+const vid=document.querySelector('.hero video');
+if(matchMedia('(prefers-reduced-motion:reduce)').matches && vid){ vid.removeAttribute('autoplay'); vid.pause(); }
+document.addEventListener('visibilitychange',()=>{ if(!vid) return; document.hidden?vid.pause():vid.play().catch(()=>{}); });
+
+show(0,true);
+</script>
+</body>
+</html>
