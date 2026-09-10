@@ -1,0 +1,1 @@
+(()=>{try{const key='alan-field-notes-v1',s=JSON.parse(localStorage.getItem(key)||'{}'),path=location.pathname;const opened=path.includes('/gordtopia/')?'world':path.includes('/tape/')?'play':path.includes('/ggp/')?'opportunity':null;if(opened){s.opened=[...new Set([...(s.opened||[]),opened])];localStorage.setItem(key,JSON.stringify(s))}}catch{}})();
