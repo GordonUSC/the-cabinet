@@ -1,12 +1,17 @@
 {
-  "checked": "2026-09-07",
-  "coverage": "76 entries: 23 listed and 53 inherited. Record-location and entity-matching pass, not a financial audit or complete grant extraction. Unresolved entries remain explicit.",
+  "checked": "2026-09-11",
+  "coverage": {
+    "listed": 70,
+    "inherited": 53,
+    "scope": "Identity-source index, with program-source review dates. Not a financial audit or a complete list of donors."
+  },
   "records": [
     {
       "id": "ggp-scholars",
       "name": "GGP Scholars",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
       "entities": [
         {
           "entity": "GG Professionals Inc.",
@@ -22,6 +27,7 @@
       "name": "CYSTEM Scholars",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
       "entities": [
         {
           "entity": "GG Professionals Inc.",
@@ -37,6 +43,7 @@
       "name": "Girls Make Games",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
       "entities": [
         {
           "entity": "LearnDistrict Inc.",
@@ -59,21 +66,23 @@
       "name": "Unity Learn",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-06",
       "entities": [
         {
           "entity": "Unity Software Inc.",
           "kind": "Corporate filing",
           "url": "https://www.sec.gov/Archives/edgar/data/1810806/000181080626000011/unity-20251231.htm",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "unreal",
-      "name": "Unreal Engine \u00b7 Students & Schools",
+      "name": "Unreal Engine · Students & Schools",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-06",
       "entities": [
         {
           "entity": "Epic Games",
@@ -86,9 +95,10 @@
     },
     {
       "id": "esa",
-      "name": "ESA Foundation \u00b7 Game Creator Scholarships",
+      "name": "ESA Foundation · Game Creator Scholarships",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-06",
       "entities": [
         {
           "entity": "ESAS Foundation",
@@ -101,9 +111,10 @@
     },
     {
       "id": "riot",
-      "name": "Riot Games \u00b7 Emerging Talent",
+      "name": "Riot Games · Emerging Talent",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
       "entities": [
         {
           "entity": "Riot Games",
@@ -119,6 +130,7 @@
       "name": "Questline: Online",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
       "entities": [
         {
           "entity": "IGDA Foundation",
@@ -134,6 +146,7 @@
       "name": "Urban Arts Game Academy",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Urban Arts Partnership",
@@ -149,6 +162,7 @@
       "name": "Gameheads",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Community Initiatives",
@@ -165,6 +179,7 @@
       "name": "Girls Make Games College Scholarship",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Girls Make Games Scholarship Fund",
@@ -180,6 +195,7 @@
       "name": "Point Flagship Scholarship",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Point Foundation",
@@ -195,6 +211,7 @@
       "name": "Point Community College Scholarship",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Point Foundation",
@@ -210,6 +227,7 @@
       "name": "ESA Foundation Esports Scholarship",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "ESAS Foundation",
@@ -225,6 +243,7 @@
       "name": "BroadcastHER Initiative",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "1000 Dreams Fund",
@@ -240,6 +259,7 @@
       "name": "Epic MegaGrants",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Epic Games",
@@ -255,13 +275,14 @@
       "name": "NVIDIA Graduate Fellowship",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "NVIDIA Corporation",
           "kind": "Corporate filing",
           "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
@@ -270,13 +291,14 @@
       "name": "Break Through Tech AI",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Cornell University",
           "kind": "Nonprofit filing index",
           "url": "https://projects.propublica.org/nonprofits/organizations/150532082",
           "ein": "15-0532082",
-          "note": "Break Through Tech launched as a Cornell Tech initiative; Cornell totals are not this program\u2019s budget.",
+          "note": "Break Through Tech launched as a Cornell Tech initiative; Cornell totals are not this program’s budget.",
           "relationshipSource": "https://www.breakthroughtech.org/about-us/"
         }
       ]
@@ -286,6 +308,7 @@
       "name": "Games for Change Student Challenge",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Games for Change Inc.",
@@ -301,6 +324,7 @@
       "name": "NASEF Scholastic Esports",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "World Wide Scholastic Esports Foundation Inc.",
@@ -316,6 +340,7 @@
       "name": "Kode With Klossy Camps",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Kode With Klossy Inc.",
@@ -331,6 +356,7 @@
       "name": "Day of AI Curriculum",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Day of AI",
@@ -346,6 +372,7 @@
       "name": "G4C Game Plan for Educators",
       "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-07",
       "entities": [
         {
           "entity": "Games for Change Inc.",
@@ -357,10 +384,824 @@
       ]
     },
     {
-      "id": "legacy-1",
-      "name": "Girls Make Games \u00b7 Flagship Summer Camps 2026",
-      "lane": "Inherited / not approved",
+      "id": "legacy-5",
+      "name": "PlayVS · School Esports",
+      "lane": "Listed program",
       "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "PlayVS",
+          "kind": "Company / program source",
+          "url": "https://www.playvs.com/terms",
+          "ein": "",
+          "note": "Corporate service terms found; full public financial accounts not located. A league is not a standalone charity.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-7",
+      "name": "URF Academy",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Riot Games",
+          "kind": "Company / program source",
+          "url": "https://www.riotgames.com/en",
+          "ein": "",
+          "note": "Corporate learning and employment programs; not Riot Platforms, the unrelated company appearing in searches. Standalone program financials not located.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-10",
+      "name": "Power4+ HBCU Esports League",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "PlayVS",
+          "kind": "Company / program source",
+          "url": "https://www.playvs.com/terms",
+          "ein": "",
+          "note": "Corporate service terms found; full public financial accounts not located. A league is not a standalone charity.",
+          "checked": "2026-09-07"
+        },
+        {
+          "entity": "Urban One Inc.",
+          "kind": "Corporate filing",
+          "url": "https://www.sec.gov/Archives/edgar/data/1041657/000104165726000016/uone-20251231.htm",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-17",
+      "name": "USC Games · Undergraduate Degrees",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "University of Southern California",
+          "kind": "University financial reports",
+          "url": "https://comptroller.usc.edu/annual-financial-reports/",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-18",
+      "name": "NYU Game Center · BFA",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "New York University",
+          "kind": "University filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/135562308",
+          "ein": "13-5562308",
+          "note": "The filing covers the organization, not a separate return for each program.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-19-a",
+      "name": "UCF Digital Media BA, Game Design",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "University of Central Florida",
+          "kind": "University financial reports",
+          "url": "https://admfin.ucf.edu/",
+          "ein": "",
+          "note": "Public university financial statements; do not substitute the separately incorporated UCF Research Foundation. Program-level budgets not established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-19-b",
+      "name": "DigiPen Institute of Technology",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "DigiPen Institute of Technology",
+          "kind": "Company / program source",
+          "url": "https://www.digipen.edu/sites/default/files/public/docs/digipen-veterans-affairs-benefits-handbook.pdf",
+          "ein": "",
+          "note": "Its 2025–26 handbook identifies a private for-profit institution. Do not classify as a nonprofit scholarship fund.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-19-c",
+      "name": "RIT Game Design and Development BS",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Rochester Institute of Technology",
+          "kind": "University filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/160743140",
+          "ein": "16-0743140",
+          "note": "The filing covers the organization, not a separate return for each program.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-19-d",
+      "name": "Clark University Game Design BA",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Clark University",
+          "kind": "University financial reports",
+          "url": "https://www.clarku.edu/business-and-financial-services/financial-statements/",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-20",
+      "name": "CMU Entertainment Technology Center",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Carnegie Mellon University",
+          "kind": "University financial reports",
+          "url": "https://www.cmu.edu/finance/taxation/tax-forms/index.html",
+          "ein": "",
+          "note": "University says its 990 is available on request. ETC does not have a separate return established here.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-21-a",
+      "name": "UCF FIEA (MS Interactive Entertainment)",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "University of Central Florida",
+          "kind": "University financial reports",
+          "url": "https://admfin.ucf.edu/",
+          "ein": "",
+          "note": "Public university financial statements; do not substitute the separately incorporated UCF Research Foundation. Program-level budgets not established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-21-b",
+      "name": "USC Games graduate degrees",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "University of Southern California",
+          "kind": "University financial reports",
+          "url": "https://comptroller.usc.edu/annual-financial-reports/",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-21-c",
+      "name": "NYU Game Center · MFA",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "New York University",
+          "kind": "University filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/135562308",
+          "ein": "13-5562308",
+          "note": "The filing covers the organization, not a separate return for each program.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-27",
+      "name": "Blizzard Internship Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Microsoft Corporation",
+          "kind": "Corporate filing",
+          "url": "https://www.microsoft.com/investor/reports/ar25/download-center/index.html",
+          "ein": "",
+          "note": "Parent corporate reporting for Microsoft/Xbox and acquired Activision Blizzard; not individual internship or camp budgets.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-28",
+      "name": "Activision's Internship Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Microsoft Corporation",
+          "kind": "Corporate filing",
+          "url": "https://www.microsoft.com/investor/reports/ar25/download-center/index.html",
+          "ein": "",
+          "note": "Parent corporate reporting for Microsoft/Xbox and acquired Activision Blizzard; not individual internship or camp budgets.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-29",
+      "name": "EA Early Careers",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Electronic Arts Inc.",
+          "kind": "Corporate filing",
+          "url": "https://ir.ea.com/financials/sec-filings/sec-filings-details/default.aspx?FilingId=18460069",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-32",
+      "name": "aiEDU · Educator Resources",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "American AI Forum / aiEDU",
+          "kind": "Nonprofit filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/841839493",
+          "ein": "84-1839493",
+          "note": "Filing name differs from the public AI Education Project brand; inspect program narrative.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-33",
+      "name": "Stanford AI4ALL",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Stanford University",
+          "kind": "University financial reports",
+          "url": "https://bondholder-information.stanford.edu/",
+          "ein": "",
+          "note": "Stanford publishes university financial records; Stanford AI4ALL and AI4ALL nonprofit are related names, not interchangeable filing entities.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-34",
+      "name": "Inspirit AI · AI Scholars",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Inspirit AI",
+          "kind": "Company / program source",
+          "url": "https://www.inspiritai.com/terms",
+          "ein": "",
+          "note": "Commercial education terms found; legal registration and public accounts not verified. No standalone nonprofit status established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-37",
+      "name": "AI4ALL Ignite",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "AI4ALL",
+          "kind": "Nonprofit filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/822792979",
+          "ein": "82-2792979",
+          "note": "The filing covers the organization, not a separate return for each program.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-39-a",
+      "name": "LatinX in AI Mentoring Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Accel AI Institute",
+          "kind": "Fiscal sponsor records",
+          "url": "https://projects.propublica.org/nonprofits/organizations/822813494",
+          "ein": "82-2813494",
+          "note": "LatinX in AI lists Accel AI Institute as fiscal sponsor. Sponsor finances are broader than LatinX in AI.",
+          "relationshipSource": "https://www.latinxinai.org/sponsor",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-39-b",
+      "name": "LatinX in AI Supercomputer Network",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Accel AI Institute",
+          "kind": "Fiscal sponsor records",
+          "url": "https://projects.propublica.org/nonprofits/organizations/822813494",
+          "ein": "82-2813494",
+          "note": "LatinX in AI lists Accel AI Institute as fiscal sponsor. Sponsor finances are broader than LatinX in AI.",
+          "relationshipSource": "https://www.latinxinai.org/sponsor",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-40-a",
+      "name": "Microsoft Elevate",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Microsoft Corporation",
+          "kind": "Corporate filing",
+          "url": "https://www.microsoft.com/investor/reports/ar25/download-center/index.html",
+          "ein": "",
+          "note": "Parent corporate reporting for Microsoft/Xbox and acquired Activision Blizzard; not individual internship or camp budgets.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-40-b",
+      "name": "AI Skills Navigator",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Microsoft Corporation",
+          "kind": "Corporate filing",
+          "url": "https://www.microsoft.com/investor/reports/ar25/download-center/index.html",
+          "ein": "",
+          "note": "Parent corporate reporting for Microsoft/Xbox and acquired Activision Blizzard; not individual internship or camp budgets.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-42-a",
+      "name": "Google PhD Fellowship Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Alphabet / Google",
+          "kind": "Corporate filing",
+          "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-42-b",
+      "name": "Apple Scholars in AIML",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Apple Inc.",
+          "kind": "Corporate filing",
+          "url": "https://investor.apple.com/investor-relations/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-43",
+      "name": "Cohere Labs Scholars Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Cohere Labs",
+          "kind": "Company / program source",
+          "url": "https://cohere.com/research/scholars-program",
+          "ein": "",
+          "note": "Research program source located; separate charitable entity and public program financials not established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-44-a",
+      "name": "Claude Campus Ambassador program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Anthropic",
+          "kind": "Company / program source",
+          "url": "https://www.anthropic.com/company?type=company",
+          "ein": "",
+          "note": "Public benefit corporation does not mean tax-exempt charity. No standalone student-lane filing established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-44-b",
+      "name": "Claude Corps",
+      "lane": "Listed program",
+      "checked": "2026-09-09",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "CodePath · employer; Claude Corps · program",
+          "kind": "Program identity source",
+          "url": "https://www.anthropic.com/claude-corps/fellow",
+          "ein": "",
+          "note": "The reviewed program page identifies CodePath as the employer. No program-specific filing or donation route has been established here.",
+          "checked": "2026-09-09"
+        }
+      ]
+    },
+    {
+      "id": "legacy-44-c",
+      "name": "Anthropic Fellows Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Anthropic",
+          "kind": "Company / program source",
+          "url": "https://www.anthropic.com/company?type=company",
+          "ein": "",
+          "note": "Public benefit corporation does not mean tax-exempt charity. No standalone student-lane filing established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-45-a",
+      "name": "NVIDIA · Internships",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "NVIDIA Corporation",
+          "kind": "Corporate filing",
+          "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-45-b",
+      "name": "NVIDIA Ignite",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "NVIDIA Corporation",
+          "kind": "Corporate filing",
+          "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-45-c",
+      "name": "NVIDIA · MBA Opportunities",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "NVIDIA Corporation",
+          "kind": "Corporate filing",
+          "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-45-d",
+      "name": "NVIDIA · PhD Opportunities",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "NVIDIA Corporation",
+          "kind": "Corporate filing",
+          "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-45-e",
+      "name": "NVIDIA · New College Graduates",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "NVIDIA Corporation",
+          "kind": "Corporate filing",
+          "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
+          "ein": "",
+          "note": "Organization-level records do not isolate this program’s budget.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-46-a",
+      "name": "Scale AI University Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Scale AI",
+          "kind": "Company / program source",
+          "url": "https://scale.com/careers/university",
+          "ein": "",
+          "note": "University recruiting, not a separate nonprofit; program financials not located.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-46-b",
+      "name": "Databricks Internships + Early Careers",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Databricks Inc.",
+          "kind": "Company / program source",
+          "url": "https://www.databricks.com/sites/default/files/2023-12/public-global-code-of-conduct-12-13-2023.pdf",
+          "ein": "",
+          "note": "Corporate identity source; university recruiting has no separate nonprofit filing established.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-47",
+      "name": "2K Early Careers",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Take-Two Interactive Software Inc.",
+          "kind": "Corporate filing",
+          "url": "https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/0001628280-26-037434-index.htm",
+          "ein": "",
+          "note": "Parent corporate reporting; 2K early careers is not a separate charitable foundation.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-48",
+      "name": "Congressional App Challenge (2026)",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Internet Education Foundation",
+          "kind": "Nonprofit filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/311577362",
+          "ein": "31-1577362",
+          "note": "House.gov identifies IEF as the Congressional App Challenge sponsor; no standalone Challenge return inferred.",
+          "relationshipSource": "https://www.house.gov/educators-and-students/congressional-app-challenge",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-49",
+      "name": "ASGC Course Finder",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "ASGC",
+          "kind": "Legal identity unresolved",
+          "url": "https://www.linkedin.com/company/asgchome",
+          "ein": "",
+          "note": "Self-described volunteer, zero-profit community. That does not verify IRS tax exemption; EIN and filings unresolved.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-50-a",
+      "name": "ASGC Community Coaching",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "ASGC",
+          "kind": "Legal identity unresolved",
+          "url": "https://www.linkedin.com/company/asgchome",
+          "ein": "",
+          "note": "Self-described volunteer, zero-profit community. That does not verify IRS tax exemption; EIN and filings unresolved.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-50-b",
+      "name": "LinkedIn Premium Trials for Gamers",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "ASGC",
+          "kind": "Legal identity unresolved",
+          "url": "https://www.linkedin.com/company/asgchome",
+          "ein": "",
+          "note": "Self-described volunteer, zero-profit community. That does not verify IRS tax exemption; EIN and filings unresolved.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-51",
+      "name": "Career Game Loop",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Career Game Loop",
+          "kind": "Resource / no filing established",
+          "url": "https://careergameloop.com/",
+          "ein": "",
+          "note": "Book and companion resources by Jessica Lindl, not a verified standalone nonprofit.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-52-a",
+      "name": "IGDA Global Mentorship Program",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "International Game Developers Association Inc.",
+          "kind": "Nonprofit filing index",
+          "url": "https://projects.propublica.org/nonprofits/organizations/770411345",
+          "ein": "77-0411345",
+          "note": "501(c)(6) trade association, distinct from the charitable IGDA Foundation.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "legacy-52-b",
+      "name": "Entry Level Skills Hub",
+      "lane": "Listed program",
+      "checked": "2026-09-09",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "Entry Level Skills Hub · Bird’s Eye View / Into Games",
+          "kind": "Program identity source",
+          "url": "https://entrylevel.games/",
+          "ein": "",
+          "note": "The hub’s identity is separate from IGDA, which listed it as a resource. A legal entity and any filing relationship remain unverified.",
+          "checked": "2026-09-09"
+        }
+      ]
+    },
+    {
+      "id": "legacy-53",
+      "name": "ENTRY LVL",
+      "lane": "Listed program",
+      "checked": "2026-09-07",
+      "programChecked": "2026-09-09",
+      "entities": [
+        {
+          "entity": "ENTRY LVL",
+          "kind": "Legal identity unresolved",
+          "url": "https://www.linkedin.com/company/entry-lvl",
+          "ein": "",
+          "note": "Community resource found; legal registration, jurisdiction and public financial records unresolved.",
+          "checked": "2026-09-07"
+        }
+      ]
+    },
+    {
+      "id": "endless-studios",
+      "name": "Endless Studios",
+      "lane": "Listed program",
+      "checked": "2026-09-11",
+      "programChecked": "2026-09-11",
+      "entities": [
+        {
+          "entity": "Endless Studios LLC",
+          "kind": "Company / program source",
+          "url": "https://about.endlessstudios.com/terms.html",
+          "checked": "2026-09-11",
+          "ein": "",
+          "note": "Published terms effective June 24, 2022 name Endless Studios LLC as the site operator. Current entity registration, program finances and tax status have not been independently verified. Do not substitute Endless OS Foundation or E-Line finances."
+        }
+      ]
+    },
+    {
+      "id": "legacy-1",
+      "name": "Girls Make Games · Flagship Summer Camps 2026",
+      "lane": "Inherited research history",
+      "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "gmg"
+      ],
       "entities": [
         {
           "entity": "LearnDistrict Inc.",
@@ -380,9 +1221,13 @@
     },
     {
       "id": "legacy-2",
-      "name": "GMG Scholarship Fund \u00b7 Named $10,000 Scholarships",
-      "lane": "Inherited / not approved",
+      "name": "GMG Scholarship Fund · Named $10,000 Scholarships",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "gmgsf"
+      ],
       "entities": [
         {
           "entity": "Girls Make Games Scholarship Fund",
@@ -396,8 +1241,10 @@
     {
       "id": "legacy-3",
       "name": "Nintendo x ISEA School Esports",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Interstate Scholastic Esports Alliance",
@@ -411,15 +1258,17 @@
           "kind": "Corporate filing",
           "url": "https://www.nintendo.co.jp/ir/en/index.html",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-4",
-      "name": "Xbox Game Camp \u00b7 Minneapolis 2026",
-      "lane": "Inherited / not approved",
+      "name": "Xbox Game Camp · Minneapolis 2026",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Microsoft Corporation",
@@ -432,9 +1281,13 @@
     },
     {
       "id": "legacy-5",
-      "name": "PlayVS \u00b7 2026-27 Scholastic Esports Season",
-      "lane": "Inherited / not approved",
+      "name": "PlayVS · 2026-27 Scholastic Esports Season",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-5"
+      ],
       "entities": [
         {
           "entity": "PlayVS",
@@ -448,8 +1301,12 @@
     {
       "id": "legacy-6",
       "name": "Games for Change Student Challenge",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "g4c-challenge"
+      ],
       "entities": [
         {
           "entity": "Games for Change Inc.",
@@ -463,8 +1320,12 @@
     {
       "id": "legacy-7",
       "name": "Riot URF Academy",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-7"
+      ],
       "entities": [
         {
           "entity": "Riot Games",
@@ -477,9 +1338,13 @@
     },
     {
       "id": "legacy-8",
-      "name": "NASEF \u00b7 Scholastic Esports Clubs + Curriculum",
-      "lane": "Inherited / not approved",
+      "name": "NASEF · Scholastic Esports Clubs + Curriculum",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "nasef"
+      ],
       "entities": [
         {
           "entity": "World Wide Scholastic Esports Foundation Inc.",
@@ -492,9 +1357,13 @@
     },
     {
       "id": "legacy-9",
-      "name": "IGDA Foundation \u00b7 Questline + Pro Development",
-      "lane": "Inherited / not approved",
+      "name": "IGDA Foundation · Questline + Pro Development",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "questline"
+      ],
       "entities": [
         {
           "entity": "IGDA Foundation",
@@ -507,9 +1376,13 @@
     },
     {
       "id": "legacy-10",
-      "name": "PlayVS x Urban One \u00b7 Power4+ HBCU Esports League",
-      "lane": "Inherited / not approved",
+      "name": "PlayVS x Urban One · Power4+ HBCU Esports League",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-10"
+      ],
       "entities": [
         {
           "entity": "PlayVS",
@@ -523,15 +1396,17 @@
           "kind": "Corporate filing",
           "url": "https://www.sec.gov/Archives/edgar/data/1041657/000104165726000016/uone-20251231.htm",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-11",
       "name": "EA Madden Scholarship via UNCF",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "United Negro College Fund, Inc.",
@@ -545,15 +1420,17 @@
           "kind": "Corporate filing",
           "url": "https://ir.ea.com/financials/sec-filings/sec-filings-details/default.aspx?FilingId=18460069",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-12",
-      "name": "Sony Career Pathways \u00b7 HBCU CS Scholarships",
-      "lane": "Inherited / not approved",
+      "name": "Sony Career Pathways · HBCU CS Scholarships",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Sony Interactive Entertainment / UNCF",
@@ -573,9 +1450,13 @@
     },
     {
       "id": "legacy-13",
-      "name": "Urban Arts \u00b7 NYC Game Academy",
-      "lane": "Inherited / not approved",
+      "name": "Urban Arts · NYC Game Academy",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "urban-arts"
+      ],
       "entities": [
         {
           "entity": "Urban Arts Partnership",
@@ -588,9 +1469,13 @@
     },
     {
       "id": "legacy-14",
-      "name": "Gameheads \u00b7 Oakland",
-      "lane": "Inherited / not approved",
+      "name": "Gameheads · Oakland",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "gameheads"
+      ],
       "entities": [
         {
           "entity": "Community Initiatives",
@@ -604,9 +1489,13 @@
     },
     {
       "id": "legacy-15",
-      "name": "1,000 Dreams Fund \u00b7 BroadcastHER Grant",
-      "lane": "Inherited / not approved",
+      "name": "1,000 Dreams Fund · BroadcastHER Grant",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "broadcasther"
+      ],
       "entities": [
         {
           "entity": "1000 Dreams Fund",
@@ -620,8 +1509,12 @@
     {
       "id": "legacy-16",
       "name": "ESA Foundation Scholarships",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "esa"
+      ],
       "entities": [
         {
           "entity": "ESAS Foundation",
@@ -635,23 +1528,31 @@
     {
       "id": "legacy-17",
       "name": "USC Games",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-17"
+      ],
       "entities": [
         {
           "entity": "University of Southern California",
           "kind": "University financial reports",
           "url": "https://comptroller.usc.edu/annual-financial-reports/",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-18",
       "name": "NYU Game Center",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-18"
+      ],
       "entities": [
         {
           "entity": "New York University",
@@ -665,8 +1566,15 @@
     {
       "id": "legacy-19",
       "name": "UCF (undergrad) + DigiPen + RIT + Clark",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-19-a",
+        "legacy-19-b",
+        "legacy-19-c",
+        "legacy-19-d"
+      ],
       "entities": [
         {
           "entity": "University of Central Florida",
@@ -680,7 +1588,7 @@
           "kind": "Company / program source",
           "url": "https://www.digipen.edu/sites/default/files/public/docs/digipen-veterans-affairs-benefits-handbook.pdf",
           "ein": "",
-          "note": "Its 2025\u201326 handbook identifies a private for-profit institution. Do not classify as a nonprofit scholarship fund."
+          "note": "Its 2025–26 handbook identifies a private for-profit institution. Do not classify as a nonprofit scholarship fund."
         },
         {
           "entity": "Rochester Institute of Technology",
@@ -694,15 +1602,19 @@
           "kind": "University financial reports",
           "url": "https://www.clarku.edu/business-and-financial-services/financial-statements/",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-20",
       "name": "CMU Entertainment Technology Center",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-20"
+      ],
       "entities": [
         {
           "entity": "Carnegie Mellon University",
@@ -715,9 +1627,15 @@
     },
     {
       "id": "legacy-21",
-      "name": "UCF FIEA \u00b7 USC + NYU graduate programs",
-      "lane": "Inherited / not approved",
+      "name": "UCF FIEA · USC + NYU graduate programs",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-21-a",
+        "legacy-21-b",
+        "legacy-21-c"
+      ],
       "entities": [
         {
           "entity": "University of Central Florida",
@@ -731,7 +1649,7 @@
           "kind": "University financial reports",
           "url": "https://comptroller.usc.edu/annual-financial-reports/",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         },
         {
           "entity": "New York University",
@@ -744,9 +1662,13 @@
     },
     {
       "id": "legacy-22",
-      "name": "GGP Scholars \u00b7 Graduate Tier (formerly the CYSTEM program)",
-      "lane": "Inherited / not approved",
+      "name": "GGP Scholars · Graduate Tier (formerly the CYSTEM program)",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "cystem-scholars"
+      ],
       "entities": [
         {
           "entity": "GG Professionals Inc.",
@@ -759,9 +1681,13 @@
     },
     {
       "id": "legacy-23",
-      "name": "GGP Scholars \u00b7 Undergraduate Tier + Collegiate Games Challenge",
-      "lane": "Inherited / not approved",
+      "name": "GGP Scholars · Undergraduate Tier + Collegiate Games Challenge",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "ggp-scholars"
+      ],
       "entities": [
         {
           "entity": "GG Professionals Inc.",
@@ -775,8 +1701,12 @@
     {
       "id": "legacy-24",
       "name": "Epic MegaGrants",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "epic-grants"
+      ],
       "entities": [
         {
           "entity": "Epic Games",
@@ -789,9 +1719,11 @@
     },
     {
       "id": "legacy-25",
-      "name": "Xbox Gaming for Everyone \u00b7 GDC Scholarship",
-      "lane": "Inherited / not approved",
+      "name": "Xbox Gaming for Everyone · GDC Scholarship",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Microsoft Corporation",
@@ -805,8 +1737,12 @@
     {
       "id": "legacy-26",
       "name": "Riot Games US Summer Internship Program",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "riot"
+      ],
       "entities": [
         {
           "entity": "Riot Games",
@@ -820,8 +1756,12 @@
     {
       "id": "legacy-27",
       "name": "Blizzard Internship Program",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-27"
+      ],
       "entities": [
         {
           "entity": "Microsoft Corporation",
@@ -835,8 +1775,12 @@
     {
       "id": "legacy-28",
       "name": "Activision US Internship + Co-Ops",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-28"
+      ],
       "entities": [
         {
           "entity": "Microsoft Corporation",
@@ -850,23 +1794,29 @@
     {
       "id": "legacy-29",
       "name": "EA Internships & Co-Ops (Emerging Talent)",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-29"
+      ],
       "entities": [
         {
           "entity": "Electronic Arts Inc.",
           "kind": "Corporate filing",
           "url": "https://ir.ea.com/financials/sec-filings/sec-filings-details/default.aspx?FilingId=18460069",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-30",
       "name": "More Studio Internships: confirmed to exist, details being verified",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Unspecified studios",
@@ -879,9 +1829,13 @@
     },
     {
       "id": "legacy-31",
-      "name": "\u2726 Day of AI \u00b7 MIT RAISE",
-      "lane": "Inherited / not approved",
+      "name": "✦ Day of AI · MIT RAISE",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "day-ai"
+      ],
       "entities": [
         {
           "entity": "Day of AI",
@@ -894,9 +1848,13 @@
     },
     {
       "id": "legacy-32",
-      "name": "\u2726 aiEDU (AI Education Project)",
-      "lane": "Inherited / not approved",
+      "name": "✦ aiEDU (AI Education Project)",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Resource integrated · partner grant held",
+      "linkedRecords": [
+        "legacy-32"
+      ],
       "entities": [
         {
           "entity": "American AI Forum / aiEDU",
@@ -909,9 +1867,13 @@
     },
     {
       "id": "legacy-33",
-      "name": "\u2726 Stanford AI4ALL (Pre-Collegiate)",
-      "lane": "Inherited / not approved",
+      "name": "✦ Stanford AI4ALL (Pre-Collegiate)",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-33"
+      ],
       "entities": [
         {
           "entity": "Stanford University",
@@ -931,9 +1893,13 @@
     },
     {
       "id": "legacy-34",
-      "name": "\u2726 Inspirit AI Scholars",
-      "lane": "Inherited / not approved",
+      "name": "✦ Inspirit AI Scholars",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-34"
+      ],
       "entities": [
         {
           "entity": "Inspirit AI",
@@ -946,9 +1912,13 @@
     },
     {
       "id": "legacy-35",
-      "name": "\u2726 Kode With Klossy",
-      "lane": "Inherited / not approved",
+      "name": "✦ Kode With Klossy",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "kwk"
+      ],
       "entities": [
         {
           "entity": "Kode With Klossy Inc.",
@@ -961,25 +1931,33 @@
     },
     {
       "id": "legacy-36",
-      "name": "\u2726 Break Through Tech AI",
-      "lane": "Inherited / not approved",
+      "name": "✦ Break Through Tech AI",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "btt-ai"
+      ],
       "entities": [
         {
           "entity": "Cornell University",
           "kind": "Nonprofit filing index",
           "url": "https://projects.propublica.org/nonprofits/organizations/150532082",
           "ein": "15-0532082",
-          "note": "Break Through Tech launched as a Cornell Tech initiative; Cornell totals are not this program\u2019s budget.",
+          "note": "Break Through Tech launched as a Cornell Tech initiative; Cornell totals are not this program’s budget.",
           "relationshipSource": "https://www.breakthroughtech.org/about-us/"
         }
       ]
     },
     {
       "id": "legacy-37",
-      "name": "\u2726 AI4ALL Ignite",
-      "lane": "Inherited / not approved",
+      "name": "✦ AI4ALL Ignite",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-37"
+      ],
       "entities": [
         {
           "entity": "AI4ALL",
@@ -992,9 +1970,11 @@
     },
     {
       "id": "legacy-38",
-      "name": "\u2726 Black in AI \u00b7 four programs",
-      "lane": "Inherited / not approved",
+      "name": "✦ Black in AI · four programs",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Held for further review",
+      "linkedRecords": [],
       "entities": [
         {
           "entity": "Black in AI",
@@ -1007,9 +1987,14 @@
     },
     {
       "id": "legacy-39",
-      "name": "\u2726 LatinX in AI",
-      "lane": "Inherited / not approved",
+      "name": "✦ LatinX in AI",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Partly integrated · follow-up remains",
+      "linkedRecords": [
+        "legacy-39-a",
+        "legacy-39-b"
+      ],
       "entities": [
         {
           "entity": "Accel AI Institute",
@@ -1023,9 +2008,14 @@
     },
     {
       "id": "legacy-40",
-      "name": "\u2726 Microsoft Elevate + AI Skills Navigator",
-      "lane": "Inherited / not approved",
+      "name": "✦ Microsoft Elevate + AI Skills Navigator",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-40-a",
+        "legacy-40-b"
+      ],
       "entities": [
         {
           "entity": "Microsoft Corporation",
@@ -1038,46 +2028,59 @@
     },
     {
       "id": "legacy-41",
-      "name": "\u2726 NVIDIA Graduate Fellowship",
-      "lane": "Inherited / not approved",
+      "name": "✦ NVIDIA Graduate Fellowship",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "nvidia-fellowship"
+      ],
       "entities": [
         {
           "entity": "NVIDIA Corporation",
           "kind": "Corporate filing",
           "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-42",
-      "name": "\u2726 Google PhD Fellowship \u00b7 Apple Scholars in AIML",
-      "lane": "Inherited / not approved",
+      "name": "✦ Google PhD Fellowship · Apple Scholars in AIML",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-42-a",
+        "legacy-42-b"
+      ],
       "entities": [
         {
           "entity": "Alphabet / Google",
           "kind": "Corporate filing",
           "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         },
         {
           "entity": "Apple Inc.",
           "kind": "Corporate filing",
           "url": "https://investor.apple.com/investor-relations/default.aspx",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-43",
-      "name": "\u2726 Cohere Labs Scholars Program",
-      "lane": "Inherited / not approved",
+      "name": "✦ Cohere Labs Scholars Program",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-43"
+      ],
       "entities": [
         {
           "entity": "Cohere Labs",
@@ -1090,9 +2093,15 @@
     },
     {
       "id": "legacy-44",
-      "name": "\u2726 Anthropic student lane",
-      "lane": "Inherited / not approved",
+      "name": "✦ Anthropic student lane",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-44-a",
+        "legacy-44-b",
+        "legacy-44-c"
+      ],
       "entities": [
         {
           "entity": "Anthropic",
@@ -1105,24 +2114,37 @@
     },
     {
       "id": "legacy-45",
-      "name": "\u2726 NVIDIA University Recruiting \u00b7 five named lanes",
-      "lane": "Inherited / not approved",
+      "name": "✦ NVIDIA University Recruiting · five named lanes",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-45-a",
+        "legacy-45-b",
+        "legacy-45-c",
+        "legacy-45-d",
+        "legacy-45-e"
+      ],
       "entities": [
         {
           "entity": "NVIDIA Corporation",
           "kind": "Corporate filing",
           "url": "https://investor.nvidia.com/financial-info/annual-reports-and-proxies/default.aspx",
           "ein": "",
-          "note": "Organization-level records do not isolate this program\u2019s budget."
+          "note": "Organization-level records do not isolate this program’s budget."
         }
       ]
     },
     {
       "id": "legacy-46",
-      "name": "\u2726 Scale AI University + Databricks University Recruiting",
-      "lane": "Inherited / not approved",
+      "name": "✦ Scale AI University + Databricks University Recruiting",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-46-a",
+        "legacy-46-b"
+      ],
       "entities": [
         {
           "entity": "Scale AI",
@@ -1142,9 +2164,13 @@
     },
     {
       "id": "legacy-47",
-      "name": "\u2726 2K Early Careers (Take-Two)",
-      "lane": "Inherited / not approved",
+      "name": "✦ 2K Early Careers (Take-Two)",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-47"
+      ],
       "entities": [
         {
           "entity": "Take-Two Interactive Software Inc.",
@@ -1157,9 +2183,13 @@
     },
     {
       "id": "legacy-48",
-      "name": "\u2726 Congressional App Challenge",
-      "lane": "Inherited / not approved",
+      "name": "✦ Congressional App Challenge",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-48"
+      ],
       "entities": [
         {
           "entity": "Internet Education Foundation",
@@ -1174,8 +2204,12 @@
     {
       "id": "legacy-49",
       "name": "ASGC Free Courses Directory",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-49"
+      ],
       "entities": [
         {
           "entity": "ASGC",
@@ -1189,8 +2223,13 @@
     {
       "id": "legacy-50",
       "name": "ASGC Coaching + LinkedIn Premium Trials",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-50-a",
+        "legacy-50-b"
+      ],
       "entities": [
         {
           "entity": "ASGC",
@@ -1204,8 +2243,12 @@
     {
       "id": "legacy-51",
       "name": "Career Game Loop Resources Suite",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-51"
+      ],
       "entities": [
         {
           "entity": "Career Game Loop",
@@ -1219,8 +2262,13 @@
     {
       "id": "legacy-52",
       "name": "IGDA Mentorship + Entry Level Skills Hub",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-52-a",
+        "legacy-52-b"
+      ],
       "entities": [
         {
           "entity": "International Game Developers Association Inc.",
@@ -1234,8 +2282,12 @@
     {
       "id": "legacy-53",
       "name": "ENTRY LVL",
-      "lane": "Inherited / not approved",
+      "lane": "Inherited research history",
       "checked": "2026-09-07",
+      "resolution": "Integrated into listed records",
+      "linkedRecords": [
+        "legacy-53"
+      ],
       "entities": [
         {
           "entity": "ENTRY LVL",
