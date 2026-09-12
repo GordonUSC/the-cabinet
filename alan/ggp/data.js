@@ -21,7 +21,7 @@ window.GGP={
       "cost": "Award amount and covered costs to be confirmed",
       "action": "Prepare a sample of your work and a short account of your community service. Ask GGP for the current undergraduate application requirements.",
       "url": "https://gaygamingpros.org/",
-      "note": "The program is established. Gordon’s August 11 direction separates undergraduate GGP Scholars from graduate CYSTEM Scholars. Older mixed-cohort announcements do not define the new intake.",
+      "note": "The program is established. Confirm current undergraduate eligibility and the application window with the program team; historical mixed-cohort announcements do not establish current intake rules.",
       "video": "qIHbGRbZTkI",
       "sourceLabel": "GGP program information",
       "sources": [
@@ -76,7 +76,7 @@ window.GGP={
       "name": "CYSTEM Scholars",
       "color": "blue",
       "summary": "GGP’s graduate scholar pathway, connecting developing game professionals with a community and opportunities to participate in the industry.",
-      "eligibility": "Graduate students across graduate games programs in the September 4 direction. All apply; nomination is a fast-track route, not the only entrance. Final published rules remain to be confirmed.",
+      "eligibility": "Graduate students exploring games careers. Confirm current school eligibility, application and nomination routes with the program team.",
       "cost": "Revised award amount awaiting program-team confirmation",
       "action": "Prepare your graduate program details, work sample and community contribution. Ask GGP to confirm the current CYSTEM application window.",
       "url": "https://www.linkedin.com/posts/gordonbellamy_home-activity-7429574108616515587-jojT",
@@ -100,9 +100,9 @@ window.GGP={
         "Underestimated communities (broad focus)"
       ],
       "outcome": {
-        "text": "The March 27, 2026 program update reports all 21 scholars attended GDC and the Scholars Breakfast. Participation evidence, not a placement rate or a guarantee for the next cohort.",
-        "url": "#scholars",
-        "kind": "2026 program-reported participation · report summarized in this review"
+        "text": "Explore Gordon’s public overview of CYSTEM Scholars. Confirm current cohort participation and outcomes with the program team.",
+        "url": "https://www.linkedin.com/posts/gordonbellamy_home-activity-7429574108616515587-jojT",
+        "kind": "Public program overview"
       },
       "publicRecords": [
         {
@@ -3541,6 +3541,243 @@ window.GGP={
           "https://www.endlessstudios.com/about-us"
         ]
       ]
+    },
+    {
+      "id": "code-platoon",
+      "name": "Code Platoon",
+      "provider": "Code Platoon",
+      "kind": "Software / AI career training",
+      "summary": "Military-connected software engineering and AI/cloud training. An adjacent technology pathway, not a game-development qualification.",
+      "eligibility": "Veterans, transitioning service members, military spouses and eligible dependents; confirm the specific cohort requirements.",
+      "cost": "Tuition and financial aid vary by funding route; ask for an individual cost and scholarship assessment.",
+      "format": "Full-time and evening/weekend options",
+      "url": "https://www.codeplatoon.org/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://www.codeplatoon.org/"
+        ],
+        [
+          "Requirements and detail",
+          "https://www.codeplatoon.org/frequently-asked-questions"
+        ]
+      ]
+    },
+    {
+      "id": "npower",
+      "name": "NPower · Tech Fundamentals",
+      "provider": "NPower",
+      "kind": "Learning / IT career training",
+      "summary": "Technology training and career support for young adults and military-connected learners.",
+      "eligibility": "Young-adult route generally ages 18–26; military route generally over 21. Work authorization, military status and geography rules apply; check the current FAQ.",
+      "cost": "No program cost to selected participants; living expenses are separate.",
+      "format": "Location-limited; online does not mean nationwide",
+      "url": "https://www.npower.org/apply/student-faq/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://www.npower.org/apply/student-faq/"
+        ]
+      ]
+    },
+    {
+      "id": "mssa",
+      "name": "Microsoft Software and Systems Academy",
+      "provider": "Microsoft",
+      "kind": "Learning / military career transition",
+      "summary": "Technical and career training for military transitions into cloud, development and related technology work.",
+      "eligibility": "Military eligibility and track-specific prerequisites apply. Consult current application requirements.",
+      "cost": "Confirm current tuition, equipment and living-cost responsibilities with MSSA.",
+      "format": "17-week full-time technical training",
+      "url": "https://military.microsoft.com/mssa/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://military.microsoft.com/mssa/"
+        ],
+        [
+          "Requirements and detail",
+          "https://military.microsoft.com/mssa/how-to-apply/"
+        ]
+      ]
+    },
+    {
+      "id": "per-scholas",
+      "name": "Per Scholas · Technology and AI courses",
+      "provider": "Per Scholas",
+      "kind": "Learning / adult retraining",
+      "summary": "Tuition-free technology and AI-related courses for people building or changing careers.",
+      "eligibility": "Eligibility, prerequisites and commuting-distance rules vary by course. National options may differ from local offerings.",
+      "cost": "Tuition-free; confirm equipment and other participation costs.",
+      "format": "Course and location dependent",
+      "url": "https://perscholas.org/courses/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://perscholas.org/courses/"
+        ],
+        [
+          "Requirements and detail",
+          "https://perscholas.org/locations/los-angeles/"
+        ]
+      ]
+    },
+    {
+      "id": "generation-usa",
+      "name": "Generation USA · Career training",
+      "provider": "Generation USA",
+      "kind": "Learning / adult retraining",
+      "summary": "Adult career training and employment support. Explore current technology offerings rather than assuming every track is available.",
+      "eligibility": "Requirements and availability depend on the current program and location.",
+      "cost": "Programs described as free of charge; confirm incidental costs.",
+      "format": "Program dependent",
+      "url": "https://usa.generation.org/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://usa.generation.org/"
+        ],
+        [
+          "Requirements and detail",
+          "https://www.generation.org/our-programs/"
+        ]
+      ]
+    },
+    {
+      "id": "stack-up",
+      "name": "Stack Up · Gaming and veteran support",
+      "provider": "Stack Up",
+      "kind": "Gaming / community support",
+      "summary": "Gaming-based veteran connection through equipment, events and local community programs. Community support, not career retraining or a scholarship.",
+      "eligibility": "U.S. and allied veterans and military communities; criteria vary by initiative.",
+      "cost": "Support varies by initiative; no individual award or entitlement is asserted.",
+      "format": "Gaming equipment, event and community initiatives",
+      "url": "https://www.stackup.org/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "discover"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm current cohort or program availability with provider",
+      "date": null,
+      "checked": "2026-09-11",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Official program information",
+          "https://www.stackup.org/"
+        ]
+      ]
     }
   ],
   "queue": [
@@ -5839,17 +6076,19 @@ window.GGP={
     "Nonbinary / gender-expansive",
     "Transgender / transfeminine",
     "Underestimated communities (broad focus)",
+    "Veterans / military-connected",
     "Women"
   ],
   "release": {
     "date": "2026-09-11",
     "previousListed": 23,
-    "listed": 70,
-    "added": 47,
+    "listed": 76,
+    "added": 53,
     "inherited": 53,
     "heldCandidateOffers": 3,
     "programSourceReview": "2026-09-09",
     "identitySourceReview": "2026-09-07",
-    "notes": "Listing, intake availability, evidence of outcomes and donation eligibility are separate checks."
+    "notes": "Listing, intake availability, evidence of outcomes and donation eligibility are separate checks. Six veteran/adult-pathway provider entries added September 11; intake, outcomes, giving routes and legal identity are separate checks.",
+    "latestResearch": "2026-09-11"
   }
 };
