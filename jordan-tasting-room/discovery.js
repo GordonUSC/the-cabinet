@@ -19,3 +19,6 @@ function sprinkles(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)r
 $('#dessert').onclick=()=>{$('#dessert-room').showModal();sprinkles();notes([261.63,329.63,392,523.25])};$('#close-dessert').onclick=()=>$('#dessert-room').close();$('#dessert-room').addEventListener('close',()=>{$('#dessert-video').pause();ctx?.suspend()});$('#chime').onclick=()=>notes([261.63,329.63,392,523.25,659.25],true);
 $('#copy-note').onclick=async()=>{const body=`Jordan + Gordon — our next experiment\n\nStarting point: ${samples[sample].title}\n${$('#napkin').value.trim()||'What could we try together, and what evidence would tell us it helped?'}\n\n${location.href.split('#')[0]}`;try{await navigator.clipboard.writeText(body);$('#note-status').textContent='Copied. Ready to paste into our conversation; nothing sent.';notes()}catch(e){$('#note-status').textContent='Copy unavailable here. Select your note above and copy it manually.'}};
 document.addEventListener('visibilitychange',()=>{if(document.hidden){ctx?.suspend();$('#dessert-video').pause()}});
+// Keep the tasting counter visible when a nested exhibit follows its own anchor.
+let firstExhibitLoad=true;
+$('#artifact').addEventListener('load',()=>{if(firstExhibitLoad){firstExhibitLoad=false;if(!location.hash)window.scrollTo({top:0,behavior:'instant'})}});
