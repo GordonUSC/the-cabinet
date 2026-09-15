@@ -19,8 +19,8 @@
     "city": "Los Angeles",
     "kind": "Comedy",
     "url": "https://cuboid-pigeon-k3zp.squarespace.com/shows/backtoschool0918",
-    "venue": "The Elysian",
-    "blurb": "A late-night laugh after a week in the classroom.",
+    "venue": "The Elysian · 9:30–10:45 p.m.",
+    "blurb": "Gordon + Joe. A night to laugh together after a week in the classroom.",
     "month": "2026-09"
   },
   {
@@ -178,5 +178,18 @@
     "venue": "Salmo River Ranch",
     "blurb": "A long-distance possibility worth dreaming about.",
     "month": "2027-07"
+  },
+  {
+    "id": "olympics",
+    "name": "LA28 · WITH FOSTER",
+    "date": "2028-07-15",
+    "stamp": "JUL 15 / 17 / 18 · 2028",
+    "city": "Los Angeles",
+    "kind": "Sport",
+    "url": "https://la28.org/",
+    "venue": "Squash + table tennis",
+    "blurb": "Three booked sessions. Another chapter with Foster, including his birthday.",
+    "month": "2028-07",
+    "color": "#b8e8ba"
   }
 ]
