@@ -9,7 +9,8 @@
     "url": "https://blizzcon.com/en-us/event/",
     "venue": "Anaheim Convention Center",
     "blurb": "A day inside worlds made for play.",
-    "month": "2026-09"
+    "month": "2026-09",
+    "color": "#9dcaff"
   },
   {
     "id": "comedy",
@@ -21,7 +22,8 @@
     "url": "https://cuboid-pigeon-k3zp.squarespace.com/shows/backtoschool0918",
     "venue": "The Elysian · 9:30–10:45 p.m.",
     "blurb": "Gordon + Joe. A night to laugh together after a week in the classroom.",
-    "month": "2026-09"
+    "month": "2026-09",
+    "color": "#ffc78d"
   },
   {
     "id": "portola",
@@ -33,7 +35,8 @@
     "url": "https://www.portolamusicfestival.com/lineup/",
     "venue": "Pier 80",
     "blurb": "A waterfront, a huge sound system, and a little discovery.",
-    "month": "2026-09"
+    "month": "2026-09",
+    "color": "#bfbcff"
   },
   {
     "id": "foundry",
@@ -45,7 +48,8 @@
     "url": "https://www.eventbrite.com/e/boof-presents-mcmlxxxv-herrensauna-at-the-foundry-folsom-street-fair-tickets-1999721840857",
     "venue": "1425 Folsom",
     "blurb": "A Sunday dance-floor possibility.",
-    "month": "2026-09"
+    "month": "2026-09",
+    "color": "#f09ed2"
   },
   {
     "id": "zeds",
@@ -57,7 +61,8 @@
     "url": "https://www.insomniac.com/events/zeds-dead-2026-10-03-los-angeles-ca/",
     "venue": "Grand Park",
     "blurb": "Bass under the Los Angeles sky.",
-    "month": "2026-10"
+    "month": "2026-10",
+    "color": "#85dcd3"
   },
   {
     "id": "niteharts",
@@ -69,7 +74,8 @@
     "url": "https://www.niteharts.com/",
     "venue": "Snapdragon Stadium grounds",
     "blurb": "A whole weekend for discovery.",
-    "month": "2026-10"
+    "month": "2026-10",
+    "color": "#b6a7fa"
   },
   {
     "id": "latenite",
@@ -81,7 +87,8 @@
     "url": "https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets",
     "venue": "Pechanga Arena",
     "blurb": "One more chapter after the festival.",
-    "month": "2026-10"
+    "month": "2026-10",
+    "color": "#bcd5f5"
   },
   {
     "id": "pokemon",
@@ -93,7 +100,8 @@
     "url": "https://30.pokemon.com/en-us/night-out",
     "venue": "Intuit Dome",
     "blurb": "A playful collision of music and imagination.",
-    "month": "2026-10"
+    "month": "2026-10",
+    "color": "#ffd871"
   },
   {
     "id": "pride",
@@ -105,7 +113,8 @@
     "url": "https://www.pspride.org/news",
     "venue": "Downtown + Arenas District",
     "blurb": "A weekend for community, color, and joy.",
-    "month": "2026-11"
+    "month": "2026-11",
+    "color": "#f2a7cf"
   },
   {
     "id": "summit",
@@ -117,7 +126,8 @@
     "url": "https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/",
     "venue": "LA Memorial Coliseum",
     "blurb": "Big-room energy. Room to make another memory.",
-    "month": "2026-12"
+    "month": "2026-12",
+    "color": "#8edbde"
   },
   {
     "id": "stevie",
@@ -129,7 +139,8 @@
     "url": "https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performances-50th-anniversary-inglewood-12-19-2026/event/09006524823041CB",
     "venue": "Intuit Dome",
     "blurb": "Songs that have already lived whole lives with us.",
-    "month": "2026-12"
+    "month": "2026-12",
+    "color": "#ffd47b"
   },
   {
     "id": "countdown",
@@ -141,7 +152,8 @@
     "url": "https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-return-to-nos-event-center-for-2026-festival",
     "venue": "NOS Event Center",
     "blurb": "A new year deserves a little wonder.",
-    "month": "2026-12"
+    "month": "2026-12",
+    "color": "#c1b0ff"
   },
   {
     "id": "gryphus",
@@ -153,7 +165,8 @@
     "url": "https://gryphusmusicfestival.com/",
     "venue": "Dates and venue to confirm",
     "blurb": "A future possibility still taking shape.",
-    "month": "later"
+    "month": "later",
+    "color": "#b5dbc8"
   },
   {
     "id": "edc",
@@ -165,7 +178,8 @@
     "url": "https://lasvegas.edc.com/guide/faq/",
     "venue": "Motor Speedway",
     "blurb": "Sunrise, sound, and a familiar kind of magic.",
-    "month": "2027-05"
+    "month": "2027-05",
+    "color": "#ffb991"
   },
   {
     "id": "shambhala",
@@ -177,7 +191,8 @@
     "url": "https://www.shambhalamusicfestival.com/tickets-camping",
     "venue": "Salmo River Ranch",
     "blurb": "A long-distance possibility worth dreaming about.",
-    "month": "2027-07"
+    "month": "2027-07",
+    "color": "#c5df92"
   },
   {
     "id": "olympics",
