@@ -1,0 +1,272 @@
+[
+  {
+    "id": "s2",
+    "n": "02",
+    "date": "August 26",
+    "title": "Choose what we can see.",
+    "topic": "First meeting · shot scale",
+    "verb": "Frame",
+    "intro": "One person. Five frames. What do you gain as you get closer, and what do you leave out?",
+    "question": "Before changing the frame, predict which view will help you understand the place. Which will help you read a small gesture?",
+    "transfer": "Find a moment in a game you know. Describe the framing before you describe the emotion. What information does that view give the player?",
+    "terms": [
+      [
+        "Extreme wide shot",
+        "A subject is small in a much larger setting."
+      ],
+      [
+        "Wide shot",
+        "The whole subject and the space around it are visible."
+      ],
+      [
+        "Medium shot",
+        "Usually a person from about the waist up, with some context."
+      ],
+      [
+        "Close-up",
+        "The face or another subject fills much of the frame."
+      ],
+      [
+        "Extreme close-up",
+        "A small detail fills the frame, such as an eye or a hand."
+      ]
+    ],
+    "videos": [
+      [
+        "53C4JPULu68",
+        "Learn: All Camera Shot Sizes Explained",
+        "Shawn Dolinski",
+        "Look for the boundary of each frame, not a universal emotional meaning."
+      ],
+      [
+        "EHoHhdbEq1Y",
+        "Explore: Up, Married Life",
+        "UP Pixar · fan upload",
+        "Find a cut from a broad view to a face. What information changed?"
+      ]
+    ],
+    "source": "Session 2 first-meeting board, August 26. The shot-scale annotation uses Up."
+  },
+  {
+    "id": "s3",
+    "n": "03",
+    "date": "August 31",
+    "title": "Give color a purpose.",
+    "topic": "Color & lighting",
+    "verb": "Light",
+    "intro": "Keep the arrangement. Change the palette. Then change saturation on its own. A feeling is a reading you can explain, not a color law.",
+    "question": "Predict what will happen to the scene when you remove its color. What still guides your eye?",
+    "transfer": "Choose three colors for an imagined game location. Explain a job for each. Try a different palette for the same location and compare.",
+    "terms": [
+      [
+        "Color script",
+        "A sequence of color plans showing how palette and mood change across a story."
+      ],
+      [
+        "Palette",
+        "A selected range of colors used together."
+      ],
+      [
+        "Warm / cool",
+        "Color relationships often described as reds, oranges and yellows versus blues and greens. Meanings depend on context and culture."
+      ],
+      [
+        "Lighting",
+        "The direction, color and quality of light in a scene."
+      ],
+      [
+        "Saturation",
+        "The intensity of a color, from gray to vivid."
+      ],
+      [
+        "Value",
+        "How light or dark a color is, independent of its hue."
+      ],
+      [
+        "High-key / low-key",
+        "High-key lighting usually has low contrast and few deep shadows. Low-key lighting has strong contrast and substantial shadow."
+      ],
+      [
+        "Motivated / stylized light",
+        "Motivated light suggests a source in the world. Stylized light may serve an expressive purpose without a visible source."
+      ],
+      [
+        "Hard / soft light",
+        "Hard light produces sharper shadow edges; soft light produces gradual edges."
+      ],
+      [
+        "Color and culture",
+        "A color can carry different associations for different people and contexts. State your reading and evidence."
+      ]
+    ],
+    "videos": [
+      [
+        "fXmAurh012s",
+        "Explore: Arcane official trailer",
+        "League of Legends",
+        "Pause on two settings. Compare their palettes and values."
+      ],
+      [
+        "zF5Ddo9JdpY",
+        "Explore: Awaken",
+        "League of Legends",
+        "Look at light and shadow on one subject. What is being emphasized?"
+      ]
+    ],
+    "source": "Session 3 terms/media sheets. Gordon confirmed the full GTA VI extended look was shown; the guide does not infer which other planned activities were completed."
+  },
+  {
+    "id": "s4",
+    "n": "04",
+    "date": "September 2",
+    "title": "Move for a reason.",
+    "topic": "Camera movement & perspective",
+    "verb": "Move",
+    "intro": "A turn and a journey are different. Try a small camera diagram. See what moves before deciding what it means.",
+    "question": "Which move changes the camera’s position? Which changes only the direction it points? Predict, then try both.",
+    "transfer": "Watch a moving shot. Finish: “The camera moves so that we can see ___.” Then imagine holding it still. What would we lose or gain?",
+    "terms": [
+      [
+        "Pan",
+        "Turn the camera left or right from a fixed position."
+      ],
+      [
+        "Tilt",
+        "Turn the camera up or down from a fixed position."
+      ],
+      [
+        "Dolly",
+        "Move the camera through space toward or away from a subject. This changes perspective; a zoom changes the lens view without moving the camera."
+      ],
+      [
+        "Crane / boom",
+        "Raise or lower the camera’s position through space."
+      ],
+      [
+        "Tracking / following",
+        "Travel with a moving subject. A pan may follow a subject too, but the camera itself stays in one place."
+      ],
+      [
+        "Dutch angle",
+        "Roll the frame so its horizon is tilted. Different from a tilt, which points the camera up or down."
+      ],
+      [
+        "Parallax",
+        "Nearby and faraway objects appear to shift by different amounts as the viewpoint moves."
+      ],
+      [
+        "Focal length",
+        "A lens property affecting angle of view. Perspective also depends on camera position; a longer lens alone does not change that position."
+      ],
+      [
+        "Handheld / locked-off",
+        "Handheld includes movement from a held camera. Locked-off keeps the camera fixed. Either can serve a deliberate purpose."
+      ],
+      [
+        "Motivated camera move",
+        "A move that serves something in the scene, such as following an action or revealing information."
+      ]
+    ],
+    "videos": [
+      [
+        "QdBZY2fkU-0",
+        "Explore: GTA VI Trailer 1",
+        "Rockstar Games",
+        "Find one move. Name what it reveals rather than only saying it looks cool."
+      ],
+      [
+        "okvFCZi5B0k",
+        "Explore: Ryan Coogler on IMAX",
+        "IMAX",
+        "Consider how the physical cost of a move can shape its purpose."
+      ]
+    ],
+    "source": "Session 4 shared source session4.py and student terms/media sheets."
+  },
+  {
+    "id": "s6",
+    "n": "06",
+    "date": "September 9",
+    "title": "Give the eye a path.",
+    "topic": "Composition & depth",
+    "verb": "Arrange",
+    "intro": "Brighten a doorway. Move two friends apart. Change which layer is sharp. Compare the visible result with your intention.",
+    "question": "What draws your eye first? Can you change that without moving the objects?",
+    "transfer": "Design a frame for a player who needs to find a partner. Ask someone what they notice before telling them your intention.",
+    "terms": [
+      [
+        "Composition",
+        "How elements are arranged inside a frame."
+      ],
+      [
+        "Visual hierarchy",
+        "The order in which elements attract attention."
+      ],
+      [
+        "Negative space",
+        "The less occupied space around and between subjects."
+      ],
+      [
+        "Depth",
+        "The sense of near and far."
+      ],
+      [
+        "Depth of field",
+        "The range of distances that appears acceptably sharp."
+      ],
+      [
+        "Establishing shot",
+        "A shot that helps us understand a setting or spatial relationship."
+      ]
+    ],
+    "videos": [],
+    "deep": "usc-290-recap/index.html#attention",
+    "deepLabel": "Enter the complete composition studio",
+    "source": "Official Version B recap: six interactive lessons, 34 terms, practice and mood-board studio preserved in full."
+  },
+  {
+    "id": "s7",
+    "n": "07",
+    "date": "September 14",
+    "title": "Make time mean something.",
+    "topic": "Editing, pacing & montage",
+    "verb": "Edit",
+    "intro": "Keep the four shots. Change their durations. Then hold durations equal and change order. One variable at a time helps you see why an edit feels different.",
+    "question": "If the same four shots stay in the same order, does a longer hold create another cut? Count the boundaries.",
+    "transfer": "Describe a ten-second sequence for your world. Choose one moment to hold. Explain what that time gives the viewer.",
+    "terms": [
+      [
+        "Cut",
+        "A change from one shot to the next."
+      ],
+      [
+        "Pacing",
+        "The rhythm and speed of the unfolding sequence."
+      ],
+      [
+        "Montage",
+        "Meaning made through a sequence of images placed together; it can compress time and need not be fast."
+      ],
+      [
+        "Continuity",
+        "Consistency across shots that helps a viewer follow space, time or action."
+      ],
+      [
+        "Beat",
+        "A meaningful moment or rhythm unit."
+      ],
+      [
+        "Cutaway",
+        "A shot away from the main action, often supplying a detail or reaction."
+      ],
+      [
+        "Wipe",
+        "A transition with a moving boundary that reveals the next image."
+      ]
+    ],
+    "videos": [],
+    "deep": "usc-290-september-14/student.html#lab",
+    "deepLabel": "Enter the complete editing lab",
+    "source": "Official Version B student Editing Lab, September14. Timing and ordering isolated; transitions, terminology and reflections retained."
+  }
+]
