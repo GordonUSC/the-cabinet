@@ -1,0 +1,33 @@
+{
+  "title": "Sinjin + GGP | More graduate scholars",
+  "description": "With gratitude to Sinjin, Claire, Lucas and Bigglesworth. A shared plan for more graduate scholars, useful mentorship and wider reach.",
+  "h1": "More graduate scholars.<br>More people in their corner.",
+  "lede": "You bring people together. Here is what those relationships could make possible next.",
+  "section_heading": "A year we can shape together",
+  "nav": [
+    {
+      "label": "Directory + Pipeline",
+      "href": "directory/"
+    },
+    {
+      "label": "Your thoughts",
+      "href": "#feedback"
+    }
+  ],
+  "fact_labels": {
+    "cohort": "graduate scholars<br>in the next cohort target",
+    "additional": "growth from last year’s<br>21 graduate scholars",
+    "mentors": "industry mentors<br>proposed for the cohort"
+  },
+  "pdf_download_name": "GGP-Sinjin-Graduate-Impact.pdf",
+  "downloads": [
+    {
+      "label": "Directory + Pipeline",
+      "href": "directory/"
+    },
+    {
+      "label": "Scholars’ schools",
+      "href": "Scholars-School-Logo-Slide.pdf"
+    }
+  ]
+}

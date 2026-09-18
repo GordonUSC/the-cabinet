@@ -1,0 +1,37 @@
+{
+  "title": "Sinjin + GGP | Directory and Pipeline",
+  "description": "With gratitude to Sinjin, Claire, Lucas and Bigglesworth. A shared plan for more graduate scholars, useful mentorship and wider reach.",
+  "h1": "Help more donors<br>help more people.",
+  "lede": "Directory + Pipeline: turn trusted relationships into useful support for graduate students.",
+  "section_heading": "Directory &amp; Pipeline",
+  "nav": [
+    {
+      "label": "Graduate scholars",
+      "href": "../"
+    },
+    {
+      "label": "Your thoughts",
+      "href": "#feedback"
+    }
+  ],
+  "fact_labels": {
+    "cohort": "industry mentors proposed<br>for the first Pipeline pilot",
+    "additional": "graduate students proposed<br>for the first Pipeline pilot",
+    "mentors": "graduate Directory users<br>proposed by September 2027"
+  },
+  "pdf_download_name": "GGP-Sinjin-Directory-and-Pipeline.pdf",
+  "downloads": [
+    {
+      "label": "Board narrative",
+      "href": "Sinjin-Board-Narrative.pdf"
+    },
+    {
+      "label": "Editable script",
+      "href": "Sinjin-Board-Narrative.txt"
+    },
+    {
+      "label": "Graduate scholars",
+      "href": "../"
+    }
+  ]
+}
