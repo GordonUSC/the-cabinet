@@ -270,14 +270,14 @@ historical plates are there for composition and motif.</p>
 Session 14: a person directing a generative model inside a normal pipeline, with the direction visible.
 Tier three, a prompt standing in for your own seeing, is the thing this course forbids, and the way you
 prove you are not doing it is to publish the prompt and the reason next to the picture.</p>
-<p><b>Signal Garden is short of screens, and you can see it.</b> Rope has three in-game plates and The
-Last Sitting has four. Signal Garden has one, because the generation allowance ran out mid-batch and the
-three that failed were the most important ones on the whole page: the asymmetric split screen where one
-half is lit and the other is nearly black, the shared map with only one player's markers, and the leaf whose
-veins are the menu. <b>That gap is the most instructive thing here.</b> The board still looks beautiful and
-it is now the weakest of the three, because the one question it exists to answer, what do two people who
-cannot share a sense actually see, is answered by a single frame. Count your screens before you fall in love
-with your photographs.</p>
+<p><b>Signal Garden was one screen for an hour, and it was visibly the weakest board of the three.</b>
+The generation calls for its three most important frames failed, and what failed was exactly the set that
+answers the question the board exists to ask: the asymmetric split where one half is lit and the other is
+nearly black, the map that only knows what the two of you have told each other, and the leaf whose veins are
+the menu. With one screen the board was twenty beautiful pictures of a mood. With four it is a game.
+<b>The lesson survives the fix, so it is left here on purpose:</b> count your screens before you fall in love
+with your photographs, because a board can look finished and still be missing the only images that explain
+what the player does.</p>
 <p><b>One source was broken and is not on this page.</b> The Met's own image asset for object 56235,
 another impression of the Hokusai climbing print, returns a 404. A second impression, object 55281, is
 live and is what you see on the Rope board. Check your links before you submit; a dead source is an
