@@ -589,11 +589,20 @@ three plays at 11:16 <b>are</b> the vocabulary drill in a second register. Criti
 with an unmoving camera and four hours to breathe; Hamilton shows the same three when somebody is cutting.
 That pairing is the reason both texts are in one session, and it is worth saying to the room in one
 sentence, because from the inside it just looks like two videos.</li>
-<li><b>And the same thirty minutes is the on-ramp to Thursday.</b> <i>Hamilton</i> on stage and on screen is
-one of the four pairs the rubric approves by name, so the argument you just ran is the argument the video
-wants. <b>Name that at 12:45.</b> Anyone still without a pair walked into one this morning and has it half
-written. Critical Role cannot serve there, because Campaign 4 exists in one medium and there is no second
-form to compare it against.</li>
+<li><b>And the same thirty minutes is a worked example of their first assignment, performed.</b>
+<i>Hamilton</i> on stage and on screen is one of the four pairs the rubric approves by name, so when you run
+the 11:16 block you are not previewing the Visual Analysis Video, <b>you are doing one out loud.</b> Ask the
+rubric's three questions in the rubric's own words, in this order, and the mapping is exact:
+<b>what survived the crossing unchanged</b>, <b>what had to be reinvented because the new medium could not
+carry the original</b>, and <b>what is simply gone.</b> The third is the one that earns the top band and the
+one they will skip.</li>
+<li><b>Why that is worth thirty minutes on a Monday.</b> Your own exit ticket exists because the two things
+students never volunteer are which concept went past them and <b>what they believe is expected of them.</b>
+A worked example answers the second one without anybody having to raise a hand, and it reaches the students
+who would never have asked. Every student in that room leaves knowing what a 5 sounds like, which is a
+different thing from having read the rubric. Say plainly that this is what the assignment looks like.
+Critical Role cannot serve there, because Campaign 4 exists in one medium and there is no second form to
+compare it against.</li>
 <li><b>Mood board.</b> The rubric says the file is due <b>Thursday 1 October</b> with presentations Monday
 5 October. The grading table in the same guide still says 24 September. <b>These contradict each other and
 students will ask.</b> Say 1 October, which is the corrected date and the one the rubric explains, then
