@@ -572,18 +572,21 @@ registers.</td><td class="m">optional</td></tr>
 <li><b>Thursday 24 September, 5:00 PM PT. Visual Analysis Video, 10%.</b> One world, two media, three to
 five minutes. Session 9 is the last Monday before it lands, and today's whole first hour is the skill it
 is graded on. Say the deadline out loud at 10:00 and again at 12:45.</li>
-<li><b>The homework on this page cannot help them with Thursday, and it is worth knowing that before you
-assign it.</b> They already owe you the Visual Analysis Video, 10 percent, <b>one world in two media</b>, due
-Thursday at 5:00. The synthesis block assigns an hour of Critical Role and an annotation of one character's
-visual arc. <b>Campaign 4 exists in one medium.</b> However good that annotation is, it has no second form to
-compare against, so it cannot turn into Thursday's video. It is an ungraded hour landing three days before a
-graded one, and it is the homework a room quietly skips.</li>
-<li><b>The half of today that does feed Thursday is Hamilton.</b> <i>Hamilton</i> on stage and on screen is
-one of the four pairs the rubric approves by name, and the 11:16 block is thirty minutes of arguing exactly
-what that crossing cost. <b>Say that out loud at 12:45.</b> Anyone still without a pair walked into one this
-morning and has the argument half written. If a student wants Critical Role badly, the pair that exists is
-Campaign 1 against <i>The Legend of Vox Machina</i>, which is outside the course canon and so needs your
-approval in Discord first. That suggestion is mine, not your syllabus.</li>
+<li><b>Tonight's Critical Role hour has a job, and the job is today's vocabulary.</b> Watch one hour,
+annotate one character's visual arc. That is the drill for <b>blocking, gesturality and reaction shot</b>,
+and it is why the assignment is an hour of one continuous performance rather than a trailer: these three
+terms only exist across time, and a two-minute clip cannot show a habit. <b>Say the job out loud when you
+assign it.</b> An hour of viewing with no stated purpose is the one students cut, and the exit tickets will
+tell you on Wednesday whether they did.</li>
+<li><b>The load, named honestly, since Thursday is real.</b> This is ungraded and it lands three days before
+the Visual Analysis Video, 10 percent, one world in two media. If the room looks stretched, <b>shrink it
+rather than drop it</b>: twenty minutes of one table still proves all three terms, and the drill is the
+point, not the runtime.</li>
+<li><b>Hamilton is the separate thing, and it is the one that feeds Thursday.</b> <i>Hamilton</i> on stage
+and on screen is one of the four pairs the rubric approves by name, and the 11:16 block is thirty minutes of
+arguing what that crossing cost. <b>Name that at 12:45.</b> Critical Role cannot serve there, because
+Campaign 4 exists in one medium and there is no second form to compare it against. Anyone still without a
+pair walked into one this morning and has the argument half written.</li>
 <li><b>Mood board.</b> The rubric says the file is due <b>Thursday 1 October</b> with presentations Monday
 5 October. The grading table in the same guide still says 24 September. <b>These contradict each other and
 students will ask.</b> Say 1 October, which is the corrected date and the one the rubric explains, then
