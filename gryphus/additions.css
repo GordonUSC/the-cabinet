@@ -82,3 +82,8 @@
   .lyday{border-right:0;border-bottom:1px solid #b9c1b3;padding:26px 0 28px}
   .lyday:last-child{border-bottom:0}
 }
+
+/* The after-hours player is Spotify's own embed now, not a hotlinked file, so it
+   needs to span the row rather than sit in it like a button. */
+.midnight-audio .midnight-embed{width:100%;min-height:152px}
+.midnight-audio .midnight-embed iframe{display:block;width:100%;border:0;border-radius:12px}

@@ -1,4 +1,4 @@
-GRYPHUS — clean vector logo explorations
+GRYPHUS clean vector logo explorations
 
 Three options for founder review. No final logo selection is assumed.
 All symbols are native vector paths; wordmark letterforms are outlined from Barlow Condensed Black (SIL Open Font License, included in vendor kit).

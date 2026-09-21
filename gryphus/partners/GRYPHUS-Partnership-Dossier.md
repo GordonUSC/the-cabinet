@@ -26,7 +26,7 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 ## Runningman roster
 
-### Altra — Tier 1: Contact first
+### Altra, Tier 1: Contact first
 
 **Category:** Trail + movement · **Location:** National prospect
 
@@ -42,11 +42,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for Texas field-marketing coverage, demo size run, staff and shoe-cleaning plan.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-258.svg) · display position(s): 1
 
-### FjØRD — Tier 2: Build the program
+### FjØRD, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -62,13 +62,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about Texas delivery, water treatment, power, drainage, supervision and participants per hour.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://fjordcoldplunge.com/)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-260.svg) · display position(s): 2
 
-### Goodwipes — Tier 1: Contact first
+### Goodwipes, Tier 1: Contact first
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -84,11 +84,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Request event donation eligibility, unit count, shipment timing and a disposal plan approved by sanitation vendor.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-261.svg) · display position(s): 3
 
-### MoonBrew — Tier 3: Explore selectively
+### MoonBrew, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -104,11 +104,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for event sampling policy, serving guidance, product labeling and staffing; keep ordinary drinks available.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-267.svg) · display position(s): 4
 
-### Everyday Dose — Tier 2: Build the program
+### Everyday Dose, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -124,11 +124,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for product, trained servers, hot water, cups, ingredient signage and whether sponsorship or paid catering is offered.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-275.svg) · display position(s): 5
 
-### Rythm Health — Tier 3: Explore selectively
+### Rythm Health, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -144,11 +144,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about event scope, clinician involvement, privacy responsibilities and staffing; keep testing optional and separate from festival entry.
 
-**Verification:** Identity visually matched; event partnership route verified. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; event partnership route verified. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-269.svg) · display position(s): 6
 
-### Tempur-Pedic — Tier 2: Build the program
+### Tempur-Pedic, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -164,11 +164,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for local retailer involvement, loan equipment, sanitation, delivery and weather protection.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-301.svg) · display position(s): 7
 
-### WILDE — Tier 2: Build the program
+### WILDE, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -184,11 +184,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for case donation versus wholesale pricing, portions, allergen labeling and delivery.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-273.svg) · display position(s): 8
 
-### Painterland Sisters — Tier 2: Build the program
+### Painterland Sisters, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -204,11 +204,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for cold-chain delivery, refrigeration, servers, allergen labels and waste handling.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-274.svg) · display position(s): 9
 
-### KALA — Tier 3: Explore selectively
+### KALA, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -224,17 +224,17 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for approved devices, operator guidance, required shielding and power, and current product safety documentation.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Kala-Light-Therapy.webp) · display position(s): 10
 
-### KOH — Tier 3: Explore selectively
+### KOH, Tier 3: Explore selectively
 
 **Category:** Identity check · **Location:** Pending verification
 
 **Public contact:** Ask Runningman to identify this roster partner
 
-**Route:** Organizer routing only — brand contact unverified
+**Route:** Organizer routing only, brand contact unverified
 
 [Contact source](https://runningmanfestival.com/contact-us/)
 
@@ -244,11 +244,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.
 
-**Verification:** Business identity / direct contact unresolved. **Status:** Prospect — no agreement.
+**Verification:** Business identity / direct contact unresolved. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-263.svg) · display position(s): 11
 
-### Loftie — Tier 2: Build the program
+### Loftie, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -264,11 +264,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a small loan kit, power, content permissions and an acoustic plan that respects camping quiet hours.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-264.svg) · display position(s): 12
 
-### Magic Molecule — Tier 3: Explore selectively
+### Magic Molecule, Tier 3: Explore selectively
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -284,17 +284,17 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for current labeling, suitable storage and sample supply; keep it separate from festival medical care.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-265.svg) · display position(s): 13
 
-### Collective Water — Tier 3: Explore selectively
+### Collective Water, Tier 3: Explore selectively
 
 **Category:** Identity check · **Location:** Pending verification
 
 **Public contact:** Ask Runningman to identify this roster partner
 
-**Route:** Organizer routing only — brand contact unverified
+**Route:** Organizer routing only, brand contact unverified
 
 [Contact source](https://runningmanfestival.com/contact-us/)
 
@@ -304,11 +304,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.
 
-**Verification:** Business identity / direct contact unresolved. **Status:** Prospect — no agreement.
+**Verification:** Business identity / direct contact unresolved. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-259.svg) · display position(s): 14
 
-### Lone River — Tier 2: Build the program
+### Lone River, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -324,11 +324,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask the brand for a Texas distribution/experiential lead; establish licensed service, age checks and category terms before an offer.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/LoneRiver-White.svg) · display position(s): 15, 37
 
-### Cold Freak — Tier 2: Build the program
+### Cold Freak, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -344,11 +344,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for mobile freezer capacity, power, replenishment, staffing and allergen information.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-293.svg) · display position(s): 16
 
-### Hyperice — Tier 1: Contact first
+### Hyperice, Tier 1: Contact first
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -364,11 +364,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for demo devices, trained staff, hygiene protocol, seating, shade and throughput.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_2.svg) · display position(s): 17
 
-### Wellworthy — Tier 1: Contact first
+### Wellworthy, Tier 1: Contact first
 
 **Category:** Community + media · **Location:** National prospect
 
@@ -384,13 +384,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether they would curate brands, provide coverage or produce a paid activation; separate editorial interest from paid deliverables.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://insider.fitt.co/press-release/runningman-festival-announces-first-wave-of-brand-sponsors-for-2026-cementing-its-position-as-americas-premier-movement-wellness-festival/)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-272.svg) · display position(s): 18
 
-### Pioneer Pastures — Tier 2: Build the program
+### Pioneer Pastures, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -406,11 +406,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for Texas distribution, cold-chain requirements, donation versus purchase terms and dairy-free alternatives nearby.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-268.svg) · display position(s): 19
 
-### Mess Hall — Tier 1: Contact first
+### Mess Hall, Tier 1: Contact first
 
 **Category:** Apparel + expression · **Location:** National prospect
 
@@ -426,11 +426,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Confirm corduroy front + mesh back, NO ROPES, patch production, staff, minimums and pricing. They customize their own hats, so outside blanks cannot be assumed.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-266.svg) · display position(s): 20
 
-### RIGWA — Tier 2: Build the program
+### RIGWA, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -446,11 +446,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for co-branding minimums, production lead time, unit cost and whether a small sample activation is possible.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Vector.svg) · display position(s): 21
 
-### Turtlebox — Tier 2: Build the program
+### Turtlebox, Tier 2: Build the program
 
 **Category:** Music + production · **Location:** National prospect
 
@@ -466,11 +466,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a small equipment loan, music-use permissions and approved quiet-zone boundaries.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-271.svg) · display position(s): 22
 
-### SISU Lifestyle — Tier 2: Build the program
+### SISU Lifestyle, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -486,19 +486,19 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether they supply an event build, hardware or partner introductions; confirm transport, setup, power and supervision.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://runningmanfestival.com/experience/)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1.svg) · display position(s): 23
 
-### I Believe In You — Tier 3: Explore selectively
+### I Believe In You, Tier 3: Explore selectively
 
 **Category:** Identity check · **Location:** Pending verification
 
 **Public contact:** Ask Runningman to identify this roster partner
 
-**Route:** Organizer routing only — brand contact unverified
+**Route:** Organizer routing only, brand contact unverified
 
 [Contact source](https://runningmanfestival.com/contact-us/)
 
@@ -508,11 +508,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.
 
-**Verification:** Business identity / direct contact unresolved. **Status:** Prospect — no agreement.
+**Verification:** Business identity / direct contact unresolved. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-1.svg) · display position(s): 24
 
-### Athletic Brewing Co. — Tier 1: Contact first
+### Athletic Brewing Co., Tier 1: Contact first
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -528,11 +528,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for event sponsorship eligibility, servings, refrigeration, staffing and product-specific age policy.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-278.svg) · display position(s): 25
 
-### Harvia — Tier 2: Build the program
+### Harvia, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -548,11 +548,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for Texas dealer introductions, installation requirements, staffing, power and realistic capacity.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Isolation_Mode.svg) · display position(s): 26
 
-### WOODWAY — Tier 3: Explore selectively
+### WOODWAY, Tier 3: Explore selectively
 
 **Category:** Trail + movement · **Location:** National prospect
 
@@ -568,11 +568,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether a staffed loan unit can work on level covered flooring, with freight, power and weather protection included.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-279.svg) · display position(s): 27
 
-### SUJI — Tier 3: Explore selectively
+### SUJI, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -588,11 +588,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for qualified supervision, participant screening, hygiene, product guidance and event insurance requirements.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-280.svg) · display position(s): 28
 
-### Re-Lyte — Tier 1: Contact first
+### Re-Lyte, Tier 1: Contact first
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -608,11 +608,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for an introduction to athletic partnerships, portions, mixing equipment, potable water and dispensing staff.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-282.svg) · display position(s): 29
 
-### KANE — Tier 2: Build the program
+### KANE, Tier 2: Build the program
 
 **Category:** Trail + movement · **Location:** National prospect
 
@@ -628,11 +628,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for demo sizes, cleaning, a Texas retail partner and optional event-only purchase terms.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Vector-1.svg) · display position(s): 30
 
-### Promix — Tier 2: Build the program
+### Promix, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -648,11 +648,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask which products are suitable for sampling, staff, water, refrigeration and ingredient/allergen labeling.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-284.svg) · display position(s): 31
 
-### Othership — Tier 2: Build the program
+### Othership, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -668,11 +668,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a trained facilitator, licensed audio, participant guidance and a format suited to outdoor conditions.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-285.svg) · display position(s): 32
 
-### HYROX — Tier 3: Explore selectively
+### HYROX, Tier 3: Explore selectively
 
 **Category:** Trail + movement · **Location:** National prospect
 
@@ -688,11 +688,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about permissions, qualified coaches and whether a complementary activation makes sense alongside the MTB program.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-286.svg) · display position(s): 33
 
-### Silent Flower — Tier 3: Explore selectively
+### Silent Flower, Tier 3: Explore selectively
 
 **Category:** Adult-only exploratory · **Location:** National prospect
 
@@ -708,11 +708,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Establish product legality, age controls, service rules and insurance before considering an activation. Keep separate from family programming.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-292.svg) · display position(s): 34
 
-### Dr. Doug’s Balms — Tier 2: Build the program
+### Dr. Doug’s Balms, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -728,11 +728,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for sample format, labels, heat storage guidance and staffing; no festival medical claims.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Logo-with-TM-Vector-Dr.-Doug_s-Balms-1.svg) · display position(s): 35
 
-### All Day Sauna Co. — Tier 2: Build the program
+### All Day Sauna Co., Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -748,11 +748,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether they supply hardware, programming, merchandise or an operating team, plus all transport and utility needs.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-289.svg) · display position(s): 36
 
-### DOPE Marketing — Tier 3: Explore selectively
+### DOPE Marketing, Tier 3: Explore selectively
 
 **Category:** Community + media · **Location:** National prospect
 
@@ -768,11 +768,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a small test geography, print/postage quote and tracking; do not share private attendee data.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-290.svg) · display position(s): 38
 
-### Dream Performance & Recovery — Tier 3: Explore selectively
+### Dream Performance & Recovery, Tier 3: Explore selectively
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -788,11 +788,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for event samples, labeling and product choices; avoid demonstrations that require medical screening.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group.svg) · display position(s): 39
 
-### Equip — Tier 2: Build the program
+### Equip, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -808,11 +808,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for suitable products, portions, mixing and water plan, servers and ingredient labeling.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-291.svg) · display position(s): 40
 
-### Almost Heaven Saunas — Tier 2: Build the program
+### Almost Heaven Saunas, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -828,11 +828,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about rental versus permanent installation, freight, assembly, power, permits and operating partner.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/AHS_Lockup_White-1.svg) · display position(s): 41
 
-### BE LOVE — Tier 2: Build the program
+### BE LOVE, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -848,11 +848,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for an event marketing lead, suitable products, case supply, refrigeration and recycling.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-294.svg) · display position(s): 42
 
-### Kenetik — Tier 3: Explore selectively
+### Kenetik, Tier 3: Explore selectively
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -868,11 +868,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for sample quantities, product guidance, responsible presentation and staff.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-295.svg) · display position(s): 43
 
-### StripIt — Tier 3: Explore selectively
+### StripIt, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -888,11 +888,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about event sampling policy, ingredient guidance and staffing; do not promise sleep or digestive outcomes.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-296.svg) · display position(s): 44
 
-### The Big A## Calendar — Tier 2: Build the program
+### The Big A## Calendar, Tier 2: Build the program
 
 **Category:** Community + media · **Location:** National prospect
 
@@ -908,11 +908,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about an event-size display, custom printing permissions and small take-home cards.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-287.svg) · display position(s): 45
 
-### TentCraft — Tier 1: Contact first
+### TentCraft, Tier 1: Contact first
 
 **Category:** Music + production · **Location:** National prospect
 
@@ -928,11 +928,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a site-plan-based quote, dimensions, ballast, wind limits, freight and installation crew.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-270.svg) · display position(s): 46
 
-### NOON WORLD — Tier 3: Explore selectively
+### NOON WORLD, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -948,11 +948,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for event sampling rules, eligible audience, serving guidance and packaging; avoid health promises.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-297.svg) · display position(s): 47
 
-### Lorea — Tier 3: Explore selectively
+### Lorea, Tier 3: Explore selectively
 
 **Category:** Adult-only exploratory · **Location:** National prospect
 
@@ -968,13 +968,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Confirm current Texas product legality, venue permission, age controls, service responsibilities and insurance before proposing service.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://livelorea.com/blogs/news/lorea-launch-designer-tonics)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-1-1.svg) · display position(s): 48
 
-### melan — Tier 1: Contact first
+### melan, Tier 1: Contact first
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -990,11 +990,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for sealed samples, product instructions, storage and replenishment; establish a staffed, hygienic format.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-288.svg) · display position(s): 49
 
-### Rho — Tier 3: Explore selectively
+### Rho, Tier 3: Explore selectively
 
 **Category:** Community + media · **Location:** National prospect
 
@@ -1010,13 +1010,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether event sponsorship fits the partner program and what commercial audience they need; avoid requesting attendee financial data.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://www.rho.co/)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-283.svg) · display position(s): 50
 
-### SuckerPunch — Tier 2: Build the program
+### SuckerPunch, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -1032,11 +1032,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for single-serve stock, case counts, serving format, ingredient labels and waste handling.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-281.svg) · display position(s): 51
 
-### The Forward Bar — Tier 2: Build the program
+### The Forward Bar, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -1052,11 +1052,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for portions, shelf life, storage, allergens and event donation or wholesale terms.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Capa_1.svg) · display position(s): 52
 
-### LivOn Labs — Tier 3: Explore selectively
+### LivOn Labs, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -1072,11 +1072,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask marketing about event fit, sampling rules and labels; make no treatment or recovery promises.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-2.svg) · display position(s): 53
 
-### real sleep — Tier 3: Explore selectively
+### real sleep, Tier 3: Explore selectively
 
 **Category:** Recovery + wellness · **Location:** National prospect
 
@@ -1092,13 +1092,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether they do public education at events and what clinician, privacy and medical-service boundaries would apply.
 
-**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Identity visually matched; official contact route checked. **Status:** Prospect, no agreement.
 
 [Additional primary source](https://www.therealsleep.com/)
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/rs-logo-white-1.svg) · display position(s): 54
 
-### Rivian — Tier 2: Build the program
+### Rivian, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -1114,11 +1114,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for a Texas events contact, delivery, display footprint and charging needs; any driving needs separate approval.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-2-1.svg) · display position(s): 55
 
-### Skratch Labs — Tier 1: Contact first
+### Skratch Labs, Tier 1: Contact first
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -1134,11 +1134,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for event support eligibility, servings, potable water, dispensers, staff and timing.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-3.svg) · display position(s): 56
 
-### POWERADE Power Water — Tier 2: Build the program
+### POWERADE Power Water, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -1154,11 +1154,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for the regional Coca-Cola bottler / event marketing route, product availability, refrigeration and recycling.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-4.svg) · display position(s): 57
 
-### Safely — Tier 2: Build the program
+### Safely, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -1174,11 +1174,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for educators and demonstration-only materials; confirm festival rules before displaying any defensive spray.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-1.svg) · display position(s): 58
 
-### Unwaffle — Tier 2: Build the program
+### Unwaffle, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** National prospect
 
@@ -1194,11 +1194,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for wholesale or event supply, freezer/toaster power, servings, food service and ingredient labels.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-300.svg) · display position(s): 59
 
-### AT&T Connected Car — Tier 3: Explore selectively
+### AT&T Connected Car, Tier 3: Explore selectively
 
 **Category:** Camp + comfort · **Location:** National prospect
 
@@ -1214,13 +1214,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for an events lead and site survey; confirm coverage, equipment, power and any display permissions.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 [Original organizer logo](https://runningmanfestival.com/wp-content/uploads/2025/08/Group-298.svg) · display position(s): 60
 
 ## San Antonio + Hill Country
 
-### Hill Country Bicycle Works — Tier 1: Contact first
+### Hill Country Bicycle Works, Tier 1: Contact first
 
 **Category:** Trail + movement · **Location:** Kerrville + Fredericksburg
 
@@ -1236,13 +1236,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for staff availability, an equipment list and a scoped service/demo offer; confirm any MTB rental inventory separately.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Altra, Skratch Labs, KANE
 
 [Additional primary source](https://www.flatrockranchtx.com/events)
 
-### Soulbird Wellness — Tier 1: Contact first
+### Soulbird Wellness, Tier 1: Contact first
 
 **Category:** Recovery + wellness · **Location:** San Antonio
 
@@ -1258,11 +1258,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether Comfort is in the service area, participants per hour, water/power/drainage, transport, staffing and a written event quote.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** FjØRD, SISU, All Day Sauna Co., Harvia
 
-### Visit Comfort TX — Tier 1: Contact first
+### Visit Comfort TX, Tier 1: Contact first
 
 **Category:** Community + media · **Location:** Comfort
 
@@ -1278,11 +1278,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask for local introductions, calendar/newsletter placement, official images and a tracked visitor-guide link.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Wellworthy, DOPE Marketing
 
-### Fleet Feet San Antonio — Tier 1: Contact first
+### Fleet Feet San Antonio, Tier 1: Contact first
 
 **Category:** Trail + movement · **Location:** San Antonio
 
@@ -1298,11 +1298,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask the store about its event calendar, coaches, demo shoes and referral tracking; avoid promising free product.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Altra, KANE, Skratch Labs
 
-### STORM — Tier 1: Contact first
+### STORM, Tier 1: Contact first
 
 **Category:** Trail + movement · **Location:** San Antonio region + Flat Rock Ranch
 
@@ -1318,13 +1318,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about alignment with existing events, volunteer capacity and trail-care priorities; do not imply an agreement.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** HYROX, Altra
 
 [Additional primary source](https://stormmtb.org/)
 
-### Hotel Giles — Tier 2: Build the program
+### Hotel Giles, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** Comfort
 
@@ -1340,7 +1340,7 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about dates, room inventory, group terms and cancellation rules. No rooms are reserved.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Tempur-Pedic, Loftie
 
@@ -1348,7 +1348,7 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 [Additional primary source](https://www.flatrockranchtx.com/about)
 
-### Camp Comfort — Tier 2: Build the program
+### Camp Comfort, Tier 2: Build the program
 
 **Category:** Camp + comfort · **Location:** Comfort
 
@@ -1364,11 +1364,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about available inventory, group terms, quiet hours and transport suggestions; no availability is assumed.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Tempur-Pedic, Loftie
 
-### Famous Juice Company — Tier 2: Build the program
+### Famous Juice Company, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** San Antonio
 
@@ -1384,11 +1384,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether it travels to Comfort, minimum spend, refrigeration, power, permits, staff and serving capacity.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Everyday Dose, Pioneer Pastures, The Forward Bar
 
-### High’s Cafe & Store — Tier 2: Build the program
+### High’s Cafe & Store, Tier 2: Build the program
 
 **Category:** Food + drink · **Location:** Comfort
 
@@ -1404,11 +1404,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about quantities, lead time, pickup schedule, dietary choices and a group ordering cutoff.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** The Forward Bar, Unwaffle, Painterland Sisters
 
-### Restore Hyper Wellness — Sonterra — Tier 2: Build the program
+### Restore Hyper Wellness, Sonterra, Tier 2: Build the program
 
 **Category:** Recovery + wellness · **Location:** San Antonio
 
@@ -1424,11 +1424,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask which non-invasive services can responsibly travel, staff requirements, hygiene and whether off-site service is permitted.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Hyperice, KALA, SUJI
 
-### Visit Boerne — Tier 2: Build the program
+### Visit Boerne, Tier 2: Build the program
 
 **Category:** Community + media · **Location:** Boerne
 
@@ -1444,11 +1444,11 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask about listing requirements, accommodation partners, local images and measurable referrals.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** Wellworthy, DOPE Marketing
 
-### San Antonio Sports — Tier 3: Explore selectively
+### San Antonio Sports, Tier 3: Explore selectively
 
 **Category:** Community + media · **Location:** San Antonio
 
@@ -1464,13 +1464,13 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask whether cross-promotion is appropriate and who owns community partnerships; do not assume audience access or endorsement.
 
-**Verification:** Official contact route checked. **Status:** Prospect — no agreement.
+**Verification:** Official contact route checked. **Status:** Prospect, no agreement.
 
 **Similar Runningman prospects:** HYROX, Wellworthy
 
 ## User-picked creative prospect
 
-### Disko Cowboy / Vinyl Ranch — Tier 2: Build the program
+### Disko Cowboy / Vinyl Ranch, Tier 2: Build the program
 
 **Category:** Music + production · **Location:** Texas connection; travel and availability unconfirmed
 
@@ -1486,4 +1486,4 @@ Include confirmed date, audience and site plan; one guest experience; cash/produ
 
 **First logistical ask:** Ask management about the intended date, fee, travel, technical rider and collaboration interest. Confirm corduroy front, mesh back and NO ROPES for any hat concept.
 
-**Verification:** Official artist and contacts checked. **Status:** Creative prospect — not booked or agreed.
+**Verification:** Official artist and contacts checked. **Status:** Creative prospect, not booked or agreed.
