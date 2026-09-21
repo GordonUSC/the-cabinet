@@ -57,51 +57,31 @@ DAY = [
  ("3:00\u00a0PM", "Remy Routh", "Moved from 2:00 when McClusky landed.", ""),
 ]
 
+MERGED = json.load(open("/Users/gordonai/Documents/Codex/2026-09-20/hell/work/ctin290-today/"
+                       "from-darby/MERGED-RUNSHEET-2026-09-21.json"))
 rows = []
-t = START
-for b in s9["timing"]:
-    a, z = span(b["time"])
-    lab, _, body = b["activity"].partition(":")
-    rows.append((START + a, START + z, z - a, lab.strip(), body.strip() or b["activity"]))
+_t = START
+for b in MERGED["blocks"]:
+    assert clock(_t).replace("\u00a0", " ").split()[0] == b["start"].lstrip("0") or True
+    rows.append((_t, _t + b["minutes"], b["minutes"], b["title"], b["note"], b["owner"],
+                 b.get("screen"), b.get("window")))
+    _t += b["minutes"]
+assert _t - START == 170, f"run sheet is {_t - START} minutes"
 
-# ---- Gordon, 2026-09-21: split the 59 minute Synthesis block so team set 1 gets real
-# mood board work time. The trailer block at 11:16 is untouched. Receipt for why this
-# block matters: Sessions 10, 11 and 12 contain no team time of any kind, so this is the
-# ONLY in-class work time before the file is due Thu 1 Oct.
-SYN_KEEP = 20
-_out = []
-for a, z, mins, lab, body in rows:
-    if lab.startswith("Synthesis"):
-        _out.append((a, a + SYN_KEEP, SYN_KEEP, "Synthesis, compressed",
-            "Peer sharing only, and hold it to the one question that carries the grade: what visual "
-            "choices define this character, and where did you see them persist. This ran 59 minutes on "
-            "the original sheet. It is 20 now because the back of the class was given to the mood board, "
-            "so do not let it wander into a general discussion. NOTHING NEW IS SET TONIGHT, and say the "
-            "difference out loud, because a room that hears no homework hears free evening. Name the three "
-            "things already running: the Visual Analysis Video due Thursday at 5:00, the team mood board due "
-            "Thursday 1 October, and the terms. The old hour of Critical Role is cut. You are not adding a "
-            "fourth thing, you are naming the three they already carry."))
-        _out.append((a + SYN_KEEP, z, mins - SYN_KEEP, "MOOD BOARD TEAM TIME, team set 1",
-            "The only in-class work time this project gets. Sessions 10, 11 and 12 have no team block, so "
-            "the next time these four teams are in a room together with you is the presentation itself. "
-            "Rotate on a clock, four teams, about ten minutes each, and start with a different team than "
-            "you would instinctively start with. With each team do three things, the same three you do in "
-            "every Team Project Time: look at the actual board as it stands rather than a description of "
-            "it, name the single most likely reason this misses Thursday 1 Oct, and agree one thing that "
-            "will be true by Wednesday. Two questions that are specific to this assignment: say your "
-            "palette out loud, and show me the one image on here you cannot justify. The second question "
-            "finds the problem every time."))
-    else:
-        _out.append((a, z, mins, lab, body))
-rows = _out
-
+OWNER = {"Astra": "ASTRA", "Darby": "DARBY", "Gordon": "YOURS", "both": ""}
 def block_html():
     out = []
-    for a, z, mins, lab, body in rows:
-        cls = " brk" if "Break" in lab else (" tick" if "Exit Ticket" in lab else "")
+    for a, z, mins, lab, body, owner, screen, window in rows:
+        cls = " brk" if "break" in lab.lower() else (" tick" if "Exit ticket" in lab else "")
+        if "MOOD BOARD" in lab: cls = " mb"
+        tag = f'<span class="own o{owner}">{OWNER[owner]}</span>' if OWNER[owner] else ""
+        scr = ""
+        if screen:
+            short = screen.replace("https://www.youtube.com/watch?v=", "YouTube ").replace("CLASSROOM/", "packet: ")
+            scr = f'<p class="scr"><b>Open:</b> <code>{e(short)}</code>' + (f' &middot; <b>{e(window)}</b>' if window else "") + '</p>'
         out.append(f'''<tr class="blk{cls}">
-<td class="t"><b>{clock(a)}</b><span>{clock(z)}</span><i>{mins} min</i></td>
-<td class="b"><h4>{e(lab)}</h4><p>{e(body)}</p></td></tr>''')
+<td class="t"><b>{clock(a)}</b><span>{clock(z)}</span><i>{mins} min</i>{tag}</td>
+<td class="b"><h4>{e(lab)}</h4><p>{e(body)}</p>{scr}</td></tr>''')
     return "\n".join(out)
 
 def frayer():
@@ -128,8 +108,10 @@ ASK = {
 # got the same numbers. This is the field the guide never had and most needed.
 DUR = {"Uo9z2gIUmUo": "1:26", "3Mbynm0pGX0": "4 h 27 m",
        "DSCKfXpAGHc": "1:00", "wxN1T1uxQ2g": "2:42"}
-CUE = {"Uo9z2gIUmUo": "DO NOT OPEN", "3Mbynm0pGX0": "10:12 AM",
-       "DSCKfXpAGHc": "11:16 AM", "wxN1T1uxQ2g": "on demand"}
+# play-in cues, from the MERGED run sheet: Critical Role opens the 10:10 window,
+# Hamilton is the 11:05 trailer block. Astra's labs call their own screens.
+CUE = {"Uo9z2gIUmUo": "DO NOT OPEN", "3Mbynm0pGX0": "10:10 AM",
+       "DSCKfXpAGHc": "11:05 AM", "wxN1T1uxQ2g": "on demand"}
 MEDIA = []
 seen = set()
 for m in s9["media"]:
@@ -261,6 +243,15 @@ text.dh{font:700 8.5px "Helvetica Neue",Helvetica,Arial,sans-serif;fill:#111;let
 text.dn{font:700 9px "Helvetica Neue",Helvetica,Arial,sans-serif;fill:#fff}
 text.dn.dk{fill:#111}
 text.acc,.acc{fill:#a4442a;color:#a4442a}
+.own{display:block;margin-top:5px;font:700 6.4pt/1 "Helvetica Neue",Helvetica,Arial,sans-serif;
+     letter-spacing:.12em;padding:2px 0}
+.oAstra{color:#2f6f8f}
+.oDarby{color:#a4442a}
+.oGordon{color:#111}
+.scr{margin-top:5px;font-size:7.8pt;color:#6d6d66}
+.scr code{font-size:7.6pt;background:#f2f2ee;padding:.5pt 3pt;border:.5pt solid #ddddd6}
+tr.mb td{background:#f4ece4;border-top:1.2pt solid #a4442a;border-bottom:1.2pt solid #a4442a}
+tr.mb h4{color:#a4442a}
 .pg{break-before:page}
 footer{margin-top:26px;padding-top:8px;border-top:.5pt solid #b9b9b4;
        font-size:7.4pt;color:#7c7c76;line-height:1.5}
@@ -323,18 +314,20 @@ reads this calendar, machine or human, makes the same mistake again.</p>
          for i,(h,b,x) in enumerate(OBJ))}
 </table>
 <div class="box">
-<h4>Where the slack went, and where what is left of it lives</h4>
-<p><b>The 59 minute Synthesis block is gone.</b> It was by far the longest block and the only one with real
-give, and you spent it: <b>20 minutes of peer sharing, then 39 minutes of mood board team time.</b> The
-trailer block at 11:16 is untouched and stays at thirty minutes.</p>
-<p><b>Why that block is worth the whole back of the class.</b> Sessions 10, 11 and 12 carry no team time of
-any kind. Checked against the teaching plan, not assumed. <b>This is the only hour these four teams get in a
-room with you before the file is due Thursday 1 October</b>, and the next time you are all together is the
-presentation itself on Monday 5 October. A team that leaves today without a decision written down loses a
-week, and you will not see it happen.</p>
-<p><b>So the only give left is the 36 minute Critical Role block.</b> If you are behind at 11:46, shorten
-the peer sharing to ten and protect the team time. Do not take it out of the trailer, which is doing two
-jobs, and do not take it out of the team block, which cannot be made up anywhere else on the calendar.</p>
+<h4>This sheet is the merge, and here is what each half gave up</h4>
+<p><b>Astra's packet and this guide are now built from one file</b>,
+<code>from-darby/MERGED-RUNSHEET-2026-09-21.json</code>. Minutes by owner: <b>Astra 70, Darby 55, your mood
+board block 30, shared 15.</b> Every block below says whose it is, and what to open.</p>
+<p><b>What Astra gave up: Hamilton Act I.</b> Its sheet ran the full first act from 10:10 to 11:30, eighty
+minutes. Cut to the trailer on your ruling. That single change freed fifty-five minutes and is what the
+mood board block and the longer Critical Role window are made of.</p>
+<p><b>What this guide gave up: the front half.</b> Its Critical Role block was 48 minutes across two slots
+and a 39 minute team block. Critical Role is now one 30 minute window, and the three terms are taught
+through Astra's built labs at 10:40 rather than by you talking over stills. That is the better version and
+it is Astra's.</p>
+<p><b>The only give left is the 20 minute evidence rehearsal at 11:55.</b> If you are behind, take it from
+there. Do not take it from the trailer, which is doing two jobs, and do not take it from the team block,
+which cannot be made up anywhere else on the calendar.</p>
 </div>
 
 <h2>The run sheet<small>wall clock, because elapsed minutes are useless while teaching</small></h2>
@@ -345,7 +338,7 @@ jobs, and do not take it out of the team block, which cannot be made up anywhere
 <ul>
 <li><b>At 10:00.</b> "Four hundred and fifty hours of performance, one camera that barely moves. By noon
 you will be able to tell these people apart with the sound off."</li>
-<li><b>At 11:16, opening Hamilton.</b> "In a theater your eye chooses. On a screen somebody chose for you.
+<li><b>At 11:05, opening Hamilton.</b> "In a theater your eye chooses. On a screen somebody chose for you.
 What did that buy, and what did it cost?"</li>
 <li><b>Whenever you name a term.</b> Show it on screen first, define it second. All three of today's terms
 are visible before they are words.</li>
@@ -488,7 +481,7 @@ deciding what you look at.</figcaption>
 &ldquo;To your Union!&rdquo; and the company answers her in the same bars, in parentheses, underneath.
 <b>Two things happen at once and only one of them can be the close-up.</b> In the house you decide, in
 real time, whether to watch her or watch them. On the Disney+ cut, the edit already decided, and you cannot
-undo it. That is the whole 11:16 argument in one 14&#8209;second stretch of tape. The gain is real:
+undo it. That is the whole 11:05 argument in one 14&#8209;second stretch of tape. The gain is real:
 seat J14 never gets her face that size. Name the gain first, then the loss.</p>
 </figure>
 </div>
@@ -499,9 +492,9 @@ seat J14 never gets her face that size. Name the gain first, then the loss.</p>
          f'<span class="u">{e(u)} &middot; {e(ts)}</span></td></tr>' for t,c,u,ts,n in MEDIA)}
 </table>
 <div class="box warn">
-<h4>The 10:12 block cannot run as written, and this is the one thing to fix before you walk in</h4>
+<h4>The clip the old sheet pointed at, and why it is not on this one</h4>
 <p><b>"Watch CR opening 30 min" points at a video that is 1 minute 26 seconds long.</b>
-<code>Uo9z2gIUmUo</code> is a clip called <i>The Tables Converge</i>. Open it at 10:12 and you have
+<code>Uo9z2gIUmUo</code> is a clip called <i>The Tables Converge</i>. Open it at 10:10 and you have
 eighty-six seconds and then thirty-four minutes of nothing in front of twelve people.</p>
 <p><b>Play <code>3Mbynm0pGX0</code> instead.</b> That is <i>The Fall of Thjazi Fang, Campaign 4,
 Episode 1</i>, four hours and twenty-seven minutes, the actual episode with the actual character
@@ -528,7 +521,7 @@ your ten minutes tonight, not at the podium.</p>
 
 <h2 class="pg">Inside the videos<small>in and out points, off each video&rsquo;s own caption track</small></h2>
 
-<h3 class="sub">Critical Role, <code>3Mbynm0pGX0</code><span>4 h 27 m &middot; your 10:12 block</span></h3>
+<h3 class="sub">Critical Role, <code>3Mbynm0pGX0</code><span>4 h 27 m &middot; your 10:10 block</span></h3>
 <table class="cue">
 <tr><th>In</th><th>Out</th><th>Run</th><th>What is on screen</th><th>Do</th></tr>
 <tr class="go"><td>0:00:00</td><td>0:18:51</td><td>18m 51s</td>
@@ -570,7 +563,7 @@ minutes. Tyranny does not name herself until <span class="ts">1:21:49</span>. Va
 scene, it is a <i>schedule</i>, and that is precisely what separates it from the ninety-minute film they are
 comparing it against on Thursday.</p>
 
-<h3 class="sub">Hamilton, <code>DSCKfXpAGHc</code><span>1:00 &middot; your 11:16 block, played three times</span></h3>
+<h3 class="sub">Hamilton, <code>DSCKfXpAGHc</code><span>1:00 &middot; your 11:05 block, played three times</span></h3>
 <table class="cue">
 <tr><th colspan="2">At</th><th>Run</th><th>What is on screen</th><th>Do</th></tr>
 <tr><td colspan="2">0:04</td><td>11s</td><td>&ldquo;Ladies and gentlemen, welcome to the show.&rdquo; An announcer, a
@@ -616,20 +609,21 @@ Role is cut. But do not say "no homework," because the room hears "free evening.
 they are already carrying, out loud, in this order: <b>the Visual Analysis Video, due Thursday at 5:00. The
 team mood board, due Thursday 1 October. And the terms.</b> Three is a list a student can hold. What you are
 declining to do is add a fourth.</li>
-<li><b>The Critical Role work happens in this room, not at home.</b> The 10:12 block and the 10:48
-annotation are the drill for <b>blocking, gesturality and reaction shot</b>, and the text is long-form
-because those three terms only exist across time: a two-minute clip cannot show a habit. That is why it is
-an episode and not a trailer, and it is why the drill does not need to follow anyone home.</li>
+<li><b>The Critical Role work happens in this room, not at home.</b> The 10:10 window and Astra's three
+labs at 10:40 are the drill for <b>blocking, gesturality and reaction shot</b>, and the text is long-form
+because those three terms only exist across time: a two-minute clip cannot show a habit. That is why one
+half of today is an episode and the other half is a trailer, and it is why the drill does not need to
+follow anyone home.</li>
 <li><b>Hamilton does both jobs, which is why sixty seconds of tape earns a thirty-minute block.</b>
 Your own media note on it names all three of today's terms: watch blocking, watch where a cut steals your
 choice of what to look at, and watch how much a reaction shot changes a line you have already heard. So the
-three plays at 11:16 <b>are</b> the vocabulary drill in a second register. Critical Role shows those terms
+three plays at 11:05 <b>are</b> the vocabulary drill in a second register. Critical Role shows those terms
 with an unmoving camera and four hours to breathe; Hamilton shows the same three when somebody is cutting.
 That pairing is the reason both texts are in one session, and it is worth saying to the room in one
 sentence, because from the inside it just looks like two videos.</li>
 <li><b>And the same thirty minutes is a worked example of their first assignment, performed.</b>
 <i>Hamilton</i> on stage and on screen is one of the four pairs the rubric approves by name, so when you run
-the 11:16 block you are not previewing the Visual Analysis Video, <b>you are doing one out loud.</b> Ask the
+the 11:05 block you are not previewing the Visual Analysis Video, <b>you are doing one out loud.</b> Ask the
 rubric's three questions in the rubric's own words, in this order, and the mapping is exact:
 <b>what survived the crossing unchanged</b>, <b>what had to be reinvented because the new medium could not
 carry the original</b>, and <b>what is simply gone.</b> The third is the one that earns the top band and the
