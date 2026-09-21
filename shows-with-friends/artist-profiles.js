@@ -63,7 +63,7 @@ window.AFTERHOURS_ARTISTS = {
         "id": "next",
         "label": "THE NEXT FIRST",
         "title": "There is a room waiting for this.",
-        "text": "Fang Speare’s debut B2B with Capnsmak is planned for the Tuesday 21st Annual GGP@GDC Mixer. Then comes a birthday-weekend 2027 chapter at the family’s reimagined firehouse in Boonton, New Jersey, before Shambhala. Those are distinct rooms with distinct meanings: a debut among a community, a celebration in a place with family history, and the next adventure together. The joy is being there while this part of Foster’s life takes shape."
+        "text": "Fang Speare’s debut B2B with Capnsmak is planned for the Tuesday 21st Annual GGP@GDC Mixer at The Foundry SF. Then comes a birthday-weekend 2027 chapter at the family’s reimagined firehouse in Boonton, New Jersey, before Shambhala. Those are distinct rooms with distinct meanings: a debut among a community, a celebration in a place with family history, and the next adventure together. The joy is being there while this part of Foster’s life takes shape."
       }
     ],
     "timeline": [
