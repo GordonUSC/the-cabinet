@@ -45,12 +45,14 @@ def swatch_row(pal, label, note):
             f'<div class="swrow">{cells}</div></div>')
 
 def plate(board_key, it):
-    if it["kind"] == "generated":
+    if it["kind"] in ("generated", "game"):
         k = it["idx"]
-        prov = (f'<span class="tag gen">Generated</span> Recraft V4.1 via Higgsfield, 21 September 2026. '
+        lab = "In-game" if it["kind"] == "game" else "Generated"
+        cls = "game" if it["kind"] == "game" else "gen"
+        prov = (f'<span class="tag {cls}">{lab}</span> Recraft V4.1 via Higgsfield, 21 September 2026. '
                 f'Palette locked to {", ".join(LOCK[board_key])} at generation time. '
                 f'<span class="pr">Prompt: &ldquo;{e(PROMPTS[k])}&rdquo;</span>')
-        title = f"Plate {k}"
+        title = ("Screen " if it["kind"] == "game" else "Plate ") + k
     else:
         o = it["met"]; k = str(o["id"])
         bits = [b for b in [o.get("artist"), o.get("date")] if b and b != "Unknown"]
@@ -67,7 +69,8 @@ sections = []
 for key, name, kicker, premise, reading, isnot in BOARDS:
     d = M[key]; items = d["items"]
     ng = sum(1 for i in items if i["kind"] == "generated")
-    nc = len(items) - ng
+    nga = sum(1 for i in items if i["kind"] == "game")
+    nc = len(items) - ng - nga
     accent = d["palette"][0]["hex"]
     dark = [s for s in d["palette"] if s["lum"] < 110]
     ink = (dark[0]["hex"] if dark else "#1b1b18")
@@ -81,9 +84,9 @@ for key, name, kicker, premise, reading, isnot in BOARDS:
 <p><b>How this team read the six words.</b> {e(reading)}</p>
 <p class="isnot"><b>What this board is not.</b> {e(isnot)}</p>
 </div>
-<p class="count"><b>{len(items)} images</b> &middot; {ng} generated for this board &middot; {nc} curated from the public domain &middot; the brief asks for 20 to 40</p>
+<p class="count"><b>{len(items)} images</b> &middot; {ng} of the world &middot; <b>{nga} of the screen</b> &middot; {nc} curated from the public domain &middot; the brief asks for 20 to 40</p>
 </header>
-{swatch_row(d["palette"], "The look", "Measured from the " + str(ng) + " generated plates, which define the world. Percentages are the share of pixels each color owns.")}
+{swatch_row(d["palette"], "The look", "Measured from the " + str(ng + nga) + " generated plates, world and screen together, which define how this game looks. Percentages are the share of pixels each color owns.")}
 {swatch_row(d["refpalette"], "What the reference plates add", "Measured from the " + str(nc) + " curated works. These skew to paper and age, and that is the honest reading: they are on the board for form, motif and composition, not for color.")}
 <div class="grid">
 {"".join(plate(key, it) for it in items)}
@@ -151,6 +154,7 @@ figcaption h5{font-size:12.5px;letter-spacing:.02em;line-height:1.35;margin-bott
      padding:2px 6px;margin-right:6px;vertical-align:1px}
 .tag.gen{background:#1b1b18;color:#fff}
 .tag.cur{background:#e8e3d7;color:#1b1b18}
+.tag.game{background:#8a5a3b;color:#fff}
 
 .close{margin-top:52px;padding-top:30px;border-top:3px solid #1b1b18}
 .close h2{font-size:30px;letter-spacing:-.02em}
@@ -223,6 +227,10 @@ quietly lies about itself.</li>
 <li><b>Sourcing is part of the grade and part of the syllabus.</b> Curated work here is public domain from
 the Met's Open Access collection, with artist, date, medium and a working link. Generated work says it was
 generated, names the model, and prints the prompt.</li>
+<li><b>A mood board for a game needs the screen, not just the world.</b> Every board here carries plates
+tagged <b>in-game</b>: the HUD, the camera, the split screen, the level seen from above, the menu. A board
+made only of beautiful photographs describes a film. The question a game board has to answer is what the
+player is looking at while all that beauty is happening.</li>
 <li><b>Each board says what it is not.</b> One sentence ruling something out sharpens a reading faster than
 three sentences describing it.</li>
 </ol>
@@ -262,6 +270,14 @@ historical plates are there for composition and motif.</p>
 Session 14: a person directing a generative model inside a normal pipeline, with the direction visible.
 Tier three, a prompt standing in for your own seeing, is the thing this course forbids, and the way you
 prove you are not doing it is to publish the prompt and the reason next to the picture.</p>
+<p><b>Signal Garden is short of screens, and you can see it.</b> Rope has three in-game plates and The
+Last Sitting has four. Signal Garden has one, because the generation allowance ran out mid-batch and the
+three that failed were the most important ones on the whole page: the asymmetric split screen where one
+half is lit and the other is nearly black, the shared map with only one player's markers, and the leaf whose
+veins are the menu. <b>That gap is the most instructive thing here.</b> The board still looks beautiful and
+it is now the weakest of the three, because the one question it exists to answer, what do two people who
+cannot share a sense actually see, is answered by a single frame. Count your screens before you fall in love
+with your photographs.</p>
 <p><b>One source was broken and is not on this page.</b> The Met's own image asset for object 56235,
 another impression of the Hokusai climbing print, returns a 404. A second impression, object 55281, is
 live and is what you see on the Rope board. Check your links before you submit; a dead source is an
