@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>One strike. Three timings. · CTIN 290</title><link rel="stylesheet" href="style.css?v=2"></head>
+<body><main><nav class="lab-nav" aria-label="Classroom navigation"><a href="../classroom.html">CTIN 290 / BACK TO CLASS</a><a href="../session-9.html#performance-lab">Performance studio ↗</a></nav>
+  <header><div><p class="eyebrow">CTIN 290 · THE SYNC LAB</p><h1>One strike.<br class="mobile-break"> Three timings.</h1><p class="intro">The same action. The same sound. Watch when they meet.</p></div><button id="fullscreen" class="quiet">Fill screen ↗</button></header>
+  <div class="edits" role="group" aria-label="Choose sound timing">
+    <button data-offset="0" aria-pressed="true"><span>01</span><strong>On time</strong><small>Sound at contact</small></button>
+    <button data-offset="-0.25" aria-pressed="false"><span>02</span><strong>Sound early</strong><small>¼ second before contact</small></button>
+    <button data-offset="0.25" aria-pressed="false"><span>03</span><strong>Sound late</strong><small>¼ second after contact</small></button>
+  </div>
+  <section class="experiment" aria-label="Sound and action experiment">
+    <div id="stage" aria-live="off"></div>
+    <div class="timeline" aria-label="Contact and sound event timeline">
+      <div class="track"><b>CONTACT</b><div class="rail"><span class="fixed-mark">◆</span><i class="playhead"></i></div></div>
+      <div class="track"><b>SOUND</b><div class="rail"><span id="sound-mark">♪</span><i class="playhead"></i></div></div>
+      <p id="timing-description">Both events occur together. The blue contact stays fixed in every version.</p>
+    </div>
+  </section>
+  <div class="transport">
+    <div class="primary-controls"><button id="play" class="primary">▶ Play with sound</button><button id="restart">↺ Restart</button><button id="pause" disabled>Pause</button></div>
+    <div class="sound-controls"><button id="test">♪ Test sound</button><label for="volume">Volume <output id="volume-value">60%</output></label><input id="volume" aria-label="Master volume" type="range" min="0" max="100" value="60"></div>
+  </div>
+  <p id="status" role="status">Start with Test sound. Each version has a three-note count-in and six identical strikes.</p><p class="backup-link"><a href="backups/comparison.mp4">▶ Play all three as one film · offline backup</a></p>
+  <div class="prompt"><b>What did you notice?</b><p>“The sound happens <em>before / at / after</em> contact.” Then: “That changes my reading because…”</p></div>
+  <details id="inspect"><summary>Inspect the timing · silent, one step at a time</summary><div class="inspection"><p>Pause on the same strike. The orange marker shows where sound <em>would</em> begin. <strong>No audio plays in inspection.</strong></p><div class="inspect-controls"><button id="inspect-start">Start inspection</button><button id="step-back">← 50 ms</button><button id="step-forward">50 ms →</button><button id="at-contact">Go to contact</button></div><label for="scrub">Time relative to contact: <output id="scrub-value">−750 ms</output></label><input id="scrub" type="range" min="-750" max="750" step="10" value="-750"><p id="inspection-readout">Blue is visual contact. Orange is the sound event.</p></div></details>
+  <details><summary>For the room · a two-minute demonstration</summary><div class="notes"><ol><li>Use <b>Test sound</b> and adjust the room volume. Play <b>On time</b>; ask the room to name the visible contact.</li><li>Play <b>Sound early</b>, then <b>Sound late</b>. The action, six repetitions and sound are identical. Only sound timing changes.</li><li>Ask for an observable difference first, then an interpretation. Different emotional readings can share the same evidence.</li><li>Use silent inspection to stop exactly at contact and compare the two event markers.</li></ol><p>A speaker or projector can add delay. A wired audio path helps; the quarter-second comparison remains the variable being tested. Reduced motion replaces the swing with fixed poses and preserves the contact and sound cues.</p><p>Original teaching animation and synthesized audio. Works offline. <a href="backups/on-time.mp4">On-time film</a> · <a href="backups/early.mp4">Early film</a> · <a href="backups/late.mp4">Late film</a></p></div></details>
+  <footer>One action. One sound. Change one thing.</footer>
+</main><script src="timing.js"></script><script src="scene.js?v=2"></script><script src="app.js"></script></body></html>
