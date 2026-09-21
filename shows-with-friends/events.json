@@ -10,7 +10,11 @@
     "venue": "Anaheim Convention Center",
     "blurb": "A day inside worlds made for play.",
     "month": "2026-09",
-    "color": "#9dcaff"
+    "color": "#9dcaff",
+    "endDate": "2026-09-13",
+    "crew": "Gordon + Alex Rogers",
+    "line": "A day in worlds built for play.",
+    "note": "A shared BlizzCon chapter."
   },
   {
     "id": "comedy",
@@ -23,7 +27,11 @@
     "venue": "The Elysian · 9:30–10:45 p.m.",
     "blurb": "Gordon + Joe. A night to laugh together after a week in the classroom.",
     "month": "2026-09",
-    "color": "#ffc78d"
+    "color": "#ffc78d",
+    "endDate": "2026-09-18",
+    "crew": "Gordon + Joe",
+    "line": "The joy of absolutely losing it laughing.",
+    "note": "Our theatre night."
   },
   {
     "id": "portola",
@@ -36,7 +44,11 @@
     "venue": "Pier 80",
     "blurb": "A waterfront, a huge sound system, and a little discovery.",
     "month": "2026-09",
-    "color": "#bfbcff"
+    "color": "#bfbcff",
+    "endDate": "2026-09-26",
+    "crew": "Gordon + Brennan",
+    "line": "Different crowds. The same instinct to find each other.",
+    "note": "Saturday at Pier 80. Dog Blood is our anchor; discovery is part of the plan."
   },
   {
     "id": "foundry",
@@ -49,7 +61,11 @@
     "venue": "1425 Folsom",
     "blurb": "A Sunday dance-floor possibility.",
     "month": "2026-09",
-    "color": "#f09ed2"
+    "color": "#f09ed2",
+    "endDate": "2026-09-27",
+    "crew": "A possibility, still open",
+    "line": "Leave a little room for the unexpected.",
+    "note": "A Sunday dance-floor possibility. No meetup agreed."
   },
   {
     "id": "zeds",
@@ -62,20 +78,28 @@
     "venue": "Grand Park",
     "blurb": "Bass under the Los Angeles sky.",
     "month": "2026-10",
-    "color": "#85dcd3"
+    "color": "#85dcd3",
+    "endDate": "2026-10-03",
+    "crew": "A solo chapter",
+    "line": "Sometimes the company is the music.",
+    "note": "This one is a night for me: bass, curiosity, and my own pace."
   },
   {
     "id": "niteharts",
     "name": "NITEHARTS",
     "date": "2026-10-09",
-    "stamp": "OCT 09–11",
+    "stamp": "OCT 09—11",
     "city": "San Diego",
     "kind": "Music",
     "url": "https://www.niteharts.com/",
     "venue": "Snapdragon Stadium grounds",
     "blurb": "A whole weekend for discovery.",
     "month": "2026-10",
-    "color": "#b6a7fa"
+    "color": "#b6a7fa",
+    "endDate": "2026-10-11",
+    "crew": "Gordon, Brennan, Kelly + Kara",
+    "line": "One must-see each. One discovery none of us came for.",
+    "note": "Back in San Diego with Brennan, Kelly and Kara. A weekend to find each other again."
   },
   {
     "id": "latenite",
@@ -88,7 +112,11 @@
     "venue": "Pechanga Arena",
     "blurb": "One more chapter after the festival.",
     "month": "2026-10",
-    "color": "#bcd5f5"
+    "color": "#bcd5f5",
+    "endDate": "2026-10-11",
+    "crew": "Gordon, Brennan, Kelly, Kara + Quinn",
+    "line": "If the night has one more chapter in it.",
+    "note": "Alison Wonderland after the festival. A separate event, and a choice to make together."
   },
   {
     "id": "pokemon",
@@ -101,20 +129,28 @@
     "venue": "Intuit Dome",
     "blurb": "A playful collision of music and imagination.",
     "month": "2026-10",
-    "color": "#ffd871"
+    "color": "#ffd871",
+    "endDate": "2026-10-24",
+    "crew": "Gordon, Brennan, Kelly + Kara",
+    "line": "Our playful selves get the night out.",
+    "note": "Brennan, Kelly, Kara and me. Eric has his own plan that night. Our playful selves get the night out."
   },
   {
     "id": "pride",
     "name": "PALM SPRINGS",
     "date": "2026-11-06",
-    "stamp": "NOV 06–08",
+    "stamp": "NOV 06—08",
     "city": "Palm Springs",
     "kind": "Gathering",
     "url": "https://www.pspride.org/news",
     "venue": "Downtown + Arenas District",
     "blurb": "A weekend for community, color, and joy.",
     "month": "2026-11",
-    "color": "#f2a7cf"
+    "color": "#f2a7cf",
+    "endDate": "2026-11-08",
+    "crew": "Gordon, Mason, Joe + Alex Rogers",
+    "line": "Come as you are. Bring your color.",
+    "note": "A Pride weekend with Mason, Joe and Alex Rogers. Time to be ourselves together."
   },
   {
     "id": "summit",
@@ -127,7 +163,11 @@
     "venue": "LA Memorial Coliseum",
     "blurb": "Big-room energy. Room to make another memory.",
     "month": "2026-12",
-    "color": "#8edbde"
+    "color": "#8edbde",
+    "endDate": "2026-12-12",
+    "crew": "Companions still open",
+    "line": "A huge room. A moment that feels like ours.",
+    "note": "More company is still to be decided."
   },
   {
     "id": "stevie",
@@ -140,20 +180,45 @@
     "venue": "Intuit Dome",
     "blurb": "Songs that have already lived whole lives with us.",
     "month": "2026-12",
-    "color": "#ffd47b"
+    "color": "#ffd47b",
+    "endDate": "2026-12-19",
+    "crew": "A solo chapter",
+    "line": "Songs that have already lived whole lives with me.",
+    "note": "A little space to feel everything, at my own pace."
   },
   {
     "id": "countdown",
     "name": "COUNTDOWN",
     "date": "2026-12-31",
-    "stamp": "DEC 31–JAN 01",
+    "stamp": "DEC 31—JAN 01",
     "city": "San Bernardino",
     "kind": "Music",
     "url": "https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-return-to-nos-event-center-for-2026-festival",
     "venue": "NOS Event Center",
     "blurb": "A new year deserves a little wonder.",
     "month": "2026-12",
-    "color": "#c1b0ff"
+    "color": "#c1b0ff",
+    "endDate": "2027-01-01",
+    "crew": "Gordon + Joe",
+    "line": "A new year. Our lovely old tradition.",
+    "note": "This is our time to dance into the next chapter."
+  },
+  {
+    "id": "sincity",
+    "name": "SIN CITY · DODGEBALL",
+    "date": "2027-01-14",
+    "endDate": "2027-01-18",
+    "stamp": "JAN 14—18 · 2027",
+    "city": "Las Vegas",
+    "kind": "Sport",
+    "url": "https://www.sincityclassic.org/",
+    "venue": "Sin City Classic Sports Festival",
+    "blurb": "A court, a crew, and a weekend that is ours.",
+    "month": "2027-01",
+    "color": "#f99875",
+    "crew": "Gordon, Joe, Matt Kaplan, Andrew Ketchum + Casey Reed",
+    "line": "Good company. Great dodgeball.",
+    "note": "A Vegas weekend with Joe, Matt Kaplan, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come."
   },
   {
     "id": "gryphus",
@@ -166,33 +231,97 @@
     "venue": "Dates and venue to confirm",
     "blurb": "A future possibility still taking shape.",
     "month": "later",
-    "color": "#b5dbc8"
+    "color": "#b5dbc8",
+    "endDate": "",
+    "crew": "An adventure taking shape",
+    "line": "A dear friend. A big Texas sky.",
+    "note": "Walt Zink is a lifelong friend. The festival is one more way our lives keep finding each other. Dates and companions need confirmation.",
+    "dateStatus": "Dates to confirm"
+  },
+  {
+    "id": "ggp-games",
+    "name": "GGP · ZERO PROOF",
+    "date": "2027-03-01",
+    "endDate": "2027-03-01",
+    "stamp": "MON MAR 01 · 2027",
+    "city": "San Francisco",
+    "kind": "Gathering",
+    "url": "https://gaygamingpros.org/",
+    "venue": "4th Annual Zero Proof Board Game Night · GGP @ GDC",
+    "blurb": "A game on the table. A place for you.",
+    "month": "2027-03",
+    "color": "#e7bd84",
+    "crew": "Gordon, Eric Francksen, BrenBren, Alex Rogers + Foster",
+    "line": "Pull up a chair.",
+    "note": "Monday night: the 4th Annual Zero Proof Board Game Night. Eric, BrenBren, Alex and Foster—let’s make room at the table. Venue and hours will follow."
+  },
+  {
+    "id": "ggp-mixer",
+    "name": "GGP · THE MIXER",
+    "date": "2027-03-02",
+    "endDate": "2027-03-02",
+    "stamp": "TUE MAR 02 · 2027",
+    "city": "San Francisco",
+    "kind": "Music",
+    "url": "https://gaygamingpros.org/",
+    "venue": "21st Annual GGP @ GDC Mixer",
+    "blurb": "Fang Speare B2B Capnsmak. The debut, together.",
+    "month": "2027-03",
+    "color": "#a1e7d5",
+    "crew": "Gordon, BrenBren, Alex Rogers, Sam Kennedy, Foster, Georgia + Eric Francksen",
+    "line": "Our people. Behind the decks.",
+    "note": "Tuesday night: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Venue and hours will follow."
   },
   {
     "id": "edc",
     "name": "EDC · DAWN",
     "date": "2027-05-21",
-    "stamp": "MAY 21–23 · 2027",
+    "stamp": "MAY 21—23 · 2027",
     "city": "Las Vegas",
     "kind": "Music",
     "url": "https://lasvegas.edc.com/guide/faq/",
     "venue": "Motor Speedway",
     "blurb": "Sunrise, sound, and a familiar kind of magic.",
     "month": "2027-05",
-    "color": "#ffb991"
+    "color": "#ffb991",
+    "endDate": "2027-05-23",
+    "crew": "Dawn crew still taking shape",
+    "line": "Stay for the light. Keep the people.",
+    "note": "Foster is interested. David and Trent chose Dusk. Our Dawn chapter is still coming together."
+  },
+  {
+    "id": "fang-live",
+    "name": "FANG SPEARE · LIVE",
+    "date": "",
+    "endDate": "",
+    "stamp": "JUL 18 BIRTHDAY WEEKEND · 2027",
+    "city": "Boonton, New Jersey",
+    "kind": "Music",
+    "url": "https://www.design.upenn.edu/research/boonton-preservation-project",
+    "venue": "Maxfield Engine House · Live date and details to come",
+    "blurb": "A firehouse finds a new frequency.",
+    "month": "2027-07",
+    "color": "#df855e",
+    "crew": "Foster’s birthday weekend",
+    "line": "An old firehouse. A new kind of thunder.",
+    "note": "Fang Speare LIVE, at the Boonton firehouse Foster’s family is reimagining. His birthday weekend in 2027, just before Shambhala. The exact live date and details are still to come."
   },
   {
     "id": "shambhala",
     "name": "SHAMBHALA",
     "date": "2027-07-23",
-    "stamp": "JUL 23–26 · 2027",
+    "stamp": "JUL 23—26 · 2027",
     "city": "British Columbia",
     "kind": "Music",
     "url": "https://www.shambhalamusicfestival.com/tickets-camping",
     "venue": "Salmo River Ranch",
     "blurb": "A long-distance possibility worth dreaming about.",
     "month": "2027-07",
-    "color": "#c5df92"
+    "color": "#c5df92",
+    "endDate": "2027-07-26",
+    "crew": "Our eight-person Farmily",
+    "line": "Find each other between the trees.",
+    "note": "First, meet Drake and Mel in Kelowna. Then we go to Shambhala together. Our Farmily: Gordon, Drake, Mel, David Vermillion, Trent, Mason, Myke Bailey and Jacob Ferrufino."
   },
   {
     "id": "olympics",
@@ -205,6 +334,10 @@
     "venue": "Squash + table tennis",
     "blurb": "Three booked sessions. Another chapter with Foster, including his birthday.",
     "month": "2028-07",
-    "color": "#b8e8ba"
+    "color": "#b8e8ba",
+    "endDate": "2028-07-18",
+    "crew": "Gordon + Foster",
+    "line": "The games are new. The friendship is the throughline.",
+    "note": "Three booked sessions of squash and table tennis. Another chapter together."
   }
 ]

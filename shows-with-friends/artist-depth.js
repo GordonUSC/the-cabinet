@@ -196,3 +196,41 @@ window.ARTIST_DEPTH = {
     related: ['zeds','blizzcon','edc']
   }
 };
+
+window.ARTIST_DEPTH.sincity = {
+  hook: 'Every court is better with your people on the sidelines.',
+  wonder: {name: 'One more dodge', instruction: 'Watch which lane the ball is coming down. Choose an open lane. Five good dodges make a rally.',kind:'dodgeball'},
+  personalHistory: 'Joe, Matt Kaplan, Andrew Ketchum, Casey Reed and me: this is our Sin City chapter. The music is one way we find each other. Play is another.',
+  chapters: [
+    {label:'THE GATHERING',title:'The court is only the beginning.',text:'Sin City Classic brings LGBTQ+ athletes and friends to Las Vegas for a sports festival. Dodgeball belongs inside that bigger gathering: the games, the cheering, the people you keep finding between matches.',url:'https://www.sincityclassic.org/',linkLabel:'Explore the festival'},
+    {label:'THE GAME',title:'A good dodge. A better story afterward.',text:'The 2027 festival runs January 14–18. Dodgeball registration is listed to open October 1, 2026. The sport page still carries an older match timetable, so our 2027 court times will follow the updated organizer schedule.',url:'https://www.sincityclassic.org/sports/dodgeball',linkLabel:'Dodgeball details from the organizer'},
+    {label:'OUR WEEKEND',title:'Leave room between the matches.',text:'I want the brilliant play and the ridiculous moment. The cheers, the catch-up, the chance to spend a whole weekend in good company. Those belong in the album as much as a festival sunrise.'}
+  ],
+  related:['olympics','countdown','pride']
+};
+window.ARTIST_DEPTH.olympics.related.push('sincity');
+
+window.ARTIST_DEPTH.shambhala.chapters.unshift({label:'OUR WAY THERE',title:'First, Kelowna. Then, together.',text:'I’m meeting Drake and Mel in Kelowna, British Columbia, before we head to Shambhala together in 2027. The gathering starts before the gates. Our meeting day and travel details are still to come.'});
+
+window.ARTIST_DEPTH['ggp-games'] = {
+ wonder:{name:'Make room at the table',instruction:'Turn over three tiles. A little invitation is waiting under each one.',kind:'table'},
+ personalHistory:'I co-founded GGP with Brian Rubin-Sowers in 2006. It has always mattered to me that the people who make games can find a place to be themselves. Monday’s Zero Proof night makes that feeling tangible: a chair, a game, good company.',
+ chapters:[{label:'THE TABLE',title:'Zero proof. Full of possibilities.',text:'The fourth annual board game night gives us a different way to gather during GDC. There is no alcohol at the center of this evening. There are people, games, and room to join in.',url:'https://gaygamingpros.org/',linkLabel:'Meet GGP'},{label:'THE TRADITION',title:'A different kind of games-industry night.',text:'The 2026 edition brought D&D, Magic and board games to Foundry SF. This is its next chapter. The 2027 room and hours will be added when confirmed.',url:'https://www.linkedin.com/posts/gordonbellamy_home-activity-7429574108616515587-jojT',linkLabel:'Gordon’s 2026 invitation'},{label:'MONDAY INTO TUESDAY',title:'First, pull up a chair. Then, turn it up.',text:'Eric, BrenBren, Alex and Foster on Monday. On Tuesday, the circle grows—and Foster and Sam become Fang Speare B2B Capnsmak. Same gathering instinct. A different kind of play.'}],related:['ggp-mixer','blizzcon','sincity']
+};
+window.ARTIST_DEPTH['ggp-mixer'] = {
+ wonder:{name:'Step into the B2B booth',instruction:'Two artists. Your hand on the crossfader.',kind:'b2b'},
+ personalHistory:'Twenty-one annual GGP @ GDC mixers, and this one holds a new first: Foster and Sam’s debut together behind the decks. BrenBren, Alex, Sam, Foster, Georgia and Eric—this is a room I cannot wait to share with you.',
+ chapters:[{label:'THE DEBUT',title:'Fang Speare B2B Capnsmak.',text:'Foster Birch and Sam Kennedy. Each has a sound and a story of his own. Their first B2B belongs on the marquee—and their profiles below go all the way back through the music, the making, and the lives around it.'},{label:'THE ROOM',title:'Since 2006, making a place for us.',text:'GGP began with Brian Rubin-Sowers and me in 2006. The annual mixer is one of the ways a community becomes a room full of people. March 2, 2027 is the next chapter; the venue and event hours are still to come.',url:'https://gaygamingpros.org/',linkLabel:'Explore Gay Gaming Professionals'}],related:['ggp-games','fang-live','shambhala']
+};
+window.ARTIST_DEPTH['fang-live'] = {
+ wonder:{name:'Wake the firehouse',instruction:'Light the windows. Let a new chapter come through the old walls.',kind:'firehouse'},
+ personalHistory:'Foster’s family is reimagining the firehouse in Boonton. In 2027, his birthday weekend brings Fang Speare LIVE into that story. A place with a past, a friend making his future, and Shambhala just ahead.',
+ chapters:[{label:'THE BIRTHDAY',title:'A new room for his own sound.',text:'Foster’s birthday is July 18. This live chapter belongs to his birthday weekend in 2027. The exact performance date and practical details are still to come.'},{label:'THE NEXT ADVENTURE',title:'From the firehouse to the forest.',text:'Then the Shambhala chapter begins: I meet Drake and Mel in Kelowna, and we go on together. Two very different places to share something that matters.'}],related:['ggp-mixer','shambhala','olympics']
+};
+window.ARTIST_DEPTH.shambhala.related.push('fang-live','ggp-mixer');
+
+window.ARTIST_DEPTH['fang-live'].chapters.unshift(
+ {label:'THE OLD ROOM',title:'Built to bring a town together.',text:'Maxfield Engine House was built in 1893 and completed by early 1894. Its plan held fire equipment below and civic meeting rooms above. Penn’s preservation study traces how that distinctive building could change while keeping its character.',url:'https://www.design.upenn.edu/research/boonton-preservation-project',linkLabel:'Penn’s Boonton Preservation Project'},
+ {label:'THE MUSICAL LIFE',title:'These walls have already held a song.',text:'In 2013, Maxfield’s on Main opened in the restored firehouse with jazz, blues and rock programming. Fang Speare’s birthday chapter follows a real musical history. The room has welcomed different sounds before.',url:'https://njjs.org/wp-content/uploads/1611/72/4107_JerseyJazzFullIssue.pdf#page=12',linkLabel:'The contemporary Jersey Jazz report · page 12'},
+ {label:'THE ROOM TODAY',title:'A place keeps finding its people.',text:'The Center for the Study of Cities and Small Towns renewed the firehouse following a PennPraxis preservation study, with the Birch family involved in its civic and cultural life. Highlands art exhibitions in 2024 and 2025 brought painting, photography and sculpture into the room. Foster’s family project gives this next gathering a deeper setting.',url:'https://njhighlandscoalition.org/news/media-advisory-now-accepting-submissions-for-the-12th-annual-highlands-juried-art-exhibit/',linkLabel:'The Highlands Coalition on Maxfield’s renewal'}
+);
