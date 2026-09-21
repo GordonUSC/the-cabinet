@@ -582,11 +582,18 @@ tell you on Wednesday whether they did.</li>
 the Visual Analysis Video, 10 percent, one world in two media. If the room looks stretched, <b>shrink it
 rather than drop it</b>: twenty minutes of one table still proves all three terms, and the drill is the
 point, not the runtime.</li>
-<li><b>Hamilton is the separate thing, and it is the one that feeds Thursday.</b> <i>Hamilton</i> on stage
-and on screen is one of the four pairs the rubric approves by name, and the 11:16 block is thirty minutes of
-arguing what that crossing cost. <b>Name that at 12:45.</b> Critical Role cannot serve there, because
-Campaign 4 exists in one medium and there is no second form to compare it against. Anyone still without a
-pair walked into one this morning and has the argument half written.</li>
+<li><b>Hamilton does both jobs, which is why sixty seconds of tape earns a thirty-minute block.</b>
+Your own media note on it names all three of today's terms: watch blocking, watch where a cut steals your
+choice of what to look at, and watch how much a reaction shot changes a line you have already heard. So the
+three plays at 11:16 <b>are</b> the vocabulary drill in a second register. Critical Role shows those terms
+with an unmoving camera and four hours to breathe; Hamilton shows the same three when somebody is cutting.
+That pairing is the reason both texts are in one session, and it is worth saying to the room in one
+sentence, because from the inside it just looks like two videos.</li>
+<li><b>And the same thirty minutes is the on-ramp to Thursday.</b> <i>Hamilton</i> on stage and on screen is
+one of the four pairs the rubric approves by name, so the argument you just ran is the argument the video
+wants. <b>Name that at 12:45.</b> Anyone still without a pair walked into one this morning and has it half
+written. Critical Role cannot serve there, because Campaign 4 exists in one medium and there is no second
+form to compare it against.</li>
 <li><b>Mood board.</b> The rubric says the file is due <b>Thursday 1 October</b> with presentations Monday
 5 October. The grading table in the same guide still says 24 September. <b>These contradict each other and
 students will ask.</b> Say 1 October, which is the corrected date and the one the rubric explains, then
