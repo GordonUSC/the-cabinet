@@ -64,6 +64,35 @@ for b in s9["timing"]:
     lab, _, body = b["activity"].partition(":")
     rows.append((START + a, START + z, z - a, lab.strip(), body.strip() or b["activity"]))
 
+# ---- Gordon, 2026-09-21: split the 59 minute Synthesis block so team set 1 gets real
+# mood board work time. The trailer block at 11:16 is untouched. Receipt for why this
+# block matters: Sessions 10, 11 and 12 contain no team time of any kind, so this is the
+# ONLY in-class work time before the file is due Thu 1 Oct.
+SYN_KEEP = 20
+_out = []
+for a, z, mins, lab, body in rows:
+    if lab.startswith("Synthesis"):
+        _out.append((a, a + SYN_KEEP, SYN_KEEP, "Synthesis, compressed",
+            "Peer sharing only, and hold it to the one question that carries the grade: what visual "
+            "choices define this character, and where did you see them persist. This ran 59 minutes on "
+            "the original sheet. It is 20 now because the back of the class was given to the mood board, "
+            "so do not let it wander into a general discussion. Assign tonight's homework here: one hour "
+            "of Critical Role, annotate one character's visual arc, and say out loud that the job of that "
+            "hour is blocking, gesturality and reaction shot."))
+        _out.append((a + SYN_KEEP, z, mins - SYN_KEEP, "MOOD BOARD TEAM TIME, team set 1",
+            "The only in-class work time this project gets. Sessions 10, 11 and 12 have no team block, so "
+            "the next time these four teams are in a room together with you is the presentation itself. "
+            "Rotate on a clock, four teams, about ten minutes each, and start with a different team than "
+            "you would instinctively start with. With each team do three things, the same three you do in "
+            "every Team Project Time: look at the actual board as it stands rather than a description of "
+            "it, name the single most likely reason this misses Thursday 1 Oct, and agree one thing that "
+            "will be true by Wednesday. Two questions that are specific to this assignment: say your "
+            "palette out loud, and show me the one image on here you cannot justify. The second question "
+            "finds the problem every time."))
+    else:
+        _out.append((a, z, mins, lab, body))
+rows = _out
+
 def block_html():
     out = []
     for a, z, mins, lab, body in rows:
@@ -292,10 +321,18 @@ reads this calendar, machine or human, makes the same mistake again.</p>
          for i,(h,b,x) in enumerate(OBJ))}
 </table>
 <div class="box">
-<h4>Where the slack actually is</h4>
-<p>Synthesis runs <b>59 minutes</b>, from 11:46 to 12:45. It is by far the longest block and the only one
-with real give in it. If you are behind after the break, take it out of there, not out of Hamilton.
-Fifteen minutes of peer sharing still does the work; skipping the second text loses the day's idea.</p>
+<h4>Where the slack went, and where what is left of it lives</h4>
+<p><b>The 59 minute Synthesis block is gone.</b> It was by far the longest block and the only one with real
+give, and you spent it: <b>20 minutes of peer sharing, then 39 minutes of mood board team time.</b> The
+trailer block at 11:16 is untouched and stays at thirty minutes.</p>
+<p><b>Why that block is worth the whole back of the class.</b> Sessions 10, 11 and 12 carry no team time of
+any kind. Checked against the teaching plan, not assumed. <b>This is the only hour these four teams get in a
+room with you before the file is due Thursday 1 October</b>, and the next time you are all together is the
+presentation itself on Monday 5 October. A team that leaves today without a decision written down loses a
+week, and you will not see it happen.</p>
+<p><b>So the only give left is the 36 minute Critical Role block.</b> If you are behind at 11:46, shorten
+the peer sharing to ten and protect the team time. Do not take it out of the trailer, which is doing two
+jobs, and do not take it out of the team block, which cannot be made up anywhere else on the calendar.</p>
 </div>
 
 <h2>The run sheet<small>wall clock, because elapsed minutes are useless while teaching</small></h2>
@@ -603,10 +640,16 @@ who would never have asked. Every student in that room leaves knowing what a 5 s
 different thing from having read the rubric. Say plainly that this is what the assignment looks like.
 Critical Role cannot serve there, because Campaign 4 exists in one medium and there is no second form to
 compare it against.</li>
-<li><b>Mood board.</b> The rubric says the file is due <b>Thursday 1 October</b> with presentations Monday
-5 October. The grading table in the same guide still says 24 September. <b>These contradict each other and
-students will ask.</b> Say 1 October, which is the corrected date and the one the rubric explains, then
-get the grading table fixed.</li>
+<li><b>Mood board, and today it is not a footnote.</b> File due <b>Thursday 1 October</b>, presentations
+<b>Monday 5 October</b>, and the back of today's class belongs to it. The grading table that used to say
+24 September was corrected in the Teacher's Guide overnight, so the documents now agree and nobody should be
+asking you which date is real. Say 1 October once at the top of the team block and move on.</li>
+<li><b>Three worked examples exist, if you want them on the projector during team time.</b>
+<code>gordonusc.github.io/the-cabinet/ctin290-mood-boards/</code> Three boards against your six words, each
+one labeled with why every image is on it, the palette measured from the actual pixels, and a set of
+in-game plates showing the HUD and the split screen rather than only the world. Student safe, no calendar
+and no names on it. Useful for the team that is stuck, and useful as a warning for the team whose board is
+twenty beautiful photographs and no screens.</li>
 </ul>
 </div>
 
