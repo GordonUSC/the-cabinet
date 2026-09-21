@@ -1,5 +1,5 @@
 /* SHOWS WITH FRIENDS, the posters and their motion.
-   Fourteen events had no picture and fell back to a flat colour panel. Each now
+   Fourteen events had no picture and fell back to a flat color panel. Each now
    carries a risograph poster drawn from that event's own place. Seven other events
    carry Gordon's real photographs and are deliberately excluded: a made picture
    never stands in front of a real memory, and the credit line under every poster
@@ -57,3 +57,9 @@
   .has-keyart .scene-keyart{ animation: none; transform: scale(1.015) }
   .keyart-grain{ animation: none }
 }
+
+/* The two events happening this week move for real. The film carries its own
+   motion, so the CSS drift would fight it; only the arrival easing is kept. */
+.scene-keyfilm{ animation-name: keyart-arrive !important; animation-duration:1.1s !important;
+  animation-iteration-count:1 !important; animation-fill-mode:both !important; }
+@media (prefers-reduced-motion: reduce){ .scene-keyfilm{ animation:none !important } }
