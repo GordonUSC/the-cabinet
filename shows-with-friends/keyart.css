@@ -1,0 +1,59 @@
+/* SHOWS WITH FRIENDS, the posters and their motion.
+   Fourteen events had no picture and fell back to a flat colour panel. Each now
+   carries a risograph poster drawn from that event's own place. Seven other events
+   carry Gordon's real photographs and are deliberately excluded: a made picture
+   never stands in front of a real memory, and the credit line under every poster
+   says outright that it is not one.
+
+   The motion is slow on purpose. This sits behind a headline somebody is reading,
+   so it drifts at a speed you notice only if you stop and look for it. Everything
+   here stops dead under prefers-reduced-motion. */
+
+.has-keyart .scene-keyart{
+  animation: keyart-drift 34s ease-in-out infinite alternate;
+  transform-origin: 62% 46%;
+  will-change: transform;
+  filter: saturate(1.02) contrast(1.02);
+}
+@keyframes keyart-drift{
+  from{ transform: scale(1.015) translate3d(0,0,0); }
+  to  { transform: scale(1.075) translate3d(-1.4%,-1.1%,0); }
+}
+
+/* The poster arrives rather than appearing: it is a new chapter, not a new tab. */
+.has-keyart .scene-keyart{ animation-name: keyart-arrive, keyart-drift; animation-duration: 1.1s, 34s;
+  animation-timing-function: cubic-bezier(.2,.75,.25,1), ease-in-out;
+  animation-iteration-count: 1, infinite; animation-direction: normal, alternate;
+  animation-fill-mode: both, none; }
+@keyframes keyart-arrive{
+  from{ opacity:0; transform: scale(1.09) translate3d(2.2%,0,0); }
+  to  { opacity:1; transform: scale(1.015) translate3d(0,0,0); }
+}
+
+/* Press grain, drifting. Real risograph never sits perfectly still on the paper. */
+.keyart-grain{
+  position:absolute; inset:-14%; pointer-events:none; opacity:.24; mix-blend-mode:overlay;
+  background-image:
+    radial-gradient(circle at 20% 30%, #fff 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 65%, #fff 0 1px, transparent 1px),
+    radial-gradient(circle at 45% 85%, #000 0 1px, transparent 1px);
+  background-size: 37px 37px, 53px 53px, 71px 71px;
+  animation: keyart-grain 7s steps(6) infinite;
+}
+@keyframes keyart-grain{
+  0%  { transform: translate3d(0,0,0) }
+  25% { transform: translate3d(-9px,5px,0) }
+  50% { transform: translate3d(6px,-8px,0) }
+  75% { transform: translate3d(-4px,-3px,0) }
+  100%{ transform: translate3d(0,0,0) }
+}
+
+/* The credit has to be readable, because the claim it makes is the point of it. */
+.has-keyart .scene-photo-credit{
+  letter-spacing:1.8px; opacity:.72; font-weight:600;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .has-keyart .scene-keyart{ animation: none; transform: scale(1.015) }
+  .keyart-grain{ animation: none }
+}
