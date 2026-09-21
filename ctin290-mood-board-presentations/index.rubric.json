@@ -1,0 +1,10 @@
+{
+  "person_made_it": "Two scripts that disagree with each other about how to present the same 29 images, one opening on a single frame and the other opening by handing the room its own objections; a template produces one presentation outline, not an argument that there are two right answers.",
+  "emcee_who_is_speaking": "A hard timecode rail down the left in red monospace, so at any point on the page you know who is talking and how long they have; the spoken words are the only thing set large, and cues are in a different color and voice so nobody reads a stage direction out loud.",
+  "what_time_of_day_is_this_room": "Monday 5 October, 10am, twelve people and a visible timer. Paper white, because this gets printed and held.",
+  "did_the_click_pay_me": "Yes: the runtime banner on each version tells you before you read a word whether this shape fits your slot, which is the first question a team actually has.",
+  "works_for_the_recipient": "It holds at 390px by collapsing the rail above each block, needs no JavaScript, and every term a speaker says out loud is underlined so a nervous presenter can find them while scanning.",
+  "taught_me_something": "That a presentation script is a timing document, and that writing one without counting the words produces exactly the defect this page was built to fix: my first draft claimed a 5:00 rail over 3.2 minutes of speech.",
+  "told_me_the_truth": "Yes: the timecodes are computed from real word counts at a stated rate plus a stated pause budget, the footer says so, and the speaker names are flagged as invented placeholders rather than implying real students.",
+  "weakest": "Both scripts are about the one board with the most material on it, The Last Sitting, so a team whose board is thinner sees two performances that had an easier job than theirs; a third short version built on a deliberately weaker board would prove more."
+}
