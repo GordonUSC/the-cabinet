@@ -166,8 +166,10 @@
     "color": "#8edbde",
     "endDate": "2026-12-12",
     "crew": "Companions still open",
-    "line": "A huge room. A moment that feels like ours.",
-    "note": "More company is still to be decided."
+    "line": "A sidewalk hello. A much bigger next chapter.",
+    "note": "A sidewalk hello after Worship at the Palladium in March 2024. Another unexpected meeting in November 2025—and this photograph together. His Countdown set a few weeks later. Now, the Coliseum. Companions for this next night are still open.",
+    "cover": "summit-together-2025",
+    "coverLabel": "WITH JOHN · NOVEMBER 2025"
   },
   {
     "id": "stevie",
@@ -201,7 +203,9 @@
     "endDate": "2027-01-01",
     "crew": "Gordon + Joe",
     "line": "A new year. Our lovely old tradition.",
-    "note": "This is our time to dance into the next chapter."
+    "note": "This is our time to dance into the next chapter.",
+    "cover": "countdown-2022-together",
+    "coverLabel": "COUNTDOWN · OUR 2022 ALBUM"
   },
   {
     "id": "sincity",
@@ -218,7 +222,9 @@
     "color": "#f99875",
     "crew": "Gordon, Joe, Matt Kaplan, Andrew Ketchum + Casey Reed",
     "line": "Good company. Great dodgeball.",
-    "note": "A Vegas weekend with Joe, Matt Kaplan, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come."
+    "note": "A Vegas weekend with Joe, Matt Kaplan, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come.",
+    "cover": "sincity-2023",
+    "coverLabel": "SIN CITY · OUR 2023 ALBUM"
   },
   {
     "id": "ggp-games",
@@ -235,7 +241,9 @@
     "color": "#e7bd84",
     "crew": "Gordon, Eric Francksen, BrenBren, Alex Rogers + Foster",
     "line": "Pull up a chair.",
-    "note": "Monday night: the 4th Annual Zero Proof Board Game Night. Eric, BrenBren, Alex and Foster—let’s make room at the table. Venue and hours will follow."
+    "note": "Monday night: the 4th Annual Zero Proof Board Game Night. Eric, BrenBren, Alex and Foster—let’s make room at the table. Venue and hours will follow.",
+    "cover": "zero-proof-friends",
+    "coverLabel": "ZERO PROOF · OUR 2026 ALBUM"
   },
   {
     "id": "ggp-mixer",
@@ -252,25 +260,29 @@
     "color": "#a1e7d5",
     "crew": "Gordon, BrenBren, Alex Rogers, Sam Kennedy, Foster, Georgia + Eric Francksen",
     "line": "Our people. Behind the decks.",
-    "note": "Tuesday night: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Venue and hours will follow."
+    "note": "Tuesday night: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Venue and hours will follow.",
+    "cover": "ggp-2026-blue",
+    "coverLabel": "GGP @ GDC · OUR 2026 ALBUM"
   },
   {
     "id": "gryphus",
     "name": "GRYPHUS",
-    "date": "2027-04-28",
-    "stamp": "APR 28—MAY 03 · 2027",
+    "date": "2027-04-30",
+    "stamp": "APR 30—MAY 02 · 2027",
     "city": "Texas Hill Country",
     "kind": "Music",
     "url": "https://gryphusmusicfestival.com/",
-    "venue": "Gryphus · Texas Hill Country · My trip dates shown",
+    "venue": "Flat Rock Ranch · San Antonio gathering April 29",
     "blurb": "Back to the Hill Country for Walt, Cale, and the gathering they create.",
     "month": "2027-04",
     "color": "#b5dbc8",
-    "endDate": "2027-05-03",
+    "endDate": "2027-05-02",
     "crew": "Gordon, Walt Zink + Cale Yarborough",
-    "line": "Dear friends. Their festival. Our time together.",
-    "note": "Walt and Cale are dear lifelong friends, and Gryphus is their event. They will both be there. My trip is April 28–May 3, 2027.",
-    "dateStatus": "My confirmed trip dates"
+    "line": "Forty years of friendship. A whole new sky.",
+    "note": "Walt and Cale, two dear lifelong friends, and the festival they create. San Antonio on April 29; Flat Rock Ranch April 30–May 2. My trip: April 28–May 3, 2027.",
+    "dateStatus": "Dates confirmed by Walt",
+    "cover": "gryphus-cale-2026",
+    "coverLabel": "GRYPHUS · OUR 2026 ALBUM"
   },
   {
     "id": "edc",
@@ -321,7 +333,9 @@
     "endDate": "2027-07-26",
     "crew": "Our eight-person Farmily",
     "line": "Find each other between the trees.",
-    "note": "First, meet Drake and Mel in Kelowna. Then we go to Shambhala together. Our Farmily: Gordon, Drake, Mel, David Vermillion, Trent, Mason, Myke Bailey and Jacob Ferrufino."
+    "note": "First, meet Drake and Mel in Kelowna. Then we go to Shambhala together. Our Farmily: Gordon, Drake, Mel, David Vermillion, Trent, Mason, Myke Bailey and Jacob Ferrufino.",
+    "cover": "shambhala-2025-together",
+    "coverLabel": "SHAMBHALA · OUR 2025 ALBUM"
   },
   {
     "id": "olympics",

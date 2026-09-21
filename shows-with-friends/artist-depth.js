@@ -119,7 +119,7 @@ window.ARTIST_DEPTH = {
       {label: 'THE CRAFT', title: 'Listen for the emotion between the peaks.', text: 'The interview makes a useful listening route: explore the contrast between a dance-floor release and the vulnerable feeling around it. A track can work at enormous scale because its central emotion is small enough to recognize in yourself.', url: 'https://www.grammy.com/news/john-summit-interview-creating-debut-album-comfort-in-chaos/', linkLabel: 'Follow his songwriting story'},
       {label: 'THE NEXT DOOR', title: 'An artist with a wider circle.', text: 'His official site leads into Experts Only, his label, alongside the music and live dates. Follow that door when one artist’s sound makes you curious about who else they want you to hear.', url: 'https://www.johnsummitmusic.com/', linkLabel: 'Explore John Summit and Experts Only'}
     ],
-    personalHistory: 'December 12 at the Coliseum is on my list. The company is still open; this is a future possibility, with room to become a story of its own.',
+    personalHistory: 'I first met John on the sidewalk after Worship at the Hollywood Palladium in March 2024. We crossed paths again in November 2025; the photograph here is from that second meeting. Then came his Countdown set. Little human moments make the next enormous room feel different.',
     related: ['portola','countdown','edc']
   },
   stevie: {
@@ -148,14 +148,16 @@ window.ARTIST_DEPTH = {
   },
   gryphus: {
     palette: ['#bcdbc2','#294945','#e7b775'], motif: 'horizon',
-    hook: 'Dear friends. Their festival. Our time together.',
-    wonder: {name: 'Our Hill Country constellation', instruction: 'Light up Walt, Cale, and the time we make together.', result: 'Three lights join: two lifelong friends and another shared Hill Country chapter.', kind: 'constellation'},
+    hook: 'Forty years of friendship. A whole new sky.',
+    wonder: {name: 'The road back', instruction: 'Three lights. Three parts of how we got here.', result: 'The friendship keeps finding a new place to gather.', kind: 'constellation'},
     chapters: [
-      {label: 'WALT + CALE', title: 'Two dear friends. The gathering they create.', text: 'Walt Zink and Cale Yarborough are dear lifelong friends. Gryphus is their event: Walt curates the music, and Cale executive-produces the festival. Both will be there. What makes this chapter matter to me is getting to share the world they put so much of themselves into.'},
-      {label: 'OUR HISTORY', title: 'The friendship came first.', text: 'Gryphus grew from the Karst Hill gathering into a public Hill Country festival. I was there in 2026, and the highlight was time with lifelong friends and seeing Walt and Cale create something together. The next visit continues that story.'},
-      {label: 'BACK IN 2027', title: 'April 28–May 3. Time made for this.', text: 'Those are my confirmed trip dates for Gryphus. A little room around the music, a return to the Hill Country, and time with Walt and Cale. The festival’s own pages are the place to follow its program and artist announcements.', url: 'https://gryphusmusicfestival.com/', linkLabel: 'Explore Gryphus'}
+      {label: '1986 · WALT', title: 'The ride from Logan.', text: 'Walt and I sat together on the ride from Logan Airport to St. Paul’s in 1986. Forty years later, we still make each other laugh and tell each other the truth. Long phone calls, old basketball stories, another reason to get together. Gryphus lives inside that friendship.'},
+      {label: 'SXSW · CALE', title: 'The worlds we bring together.', text: 'Cale and I met around WAVE XR’s SXSW launch, which he executive-produced. In 2023 I connected him and Walt. Seeing my two dear friends create Gryphus together in 2026 was a particular kind of joy: two parts of my life making something new.'},
+      {label: 'KARST HILL → GRYPHUS', title: 'The gathering grows.', text: 'An invitation-only ranch tradition grew into a public festival at Flat Rock Ranch. Walt curates the music; Cale executive-produces. I was back with them in April 2026. Cale had picked me a camping spot with a view of the stars. That welcome is part of what I am returning to.'},
+      {label: 'LISTEN BACK', title: 'Walt sends the music ahead.', text: 'Before the gathering, there are songs to get to know. Walt shared these recordings from the ranch in 2023. The music is a way into the weekend—and a way back after we go home.', url: 'https://www.youtube.com/playlist?list=PLsx4RWP0A-Xvvg2hxBNesGSIJQiIUSLUa', linkLabel: 'Hear the ranch recordings Walt shared'},
+      {label: 'OUR 2027 RETURN', title: 'April 30–May 2. Under the same sky.', text: 'Walt confirmed the dates: San Antonio on Thursday, April 29, then Flat Rock Ranch from Friday, April 30 through Sunday, May 2. My trip runs April 28–May 3. Walt and Cale will both be there. This is their gathering, and I am so glad we get another chapter.', url: 'https://gryphusmusicfestival.com/', linkLabel: 'Explore Gryphus'}
     ],
-    personalHistory: 'Walt and Cale are two of my dear lifelong friends. Their collaboration was one of my highlights of Gryphus 2026. I am going back in 2027 for the music, the Hill Country, and time with both of them.',
+    personalHistory: 'Walt, since 1986. Cale, since our SXSW chapter. The music is wonderful. Getting to share what my friends create—and seeing our worlds come together—is why this one stays with me.',
     related: ['shambhala','ggp-mixer','fang-live']
   },
   edc: {
