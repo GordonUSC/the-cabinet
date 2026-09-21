@@ -1,0 +1,79 @@
+/* GRYPHUS DESIGN STUDIO, ADDITIONS
+   Two sections Gordon asked for, kept in their own file so design.css stays
+   Astra's: the logo studies, and the six programming ideas for Cale.
+   Tokens are the site's own: --orange #ff5125, --cream #f7f3e9, --forest #183c30. */
+
+.mark-studies,.ideas{padding:78px 4.2vw 70px}
+.mark-studies{background:var(--cream,#f7f3e9);border-top:1px solid #d7dbd0}
+.ideas{background:#e9e5d6}
+.mark-studies .intro-line,.ideas .intro-line{margin-bottom:46px}
+
+/* ---- the mark, two ways ------------------------------------------------ */
+.mark-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px}
+.mark{margin:0;border:1px solid #c4ccbd;background:#fffaf1}
+.mark>a{display:block;background:#f4efe3}
+.mark img{display:block;width:100%;height:auto}
+.mark figcaption{padding:28px 30px 32px}
+.mark figcaption>span{
+  display:block;font-size:11px;font-weight:700;letter-spacing:2.2px;color:#6d8375;margin-bottom:12px;
+}
+.mark figcaption>strong{
+  display:block;font-family:Barlow,'Arial Narrow',Impact,sans-serif;font-weight:900;
+  font-size:clamp(26px,2.5vw,38px);line-height:1;letter-spacing:-.02em;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.mark figcaption p{font-size:15px;line-height:1.66;margin-bottom:14px}
+.mark-arg{border-left:3px solid var(--orange,#ff5125);padding-left:15px;color:#42594a}
+.mark-arg b{font-weight:700}
+.mark-alt{
+  display:inline-block;font-size:13px;font-weight:650;
+  border-bottom:1px solid;padding-bottom:2px;margin-top:6px;
+}
+.mark-truth{
+  margin-top:34px;border-top:2px solid var(--forest,#183c30);padding-top:26px;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;
+}
+.mark-truth p{font-size:16px;line-height:1.7}
+.mark-truth i{font-style:italic}
+
+/* ---- six ideas --------------------------------------------------------- */
+.idea-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.idea-list li{
+  padding:30px 30px 34px;border-top:2px solid var(--forest,#183c30);
+  border-right:1px solid #c2c9b8;
+}
+.idea-list li:nth-child(3n){border-right:0}
+.idea-list h3{
+  font-size:22px;line-height:1.25;margin-bottom:14px;font-weight:700;
+}
+.idea-list h3 span{
+  display:block;font-family:Barlow,'Arial Narrow',Impact,sans-serif;font-weight:900;
+  font-size:44px;line-height:1;color:var(--orange,#ff5125);margin-bottom:10px;
+}
+.idea-list p{font-size:15px;line-height:1.66;color:#3d5347}
+.idea-note{
+  margin-top:38px;display:grid;grid-template-columns:1.3fr 1fr;gap:44px;align-items:start;
+  border-left:3px solid var(--orange,#ff5125);padding-left:22px;
+}
+.idea-note p{font-size:16px;line-height:1.7}
+
+/* ---- the two new answers on the feedback form -------------------------- */
+.idea-picks{border:1px solid #aebba7;background:#fffaf1;padding:18px 18px 8px;margin:0 0 23px}
+.feedback form .idea-picks legend{font-size:14px;font-weight:650;padding:0 8px}
+.feedback form .idea-picks label{
+  display:flex;align-items:flex-start;gap:11px;font-weight:400;font-size:15px;
+  margin:0 0 12px;line-height:1.4;cursor:pointer;
+}
+.idea-picks input{width:19px;height:19px;flex:0 0 19px;margin:1px 0 0;accent-color:var(--orange,#ff5125)}
+
+@media (max-width:980px){
+  .mark-grid{grid-template-columns:1fr}
+  .idea-list{grid-template-columns:1fr}
+  .idea-list li{border-right:0}
+  .mark-truth,.idea-note{grid-template-columns:1fr;gap:18px}
+}
+@media (max-width:620px){
+  .mark-studies,.ideas{padding:52px 22px 48px}
+  .mark figcaption{padding:24px 22px 26px}
+  .idea-list li{padding:26px 0 28px}
+}
