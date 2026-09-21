@@ -148,14 +148,15 @@ window.ARTIST_DEPTH = {
   },
   gryphus: {
     palette: ['#bcdbc2','#294945','#e7b775'], motif: 'horizon',
-    hook: 'A dear friend. A big Texas sky.',
-    wonder: {name: 'Plant a constellation', instruction: 'Place three lights along the horizon.', result: 'Your lights become a little constellation to carry into a gathering still taking shape.', kind: 'constellation'},
+    hook: 'Dear friends. Their festival. Our time together.',
+    wonder: {name: 'Our Hill Country constellation', instruction: 'Light up Walt, Cale, and the time we make together.', result: 'Three lights join: two lifelong friends and another shared Hill Country chapter.', kind: 'constellation'},
     chapters: [
-      {label: 'STILL UNFOLDING', title: 'The invitation comes before the timetable.', text: 'The official Gryphus website currently says the festival is coming soon. Dates, venue and lineup belong to the next announcement. For now, the open space is part of this chapter.', url: 'https://gryphusmusicfestival.com/', linkLabel: 'Visit the festival’s official page'},
-      {label: 'THE CONNECTION', title: 'The person before the festival.', text: 'This corner of the collection is about the way a friendship can lead into another shared adventure. The next detail worth adding is the confirmed gathering itself, not an imagined lineup or a borrowed memory.'}
+      {label: 'WALT + CALE', title: 'Two dear friends. The gathering they create.', text: 'Walt Zink and Cale Yarborough are dear lifelong friends. Gryphus is their event: Walt curates the music, and Cale executive-produces the festival. Both will be there. What makes this chapter matter to me is getting to share the world they put so much of themselves into.'},
+      {label: 'OUR HISTORY', title: 'The friendship came first.', text: 'Gryphus grew from the Karst Hill gathering into a public Hill Country festival. I was there in 2026, and the highlight was time with lifelong friends and seeing Walt and Cale create something together. The next visit continues that story.'},
+      {label: 'BACK IN 2027', title: 'April 28–May 3. Time made for this.', text: 'Those are my confirmed trip dates for Gryphus. A little room around the music, a return to the Hill Country, and time with Walt and Cale. The festival’s own pages are the place to follow its program and artist announcements.', url: 'https://gryphusmusicfestival.com/', linkLabel: 'Explore Gryphus'}
     ],
-    personalHistory: 'Gryphus is an adventure I am making room for. The dates and companions still need confirmation; the public chapter can grow when the festival’s details do.',
-    related: ['shambhala','edc']
+    personalHistory: 'Walt and Cale are two of my dear lifelong friends. Their collaboration was one of my highlights of Gryphus 2026. I am going back in 2027 for the music, the Hill Country, and time with both of them.',
+    related: ['shambhala','ggp-mixer','fang-live']
   },
   edc: {
     palette: ['#ffb483','#442b62','#eddae6'], motif: 'dawn',

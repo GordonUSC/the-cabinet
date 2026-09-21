@@ -221,24 +221,6 @@
     "note": "A Vegas weekend with Joe, Matt Kaplan, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come."
   },
   {
-    "id": "gryphus",
-    "name": "GRYPHUS",
-    "date": "",
-    "stamp": "2027 · TO CONFIRM",
-    "city": "Texas Hill Country",
-    "kind": "Music",
-    "url": "https://gryphusmusicfestival.com/",
-    "venue": "Dates and venue to confirm",
-    "blurb": "A future possibility still taking shape.",
-    "month": "later",
-    "color": "#b5dbc8",
-    "endDate": "",
-    "crew": "An adventure taking shape",
-    "line": "A dear friend. A big Texas sky.",
-    "note": "Walt Zink is a lifelong friend. The festival is one more way our lives keep finding each other. Dates and companions need confirmation.",
-    "dateStatus": "Dates to confirm"
-  },
-  {
     "id": "ggp-games",
     "name": "GGP · ZERO PROOF",
     "date": "2027-03-01",
@@ -271,6 +253,24 @@
     "crew": "Gordon, BrenBren, Alex Rogers, Sam Kennedy, Foster, Georgia + Eric Francksen",
     "line": "Our people. Behind the decks.",
     "note": "Tuesday night: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Venue and hours will follow."
+  },
+  {
+    "id": "gryphus",
+    "name": "GRYPHUS",
+    "date": "2027-04-28",
+    "stamp": "APR 28—MAY 03 · 2027",
+    "city": "Texas Hill Country",
+    "kind": "Music",
+    "url": "https://gryphusmusicfestival.com/",
+    "venue": "Gryphus · Texas Hill Country · My trip dates shown",
+    "blurb": "Back to the Hill Country for Walt, Cale, and the gathering they create.",
+    "month": "2027-04",
+    "color": "#b5dbc8",
+    "endDate": "2027-05-03",
+    "crew": "Gordon, Walt Zink + Cale Yarborough",
+    "line": "Dear friends. Their festival. Our time together.",
+    "note": "Walt and Cale are dear lifelong friends, and Gryphus is their event. They will both be there. My trip is April 28–May 3, 2027.",
+    "dateStatus": "My confirmed trip dates"
   },
   {
     "id": "edc",
