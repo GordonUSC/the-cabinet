@@ -41,3 +41,14 @@
 .ns-partner a{text-decoration:underline;text-underline-offset:3px}
 
 @media (max-width:620px){ .noscript-copy{padding:38px 22px 44px} }
+
+/* A palette written out as five hex codes is not a palette. These chips cost
+   nothing and are the only honest way to show colour in the no-script view. */
+.ns-pal .ns-chip{display:inline-flex;align-items:center;gap:6px;margin:0 14px 7px 0;font-size:12px}
+.ns-pal .ns-chip i{width:15px;height:15px;border:1px solid rgba(0,0,0,.22);display:inline-block}
+.ns-pal .ns-chip b{font-weight:400;color:#7d8a80;font-size:11px}
+
+/* With script off the search rail above the roster is visible and inert. Saying
+   so beats leaving a dead control lying next to live content. */
+.ns-inert{font-size:13px;line-height:1.6;color:#4a5a50;border-left:3px solid #ff5125;
+  padding:2px 0 2px 14px;margin:0 0 14px}
