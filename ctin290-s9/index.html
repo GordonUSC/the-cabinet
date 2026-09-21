@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en"><head>
+<!-- STYLE: Muller-Brockmann (Swiss timetable) | WHY: this is a run sheet read while standing at a podium mid-sentence, so the first read has to be the CLOCK; everything hangs off one rule, hierarchy comes from size and white space alone, and there is exactly one accent colour so the thing that is burning can be the only thing that is red | ALT: Wyman signage, rejected because signage is built for someone moving past at ten feet and Gordon is holding this at eighteen inches, and because I shipped Wyman hours ago today. -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>CTIN 290 Session 9, professor's guide</title>
+<style>
+@page { size: letter; margin: 0.55in 0.6in 0.55in 0.6in; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font:10.5pt/1.45 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#111;background:#fff;
+     max-width:7.3in;margin:0 auto;padding:22px 0 40px}
+h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
+.rule{border:0;border-top:2.5pt solid #111;margin:0}
+.thin{border:0;border-top:.5pt solid #b9b9b4;margin:0}
+
+header{margin-bottom:14px}
+.kick{font-size:7.6pt;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:#a4442a}
+h1{font-size:27pt;line-height:.98;margin:7px 0 4px}
+h1 span{display:block;font-size:12.5pt;font-weight:400;color:#444;letter-spacing:0;margin-top:7px}
+.meta{display:flex;flex-wrap:wrap;gap:0 26px;font-size:8.6pt;color:#333;margin:11px 0 0;
+      padding-top:9px;border-top:.5pt solid #b9b9b4}
+.meta b{display:block;font-size:7.2pt;letter-spacing:.13em;text-transform:uppercase;color:#7c7c76}
+
+h2{font-size:8.4pt;letter-spacing:.17em;text-transform:uppercase;color:#a4442a;
+   margin:26px 0 9px;padding-bottom:5px;border-bottom:2.5pt solid #111}
+h2 small{float:right;font-size:7.4pt;letter-spacing:.09em;color:#7c7c76;font-weight:400;
+         text-transform:none;padding-top:2px}
+
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+.obj td{padding:9px 0;border-bottom:.5pt solid #d7d7d2;vertical-align:top}
+.obj .n{width:30px;font-size:17pt;font-weight:700;color:#a4442a;line-height:1}
+.obj .x{width:104px;text-align:right;font-size:6.9pt;font-weight:700;letter-spacing:.1em;
+        text-transform:uppercase;color:#fff;padding-left:9px}
+.obj .x span{display:inline-block;background:#111;padding:3px 6px}
+.obj .x span.warn{background:#a4442a}
+.obj .x span.ok{background:#8a8a84}
+.obj h4{font-size:11pt;margin-bottom:3px}
+.obj p{font-size:9pt;color:#333}
+
+.blk td{padding:9px 0;border-bottom:.5pt solid #d7d7d2;vertical-align:top}
+.blk .t{width:86px;padding-right:12px}
+.blk .t b{display:block;font-size:12.5pt;line-height:1.05;letter-spacing:-.02em}
+.blk .t span{display:block;font-size:9pt;color:#7c7c76;line-height:1.15}
+.blk .t i{display:block;font-style:normal;font-size:6.9pt;font-weight:700;letter-spacing:.1em;
+          text-transform:uppercase;color:#a4442a;margin-top:4px}
+.blk .b h4{font-size:10.5pt;margin-bottom:3px}
+.blk .b p{font-size:9pt;color:#2b2b2b}
+.blk.brk .b h4,.blk.brk .t b{color:#7c7c76}
+.blk.tick .b{border-left:2.5pt solid #a4442a;padding-left:10px}
+
+.day td{padding:6px 0;border-bottom:.5pt solid #d7d7d2;font-size:9pt;vertical-align:top}
+.day .h{width:74px;font-weight:700}
+.day .w{width:62px;text-align:right;font-size:6.9pt;font-weight:700;letter-spacing:.09em;
+        text-transform:uppercase;color:#a4442a}
+.day tr.now td{background:#f2ece4}
+.day .s{color:#666;font-size:8.4pt}
+
+.frayer{border:.5pt solid #b9b9b4;margin-bottom:9px;break-inside:avoid}
+.frayer h4{font-size:11pt;background:#111;color:#fff;padding:5px 9px}
+.fg{display:grid;grid-template-columns:1fr 1fr}
+.fg>div{padding:7px 9px;border-top:.5pt solid #d7d7d2}
+.fg>div:nth-child(odd){border-right:.5pt solid #d7d7d2}
+.fg b{display:block;font-size:6.9pt;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+      color:#a4442a;margin-bottom:3px}
+.fg p{font-size:8.6pt;line-height:1.4}
+.u{font-size:7.4pt;color:#666;word-break:break-all}
+
+.med td{padding:7px 0;border-bottom:.5pt solid #d7d7d2;font-size:8.8pt;vertical-align:top}
+.med .c{width:78px;font-size:6.9pt;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+        color:#a4442a;padding-right:10px}
+.med h4{font-size:9.6pt;margin-bottom:2px}
+.med .u{display:block;margin-top:3px}
+
+.box{border:2.5pt solid #111;padding:11px 13px;margin:11px 0;break-inside:avoid}
+.box.warn{border-color:#a4442a}
+.box h4{font-size:9.4pt;margin-bottom:5px}
+.box p{font-size:8.8pt;margin-bottom:5px}
+.box p:last-child{margin-bottom:0}
+.box ul{margin-left:15px;font-size:8.8pt}
+.box li{margin-bottom:3px}
+
+.lines{margin-top:7px}
+.lines div{border-bottom:.5pt solid #9a9a94;height:23px}
+.blk td,.obj td,.day td,.med td{break-inside:avoid}
+h2{break-after:avoid}
+.pg{break-before:page}
+footer{margin-top:26px;padding-top:8px;border-top:.5pt solid #b9b9b4;
+       font-size:7.4pt;color:#7c7c76;line-height:1.5}
+@media screen{body{padding:34px 24px 60px}}
+</style></head>
+<body>
+
+<header>
+<p class="kick">CTIN 290 &middot; Digital Media Workshop &middot; From Console to Community</p>
+<h1>Session 9<span>Critical Role and long-form narrative. Unit 3: Practice.</span></h1>
+<div class="meta">
+<div><b>Date</b>Monday 21 September 2026</div>
+<div><b>Time</b>10:00 AM to 12:50 PM</div>
+<div><b>Length</b>170 minutes</div>
+<div><b>Room</b>SCI L104</div>
+<div><b>Section</b>18432</div>
+</div>
+</header>
+
+<h2>Before you walk in<small>two things on the calendar sit on top of this class</small></h2>
+<table class="day">
+<tr class="clash"><td class="h">9:00 AM</td><td><b>USC Games Faculty &amp; Staff, Zoom</b><br><span class="s">Gini Benson's weekly. Ends 10:00.</span></td><td class="w">CLASH</td></tr><tr class=""><td class="h">9:00 AM</td><td><b>USC Dept call</b><br><span class="s">Your own entry, ends 9:50.</span></td><td class="w"></td></tr><tr class="now"><td class="h">10:00 AM</td><td><b>CTIN 290 Session 9, SCI L104</b><br><span class="s">170 minutes. This document.</span></td><td class="w">NOW</td></tr><tr class="clash"><td class="h">10:00 AM</td><td><b>Gordon / Alex, Google Meet</b><br><span class="s">Two hours, straight through class. On the GGP calendar, not this one.</span></td><td class="w">CLASH</td></tr><tr class=""><td class="h">2:00 PM</td><td><b>Jeff McClusky, Festival University</b><br><span class="s">Introduced by Travis Laurendine. 15 colleges, 8 festivals.</span></td><td class="w"></td></tr><tr class=""><td class="h">3:00 PM</td><td><b>Remy Routh</b><br><span class="s">Moved from 2:00 when McClusky landed.</span></td><td class="w"></td></tr>
+</table>
+<div class="box warn">
+<h4>The two collisions, plainly</h4>
+<p><b>Gini Benson's faculty meeting ends at 10:00 and class starts at 10:00.</b> You cannot be on Zoom at
+9:59 and in SCI L104 at 10:00. Leave the Zoom at 9:45 or accept that Session 9 opens at 10:10, which costs
+you the opening block.</p>
+<p><b>Gordon / Alex is booked 10:00 to 12:00, straight through the class.</b> It is a recurring hold on the
+GGP calendar, so it does not show next to CTIN 290 on your main one. Alex is owed a prompt answer, so move
+it rather than ghost it.</p>
+</div>
+
+<h2>Three objectives, ranked<small>if you ran out of time, cut from the bottom</small></h2>
+<table class="obj">
+<tr><td class="n">1</td><td><h4>Name a visual signature and point at the frames that carry it.</h4><p>Costume, posture, gesture, and the way those choices persist across hours of performance. This is the exact skill the Visual Analysis video is graded on and it is due Thursday, so if only one thing survives the morning, this is it.</p></td><td class="x"><span class="warn">DO NOT CUT</span></td></tr><tr><td class="n">2</td><td><h4>Say out loud what a cut costs.</h4><p>In a theater your eye chooses and you can watch the person who is not speaking. On a screen somebody chose for you. Name the gain, close-ups no seat could buy, then name the loss. This is the first appearance of Adaptation, which you name properly in Session 12.</p></td><td class="x"><span class="">PROTECT IT</span></td></tr><tr><td class="n">3</td><td><h4>Put three terms in their hands: blocking, gesturality, reaction shot.</h4><p>Each one gets seen on screen before it gets defined. The exit ticket tells you whether they actually landed.</p></td><td class="x"><span class="ok">RECOVERABLE</span></td></tr>
+</table>
+<div class="box">
+<h4>Where the slack actually is</h4>
+<p>Synthesis runs <b>59 minutes</b>, from 11:46 to 12:45. It is by far the longest block and the only one
+with real give in it. If you are behind after the break, take it out of there, not out of Hamilton.
+Fifteen minutes of peer sharing still does the work; skipping the second text loses the day's idea.</p>
+</div>
+
+<h2>The run sheet<small>wall clock, because elapsed minutes are useless while teaching</small></h2>
+<table><tr class="blk">
+<td class="t"><b>10:00 AM</b><span>10:12 AM</span><i>12 min</i></td>
+<td class="b"><h4>Opening</h4><p>Introduce Critical Role as long-form visual and narrative practice. 450+ hours of performance. Focus: how do actors establish character visually? Costume, movement, voice.</p></td></tr>
+<tr class="blk">
+<td class="t"><b>10:12 AM</b><span>10:48 AM</span><i>36 min</i></td>
+<td class="b"><h4>Character Establishment</h4><p>Watch CR opening 30 min. Identify each character&#x27;s introduction. What visual/physical choices define them? Costume? Posture? Gesture? How do these choices persist?</p></td></tr>
+<tr class="blk">
+<td class="t"><b>10:48 AM</b><span>11:06 AM</span><i>18 min</i></td>
+<td class="b"><h4>Activity</h4><p>Character Annotation: Students pick one CR character. Describe their visual signature. Costume details. Recurring gestures. Physical habits.</p></td></tr>
+<tr class="blk brk">
+<td class="t"><b>11:06 AM</b><span>11:16 AM</span><i>10 min</i></td>
+<td class="b"><h4>Ten-Minute Break</h4><p>The block is 170 minutes now, not 110. One five-minute break was enough for a two-hour class and it is not enough for this one. Take the full ten and leave the room, because the back half is the half that has to land.</p></td></tr>
+<tr class="blk">
+<td class="t"><b>11:16 AM</b><span>11:46 AM</span><i>30 min</i></td>
+<td class="b"><h4>Second Text, Hamilton, and the Camera as the Thing You Lost</h4><p>Critical Role gives you performance with an unmoving camera and four hours to breathe. Hamilton is a stage show crossed onto a screen, and the trailer is where the cost of that crossing becomes visible. In a theater your eye chooses, and you can watch the person who is not speaking. On a screen somebody chose for you. Ask what that gains, because it does gain something real: close-ups no seat in the house could ever buy. Then ask what it costs. This is the first appearance of the Adaptation through-line you name properly in Session 12, and it lands harder here, straight after an hour of watching performance with no director&#x27;s eye in the way.</p></td></tr>
+<tr class="blk">
+<td class="t"><b>11:46 AM</b><span>12:45 PM</span><i>59 min</i></td>
+<td class="b"><h4>Synthesis</h4><p>Peer sharing. What visual choices define characters? How do these persist over long narrative? Discuss: how does long-form differ from film? What narrative techniques appear? Homework: watch 1 hour of CR. Annotate one character&#x27;s visual arc.</p></td></tr>
+<tr class="blk tick">
+<td class="t"><b>12:45 PM</b><span>12:50 PM</span><i>5 min</i></td>
+<td class="b"><h4>Exit Ticket, Two Lines Before Anyone Leaves</h4><p>One term you learned today and where you saw it. One thing you are still unsure of. Collect them at the door. This costs five minutes and it is the cheapest instrument you have for finding out what actually landed. The two things students are least likely to volunteer are which concept went past them and what they believe is expected of them, and this asks for both directly. Read them before the next session and open with the most common confusion, by name, so the room learns that saying you are lost actually changes what happens.</p></td></tr></table>
+
+<h2>Say these four things out loud</h2>
+<div class="box">
+<ul>
+<li><b>At 10:00.</b> "Four hundred and fifty hours of performance, one camera that barely moves. By noon
+you will be able to tell these people apart with the sound off."</li>
+<li><b>At 11:16, opening Hamilton.</b> "In a theater your eye chooses. On a screen somebody chose for you.
+What did that buy, and what did it cost?"</li>
+<li><b>Whenever you name a term.</b> Show it on screen first, define it second. All three of today's terms
+are visible before they are words.</li>
+<li><b>At 12:45, collecting the exit tickets.</b> "One term and where you saw it. One thing you are still
+unsure of. The second line is the one I actually need."</li>
+</ul>
+</div>
+
+<h2>Today's three terms<small>seen before defined, one question each</small></h2>
+<div class="frayer">
+<h4>Blocking</h4>
+<div class="fg">
+<div><b>Definition</b><p>The choreography of character and camera movement within a scene; physical positioning and trajectory.</p></div>
+<div><b>What to look at</b><p>Bodies at a table. Who leans in, who pulls back, and when.</p></div>
+<div><b>Where you see it</b><p>Sample any 10 min<br><span class="u">https://www.youtube.com/watch?v=3Mbynm0pGX0</span></p></div>
+<div><b>Ask the room</b><p>Who moved last, and what did that movement tell you before anybody spoke?</p></div>
+</div></div>
+<div class="frayer">
+<h4>Gesturality</h4>
+<div class="fg">
+<div><b>Definition</b><p>The expressive quality of movement; how characters move and what that movement communicates about state, intent, or personality.</p></div>
+<div><b>What to look at</b><p>One performer, many selves, distinguished almost entirely by how they move.</p></div>
+<div><b>Where you see it</b><p>Throughout, 2:26<br><span class="u">https://www.youtube.com/watch?v=wxN1T1uxQ2g</span></p></div>
+<div><b>Ask the room</b><p>If you muted this, how many of these people could you still tell apart?</p></div>
+</div></div>
+<div class="frayer">
+<h4>Reaction Shot</h4>
+<div class="fg">
+<div><b>Definition</b><p>A shot of a character responding to action; often cut in for emotional emphasis or continuity.</p></div>
+<div><b>What to look at</b><p>The table&#x27;s faces are the story as often as the speaker is.</p></div>
+<div><b>Where you see it</b><p>Sample any 10 min<br><span class="u">https://www.youtube.com/watch?v=3Mbynm0pGX0</span></p></div>
+<div><b>Ask the room</b><p>Whose face is the story right now, and is it the person talking?</p></div>
+</div></div>
+
+<h2>Media, in play order</h2>
+<table class="med">
+<tr><td class="c">DO NOT OPEN</td><td><h4>Critical Role Campaign 4 (Aramán), Opening Episode</h4><p>Study character introduction and establishment. Notice costume, blocking, voice, and environment. How do they work together?</p><span class="u">https://www.youtube.com/watch?v=Uo9z2gIUmUo &middot; 1:26 long · First 30 minutes</span></td></tr><tr><td class="c">10:12 AM</td><td><h4>Critical Role Campaign 4, Key Character Moments</h4><p>Official, Critical Role. Examine how performance and visual choices establish personality and relationships over long narrative.</p><span class="u">https://www.youtube.com/watch?v=3Mbynm0pGX0 &middot; 4 h 27 m long · Sample any 10 minutes</span></td></tr><tr><td class="c">DO NOT OPEN</td><td><h4>Critical Role Campaign 4, Action Sequences</h4><p>Study how visual chaos is managed. Cutting, focus, character tracking in ensemble action.</p><span class="u">https://www.youtube.com/watch?v=Uo9z2gIUmUo &middot; 1:26 long · Combat moments (variable)</span></td></tr><tr><td class="c">11:16 AM</td><td><h4>Hamilton, Official Trailer (Disney+)</h4><p>Official, Disney. A live stage show shot for a camera, cut from several performances plus a dedicated camera session on a closed stage. That is exactly the problem Critical Role solves every week and the problem your engine camera solves too: where do you put the lens when the performance was not staged for one. Watch blocking, watch where a cut steals your choice of what to look at, and watch how much a reaction shot changes a line you have already heard.</p><span class="u">https://www.youtube.com/watch?v=DSCKfXpAGHc &middot; 1:00 long · Throughout</span></td></tr><tr><td class="c">10:12 AM</td><td><h4>Blocking (glossary clip)</h4><p>Bodies at a table. Who leans in, who pulls back, and when.</p><span class="u">https://www.youtube.com/watch?v=3Mbynm0pGX0 &middot; 4 h 27 m long · Sample any 10 min</span></td></tr><tr><td class="c">on demand</td><td><h4>Gesturality (glossary clip)</h4><p>One performer, many selves, distinguished almost entirely by how they move.</p><span class="u">https://www.youtube.com/watch?v=wxN1T1uxQ2g &middot; 2:42 long · Throughout</span></td></tr><tr><td class="c">10:12 AM</td><td><h4>Reaction Shot (glossary clip)</h4><p>The table&#x27;s faces are the story as often as the speaker is.</p><span class="u">https://www.youtube.com/watch?v=3Mbynm0pGX0 &middot; 4 h 27 m long · Sample any 10 min</span></td></tr>
+</table>
+<div class="box warn">
+<h4>The 10:12 block cannot run as written, and this is the one thing to fix before you walk in</h4>
+<p><b>"Watch CR opening 30 min" points at a video that is 1 minute 26 seconds long.</b>
+<code>Uo9z2gIUmUo</code> is a clip called <i>The Tables Converge</i>. Open it at 10:12 and you have
+eighty-six seconds and then thirty-four minutes of nothing in front of twelve people.</p>
+<p><b>Play <code>3Mbynm0pGX0</code> instead.</b> That is <i>The Fall of Thjazi Fang, Campaign 4,
+Episode 1</i>, four hours and twenty-seven minutes, the actual episode with the actual character
+introductions in it. Same official channel. Durations checked twice tonight, two different methods,
+same answers.</p>
+<p><b>Scrub it before 10:00 and write the number here, because a cold scrub in front of the room is
+four minutes you do not have:</b> the episode proper starts at <b>_______</b> and you stop at
+<b>_______</b>.</p>
+<p><b>Hamilton is sixty seconds and the block is thirty minutes.</b> That is not a problem, it is the
+shape of the block: play it three times. Cold. Again muted, so they watch only where the cuts land.
+Then a third time with the room calling each cut out loud. Ninety seconds of tape, twenty-eight
+minutes of argument.</p>
+<p><b>Two smaller ones.</b> "Action Sequences" is the same 1:26 clip under a different name, so there
+is no third Critical Role video. And the glossary calls <code>3Mbynm0pGX0</code> "Key Character
+Moments" and says "sample any 10 min" with no timestamp, which is a four and a half hour video; pick
+your ten minutes tonight, not at the podium.</p>
+</div>
+
+<h2>What is due, and what is coming</h2>
+<div class="box">
+<ul>
+<li><b>Thursday 24 September, 5:00 PM PT. Visual Analysis Video, 10%.</b> One world, two media, three to
+five minutes. Session 9 is the last Monday before it lands, and today's whole first hour is the skill it
+is graded on. Say the deadline out loud at 10:00 and again at 12:45.</li>
+<li><b>Tonight's homework, from the synthesis block.</b> Watch one hour of Critical Role. Annotate one
+character's visual arc.</li>
+<li><b>Mood board.</b> The rubric says the file is due <b>Thursday 1 October</b> with presentations Monday
+5 October. The grading table in the same guide still says 24 September. <b>These contradict each other and
+students will ask.</b> Say 1 October, which is the corrected date and the one the rubric explains, then
+get the grading table fixed.</li>
+</ul>
+</div>
+
+<h2>What they were asked to do before today<small>from the syllabus, so you can ask for it</small></h2>
+<div class="box">
+<p>Sample ten minutes of Critical Role Campaign 4, Episode 1 before class. Rewatch Blocking,
+Gesturality and Reaction Shot afterwards.</p>
+<p><b>Session 9 collects nothing and issues no graded work.</b> Nothing is due at the door today, so
+the only thing you are chasing in the room is whether they watched.</p>
+</div>
+
+<h2>One spare activity, if you finish early</h2>
+<div class="box">
+<h4>Sound off, five minutes</h4>
+<p>Play any ten minutes of <code>3Mbynm0pGX0</code> with the audio muted. Ask them to write down, without
+conferring, who is currently the most powerful person at that table and what told them. Then unmute and
+play the same ten minutes again.</p>
+<p>It costs five minutes, it proves gesturality and reaction shot in one move, and it hands them a method
+they can use on Thursday's assignment tonight.</p>
+</div>
+
+<h2>After class, two lines<small>write them before you open the laptop</small></h2>
+<div class="box">
+<p><b>What paid for the extra minutes today?</b></p>
+<div class="lines"><div></div><div></div></div>
+<p style="margin-top:9px"><b>What is the most common thing on the exit tickets, and how do you open Session 10 with it?</b></p>
+<div class="lines"><div></div><div></div></div>
+</div>
+
+<footer>
+Session text, timing blocks and glossary entries are lifted verbatim from the CTIN 290 Fall 2026
+Teacher's Guide, artifact ede331ff. Objectives, the ranking, the wall clock, the spare activity, the
+four spoken lines and the defect notes are Darby's and are marked as such.
+Every video verified live against the YouTube oEmbed endpoint on 20 September 2026.
+Calendar read from gbellamy@gmail.com and ggpcharity@gmail.com the same evening.
+Built for letter paper.
+</footer>
+
+</body></html>
