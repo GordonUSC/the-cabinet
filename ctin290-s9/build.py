@@ -127,114 +127,117 @@ for t_ in terms:
                    else t_["timestamp"]), t_["look"]))
 
 CSS = """
-@page { size: letter; margin: 0.55in 0.6in 0.55in 0.6in; }
+@page { size: letter; margin: 0.5in 0.55in 0.5in 0.55in; }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-body{font:10.5pt/1.45 "Helvetica Neue",Helvetica,Arial,sans-serif;color:#111;background:#fff;
-     max-width:7.3in;margin:0 auto;padding:22px 0 40px}
+body{font:13.2pt/1.5 Charter,"Bitstream Charter",Georgia,"Iowan Old Style",serif;color:#111;background:#fff;
+     max-width:7.4in;margin:0 auto;padding:22px 0 40px}
+h1,h2,h3,h4,h5,.kick,.meta b,.blk .t,.obj .x,.day .w,.day .h,.own,.med .c,.fg b,
+table.cue th,td.v,td.x,td.m,.scr code,.u,h2 small,footer
+{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}
 h1,h2,h3,h4{font-weight:700;letter-spacing:-.012em}
 .rule{border:0;border-top:2.5pt solid #111;margin:0}
 .thin{border:0;border-top:.5pt solid #b9b9b4;margin:0}
 
 header{margin-bottom:14px}
-.kick{font-size:7.6pt;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:#a4442a}
-h1{font-size:27pt;line-height:.98;margin:7px 0 4px}
-h1 span{display:block;font-size:12.5pt;font-weight:400;color:#444;letter-spacing:0;margin-top:7px}
-.meta{display:flex;flex-wrap:wrap;gap:0 26px;font-size:8.6pt;color:#333;margin:11px 0 0;
+.kick{font-size:9.9pt;font-weight:700;letter-spacing:.17em;text-transform:uppercase;color:#a4442a}
+h1{font-size:29.7pt;line-height:.98;margin:7px 0 4px}
+h1 span{display:block;font-size:14.8pt;font-weight:400;color:#444;letter-spacing:0;margin-top:7px}
+.meta{display:flex;flex-wrap:wrap;gap:0 26px;font-size:11.2pt;color:#333;margin:11px 0 0;
       padding-top:9px;border-top:.5pt solid #b9b9b4}
-.meta b{display:block;font-size:7.2pt;letter-spacing:.13em;text-transform:uppercase;color:#7c7c76}
+.meta b{display:block;font-size:9.5pt;letter-spacing:.13em;text-transform:uppercase;color:#7c7c76}
 
-h2{font-size:8.4pt;letter-spacing:.17em;text-transform:uppercase;color:#a4442a;
+h2{font-size:10.9pt;letter-spacing:.17em;text-transform:uppercase;color:#a4442a;
    margin:26px 0 9px;padding-bottom:5px;border-bottom:2.5pt solid #111}
-h2 small{float:right;font-size:7.4pt;letter-spacing:.09em;color:#7c7c76;font-weight:400;
+h2 small{float:right;font-size:9.6pt;letter-spacing:.09em;color:#7c7c76;font-weight:400;
          text-transform:none;padding-top:2px}
 
 table{width:100%;border-collapse:collapse;table-layout:fixed}
 .obj td{padding:9px 0;border-bottom:.5pt solid #d7d7d2;vertical-align:top}
-.obj .n{width:30px;font-size:17pt;font-weight:700;color:#a4442a;line-height:1}
-.obj .x{width:104px;text-align:right;font-size:6.9pt;font-weight:700;letter-spacing:.1em;
+.obj .n{width:30px;font-size:18.7pt;font-weight:700;color:#a4442a;line-height:1}
+.obj .x{width:128px;text-align:right;font-size:9.5pt;font-weight:700;letter-spacing:.06em;
         text-transform:uppercase;color:#fff;padding-left:9px}
 .obj .x span{display:inline-block;background:#111;padding:3px 6px}
 .obj .x span.warn{background:#a4442a}
 .obj .x span.ok{background:#8a8a84}
-.obj h4{font-size:11pt;margin-bottom:3px}
-.obj p{font-size:9pt;color:#333}
+.obj h4{font-size:13.9pt;margin-bottom:3px}
+.obj p{font-size:11.3pt;color:#333}
 
 .blk td{padding:9px 0;border-bottom:.5pt solid #d7d7d2;vertical-align:top}
 .blk .t{width:86px;padding-right:12px}
-.blk .t b{display:block;font-size:12.5pt;line-height:1.05;letter-spacing:-.02em}
-.blk .t span{display:block;font-size:9pt;color:#7c7c76;line-height:1.15}
-.blk .t i{display:block;font-style:normal;font-size:6.9pt;font-weight:700;letter-spacing:.1em;
+.blk .t b{display:block;font-size:14.8pt;line-height:1.05;letter-spacing:-.02em}
+.blk .t span{display:block;font-size:11.3pt;color:#7c7c76;line-height:1.15}
+.blk .t i{display:block;font-style:normal;font-size:9.5pt;font-weight:700;letter-spacing:.1em;
           text-transform:uppercase;color:#a4442a;margin-top:4px}
-.blk .b h4{font-size:10.5pt;margin-bottom:3px}
-.blk .b p{font-size:9pt;color:#2b2b2b}
+.blk .b h4{font-size:13.2pt;margin-bottom:3px}
+.blk .b p{font-size:11.3pt;color:#2b2b2b}
 .blk.brk .b h4,.blk.brk .t b{color:#7c7c76}
 .blk.tick .b{border-left:2.5pt solid #a4442a;padding-left:10px}
 
-.day td{padding:6px 0;border-bottom:.5pt solid #d7d7d2;font-size:9pt;vertical-align:top}
+.day td{padding:6px 0;border-bottom:.5pt solid #d7d7d2;font-size:11.3pt;vertical-align:top}
 .day .h{width:74px;font-weight:700}
-.day .w{width:62px;text-align:right;font-size:6.9pt;font-weight:700;letter-spacing:.09em;
+.day .w{width:62px;text-align:right;font-size:9.5pt;font-weight:700;letter-spacing:.09em;
         text-transform:uppercase;color:#a4442a}
 .day tr.now td{background:#f2ece4}
 .day tr.dead td{color:#9a9a93;text-decoration:line-through;text-decoration-color:#c9c9c2}
 .day tr.dead td.w{color:#9a9a93;text-decoration:none}
 .day tr.dead .s{color:#a5a59e}
-.day .s{color:#666;font-size:8.4pt}
+.day .s{color:#666;font-size:10.9pt}
 
 .frayer{border:.5pt solid #b9b9b4;margin-bottom:9px;break-inside:avoid}
-.frayer h4{font-size:11pt;background:#111;color:#fff;padding:5px 9px}
+.frayer h4{font-size:13.9pt;background:#111;color:#fff;padding:5px 9px}
 .fg{display:grid;grid-template-columns:1fr 1fr}
 .fg>div{padding:7px 9px;border-top:.5pt solid #d7d7d2}
 .fg>div:nth-child(odd){border-right:.5pt solid #d7d7d2}
-.fg b{display:block;font-size:6.9pt;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+.fg b{display:block;font-size:9.5pt;font-weight:700;letter-spacing:.11em;text-transform:uppercase;
       color:#a4442a;margin-bottom:3px}
-.fg p{font-size:8.6pt;line-height:1.4}
-.u{font-size:7.4pt;color:#666;word-break:break-all}
+.fg p{font-size:11.2pt;line-height:1.4}
+.u{font-size:9.6pt;color:#666;word-break:break-all}
 
-.med td{padding:7px 0;border-bottom:.5pt solid #d7d7d2;font-size:8.8pt;vertical-align:top}
-.med .c{width:78px;font-size:6.9pt;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+.med td{padding:7px 0;border-bottom:.5pt solid #d7d7d2;font-size:11.4pt;vertical-align:top}
+.med .c{width:78px;font-size:9.5pt;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
         color:#a4442a;padding-right:10px}
-.med h4{font-size:9.6pt;margin-bottom:2px}
+.med h4{font-size:12.1pt;margin-bottom:2px}
 .med .u{display:block;margin-top:3px}
 
 .box{border:2.5pt solid #111;padding:11px 13px;margin:11px 0;break-inside:avoid}
 .box.warn{border-color:#a4442a}
-.box h4{font-size:9.4pt;margin-bottom:5px}
-.box p{font-size:8.8pt;margin-bottom:5px}
+.box h4{font-size:11.8pt;margin-bottom:5px}
+.box p{font-size:11.4pt;margin-bottom:5px}
 .box p:last-child{margin-bottom:0}
-.box ul{margin-left:15px;font-size:8.8pt}
+.box ul{margin-left:15px;font-size:11.4pt}
 .box li{margin-bottom:3px}
 
 .lines{margin-top:7px}
 .lines div{border-bottom:.5pt solid #9a9a94;height:23px}
 .blk td,.obj td,.day td,.med td{break-inside:avoid}
 h2{break-after:avoid}
-h3.sub{font-size:10.5pt;margin:15px 0 6px;padding-bottom:3px;border-bottom:1.4pt solid #111;
+h3.sub{font-size:13.2pt;margin:15px 0 6px;padding-bottom:3px;border-bottom:1.4pt solid #111;
         display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-h3.sub span{font-weight:400;font-size:8.4pt;color:#6d6d66;letter-spacing:0;white-space:nowrap}
-h3.sub code{font-size:9pt}
+h3.sub span{font-weight:400;font-size:10.9pt;color:#6d6d66;letter-spacing:0;white-space:nowrap}
+h3.sub code{font-size:11.3pt}
 table{max-width:100%}
-table.cue{width:100%;border-collapse:collapse;font-size:8.7pt;break-inside:auto;table-layout:fixed}
+table.cue{width:100%;border-collapse:collapse;font-size:11.3pt;break-inside:auto;table-layout:fixed}
 table.cue td,table.cue th{overflow-wrap:anywhere}
-table.cue th{font-size:7.2pt;text-transform:uppercase;letter-spacing:.11em;color:#6d6d66;
+table.cue th{font-size:9.5pt;text-transform:uppercase;letter-spacing:.11em;color:#6d6d66;
              text-align:left;padding:0 6px 3px 0;border-bottom:.5pt solid #b9b9b4;font-weight:700}
 table.cue td{padding:6px 6px 6px 0;border-bottom:.5pt solid #e2e2dc;vertical-align:top;line-height:1.42}
 table.cue tr{break-inside:avoid}
 table.cue td:nth-child(1),table.cue td:nth-child(2),table.cue td:nth-child(3){
-  font-family:"SF Mono",Menlo,Consolas,monospace;font-size:8pt;white-space:nowrap}
+  font-family:"SF Mono",Menlo,Consolas,monospace;font-size:10.4pt;white-space:nowrap}
 table.cue td:nth-child(3){color:#6d6d66}
 table.cue tr.go td{background:#fbf4f1}
 table.cue tr.no td{background:#f3f3ef;color:#5a5a54}
-td.v,td.x,td.m{font:700 7.2pt "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.09em;
+td.v,td.x,td.m{font:700 9.5pt "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.09em;
                text-align:right;white-space:nowrap}
 td.v{color:#a4442a}
 td.x{color:#111}
 td.m{color:#9a9a93}
 .diag{margin:14px 0 0;break-inside:avoid}
 .diag+.diag{margin-top:18px;padding-top:14px;border-top:.5pt solid #d8d8d2}
-.diag figcaption{font-size:8.6pt;color:#333;margin-bottom:7px}
+.diag figcaption{font-size:11.2pt;color:#333;margin-bottom:7px}
 .diag svg{width:100%;height:auto;display:block;background:#fff}
-.diag .cap{font-size:8.6pt;line-height:1.5;margin-top:8px}
+.diag .cap{font-size:11.2pt;line-height:1.5;margin-top:8px}
 .ts{font-family:"SF Mono",Menlo,Consolas,monospace;font-size:.92em;background:#f2f2ee;
     padding:.5pt 3pt;border:.5pt solid #ddddd6;white-space:nowrap}
 text.dl{font:600 8px "Helvetica Neue",Helvetica,Arial,sans-serif;fill:#111}
@@ -243,22 +246,24 @@ text.dh{font:700 8.5px "Helvetica Neue",Helvetica,Arial,sans-serif;fill:#111;let
 text.dn{font:700 9px "Helvetica Neue",Helvetica,Arial,sans-serif;fill:#fff}
 text.dn.dk{fill:#111}
 text.acc,.acc{fill:#a4442a;color:#a4442a}
-.own{display:block;margin-top:5px;font:700 6.4pt/1 "Helvetica Neue",Helvetica,Arial,sans-serif;
+.own{display:block;margin-top:5px;font:700 9.5pt/1 "Helvetica Neue",Helvetica,Arial,sans-serif;
      letter-spacing:.12em;padding:2px 0}
 .oAstra{color:#2f6f8f}
 .oDarby{color:#a4442a}
 .oGordon{color:#111}
-.scr{margin-top:5px;font-size:7.8pt;color:#6d6d66}
-.scr code{font-size:7.6pt;background:#f2f2ee;padding:.5pt 3pt;border:.5pt solid #ddddd6}
+.scr{margin-top:5px;font-size:10.1pt;color:#6d6d66}
+.scr code{font-size:9.9pt;background:#f2f2ee;padding:.5pt 3pt;border:.5pt solid #ddddd6}
 tr.mb td{background:#f4ece4;border-top:1.2pt solid #a4442a;border-bottom:1.2pt solid #a4442a}
 tr.mb h4{color:#a4442a}
 .pg{break-before:page}
 footer{margin-top:26px;padding-top:8px;border-top:.5pt solid #b9b9b4;
-       font-size:7.4pt;color:#7c7c76;line-height:1.5}
+       font-size:9.6pt;color:#7c7c76;line-height:1.5}
 @media screen{body{padding:34px 24px 60px}}
 @media screen and (max-width:820px){
   body{max-width:100%;padding:22px 16px 48px}
-  h1{font-size:22pt}
+  .obj .n,.obj .x{display:block;width:auto;text-align:left;padding-bottom:4px}
+  .obj .x span{margin-left:0}
+  h1{font-size:24.2pt}
   h3.sub{flex-direction:column;align-items:flex-start;gap:2px}
   table.cue th:first-child,table.cue td:first-child{padding-left:0}
   table.cue td:nth-child(3),table.cue th:nth-child(3){display:none}
@@ -270,7 +275,7 @@ footer{margin-top:26px;padding-top:8px;border-top:.5pt solid #b9b9b4;
 
 HTML = f"""<!doctype html>
 <html lang="en"><head>
-<!-- STYLE: Muller-Brockmann (Swiss timetable) | WHY: this is a run sheet read while standing at a podium mid-sentence, so the first read has to be the CLOCK; everything hangs off one rule, hierarchy comes from size and white space alone, and there is exactly one accent colour so the thing that is burning can be the only thing that is red | ALT: Wyman signage, rejected because signage is built for someone moving past at ten feet and Gordon is holding this at eighteen inches, and because I shipped Wyman hours ago today. -->
+<!-- STYLE: Muller-Brockmann (Swiss timetable) | WHY: this is a run sheet read while standing at a podium mid-sentence, so the first read has to be the CLOCK; everything hangs off one rule, hierarchy comes from size and white space alone, and there is exactly one accent colour so the thing that is burning can be the only thing that is red. Revised 03:40 on Gordon's note that it was not legible: every size scaled up with nothing below 9.5pt, and the prose reset in Charter while the clock, labels and owner tags stay in Helvetica so the timetable structure survives at reading size | ALT: Wyman signage, rejected because signage is built for someone moving past at ten feet and Gordon is holding this at eighteen inches, and because I shipped Wyman hours ago today. -->
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
 <title>CTIN 290 Session 9, professor's guide</title>
