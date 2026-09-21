@@ -51,6 +51,23 @@
     "note": "Saturday at Pier 80. Dog Blood is our anchor; discovery is part of the plan."
   },
   {
+    "id": "folsom",
+    "name": "FOLSOM STREET FAIR",
+    "date": "2026-09-27",
+    "endDate": "2026-09-27",
+    "stamp": "SUN SEP 27",
+    "city": "San Francisco",
+    "kind": "Gathering",
+    "url": "https://www.folsomstreet.org/folsom-street-fair-1",
+    "venue": "Folsom Street · SoMa · 11 AM–6 PM",
+    "blurb": "The city, the street, and a dear friend from the beginning.",
+    "month": "2026-09",
+    "color": "#e8a7df",
+    "crew": "Gordon + Shannon Murray",
+    "line": "A familiar city. A friend for the ages.",
+    "note": "Folsom Sunday with Shannon Murray. One of my dearest friends since San Francisco in the 1990s, in a city that holds so much of our history. The fair runs 11 AM–6 PM. I also plan to stop by The Foundry, the venue for our March GGP nights."
+  },
+  {
     "id": "foundry",
     "name": "THE FOUNDRY",
     "date": "2026-09-27",
@@ -59,13 +76,13 @@
     "kind": "Music",
     "url": "https://www.eventbrite.com/e/boof-presents-mcmlxxxv-herrensauna-at-the-foundry-folsom-street-fair-tickets-1999721840857",
     "venue": "1425 Folsom",
-    "blurb": "A Sunday dance-floor possibility.",
+    "blurb": "A Folsom Sunday stop, and a first look toward our March gatherings.",
     "month": "2026-09",
     "color": "#f09ed2",
     "endDate": "2026-09-27",
-    "crew": "A possibility, still open",
-    "line": "Leave a little room for the unexpected.",
-    "note": "A Sunday dance-floor possibility. No meetup agreed."
+    "crew": "A Sunday stop during Folsom",
+    "line": "A dance today. Our own gathering next.",
+    "note": "I plan to stop by The Foundry during Folsom Sunday and get a feel for the venue that will host both of our March GGP events. The fair is its own chapter, with Shannon Murray. No separate Foundry meetup time is set."
   },
   {
     "id": "zeds",
@@ -137,20 +154,20 @@
   },
   {
     "id": "pride",
-    "name": "PALM SPRINGS",
+    "name": "PALM SPRINGS · PRIDE + BIRTHDAY",
     "date": "2026-11-06",
-    "stamp": "NOV 06—08",
+    "stamp": "NOV 06—09",
     "city": "Palm Springs",
     "kind": "Gathering",
     "url": "https://www.pspride.org/news",
-    "venue": "Downtown + Arenas District",
-    "blurb": "A weekend for community, color, and joy.",
+    "venue": "Downtown + Arenas District · Birthday November 9",
+    "blurb": "Pride November 6–8. My birthday Monday, November 9. A whole weekend of us.",
     "month": "2026-11",
     "color": "#f2a7cf",
-    "endDate": "2026-11-08",
-    "crew": "Gordon, Mason, Joe + Alex Rogers",
-    "line": "Come as you are. Bring your color.",
-    "note": "A Pride weekend with Mason, Joe and Alex Rogers. Time to be ourselves together."
+    "endDate": "2026-11-09",
+    "crew": "Gordon, Shannon Murray, Joe, Mason + Alex Rogers",
+    "line": "Pride. My birthday. Our people.",
+    "note": "Palm Springs Pride with Shannon Murray, Joe, Mason and Alex Rogers. Shannon is our host, and one of my dearest friends since San Francisco in the 1990s. Pride runs November 6–8; my birthday is Monday, November 9. This chapter holds both."
   },
   {
     "id": "summit",

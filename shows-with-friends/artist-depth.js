@@ -46,7 +46,7 @@ window.ARTIST_DEPTH = {
       {label: 'THE RESIDENT', title: 'Follow the name behind the Roman numerals.', text: 'MCMLXXXV’s artist biography names a residency with Herrensauna in Berlin. The Foundry date puts that club-world connection inside the Folsom Street Fair weekend. A lineup name becomes more interesting when you follow it back to the room that shaped it.', url: 'https://ra.co/dj/mcmlxxxv/biography', linkLabel: 'MCMLXXXV’s artist profile'},
       {label: 'THE CULTURE', title: 'A party with a point of view.', text: 'Herrensauna’s own event description traces the collective to CEM and MCMLXXXV in 2015 and its early DIY gatherings, then its relationship with Tresor. It centers queer nightlife and the freedom to take sound and self-expression to their edges.', url: 'https://ra.co/events/1897675', linkLabel: 'Herrensauna’s description of its roots'}
     ],
-    personalHistory: 'The Foundry is an open Sunday possibility in my San Francisco plan. I have not made a shared meetup for it. That leaves this little doorway about curiosity, with room to decide.',
+    personalHistory: 'I plan to stop by The Foundry on Folsom Sunday. There is a dance-floor chapter here, and another reason to look around: this is where our Zero Proof night and GGP mixer will gather in March 2027. Folsom with Shannon is part of the same Sunday; we have not set a separate Foundry meetup time.',
     related: ['portola','pride']
   },
   zeds: {
@@ -107,7 +107,7 @@ window.ARTIST_DEPTH = {
       {label: 'THE BEGINNING', title: 'A ballroom before the whole city.', text: 'Palm Springs Pride began in 1986 as “Sizzle,” an evening of dinner and local entertainers in a hotel ballroom. The scale has changed; the reason to gather remains visible in that small beginning: a community making space for itself.', url: 'https://www.pspride.org/history', linkLabel: 'Read Palm Springs Pride’s history'},
       {label: 'THE LIVING TRADITION', title: 'Joy carries a history.', text: 'The organization places its celebration in the legacy of Stonewall and equal rights. The parade and festival are ways to be visible together. Here, the invitation is simple: there is room for the version of you that feels most like you.', url: 'https://www.pspride.org/history', linkLabel: 'Follow the community’s timeline'}
     ],
-    personalHistory: 'Palm Springs belongs in my collection of shared adventures. I want to leave room for the community and color around the music, and for the joy of being ourselves together.',
+    personalHistory: 'Shannon, you have been one of my dearest friends since San Francisco in the 1990s. Now you welcome us to Palm Springs for Pride and my birthday. Joe, Mason, Alex and me: the joy is in getting to share another chapter with people who know me.',
     related: ['foundry','countdown','comedy']
   },
   summit: {
@@ -237,3 +237,16 @@ window.ARTIST_DEPTH['fang-live'].chapters.unshift(
  {label:'THE MUSICAL LIFE',title:'These walls have already held a song.',text:'In 2013, Maxfield’s on Main opened in the restored firehouse with jazz, blues and rock programming. Fang Speare’s birthday chapter follows a real musical history. The room has welcomed different sounds before.',url:'https://njjs.org/wp-content/uploads/1611/72/4107_JerseyJazzFullIssue.pdf#page=12',linkLabel:'The contemporary Jersey Jazz report · page 12'},
  {label:'THE ROOM TODAY',title:'A place keeps finding its people.',text:'The Center for the Study of Cities and Small Towns renewed the firehouse following a PennPraxis preservation study, with the Birch family involved in its civic and cultural life. Highlands art exhibitions in 2024 and 2025 brought painting, photography and sculpture into the room. Foster’s family project gives this next gathering a deeper setting.',url:'https://njhighlandscoalition.org/news/media-advisory-now-accepting-submissions-for-the-12th-annual-highlands-juried-art-exhibit/',linkLabel:'The Highlands Coalition on Maxfield’s renewal'}
 );
+
+window.ARTIST_DEPTH.folsom={
+ wonder:{name:'Meet me on the street',instruction:'Light up the street, the music, and the people who make it ours.',kind:'street'},
+ personalHistory:'Shannon Murray and me. A friendship that goes back to San Francisco in the 1990s, still making room for another day together. Folsom in September; Palm Springs Pride and my birthday in November. The thread is the person.',
+ chapters:[{label:'SUNDAY IN SOMA',title:'A whole street comes alive.',text:'Folsom Street Fair is Sunday, September 27, 2026, from 11 AM to 6 PM. The organizer’s fair page is the place for the map, stages and current details.',url:'https://www.folsomstreet.org/folsom-street-fair-1',linkLabel:'Explore the official fair'},{label:'SHANNON',title:'Some friendships hold whole eras.',text:'One of my dearest friends since the 1990s. It means something to share this city with Shannon, then carry that friendship into our Palm Springs Pride and birthday weekend.'},{label:'THE NEXT ROOM',title:'A Sunday stop. A March return.',text:'I also plan to stop by The Foundry during the fair weekend. We will return there for Zero Proof on March 1 and the annual GGP mixer on March 2. A place to feel now, and imagine full of our people later.'}],
+ related:['foundry','pride','ggp-games','ggp-mixer']
+};
+window.ARTIST_DEPTH.pride.chapters.unshift(
+ {label:'SHANNON · SINCE THE 1990s',title:'You have been here for whole chapters.',text:'Shannon Murray is our host for Palm Springs, and one of my dearest friends from my San Francisco years. This weekend belongs to that long friendship as much as it belongs to the music.'},
+ {label:'MONDAY · NOVEMBER 9',title:'And, of course, my birthday.',text:'Pride fills November 6–8. My birthday is Monday, November 9. The parade and the birthday are different days this year, and both belong in our November 6–9 chapter.',url:'https://www.pspride.org/festival',linkLabel:'The official Pride dates'}
+);
+window.ARTIST_DEPTH.pride.related.unshift('folsom');
+window.ARTIST_DEPTH.foundry.related=['folsom','ggp-games','ggp-mixer','portola'];
