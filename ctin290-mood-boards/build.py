@@ -9,6 +9,7 @@ import json, html, pathlib, re, sys
 sys.path.insert(0, "/private/tmp/claude-501/-Users-gordonai/5350c374-ed75-4fae-8632-989220f3beba/scratchpad/mb")
 from captions import CAP
 from prompts import PROMPTS, LOCK
+from terms import TERMS, OWNED
 
 M = json.load(open("/private/tmp/claude-501/-Users-gordonai/5350c374-ed75-4fae-8632-989220f3beba/scratchpad/mb/manifest.json"))
 def dedash(x):
@@ -44,6 +45,21 @@ def swatch_row(pal, label, note):
     return (f'<div class="pal"><div class="palhead"><h4>{e(label)}</h4><p>{e(note)}</p></div>'
             f'<div class="swrow">{cells}</div></div>')
 
+def termbar(items):
+    used = []
+    for it in items:
+        k = it["idx"] if it["kind"] in ("generated", "game") else str(it["met"]["id"])
+        for t in TERMS[k]:
+            if t not in used: used.append(t)
+    missing = [t for t in OWNED if t not in used]
+    on = "".join(f'<span class="chip on">{e(t)}</span>' for t in sorted(used))
+    off = "".join(f'<span class="chip off">{e(t)}</span>' for t in missing)
+    return f'''<div class="pal terms"><div class="palhead"><h4>Terms this board puts to work</h4>
+<p><b>{len(used)} of the {len(OWNED)}</b> visual terms you own by 1 October. This is the row to check before
+you submit: a mood board is where the vocabulary stops being a list you were handed and becomes something
+you used. A term in gray is one nothing on this board demonstrates yet.</p></div>
+<div class="swrow chipwrap">{on}{off}</div></div>'''
+
 def plate(board_key, it):
     if it["kind"] in ("generated", "game"):
         k = it["idx"]
@@ -60,9 +76,11 @@ def plate(board_key, it):
         prov = (f'<span class="tag cur">Curated</span> {e(", ".join(bits))}. {e(o.get("medium"))}. '
                 f'The Metropolitan Museum of Art, Open Access. '
                 f'<a href="{e(o["page"])}">metmuseum.org/art/collection/search/{k}</a>')
+    chips = "".join(f'<span class="chip">{e(t)}</span>' for t in TERMS[k])
     return f'''<figure class="plate">
 <img src="img/{e(it["file"])}" alt="{title}" width="{it['w']}" height="{it['h']}" loading="lazy">
-<figcaption><h5>{title}</h5><p class="why">{e(CAP[k])}</p><p class="prov">{prov}</p></figcaption>
+<figcaption><h5>{title}</h5><p class="why">{e(CAP[k])}</p>
+<p class="chips"><b>Terms at work:</b> {chips}</p><p class="prov">{prov}</p></figcaption>
 </figure>'''
 
 sections = []
@@ -87,6 +105,7 @@ for key, name, kicker, premise, reading, isnot in BOARDS:
 <p class="count"><b>{len(items)} images</b> &middot; {ng} of the world &middot; <b>{nga} of the screen</b> &middot; {nc} curated from the public domain &middot; the brief asks for 20 to 40</p>
 </header>
 {swatch_row(d["palette"], "The look", "Measured from the " + str(ng + nga) + " generated plates, world and screen together, which define how this game looks. Percentages are the share of pixels each color owns.")}
+{termbar(items)}
 {swatch_row(d["refpalette"], "What the reference plates add", "Measured from the " + str(nc) + " curated works. These skew to paper and age, and that is the honest reading: they are on the board for form, motif and composition, not for color.")}
 <div class="grid">
 {"".join(plate(key, it) for it in items)}
@@ -155,6 +174,16 @@ figcaption h5{font-size:12.5px;letter-spacing:.02em;line-height:1.35;margin-bott
 .tag.gen{background:#1b1b18;color:#fff}
 .tag.cur{background:#e8e3d7;color:#1b1b18}
 .tag.game{background:#8a5a3b;color:#fff}
+.chips{font-size:11.5px;line-height:2.05;margin-top:9px}
+.chips b{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:.1em;
+         text-transform:uppercase;color:#6a675f;margin-right:5px}
+.chip{display:inline-block;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:10.5px;
+      font-weight:600;letter-spacing:.02em;padding:2.5px 7px;margin-right:4px;
+      border:.5pt solid #cfc7b8;background:#f6f2ea;white-space:nowrap}
+.terms .swrow{flex:1 1 340px}
+.chipwrap{gap:5px;align-content:flex-start}
+.chip.on{background:#1b1b18;color:#fff;border-color:#1b1b18}
+.chip.off{background:transparent;color:#a8a49b;border-color:#e2ded4}
 
 .close{margin-top:52px;padding-top:30px;border-top:3px solid #1b1b18}
 .close h2{font-size:30px;letter-spacing:-.02em}
@@ -227,6 +256,11 @@ quietly lies about itself.</li>
 <li><b>Sourcing is part of the grade and part of the syllabus.</b> Curated work here is public domain from
 the Met's Open Access collection, with artist, date, medium and a working link. Generated work says it was
 generated, names the model, and prints the prompt.</li>
+<li><b>The board is where you prove the vocabulary.</b> Every plate below names the glossary terms it
+demonstrates, and each board carries a row showing how many of the terms you own it actually puts to work.
+That row is not decoration. Saying "this image feels cold" is worth nothing. Saying "negative space and a
+warm/cool split carry the isolation here" is the same observation with a grade attached. Check your own
+board against that row before you submit, and say the terms out loud on 5 October.</li>
 <li><b>A mood board for a game needs the screen, not just the world.</b> Every board here carries plates
 tagged <b>in-game</b>: the HUD, the camera, the split screen, the level seen from above, the menu. A board
 made only of beautiful photographs describes a film. The question a game board has to answer is what the

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en"><head>
+<!-- STYLE: Mission briefing, game HUD register | WHY: this goes to twelve game design students who read it on a phone before class, and the professor's version of this day is a Swiss print run sheet built for a podium. Handing students the same object makes it feel like a document that leaked down to them. A briefing screen is the format they already know how to read: numbered objectives, a loadout of three things, timestamps as coordinates, one accent for what is live. Dark ground with a single amber accent so the three terms are the only thing that can speak first. | ALT: reuse the Muller-Brockmann timetable from the professor's guide, rejected for exactly that reason, and because I shipped it eight hours ago. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>CTIN 290 Session 9: what today is</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d1117; --panel:#161b22; --line:#262d36;
+  --fg:#e9eff5; --mut:#93a1b0; --amber:#f0a33e; --cyan:#58d2c4;
+  color-scheme:dark;
+}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--fg);
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  padding:0 0 64px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+a{color:var(--cyan)}
+
+header{padding:38px 0 22px;border-bottom:1px solid var(--line)}
+.eyebrow{font:700 11px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--amber)}
+h1{font-size:33px;line-height:1.1;letter-spacing:-.02em;margin:14px 0 0;font-weight:700}
+.sub{color:var(--mut);margin-top:12px;font-size:16px}
+.stamp{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.stamp span{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;
+  color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:7px 11px}
+
+h2{font-size:13px;letter-spacing:.17em;text-transform:uppercase;color:var(--amber);
+  margin:40px 0 4px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700}
+h2 + .note{color:var(--mut);font-size:15px;margin-bottom:16px}
+
+/* the three terms are deliberately NOT cards: a numbered list with hairline rules, so the
+   page has two structures rather than one repeated panel */
+.term{background:none;border:0;border-top:1px solid var(--line);border-radius:0;
+  padding:26px 0 24px;margin:0;display:grid;grid-template-columns:62px 1fr;gap:0 18px}
+.term:first-of-type{border-top:0;padding-top:10px}
+.term .n{grid-row:1/span 4;font:800 44px/0.85 ui-monospace,SFMono-Regular,Menlo,monospace;
+  color:transparent;-webkit-text-stroke:1.5px var(--amber);letter-spacing:-.04em;padding-top:4px}
+.term h3{font-size:27px;letter-spacing:-.02em;margin:0 0 10px;font-weight:700}
+.term p{font-size:16px;margin-bottom:12px}
+.term .look{color:var(--mut);font-size:15px}
+.term .look b{color:var(--fg);font-weight:600}
+.watch{display:flex;align-items:center;gap:11px;margin-top:14px;max-width:max-content;
+  background:#1d242d;border:1px solid var(--line);border-radius:8px;
+  padding:10px 13px;text-decoration:none;color:var(--fg);font-size:14px}
+.watch:hover{border-color:var(--amber)}
+.watch .t{font:700 13px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--amber);letter-spacing:.02em;white-space:nowrap;flex:0 0 auto}
+
+.big{background:linear-gradient(180deg,#1b2029,#161b22);border:1px solid var(--line);
+  border-left:3px solid var(--cyan);border-radius:12px;padding:22px;margin:8px 0 0}
+.big p{font-size:19px;line-height:1.45}
+.big p + p{margin-top:12px;color:var(--mut);font-size:16px}
+
+ol.carry{list-style:none;counter-reset:c}
+ol.carry li{counter-increment:c;background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;padding:17px 18px 16px 54px;margin-bottom:11px;position:relative}
+ol.carry li::before{content:counter(c);position:absolute;left:18px;top:16px;
+  font:700 15px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--amber)}
+ol.carry b{display:block;font-size:17px;margin-bottom:4px}
+ol.carry .when{font:600 13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--cyan);
+  display:block;margin-bottom:7px;letter-spacing:.02em}
+ol.carry p{color:var(--mut);font-size:15px}
+
+.flat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;margin-top:8px}
+.flat p + p{margin-top:11px}
+.flat .q{color:var(--mut);font-size:15px}
+
+table.play{width:100%;border-collapse:collapse;margin-top:8px;font-size:15px}
+table.play td{padding:13px 10px 13px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.play tr:last-child td{border-bottom:none}
+table.play td:first-child{width:118px;white-space:nowrap;
+  font:700 13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--amber)}
+table.play .ttl{font-weight:600}
+table.play .why{color:var(--mut);font-size:14px;display:block;margin-top:3px}
+
+footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--mut);font-size:13px;line-height:1.6}
+
+@media (max-width:560px){
+  h1{font-size:27px}
+  .term{grid-template-columns:44px 1fr;gap:0 12px}
+  .term .n{font-size:32px}
+  .term h3{font-size:22px}
+  .big p{font-size:17px}
+  table.play td:first-child{width:auto;display:block;border:none;padding-bottom:4px}
+  table.play td:last-child{display:block;padding-top:0}
+}
+</style></head>
+<body>
+<div class="wrap">
+
+<header>
+<p class="eyebrow">CTIN 290 &middot; Session 9 &middot; Monday 21 September</p>
+<h1>Today you learn to see three things that only exist across time.</h1>
+<p class="sub">Critical Role and long-form narrative. A four hour episode and a sixty second trailer,
+because the same three ideas look completely different depending on whether anyone is cutting.</p>
+<div class="stamp">
+<span>10:00 to 12:50</span><span>SCI L104</span><span>Bring your mood board</span>
+</div>
+</header>
+
+<h2>The three terms</h2>
+<p class="note">Each one gets seen on screen before it gets defined. Here they are anyway, so you can
+arrive already looking for them.</p>
+
+<div class="term">
+<p class="n">01</p>
+<h3>Blocking</h3>
+<p>Where people are standing, and where they move. Position plus trajectory, doing work before anybody
+speaks.</p>
+<p class="look"><b>Look for:</b> who leans in, who pulls back, and who chose their spot before the scene
+started. The person who does not move is often the one who decided.</p>
+<a class="watch" href="https://www.youtube.com/watch?v=3Mbynm0pGX0"><span class="t">0:37:43</span>
+Critical Role, two characters walk uphill to a door</a>
+</div>
+
+<div class="term">
+<p class="n">02</p>
+<h3>Gesturality</h3>
+<p>How a body moves, and what the movement tells you about who this is, before the dialogue confirms it.</p>
+<p class="look"><b>Look for:</b> one performer playing several people. If you muted it, how many of them
+could you still tell apart?</p>
+<a class="watch" href="https://www.youtube.com/watch?v=wxN1T1uxQ2g"><span class="t">0:37 to 0:52</span>
+Everything Everywhere All At Once, the same man twice</a>
+</div>
+
+<div class="term">
+<p class="n">03</p>
+<h3>Reaction shot</h3>
+<p>A cut to somebody who is not talking. It is how an edit tells you what a line meant.</p>
+<p class="look"><b>Look for:</b> whose face is the story right now, and whether it is the person
+speaking. Usually it is not.</p>
+<a class="watch" href="https://www.youtube.com/watch?v=DSCKfXpAGHc"><span class="t">0:27 to 0:41</span>
+Hamilton, two things happening at once</a>
+</div>
+
+<h2>The question the whole day is built on</h2>
+<div class="big">
+<p>In a theater, your eye chooses. You can watch the person who is <em>not</em> speaking. On a screen,
+somebody already chose for you.</p>
+<p>So: what did that choice buy, and what did it cost? It buys you a close-up no seat in the house could
+ever get. Name the gain first. Then name what you lost, because that is the harder half and it is the half
+that earns the top band on Thursday.</p>
+</div>
+
+<h2>What we are watching, and where</h2>
+<table class="play">
+<tr><td>0:00 to 18:51</td><td><span class="ttl">Critical Role, Campaign 4, Episode 1</span>
+<span class="why">The cast introduce their own characters, out loud, one at a time. Costume, posture,
+eyes. Watch this part and the annotation exercise does itself. After 18:51 it is announcements and an
+advert, so we stop.</span></td></tr>
+<tr><td>37:43 to 41:00</td><td><span class="ttl">Same episode, later</span>
+<span class="why">Two more introductions, then somebody describes exactly where their character is standing
+and why. That is blocking, said out loud by the person doing it.</span></td></tr>
+<tr><td>Three times</td><td><span class="ttl">Hamilton, official trailer, 60 seconds</span>
+<span class="why">Once cold. Once muted, so you only watch where the cuts land. Once with the room calling
+each cut out loud. Ninety seconds of tape, half an hour of argument.</span></td></tr>
+</table>
+
+<h2>Three things you are carrying</h2>
+<p class="note">Nothing new is set tonight. These are the three that were already running.</p>
+<ol class="carry">
+<li><b>Your Visual Analysis Video</b>
+<span class="when">DUE THU 24 SEP, 5:00 PM PT &middot; 10% &middot; individual</span>
+<p>One world, two media. Three to five minutes. Pay attention at 11:16 today, because Hamilton on stage
+against Hamilton on screen is one of the approved pairs, and we are about to argue it in front of you.
+That is the assignment, performed.</p></li>
+<li><b>Your team mood board</b>
+<span class="when">FILE DUE THU 1 OCT, 5:00 PM PT &middot; 20% &middot; presentations MON 5 OCT</span>
+<p>Bring it today. The last forty minutes of class are yours to work on it with the room, and there is no
+other team time on the calendar before it is due.</p>
+<p><b>Your board is where the terms stop being a list and start being something you used.</b> Every image on
+it should be there for a reason you can say in the vocabulary: this one is here for its negative space, this
+one for the warm/cool split, this one because the blocking tells you who has the power. "It feels right" is
+worth nothing on 5 October. The same observation in the vocabulary is worth the grade, and you will each be
+speaking for about a hundred seconds, so the words have to be ready.</p>
+<p>Three worked examples are at <a href="https://gordonusc.github.io/the-cabinet/ctin290-mood-boards/">the
+mood board page</a>. Every plate there names the terms it demonstrates, and each board shows how many of the
+terms you own it actually puts to work. Check yours against that row before you submit.</p></li>
+<li><b>The terms</b>
+<span class="when">NOT GRADED ON ITS OWN &middot; UNDERNEATH EVERYTHING ELSE</span>
+<p>Fifty-five of them by December. Thirty-two by the time the board is due, three of them today. They are
+the reason the video and the board get marks, because a critique that says "the lighting is really good" has
+not said anything, and one that says "the key light drops two stops when he lies" has. Learning them is not
+a separate task you do after the work. It is the work.</p></li>
+</ol>
+
+<h2>At 12:45 you will be asked two things</h2>
+<div class="flat">
+<p class="q">Telling you now so the answers are better.</p>
+<p><b>One term you learned today, and where you saw it.</b></p>
+<p><b>One thing you are still unsure of.</b></p>
+<p class="q">The second one is the line that actually matters. It is read before the next session and the
+most common confusion gets answered first, by name. Saying you are lost is the fastest way to change what
+happens on Wednesday, and nobody finds out it was you.</p>
+</div>
+
+<footer>
+CTIN 290, Digital Media Workshop, Fall 2026, section 18432. Timestamps were taken from each video's own
+caption track on 21 September 2026 and point at speech, so scrub a few seconds either side if the moment
+has moved. Every deadline on this page is 5:00 PM PT on a Thursday, which is true of every deliverable in
+this course: nothing is ever due at the door.
+</footer>
+
+</div>
+</body></html>
