@@ -107,7 +107,7 @@ window.ARTIST_DEPTH = {
       {label: 'THE BEGINNING', title: 'A ballroom before the whole city.', text: 'Palm Springs Pride began in 1986 as “Sizzle,” an evening of dinner and local entertainers in a hotel ballroom. The scale has changed; the reason to gather remains visible in that small beginning: a community making space for itself.', url: 'https://www.pspride.org/history', linkLabel: 'Read Palm Springs Pride’s history'},
       {label: 'THE LIVING TRADITION', title: 'Joy carries a history.', text: 'The organization places its celebration in the legacy of Stonewall and equal rights. The parade and festival are ways to be visible together. Here, the invitation is simple: there is room for the version of you that feels most like you.', url: 'https://www.pspride.org/history', linkLabel: 'Follow the community’s timeline'}
     ],
-    personalHistory: 'Shannon, you have been one of my dearest friends since San Francisco in the 1990s. Now you welcome us to Palm Springs for Pride and my birthday. Joe, Mason, Alex and me: the joy is in getting to share another chapter with people who know me.',
+    personalHistory: 'Shannon, you are one of my oldest, deepest friends. You have known me since our San Francisco years in the 1990s. You have made Palm Springs feel like a welcome, and made me feel loved. Sharing Pride and my birthday with you carries all of that history into another year.',
     related: ['foundry','countdown','comedy']
   },
   summit: {
@@ -240,7 +240,7 @@ window.ARTIST_DEPTH['fang-live'].chapters.unshift(
 
 window.ARTIST_DEPTH.folsom={
  wonder:{name:'Meet me on the street',instruction:'Light up the street, the music, and the people who make it ours.',kind:'street'},
- personalHistory:'Shannon Murray and me. A friendship that goes back to San Francisco in the 1990s, still making room for another day together. Folsom in September; Palm Springs Pride and my birthday in November. The thread is the person.',
+ personalHistory:'Shannon Murray is one of my oldest, deepest friends. Our San Francisco years in the 1990s are part of who I am. Folsom together means another day in that city with someone who has known me through decades of life. The friendship is still making new memories.',
  chapters:[{label:'SUNDAY IN SOMA',title:'A whole street comes alive.',text:'Folsom Street Fair is Sunday, September 27, 2026, from 11 AM to 6 PM. The organizer’s fair page is the place for the map, stages and current details.',url:'https://www.folsomstreet.org/folsom-street-fair-1',linkLabel:'Explore the official fair'},{label:'SHANNON',title:'Some friendships hold whole eras.',text:'One of my dearest friends since the 1990s. It means something to share this city with Shannon, then carry that friendship into our Palm Springs Pride and birthday weekend.'},{label:'THE NEXT ROOM',title:'A Sunday stop. A March return.',text:'I also plan to stop by The Foundry during the fair weekend. We will return there for Zero Proof on March 1 and the annual GGP mixer on March 2. A place to feel now, and imagine full of our people later.'}],
  related:['foundry','pride','ggp-games','ggp-mixer']
 };
