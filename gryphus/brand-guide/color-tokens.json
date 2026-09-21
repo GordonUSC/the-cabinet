@@ -1,6 +1,8 @@
 {
-  "version": "0.1-review",
+  "version": "0.2-review",
   "status": "Proposed standards for Cale and Walt review; not production authorization",
+  "hatRule": "No ropes, cords, braids or decorative piping across any hat crown-to-bill seam. Plain seam only.",
+  "landscapeRule": "Low Texas Hill Country limestone terrain, live oak, cedar and caliche. No tall or alpine mountains.",
   "directions": {
     "field-guide": {
       "Forest": {
@@ -133,6 +135,388 @@
           10
         ]
       }
+    }
+  },
+  "newLooks": {
+    "moss-mineral": {
+      "name": "Moss & Mineral",
+      "palette": {
+        "Pine": {
+          "hex": "#294739",
+          "rgb": [
+            41,
+            71,
+            57
+          ],
+          "cmykApproxPercent": [
+            42,
+            0,
+            20,
+            72
+          ]
+        },
+        "Sage": {
+          "hex": "#A6B39A",
+          "rgb": [
+            166,
+            179,
+            154
+          ],
+          "cmykApproxPercent": [
+            7,
+            0,
+            14,
+            30
+          ]
+        },
+        "Chalk": {
+          "hex": "#F2EFE2",
+          "rgb": [
+            242,
+            239,
+            226
+          ],
+          "cmykApproxPercent": [
+            0,
+            1,
+            7,
+            5
+          ]
+        },
+        "Ochre": {
+          "hex": "#C49B45",
+          "rgb": [
+            196,
+            155,
+            69
+          ],
+          "cmykApproxPercent": [
+            0,
+            21,
+            65,
+            23
+          ]
+        },
+        "Navy accent": {
+          "hex": "#23394C",
+          "rgb": [
+            35,
+            57,
+            76
+          ],
+          "cmykApproxPercent": [
+            54,
+            25,
+            0,
+            70
+          ]
+        }
+      },
+      "navyUse": "Small hardware, zipper or label accents; never a dominant field"
+    },
+    "canyon-current": {
+      "name": "Canyon Current",
+      "palette": {
+        "Clay": {
+          "hex": "#B75E43",
+          "rgb": [
+            183,
+            94,
+            67
+          ],
+          "cmykApproxPercent": [
+            0,
+            49,
+            63,
+            28
+          ]
+        },
+        "Sand": {
+          "hex": "#EDDCBC",
+          "rgb": [
+            237,
+            220,
+            188
+          ],
+          "cmykApproxPercent": [
+            0,
+            7,
+            21,
+            7
+          ]
+        },
+        "Rust": {
+          "hex": "#7C3E2F",
+          "rgb": [
+            124,
+            62,
+            47
+          ],
+          "cmykApproxPercent": [
+            0,
+            50,
+            62,
+            51
+          ]
+        },
+        "Turquoise": {
+          "hex": "#4C9694",
+          "rgb": [
+            76,
+            150,
+            148
+          ],
+          "cmykApproxPercent": [
+            49,
+            0,
+            1,
+            41
+          ]
+        },
+        "Navy accent": {
+          "hex": "#23394C",
+          "rgb": [
+            35,
+            57,
+            76
+          ],
+          "cmykApproxPercent": [
+            54,
+            25,
+            0,
+            70
+          ]
+        }
+      },
+      "navyUse": "Small hardware, zipper or label accents; never a dominant field"
+    },
+    "meadow-bloom": {
+      "name": "Meadow Bloom",
+      "palette": {
+        "Moss": {
+          "hex": "#52684A",
+          "rgb": [
+            82,
+            104,
+            74
+          ],
+          "cmykApproxPercent": [
+            21,
+            0,
+            29,
+            59
+          ]
+        },
+        "Lilac": {
+          "hex": "#B9ADD0",
+          "rgb": [
+            185,
+            173,
+            208
+          ],
+          "cmykApproxPercent": [
+            11,
+            17,
+            0,
+            18
+          ]
+        },
+        "Lemon": {
+          "hex": "#EBCB53",
+          "rgb": [
+            235,
+            203,
+            83
+          ],
+          "cmykApproxPercent": [
+            0,
+            14,
+            65,
+            8
+          ]
+        },
+        "Oat": {
+          "hex": "#F0EADC",
+          "rgb": [
+            240,
+            234,
+            220
+          ],
+          "cmykApproxPercent": [
+            0,
+            3,
+            8,
+            6
+          ]
+        },
+        "Navy accent": {
+          "hex": "#23394C",
+          "rgb": [
+            35,
+            57,
+            76
+          ],
+          "cmykApproxPercent": [
+            54,
+            25,
+            0,
+            70
+          ]
+        }
+      },
+      "navyUse": "Small hardware, zipper or label accents; never a dominant field"
+    },
+    "river-signal": {
+      "name": "River Signal",
+      "palette": {
+        "Deep teal": {
+          "hex": "#285C5A",
+          "rgb": [
+            40,
+            92,
+            90
+          ],
+          "cmykApproxPercent": [
+            57,
+            0,
+            2,
+            64
+          ]
+        },
+        "Reed": {
+          "hex": "#C4A95F",
+          "rgb": [
+            196,
+            169,
+            95
+          ],
+          "cmykApproxPercent": [
+            0,
+            14,
+            52,
+            23
+          ]
+        },
+        "Limestone": {
+          "hex": "#EFE7D6",
+          "rgb": [
+            239,
+            231,
+            214
+          ],
+          "cmykApproxPercent": [
+            0,
+            3,
+            10,
+            6
+          ]
+        },
+        "Clay": {
+          "hex": "#BC7355",
+          "rgb": [
+            188,
+            115,
+            85
+          ],
+          "cmykApproxPercent": [
+            0,
+            39,
+            55,
+            26
+          ]
+        },
+        "Navy accent": {
+          "hex": "#23394C",
+          "rgb": [
+            35,
+            57,
+            76
+          ],
+          "cmykApproxPercent": [
+            54,
+            25,
+            0,
+            70
+          ]
+        }
+      },
+      "navyUse": "Small hardware, zipper or label accents; never a dominant field"
+    },
+    "golden-hour": {
+      "name": "Golden Hour",
+      "palette": {
+        "Ochre": {
+          "hex": "#C5923D",
+          "rgb": [
+            197,
+            146,
+            61
+          ],
+          "cmykApproxPercent": [
+            0,
+            26,
+            69,
+            23
+          ]
+        },
+        "Faded orange": {
+          "hex": "#CB764A",
+          "rgb": [
+            203,
+            118,
+            74
+          ],
+          "cmykApproxPercent": [
+            0,
+            42,
+            64,
+            20
+          ]
+        },
+        "Evergreen": {
+          "hex": "#304C3C",
+          "rgb": [
+            48,
+            76,
+            60
+          ],
+          "cmykApproxPercent": [
+            37,
+            0,
+            21,
+            70
+          ]
+        },
+        "Canvas": {
+          "hex": "#F1E4CB",
+          "rgb": [
+            241,
+            228,
+            203
+          ],
+          "cmykApproxPercent": [
+            0,
+            5,
+            16,
+            5
+          ]
+        },
+        "Navy accent": {
+          "hex": "#23394C",
+          "rgb": [
+            35,
+            57,
+            76
+          ],
+          "cmykApproxPercent": [
+            54,
+            25,
+            0,
+            70
+          ]
+        }
+      },
+      "navyUse": "Small hardware, zipper or label accents; never a dominant field"
     }
   },
   "accessibility": {

@@ -1,0 +1,1958 @@
+[
+  {
+    "id": "altra",
+    "name": "Altra",
+    "category": "Trail + movement",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.altrarunning.com/en-us/pages/contact-us",
+    "contact": "Contact form / altra_customerservice@vfc.com",
+    "contactType": "General customer service; request field marketing",
+    "fit": "Trail and running footwear connects directly to the ranch’s singletrack.",
+    "activation": "A try-on trail-shoe library and a short, hosted introductory run on an approved route.",
+    "ask": "Ask for Texas field-marketing coverage, demo size run, staff and shoe-cleaning plan.",
+    "sourceUrl": "https://www.altrarunning.com/en-us/pages/contact-us",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-258.svg"
+    ],
+    "positions": [
+      1
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "fj-rd",
+    "name": "FjØRD",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://fjordcoldplunge.com/pages/contact",
+    "contact": "steven@fjordcoldplunge.com",
+    "contactType": "Named public company contact",
+    "fit": "Cold-plunge maker with an official Runningman activation on its own site.",
+    "activation": "A bookable, staffed plunge station within a shaded recovery area.",
+    "ask": "Ask about Texas delivery, water treatment, power, drainage, supervision and participants per hour.",
+    "sourceUrl": "https://fjordcoldplunge.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-260.svg"
+    ],
+    "positions": [
+      2
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://fjordcoldplunge.com/"
+    ]
+  },
+  {
+    "id": "goodwipes",
+    "name": "Goodwipes",
+    "category": "Camp + comfort",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.goodwipes.com/pages/faq",
+    "contact": "Event donations route in FAQ; help@goodwipes.com",
+    "contactType": "Event / donation route",
+    "fit": "Portable wipes meet a practical camping and post-ride need.",
+    "activation": "A refresh point at the return from trails, with individually packaged wipes and clear disposal bins.",
+    "ask": "Request event donation eligibility, unit count, shipment timing and a disposal plan approved by sanitation vendor.",
+    "sourceUrl": "https://www.goodwipes.com/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-261.svg"
+    ],
+    "positions": [
+      3
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "moonbrew",
+    "name": "MoonBrew",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://moonbrew.co/policies/terms-of-service",
+    "contact": "hi@moonbrew.co",
+    "contactType": "General support",
+    "fit": "Nighttime drink brand; better suited to an optional adult product tasting than a promised sleep benefit.",
+    "activation": "An opt-in evening sampling table near the quiet camp lounge, with ingredients visible.",
+    "ask": "Ask for event sampling policy, serving guidance, product labeling and staffing; keep ordinary drinks available.",
+    "sourceUrl": "https://moonbrew.co/policies/terms-of-service",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-267.svg"
+    ],
+    "positions": [
+      4
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "everyday-dose",
+    "name": "Everyday Dose",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://help.everydaydose.com/en-US",
+    "contact": "Help Center contact form",
+    "contactType": "General support; request partnerships",
+    "fit": "Coffee and matcha blends lend themselves to a morning social ritual.",
+    "activation": "A small morning brew bar before trail activities, with a regular coffee alternative.",
+    "ask": "Ask for product, trained servers, hot water, cups, ingredient signage and whether sponsorship or paid catering is offered.",
+    "sourceUrl": "https://help.everydaydose.com/en-US",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-275.svg"
+    ],
+    "positions": [
+      5
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "rythm-health",
+    "name": "Rythm Health",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://go.rythmhealth.com/eventpartnerships",
+    "contact": "Official event-partnership application",
+    "contactType": "Explicit event partnership route",
+    "fit": "At-home health testing with a dedicated event-partnership route; an exploratory expo fit with medical-data considerations.",
+    "activation": "An optional educational conversation about personal health data, with a clear path to ask questions privately.",
+    "ask": "Ask about event scope, clinician involvement, privacy responsibilities and staffing; keep testing optional and separate from festival entry.",
+    "sourceUrl": "https://rythmhealth.com/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-269.svg"
+    ],
+    "positions": [
+      6
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; event partnership route verified",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "tempur-pedic",
+    "name": "Tempur-Pedic",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://help.tempurpedic.com/hc/en-us/requests/new",
+    "contact": "Official contact form",
+    "contactType": "General support; request experiential marketing",
+    "fit": "Bedding and sleep products could add real comfort to a long outdoor day.",
+    "activation": "A shaded rest lounge with washable covers and a quiet, short product demonstration.",
+    "ask": "Ask for local retailer involvement, loan equipment, sanitation, delivery and weather protection.",
+    "sourceUrl": "https://help.tempurpedic.com/hc/en-us/requests/new",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-301.svg"
+    ],
+    "positions": [
+      7
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "wilde",
+    "name": "WILDE",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.wildebrands.com/pages/faq",
+    "contact": "customercare@wildebrands.com",
+    "contactType": "General support; request events",
+    "fit": "Protein chips offer an easy packaged snack with minimal preparation.",
+    "activation": "A post-ride snack stop or arrival bag sample with clear ingredients and a plant-based option beside it.",
+    "ask": "Ask for case donation versus wholesale pricing, portions, allergen labeling and delivery.",
+    "sourceUrl": "https://www.wildebrands.com/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-273.svg"
+    ],
+    "positions": [
+      8
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "painterland-sisters",
+    "name": "Painterland Sisters",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://painterlandsisters.com/pages/contact",
+    "contact": "Official contact form",
+    "contactType": "General company contact",
+    "fit": "Organic skyr yogurt brings a farm-based story to a working-ranch setting.",
+    "activation": "A morning yogurt tasting or breakfast cup alongside a dairy-free choice.",
+    "ask": "Ask for cold-chain delivery, refrigeration, servers, allergen labels and waste handling.",
+    "sourceUrl": "https://painterlandsisters.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-274.svg"
+    ],
+    "positions": [
+      9
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "kala",
+    "name": "KALA",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://kalaredlight.com/en-intl/pages/contact-us-1",
+    "contact": "kala@kalaredlight.com",
+    "contactType": "General company contact",
+    "fit": "Light-therapy devices are an exploratory expo fit, with more operating needs than simple product sampling.",
+    "activation": "A staffed device demonstration in a sheltered recovery booth; avoid event-wide treatment claims.",
+    "ask": "Ask for approved devices, operator guidance, required shielding and power, and current product safety documentation.",
+    "sourceUrl": "https://kalaredlight.com/en-intl/pages/contact-us-1",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Kala-Light-Therapy.webp"
+    ],
+    "positions": [
+      10
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "koh",
+    "name": "KOH",
+    "category": "Identity check",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "Pending verification",
+    "contactUrl": "https://runningmanfestival.com/contact-us/",
+    "contact": "Ask Runningman to identify this roster partner",
+    "contactType": "Organizer routing only — brand contact unverified",
+    "fit": "The displayed logo was retained in the full roster. A reliable primary-source business match was not established.",
+    "activation": "Hold a category-specific proposal until the organizer confirms the exact company.",
+    "ask": "Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.",
+    "sourceUrl": "https://runningmanfestival.com/",
+    "sourceLabel": "Runningman logo wall",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-263.svg"
+    ],
+    "positions": [
+      11
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Business identity / direct contact unresolved",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "loftie",
+    "name": "Loftie",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://byloftie.com/pages/loftie-support",
+    "contact": "Loftie Support",
+    "contactType": "General support; request hospitality partnerships",
+    "fit": "Clocks, lamps and sound content suit a deliberately quiet place between activities.",
+    "activation": "A low-light listening nook demonstrating wind-down sounds away from the main stage.",
+    "ask": "Ask for a small loan kit, power, content permissions and an acoustic plan that respects camping quiet hours.",
+    "sourceUrl": "https://byloftie.com/pages/loftie-support",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-264.svg"
+    ],
+    "positions": [
+      12
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "magic-molecule",
+    "name": "Magic Molecule",
+    "category": "Camp + comfort",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://magicmolecule.com/pages/promo-terms",
+    "contact": "hello@magic.science",
+    "contactType": "General company contact",
+    "fit": "Skin-care products can be an optional personal-care sample.",
+    "activation": "A sealed travel-size skin-care giveaway at the camp refresh station.",
+    "ask": "Ask for current labeling, suitable storage and sample supply; keep it separate from festival medical care.",
+    "sourceUrl": "https://magicmolecule.com/pages/promo-terms",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-265.svg"
+    ],
+    "positions": [
+      13
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "collective-water",
+    "name": "Collective Water",
+    "category": "Identity check",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "Pending verification",
+    "contactUrl": "https://runningmanfestival.com/contact-us/",
+    "contact": "Ask Runningman to identify this roster partner",
+    "contactType": "Organizer routing only — brand contact unverified",
+    "fit": "The displayed logo was retained in the full roster. A reliable primary-source business match was not established.",
+    "activation": "Hold a category-specific proposal until the organizer confirms the exact company.",
+    "ask": "Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.",
+    "sourceUrl": "https://runningmanfestival.com/",
+    "sourceLabel": "Runningman logo wall",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-259.svg"
+    ],
+    "positions": [
+      14
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Business identity / direct contact unresolved",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "lone-river",
+    "name": "Lone River",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.loneriverbevco.com/",
+    "contact": "Official brand site / contact navigation",
+    "contactType": "General brand route; direct partnerships contact unverified",
+    "fit": "Texas-rooted ranch-water beverages fit an adult sunset gathering.",
+    "activation": "An adult-only sunset bar moment, with equally visible alcohol-free choices.",
+    "ask": "Ask the brand for a Texas distribution/experiential lead; establish licensed service, age checks and category terms before an offer.",
+    "sourceUrl": "https://www.loneriverbevco.com/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/LoneRiver-White.svg",
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/lone-1.svg"
+    ],
+    "positions": [
+      15,
+      37
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "cold-freak",
+    "name": "Cold Freak",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://coldfreak.com/policies/terms-of-service",
+    "contact": "support@coldfreak.com",
+    "contactType": "General support; request events",
+    "fit": "Frozen desserts offer a playful cooling break during an outdoor weekend.",
+    "activation": "A small cold-treat cart after the family adventure area or trail return.",
+    "ask": "Ask for mobile freezer capacity, power, replenishment, staffing and allergen information.",
+    "sourceUrl": "https://coldfreak.com/policies/terms-of-service",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-293.svg"
+    ],
+    "positions": [
+      16
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "hyperice",
+    "name": "Hyperice",
+    "category": "Recovery + wellness",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://hyperice.com/pages/about-us",
+    "contact": "sales@hyperice.com",
+    "contactType": "Business sales",
+    "fit": "Percussion and compression products can support a hands-on recovery demonstration.",
+    "activation": "A staffed recovery lounge where riders can try devices in short, scheduled sessions.",
+    "ask": "Ask for demo devices, trained staff, hygiene protocol, seating, shade and throughput.",
+    "sourceUrl": "https://hyperice.com/pages/about-us",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_2.svg"
+    ],
+    "positions": [
+      17
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "wellworthy",
+    "name": "Wellworthy",
+    "category": "Community + media",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://wellworthy.com/contact/",
+    "contact": "team@wellworthy.com",
+    "contactType": "Company editorial / commercial contact",
+    "fit": "Wellness media and product discovery; Runningman announced its Better For You Bodega.",
+    "activation": "A curated Gryphus discovery counter featuring a few useful food, hydration and camp products.",
+    "ask": "Ask whether they would curate brands, provide coverage or produce a paid activation; separate editorial interest from paid deliverables.",
+    "sourceUrl": "https://wellworthy.com/contact/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-272.svg"
+    ],
+    "positions": [
+      18
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://insider.fitt.co/press-release/runningman-festival-announces-first-wave-of-brand-sponsors-for-2026-cementing-its-position-as-americas-premier-movement-wellness-festival/"
+    ]
+  },
+  {
+    "id": "pioneer-pastures",
+    "name": "Pioneer Pastures",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://pioneerpastures.com/pages/faq",
+    "contact": "hi@pioneerpastures.com",
+    "contactType": "Company / wholesale inquiry",
+    "fit": "Milk and protein shakes pair naturally with morning camp meals.",
+    "activation": "A chilled post-ride drink tasting with product ingredients visible.",
+    "ask": "Ask for Texas distribution, cold-chain requirements, donation versus purchase terms and dairy-free alternatives nearby.",
+    "sourceUrl": "https://pioneerpastures.com/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-268.svg"
+    ],
+    "positions": [
+      19
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "mess-hall",
+    "name": "Mess Hall",
+    "category": "Apparel + expression",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.messhall.us/pages/mobile-pop-up",
+    "contact": "Mobile pop-up / events inquiry",
+    "contactType": "Explicit event activation route",
+    "fit": "Custom hats and patches create a hands-on souvenir guests can make together.",
+    "activation": "A staffed patch-and-hat bar with Gryphus bird, trail and music graphics.",
+    "ask": "Confirm corduroy front + mesh back, NO ROPES, patch production, staff, minimums and pricing. They customize their own hats, so outside blanks cannot be assumed.",
+    "sourceUrl": "https://www.messhall.us/pages/mobile-pop-up",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-266.svg"
+    ],
+    "positions": [
+      20
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "rigwa",
+    "name": "RIGWA",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.rigwalife.com/",
+    "contact": "support@rigwalife.com",
+    "contactType": "General support; request custom / events",
+    "fit": "Reusable insulated food containers suit camping and picnics.",
+    "activation": "A limited reusable camp-lunch bowl collaboration with a local food vendor.",
+    "ask": "Ask for co-branding minimums, production lead time, unit cost and whether a small sample activation is possible.",
+    "sourceUrl": "https://www.rigwalife.com/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Vector.svg"
+    ],
+    "positions": [
+      21
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "turtlebox",
+    "name": "Turtlebox",
+    "category": "Music + production",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://turtleboxaudio.com/pages/privacy-policy",
+    "contact": "info@turtleboxaudio.com",
+    "contactType": "General company contact",
+    "fit": "Portable outdoor speakers suit a small camp listening area; they do not replace festival sound production.",
+    "activation": "A controlled-volume listening table or hosted morning camp gathering.",
+    "ask": "Ask for a small equipment loan, music-use permissions and approved quiet-zone boundaries.",
+    "sourceUrl": "https://turtleboxaudio.com/pages/privacy-policy",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-271.svg"
+    ],
+    "positions": [
+      22
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "sisu",
+    "name": "SISU Lifestyle",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://sisulifestyle.com/pages/partners",
+    "contact": "sales@sisulifestyle.com · 216-294-2478 ext. 2",
+    "contactType": "Public partnership / sales route",
+    "fit": "Sauna products and a founder testimonial on Runningman’s official experience page establish a relevant connection.",
+    "activation": "Explore a staffed sauna experience with a Texas operating partner.",
+    "ask": "Ask whether they supply an event build, hardware or partner introductions; confirm transport, setup, power and supervision.",
+    "sourceUrl": "https://sisulifestyle.com/pages/partners",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1.svg"
+    ],
+    "positions": [
+      23
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://runningmanfestival.com/experience/"
+    ]
+  },
+  {
+    "id": "i-believe-in-you",
+    "name": "I Believe In You",
+    "category": "Identity check",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "Pending verification",
+    "contactUrl": "https://runningmanfestival.com/contact-us/",
+    "contact": "Ask Runningman to identify this roster partner",
+    "contactType": "Organizer routing only — brand contact unverified",
+    "fit": "The displayed logo was retained in the full roster. A reliable primary-source business match was not established.",
+    "activation": "Hold a category-specific proposal until the organizer confirms the exact company.",
+    "ask": "Send the original logo link to Runningman and ask for the company’s official website or a public partnership contact. Do not contact a similarly named business.",
+    "sourceUrl": "https://runningmanfestival.com/",
+    "sourceLabel": "Runningman logo wall",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-1.svg"
+    ],
+    "positions": [
+      24
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Business identity / direct contact unresolved",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "athletic-brewing-co",
+    "name": "Athletic Brewing Co.",
+    "category": "Food + drink",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://athleticbrewing.com/blogs/ambassadors",
+    "contact": "info@athleticbrewing.com",
+    "contactType": "Explicit event sponsorship route",
+    "fit": "Non-alcoholic beer makes the post-ride social ritual more inclusive.",
+    "activation": "A welcoming post-ride toast and evening alcohol-free bar option.",
+    "ask": "Ask for event sponsorship eligibility, servings, refrigeration, staffing and product-specific age policy.",
+    "sourceUrl": "https://athleticbrewing.com/blogs/ambassadors",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-278.svg"
+    ],
+    "positions": [
+      25
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "harvia",
+    "name": "Harvia",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.harvia.com/en-US/contact/contact-persons/",
+    "contact": "sales@harvia.us",
+    "contactType": "US sales",
+    "fit": "Sauna heaters and systems may fit through an experienced local installer/operator.",
+    "activation": "A sauna hardware partnership delivered with a qualified operating partner.",
+    "ask": "Ask for Texas dealer introductions, installation requirements, staffing, power and realistic capacity.",
+    "sourceUrl": "https://www.harvia.com/en-US/contact/contact-persons/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Isolation_Mode.svg"
+    ],
+    "positions": [
+      26
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "woodway",
+    "name": "WOODWAY",
+    "category": "Trail + movement",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.woodway.com/contact/",
+    "contact": "Find a sales representative",
+    "contactType": "Business sales",
+    "fit": "Treadmills are a performance-demo possibility, but the real trails should remain central.",
+    "activation": "A short coach-led movement demonstration within the outdoor expo.",
+    "ask": "Ask whether a staffed loan unit can work on level covered flooring, with freight, power and weather protection included.",
+    "sourceUrl": "https://www.woodway.com/contact/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-279.svg"
+    ],
+    "positions": [
+      27
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "suji",
+    "name": "SUJI",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.trysuji.com/apps/FAQ",
+    "contact": "Official FAQ / support",
+    "contactType": "General support; request demonstrations",
+    "fit": "Portable compression training equipment requires a carefully staffed product trial.",
+    "activation": "An optional product education appointment in the recovery area.",
+    "ask": "Ask for qualified supervision, participant screening, hygiene, product guidance and event insurance requirements.",
+    "sourceUrl": "https://www.trysuji.com/apps/FAQ",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-280.svg"
+    ],
+    "positions": [
+      28
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "re-lyte",
+    "name": "Re-Lyte",
+    "category": "Food + drink",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://living.redmond.com/blogs/new-release/redmond-re-lyte-announces-official-electrolyte-mix-partnership-with-real-salt-lake-for-the-2026-season-in-utah-1",
+    "contact": "madisons@redmond.com · public media routing",
+    "contactType": "Public media contact; request athletic partnerships / Mike Mumford",
+    "fit": "Electrolyte mixes fit trail-return hydration and refill points.",
+    "activation": "A clearly labeled drink-mix station alongside unrestricted plain drinking water.",
+    "ask": "Ask for an introduction to athletic partnerships, portions, mixing equipment, potable water and dispensing staff.",
+    "sourceUrl": "https://living.redmond.com/blogs/new-release/redmond-re-lyte-announces-official-electrolyte-mix-partnership-with-real-salt-lake-for-the-2026-season-in-utah-1",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-282.svg"
+    ],
+    "positions": [
+      29
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "kane",
+    "name": "KANE",
+    "category": "Trail + movement",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://help.kanefootwear.com/en-US",
+    "contact": "KANE Support / wholesale route",
+    "contactType": "General support; request events",
+    "fit": "Recovery footwear makes a tangible transition from ride to campsite.",
+    "activation": "A clean try-on bench where riders can compare footwear after their activity.",
+    "ask": "Ask for demo sizes, cleaning, a Texas retail partner and optional event-only purchase terms.",
+    "sourceUrl": "https://help.kanefootwear.com/en-US",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Vector-1.svg"
+    ],
+    "positions": [
+      30
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "promix",
+    "name": "Promix",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://promixnutrition.com/pages/contact",
+    "contact": "Official contact form",
+    "contactType": "General company contact",
+    "fit": "Protein and nutrition products suit an optional post-activity tasting.",
+    "activation": "A small shake or packaged-product sample counter in the expo.",
+    "ask": "Ask which products are suitable for sampling, staff, water, refrigeration and ingredient/allergen labeling.",
+    "sourceUrl": "https://promixnutrition.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-284.svg"
+    ],
+    "positions": [
+      31
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "othership",
+    "name": "Othership",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.othership.us/contact",
+    "contact": "shannon@othership.us",
+    "contactType": "Explicit brand / corporate partnerships contact",
+    "fit": "Music-led breathwork and social wellness make a strong creative bridge to Gryphus.",
+    "activation": "A short, seated, music-led breathing session in a shaded quiet area, with an easy opt-out.",
+    "ask": "Ask for a trained facilitator, licensed audio, participant guidance and a format suited to outdoor conditions.",
+    "sourceUrl": "https://www.othership.us/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-285.svg"
+    ],
+    "positions": [
+      32
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "hyrox",
+    "name": "HYROX",
+    "category": "Trail + movement",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://hyrox.com/sponsorships/",
+    "contact": "Official sponsorship contact form",
+    "contactType": "Sponsorship route; co-promotion requires discussion",
+    "fit": "Fitness racing could introduce a different movement community, but brings brand and programming requirements.",
+    "activation": "Explore an introductory session with an authorized local training partner.",
+    "ask": "Ask about permissions, qualified coaches and whether a complementary activation makes sense alongside the MTB program.",
+    "sourceUrl": "https://hyrox.com/sponsorships/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-286.svg"
+    ],
+    "positions": [
+      33
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "silent-flower",
+    "name": "Silent Flower",
+    "category": "Adult-only exploratory",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://drinksilentflower.com/pages/wholesale-inquiries",
+    "contact": "Official wholesale inquiry",
+    "contactType": "Wholesale route",
+    "fit": "THC-infused nonalcoholic rosé. This is an adult, regulated product prospect, not ordinary alcohol-free hydration.",
+    "activation": "Only explore a separate adult beverage partnership if current Texas rules, venue policy and the festival’s audience make it appropriate.",
+    "ask": "Establish product legality, age controls, service rules and insurance before considering an activation. Keep separate from family programming.",
+    "sourceUrl": "https://drinksilentflower.com/pages/wholesale-inquiries",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-292.svg"
+    ],
+    "positions": [
+      34
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "dr-doug-s-balms",
+    "name": "Dr. Doug’s Balms",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.drdougs.com/pages/home",
+    "contact": "reselling@drdougs.com",
+    "contactType": "Reseller inquiry",
+    "fit": "Balms and athlete-care products fit a practical trail essentials counter.",
+    "activation": "A small sample station focused on product use for long days outdoors.",
+    "ask": "Ask for sample format, labels, heat storage guidance and staffing; no festival medical claims.",
+    "sourceUrl": "https://www.drdougs.com/pages/home",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Logo-with-TM-Vector-Dr.-Doug_s-Balms-1.svg"
+    ],
+    "positions": [
+      35
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "all-day-sauna-co",
+    "name": "All Day Sauna Co.",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://alldaysaunaco.com/pages/partnerships",
+    "contact": "hello@alldaysaunaco.com",
+    "contactType": "Explicit partnerships page",
+    "fit": "Sauna-focused brand with a public partnership route.",
+    "activation": "A social sauna concept paired with an experienced local mobile operator.",
+    "ask": "Ask whether they supply hardware, programming, merchandise or an operating team, plus all transport and utility needs.",
+    "sourceUrl": "https://alldaysaunaco.com/pages/partnerships",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-289.svg"
+    ],
+    "positions": [
+      36
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "dope-marketing",
+    "name": "DOPE Marketing",
+    "category": "Community + media",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.dopemarketing.com/privacy-policy",
+    "contact": "support@dopemarketing.com",
+    "contactType": "General support; request commercial team",
+    "fit": "Direct-mail and marketing services may help nearby audiences discover the event.",
+    "activation": "A tightly measured Comfort/Boerne household campaign pointing to a local weekend guide.",
+    "ask": "Ask for a small test geography, print/postage quote and tracking; do not share private attendee data.",
+    "sourceUrl": "https://www.dopemarketing.com/privacy-policy",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-290.svg"
+    ],
+    "positions": [
+      38
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "dream-performance-recovery",
+    "name": "Dream Performance & Recovery",
+    "category": "Camp + comfort",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://dreamrecovery.io/pages/contact",
+    "contact": "support@dreamrecovery.io",
+    "contactType": "General company contact",
+    "fit": "Sleep accessories fit a camp wind-down conversation; product suitability varies.",
+    "activation": "A sleep-mask and quiet-camp demonstration, selecting simple non-invasive accessories.",
+    "ask": "Ask for event samples, labeling and product choices; avoid demonstrations that require medical screening.",
+    "sourceUrl": "https://dreamrecovery.io/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group.svg"
+    ],
+    "positions": [
+      39
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "equip",
+    "name": "Equip",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.equipfoods.com/pages/contact-us",
+    "contact": "Official contact form",
+    "contactType": "General company contact",
+    "fit": "Protein powders and nutrition products could join a small expo tasting.",
+    "activation": "A staffed taste-comparison counter after trail activities.",
+    "ask": "Ask for suitable products, portions, mixing and water plan, servers and ingredient labeling.",
+    "sourceUrl": "https://www.equipfoods.com/pages/contact-us",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-291.svg"
+    ],
+    "positions": [
+      40
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "almost-heaven-saunas",
+    "name": "Almost Heaven Saunas",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://almostheaven.com/pages/contact-our-sales-team",
+    "contact": "Sales expert contact form",
+    "contactType": "Business sales",
+    "fit": "Sauna structures could anchor a longer-term ranch installation or a carefully scoped demonstration.",
+    "activation": "Explore a staffed sauna installation only after venue approval and logistics review.",
+    "ask": "Ask about rental versus permanent installation, freight, assembly, power, permits and operating partner.",
+    "sourceUrl": "https://almostheaven.com/pages/contact-our-sales-team",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/AHS_Lockup_White-1.svg"
+    ],
+    "positions": [
+      41
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "be-love",
+    "name": "BE LOVE",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://drink.love/pages/faq",
+    "contact": "store@drink.love",
+    "contactType": "General support; request event marketing",
+    "fit": "Electrolyte and energy beverages could support a social tasting or trail-return drink point.",
+    "activation": "A chilled tasting counter with caffeine content clearly labeled and plain water beside it.",
+    "ask": "Ask for an event marketing lead, suitable products, case supply, refrigeration and recycling.",
+    "sourceUrl": "https://drink.love/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-294.svg"
+    ],
+    "positions": [
+      42
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "kenetik",
+    "name": "Kenetik",
+    "category": "Food + drink",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://drinkkenetik.com/pages/contact",
+    "contact": "Official contact form",
+    "contactType": "General company contact",
+    "fit": "Ketone drinks are a niche adult product-discovery fit.",
+    "activation": "An optional expo tasting with straightforward ingredients and no promised performance outcomes.",
+    "ask": "Ask for sample quantities, product guidance, responsible presentation and staff.",
+    "sourceUrl": "https://drinkkenetik.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-295.svg"
+    ],
+    "positions": [
+      43
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "stripit",
+    "name": "StripIt",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://getstripit.com/products/digest-strip",
+    "contact": "hello@getstripit.com",
+    "contactType": "General company contact",
+    "fit": "Dissolvable supplement strips are a niche product-discovery opportunity, not a core guest need.",
+    "activation": "An optional adult product-information booth with packaging and instructions visible.",
+    "ask": "Ask about event sampling policy, ingredient guidance and staffing; do not promise sleep or digestive outcomes.",
+    "sourceUrl": "https://getstripit.com/products/digest-strip",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-296.svg"
+    ],
+    "positions": [
+      44
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "the-big-a-calendar",
+    "name": "The Big A## Calendar",
+    "category": "Community + media",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://thebigasscalendar.com/pages/faq",
+    "contact": "info@thebigasscalendar.com",
+    "contactType": "General customer service; request collaborations",
+    "fit": "Large planning calendars create an easy, social way to think about the next adventure.",
+    "activation": "A giant shared adventure calendar where guests add one outdoor goal or future trip.",
+    "ask": "Ask about an event-size display, custom printing permissions and small take-home cards.",
+    "sourceUrl": "https://thebigasscalendar.com/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-287.svg"
+    ],
+    "positions": [
+      45
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "tentcraft",
+    "name": "TentCraft",
+    "category": "Music + production",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://tentcraft.com/contact-us",
+    "contact": "info@tentcraft.com",
+    "contactType": "Business / custom structures",
+    "fit": "Custom tents, signage and structures could make shade and wayfinding feel cohesive.",
+    "activation": "A clearly signed shade-and-meet-up hub linking trails, food and music.",
+    "ask": "Ask for a site-plan-based quote, dimensions, ballast, wind limits, freight and installation crew.",
+    "sourceUrl": "https://tentcraft.com/contact-us",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-270.svg"
+    ],
+    "positions": [
+      46
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "noon-world",
+    "name": "NOON WORLD",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://noon.world/terms",
+    "contact": "hello@noon.world",
+    "contactType": "General company contact",
+    "fit": "Supplement gummies are an optional product-discovery prospect, not a core festival need.",
+    "activation": "A small adult-only educational sampling table with ingredients and product instructions visible.",
+    "ask": "Ask for event sampling rules, eligible audience, serving guidance and packaging; avoid health promises.",
+    "sourceUrl": "https://noon.world/terms",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-297.svg"
+    ],
+    "positions": [
+      47
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "lorea",
+    "name": "Lorea",
+    "category": "Adult-only exploratory",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://livelorea.com/pages/contact",
+    "contact": "wholesale@drinklorea.com",
+    "contactType": "Public wholesale contact",
+    "fit": "Hemp-derived THC beverages; a distinct adult category with additional operating constraints.",
+    "activation": "Explore only an appropriately separated adult beverage experience if current rules and festival positioning permit it.",
+    "ask": "Confirm current Texas product legality, venue permission, age controls, service responsibilities and insurance before proposing service.",
+    "sourceUrl": "https://livelorea.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-1-1.svg"
+    ],
+    "positions": [
+      48
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://livelorea.com/blogs/news/lorea-launch-designer-tonics"
+    ]
+  },
+  {
+    "id": "melan",
+    "name": "melan",
+    "category": "Camp + comfort",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://melansuncare.com/pages/contact",
+    "contact": "Official company contact form",
+    "contactType": "General company contact",
+    "fit": "Sunscreen and sun-care products meet a direct outdoor-weekend need.",
+    "activation": "A visible sun-care point before guests head onto the trails, paired with shade and refill reminders.",
+    "ask": "Ask for sealed samples, product instructions, storage and replenishment; establish a staffed, hygienic format.",
+    "sourceUrl": "https://melansuncare.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-288.svg"
+    ],
+    "positions": [
+      49
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "rho",
+    "name": "Rho",
+    "category": "Community + media",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.rho.co/partners",
+    "contact": "Partner program; clientservice@rho.co for routing",
+    "contactType": "Business partnership program; festival sponsorship fit unconfirmed",
+    "fit": "A fintech business-finance platform, not a bank or nutrition brand. Its exact wordmark matches the roster.",
+    "activation": "An exploratory small-business partnership around the festival’s makers and independent vendors.",
+    "ask": "Ask whether event sponsorship fits the partner program and what commercial audience they need; avoid requesting attendee financial data.",
+    "sourceUrl": "https://www.rho.co/partners",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-283.svg"
+    ],
+    "positions": [
+      50
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://www.rho.co/"
+    ]
+  },
+  {
+    "id": "suckerpunch",
+    "name": "SuckerPunch",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://suckerpunchpickles.com/pages/faqs",
+    "contact": "contact@suckerpunchpickles.com",
+    "contactType": "General company contact",
+    "fit": "Packaged pickles and pickle juice offer a distinctive salty snack.",
+    "activation": "A post-ride pickle tasting with clearly labeled flavor choices.",
+    "ask": "Ask for single-serve stock, case counts, serving format, ingredient labels and waste handling.",
+    "sourceUrl": "https://suckerpunchpickles.com/pages/faqs",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-281.svg"
+    ],
+    "positions": [
+      51
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "the-forward-bar",
+    "name": "The Forward Bar",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://theforwardbar.com/pages/contact",
+    "contact": "Official contact form",
+    "contactType": "General company contact",
+    "fit": "Whole-food bars fit a grab-and-go camp breakfast or trail-return snack.",
+    "activation": "A small breakfast-bar tasting beside the route briefing area.",
+    "ask": "Ask for portions, shelf life, storage, allergens and event donation or wholesale terms.",
+    "sourceUrl": "https://theforwardbar.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Capa_1.svg"
+    ],
+    "positions": [
+      52
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "livon-labs",
+    "name": "LivOn Labs",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.livonlabs.com/pages/contact",
+    "contact": "marketing@livonlabs.com",
+    "contactType": "Public marketing contact",
+    "fit": "Liposomal supplements are a niche expo prospect rather than an essential guest service.",
+    "activation": "An optional staffed product-information counter within the expo.",
+    "ask": "Ask marketing about event fit, sampling rules and labels; make no treatment or recovery promises.",
+    "sourceUrl": "https://www.livonlabs.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-2.svg"
+    ],
+    "positions": [
+      53
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "real-sleep",
+    "name": "real sleep",
+    "category": "Recovery + wellness",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.therealsleep.com/pages/contact",
+    "contact": "Official company contact form",
+    "contactType": "General medical-service inquiry",
+    "fit": "Sleep-apnea care, at-home testing and oral-appliance services; the exact wordmark matches the roster.",
+    "activation": "If relevant, a clinician-led educational conversation about sleep, with no on-site diagnosis implied.",
+    "ask": "Ask whether they do public education at events and what clinician, privacy and medical-service boundaries would apply.",
+    "sourceUrl": "https://www.therealsleep.com/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/rs-logo-white-1.svg"
+    ],
+    "positions": [
+      54
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Identity visually matched; official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": [
+      "https://www.therealsleep.com/"
+    ]
+  },
+  {
+    "id": "rivian",
+    "name": "Rivian",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://rivian.com/support",
+    "contact": "Official support; request events / partnerships",
+    "contactType": "General company route",
+    "fit": "Electric adventure vehicles fit the outdoor setting, subject to access and safe display planning.",
+    "activation": "A static adventure-vehicle campsite display with an authorized team.",
+    "ask": "Ask for a Texas events contact, delivery, display footprint and charging needs; any driving needs separate approval.",
+    "sourceUrl": "https://rivian.com/support",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-2-1.svg"
+    ],
+    "positions": [
+      55
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "skratch-labs",
+    "name": "Skratch Labs",
+    "category": "Food + drink",
+    "tier": 1,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.skratchlabs.com/pages/events",
+    "contact": "Event support application; sales@skratchlabs.com for retailers",
+    "contactType": "Explicit events / sponsorship route",
+    "fit": "Endurance hydration and nutrition align directly with riding and running.",
+    "activation": "A trail-return hydration point and short fueling conversation with a local cycling shop.",
+    "ask": "Ask for event support eligibility, servings, potable water, dispensers, staff and timing.",
+    "sourceUrl": "https://www.skratchlabs.com/pages/events",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-3.svg"
+    ],
+    "positions": [
+      56
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "powerade-power-water",
+    "name": "POWERADE Power Water",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.powerade.com/",
+    "contact": "Official brand site / contact navigation",
+    "contactType": "General brand route; partnership lead unverified",
+    "fit": "Ready-to-drink hydration can serve a larger audience with simpler preparation.",
+    "activation": "Chilled, branded pickup points after activity, alongside plain water.",
+    "ask": "Ask for the regional Coca-Cola bottler / event marketing route, product availability, refrigeration and recycling.",
+    "sourceUrl": "https://www.powerade.com/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Layer_1-4.svg"
+    ],
+    "positions": [
+      57
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "safely",
+    "name": "Safely",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://livesafely.co/pages/contact",
+    "contact": "team@livesafely.co",
+    "contactType": "Company / wholesale contact",
+    "fit": "Personal safety products can support a thoughtful outdoor-awareness conversation.",
+    "activation": "A short, practical personal-safety introduction and a clearly signed buddy meet-up point.",
+    "ask": "Ask for educators and demonstration-only materials; confirm festival rules before displaying any defensive spray.",
+    "sourceUrl": "https://livesafely.co/pages/contact",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-1.svg"
+    ],
+    "positions": [
+      58
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "unwaffle",
+    "name": "Unwaffle",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://eatunwaffle.com/pages/faq",
+    "contact": "team@eatunwaffle.com",
+    "contactType": "General company contact",
+    "fit": "Waffle-based breakfasts give early riders a memorable morning ritual.",
+    "activation": "A small pre-ride waffle breakfast, with a local caterer handling service.",
+    "ask": "Ask for wholesale or event supply, freezer/toaster power, servings, food service and ingredient labels.",
+    "sourceUrl": "https://eatunwaffle.com/pages/faq",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-300.svg"
+    ],
+    "positions": [
+      59
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "at-t-connected-car",
+    "name": "AT&T Connected Car",
+    "category": "Camp + comfort",
+    "tier": 3,
+    "region": "Runningman roster",
+    "location": "National prospect",
+    "contactUrl": "https://www.att.com/plans/connected-car/",
+    "contact": "Official Connected Car contact / support",
+    "contactType": "Product support; partnership lead unverified",
+    "fit": "In-vehicle connectivity fits a vehicle display; it does not establish site-wide signal or emergency coverage.",
+    "activation": "A connected-vehicle demonstration coordinated with Rivian, if both brands are interested.",
+    "ask": "Ask for an events lead and site survey; confirm coverage, equipment, power and any display permissions.",
+    "sourceUrl": "https://www.att.com/plans/connected-car/",
+    "sourceLabel": "Official source",
+    "logoUrls": [
+      "https://runningmanfestival.com/wp-content/uploads/2025/08/Group-298.svg"
+    ],
+    "positions": [
+      60
+    ],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  },
+  {
+    "id": "hill-country-bicycle-works",
+    "name": "Hill Country Bicycle Works",
+    "category": "Trail + movement",
+    "tier": 1,
+    "region": "San Antonio + Hill Country",
+    "location": "Kerrville + Fredericksburg",
+    "contactUrl": "https://hillcountrybicycleworks.com/contact/",
+    "contact": "hillbike@ktc.com · 830-896-6864",
+    "contactType": "Local shop contact",
+    "fit": "A real local cycling business with service, retail and an existing Flat Rock Ranch event connection.",
+    "activation": "A pre-festival shop ride, basic mechanic station and guided introduction to the ranch’s approved trails.",
+    "ask": "Ask for staff availability, an equipment list and a scoped service/demo offer; confirm any MTB rental inventory separately.",
+    "sourceUrl": "https://hillcountrybicycleworks.com/contact/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Altra",
+      "Skratch Labs",
+      "KANE"
+    ],
+    "additionalSources": [
+      "https://www.flatrockranchtx.com/events"
+    ]
+  },
+  {
+    "id": "soulbird-wellness",
+    "name": "Soulbird Wellness",
+    "category": "Recovery + wellness",
+    "tier": 1,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio",
+    "contactUrl": "https://soulbirdwellness.fit/",
+    "contact": "210-651-2882 · site Contact link",
+    "contactType": "Local mobile service",
+    "fit": "An actual San Antonio mobile sauna and cold-plunge operator serving events and retreats.",
+    "activation": "A modest, staffed recovery zone that can be piloted before scaling.",
+    "ask": "Ask whether Comfort is in the service area, participants per hour, water/power/drainage, transport, staffing and a written event quote.",
+    "sourceUrl": "https://soulbirdwellness.fit/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "FjØRD",
+      "SISU",
+      "All Day Sauna Co.",
+      "Harvia"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "visit-comfort-tx",
+    "name": "Visit Comfort TX",
+    "category": "Community + media",
+    "tier": 1,
+    "region": "San Antonio + Hill Country",
+    "location": "Comfort",
+    "contactUrl": "https://www.visitcomforttx.com/press-media",
+    "contact": "Shari Reynolds · shari@visitcomforttx.com",
+    "contactType": "Public destination marketing contact",
+    "fit": "A local destination-marketing organization with a direct interest in visitors supporting Comfort businesses.",
+    "activation": "A co-created Comfort weekend guide with places to stay, eat and explore before or after the festival.",
+    "ask": "Ask for local introductions, calendar/newsletter placement, official images and a tracked visitor-guide link.",
+    "sourceUrl": "https://www.visitcomforttx.com/press-media",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Wellworthy",
+      "DOPE Marketing"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "fleet-feet-san-antonio",
+    "name": "Fleet Feet San Antonio",
+    "category": "Trail + movement",
+    "tier": 1,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio",
+    "contactUrl": "https://www.fleetfeet.com/s/sanantonio/about/get-in-touch",
+    "contact": "Official local contact page",
+    "contactType": "Local store / running community",
+    "fit": "Running footwear, fitting and training programs can bring a new trail-running audience.",
+    "activation": "A store-based preview run and a beginner-friendly trail-running introduction led by qualified staff.",
+    "ask": "Ask the store about its event calendar, coaches, demo shoes and referral tracking; avoid promising free product.",
+    "sourceUrl": "https://www.fleetfeet.com/s/sanantonio/about/get-in-touch",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Altra",
+      "KANE",
+      "Skratch Labs"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "storm",
+    "name": "STORM",
+    "category": "Trail + movement",
+    "tier": 1,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio region + Flat Rock Ranch",
+    "contactUrl": "https://stormmtb.org/events/miles-of-discomfort",
+    "contact": "races@stormmtb.org",
+    "contactType": "Public race-organizer contact",
+    "fit": "South Texas Off Road Mountain-Bikers already organizes Miles of DisComfort at Flat Rock Ranch.",
+    "activation": "Explore a trail-community invitation, rider orientation and a stewardship contribution tied to Gryphus.",
+    "ask": "Ask about alignment with existing events, volunteer capacity and trail-care priorities; do not imply an agreement.",
+    "sourceUrl": "https://stormmtb.org/events/miles-of-discomfort",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "HYROX",
+      "Altra"
+    ],
+    "additionalSources": [
+      "https://stormmtb.org/"
+    ]
+  },
+  {
+    "id": "hotel-giles",
+    "name": "Hotel Giles",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "Comfort",
+    "contactUrl": "https://www.hotelgiles.com/",
+    "contact": "830-995-3030 · site Contact link",
+    "contactType": "Local hotel contact",
+    "fit": "Historic lodging in Comfort; its Alfred Giles heritage echoes the ranch’s own history.",
+    "activation": "A small festival room-block inquiry with a Comfort heritage welcome and a direct guest guide.",
+    "ask": "Ask about dates, room inventory, group terms and cancellation rules. No rooms are reserved.",
+    "sourceUrl": "https://www.hotelgiles.com/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Tempur-Pedic",
+      "Loftie"
+    ],
+    "additionalSources": [
+      "https://www.hotelgiles.com/about",
+      "https://www.flatrockranchtx.com/about"
+    ]
+  },
+  {
+    "id": "camp-comfort",
+    "name": "Camp Comfort",
+    "category": "Camp + comfort",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "Comfort",
+    "contactUrl": "https://camp-comfort.com/contact/",
+    "contact": "stay@camp-comfort.com",
+    "contactType": "Lodging / event sales",
+    "fit": "Rooms, cabins, an Airstream and a social hall make this a natural friends-weekend prospect.",
+    "activation": "A small group-stay package or pre-festival welcome gathering in town.",
+    "ask": "Ask about available inventory, group terms, quiet hours and transport suggestions; no availability is assumed.",
+    "sourceUrl": "https://camp-comfort.com/contact/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Tempur-Pedic",
+      "Loftie"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "famous-juice-company",
+    "name": "Famous Juice Company",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio",
+    "contactUrl": "https://famousjuicecompany.com/catering/",
+    "contact": "Catering form · 210-651-2090",
+    "contactType": "Explicit event catering route",
+    "fit": "The company advertises juice, smoothies, acai bowls and snacks for San Antonio athletic events.",
+    "activation": "A fresh breakfast-and-juice counter with an optional Gryphus menu item.",
+    "ask": "Ask whether it travels to Comfort, minimum spend, refrigeration, power, permits, staff and serving capacity.",
+    "sourceUrl": "https://famousjuicecompany.com/catering/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Everyday Dose",
+      "Pioneer Pastures",
+      "The Forward Bar"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "high-s-cafe-store",
+    "name": "High’s Cafe & Store",
+    "category": "Food + drink",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "Comfort",
+    "contactUrl": "https://www.highscafeandstore.com/locationcontact",
+    "contact": "Contact form · 830-995-4995",
+    "contactType": "Local cafe contact",
+    "fit": "A Comfort cafe with an existing lunches-to-go offer.",
+    "activation": "Preordered crew lunches and an in-town food stop for arriving guests.",
+    "ask": "Ask about quantities, lead time, pickup schedule, dietary choices and a group ordering cutoff.",
+    "sourceUrl": "https://www.highscafeandstore.com/locationcontact",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "The Forward Bar",
+      "Unwaffle",
+      "Painterland Sisters"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "restore-hyper-wellness-sonterra",
+    "name": "Restore Hyper Wellness — Sonterra",
+    "category": "Recovery + wellness",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio",
+    "contactUrl": "https://www.restore.com/locations/tx-san-antonio-sonterra-tx008",
+    "contact": "frontdeskTX008@restore.com · 210-451-0052",
+    "contactType": "Local studio contact",
+    "fit": "A local wellness studio offering compression and other modalities; off-site event operations are unconfirmed.",
+    "activation": "Explore a staffed compression demonstration or a pre/post-festival studio offer.",
+    "ask": "Ask which non-invasive services can responsibly travel, staff requirements, hygiene and whether off-site service is permitted.",
+    "sourceUrl": "https://www.restore.com/locations/tx-san-antonio-sonterra-tx008",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Hyperice",
+      "KALA",
+      "SUJI"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "visit-boerne",
+    "name": "Visit Boerne",
+    "category": "Community + media",
+    "tier": 2,
+    "region": "San Antonio + Hill Country",
+    "location": "Boerne",
+    "contactUrl": "https://www.ci.boerne.tx.us/1697/About-Visit-Boerne",
+    "contact": "Official visitor bureau contact · 830-249-7277",
+    "contactType": "City destination marketing",
+    "fit": "The official visitor bureau promotes stays and experiences in nearby Boerne.",
+    "activation": "A Boerne overnight + Comfort festival itinerary and a verified event listing.",
+    "ask": "Ask about listing requirements, accommodation partners, local images and measurable referrals.",
+    "sourceUrl": "https://www.ci.boerne.tx.us/1697/About-Visit-Boerne",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "Wellworthy",
+      "DOPE Marketing"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "san-antonio-sports",
+    "name": "San Antonio Sports",
+    "category": "Community + media",
+    "tier": 3,
+    "region": "San Antonio + Hill Country",
+    "location": "San Antonio",
+    "contactUrl": "https://sanantoniomarathon.com/",
+    "contact": "marathon@sanantoniosports.org",
+    "contactType": "Public marathon organization contact",
+    "fit": "A regional sports nonprofit organizing the San Antonio Marathon can help identify relevant movement communities.",
+    "activation": "An exploratory conversation about calendar alignment, club introductions and community benefit.",
+    "ask": "Ask whether cross-promotion is appropriate and who owns community partnerships; do not assume audience access or endorsement.",
+    "sourceUrl": "https://sanantoniomarathon.com/",
+    "sourceLabel": "Official local source",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Prospect — no agreement",
+    "verification": "Official contact route checked",
+    "checked": "2026-09-20",
+    "comparable": [
+      "HYROX",
+      "Wellworthy"
+    ],
+    "additionalSources": []
+  },
+  {
+    "id": "disko-cowboy-vinyl-ranch",
+    "name": "Disko Cowboy / Vinyl Ranch",
+    "category": "Music + production",
+    "tier": 2,
+    "region": "User-picked creative prospect",
+    "location": "Texas connection; travel and availability unconfirmed",
+    "contactUrl": "https://www.diskocowboy.com/",
+    "contact": "rylan@vinylranch.com (management / booking); wrangler@vinylranch.com (general)",
+    "contactType": "Public management and general contacts",
+    "fit": "Dave Wrangler’s country, disco and EDM project connects music with Vinyl Ranch streetwear.",
+    "activation": "Explore a sunset DJ set plus a small Gryphus x Vinyl Ranch merchandise collaboration.",
+    "ask": "Ask management about the intended date, fee, travel, technical rider and collaboration interest. Confirm corduroy front, mesh back and NO ROPES for any hat concept.",
+    "sourceUrl": "https://www.diskocowboy.com/",
+    "sourceLabel": "Official artist site",
+    "logoUrls": [],
+    "positions": [],
+    "status": "Creative prospect — not booked or agreed",
+    "verification": "Official artist and contacts checked",
+    "checked": "2026-09-20",
+    "comparable": [],
+    "additionalSources": []
+  }
+]

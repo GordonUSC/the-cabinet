@@ -1,15 +1,25 @@
 {
-  "version": "0.1-review",
+  "version": "0.2-review",
   "files": [
     {
+      "file": "CYCLING-AND-POSTER-SUPPLIER-NOTES.txt",
+      "bytes": 2375,
+      "sha256": "005fe685f28f4d6ed41f070ff4e0c896a34d6774e84c0b568d8307dfe9d15fba"
+    },
+    {
       "file": "Gryphus-Brand-Guide.pdf",
-      "bytes": 25737446,
-      "sha256": "726d0cbe4119d88b13a410adbb274dd53d4c735511544ed4d77b3dad70513f86"
+      "bytes": 8899012,
+      "sha256": "be8849f7b9ce64fbc3ced229c6fa734ebfb84b1a11d66a7d881d192e1179145b"
+    },
+    {
+      "file": "HAT-SUPPLIER-REQUIREMENTS.txt",
+      "bytes": 1468,
+      "sha256": "d0a3d15c746e13f7115ca8d8eb8ec0284a596066cdd861c152948d287db1354a"
     },
     {
       "file": "README.txt",
-      "bytes": 1636,
-      "sha256": "d836352ad017a0886afd547c19ba14415879bc8d8cef8ade88f703601763d55a"
+      "bytes": 2682,
+      "sha256": "8bfb0e0b8b368df02efd1481ae6ed96d89a1b4f96d63685ca9680a045f6912c8"
     },
     {
       "file": "assets/cale-and-gordon-2026.webp",
@@ -22,9 +32,19 @@
       "sha256": "57e16f3b0d7fbb03732c56a61483afd4ddbbc3a5c2ea69693e614b5aa539f087"
     },
     {
-      "file": "assets/experiences.png",
-      "bytes": 2959491,
-      "sha256": "3826653c8670c6beaa23b70ffad71c85c7af129b6cbcbd7b5abbf93d16cfea9b"
+      "file": "assets/canyon-current.webp",
+      "bytes": 458184,
+      "sha256": "6719607dca754bd1b3983ca19e27b55c113fd89f23dc78aa8e8f904ed52690f2"
+    },
+    {
+      "file": "assets/experiences.webp",
+      "bytes": 586300,
+      "sha256": "4a3aa7aef03a313301bd612659b16feda902f3110d8a2fe61afae899ec3eb94c"
+    },
+    {
+      "file": "assets/golden-hour.webp",
+      "bytes": 490776,
+      "sha256": "9dcf5efb3a5e1e8ac6a32c232d6752518618613b0ed020c43b751bf3fcbf1a68"
     },
     {
       "file": "assets/gryphus-emblem.png",
@@ -32,19 +52,34 @@
       "sha256": "49b38df4fa453a0aaf481af37d456d927123aa216661c865ec4a02a4778b47d3"
     },
     {
-      "file": "assets/hero.png",
-      "bytes": 2734448,
-      "sha256": "b2063068b1f7a6c8ce94f80f9f6b9d9b858f455bd2b5d88d0059900b470780b6"
+      "file": "assets/hero.webp",
+      "bytes": 546124,
+      "sha256": "2c3ad786c7b920a9d6474f018c590bfa3e9741804722b626294614865f8266b8"
     },
     {
-      "file": "assets/merch-collections.png",
-      "bytes": 3435521,
-      "sha256": "4abbc19d7b11889b188d5af2a49b65b883700ea9c95f87bde813c21090862b14"
+      "file": "assets/meadow-bloom.webp",
+      "bytes": 455786,
+      "sha256": "96d479de78e556b0f754e743443bf60fb7a2ff66ee0080d999ed2eeb27fb977b"
+    },
+    {
+      "file": "assets/merch-collections.webp",
+      "bytes": 449976,
+      "sha256": "e96dbc63bb8efefd49fe3c4948f917c4c077a89b6acdf168e9297384cd0552d5"
+    },
+    {
+      "file": "assets/moss-mineral.webp",
+      "bytes": 469340,
+      "sha256": "3de0b60825d4bb0969fe6df69615343ee3b653f593cded112ca26618ebe5b022"
+    },
+    {
+      "file": "assets/river-signal.webp",
+      "bytes": 444144,
+      "sha256": "cc3b4a906a29b7c6c9963806cf05b17974b8957cb49c3e7ba3f5366649e27966"
     },
     {
       "file": "color-tokens.json",
-      "bytes": 2867,
-      "sha256": "17274804880716be65dfc5dff763a58c797cce01ee72e7338314f0d63d9f0607"
+      "bytes": 10137,
+      "sha256": "ce520cb23fd7e928b88dd094cb901b7b35d8cb8b9e9f0f331b8bfc4df1d52248"
     },
     {
       "file": "fonts/BarlowCondensed-Black.ttf",
@@ -53,13 +88,13 @@
     },
     {
       "file": "guide.css",
-      "bytes": 8972,
-      "sha256": "d7e47f6a4a55519b30f037b2ef053128c02a5de4084dfff4e946d9bbe211f66b"
+      "bytes": 10546,
+      "sha256": "ea5dff7546f5dca581df4e4a5441b434c9e46e1e87d29c6ef1c56cbb87666870"
     },
     {
       "file": "index.html",
-      "bytes": 19922,
-      "sha256": "1dee4f570aca6bb0cbd2fde041cc3257732df1520da24b7e548c322709371f27"
+      "bytes": 37735,
+      "sha256": "d282e90f689fba4fd1a0244c950b85c4ef42e4536766858314fcf78af733b994"
     },
     {
       "file": "licenses/Barlow-OFL.txt",
@@ -70,6 +105,76 @@
       "file": "licenses/FONT-AND-ASSET-NOTES.txt",
       "bytes": 1382,
       "sha256": "9513e8ef57d924855c633351c10c9116d5a280f3e04249f79f4f999051d4232c"
+    },
+    {
+      "file": "logos/README.txt",
+      "bytes": 681,
+      "sha256": "d32428ee5f9286e7e5275c21223640fb3e2533d0684ae7f811b23b328c0140b7"
+    },
+    {
+      "file": "logos/heritage-sun-lockup.svg",
+      "bytes": 4156,
+      "sha256": "04310a454dbaa79c6702ce355cd746bfab40b33916634430c7c2d0dbc64f4967"
+    },
+    {
+      "file": "logos/heritage-sun-mono.svg",
+      "bytes": 706,
+      "sha256": "3c0e0129387a5aea78f60efa78ec0760e692ae8493f03eafb88874d8540d5203"
+    },
+    {
+      "file": "logos/heritage-sun-symbol.svg",
+      "bytes": 692,
+      "sha256": "880b409a2aa8263c4a39d4d9c75ec3e9b5db8d77738ab7a4ac7a203d2bc8c05e"
+    },
+    {
+      "file": "logos/logos.css",
+      "bytes": 2089,
+      "sha256": "66cace8d16d2f66e6f73bd33da6914bfac605086f38d54fde6ced0f499a17a5e"
+    },
+    {
+      "file": "logos/logos.js",
+      "bytes": 3264,
+      "sha256": "f8aab60700c6664dbf675df48b883ceaf5680cbba1d514094284fa1fe5daee58"
+    },
+    {
+      "file": "logos/logos.json",
+      "bytes": 1218,
+      "sha256": "229fcd52fd8e88341789c1968c856a06de62c005cf4047c9f7b472fa5cd19baa"
+    },
+    {
+      "file": "logos/open-sky-lockup.svg",
+      "bytes": 4118,
+      "sha256": "a283565969476c832320cde77c191705be333463cbc325b3f8239cb06e76fe86"
+    },
+    {
+      "file": "logos/open-sky-mono.svg",
+      "bytes": 714,
+      "sha256": "53525b58d8f888529d106f8d80983dc3a905b50c5e31b3f392637d59b2120aea"
+    },
+    {
+      "file": "logos/open-sky-symbol.svg",
+      "bytes": 654,
+      "sha256": "3c9eea6a6ea54982299a7ff5be62a2fcb66e26dc07d4bbde424330778d64a92f"
+    },
+    {
+      "file": "logos/trail-stamp-lockup.svg",
+      "bytes": 4278,
+      "sha256": "3363d66ad10335581b4ff3daf645188d60b4be9df5edd0a4bd984468f2423bb1"
+    },
+    {
+      "file": "logos/trail-stamp-mono.svg",
+      "bytes": 766,
+      "sha256": "bf87a557c84f3e55894443c98263974474479d1106e0cc36383d89925aa01128"
+    },
+    {
+      "file": "logos/trail-stamp-symbol.svg",
+      "bytes": 814,
+      "sha256": "5777594e4b5a66bec0d5a1634b9759bd89a81a30ec8b32cdfaf1d3cac2714ed0"
+    },
+    {
+      "file": "look-specifications.json",
+      "bytes": 7533,
+      "sha256": "527d7c8f977c18241e858b55c339552100384a9207324dbe772f14a148a000f9"
     },
     {
       "file": "templates/cap-front-90x40mm.svg",
@@ -85,6 +190,11 @@
       "file": "templates/patch-75x50mm.svg",
       "bytes": 118531,
       "sha256": "7849343983650324dc46c5458eb6bb13b87d00f8fd26405b837eb30590db14d4"
+    },
+    {
+      "file": "templates/trucker-construction-no-rope.svg",
+      "bytes": 119675,
+      "sha256": "9f324b176c186a486aba7932d646a385333ff08f26a3f66d5103719e607f8eb0"
     },
     {
       "file": "templates/tshirt-back.svg",

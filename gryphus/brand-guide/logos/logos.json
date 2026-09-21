@@ -1,0 +1,29 @@
+[
+  {
+    "id": "open-sky",
+    "name": "Open Sky",
+    "description": "The clearest everyday mark. Open wings, a sun and one low horizon. Recommended starting point.",
+    "symbol": "open-sky-symbol.svg",
+    "mono": "open-sky-mono.svg",
+    "lockup": "open-sky-lockup.svg",
+    "status": "Design exploration; Cale and Walt to select; supplier sew-out and final artwork review required."
+  },
+  {
+    "id": "trail-stamp",
+    "name": "Trail Stamp",
+    "description": "A compact field badge for hats, frame bags and wayfinding. A strong one-color option.",
+    "symbol": "trail-stamp-symbol.svg",
+    "mono": "trail-stamp-mono.svg",
+    "lockup": "trail-stamp-lockup.svg",
+    "status": "Design exploration; Cale and Walt to select; supplier sew-out and final artwork review required."
+  },
+  {
+    "id": "heritage-sun",
+    "name": "Heritage Sun",
+    "description": "A restrained nod to the triangle and gold sun on the 2026 laminate. Heritage symbol, not a literal mountain.",
+    "symbol": "heritage-sun-symbol.svg",
+    "mono": "heritage-sun-mono.svg",
+    "lockup": "heritage-sun-lockup.svg",
+    "status": "Design exploration; Cale and Walt to select; supplier sew-out and final artwork review required."
+  }
+]
