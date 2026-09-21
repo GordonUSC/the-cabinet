@@ -76,9 +76,10 @@ for a, z, mins, lab, body in rows:
             "Peer sharing only, and hold it to the one question that carries the grade: what visual "
             "choices define this character, and where did you see them persist. This ran 59 minutes on "
             "the original sheet. It is 20 now because the back of the class was given to the mood board, "
-            "so do not let it wander into a general discussion. Assign tonight's homework here: one hour "
-            "of Critical Role, annotate one character's visual arc, and say out loud that the job of that "
-            "hour is blocking, gesturality and reaction shot."))
+            "so do not let it wander into a general discussion. NO HOMEWORK IS SET TONIGHT. The old sheet "
+            "asked for an hour of Critical Role and an annotation; it is cut. Their evening belongs to the "
+            "Visual Analysis Video, due Thursday at 5:00. Say that plainly, because a room braced for an "
+            "assignment that never arrives works harder on the one it already has."))
         _out.append((a + SYN_KEEP, z, mins - SYN_KEEP, "MOOD BOARD TEAM TIME, team set 1",
             "The only in-class work time this project gets. Sessions 10, 11 and 12 have no team block, so "
             "the next time these four teams are in a room together with you is the presentation itself. "
@@ -609,16 +610,15 @@ registers.</td><td class="m">optional</td></tr>
 <li><b>Thursday 24 September, 5:00 PM PT. Visual Analysis Video, 10%.</b> One world, two media, three to
 five minutes. Session 9 is the last Monday before it lands, and today's whole first hour is the skill it
 is graded on. Say the deadline out loud at 10:00 and again at 12:45.</li>
-<li><b>Tonight's Critical Role hour has a job, and the job is today's vocabulary.</b> Watch one hour,
-annotate one character's visual arc. That is the drill for <b>blocking, gesturality and reaction shot</b>,
-and it is why the assignment is an hour of one continuous performance rather than a trailer: these three
-terms only exist across time, and a two-minute clip cannot show a habit. <b>Say the job out loud when you
-assign it.</b> An hour of viewing with no stated purpose is the one students cut, and the exit tickets will
-tell you on Wednesday whether they did.</li>
-<li><b>The load, named honestly, since Thursday is real.</b> This is ungraded and it lands three days before
-the Visual Analysis Video, 10 percent, one world in two media. If the room looks stretched, <b>shrink it
-rather than drop it</b>: twenty minutes of one table still proves all three terms, and the drill is the
-point, not the runtime.</li>
+<li><b>No homework tonight, and say so out loud.</b> The old sheet set an hour of Critical Role and an
+annotation. <b>It is cut.</b> Their evening belongs to the <b>Visual Analysis Video, 10 percent, due
+Thursday at 5:00</b>, and an ungraded hour stacked on top of it would only have taught them which of your
+deadlines is the soft one. A room braced for an assignment that never arrives works harder on the one it
+already has.</li>
+<li><b>The Critical Role work happens in this room, not at home.</b> The 10:12 block and the 10:48
+annotation are the drill for <b>blocking, gesturality and reaction shot</b>, and the text is long-form
+because those three terms only exist across time: a two-minute clip cannot show a habit. That is why it is
+an episode and not a trailer, and it is why the drill does not need to follow anyone home.</li>
 <li><b>Hamilton does both jobs, which is why sixty seconds of tape earns a thirty-minute block.</b>
 Your own media note on it names all three of today's terms: watch blocking, watch where a cut steals your
 choice of what to look at, and watch how much a reaction shot changes a line you have already heard. So the
