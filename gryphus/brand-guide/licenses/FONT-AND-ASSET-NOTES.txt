@@ -1,0 +1,12 @@
+Barlow Condensed: The Barlow Project Authors, SIL OFL 1.1; included with license. Switzer: Indian Type Foundry / Fontshare, ITF Free Font License; each vendor should obtain the original package directly. Georgia: Microsoft, proprietary; use an appropriately licensed local installation. Switzer and Georgia source font binaries are not redistributed in this kit. PDF contains embedded subsets; HTML uses the site font or its Arial fallback offline.
+
+Generated campaign imagery depicts a creative direction, not actual venue, artists, attendees or confirmed programming. The real Cale/Gordon photograph is from Gordon's archive, April 24, 2026; photographer attribution is not established. Obtain use-specific approval before reproducing personal photographs on goods. The original board is supplied concept material, not a production logo master.
+
+Event updates: https://gryphusmusicfestival.com/
+Ranch guidance: https://www.flatrockranchtx.com/faqs
+Andean condor: https://animals.sandiegozoo.org/animals/andean-condor
+Barlow source / OFL: https://github.com/google/fonts/tree/main/ofl/barlowcondensed
+Switzer / Fontshare: https://www.fontshare.com/fonts/switzer
+ITF font licenses: https://www.fontshare.com/licenses
+Georgia / Microsoft: https://learn.microsoft.com/en-us/typography/font-list/georgia
+WCAG contrast: https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html

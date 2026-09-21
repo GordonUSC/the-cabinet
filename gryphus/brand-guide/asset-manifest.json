@@ -1,0 +1,135 @@
+{
+  "version": "0.1-review",
+  "files": [
+    {
+      "file": "Gryphus-Brand-Guide.pdf",
+      "bytes": 25737446,
+      "sha256": "726d0cbe4119d88b13a410adbb274dd53d4c735511544ed4d77b3dad70513f86"
+    },
+    {
+      "file": "README.txt",
+      "bytes": 1636,
+      "sha256": "d836352ad017a0886afd547c19ba14415879bc8d8cef8ade88f703601763d55a"
+    },
+    {
+      "file": "assets/cale-and-gordon-2026.webp",
+      "bytes": 193024,
+      "sha256": "7cbb88405272d6b10f80db75f8de92d04b5beae82df5095fee065d1cf65a757c"
+    },
+    {
+      "file": "assets/cale-direction-board.png",
+      "bytes": 3345728,
+      "sha256": "57e16f3b0d7fbb03732c56a61483afd4ddbbc3a5c2ea69693e614b5aa539f087"
+    },
+    {
+      "file": "assets/experiences.png",
+      "bytes": 2959491,
+      "sha256": "3826653c8670c6beaa23b70ffad71c85c7af129b6cbcbd7b5abbf93d16cfea9b"
+    },
+    {
+      "file": "assets/gryphus-emblem.png",
+      "bytes": 1719343,
+      "sha256": "49b38df4fa453a0aaf481af37d456d927123aa216661c865ec4a02a4778b47d3"
+    },
+    {
+      "file": "assets/hero.png",
+      "bytes": 2734448,
+      "sha256": "b2063068b1f7a6c8ce94f80f9f6b9d9b858f455bd2b5d88d0059900b470780b6"
+    },
+    {
+      "file": "assets/merch-collections.png",
+      "bytes": 3435521,
+      "sha256": "4abbc19d7b11889b188d5af2a49b65b883700ea9c95f87bde813c21090862b14"
+    },
+    {
+      "file": "color-tokens.json",
+      "bytes": 2867,
+      "sha256": "17274804880716be65dfc5dff763a58c797cce01ee72e7338314f0d63d9f0607"
+    },
+    {
+      "file": "fonts/BarlowCondensed-Black.ttf",
+      "bytes": 88228,
+      "sha256": "0ec6b3cca2df54f108f8dc239597e0eab386343a230afad8a0f445c7d21c3e77"
+    },
+    {
+      "file": "guide.css",
+      "bytes": 8972,
+      "sha256": "d7e47f6a4a55519b30f037b2ef053128c02a5de4084dfff4e946d9bbe211f66b"
+    },
+    {
+      "file": "index.html",
+      "bytes": 19922,
+      "sha256": "1dee4f570aca6bb0cbd2fde041cc3257732df1520da24b7e548c322709371f27"
+    },
+    {
+      "file": "licenses/Barlow-OFL.txt",
+      "bytes": 4377,
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    },
+    {
+      "file": "licenses/FONT-AND-ASSET-NOTES.txt",
+      "bytes": 1382,
+      "sha256": "9513e8ef57d924855c633351c10c9116d5a280f3e04249f79f4f999051d4232c"
+    },
+    {
+      "file": "templates/cap-front-90x40mm.svg",
+      "bytes": 118510,
+      "sha256": "3815aa4de0f65df5e51113a9a6dc762dbc87c3e4ea5caa48b6d1284d9c81e396"
+    },
+    {
+      "file": "templates/partner-lockup.svg",
+      "bytes": 118794,
+      "sha256": "6d2ab1265b9c7b803258deaa281713108317588585b41f7296a801ab7267c4ad"
+    },
+    {
+      "file": "templates/patch-75x50mm.svg",
+      "bytes": 118531,
+      "sha256": "7849343983650324dc46c5458eb6bb13b87d00f8fd26405b837eb30590db14d4"
+    },
+    {
+      "file": "templates/tshirt-back.svg",
+      "bytes": 119164,
+      "sha256": "9e7fd8223e1b161d68440ed8f5091bea42c8fd7fe21adfd2ecc680c7f133196f"
+    },
+    {
+      "file": "templates/tshirt-front.svg",
+      "bytes": 118860,
+      "sha256": "606b7600aef0fd3afbeab8b68fe52722c19a2fd0c568b71474e6168253810ab6"
+    },
+    {
+      "file": "templates/wayfinding-600x400mm.svg",
+      "bytes": 118711,
+      "sha256": "47abaa3bf828a7d790abcabcd1afbcfa5b99c24cc48453431323e09161fcc005"
+    },
+    {
+      "file": "wordmarks/gryphus-black-editable.svg",
+      "bytes": 118375,
+      "sha256": "85f0019b015a7c6f0932ddff726038df47324605434d785931503529f866a0bd"
+    },
+    {
+      "file": "wordmarks/gryphus-charcoal-editable.svg",
+      "bytes": 118381,
+      "sha256": "b73aa2f44d5d13e8f26cd17a214c64bb77dd21e559cdb6cbda99fb632f52d022"
+    },
+    {
+      "file": "wordmarks/gryphus-earth-editable.svg",
+      "bytes": 118375,
+      "sha256": "19d0ff906cd5a93265c9e3af70c1481c97e653f7301cec756eb6767445bcc0e1"
+    },
+    {
+      "file": "wordmarks/gryphus-forest-editable.svg",
+      "bytes": 118377,
+      "sha256": "1361fdcd5193df9452abe43f0f851ccf9211096ce7ad1bf405d688a03750faa8"
+    },
+    {
+      "file": "wordmarks/gryphus-orange-editable.svg",
+      "bytes": 118377,
+      "sha256": "ede30de927c6c39ec3b4058b219fbea24addca5e12bc1a61b7adfee71c5f036f"
+    },
+    {
+      "file": "wordmarks/gryphus-reverse-editable.svg",
+      "bytes": 118379,
+      "sha256": "ff4fce16a79dc93eae4561d89fcb9d097faaa8e1b49982b320755ea38255a710"
+    }
+  ]
+}

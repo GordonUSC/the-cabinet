@@ -1,0 +1,170 @@
+{
+  "version": "0.1-review",
+  "status": "Proposed standards for Cale and Walt review; not production authorization",
+  "directions": {
+    "field-guide": {
+      "Forest": {
+        "hex": "#183c30",
+        "rgb": [
+          24,
+          60,
+          48
+        ],
+        "cmykApproxPercent": [
+          60,
+          0,
+          20,
+          76
+        ]
+      },
+      "Cream": {
+        "hex": "#f7f3e9",
+        "rgb": [
+          247,
+          243,
+          233
+        ],
+        "cmykApproxPercent": [
+          0,
+          2,
+          6,
+          3
+        ]
+      },
+      "Sun": {
+        "hex": "#ff5125",
+        "rgb": [
+          255,
+          81,
+          37
+        ],
+        "cmykApproxPercent": [
+          0,
+          68,
+          85,
+          0
+        ]
+      }
+    },
+    "high-ground": {
+      "Charcoal": {
+        "hex": "#222d24",
+        "rgb": [
+          34,
+          45,
+          36
+        ],
+        "cmykApproxPercent": [
+          24,
+          0,
+          20,
+          82
+        ]
+      },
+      "Paper": {
+        "hex": "#f3f1e9",
+        "rgb": [
+          243,
+          241,
+          233
+        ],
+        "cmykApproxPercent": [
+          0,
+          1,
+          4,
+          5
+        ]
+      },
+      "Signal": {
+        "hex": "#fd562c",
+        "rgb": [
+          253,
+          86,
+          44
+        ],
+        "cmykApproxPercent": [
+          0,
+          66,
+          83,
+          1
+        ]
+      }
+    },
+    "basecamp": {
+      "Earth": {
+        "hex": "#452f25",
+        "rgb": [
+          69,
+          47,
+          37
+        ],
+        "cmykApproxPercent": [
+          0,
+          32,
+          46,
+          73
+        ]
+      },
+      "Canvas": {
+        "hex": "#f7f0e2",
+        "rgb": [
+          247,
+          240,
+          226
+        ],
+        "cmykApproxPercent": [
+          0,
+          3,
+          9,
+          3
+        ]
+      },
+      "Lantern": {
+        "hex": "#e6b978",
+        "rgb": [
+          230,
+          185,
+          120
+        ],
+        "cmykApproxPercent": [
+          0,
+          20,
+          48,
+          10
+        ]
+      }
+    }
+  },
+  "accessibility": {
+    "buttonInk": "#142018",
+    "legacyFieldButtonInk": "#1a2c22",
+    "charcoalOnSignal": "4.455:1; large display only, not normal text"
+  },
+  "typography": {
+    "wordmark": "Barlow Condensed Black",
+    "display": "Barlow Condensed Black",
+    "body": "Switzer",
+    "basecampEditorial": "Georgia"
+  },
+  "spacingPx": [
+    4,
+    8,
+    12,
+    16,
+    24,
+    32,
+    48,
+    64,
+    96
+  ],
+  "radiiPx": {
+    "default": 0,
+    "pill": 999
+  },
+  "motionMs": {
+    "control": 180,
+    "panel": 260,
+    "entrance": 500
+  },
+  "print": "CMYK values are mathematical approximations, not ICC-profiled separations or Pantone matches. Proof on the actual stock/garment."
+}
