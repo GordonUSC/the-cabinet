@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Gryphus Design Review//Festival Dates//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:gryphus-ranch-2027-designreview
+DTSTAMP:20260921T040000Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270503
+SUMMARY:Gryphus Music + Outdoor Festival
+LOCATION:Flat Rock Ranch\, Comfort\, Texas
+DESCRIPTION:Festival dates confirmed by the organizer. Program and ticket details forthcoming. Separate San Antonio gathering April 29 is not included in this calendar item.
+URL:https://gryphusmusicfestival.com/
+END:VEVENT
+END:VCALENDAR
