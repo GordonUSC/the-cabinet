@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:olympics-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20280715
+DTEND;VALUE=DATE:20280719
+SUMMARY:LA28 · WITH FOSTER with friends
+LOCATION:Squash + table tennis\, Los Angeles
+DESCRIPTION:The games are new. The friendship is the throughline. Gordon + Foster
+URL:https://la28.org/
+END:VEVENT
+END:VCALENDAR

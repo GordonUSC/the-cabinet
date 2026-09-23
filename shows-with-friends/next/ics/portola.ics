@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:portola-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260926
+DTEND;VALUE=DATE:20260927
+SUMMARY:PORTOLA with friends
+LOCATION:Pier 80\, San Francisco
+DESCRIPTION:Different crowds. The same instinct to find each other. Gordon + Brennan
+URL:https://www.portolamusicfestival.com/lineup/
+END:VEVENT
+END:VCALENDAR

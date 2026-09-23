@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:comedy-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260918
+DTEND;VALUE=DATE:20260919
+SUMMARY:BACK TO SCHOOL with friends
+LOCATION:The Elysian · 9:30 to 10:45 p.m.\, Los Angeles
+DESCRIPTION:The joy of absolutely losing it laughing. Gordon + Joe
+URL:https://cuboid-pigeon-k3zp.squarespace.com/shows/backtoschool0918
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:summit-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:JOHN SUMMIT with friends
+LOCATION:LA Memorial Coliseum\, Los Angeles
+DESCRIPTION:A sidewalk hello. A much bigger next chapter. Companions still open
+URL:https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/
+END:VEVENT
+END:VCALENDAR

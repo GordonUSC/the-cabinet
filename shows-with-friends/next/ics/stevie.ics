@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:stevie-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:STEVIE WONDER with friends
+LOCATION:Intuit Dome\, Inglewood
+DESCRIPTION:Songs that have already lived whole lives with me. A solo chapter
+URL:https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performances-50th-anniversary-inglewood-12-19-2026/event/09006524823041CB
+END:VEVENT
+END:VCALENDAR

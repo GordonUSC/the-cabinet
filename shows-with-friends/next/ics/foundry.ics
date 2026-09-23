@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:foundry-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:THE FOUNDRY with friends
+LOCATION:1425 Folsom\, San Francisco
+DESCRIPTION:A dance today. Our own gathering next. A Sunday stop during Folsom
+URL:https://www.eventbrite.com/e/boof-presents-mcmlxxxv-herrensauna-at-the-foundry-folsom-street-fair-tickets-1999721840857
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:latenite-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+SUMMARY:LATENITE with friends
+LOCATION:Pechanga Arena\, San Diego
+DESCRIPTION:If the night has one more chapter in it. Gordon\, Brennan\, Kelly\, Kara + Quinn
+URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
+END:VEVENT
+END:VCALENDAR

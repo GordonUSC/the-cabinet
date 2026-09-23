@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:niteharts-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:NITEHARTS with friends
+LOCATION:Snapdragon Stadium grounds\, San Diego
+DESCRIPTION:One must-see each. One discovery none of us came for. Gordon\, Brennan\, Kelly + Kara
+URL:https://www.niteharts.com/
+END:VEVENT
+END:VCALENDAR

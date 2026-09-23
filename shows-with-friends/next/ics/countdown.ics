@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+BEGIN:VEVENT
+UID:countdown-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270102
+SUMMARY:COUNTDOWN with friends
+LOCATION:NOS Event Center\, San Bernardino
+DESCRIPTION:A new year. Our lovely old tradition. Gordon + Joe
+URL:https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-return-to-nos-event-center-for-2026-festival
+END:VEVENT
+END:VCALENDAR
