@@ -1,14 +1,16 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Sin City · Dodgeball
 BEGIN:VEVENT
 UID:sincity-swf@gordonusc.github.io
 DTSTAMP:20260923T000000Z
 DTSTART;VALUE=DATE:20270114
 DTEND;VALUE=DATE:20270119
-SUMMARY:SIN CITY · DODGEBALL with friends
+SUMMARY:Sin City · Dodgeball with friends
 LOCATION:Sin City Classic Sports Festival\, Las Vegas
-DESCRIPTION:Good company. Great dodgeball. Gordon\, Joe\, Matt Kaplan\, Andrew Ketchum + Casey Reed
+DESCRIPTION:Good company. Great dodgeball. With Joe\, Matt Kaplan\, Andrew Ketchum\, Casey Reed. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/sincity.html
 URL:https://www.sincityclassic.org/
 END:VEVENT
 END:VCALENDAR

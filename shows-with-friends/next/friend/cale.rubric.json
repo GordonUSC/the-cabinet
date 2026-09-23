@@ -1,10 +1,10 @@
 {
- "person_made_it": "Every channel, fader and count comes from Gordon's own events.json and letters, not stock copy.",
- "emcee_who_is_speaking": "Cale has the mic: their initials, Gordon's letter if he wrote one, then every shared channel.",
- "what_time_of_day_is_this_room": "A booth at 1 AM: console black, LED meters in each night's own color, the crew photo glowing above.",
- "did_the_click_pay_me": "Cue A/B blends two nights' art and chords, faders open friends, filters re-rack the year, counts tick live.",
- "works_for_the_recipient": "Phone first, readable with JS off, every night and friend reachable by plain links, noindex.",
- "taught_me_something": "It shows at a glance who Gordon shares the most nights with and how close each one is.",
- "told_me_the_truth": "Made posters are labeled IMAGINED; sound is an in-browser synth, never a fake artist recording.",
- "weakest": "Mobile crossfader shows one plate at a time; a gesture-driven full-screen deck would feel more like a real controller."
+ "person_made_it": "Gordon's own photographs, letters and crew lists lead every page; nothing is stock.",
+ "emcee_who_is_speaking": "On home the friends have the mic (the hero names them); on a night page the night and its countdown do; on a friend page the friend and their next night.",
+ "what_time_of_day_is_this_room": "Each night page carries its own light: daylight for Folsom and LA28, golden hour for Portola and Gryphus, dawn for EDC, after dark for the rest.",
+ "did_the_click_pay_me": "Light up a friend and their nights glow; open a night and a wristband appears; the road draws itself; Portola shows what is playing now.",
+ "works_for_the_recipient": "Plain words for non-DJs, phone-first, readable with JavaScript off, calendar, maps and an I'm-in text on every night.",
+ "taught_me_something": "Who Gordon shares the most nights with, how far the year travels, and which photo anniversary is next.",
+ "told_me_the_truth": "Passed dates never claim attendance, Foster is a maybe on EDC, made posters say IMAGINED, miles state their method.",
+ "weakest": "Astra's independent date check has not landed yet, so dates beyond Portola, LA28 and F1 carry over from the live page unaudited."
 }

@@ -1,14 +1,16 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Pokémon Night Out
 BEGIN:VEVENT
 UID:pokemon-swf@gordonusc.github.io
 DTSTAMP:20260923T000000Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
-SUMMARY:POKÉMON NIGHT OUT with friends
+SUMMARY:Pokémon Night Out with friends
 LOCATION:Intuit Dome\, Inglewood
-DESCRIPTION:Our playful selves get the night out. Gordon\, Brennan\, Kelly + Kara
+DESCRIPTION:Our playful selves get the night out. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pokemon.html
 URL:https://30.pokemon.com/en-us/night-out
 END:VEVENT
 END:VCALENDAR

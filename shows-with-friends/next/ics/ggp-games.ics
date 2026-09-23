@@ -1,14 +1,16 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:GGP · Zero Proof
 BEGIN:VEVENT
 UID:ggp-games-swf@gordonusc.github.io
 DTSTAMP:20260923T000000Z
 DTSTART;VALUE=DATE:20270301
 DTEND;VALUE=DATE:20270302
-SUMMARY:GGP · ZERO PROOF with friends
+SUMMARY:GGP · Zero Proof with friends
 LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
-DESCRIPTION:Pull up a chair. Gordon\, Eric Francksen\, BrenBren\, Alex Rogers + Foster
+DESCRIPTION:Pull up a chair. With Eric Francksen\, Brennan\, Alex Rogers\, Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-games.html
 URL:https://gaygamingpros.org/
 END:VEVENT
 END:VCALENDAR

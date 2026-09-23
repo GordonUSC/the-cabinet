@@ -1,0 +1,66 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Brennan
+BEGIN:VEVENT
+UID:portola-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260926
+DTEND;VALUE=DATE:20260927
+SUMMARY:Portola with friends
+LOCATION:Pier 80\, San Francisco
+DESCRIPTION:Different crowds. The same instinct to find each other. With Brennan. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/portola.html
+URL:https://www.portolamusicfestival.com/lineup/
+END:VEVENT
+BEGIN:VEVENT
+UID:niteharts-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:Niteharts with friends
+LOCATION:Snapdragon Stadium grounds\, San Diego
+DESCRIPTION:One must-see each. One discovery none of us came for. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/niteharts.html
+URL:https://www.niteharts.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:latenite-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+SUMMARY:Latenite with friends
+LOCATION:Pechanga Arena\, San Diego
+DESCRIPTION:If the night has one more chapter in it. With Brennan\, Kelly\, Kara\, Quinn. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/latenite.html
+URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Pokémon Night Out with friends
+LOCATION:Intuit Dome\, Inglewood
+DESCRIPTION:Our playful selves get the night out. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pokemon.html
+URL:https://30.pokemon.com/en-us/night-out
+END:VEVENT
+BEGIN:VEVENT
+UID:ggp-games-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:GGP · Zero Proof with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Pull up a chair. With Eric Francksen\, Brennan\, Alex Rogers\, Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-games.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:ggp-mixer-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270302
+DTEND;VALUE=DATE:20270303
+SUMMARY:GGP · The Mixer with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Our people. Behind the decks. With Brennan\, Alex Rogers\, Sam\, Foster\, Georgia\, Eric Francksen\, Dave Vermillion\, Trent. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-mixer.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,186 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:After Hours: every night
+BEGIN:VEVENT
+UID:portola-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260926
+DTEND;VALUE=DATE:20260927
+SUMMARY:Portola with friends
+LOCATION:Pier 80\, San Francisco
+DESCRIPTION:Different crowds. The same instinct to find each other. With Brennan. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/portola.html
+URL:https://www.portolamusicfestival.com/lineup/
+END:VEVENT
+BEGIN:VEVENT
+UID:folsom-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:Folsom Street Fair with friends
+LOCATION:Folsom Street · SoMa · 11 AM to 6 PM\, San Francisco
+DESCRIPTION:A familiar city. A friend for the ages. With Shannon. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/folsom.html
+URL:https://www.folsomstreet.org/folsom-street-fair-1
+END:VEVENT
+BEGIN:VEVENT
+UID:foundry-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:The Foundry with friends
+LOCATION:1425 Folsom\, San Francisco
+DESCRIPTION:A dance today. Our own gathering next. With A stop. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/foundry.html
+URL:https://www.eventbrite.com/e/boof-presents-mcmlxxxv-herrensauna-at-the-foundry-folsom-street-fair-tickets-1999721840857
+END:VEVENT
+BEGIN:VEVENT
+UID:zeds-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:Zeds Dead with friends
+LOCATION:Grand Park\, Los Angeles
+DESCRIPTION:Sometimes the company is the music. With Solo. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/zeds.html
+URL:https://www.insomniac.com/events/zeds-dead-2026-10-03-los-angeles-ca/
+END:VEVENT
+BEGIN:VEVENT
+UID:niteharts-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:Niteharts with friends
+LOCATION:Snapdragon Stadium grounds\, San Diego
+DESCRIPTION:One must-see each. One discovery none of us came for. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/niteharts.html
+URL:https://www.niteharts.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:latenite-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+SUMMARY:Latenite with friends
+LOCATION:Pechanga Arena\, San Diego
+DESCRIPTION:If the night has one more chapter in it. With Brennan\, Kelly\, Kara\, Quinn. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/latenite.html
+URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Pokémon Night Out with friends
+LOCATION:Intuit Dome\, Inglewood
+DESCRIPTION:Our playful selves get the night out. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pokemon.html
+URL:https://30.pokemon.com/en-us/night-out
+END:VEVENT
+BEGIN:VEVENT
+UID:pride-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261110
+SUMMARY:Palm Springs · Pride + Birthday with friends
+LOCATION:Downtown + Arenas District · Birthday November 9\, Palm Springs
+DESCRIPTION:Pride. My birthday. Our people. With Shannon\, Joe\, Mason\, Alex Rogers. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pride.html
+URL:https://www.pspride.org/news
+END:VEVENT
+BEGIN:VEVENT
+UID:summit-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:John Summit with friends
+LOCATION:LA Memorial Coliseum\, Los Angeles
+DESCRIPTION:A sidewalk hello. A much bigger next chapter. With Room for you. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/summit.html
+URL:https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/
+END:VEVENT
+BEGIN:VEVENT
+UID:stevie-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:Stevie Wonder with friends
+LOCATION:Intuit Dome\, Inglewood
+DESCRIPTION:Songs that have already lived whole lives with me. With Solo. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/stevie.html
+URL:https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performances-50th-anniversary-inglewood-12-19-2026/event/09006524823041CB
+END:VEVENT
+BEGIN:VEVENT
+UID:countdown-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270102
+SUMMARY:Countdown with friends
+LOCATION:NOS Event Center\, San Bernardino
+DESCRIPTION:A new year. Our lovely old tradition. With Joe. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/countdown.html
+URL:https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-return-to-nos-event-center-for-2026-festival
+END:VEVENT
+BEGIN:VEVENT
+UID:sincity-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270114
+DTEND;VALUE=DATE:20270119
+SUMMARY:Sin City · Dodgeball with friends
+LOCATION:Sin City Classic Sports Festival\, Las Vegas
+DESCRIPTION:Good company. Great dodgeball. With Joe\, Matt Kaplan\, Andrew Ketchum\, Casey Reed. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/sincity.html
+URL:https://www.sincityclassic.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:ggp-games-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:GGP · Zero Proof with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Pull up a chair. With Eric Francksen\, Brennan\, Alex Rogers\, Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-games.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:ggp-mixer-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270302
+DTEND;VALUE=DATE:20270303
+SUMMARY:GGP · The Mixer with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Our people. Behind the decks. With Brennan\, Alex Rogers\, Sam\, Foster\, Georgia\, Eric Francksen\, Dave Vermillion\, Trent. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-mixer.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:gryphus-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270430
+DTEND;VALUE=DATE:20270503
+SUMMARY:Gryphus with friends
+LOCATION:Flat Rock Ranch · San Antonio gathering April 29\, Texas Hill Country
+DESCRIPTION:Forty years of friendship. A whole new sky. With Walt\, Cale. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/gryphus.html
+URL:https://gryphusmusicfestival.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:edc-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270521
+DTEND;VALUE=DATE:20270524
+SUMMARY:EDC · Dawn with friends
+LOCATION:Motor Speedway\, Las Vegas
+DESCRIPTION:Stay for the light. Keep the people. With Room for you. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/edc.html
+URL:https://lasvegas.edc.com/guide/faq/
+END:VEVENT
+BEGIN:VEVENT
+UID:shambhala-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270723
+DTEND;VALUE=DATE:20270727
+SUMMARY:Shambhala with friends
+LOCATION:Salmo River Ranch\, British Columbia
+DESCRIPTION:Find each other between the trees. With Drake\, Mel\, Dave Vermillion\, Trent\, Mason\, Myke Bailey\, Jacob Ferrufino. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/shambhala.html
+URL:https://www.shambhalamusicfestival.com/tickets-camping
+END:VEVENT
+BEGIN:VEVENT
+UID:olympics-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20280715
+DTEND;VALUE=DATE:20280719
+SUMMARY:LA28 · With Foster with friends
+LOCATION:Squash + table tennis\, Los Angeles
+DESCRIPTION:The games are new. The friendship is the throughline. With Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/olympics.html
+URL:https://la28.org/
+END:VEVENT
+END:VCALENDAR

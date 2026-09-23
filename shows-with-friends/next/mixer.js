@@ -12,14 +12,20 @@
     $$("[data-count]").forEach(function (el) {
       var iso = el.getAttribute("data-count"); if (!iso) return;
       var n = daysTo(iso), end = el.getAttribute("data-end"), m = end ? daysTo(end) : n;
-      if (el.classList.contains("status")) el.textContent = m < 0 ? "Played. On the record." : n <= 0 ? "On air now." : n === 1 ? "Tomorrow." : n + " days out";
+      if (el.classList.contains("status")) {
+        el.textContent = "";
+        if (n > 1 && m >= 0) { var big = D.createElement("span"); big.className = "big"; big.textContent = n; el.appendChild(big); }
+        el.appendChild(D.createTextNode(m < 0 ? "This date has passed." : n <= 0 ? "Happening now." : n === 1 ? "Tomorrow." : n + " days out"));
+      }
+      else if (el.hasAttribute("data-raw")) el.textContent = n;
       else if (el.classList.contains("la28")) el.textContent = n + " days to LA28";
+      else if (m < 0) el.textContent = "date passed";
       else el.textContent = n <= 0 ? "now" : n === 1 ? "1 day" : n + " days";
     });
     $$(".strip[data-date]").forEach(function (s) {
       var iso = s.getAttribute("data-date"); if (!iso) return;
       var n = daysTo(iso), e = s.getAttribute("data-end"), m = e ? daysTo(e) : n, out = $("[data-out]", s);
-      if (out) out.textContent = m < 0 ? "played" : n <= 0 ? "on air" : n + " days";
+      if (out) out.textContent = m < 0 ? "date passed" : n <= 0 ? "happening now" : n === 1 ? "tomorrow" : n + " days";
     });
   }
   counts();
@@ -133,7 +139,7 @@
   /* ---------- share ---------- */
   $$("[data-share]").forEach(function (b) {
     b.addEventListener("click", function () {
-      var data = { title: D.title, url: location.href };
+      var data = { title: D.title, text: b.getAttribute("data-text") || D.title, url: location.href };
       if (navigator.share) navigator.share(data).catch(function () {});
       else if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(function () { b.textContent = "Link copied"; });
     });
@@ -156,6 +162,7 @@
       $("#clash").classList.toggle("ok", !clashes.length);
       $("#clash").textContent = clashes.length ? "Clash: " + clashes.join(", ") + ". Pick one, or split up and meet after." : on.length ? "No clashes. " + on.length + " sets starred." : "Tap sets to build the day.";
       $("#planText").textContent = "Our Portola Saturday (Pier 80, doors 1 PM):\n" + on.map(function (o) { return fmt(o.s) + " " + o.a + " @ " + o.st; }).join("\n");
+      var sm = $("#smsPlan"); if (sm) sm.href = "sms:?&body=" + encodeURIComponent($("#planText").textContent);
       store("mx_portola", JSON.stringify(on.map(function (o) { return o.a; })));
     }
     sets.forEach(function (s, k) { s.addEventListener("click", function () { s.setAttribute("aria-pressed", s.getAttribute("aria-pressed") !== "true"); blip(SCALE[k % 10], 0.12); plan(); }); });
@@ -167,13 +174,14 @@
   /* ---------- path to LA28: scrub the months ---------- */
   var track = $("#track"), ph = $("#playhead");
   if (track && ph) {
-    var ticks = $$(".tick", track), max = +ph.getAttribute("aria-valuemax"), start = new Date(2026, 8, 23), rdo = $("#readout"), last = null;
+    var ticks = $$(".tick", track), max = +ph.getAttribute("aria-valuemax"), sp = (ph.getAttribute("data-start") || "2026-09-13").split("-"), start = new Date(+sp[0], +sp[1] - 1, +sp[2]), rdo = $("#readout"), last = null, fin = $("#finale");
     function at(pct) {
       pct = Math.max(0, Math.min(1, pct)); ph.style.left = (pct * 100) + "%"; ph.setAttribute("aria-valuenow", Math.round(pct * max));
       var day = new Date(start.getTime() + pct * max * 864e5);
       $("#phl").textContent = day.toLocaleDateString("en-US", { month: "short", year: "numeric" });
       var near = null, best = 1e9;
       ticks.forEach(function (t) { var tp = parseFloat(t.style.left) / 100, dd = Math.abs(tp - pct); t.classList.toggle("lit", tp <= pct + 0.004); if (tp >= pct - 0.004 && tp - pct < best) { best = tp - pct; near = t; } });
+      if (fin) fin.hidden = pct < 0.995; if (fin && pct >= 0.995 && !fin._done) { fin._done = 1; blip(12, 0.3); setTimeout(function () { blip(19, 0.4); }, 180); }
       if (near && near !== last) { last = near; var e = near.getAttribute("data-who");
         rdo.innerHTML = ""; var b = D.createElement("b"); b.textContent = near.getAttribute("data-t"); var s = D.createElement("span"); s.textContent = e || "Up next on the track."; rdo.appendChild(b); rdo.appendChild(s); blip(SCALE[ticks.indexOf(near) % 10], 0.14); }
     }
@@ -183,6 +191,91 @@
     track.addEventListener("pointermove", function (ev) { if (drag) fromEvt(ev); });
     track.addEventListener("pointerup", function () { drag = false; });
     ph.addEventListener("keydown", function (ev) { var v = +ph.getAttribute("aria-valuenow"); if (ev.key === "ArrowRight") { at((v + 14) / max); ev.preventDefault(); } if (ev.key === "ArrowLeft") { at((v - 14) / max); ev.preventDefault(); } });
-    at(0);
+    var tp = parseFloat(($(".today", track) || {style:{left:"0"}}).style.left) / 100 || 0; at(tp);
+  }
+
+  /* ================= EDITION 2 ================= */
+  function slugv(el) { return el.getAttribute("data-voice") || ""; }
+  /* light up a friend's nights in the rack */
+  var litBtns = $$(".light"), note = $("#litNote");
+  litBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var who = b.getAttribute("data-light"), on = b.getAttribute("aria-pressed") !== "true";
+      litBtns.forEach(function (x) { x.setAttribute("aria-pressed", "false"); x.closest(".crewcard").classList.remove("on"); });
+      var strips = $$(".rack .strip"), hit = 0;
+      strips.forEach(function (s) { var m = on && (" " + s.getAttribute("data-who") + " ").indexOf(" " + who + " ") > -1; s.classList.toggle("glow", m); s.classList.toggle("dim", on && !m); if (m) hit++; });
+      if (on) { b.setAttribute("aria-pressed", "true"); b.closest(".crewcard").classList.add("on"); var nm = b.closest(".crewcard").querySelector("b").textContent;
+        if (note) { note.hidden = false; note.textContent = nm + ": " + hit + " night" + (hit === 1 ? "" : "s") + " lit. Tap again to clear."; }
+        var s0 = D.getElementById("rack"); if (s0) s0.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        var h = 0; for (var i = 0; i < who.length; i++) h = (h * 31 + who.charCodeAt(i)) % 10; blip(SCALE[h], 0.2);
+        var first = $(".rack .strip.glow"); if (first && rk) rk.scrollLeft = first.offsetLeft - rk.offsetLeft - 4;
+      } else if (note) note.hidden = true;
+    });
+  });
+  /* filters for open seats and solo nights */
+  $$(".filters button").forEach(function (b) {
+    var f = b.getAttribute("data-f"); if (f !== "open" && f !== "solo") return;
+    b.addEventListener("click", function () { $$(".rack .strip").forEach(function (s) { s.hidden = !s.getAttribute(f === "open" ? "data-open" : "data-solo"); }); });
+  });
+  $$(".filters button").forEach(function (b) {
+    var f = b.getAttribute("data-f"); if (f === "open" || f === "solo") return;
+    b.addEventListener("click", function () { $$(".rack .strip").forEach(function (s) { if (f === "all") s.hidden = false; else s.hidden = s.getAttribute("data-kind") !== f; }); });
+  });
+  /* surprise me */
+  var sur = $("#surprise");
+  if (sur && EV) sur.addEventListener("click", function () {
+    var pool = EV.filter(function (e) { return e.date && daysTo(e.endDate || e.date) >= 0; }), a = pool[Math.floor(Math.random() * pool.length)], b;
+    do { b = pool[Math.floor(Math.random() * pool.length)]; } while (pool.length > 1 && b === a);
+    $("#deckA").value = a.id; $("#deckB").value = b.id; $("#deckA").dispatchEvent(new Event("change")); var x = $("#xfader"); x.value = 50; x.dispatchEvent(new Event("input"));
+    blip(0, 0.1); setTimeout(function () { blip(7, 0.14); }, 120);
+  });
+  /* wristbands: nights you have opened */
+  var seen = []; try { seen = JSON.parse(store("mx_seen") || "[]"); } catch (e) {}
+  var nightEl = $("article.night[data-id]");
+  if (nightEl) { var id = nightEl.getAttribute("data-id"); if (seen.indexOf(id) < 0) { seen.push(id); store("mx_seen", JSON.stringify(seen)); } }
+  var bands = $("#bands"), row = $("#bandRow");
+  if (bands && row && EV) {
+    var got = EV.filter(function (e) { return seen.indexOf(e.id) > -1; }).length;
+    if (got) {
+      bands.hidden = false;
+      $("#bandsNote").textContent = got + " of " + EV.length + " nights opened. Every night page you visit adds its band.";
+      EV.forEach(function (e) { var a = D.createElement("a"); a.href = "night/" + e.id + ".html"; a.style.setProperty("--c", e.color || "#9dcaff"); if (seen.indexOf(e.id) < 0) a.className = "off";
+        var s = D.createElement("span"); s.textContent = e.name; a.appendChild(s); a.title = e.name; row.appendChild(a); });
+    }
+  }
+  /* on this day: the nearest photo anniversary */
+  var AN = W.MIXER_ANNIV, otd = $("#onthisday");
+  if (AN && otd) {
+    var now = new Date(), best = null; now.setHours(0, 0, 0, 0);
+    AN.forEach(function (p) { var q = p.date.split("-"), d = new Date(now.getFullYear(), +q[1] - 1, +q[2]); if (d < now) d.setFullYear(now.getFullYear() + 1);
+      var gap = Math.round((d - now) / 864e5); if (!best || gap < best.gap) best = { p: p, gap: gap, yrs: d.getFullYear() - +q[0] }; });
+    if (best) {
+      otd.hidden = false; otd.textContent = "";
+      var b = D.createElement("b"); b.textContent = best.gap === 0 ? "On this day, " + best.yrs + " years ago: " : "In " + best.gap + " day" + (best.gap === 1 ? "" : "s") + ", " + best.yrs + " years since ";
+      otd.appendChild(b); otd.appendChild(D.createTextNode(best.p.title + ". " + best.p.line));
+    }
+  }
+  /* night pages: arrow keys and swipe */
+  if (nightEl) {
+    var pv = nightEl.getAttribute("data-prev"), nx = nightEl.getAttribute("data-next");
+    D.addEventListener("keydown", function (ev) { if (/input|select|textarea/i.test((ev.target.tagName || ""))) return;
+      if (ev.key === "ArrowLeft" && pv) location.href = pv + ".html"; if (ev.key === "ArrowRight" && nx) location.href = nx + ".html"; });
+    var hd = $(".nhead", nightEl), x0 = null, y0 = null;
+    if (hd) { hd.addEventListener("touchstart", function (ev) { x0 = ev.touches[0].clientX; y0 = ev.touches[0].clientY; }, { passive: true });
+      hd.addEventListener("touchend", function (ev) { if (x0 === null) return; var dx = ev.changedTouches[0].clientX - x0, dy = ev.changedTouches[0].clientY - y0; x0 = null;
+        if (Math.abs(dx) > 80 && Math.abs(dy) < 50) { if (dx < 0 && nx) location.href = nx + ".html"; if (dx > 0 && pv) location.href = pv + ".html"; } }, { passive: true }); }
+  }
+  /* Portola: on the day, what is playing now */
+  var nl = $("#nowline");
+  if (nl && sets.length) {
+    var tick2 = function () {
+      var parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false }).formatToParts(new Date()), o = {};
+      parts.forEach(function (p) { o[p.type] = p.value; });
+      var day = o.year + "-" + o.month + "-" + o.day, mins = (+o.hour % 24) * 60 + +o.minute;
+      var live = day === "2026-09-26" && mins >= 780 && mins <= 1380;
+      nl.hidden = !live; sets.forEach(function (s) { s.classList.toggle("now", live && mins >= +s.getAttribute("data-s") && mins < +s.getAttribute("data-e")); });
+      if (live) nl.style.top = ((mins - 780) / 600 * 100) + "%";
+    };
+    tick2(); setInterval(tick2, 60000);
   }
 })();

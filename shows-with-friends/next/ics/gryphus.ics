@@ -1,14 +1,16 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Gryphus
 BEGIN:VEVENT
 UID:gryphus-swf@gordonusc.github.io
 DTSTAMP:20260923T000000Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270503
-SUMMARY:GRYPHUS with friends
+SUMMARY:Gryphus with friends
 LOCATION:Flat Rock Ranch · San Antonio gathering April 29\, Texas Hill Country
-DESCRIPTION:Forty years of friendship. A whole new sky. Gordon\, Walt Zink + Cale Yarborough
+DESCRIPTION:Forty years of friendship. A whole new sky. With Walt\, Cale. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/gryphus.html
 URL:https://gryphusmusicfestival.com/
 END:VEVENT
 END:VCALENDAR

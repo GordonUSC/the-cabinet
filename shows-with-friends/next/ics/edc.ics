@@ -1,14 +1,16 @@
 BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:EDC · Dawn
 BEGIN:VEVENT
 UID:edc-swf@gordonusc.github.io
 DTSTAMP:20260923T000000Z
 DTSTART;VALUE=DATE:20270521
 DTEND;VALUE=DATE:20270524
-SUMMARY:EDC · DAWN with friends
+SUMMARY:EDC · Dawn with friends
 LOCATION:Motor Speedway\, Las Vegas
-DESCRIPTION:Stay for the light. Keep the people. Dawn crew still taking shape
+DESCRIPTION:Stay for the light. Keep the people. With Room for you. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/edc.html
 URL:https://lasvegas.edc.com/guide/faq/
 END:VEVENT
 END:VCALENDAR

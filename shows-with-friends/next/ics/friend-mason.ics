@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Mason
+BEGIN:VEVENT
+UID:pride-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261110
+SUMMARY:Palm Springs · Pride + Birthday with friends
+LOCATION:Downtown + Arenas District · Birthday November 9\, Palm Springs
+DESCRIPTION:Pride. My birthday. Our people. With Shannon\, Joe\, Mason\, Alex Rogers. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pride.html
+URL:https://www.pspride.org/news
+END:VEVENT
+BEGIN:VEVENT
+UID:shambhala-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270723
+DTEND;VALUE=DATE:20270727
+SUMMARY:Shambhala with friends
+LOCATION:Salmo River Ranch\, British Columbia
+DESCRIPTION:Find each other between the trees. With Drake\, Mel\, Dave Vermillion\, Trent\, Mason\, Myke Bailey\, Jacob Ferrufino. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/shambhala.html
+URL:https://www.shambhalamusicfestival.com/tickets-camping
+END:VEVENT
+END:VCALENDAR
