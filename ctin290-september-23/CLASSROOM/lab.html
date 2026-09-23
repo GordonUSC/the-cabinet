@@ -1,26 +1,301 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CTIN 290 | Space lab</title><link rel="stylesheet" href="../packet.css"><style>
 body{background:#102832;color:#eef4e9}main{max-width:1320px;padding-top:25px}h1{font-size:44px}.eyebrow{color:#dfb57f}a{color:#b4e3d2}.quiet{color:#b8cfc9}.lab-tools{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}button{background:#234a50;border-color:#789e98}button.secondary{color:#d8e7da}button[aria-pressed=true]{background:#b97138;color:white}.viewport{border:1px solid #648089;border-radius:8px;overflow:hidden;background:#102832}#room{width:100%;height:auto;display:block;aspect-ratio:1000/580}#room .target:hover,#room .target:focus-visible{stroke:#ffe5aa;outline:none}.controls{display:grid;grid-template-columns:1.25fr 1fr;gap:22px;margin:22px 0}.panel{padding:18px 0;border-top:1px solid #6d898a}.panel h2{font-size:25px;margin-top:0}input[type=range]{width:100%;accent-color:#edb770}#readout{min-height:115px;font-size:19px}.status{font:600 16px/1.5 ui-monospace,monospace;color:#d9bd93}.note{background:#173b43;border-color:#d2a46e}.cluebuttons{display:flex;gap:10px;flex-wrap:wrap}footer{color:#bbcec7}.mode-copy{max-width:1000px}#order{color:#d9c092}@media(max-width:650px){.controls{grid-template-columns:1fr}h1{font-size:35px}main{padding:24px 14px}.lab-tools{gap:6px}button{padding:9px 11px;font-size:14px}.viewport{overflow:hidden}#room{min-width:0}.quiet{font-size:14px}}
-</style></head><body><nav><a href="index.html">Student hub</a><a href="terms.html">Terms</a><a href="notes.html">Digital notes</a></nav><main><p class="eyebrow">An original teaching diagram · Not footage from a course game</p><h1>The workshop after the rain</h1><p class="mode-copy" id="mode-copy">Observe the full room. Name what is visible before deciding what happened.</p><div class="lab-tools"><button data-mode="observe" aria-pressed="true">Observe</button><button data-mode="explore" aria-pressed="false">Explore</button><button data-mode="directed" aria-pressed="false">Directed sequence</button><button id="reset" class="secondary">Reset the room</button><button id="full" class="secondary">Full screen</button></div><p class="status" id="mode-status" role="status">Full room · No explanation supplied</p><div class="viewport"><svg id="room" viewBox="0 0 1000 580" role="img" aria-labelledby="scene-title scene-desc" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<title id="scene-title">A fictional workshop viewed from above</title><desc id="scene-desc">Two workstations face each other across a long table. One chair is tucked in, the other pulled away. A cup has spilled beside a tool. Two separated controls are connected to a shutter. A window casts light across the floor. The diagram supports more than one interpretation.</desc>
-<defs><radialGradient id="focus"><stop offset="0" stop-color="#ffd98d" stop-opacity=".55"/><stop offset="1" stop-color="#ffd98d" stop-opacity="0"/></radialGradient></defs>
-<rect width="1000" height="580" fill="#102832"/>
-<image href="assets/workshop-hd.png" xlink:href="assets/workshop-hd.png" x="0" y="0" width="1000" height="580" preserveAspectRatio="none"/>
-<text x="96" y="214" fill="#e8f2ef" font-size="18" font-family="system-ui" font-weight="600">WINDOW</text>
-<text x="452" y="486" fill="#e8f2ef" font-size="18" font-family="system-ui" font-weight="600">ENTRY</text>
-<circle cx="279" cy="58" r="56" fill="url(#focus)" class="attention-glow" opacity="0"/><circle cx="718" cy="58" r="56" fill="url(#focus)" class="attention-glow" opacity="0"/>
-<g id="labels" visibility="hidden" font-family="system-ui" font-size="20" font-weight="650">
-<rect x="470" y="338" width="148" height="38" rx="4" fill="#f0e4cc"/><text x="482" y="364" fill="#15333d">Spilled cup</text>
-<rect x="560" y="452" width="210" height="38" rx="4" fill="#f0e4cc"/><text x="572" y="478" fill="#15333d">Chair pulled away</text>
-<rect x="386" y="112" width="230" height="38" rx="4" fill="#f0e4cc"/><text x="398" y="138" fill="#15333d">Separated controls</text>
+</style></head><body><nav><a href="index.html">Student hub</a><a href="terms.html">Terms</a><a href="notes.html">Digital notes</a></nav><main><p class="eyebrow">An original teaching diagram · Not footage from a course game</p><h1>The workshop after the rain</h1><p class="mode-copy" id="mode-copy">Observe the full room. Name what is visible before deciding what happened.</p><div class="lab-tools"><button data-mode="observe" aria-pressed="true">Observe</button><button data-mode="explore" aria-pressed="false">Explore</button><button data-mode="directed" aria-pressed="false">Directed sequence</button><button id="reset" class="secondary">Reset the room</button><button id="full" class="secondary">Full screen</button></div><p class="status" id="mode-status" role="status">Full room · No explanation supplied</p><div class="viewport"><svg id="room" viewBox="0 0 1000 580" role="img" aria-labelledby="scene-title scene-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="scene-title">A workshop, viewed from above</title>
+<desc id="scene-desc">A rectangular workshop floor plan. A window along the top-left wall casts a beam of daylight across the wooden floor. A three-drawer cabinet sits under the window. In the center, a long wooden workbench holds a drawing, a set of tools, an upright cup, and a tipped cup with a coffee spill. A chair is tucked at the left side of the bench. On the right side of the bench, a second chair is pulled back and turned at an angle, as if someone stood up quickly. Above the bench, two hand controls sit on the wall, each connected by a wire to a large camera shutter mounted on the top-right wall. A tall storage cabinet sits on the right wall. An entry door is at the bottom.</desc>
+
+<defs>
+  <!-- Wood plank floor -->
+  <pattern id="floor" width="140" height="46" patternUnits="userSpaceOnUse">
+    <rect width="140" height="46" fill="#2b4550"/>
+    <path d="M0 45.5H140M139.5 0V46M70 23V46" stroke="#3a5967" stroke-width="1.2" fill="none"/>
+    <path d="M0 23H70" stroke="#3a5967" stroke-width="1.2" fill="none"/>
+  </pattern>
+  <!-- Bench wood grain -->
+  <pattern id="bench" width="22" height="22" patternUnits="userSpaceOnUse">
+    <rect width="22" height="22" fill="#a97a4c"/>
+    <path d="M0 11H22M0 5H22M0 17H22" stroke="#bf8f5e" stroke-width="0.7" fill="none" opacity="0.75"/>
+  </pattern>
+  <!-- Window daylight beam -->
+  <linearGradient id="beam" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0" stop-color="#cfe6dc" stop-opacity="0.42"/>
+    <stop offset="1" stop-color="#cfe6dc" stop-opacity="0"/>
+  </linearGradient>
+  <!-- Attention glow (used by the lab's Emphasis slider) -->
+  <radialGradient id="focus">
+    <stop offset="0" stop-color="#ffd98d" stop-opacity="0.6"/>
+    <stop offset="1" stop-color="#ffd98d" stop-opacity="0"/>
+  </radialGradient>
+  <!-- Callout leader arrow -->
+  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0 0 L10 5 L0 10 z" fill="#f4e6c8"/>
+  </marker>
+  <!-- Coffee spill (irregular puddle) -->
+  <filter id="soften" x="-20%" y="-20%" width="140%" height="140%">
+    <feGaussianBlur stdDeviation="0.6"/>
+  </filter>
+</defs>
+
+<!-- BACKGROUND -->
+<rect width="1000" height="580" fill="#0f2731"/>
+
+<!-- ROOM (floor with entry cutout at bottom) -->
+<path d="M85 62 H915 V498 H630 V518 H370 V498 H85 Z" fill="url(#floor)" stroke="#8ea3a7" stroke-width="10"/>
+
+<!-- WALL SHADOWS (interior edge) -->
+<path d="M85 62 H915 V498 H630 V518 H370 V498 H85 Z" fill="none" stroke="#000" stroke-width="2" opacity="0.35"/>
+
+<!-- DAYLIGHT BEAM from the window -->
+<path d="M150 68 H340 L470 340 L150 420 Z" fill="url(#beam)"/>
+
+<!-- ============ WINDOW (top-left wall) ============ -->
+<g id="obj-window">
+  <rect x="145" y="52" width="200" height="20" rx="3" fill="#dbede7" stroke="#5b7477" stroke-width="2"/>
+  <path d="M195 51V74 M245 51V74 M295 51V74" stroke="#3a5967" stroke-width="4"/>
+  <!-- muntins/rain streaks above -->
+  <path d="M160 40 l6 -12 M186 40 l6 -12 M212 40 l6 -12 M238 40 l6 -12 M264 40 l6 -12 M290 40 l6 -12 M316 40 l6 -12" stroke="#9ccfc7" stroke-width="1.6"/>
 </g>
+
+<!-- ============ THREE-DRAWER CABINET (under window) ============ -->
+<g id="obj-cabinet">
+  <rect x="118" y="378" width="215" height="86" rx="4" fill="#1c343d" stroke="#8fa1a5" stroke-width="3"/>
+  <!-- three drawers -->
+  <rect x="128" y="388" width="60" height="66" rx="2" fill="#946a4e" stroke="#c19070" stroke-width="1.5"/>
+  <rect x="196" y="388" width="60" height="66" rx="2" fill="#4d7770" stroke="#7ea69f" stroke-width="1.5"/>
+  <rect x="264" y="388" width="60" height="66" rx="2" fill="#946a4e" stroke="#c19070" stroke-width="1.5"/>
+  <!-- handles -->
+  <rect x="148" y="418" width="20" height="4" rx="2" fill="#e7d6b8"/>
+  <rect x="216" y="418" width="20" height="4" rx="2" fill="#e7d6b8"/>
+  <rect x="284" y="418" width="20" height="4" rx="2" fill="#e7d6b8"/>
+</g>
+
+<!-- ============ LARGE CAMERA SHUTTER (top-right wall) ============ -->
+<g id="obj-shutter">
+  <!-- housing -->
+  <rect x="765" y="54" width="130" height="42" rx="4" fill="#0f1e28" stroke="#96abaf" stroke-width="3"/>
+  <!-- aperture blades -->
+  <g transform="translate(830 75)">
+    <circle r="17" fill="#1a2c34" stroke="#c9b992" stroke-width="1.5"/>
+    <g stroke="#c9b992" stroke-width="1.5" fill="#0f1e28">
+      <path d="M0 -14 L12 -6 L0 0 Z"/>
+      <path d="M12 -6 L12 6 L0 0 Z"/>
+      <path d="M12 6 L0 14 L0 0 Z"/>
+      <path d="M0 14 L-12 6 L0 0 Z"/>
+      <path d="M-12 6 L-12 -6 L0 0 Z"/>
+      <path d="M-12 -6 L0 -14 L0 0 Z"/>
+    </g>
+  </g>
+  <!-- lens ring shadow -->
+  <circle cx="785" cy="75" r="7" fill="#1a2c34" stroke="#c9b992" stroke-width="1.5"/>
+</g>
+
+<!-- ============ TWO SEPARATED CONTROLS (upper mid-wall) ============ -->
+<!-- wires from each control up to the shutter -->
+<path d="M414 128 C 500 60, 700 40, 810 68" fill="none" stroke="#ffd98d" stroke-width="3.5" stroke-dasharray="6 5" opacity="0.95"/>
+<path d="M708 148 C 760 110, 800 90, 830 78" fill="none" stroke="#ffd98d" stroke-width="3.5" stroke-dasharray="6 5" opacity="0.95"/>
+
+<g id="obj-control-left">
+  <rect x="378" y="128" width="72" height="52" rx="6" fill="#26383b" stroke="#e0b26a" stroke-width="3"/>
+  <!-- joystick -->
+  <path d="M400 168 L420 148" stroke="#f0d9a4" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="421" cy="146" r="7" fill="#f0d9a4"/>
+  <!-- button -->
+  <circle cx="435" cy="168" r="5" fill="#d68745"/>
+</g>
+
+<g id="obj-control-right">
+  <rect x="672" y="148" width="72" height="52" rx="6" fill="#26383b" stroke="#e0b26a" stroke-width="3"/>
+  <path d="M694 188 L714 168" stroke="#f0d9a4" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="715" cy="166" r="7" fill="#f0d9a4"/>
+  <circle cx="729" cy="188" r="5" fill="#d68745"/>
+</g>
+
+<!-- attention-glow rings anchored on the two controls (used by the Emphasis slider) -->
+<circle cx="414" cy="154" r="60" fill="url(#focus)" class="attention-glow" opacity="0"/>
+<circle cx="708" cy="174" r="60" fill="url(#focus)" class="attention-glow" opacity="0"/>
+
+<!-- ============ WORKBENCH (center) ============ -->
+<g id="obj-bench">
+  <!-- soft cast shadow -->
+  <rect x="392" y="222" width="285" height="127" rx="7" fill="#08171e" opacity="0.55"/>
+  <!-- table top -->
+  <rect x="385" y="212" width="285" height="127" rx="7" fill="url(#bench)" stroke="#8b5a30" stroke-width="4"/>
+  <!-- wood-grain highlights -->
+  <path d="M395 232 H660 M395 260 H660 M395 288 H660 M395 316 H660" stroke="#c99667" stroke-width="0.7" opacity="0.55"/>
+</g>
+
+<!-- Drawing (paper) on the bench -->
+<g id="obj-drawing">
+  <rect x="470" y="235" width="112" height="78" rx="2" fill="#efe7cf" stroke="#7c6a41" stroke-width="1.5" transform="rotate(-6 526 274)"/>
+  <!-- little sketch marks -->
+  <path d="M488 253 L560 253 M488 265 L544 265 M488 277 L560 277 M494 290 L520 290" stroke="#3d5b57" stroke-width="1.6" transform="rotate(-6 526 274)"/>
+  <path d="M540 305 L560 293 L575 302" fill="none" stroke="#3d5b57" stroke-width="1.6" transform="rotate(-6 526 274)"/>
+</g>
+
+<!-- Tool: wrench (below-left of the sketch, along the bench, so paper reads as its own object) -->
+<g id="obj-tool">
+  <path d="M405 330 L445 328 M445 328 l-5 -7 l-9 3" fill="none" stroke="#233542" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="403" cy="330" r="5" fill="#233542"/>
+</g>
+
+<!-- Upright cup -->
+<g id="obj-cup-upright">
+  <circle cx="620" cy="240" r="13" fill="#e6dfbf" stroke="#4d626c" stroke-width="3"/>
+  <circle cx="620" cy="240" r="6" fill="#5b432f"/>
+</g>
+
+<!-- Tipped cup + coffee spill -->
+<g id="obj-cup-spill">
+  <!-- puddle -->
+  <path d="M598 300 Q 640 292 660 306 Q 665 320 640 322 Q 615 320 598 314 Z" fill="#3f2f24" opacity="0.85" filter="url(#soften)"/>
+  <path d="M604 302 Q 640 296 656 306" fill="none" stroke="#5b432f" stroke-width="1.3" opacity="0.9"/>
+  <!-- tipped cup body -->
+  <rect x="596" y="290" width="26" height="20" rx="6" fill="#e6dfbf" stroke="#4d626c" stroke-width="2.4" transform="rotate(24 609 300)"/>
+  <!-- handle -->
+  <path d="M592 293 q-9 -3 -6 6 q3 7 8 3" fill="none" stroke="#e6dfbf" stroke-width="4"/>
+</g>
+
+<!-- ============ CHAIRS ============ -->
+<!-- Chair TUCKED at left of bench -->
+<g id="chair-left">
+  <rect x="320" y="245" width="55" height="70" rx="8" fill="#3a6a72" stroke="#a1c6c2" stroke-width="3"/>
+  <path d="M311 246 v68" stroke="#a1c6c2" stroke-width="8"/>
+</g>
+
+<!-- Chair PULLED AWAY at right, rotated -->
+<g id="chair-away" transform="rotate(-24 723 372)">
+  <rect x="696" y="337" width="55" height="70" rx="8" fill="#3a6a72" stroke="#a1c6c2" stroke-width="3"/>
+  <path d="M760 339 v68" stroke="#a1c6c2" stroke-width="8"/>
+</g>
+<!-- motion arc showing chair was pushed back -->
+<path d="M680 276 q46 42 43 96" fill="none" stroke="#b7d3cd" stroke-width="2" stroke-dasharray="4 7" opacity="0.65"/>
+
+<!-- ============ TALL CABINET (right wall) ============ -->
+<g id="obj-tall-cabinet">
+  <rect x="797" y="325" width="86" height="135" rx="6" fill="#182f38" stroke="#728a90" stroke-width="3"/>
+  <!-- shelves -->
+  <path d="M807 350 H873 M807 385 H873 M807 420 H873" stroke="#a2bebb" stroke-width="1.6"/>
+  <!-- items on shelves -->
+  <rect x="815" y="358" width="18" height="22" fill="#a97a4c" opacity="0.75"/>
+  <rect x="842" y="358" width="24" height="22" fill="#4d7770" opacity="0.75"/>
+  <rect x="815" y="393" width="30" height="22" fill="#c9b992" opacity="0.75"/>
+  <rect x="852" y="393" width="14" height="22" fill="#a97a4c" opacity="0.75"/>
+  <rect x="815" y="428" width="52" height="22" fill="#4d7770" opacity="0.75"/>
+</g>
+
+<!-- ============ ENTRY DOOR (bottom) ============ -->
+<g id="obj-entry">
+  <rect x="392" y="498" width="216" height="6" fill="#b3c6c0"/>
+  <path d="M395 504 v -62 q 108 0 108 62" fill="none" stroke="#88a3a5" stroke-width="2.5" stroke-dasharray="4 5"/>
+  <circle cx="500" cy="502" r="4" fill="#dcb87a"/>
+</g>
+
+<!-- =====================================================
+     ALWAYS-VISIBLE LABELS with leader lines and pills
+     ===================================================== -->
+<g id="callouts" font-size="15" font-weight="700">
+
+  <!-- WINDOW -->
+  <path d="M180 92 L180 108" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="128" y="108" width="104" height="26" rx="13" fill="#f4e6c8"/>
+  <text x="180" y="126" text-anchor="middle" fill="#0f2731">Window</text>
+
+  <!-- 3-DRAWER CABINET -->
+  <path d="M100 420 L118 420" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="8" y="405" width="94" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="55" y="418" text-anchor="middle" fill="#0f2731">Drawer</text>
+  <text x="55" y="432" text-anchor="middle" fill="#0f2731">cabinet</text>
+
+  <!-- CAMERA SHUTTER -->
+  <path d="M900 84 L925 84" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="920" y="70" width="72" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="956" y="82" text-anchor="middle" fill="#0f2731">Camera</text>
+  <text x="956" y="96" text-anchor="middle" fill="#0f2731">shutter</text>
+
+  <!-- CONTROL LEFT -->
+  <path d="M414 128 L414 100" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="355" y="70" width="118" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="414" y="83" text-anchor="middle" fill="#0f2731">Hand control</text>
+  <text x="414" y="96" text-anchor="middle" fill="#0f2731">(player 1)</text>
+
+  <!-- CONTROL RIGHT -->
+  <path d="M747 174 L780 174" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="782" y="160" width="118" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="841" y="173" text-anchor="middle" fill="#0f2731">Hand control</text>
+  <text x="841" y="186" text-anchor="middle" fill="#0f2731">(player 2)</text>
+
+  <!-- WORKBENCH -->
+  <path d="M527 210 L527 195" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="461" y="192" width="132" height="26" rx="13" fill="none"/>
+  <text x="527" y="188" text-anchor="middle" fill="#f4e6c8" font-size="16" stroke="#0f2731" stroke-width="0.6" paint-order="stroke">Workbench</text>
+
+  <!-- DRAWING -->
+  <path d="M540 265 L540 375" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="484" y="374" width="112" height="26" rx="13" fill="#f4e6c8"/>
+  <text x="540" y="392" text-anchor="middle" fill="#0f2731">Sketch on paper</text>
+
+  <!-- TOOL -->
+  <path d="M425 330 L425 405" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="369" y="404" width="112" height="26" rx="13" fill="#f4e6c8"/>
+  <text x="425" y="422" text-anchor="middle" fill="#0f2731">Wrench (tool)</text>
+
+  <!-- CUP UPRIGHT -->
+  <path d="M620 253 L620 440" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="562" y="440" width="116" height="26" rx="13" fill="#f4e6c8"/>
+  <text x="620" y="458" text-anchor="middle" fill="#0f2731">Upright cup</text>
+
+  <!-- SPILLED CUP -->
+  <path d="M648 316 L648 285 L905 285 L925 275" stroke="#f4e6c8" stroke-width="1.5" fill="none" marker-end="url(#arrow)"/>
+  <rect x="920" y="248" width="72" height="42" rx="14" fill="#f4e6c8"/>
+  <text x="956" y="262" text-anchor="middle" fill="#0f2731">Tipped</text>
+  <text x="956" y="276" text-anchor="middle" fill="#0f2731">cup with</text>
+  <text x="956" y="288" text-anchor="middle" fill="#0f2731" font-size="12">coffee spill</text>
+
+  <!-- CHAIR TUCKED -->
+  <path d="M345 315 L345 355" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="235" y="354" width="220" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="345" y="367" text-anchor="middle" fill="#0f2731">Chair tucked in</text>
+  <text x="345" y="380" text-anchor="middle" fill="#0f2731">(on the left)</text>
+
+  <!-- CHAIR PULLED AWAY -->
+  <path d="M760 440 L760 476" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="640" y="474" width="234" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="757" y="487" text-anchor="middle" fill="#0f2731">Chair pulled away</text>
+  <text x="757" y="500" text-anchor="middle" fill="#0f2731">(turned at an angle)</text>
+
+  <!-- TALL CABINET -->
+  <path d="M883 380 L920 380" stroke="#f4e6c8" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <rect x="915" y="365" width="82" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="956" y="378" text-anchor="middle" fill="#0f2731">Storage</text>
+  <text x="956" y="392" text-anchor="middle" fill="#0f2731">cabinet</text>
+
+  <!-- ENTRY -->
+  <rect x="435" y="530" width="130" height="30" rx="14" fill="#f4e6c8"/>
+  <text x="500" y="548" text-anchor="middle" fill="#0f2731">Entry door</text>
+
+  <!-- (dashed wires speak for themselves; no separate caption needed) -->
+</g>
+
+<!-- ORIGINAL "reveal labels" group kept intact so the lab's Show evidence labels button still works -->
+<g id="labels" visibility="hidden" font-family="system-ui" font-size="20" font-weight="650">
+  <rect x="541" y="347" width="148" height="38" rx="4" fill="#f0e4cc"/>
+  <text x="553" y="373" fill="#15333d">Spilled cup</text>
+  <rect x="646" y="419" width="210" height="38" rx="4" fill="#f0e4cc"/>
+  <text x="658" y="445" fill="#15333d">Chair pulled away</text>
+  <rect x="496" y="106" width="230" height="38" rx="4" fill="#f0e4cc"/>
+  <text x="508" y="132" fill="#15333d">Separated controls</text>
+</g>
+
+<!-- Interactive hit targets kept in the SAME positions so lab.html crop math still works -->
 <g id="targets" fill="transparent" stroke="transparent" stroke-width="5">
-<rect class="target" data-clue="table" tabindex="0" role="button" aria-label="Inspect the table and cups" x="283" y="176" width="452" height="156" rx="7"/>
-<rect class="target" data-clue="chair" tabindex="0" role="button" aria-label="Inspect the chairs" x="670" y="342" width="104" height="116" rx="7"/>
-<rect class="target" data-clue="controls" tabindex="0" role="button" aria-label="Inspect the separated controls" x="243" y="18" width="516" height="92" rx="7"/>
-</g></svg></div><div class="controls"><section class="panel"><h2>What is the evidence?</h2><div class="cluebuttons"><button data-inspect="table">Table</button><button data-inspect="chair">Chairs</button><button data-inspect="controls">Controls</button><button id="wide" class="secondary">Wide view</button></div><p id="readout" role="status">Two workstations. A chair pulled away. A spilled cup. More than one history could produce this arrangement. Offer an observation, then a possible explanation.</p><p id="order">Your inspection order: none yet.</p><button id="reveal" class="secondary" aria-pressed="false">Show evidence labels</button></section><section class="panel"><h2>What gets noticed first?</h2><label for="attention">Emphasis on the controls</label><input type="range" id="attention" min="0" max="100" value="0"><p class="quiet">The objects stay in the same place. The contrast changes. Does attention move? Does your interpretation change?</p><p><strong>Visual Hierarchy:</strong> the order in which a design makes elements noticeable.</p><p><strong>Agency in this model:</strong> you choose where to look. You cannot change the past or operate the machinery.</p></section></div><div class="note"><b>A useful test</b><p>In Explore, let two people inspect the objects in different orders. Then run Directed sequence. What did the fixed sequence make easier to notice? What choice did it remove?</p><p>Observation: the chair is pulled away. Interpretation: someone left suddenly. Alternative: someone moved it to make room. What further evidence would distinguish them?</p></div><noscript><p>The diagram still supports observation and annotation. Compare the full view with a crop or by covering part of the projected image. The controls require JavaScript.</p></noscript></main><footer>USC CTIN 290 · September 23, 2026 · Course version 190e3e9ac080954e</footer><script>
+  <rect class="target" data-clue="table" tabindex="0" role="button" aria-label="Inspect the table and cups" x="385" y="212" width="285" height="127" rx="7"/>
+  <rect class="target" data-clue="chair" tabindex="0" role="button" aria-label="Inspect the chairs" x="685" y="325" width="90" height="90" rx="7"/>
+  <rect class="target" data-clue="controls" tabindex="0" role="button" aria-label="Inspect the separated controls" x="376" y="112" width="495" height="100" rx="7"/>
+</g>
+</svg></div><div class="controls"><section class="panel"><h2>What is the evidence?</h2><div class="cluebuttons"><button data-inspect="table">Table</button><button data-inspect="chair">Chairs</button><button data-inspect="controls">Controls</button><button id="wide" class="secondary">Wide view</button></div><p id="readout" role="status">Two workstations. A chair pulled away. A spilled cup. More than one history could produce this arrangement. Offer an observation, then a possible explanation.</p><p id="order">Your inspection order: none yet.</p><button id="reveal" class="secondary" aria-pressed="false">Show evidence labels</button></section><section class="panel"><h2>What gets noticed first?</h2><label for="attention">Emphasis on the controls</label><input type="range" id="attention" min="0" max="100" value="0"><p class="quiet">The objects stay in the same place. The contrast changes. Does attention move? Does your interpretation change?</p><p><strong>Visual Hierarchy:</strong> the order in which a design makes elements noticeable.</p><p><strong>Agency in this model:</strong> you choose where to look. You cannot change the past or operate the machinery.</p></section></div><div class="note"><b>A useful test</b><p>In Explore, let two people inspect the objects in different orders. Then run Directed sequence. What did the fixed sequence make easier to notice? What choice did it remove?</p><p>Observation: the chair is pulled away. Interpretation: someone left suddenly. Alternative: someone moved it to make room. What further evidence would distinguish them?</p></div><noscript><p>The diagram still supports observation and annotation. Compare the full view with a crop or by covering part of the projected image. The controls require JavaScript.</p></noscript></main><footer>USC CTIN 290 · September 23, 2026 · Course version 190e3e9ac080954e</footer><script>
 const room=document.getElementById('room'),readout=document.getElementById('readout'),status=document.getElementById('mode-status'),copy=document.getElementById('mode-copy');
 let mode='observe',timer=null,order=[],labels=false;
-const clues={table:{box:'243 136 532 236',text:'Visible: hand tools, two monitors, a tape measure and a tipped cup with a spill. Possible readings include work in progress, interruption or ordinary clutter. The spill alone cannot establish danger.'},chair:{box:'200 150 640 340',text:'Visible: one chair is tucked beside the table; another is pulled away at an angle. Someone may have left, changed tasks or made room. Position is evidence; urgency is an inference.'},controls:{box:'203 0 596 190',text:'Visible: two separated controls connect toward the shutter. The arrangement invites questions about coordination. It does not prove two players are mechanically required.'}};
+const clues={table:{box:'340 180 370 225',text:'Visible: a marked drawing, tools, an upright cup and a tipped cup with a spill. Possible readings include work in progress, interruption or ordinary clutter. The spill alone cannot establish danger.'},chair:{box:'275 220 540 250',text:'Visible: one chair is tucked beside the table; another is pulled away at an angle. Someone may have left, changed tasks or made room. Position is evidence; urgency is an inference.'},controls:{box:'335 55 580 200',text:'Visible: two separated controls connect toward the shutter. The arrangement invites questions about coordination. It does not prove two players are mechanically required.'}};
 function stop(){if(timer){clearInterval(timer);timer=null}}
 function view(key,record=true){let c=clues[key];room.setAttribute('viewBox',c.box);readout.textContent=c.text;if(record){order.push(key);document.getElementById('order').textContent='Your inspection order: '+order.join(' → ')}status.textContent=(mode==='directed'?'Directed view':'Chosen view')+' · '+key;}
 function wide(){room.setAttribute('viewBox','0 0 1000 580');status.textContent='Full room · Compare what was outside the crop';}
