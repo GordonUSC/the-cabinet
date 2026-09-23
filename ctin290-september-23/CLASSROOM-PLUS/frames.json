@@ -1,0 +1,223 @@
+{
+ "course_version": "190e3e9ac080954e",
+ "frames": [
+  {
+   "frame": "frames/finch-187.5.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 187.5,
+   "timecode": "3:07",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 187.5 -frames:v 1 (1280x720)",
+   "sha256_16": "b9797ea344a9160e"
+  },
+  {
+   "frame": "frames/finch-55.5.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 55.5,
+   "timecode": "0:55",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 55.5 -frames:v 1 (1280x720)",
+   "sha256_16": "d1a81a055c0a217c"
+  },
+  {
+   "frame": "frames/finch-94.0.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 94.0,
+   "timecode": "1:34",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 94.0 -frames:v 1 (1280x720)",
+   "sha256_16": "ec0f7f7e66acf9eb"
+  },
+  {
+   "frame": "frames/finch-105.0.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 105.0,
+   "timecode": "1:45",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 105.0 -frames:v 1 (1280x720)",
+   "sha256_16": "c23530166105748f"
+  },
+  {
+   "frame": "frames/finch-110.5.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 110.5,
+   "timecode": "1:50",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 110.5 -frames:v 1 (1280x720)",
+   "sha256_16": "0428c710951d604e"
+  },
+  {
+   "frame": "frames/finch-193.0.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 193.0,
+   "timecode": "3:13",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 193.0 -frames:v 1 (1280x720)",
+   "sha256_16": "b710765639ed8b82"
+  },
+  {
+   "frame": "frames/finch-204.0.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 204.0,
+   "timecode": "3:24",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 204.0 -frames:v 1 (1280x720)",
+   "sha256_16": "d3c7095e3bf068cc"
+  },
+  {
+   "frame": "frames/finch-297.5.jpg",
+   "source": "What Remains of Edith Finch",
+   "kind": "GAMEPLAY CAPTURE",
+   "youtube_id": "wihGHNsPcjY",
+   "seconds": 297.5,
+   "timecode": "4:57",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 297.5 -frames:v 1 (1280x720)",
+   "sha256_16": "d9f58b87d6b5ab5e"
+  },
+  {
+   "frame": "frames/hades-8.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 8.0,
+   "timecode": "0:08",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 8.0 -frames:v 1 (1280x720)",
+   "sha256_16": "ed116fd118e2e856"
+  },
+  {
+   "frame": "frames/hades-64.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 64.0,
+   "timecode": "1:04",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 64.0 -frames:v 1 (1280x720)",
+   "sha256_16": "34b244e8b9b76b27"
+  },
+  {
+   "frame": "frames/hades-99.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 99.0,
+   "timecode": "1:39",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 99.0 -frames:v 1 (1280x720)",
+   "sha256_16": "274b17cebccc9653"
+  },
+  {
+   "frame": "frames/hades-106.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 106.0,
+   "timecode": "1:46",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 106.0 -frames:v 1 (1280x720)",
+   "sha256_16": "6729a613e5b218d7"
+  },
+  {
+   "frame": "frames/hades-120.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 120.0,
+   "timecode": "2:00",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 120.0 -frames:v 1 (1280x720)",
+   "sha256_16": "39154c6c738ada74"
+  },
+  {
+   "frame": "frames/hades-127.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 127.0,
+   "timecode": "2:07",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 127.0 -frames:v 1 (1280x720)",
+   "sha256_16": "dcd9312f702c3954"
+  },
+  {
+   "frame": "frames/hades-141.0.jpg",
+   "source": "Hades II launch trailer",
+   "kind": "TRAILER",
+   "youtube_id": "U8lJRcUeEMs",
+   "seconds": 141.0,
+   "timecode": "2:21",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 141.0 -frames:v 1 (1280x720)",
+   "sha256_16": "17cfa40131321b00"
+  },
+  {
+   "frame": "frames/tlou-7.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 7.0,
+   "timecode": "0:07",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 7.0 -frames:v 1 (1280x720)",
+   "sha256_16": "b1fca12ac8242cd3"
+  },
+  {
+   "frame": "frames/tlou-25.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 25.0,
+   "timecode": "0:25",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 25.0 -frames:v 1 (1280x720)",
+   "sha256_16": "2566578cd0a1d3ea"
+  },
+  {
+   "frame": "frames/tlou-31.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 31.0,
+   "timecode": "0:31",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 31.0 -frames:v 1 (1280x720)",
+   "sha256_16": "90313690cdb6ecbe"
+  },
+  {
+   "frame": "frames/tlou-49.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 49.0,
+   "timecode": "0:49",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 49.0 -frames:v 1 (1280x720)",
+   "sha256_16": "36fcf6ecf0ed4a8b"
+  },
+  {
+   "frame": "frames/tlou-55.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 55.0,
+   "timecode": "0:55",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 55.0 -frames:v 1 (1280x720)",
+   "sha256_16": "a8ea0211bca35418"
+  },
+  {
+   "frame": "frames/tlou-79.0.jpg",
+   "source": "The Last of Us",
+   "kind": "TV TRAILER",
+   "youtube_id": "uLtkt8BonwM",
+   "seconds": 79.0,
+   "timecode": "1:19",
+   "extraction": "yt-dlp full video, then ffmpeg -ss 79.0 -frames:v 1 (1280x720)",
+   "sha256_16": "44b244176dc839d4"
+  },
+  {
+   "frame": "frames/nd-qz.jpg",
+   "source": "The Last of Us Part I",
+   "kind": "GAME CAPTURE (PS5, official)",
+   "origin": "https://www.naughtydog.com/blog/the_last_of_us_part_i_hbo_show_bills_town_boston_qz",
+   "via": "Astra visual-sources.json, TLOUBlog_Ep003_QZ1-Copy.png, resized 1920 to 1280",
+   "sha256_16": "e90a80ca5d1b0f2f"
+  }
+ ]
+}

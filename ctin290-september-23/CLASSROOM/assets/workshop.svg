@@ -1,0 +1,41 @@
+<svg viewBox="0 0 1000 580" role="img" aria-labelledby="scene-title scene-desc" xmlns="http://www.w3.org/2000/svg">
+<title id="scene-title">A fictional workshop viewed from above</title><desc id="scene-desc">Two workstations face each other across a long table. One chair is tucked in, the other pulled away. A cup has spilled beside a tool. Two separated controls are connected to a shutter. A window casts light across the floor. The diagram supports more than one interpretation.</desc>
+<defs><pattern id="floor" width="100" height="48" patternUnits="userSpaceOnUse"><rect width="100" height="48" fill="#29414b"/><path d="M0 47H100M99 0V48" stroke="#385461" stroke-width="2"/></pattern><pattern id="bench" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#9e7044"/><path d="M0 8H16" stroke="#b58958" stroke-width="1"/></pattern><linearGradient id="light" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b7dacd" stop-opacity=".3"/><stop offset="1" stop-color="#b7dacd" stop-opacity="0"/></linearGradient><radialGradient id="focus"><stop offset="0" stop-color="#ffd98d" stop-opacity=".55"/><stop offset="1" stop-color="#ffd98d" stop-opacity="0"/></radialGradient></defs>
+<rect width="1000" height="580" fill="#102832"/>
+<path d="M85 62H915V498H630V518H370V498H85Z" fill="url(#floor)" stroke="#70878c" stroke-width="12"/>
+<path d="M154 70H335L470 360 154 430Z" fill="url(#light)"/>
+<rect x="138" y="53" width="200" height="17" rx="4" fill="#c6e0da"/><path d="M185 51V74M236 51V74M287 51V74" stroke="#163740" stroke-width="7"/>
+<path d="M156 33l8-15m24 15l8-15m24 15l8-15m24 15l8-15m24 15l8-15m24 15l8-15" stroke="#8bbfbf" stroke-width="2"/>
+<text x="150" y="106" fill="#acd0cf" font-size="18" font-family="system-ui">WINDOW</text>
+<rect x="114" y="372" width="205" height="82" rx="6" fill="#182f38" stroke="#728084" stroke-width="5"/>
+<rect x="130" y="382" width="45" height="60" fill="#8e654d"/><rect x="184" y="382" width="46" height="60" fill="#4d776e"/><rect x="239" y="382" width="64" height="60" fill="#8e654d"/>
+<path d="M136 400h31m24 14h31m25-12h46" stroke="#bfd4c6" stroke-width="3"/>
+<rect x="385" y="212" width="285" height="127" rx="7" fill="#112630" opacity=".6" transform="translate(8,10)"/>
+<rect x="385" y="212" width="285" height="127" rx="7" fill="url(#bench)" stroke="#c49b66" stroke-width="5"/>
+<path d="M407 235l28 17m5 5l24 17m155 38l-26-14m-9-3l-35-20" stroke="#e0b882" stroke-width="2" opacity=".7"/>
+<rect x="470" y="237" width="109" height="74" fill="#d5ccb0" transform="rotate(-7 524 274)"/><path d="M493 250l26 38 35-31m-55 45h58" fill="none" stroke="#49716e" stroke-width="4"/>
+<path d="M415 300l33-31m-9-1l9 1 1 10" stroke="#273f4a" stroke-width="10" fill="none"/>
+<circle cx="617" cy="241" r="13" fill="#dfdabd" stroke="#47616a" stroke-width="5"/><circle cx="617" cy="241" r="7" fill="#574033"/>
+<path d="M610 295q20-12 35 1q9 8-2 14q-18 8-35-2Z" fill="#352e35" opacity=".9"/><rect x="599" y="284" width="24" height="19" rx="6" fill="#dad0b4" transform="rotate(28 610 295)"/><path d="M598 287q-13-6-10 6q3 9 10 3" fill="none" stroke="#dad0b4" stroke-width="5"/>
+<g id="chair-left"><rect x="318" y="243" width="54" height="69" rx="8" fill="#315e66" stroke="#8eb6b2" stroke-width="4"/><path d="M309 245v66" stroke="#8eb6b2" stroke-width="9"/></g>
+<g id="chair-away" transform="rotate(-22 723 369)"><rect x="696" y="337" width="54" height="69" rx="8" fill="#315e66" stroke="#8eb6b2" stroke-width="4"/><path d="M759 339v66" stroke="#8eb6b2" stroke-width="9"/></g>
+<path d="M680 276q40 38 41 76" fill="none" stroke="#aec9c3" stroke-width="3" stroke-dasharray="5 8" opacity=".55"/>
+<rect x="776" y="56" width="111" height="35" fill="#101f2b" stroke="#81979c" stroke-width="4"/><path d="M788 63v22m14-22v22m14-22v22m14-22v22m14-22v22m14-22v22m14-22v22" stroke="#9da99d" stroke-width="6"/>
+<path d="M402 146H832V91M829 183V91" stroke="#ad854a" stroke-width="7" fill="none"/><path d="M402 146H832V91M829 183V91" stroke="#edd090" stroke-width="2" fill="none"/>
+<circle cx="412" cy="149" r="51" fill="url(#focus)" class="attention-glow" opacity="0"/><circle cx="828" cy="184" r="51" fill="url(#focus)" class="attention-glow" opacity="0"/>
+<rect x="380" y="124" width="65" height="50" rx="6" fill="#26383b" stroke="#daa650" stroke-width="4"/><path d="M398 157l24-21" stroke="#eecc91" stroke-width="7"/><circle cx="425" cy="134" r="9" fill="#d68745"/>
+<rect x="797" y="159" width="65" height="50" rx="6" fill="#26383b" stroke="#daa650" stroke-width="4"/><path d="M813 192l24-21" stroke="#eecc91" stroke-width="7"/><circle cx="840" cy="169" r="9" fill="#d68745"/>
+<rect x="797" y="329" width="79" height="123" rx="7" fill="#162e38" stroke="#587781" stroke-width="5"/>
+<path d="M808 344h57m-48 26h37m-48 25h58m-55 33h45" stroke="#9ab7b3" stroke-width="4"/>
+<path d="M394 515H600" stroke="#aab9b2" stroke-width="7"/><path d="M397 510v-61q75 0 74 61" fill="none" stroke="#708a8f" stroke-width="3"/>
+<text x="440" y="553" fill="#a9c9c4" font-size="18" font-family="system-ui">ENTRY</text>
+<g id="labels" visibility="hidden" font-family="system-ui" font-size="20" font-weight="650">
+<rect x="541" y="347" width="148" height="38" rx="4" fill="#f0e4cc"/><text x="553" y="373" fill="#15333d">Spilled cup</text>
+<rect x="646" y="419" width="210" height="38" rx="4" fill="#f0e4cc"/><text x="658" y="445" fill="#15333d">Chair pulled away</text>
+<rect x="496" y="106" width="230" height="38" rx="4" fill="#f0e4cc"/><text x="508" y="132" fill="#15333d">Separated controls</text>
+</g>
+<g id="targets" fill="transparent" stroke="transparent" stroke-width="5">
+<rect class="target" data-clue="table" tabindex="0" role="button" aria-label="Inspect the table and cups" x="385" y="212" width="285" height="127" rx="7"/>
+<rect class="target" data-clue="chair" tabindex="0" role="button" aria-label="Inspect the chairs" x="685" y="325" width="90" height="90" rx="7"/>
+<rect class="target" data-clue="controls" tabindex="0" role="button" aria-label="Inspect the separated controls" x="376" y="112" width="495" height="100" rx="7"/>
+</g></svg>
