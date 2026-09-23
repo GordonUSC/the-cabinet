@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Zeds Dead
+BEGIN:VEVENT
+UID:zeds-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261003
+DTEND;VALUE=DATE:20261004
+SUMMARY:Zeds Dead with friends
+LOCATION:Grand Park\, Los Angeles
+DESCRIPTION:Sometimes the company is the music. With Solo. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/zeds.html
+URL:https://www.insomniac.com/events/zeds-dead-2026-10-03-los-angeles-ca/
+END:VEVENT
+END:VCALENDAR

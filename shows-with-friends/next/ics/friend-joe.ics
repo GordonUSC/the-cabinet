@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Joe
+BEGIN:VEVENT
+UID:pride-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261110
+SUMMARY:Palm Springs · Pride + Birthday with friends
+LOCATION:Downtown + Arenas District · Birthday November 9\, Palm Springs
+DESCRIPTION:Pride. My birthday. Our people. With Shannon\, Joe\, Mason\, Alex Rogers. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pride.html
+URL:https://www.pspride.org/news
+END:VEVENT
+BEGIN:VEVENT
+UID:countdown-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261231
+DTEND;VALUE=DATE:20270102
+SUMMARY:Countdown with friends
+LOCATION:NOS Event Center\, San Bernardino
+DESCRIPTION:A new year. Our lovely old tradition. With Joe. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/countdown.html
+URL:https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-return-to-nos-event-center-for-2026-festival
+END:VEVENT
+BEGIN:VEVENT
+UID:sincity-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270114
+DTEND;VALUE=DATE:20270119
+SUMMARY:Sin City · Dodgeball with friends
+LOCATION:Sin City Classic Sports Festival\, Las Vegas
+DESCRIPTION:Good company. Great dodgeball. With Joe\, Matt Kaplan\, Andrew Ketchum\, Casey Reed. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/sincity.html
+URL:https://www.sincityclassic.org/
+END:VEVENT
+END:VCALENDAR

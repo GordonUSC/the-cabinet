@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Kara
+BEGIN:VEVENT
+UID:niteharts-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261009
+DTEND;VALUE=DATE:20261012
+SUMMARY:Niteharts with friends
+LOCATION:Snapdragon Stadium grounds\, San Diego
+DESCRIPTION:One must-see each. One discovery none of us came for. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/niteharts.html
+URL:https://www.niteharts.com/
+END:VEVENT
+BEGIN:VEVENT
+UID:latenite-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261011
+DTEND;VALUE=DATE:20261012
+SUMMARY:Latenite with friends
+LOCATION:Pechanga Arena\, San Diego
+DESCRIPTION:If the night has one more chapter in it. With Brennan\, Kelly\, Kara\, Quinn. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/latenite.html
+URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
+END:VEVENT
+BEGIN:VEVENT
+UID:pokemon-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261024
+DTEND;VALUE=DATE:20261025
+SUMMARY:Pokémon Night Out with friends
+LOCATION:Intuit Dome\, Inglewood
+DESCRIPTION:Our playful selves get the night out. With Brennan\, Kelly\, Kara. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pokemon.html
+URL:https://30.pokemon.com/en-us/night-out
+END:VEVENT
+END:VCALENDAR

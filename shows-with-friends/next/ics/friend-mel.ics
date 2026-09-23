@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Mel
+BEGIN:VEVENT
+UID:shambhala-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270723
+DTEND;VALUE=DATE:20270727
+SUMMARY:Shambhala with friends
+LOCATION:Salmo River Ranch\, British Columbia
+DESCRIPTION:Find each other between the trees. With Drake\, Mel\, Dave Vermillion\, Trent\, Mason\, Myke Bailey\, Jacob Ferrufino. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/shambhala.html
+URL:https://www.shambhalamusicfestival.com/tickets-camping
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,16 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:John Summit
+BEGIN:VEVENT
+UID:summit-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261212
+DTEND;VALUE=DATE:20261213
+SUMMARY:John Summit with friends
+LOCATION:LA Memorial Coliseum\, Los Angeles
+DESCRIPTION:A sidewalk hello. A much bigger next chapter. With Room for you. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/summit.html
+URL:https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/
+END:VEVENT
+END:VCALENDAR

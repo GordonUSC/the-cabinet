@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Shannon
+BEGIN:VEVENT
+UID:folsom-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:Folsom Street Fair with friends
+LOCATION:Folsom Street · SoMa · 11 AM to 6 PM\, San Francisco
+DESCRIPTION:A familiar city. A friend for the ages. With Shannon. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/folsom.html
+URL:https://www.folsomstreet.org/folsom-street-fair-1
+END:VEVENT
+BEGIN:VEVENT
+UID:pride-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261110
+SUMMARY:Palm Springs · Pride + Birthday with friends
+LOCATION:Downtown + Arenas District · Birthday November 9\, Palm Springs
+DESCRIPTION:Pride. My birthday. Our people. With Shannon\, Joe\, Mason\, Alex Rogers. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/pride.html
+URL:https://www.pspride.org/news
+END:VEVENT
+END:VCALENDAR

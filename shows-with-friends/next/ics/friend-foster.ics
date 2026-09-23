@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//After Hours Mixer//EN
+CALSCALE:GREGORIAN
+X-WR-CALNAME:Nights with Foster
+BEGIN:VEVENT
+UID:ggp-games-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270301
+DTEND;VALUE=DATE:20270302
+SUMMARY:GGP · Zero Proof with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Pull up a chair. With Eric Francksen\, Brennan\, Alex Rogers\, Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-games.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:ggp-mixer-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20270302
+DTEND;VALUE=DATE:20270303
+SUMMARY:GGP · The Mixer with friends
+LOCATION:The Foundry SF · 1425 Folsom Street at 10th\, San Francisco
+DESCRIPTION:Our people. Behind the decks. With Brennan\, Alex Rogers\, Sam\, Foster\, Georgia\, Eric Francksen\, Dave Vermillion\, Trent. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/ggp-mixer.html
+URL:https://gaygamingpros.org/
+END:VEVENT
+BEGIN:VEVENT
+UID:olympics-swf@gordonusc.github.io
+DTSTAMP:20260923T000000Z
+DTSTART;VALUE=DATE:20280715
+DTEND;VALUE=DATE:20280719
+SUMMARY:LA28 · With Foster with friends
+LOCATION:Squash + table tennis\, Los Angeles
+DESCRIPTION:The games are new. The friendship is the throughline. With Foster. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/olympics.html
+URL:https://la28.org/
+END:VEVENT
+END:VCALENDAR
