@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<title>Cale's Pick · Gryphus 2027</title>
+<meta name="description" content="Four choices, one screen. The Gryphus 2027 design studio narrowed to the picks that matter.">
+<style>
+@font-face{font-family:Barlow;src:url('../../assets/BarlowCondensed-Black.ttf');font-display:swap}
+@font-face{font-family:Switzer;src:url('../../assets/body.woff2') format('woff2');font-display:swap}
+:root{--cream:#f7f3e9;--paper:#efe9da;--forest:#183c30;--ink:#16211b;--orange:#ff5125;--muted:#5d665f;--line:#d7cfbd;
+  --pick-bg:#F2EFE2;--pick-a:#294739;--pick-b:#C49B45;--pick-c:#A6B39A;--pick-d:#23394C}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.5 Switzer,system-ui,-apple-system,sans-serif}
+a{color:inherit}
+.display{font-family:Barlow,'Arial Narrow',Impact,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.01em;line-height:.88;margin:0}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin:0 0 10px;color:var(--muted)}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 20px;border-bottom:1px solid var(--line)}
+header.top b{font-family:Barlow,Impact,sans-serif;font-size:22px;color:var(--forest);letter-spacing:.02em}
+header.top a{font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor}
+.intro{padding:40px 20px 8px;max-width:1240px;margin:0 auto;display:grid;gap:18px}
+.intro h1{font-size:clamp(56px,11vw,132px);color:var(--forest)}
+.intro h1 em{font-style:normal;color:var(--orange)}
+.intro p{margin:0;max-width:34em;font-size:17px;text-wrap:pretty}
+.wrap{max-width:1240px;margin:0 auto;padding:12px 20px 120px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+.wrap>*{min-width:0}
+@media(min-width:980px){.wrap{grid-template-columns:minmax(0,1fr) 400px;align-items:start}.kit{position:sticky;top:18px}}
+fieldset{border:0;margin:0 0 34px;padding:0;min-width:0}
+legend{display:flex;align-items:baseline;gap:12px;padding:0;margin:0 0 14px;width:100%}
+legend .n{font-family:Barlow,Impact,sans-serif;font-size:44px;color:var(--orange);line-height:.8}
+legend .t{font-family:Barlow,Impact,sans-serif;font-size:clamp(30px,5vw,44px);text-transform:uppercase;color:var(--forest);line-height:.9}
+legend small{margin-left:auto;font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
+.row{display:grid;gap:12px;grid-auto-flow:column;grid-auto-columns:minmax(210px,1fr);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 12px;margin:0 -2px}
+.row.five{grid-auto-columns:minmax(170px,1fr)}
+.opt{position:relative;scroll-snap-align:start;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.card{display:flex;flex-direction:column;height:100%;background:#fff;border:2px solid var(--line);border-radius:6px;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.card img{display:block;width:100%;height:auto;background:var(--paper)}
+.row.dirs .card img{aspect-ratio:8/5;object-fit:cover}
+.row.five .card img{aspect-ratio:1;object-fit:cover}
+.row.logos .card img{aspect-ratio:600/365;object-fit:contain;padding:14px;background:var(--cream)}
+.row.merch .card img{aspect-ratio:1/1.25;object-fit:cover;object-position:top}
+.cap{padding:10px 12px 12px;display:grid;gap:2px}
+.cap b{font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.cap span{font-size:13px;color:var(--muted)}
+.sw{display:flex;gap:4px;margin-top:6px}.sw i{width:16px;height:16px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+.opt:hover .card{transform:translateY(-2px)}
+.opt input:focus-visible+.card{outline:3px solid var(--orange);outline-offset:3px}
+.opt input:checked+.card{border-color:var(--forest);box-shadow:0 0 0 2px var(--forest),0 10px 26px -14px rgba(24,60,48,.55)}
+.opt input:checked+.card .cap b::after{content:"  ✓ PICKED";color:var(--orange)}
+.later{display:inline-flex;align-items:center;gap:8px;margin-top:4px;font-size:13px;color:var(--muted);cursor:pointer}
+.later input{accent-color:var(--forest)}
+.kit{background:var(--forest);color:var(--cream);border-radius:8px;padding:20px;display:grid;gap:14px}
+.kit .eyebrow{color:#b9c8bb}
+.kit h2{font-size:48px}
+.stage{position:relative;border-radius:6px;overflow:hidden;aspect-ratio:8/5;background:#0f241c}
+.stage>img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;right:10px;bottom:10px;width:clamp(120px,40%,190px);background:var(--pick-bg);border-radius:6px;padding:8px 10px;box-shadow:0 8px 24px -8px rgba(0,0,0,.6)}
+.badge img{width:100%;display:block}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.duo figure{margin:0;background:#0f241c;border-radius:6px;overflow:hidden}
+.duo img{width:100%;aspect-ratio:1;object-fit:cover;object-position:top;display:block}
+.duo figcaption{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;color:#b9c8bb}
+.palette{display:flex;height:22px;border-radius:4px;overflow:hidden}.palette i{flex:1}
+.summary{list-style:none;margin:0;padding:0;display:grid;gap:4px;font-size:14px}
+.summary li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(247,243,233,.15);padding:5px 0}
+.summary li span{color:#b9c8bb}
+.summary li b.pending{color:#e8b48f;font-weight:600}
+textarea{width:100%;min-height:74px;border-radius:6px;border:1px solid rgba(247,243,233,.3);background:#10281f;color:var(--cream);font:inherit;font-size:15px;padding:10px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{appearance:none;border:0;background:var(--orange);color:#fff;font:700 14px/1 Switzer,sans-serif;letter-spacing:.04em;padding:14px 16px;border-radius:4px;cursor:pointer;text-decoration:none}
+.link{font-size:13px;font-weight:600;color:var(--cream)}
+#status{font-size:13px;color:#b9c8bb;margin:0;min-height:1.4em}
+.truth{font-size:12px;color:var(--muted);max-width:44em}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--forest);color:var(--cream);display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 16px calc(10px + env(safe-area-inset-bottom));z-index:5}
+.bar .count{font-family:Barlow,Impact,sans-serif;font-size:26px;text-transform:uppercase}
+.bar a{background:var(--orange);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:11px 14px;border-radius:4px}
+@media(min-width:980px){.bar{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><b>GRYPHUS</b><a href="../../design/">The full design studio</a></header>
+
+<section class="intro">
+  <p class="eyebrow">For Cale · Gryphus 2027 · design preview</p>
+  <h1 class="display">Four picks.<br><em>One Gryphus.</em></h1>
+  <p>The studio holds three websites, five outdoor looks, three logos and three merch collections. This page narrows it to the four choices that decide the rest. Tap one in each row and watch your Gryphus come together as you go. Your picks save on this device and carry straight into the full studio.</p>
+</section>
+
+<div class="wrap">
+<form id="pick" action="#kit">
+  <fieldset>
+    <legend><span class="n">1</span><span class="t">The website</span><small>3 directions</small></legend>
+    <div class="row dirs">
+      <label class="opt"><input type="radio" name="website" value="field-guide"><span class="card"><img src="thumbs/field-guide.webp" width="800" height="500" alt="Field Guide: a full-bleed Hill Country sunset over riders on a trail, with RIDE THE HILLS. HEAR THE MUSIC. in white."><span class="cap"><b>Field Guide</b><span>Expansive. Outdoors. Alive.</span></span></span></label>
+      <label class="opt"><input type="radio" name="website" value="high-ground"><span class="card"><img src="thumbs/high-ground.webp" width="800" height="500" alt="High Ground: a giant GRYPHUS wordmark on cream above a framed sunset photograph."><span class="cap"><b>High Ground</b><span>Bold. Graphic. Festival scale.</span></span></span></label>
+      <label class="opt"><input type="radio" name="website" value="basecamp"><span class="card"><img src="thumbs/basecamp.webp" width="800" height="500" alt="Basecamp: warm brown page with lowercase serif headline beside the real 2026 photo of Gordon and Cale at the ranch."><span class="cap"><b>Basecamp</b><span>Intimate. Warm. Together.</span></span></span></label>
+    </div>
+    <label class="later"><input type="radio" name="website" value="mix"> A mix of the three</label>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">2</span><span class="t">The outdoor look</span><small>5 looks</small></legend>
+    <div class="row five">
+      <label class="opt"><input type="radio" name="look" value="moss-mineral"><span class="card"><img src="../../looks/assets/moss-mineral.webp" width="400" height="400" loading="lazy" alt="Moss and Mineral: pine corduroy trucker, chalk mesh, trail-map poster with an ochre sun."><span class="cap"><b>Moss &amp; Mineral</b><span>Quiet, useful, of the land.</span><span class="sw"><i style="background:#294739"></i><i style="background:#A6B39A"></i><i style="background:#F2EFE2"></i><i style="background:#C49B45"></i></span></span></span></label>
+      <label class="opt"><input type="radio" name="look" value="canyon-current"><span class="card"><img src="../../looks/assets/canyon-current.webp" width="400" height="400" loading="lazy" alt="Canyon Current: rust and teal gear with a canyon poster."><span class="cap"><b>Canyon Current</b><span>Rust rock, cool water.</span><span class="sw"><i style="background:#B75E43"></i><i style="background:#EDDCBC"></i><i style="background:#7C3E2F"></i><i style="background:#4C9694"></i></span></span></span></label>
+      <label class="opt"><input type="radio" name="look" value="meadow-bloom"><span class="card"><img src="../../looks/assets/meadow-bloom.webp" width="400" height="400" loading="lazy" alt="Meadow Bloom: sage, lavender and yellow wildflower gear and poster."><span class="cap"><b>Meadow Bloom</b><span>Spring wildflowers.</span><span class="sw"><i style="background:#52684A"></i><i style="background:#B9ADD0"></i><i style="background:#EBCB53"></i><i style="background:#F0EADC"></i></span></span></span></label>
+      <label class="opt"><input type="radio" name="look" value="river-signal"><span class="card"><img src="../../looks/assets/river-signal.webp" width="400" height="400" loading="lazy" alt="River Signal: deep teal gear with gold and clay accents."><span class="cap"><b>River Signal</b><span>Deep teal, trail gold.</span><span class="sw"><i style="background:#285C5A"></i><i style="background:#C4A95F"></i><i style="background:#EFE7D6"></i><i style="background:#BC7355"></i></span></span></span></label>
+      <label class="opt"><input type="radio" name="look" value="golden-hour"><span class="card"><img src="../../looks/assets/golden-hour.webp" width="400" height="400" loading="lazy" alt="Golden Hour: ochre and terracotta gear with a sunset poster."><span class="cap"><b>Golden Hour</b><span>The last light on the hills.</span><span class="sw"><i style="background:#C5923D"></i><i style="background:#CB764A"></i><i style="background:#304C3C"></i><i style="background:#F1E4CB"></i></span></span></span></label>
+    </div>
+    <label class="later"><input type="radio" name="look" value="undecided"> Not sure yet</label>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">3</span><span class="t">The mark</span><small>3 vector logos</small></legend>
+    <div class="row logos">
+      <label class="opt"><input type="radio" name="logo" value="open-sky"><span class="card"><img src="../../logos/open-sky-lockup.svg" width="600" height="365" loading="lazy" alt="Open Sky logo: open wings over a gold sun and one low horizon, GRYPHUS below."><span class="cap"><b>Open Sky</b><span>The clearest everyday mark.</span></span></span></label>
+      <label class="opt"><input type="radio" name="logo" value="trail-stamp"><span class="card"><img src="../../logos/trail-stamp-lockup.svg" width="600" height="365" loading="lazy" alt="Trail Stamp logo: a compact round field badge with the bird and sun."><span class="cap"><b>Trail Stamp</b><span>A badge for hats and frame bags.</span></span></span></label>
+      <label class="opt"><input type="radio" name="logo" value="heritage-sun"><span class="card"><img src="../../logos/heritage-sun-lockup.svg" width="600" height="365" loading="lazy" alt="Heritage Sun logo: the triangle and gold sun from the 2026 laminate, simplified."><span class="cap"><b>Heritage Sun</b><span>A nod to the 2026 triangle.</span></span></span></label>
+    </div>
+    <label class="later"><input type="radio" name="logo" value="undecided"> Not sure yet</label>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="n">4</span><span class="t">The merch</span><small>3 collections</small></legend>
+    <div class="row merch">
+      <label class="opt"><input type="radio" name="merch" value="field-kit"><span class="card"><img src="thumbs/merch-field-kit.webp" width="400" height="800" loading="lazy" alt="Field Kit: forest green tee and trucker, cream tee with an orange sun, enamel mug, round patch."><span class="cap"><b>Field Kit</b><span>Forest, cream and orange.</span></span></span></label>
+      <label class="opt"><input type="radio" name="merch" value="high-ground"><span class="card"><img src="thumbs/merch-high-ground.webp" width="400" height="800" loading="lazy" alt="High Ground: charcoal tee with a huge orange GRYPHUS, black trucker, orange mug and patch."><span class="cap"><b>High Ground</b><span>Charcoal and signal orange.</span></span></span></label>
+      <label class="opt"><input type="radio" name="merch" value="camp-club"><span class="card"><img src="thumbs/merch-camp-club.webp" width="400" height="800" loading="lazy" alt="Camp Club: cream tee, tan corduroy trucker, cream enamel mug and rust patch."><span class="cap"><b>Camp Club</b><span>Cream, brown and warm rust.</span></span></span></label>
+    </div>
+    <label class="later"><input type="radio" name="merch" value="undecided"> Not sure yet</label>
+  </fieldset>
+  <p class="truth">Everything here is a design exploration for Cale and Walt to choose from. Gear and posters are concept mockups, not items for sale, and any pick still needs a supplier proof. Nothing is sent anywhere until you choose to send it.</p>
+</form>
+
+<aside class="kit" id="kit" aria-labelledby="kit-title">
+  <p class="eyebrow">Your Gryphus, so far</p>
+  <h2 class="display" id="kit-title">All together.</h2>
+  <div class="stage"><img id="k-site" src="thumbs/field-guide.webp" alt="Your chosen website direction"><div class="badge"><img id="k-logo" src="../../logos/open-sky-lockup.svg" alt="Your chosen logo on your chosen look's color"></div></div>
+  <div class="palette" id="k-pal" aria-hidden="true"><i style="background:#294739"></i><i style="background:#A6B39A"></i><i style="background:#F2EFE2"></i><i style="background:#C49B45"></i><i style="background:#23394C"></i></div>
+  <div class="duo">
+    <figure><img id="k-look" src="../../looks/assets/moss-mineral.webp" alt="Your chosen outdoor look"><figcaption id="k-look-cap">Outdoor look</figcaption></figure>
+    <figure><img id="k-merch" src="thumbs/merch-field-kit.webp" alt="Your chosen merch collection"><figcaption id="k-merch-cap">Merch</figcaption></figure>
+  </div>
+  <ul class="summary" id="k-sum">
+    <li><span>Website</span><b class="pending">Pick one</b></li>
+    <li><span>Outdoor look</span><b class="pending">Pick one</b></li>
+    <li><span>Mark</span><b class="pending">Pick one</b></li>
+    <li><span>Merch</span><b class="pending">Pick one</b></li>
+  </ul>
+  <label for="note" class="eyebrow" style="margin:0">Anything you love, or would change?</label>
+  <textarea id="note" placeholder="The big outdoor opening, the warmer colors, more music..."></textarea>
+  <div class="actions">
+    <button class="btn" type="button" id="copy">Copy my picks</button>
+    <a class="link" id="mail" href="mailto:gbellamy@gmail.com?subject=Gryphus%20design%20feedback">Email to Gordon</a>
+    <a class="link" id="studio" href="../../design/">Open these in the studio</a>
+  </div>
+  <p id="status" aria-live="polite">Saved on this device only.</p>
+  <noscript><p style="font-size:13px;margin:0">With scripts off, your taps still show as picked. Text Gordon the four names you chose.</p></noscript>
+</aside>
+</div>
+
+<nav class="bar" aria-label="Your picks"><span class="count" id="bar-count">0 of 4 picked</span><a href="#kit">See it together</a></nav>
+
+<script>
+'use strict';
+(function(){
+var KEY='gryphus-design-review';
+var names={website:{'field-guide':'Field Guide','high-ground':'High Ground',basecamp:'Basecamp',mix:'A mix of the directions'},
+ look:{'moss-mineral':'Moss & Mineral','canyon-current':'Canyon Current','meadow-bloom':'Meadow Bloom','river-signal':'River Signal','golden-hour':'Golden Hour',undecided:'Let me explore the five looks'},
+ logo:{'open-sky':'Open Sky','trail-stamp':'Trail Stamp','heritage-sun':'Heritage Sun',undecided:'Let me compare the marks'},
+ merch:{'field-kit':'Field Kit · Forest, cream + orange','high-ground':'High Ground · Charcoal + signal orange','camp-club':'Camp Club · Cream, brown + warm rust',undecided:'Let me explore the collections'}};
+var pal={'moss-mineral':['#294739','#A6B39A','#F2EFE2','#C49B45','#23394C'],'canyon-current':['#B75E43','#EDDCBC','#7C3E2F','#4C9694','#23394C'],'meadow-bloom':['#52684A','#B9ADD0','#EBCB53','#F0EADC','#23394C'],'river-signal':['#285C5A','#C4A95F','#EFE7D6','#BC7355','#23394C'],'golden-hour':['#C5923D','#CB764A','#304C3C','#F1E4CB','#23394C']};
+var light={'moss-mineral':'#F2EFE2','canyon-current':'#EDDCBC','meadow-bloom':'#F0EADC','river-signal':'#EFE7D6','golden-hour':'#F1E4CB'};
+var $=function(s){return document.querySelector(s)};
+var form=$('#pick'), saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+var q=new URLSearchParams(location.search);
+function get(n){var c=form.querySelector('input[name="'+n+'"]:checked');return c?c.value:''}
+function set(n,v){if(!v)return;var i=form.querySelector('input[name="'+n+'"][value="'+v+'"]');if(i)i.checked=true}
+// The studio stores the website pick as "direction".
+set('website',q.get('website')||saved.direction);
+['look','logo','merch'].forEach(function(n){set(n,q.get(n)||saved[n])});
+$('#note').value=saved.note||'';
+function real(n,v){return v&&v!=='undecided'&&v!=='mix'}
+function render(){
+ var w=get('website'),l=get('look'),g=get('logo'),m=get('merch'),n=0;
+ if(real('w',w)){$('#k-site').src='thumbs/'+w+'.webp'}
+ if(real('l',l)){$('#k-look').src='../../looks/assets/'+l+'.webp';$('#k-look-cap').textContent=names.look[l];
+   var p=pal[l];$('#k-pal').innerHTML=p.map(function(c){return '<i style="background:'+c+'"></i>'}).join('');
+   document.documentElement.style.setProperty('--pick-bg',light[l])}
+ if(real('g',g)){$('#k-logo').src='../../logos/'+g+'-lockup.svg'}
+ if(real('m',m)){$('#k-merch').src='thumbs/merch-'+m+'.webp';$('#k-merch-cap').textContent=names.merch[m].split(' · ')[0]}
+ var rows=[['Website','website',w],['Outdoor look','look',l],['Mark','logo',g],['Merch','merch',m]];
+ $('#k-sum').innerHTML=rows.map(function(r){var v=r[2];if(v)n++;var t=v?names[r[1]][v].split(' · ')[0]:'Pick one';return '<li><span>'+r[0]+'</span><b'+(v&&real('',v)?'':' class="pending"')+'>'+t.replace(/&/g,'&amp;')+'</b></li>'}).join('');
+ $('#bar-count').textContent=n+' of 4 picked';
+ var sq=new URLSearchParams();if(w){sq.set('website',w);if(real('',w))sq.set('direction',w)}
+ if(l)sq.set('look',l);if(g)sq.set('logo',g);if(m)sq.set('merch',m);
+ $('#studio').href='../../design/?'+sq+'#feedback';
+ $('#mail').href='mailto:gbellamy@gmail.com?subject='+encodeURIComponent('Gryphus design feedback')+'&body='+encodeURIComponent(message());
+}
+function message(){
+ var w=get('website'),l=get('look'),g=get('logo'),m=get('merch');
+ function t(n,v){return v?names[n][v]:'Not picked yet'}
+ var root=/^https?:$/.test(location.protocol)&&!/localhost|127\.0\.0\.1/.test(location.hostname)?new URL('../../',location.href).href:'https://gordonusc.github.io/the-cabinet/gryphus/';
+ return 'Gryphus 2027 design feedback\n\nWebsite: '+t('website',w)+'\nOutdoor collection: '+t('look',l)+'\nLogo: '+t('logo',g)+'\nOriginal merchandise collection: '+t('merch',m)+'\n\n'+($('#note').value.trim()||'I like this direction. Let’s keep developing it.')+'\n\nMy picks: '+root+'next/decide/?'+new URLSearchParams({website:w,look:l,logo:g,merch:m});
+}
+function persist(){
+ var cur={};try{cur=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+ var w=get('website');if(w){cur.direction=w;if(real('',w))cur.preview=w}
+ ['look','logo','merch'].forEach(function(n){var v=get(n);if(v)cur[n]=v});
+ cur.note=$('#note').value;
+ try{localStorage.setItem(KEY,JSON.stringify(cur));$('#status').textContent='Saved on this device. The full studio will open with these picks.'}catch(e){$('#status').textContent='This browser could not save. Copy your picks to keep them.'}
+}
+form.addEventListener('change',function(){render();persist()});
+$('#note').addEventListener('input',function(){render();persist()});
+$('#copy').addEventListener('click',function(){
+ var txt=message();
+ function done(){$('#status').textContent='Copied. Paste it to Gordon, or use Email to Gordon.'}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallback(txt)})}else fallback(txt);
+});
+function fallback(txt){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download='Gryphus-picks.txt';a.click();$('#status').textContent='Your picks were downloaded as a text file.'}
+render();
+if('IntersectionObserver' in window){new IntersectionObserver(function(e){document.querySelector('.bar').style.visibility=e[0].isIntersecting?'hidden':'visible'},{threshold:.15}).observe($('#kit'))}
+})();
+</script>
+</body>
+</html>
