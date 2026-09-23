@@ -278,4 +278,69 @@
     };
     tick2(); setInterval(tick2, 60000);
   }
+
+  /* ---------- the road 2.1: fly the year ---------- */
+  var map = $("#roadmap"), dataEl = $("#tourData");
+  if (map && dataEl) {
+    var hops = JSON.parse(dataEl.textContent), comet = $("#comet", map), btn = $("#tourPlay"), rd = $("#tourRead"), odoN = $("#odoN");
+    var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var pre = D.body.getAttribute("data-pre") || "";
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { map.classList.add("drawn"); io.disconnect(); } }); }, { threshold: .25 });
+      io.observe(map);
+    } else map.classList.add("drawn");
+    function light(sl) {
+      $$(".pin.on, .stopcard.on").forEach(function (x) { x.classList.remove("on"); });
+      if (!sl) return;
+      $$('[data-stop="' + sl + '"]').forEach(function (x) { if (x.classList.contains("pin") || x.classList.contains("stopcard")) x.classList.add("on"); });
+    }
+    function slugify(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+    function place(pt) { comet.setAttribute("transform", "translate(" + pt.x.toFixed(1) + " " + pt.y.toFixed(1) + ")"); }
+    function say(h, k) {
+      rd.innerHTML = "<b>" + (k + 1) + " / " + hops.length + " · " + h.name + "</b><span>" + h.when + " · " + h.label + (h.who ? " · with " + h.who : "") + "</span>";
+    }
+    var odo = 0;
+    function odoTo(target, ms, done) {
+      var from = odo, t0 = performance.now();
+      (function f(t) { var q = Math.min(1, (t - t0) / ms); odo = Math.round(from + (target - from) * q); odoN.textContent = odo.toLocaleString(); if (q < 1) requestAnimationFrame(f); else done && done(); })(t0);
+    }
+    function fly(legIdx, done) {
+      var path = $("#leg" + legIdx, map);
+      if (!path || still) { if (path) place(path.getPointAtLength(path.getTotalLength())); done(); return; }
+      var L = path.getTotalLength(), ms = Math.max(700, Math.min(2200, L * 2.2)), t0 = performance.now();
+      (function f(t) { var q = Math.min(1, (t - t0) / ms), e = q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2; place(path.getPointAtLength(L * e)); if (q < 1) requestAnimationFrame(f); else done(); })(t0);
+    }
+    var running = false, token = 0;
+    function stop(msg) { running = false; token++; btn.textContent = "▶ Play the tour"; btn.setAttribute("aria-pressed", "false"); if (msg) rd.innerHTML = msg; }
+    function play() {
+      var my = ++token, k = 0, leg = 0; running = true; odo = 0; odoN.textContent = "0";
+      btn.textContent = "■ Stop"; btn.setAttribute("aria-pressed", "true"); map.classList.add("touring", "drawn");
+      var la = $('.ldot[data-stop="los-angeles"]', map) || $('[data-stop="los-angeles"] image', map);
+      var legs = $$(".leg", map);
+      place(legs[0].getPointAtLength(0));
+      (function next() {
+        if (my !== token) return;
+        if (k >= hops.length) {
+          var last = legs.length - 1;
+          if (leg < last) { rd.innerHTML = "<b>Home to Los Angeles</b><span>Every road on this page ends back at home.</span>";
+            var total = hops[hops.length - 1].miles + Math.round(parseFloat(map.getAttribute("data-lastleg") || "0"));
+            fly(last, function () { odoTo(total, 600); light("los-angeles"); stop("<b>" + hops.length + " nights, all flown.</b><span>About " + total.toLocaleString() + " miles with the people in this mix. Press play to fly it again.</span>"); }); }
+          else stop();
+          return;
+        }
+        var h = hops[k];
+        var go = function () { odoTo(h.miles, still ? 0 : 500); light(slugify(h.stop)); say(h, k); k++; setTimeout(next, still ? 1600 : 1500); };
+        if (h.leg !== leg) { var target = h.leg; leg = target; fly(target - 1, go); } else go();
+      })();
+    }
+    btn.addEventListener("click", function () { running ? stop() : play(); });
+    $$(".pin", map).forEach(function (a) {
+      a.addEventListener("click", function (ev) {
+        var sl = a.getAttribute("data-stop"), card = $("#stop-" + sl);
+        if (!card) return; ev.preventDefault(); light(sl);
+        card.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "nearest" });
+        if (history.replaceState) history.replaceState(null, "", "#stop-" + sl);
+      });
+    });
+  }
 })();
