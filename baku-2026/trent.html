@@ -23,7 +23,7 @@ a{color:var(--red)}
 .plate b{color:var(--ink);font-weight:700}
 .spoil{position:sticky;top:0;z-index:4;background:var(--paper);border-bottom:2px solid var(--ink);padding:8px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
 .fig{position:relative;width:min(520px,100%);aspect-ratio:520/640;margin:26px auto}
-.f{position:absolute}
+.shape{position:absolute}
 .head{left:21%;top:6%;width:58%;aspect-ratio:1;border-radius:50%;background:var(--ink)}
 .key{left:11%;top:19%;width:29%;aspect-ratio:1;border-radius:50%;background:var(--red)}
 .fill{left:29%;top:61%;width:42%;height:17%;background:var(--ochre);border-radius:999px 999px 0 0}
@@ -40,6 +40,7 @@ section{padding:28px 0;border-top:2px solid var(--ink)}
 .num.red{color:var(--red)}.num.ochre{color:var(--ochre)}
 table{width:100%;border-collapse:collapse;font-size:15px}
 td,th{padding:7px 6px;border-bottom:1px solid rgba(21,21,21,.18);text-align:left;vertical-align:top}
+@media (max-width:600px){table{font-size:14px}td,th{padding:6px 4px}td.pos{width:30px}}
 th{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
 td.pos{width:40px;font-weight:700}
 tr.m td.pos{color:var(--sea)}tr.f td.pos{color:var(--red)}tr.o td.pos{color:var(--ochre)}
@@ -69,7 +70,7 @@ details summary{cursor:pointer;font-size:12px;letter-spacing:.14em;text-transfor
 <audio id="hi" preload="none" src="assets/hi-trent.mp3"></audio>
 <p id="hello" style="min-height:1.6em;font-weight:700;font-size:14px;letter-spacing:.04em"></p>
 
-<div class="fig" aria-hidden="true"><div class="f head"></div><div class="f key"></div><div class="f fill"></div><div class="f rim"></div><div class="f band"></div><div class="f band2"></div></div>
+<div class="fig" aria-hidden="true"><div class="shape head"></div><div class="shape key"></div><div class="shape fill"></div><div class="shape rim"></div><div class="shape band"></div><div class="shape band2"></div></div>
 <div class="legend">
   <div><i style="background:var(--ink)"></i>The black circle is the Old City. The castle section, Turns 8 to 10, runs along its wall. Nobody passes there. Everybody can crash there.</div>
   <div><i style="background:var(--red)"></i>The vermilion circle is the safety car probability, 57 percent. It sits inside the city because that is where it is born.</div>
