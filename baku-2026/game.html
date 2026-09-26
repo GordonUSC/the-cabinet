@@ -41,7 +41,7 @@ canvas{display:block;width:100vw;height:100vh;height:100dvh}
 .gloss{text-align:left;max-width:44ch;margin:8px auto;font-size:12px;line-height:1.55;color:#bdb4d6}
 .gloss b{color:var(--gold)}
 .hidden{display:none!important}
-#rot{position:fixed;left:50%;bottom:max(70px,env(safe-area-inset-bottom));transform:translateX(-50%);display:none;z-index:9;text-align:center;padding:8px 12px;font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(5,5,5,.85);border:1px solid rgba(255,210,63,.4);border-radius:999px;pointer-events:none;white-space:nowrap}
+#rot{position:fixed;left:50%;bottom:calc(104px + env(safe-area-inset-bottom));transform:translateX(-50%);display:none;z-index:9;text-align:center;padding:8px 12px;font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(5,5,5,.85);border:1px solid rgba(255,210,63,.4);border-radius:999px;pointer-events:none;white-space:nowrap}
 @media (orientation:portrait){#rot{display:block}}
 #lights{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);display:none;gap:10px;z-index:8;pointer-events:none}
 #lights i{width:34px;height:34px;border-radius:50%;background:#2a0a12;border:2px solid #5a1a2a;box-shadow:inset 0 0 8px #000}
@@ -62,8 +62,8 @@ a{color:var(--gold)}
   <div id="lapB" class="tag">Trent · P2 · lap 1/3</div>
   <div id="secA" class="tag">S1 --.-- S2 --.-- S3 --.--</div>
   <div id="secB" class="tag">S1 --.-- S2 --.-- S3 --.--</div>
-  <div id="hA" class="hint">left or right: steer · top of your half: override · both: brake</div>
-  <div id="hB" class="hint">left or right: steer · top of your half: override · both: brake</div>
+  <div id="hA" class="hint">L or R: steer · top: override · both: brake</div>
+  <div id="hB" class="hint">L or R: steer · top: override · both: brake</div>
 </div>
 <div id="lights"><i></i><i></i><i></i><i></i><i></i></div>
 <div id="flash"></div>
