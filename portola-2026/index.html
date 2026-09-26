@@ -75,6 +75,21 @@ figure img{display:block;width:100%;height:auto}
 figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
 .surprise{min-height:3.4em;font-size:19px;color:var(--ink)}
 .foot{font-size:13px;color:var(--muted)}
+.set .n{cursor:pointer}.set .n:after{content:" ›";color:var(--gold);font-weight:900}
+.mood{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.mood button{padding:9px 13px;border-radius:999px;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:var(--ink);font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.mood button.on{color:#120A1F}
+.mood button[data-m=dark].on{background:var(--vio);border-color:var(--vio)}.mood button[data-m=euphoric].on{background:var(--gold);border-color:var(--gold)}.mood button[data-m=disco].on{background:var(--rose);border-color:var(--rose)}.mood button[data-m=bass].on{background:var(--seed);border-color:var(--seed)}
+.set.dim{opacity:.28}
+.tag{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.06em;padding:3px 8px;border-radius:999px;background:rgba(255,255,255,.1);margin:0 6px 6px 0}
+#drawer{position:fixed;left:0;right:0;bottom:0;z-index:12;background:#1a1030;border-top:1px solid rgba(255,255,255,.2);border-radius:22px 22px 0 0;padding:16px 18px calc(18px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.8,.2,1);max-height:78vh;overflow-y:auto;box-shadow:0 -20px 60px rgba(0,0,0,.5)}
+#drawer.open{transform:none}
+#drawer h3{font-size:26px;font-weight:900;margin:4px 0 2px}
+#drawer .mono{margin-bottom:6px}
+#drawer p{margin:6px 0}
+#drawer .seen{border-left:3px solid var(--gold);padding-left:12px;margin:10px 0}
+#drawer .links a{display:inline-block;margin:8px 8px 0 0;padding:10px 14px;border-radius:12px;border:1.5px solid rgba(255,255,255,.25);color:var(--ink);text-decoration:none;font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+#drawer .close{position:absolute;right:14px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:var(--ink);font-size:18px;cursor:pointer}
 #fx{position:fixed;inset:0;pointer-events:none;z-index:9}
 .hint{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
 .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
@@ -83,6 +98,7 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
 </head>
 <body>
 <canvas id="fx"></canvas>
+<div id="drawer" role="dialog" aria-label="Artist"><button class="close" id="drawerClose" aria-label="Close">×</button><div class="mono" id="dStage"></div><h3 id="dName"></h3><div id="dTags"></div><p id="dWhat"></p><p id="dLike"></p><div class="seen" id="dSeen"></div><div class="links" id="dLinks"></div></div>
 <main>
 <header class="stage3d">
   <canvas id="gl"></canvas>
@@ -95,7 +111,7 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
       <div class="block t"><span class="mono">Next for you</span><b id="nextUp">Oskar Med K 3:40</b><small id="nextIn">Pier Stage</small></div>
     </div>
     <div class="stagebar" id="stagebar"><button data-s="pier" class="on">Pier</button><button data-s="crane">Crane</button><button data-s="warehouse">Warehouse</button><button data-s="ship">Ship Tent</button><button data-s="despacio">Despacio</button><button data-s="overview">Whole pier</button></div>
-    <div class="hint" style="margin-top:8px">Drag to spin · tap a stage · the sky keeps real time</div>
+    <div class="hint" style="margin-top:8px">Drag to spin · tap a stage · the crowd moves to whoever is on · the sky keeps real time</div>
   </div>
 </header>
 
@@ -112,11 +128,13 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
 <section>
   <div class="mono">02 · The day, stage by stage</div>
   <h2>Star what you want. It flags the clashes.</h2>
+  <p class="foot">Tap any name for the music, three artists it sounds like, and the ones you have already seen. Or pick a mood and the pier lights up.</p>
+  <div class="mood" id="mood"><button data-m="dark">Dark</button><button data-m="euphoric">Euphoric</button><button data-m="disco">Disco</button><button data-m="bass">Bass</button></div>
   <div class="tabs" id="tabs"><button data-f="all" class="on">All</button><button data-f="pier">Pier Stage</button><button data-f="crane">Crane Stage</button><button data-f="warehouse">Warehouse</button><button data-f="ship">Ship Tent</button><button data-f="despacio">Despacio</button><button data-f="mine">My plan</button></div>
   <div class="sched" id="sched"></div>
   <div class="clash" id="clashes"></div>
   <a class="btn ghost" id="planA" href="#planA">Load Gordon's plan A</a>
-  <p class="foot" style="margin-top:10px">Plan A: USA v Peru first half at McTeague's on Polk, leave at halftime about 2:20, all of Oskar Med K at 3:40, Tove Lo at 5:40, Robyn at 7:10, Dog Blood at 9:00. Set times from the festival's official Saturday image, version 2, all five rooms, 34 sets.</p>
+  <p class="foot" style="margin-top:10px">Plan A: USA v Peru first half at McTeague's on Polk, leave at halftime about 2:20, all of Oskar Med K at 3:40, Tove Lo at 5:40, Robyn at 7:10, Dog Blood at 9:00. Set times from the festival's official Saturday image, version 2, all five rooms, 31 sets.</p>
 </section>
 
 <figure class="reveal"><img src="assets/pier.jpg" alt="The Pier Stage at night" loading="lazy"><figcaption>Pier Stage · Robyn 7:10 · Dog Blood 9:00 · their first show since 2019</figcaption></figure>
@@ -188,16 +206,61 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   function nowMins(){var d=new Date();return d.getHours()*60+d.getMinutes()+d.getSeconds()/60;}
   function fmt(t){var m=mins(t);var h=Math.floor(m/60),mm=m%60;return (h>12?h-12:h)+':'+String(mm).padStart(2,'0');}
   var key='portola2026stars',stars={};try{stars=JSON.parse(localStorage.getItem(key)||'{}');}catch(e){}
-  var filter='all';
+  var filter='all';var moodOn=null;
   function id(s){return s[0]+'|'+s[1];}
   function render(){var box=document.getElementById('sched');box.innerHTML='';var n=nowMins();var shown=SETS.filter(function(s){return filter==='all'||(filter==='mine'?stars[id(s)]:s[0]===filter);}).sort(function(a,b){return mins(a[2])-mins(b[2]);});
-    shown.forEach(function(s){var d=document.createElement('div');var st=mins(s[2]),en=mins(s[3]);d.className='set'+(n>=st&&n<en?' now':'')+(n>=en?' past':'');d.innerHTML='<span class="t">'+fmt(s[2])+' to '+fmt(s[3])+'</span><span class="n">'+s[1]+'<small>'+STAGES[s[0]]+'</small></span>';var b=document.createElement('button');b.textContent=stars[id(s)]?'★':'☆';b.className=stars[id(s)]?'on':'';b.addEventListener('click',function(){stars[id(s)]=!stars[id(s)];try{localStorage.setItem(key,JSON.stringify(stars));}catch(e){}render();tick();if(stars[id(s)])burst('#FFD24A');});d.appendChild(b);box.appendChild(d);});
+    shown.forEach(function(s){var d=document.createElement('div');var st=mins(s[2]),en=mins(s[3]);d.className='set'+(n>=st&&n<en?' now':'')+(n>=en?' past':'');var ai=artInfo(s[1]);if(moodOn&&!(ai&&ai.m.indexOf(moodOn)>=0))d.className+=' dim';d.innerHTML='<span class="t">'+fmt(s[2])+' to '+fmt(s[3])+'</span><span class="n">'+s[1]+'<small>'+STAGES[s[0]]+(ai?' · '+ai.tags.slice(0,2).join(', '):'')+'</small></span>';d.querySelector('.n').addEventListener('click',function(){openArtist(s);});var b=document.createElement('button');b.textContent=stars[id(s)]?'★':'☆';b.className=stars[id(s)]?'on':'';b.addEventListener('click',function(){stars[id(s)]=!stars[id(s)];try{localStorage.setItem(key,JSON.stringify(stars));}catch(e){}render();tick();if(stars[id(s)])burst('#FFD24A');});d.appendChild(b);box.appendChild(d);});
     var mine=SETS.filter(function(s){return stars[id(s)];}).sort(function(a,b){return mins(a[2])-mins(b[2]);});var cl=[];
     var WALK={pier:{crane:6,warehouse:8,ship:4,despacio:7},crane:{pier:6,warehouse:5,ship:5,despacio:3},warehouse:{pier:8,crane:5,ship:6,despacio:4},ship:{pier:4,crane:5,warehouse:6,despacio:6},despacio:{pier:7,crane:3,warehouse:4,ship:6}};
     for(var i=0;i<mine.length;i++)for(var j=i+1;j<mine.length;j++){var a=mine[i],b=mine[j];if(a[0]===b[0])continue;var ov=mins(a[3])-mins(b[2]);var walk=(WALK[a[0]]||{})[b[0]]||6;if(ov>0)cl.push(a[1]+' and '+b[1]+' overlap by '+ov+' min, about '+walk+' min walk '+STAGES[a[0]]+' to '+STAGES[b[0]]);else if(-ov<walk)cl.push(a[1]+' ends '+(-ov)+' min before '+b[1]+' and the walk is about '+walk+', leave early');}
     document.getElementById('clashes').textContent=cl.length?'Clash: '+cl.join(' · '):(mine.length?'No clashes. '+mine.length+' starred. Walking times are estimates across the pier.':'');}
   document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;filter=b.dataset.f;document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b);});render();});
   document.getElementById('planA').addEventListener('click',function(e){e.preventDefault();['pier|Oskar Med K','pier|Tove Lo','pier|Robyn','pier|Dog Blood'].forEach(function(k){stars[k]=true;});try{localStorage.setItem(key,JSON.stringify(stars));}catch(x){}render();tick();burst('#FF6B4A');});
+
+  /* ---------- artists at a glance: Last.fm tags and similar artists read 26 Sep 2026, cross-referenced with Gordon's own ledger of 135 acts seen ---------- */
+  var ART={
+   'Airwolf Paradise':{m:['euphoric'],tags:['house','Australia'],what:'Australian house producer with a tastemaker following; the 2022 single Don\'t Hurt Me Baby is the one the big DJs played.',like:['Dance System','Mass Medium','Dom Dolla'],seen:['Dom Dolla','FISHER'],note:'Australian house is your lane: Dom Dolla and FISHER are both in your ledger.'},
+   'Gelli Haha':{m:['euphoric'],tags:['synthpop','off-kilter pop','LA'],what:'Angel Abaya\'s experimental pop project, vintage analog gear, playful and chaotic.',like:['Magdalena Bay','Shura','Haute and Freddy'],seen:['Sofi Tukker','Porter Robinson'],note:'Closest in your ledger: Sofi Tukker for the play, Porter Robinson for the synth romance.'},
+   'Oskar Med K':{m:['euphoric'],tags:['progressive house','Norway'],what:'Norwegian progressive house, emotive and melodic, 300 thousand listeners and rising. The one you asked about on Wednesday.',like:['Nimino','Small Town Kid','Crunkz'],seen:['Lane 8','Shallou','ODESZA'],note:'You saw Lane 8, Shallou and ODESZA; this is that feeling with a Nordic chill.'},
+   'Fcukers':{m:['disco','euphoric'],tags:['house','dance pop','NYC'],what:'New York three piece, Shanny Wise up front, Jackson Walker Lewis producing; house you can sing, the kind that closes a rooftop.',like:['Confidence Man','SMERZ','Otha'],seen:['Sofi Tukker','Disclosure'],note:'Sofi Tukker energy with a Disclosure backbone.'},
+   'Tove Lo':{m:['euphoric','dark'],tags:['dark pop','Sweden'],what:'Swedish pop with the lights off: Habits, Talking Body, Cool Girl. A live show that is half rave.',like:['Robyn','Charli XCX','MO'],seen:['Galantis','Alison Wonderland','Zedd'],note:'Swedish like Galantis, dark and vocal like Alison Wonderland.'},
+   'Robyn':{m:['euphoric','disco'],tags:['pop','Sweden','dancefloor'],what:'Dancing On My Own at 7:10, ten minutes after sunset. The Swedish pop pioneer who made crying on the floor a genre.',like:['Tove Lo','Roisin Murphy','Carly Rae Jepsen'],seen:['Galantis','Sofi Tukker','Madeon'],note:'Nothing in your ledger is quite this; Galantis is the nearest Swedish joy.'},
+   'Dog Blood (Skrillex + Boys Noize)':{m:['bass','dark'],tags:['electro','bass','techno'],what:'Skrillex and Boys Noize together, harder and stranger than either alone; first show since 2019.',like:['Boys Noize','Skrillex','Justice'],seen:['Skrillex','Boys Noize','Knock2','ISOxo','RL Grime'],note:'Your sixth Skrillex: Second Sky 2022, Red Rocks 2023, the Coliseum surprise 2023, Skrillex b2b Four Tet at HARD 2023, ISOxo b2b Skrillex at NiteHarts 2025. And by your own word, Dog Blood at Electric Zoo, September 1, 2019.'},
+   'Erika b2b SFCowboy':{m:['disco'],tags:['local openers','San Francisco'],what:'Bay Area openers back to back for the first hundred minutes on the Crane. Not on the record books yet; this is where you find someone.',like:['local house','disco edits','warm up'],seen:[],note:'Unverified beyond the grid. Go early and report back.'},
+   'Tricky':{m:['dark'],tags:['trip hop','Bristol'],what:'Massive Attack alumnus, Maxinquaye, the Bristol sound at its darkest and slowest. A live band, whispered, heavy.',like:['Massive Attack','Portishead','Sneaker Pimps'],seen:['Underworld','ZHU'],note:'Underworld is the nearest 90s UK weight in your ledger; ZHU the nearest dark vocal.'},
+   'Nimino':{m:['euphoric'],tags:['deep house','UK garage','lo-fi'],what:'Milo Evans from the UK, house with hip hop and garage bones, lush and emotional.',like:['Oskar Med K','Swimming Paul','it\'s murph'],seen:['Shallou','Lane 8','Disclosure'],note:'Last.fm lists Oskar Med K as a similar artist; you can hear both today, an hour apart.'},
+   'DJ Shadow, 30 years of Endtroducing':{m:['bass','dark'],tags:['instrumental hip hop','sampling'],what:'Endtroducing, 1996, the first album built entirely from samples. Thirty years on, played as a set.',like:['RJD2','Cut Chemist','The Avalanches'],seen:['Kaytranada','G Jones','Baauer'],note:'Kaytranada for the sample soul, G Jones for the crate weight.'},
+   'Fatboy Slim':{m:['disco','bass'],tags:['big beat','party'],what:'Norman Cook. Praise You, Right Here Right Now, Weapon of Choice, with a grin. The most generous DJ set on the bill.',like:['The Chemical Brothers','Basement Jaxx','Groove Armada'],seen:['Diplo','Dillon Francis','Fred again..'],note:'Diplo and Dillon Francis for the party, Fred again.. for the crowd first instinct.'},
+   'Soulwax':{m:['dark','disco'],tags:['electro rock','Belgium','live'],what:'The Dewaele brothers as a live band, three drummers, analog synths. They are also 2manydjs, who you saw at the Coliseum in 2022, and half of Despacio.',like:['Justice','LCD Soundsystem','Boys Noize'],seen:['Boys Noize','Underworld'],note:'You saw 2ManyDJs at Notch\'s party, LA Coliseum, July 9, 2022. Same brothers, tonight with drums.'},
+   'Sam Alfred':{m:['disco'],tags:['house','UK garage','Melbourne'],what:'Melbourne DJ mixing jazz tipped house with deep cuts and garage, a 90s feel.',like:['Kettama','Mall Grab','Franky Rizardo'],seen:['Four Tet','Disclosure'],note:'Disclosure for the garage swing, Four Tet for the taste.'},
+   'Ranger Trucco b2b Alisha':{m:['disco','euphoric'],tags:['house','tech house','vocals'],what:'Ranger Trucco, US house on the rise, sings over her own tracks; back to back with Alisha.',like:['Kyle Walker','Lucati','Danny Snowden'],seen:['Dom Dolla','John Summit','Sidepiece'],note:'Your John Summit and Dom Dolla nights are the reference. Alisha unverified beyond the grid.'},
+   'Chloe Caillet':{m:['disco'],tags:['house','garage house','NYC'],what:'Manhattan producer and DJ, garage house with fashion week polish.',like:['Carlita','Josh Baker','Prospa'],seen:['Disclosure','Dom Dolla','Chris Lake'],note:'Chris Lake and Dom Dolla are your nearest nights.'},
+   'Groove Armada':{m:['disco','euphoric'],tags:['house','downtempo','UK'],what:'Superstylin, I See You Baby, At the River. The UK duo that made house feel like a summer afternoon.',like:['Basement Jaxx','Faithless','Roisin Murphy'],seen:['Disclosure','Chris Lake','Sofi Tukker'],note:'Disclosure is the closest thing in your ledger to this much sunshine.'},
+   'Max Styler':{m:['bass','disco'],tags:['tech house','California'],what:'San Luis Obispo tech house, playing since he was 8, DJing since 16.',like:['Mau P','Biscits','AYYBO'],seen:['Mau P','John Summit','FISHER'],note:'You have seen Mau P, who Last.fm lists as his nearest neighbour.'},
+   'Kettama':{m:['bass','euphoric'],tags:['rave','UK garage','90s trance','Ireland'],what:'Evan Campbell, Galway to London, loop based sample heavy club music with 90s trance and garage in it.',like:['Sam Alfred','Mall Grab','Skin On Skin'],seen:['Skream','Four Tet','Disclosure'],note:'Skream for the UK rave lineage. Sam Alfred, earlier in the same room, is his nearest neighbour.'},
+   'Beltran b2b Ben Sterling':{m:['bass','disco'],tags:['house','techno','Brazil','UK'],what:'Beltran, Brazilian house, Smack Yo\', back to back with Ben Sterling, UK techno, this year\'s Essential Mix.',like:['Mochakk','PAWSA','Mason Collective'],seen:['Vintage Culture','FISHER','Dom Dolla'],note:'Vintage Culture is your Brazilian house night; this is the harder cousin.'},
+   'Prospa':{m:['bass','euphoric'],tags:['rave','breakbeat','house','Leeds'],what:'Harvey Blumler and Gosha Smith, classic house and rave era dance music, pianos and breaks.',like:['Josh Baker','ANOTR','Kettama'],seen:['Four Tet','Skream','Chris Lake'],note:'Closing the Warehouse. If you want one more room after Dog Blood, this is it.'},
+   'Felly Fell':{m:['euphoric'],tags:['unknown','Ship Tent opener'],what:'Almost nothing on the record: 129 listeners on Last.fm, a 2020 single called Fruit Salad in the Club.',like:['sauna6','Jozef White','Skeith'],seen:[],note:'A true unknown. Ten minutes at 1:40 and you will know more than the internet.'},
+   'MGNA CRRRTA':{m:['dark','euphoric'],tags:['electroclash','new rave','hyperpop','NYC'],what:'Farheen Khan and Ginger Scott, experimental electronic pop with 2010s dance pop bones.',like:['Bassvictim','The Hellp','Frost Children'],seen:['Boys Noize','Alison Wonderland'],note:'Bassvictim, four hours later in the same tent, is their nearest neighbour.'},
+   'Six Sex':{m:['bass','euphoric'],tags:['neoperreo','reggaeton','eurodance','Argentina'],what:'Francisca Cuello from Buenos Aires: reggaeton, dancehall and electronic, sensual and fast.',like:['Isabella Lovestory','Taichu','Juana Rozas'],seen:[],note:'Nothing in your ledger is close. The newest thing on the pier for you.'},
+   'Mike D 5D':{m:['disco'],tags:['DJ set'],what:'Listed as Mike D 5D on the grid. If this is Mike D of the Beastie Boys, expect a record collection set of hip hop, disco and punk; not verified.',like:['Beastie Boys','disco edits','block party'],seen:['Diplo'],note:'Unverified beyond the grid.'},
+   'Jyoty':{m:['bass','disco'],tags:['global club','London','Rinse FM'],what:'London DJ, Boiler Room and Warehouse Project regular, an RA.1000 mix this year; club music from everywhere at once.',like:['S!RENE','Sherelle','Peggy Gou'],seen:['Kaytranada','Diplo'],note:'Kaytranada is your nearest night for the global groove.'},
+   'Bassvictim':{m:['dark'],tags:['electroclash','witch house','London'],what:'Maria Manow and Ike Clateman, London, 2022; named for how hard the bass hits.',like:['The Hellp','MGNA Crrrta','Snow Strippers'],seen:['Boys Noize','REZZ'],note:'REZZ for the dark, Boys Noize for the electro.'},
+   'Jigitz':{m:['euphoric'],tags:['hyperpop','trance','house','Brooklyn'],what:'Brooklyn producer and DJ, hyperpop energy over trance and house.',like:['BUNT.','Tsu Nami','Cheeks'],seen:['Porter Robinson','Madeon'],note:'Porter Robinson and Madeon are your nearest nights.'},
+   'Nate Sib':{m:['euphoric'],tags:['pop','rap','electropop','LA'],what:'22, Los Angeles, pop melodies with rap and electronic underneath, a Bieber comparison follows him around.',like:['2hollis','Effie','ethn reis'],seen:['Whethan'],note:'Whethan is your nearest night, from B and L Open Air in April.'},
+   'Melanie C (DJ set)':{m:['disco'],tags:['DJ set','house','disco'],what:'Sporty Spice on the decks, forty minutes of house and disco, while Dog Blood is on the Pier. A choice.',like:['Sophie Ellis-Bextor','Roisin Murphy','Melanie C'],seen:['Sofi Tukker','Galantis'],note:'Nothing in your ledger is a Spice Girl. Sofi Tukker is the nearest joy.'},
+   'Despacio, James Murphy and 2manydjs':{m:['disco'],tags:['disco','all vinyl','50,000 watts'],what:'James Murphy of LCD Soundsystem and the Dewaele brothers on a hand built McIntosh system, all vinyl, all afternoon. The room is the act.',like:['LCD Soundsystem','Soulwax','disco'],seen:['Underworld','Boys Noize'],note:'You saw 2ManyDJs at the Coliseum in 2022. Same brothers, quieter shoes.'}
+  };
+  function artInfo(name){if(ART[name])return ART[name];var k=Object.keys(ART).filter(function(k){return name.indexOf(k)===0||k.indexOf(name)===0;})[0];return k?ART[k]:null;}
+  var drawer=document.getElementById('drawer');
+  function openArtist(set){var a=artInfo(set[1]);document.getElementById('dStage').textContent=STAGES[set[0]]+' · '+fmt(set[2])+' to '+fmt(set[3]);document.getElementById('dName').textContent=set[1];var tags=document.getElementById('dTags');tags.innerHTML='';(a?a.tags:['no notes yet']).forEach(function(t){var e=document.createElement('span');e.className='tag';e.textContent=t;tags.appendChild(e);});
+    document.getElementById('dWhat').textContent=a?a.what:'No notes on this one yet.';document.getElementById('dLike').textContent=a?'Sounds like: '+a.like.join(', '):'';
+    var seen=document.getElementById('dSeen');if(a&&a.seen.length){seen.innerHTML='<b>You have seen:</b> '+a.seen.join(', ')+'.<br><span class="foot">'+a.note+'</span>';}else{seen.innerHTML='<b>Nothing like it in your ledger yet.</b><br><span class="foot">'+(a?a.note:'')+'</span>';}
+    var q=encodeURIComponent(set[1].replace(/\(.*\)|, 30 years.*|, James Murphy.*/,'').trim());document.getElementById('dLinks').innerHTML='<a href="https://www.youtube.com/results?search_query='+q+'" target="_blank" rel="noopener">Hear it on YouTube</a><a href="https://open.spotify.com/search/'+q+'" target="_blank" rel="noopener">Spotify</a><a href="https://www.last.fm/music/'+q+'" target="_blank" rel="noopener">Last.fm</a>';
+    drawer.classList.add('open');burst(set[0]==='pier'?'#FF6B4A':set[0]==='crane'?'#19C2B8':set[0]==='warehouse'?'#7C5CFF':set[0]==='despacio'?'#FF4F9A':'#FFD24A');}
+  document.getElementById('drawerClose').addEventListener('click',function(){drawer.classList.remove('open');});
+  /* mood dial */
+  document.getElementById('mood').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;moodOn=moodOn===b.dataset.m?null:b.dataset.m;document.querySelectorAll('#mood button').forEach(function(x){x.classList.toggle('on',x.dataset.m===moodOn);});render();if(moodOn)burst(moodOn==='dark'?'#7C5CFF':moodOn==='euphoric'?'#FFD24A':moodOn==='disco'?'#FF4F9A':'#FF6B4A');});
   /* ---------- now, next, countdown ---------- */
   function tick(){var n=nowMins();var d=new Date();document.getElementById('clock').textContent='Saturday 26 September · Pier 80 · '+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
     var on=SETS.filter(function(s){return n>=mins(s[2])&&n<mins(s[3]);}).sort(function(a,b){return a[0]==='pier'?-1:1;});
@@ -249,6 +312,12 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   function label(text,x,y,z,color){var c=document.createElement('canvas');c.width=512;c.height=128;var g=c.getContext('2d');g.fillStyle='rgba(18,10,31,.75)';g.fillRect(0,0,512,128);g.font='900 60px Archivo, sans-serif';g.fillStyle=color;g.textAlign='center';g.textBaseline='middle';g.fillText(text,256,64);var t=new THREE.CanvasTexture(c);var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true}));s.scale.set(34,8.5,1);s.position.set(x,y,z);scene.add(s);return s;}
   label('PIER STAGE',-88,24,-8,'#FF6B4A');label('CRANE',20,20,-24,'#19C2B8');label('WAREHOUSE',74,18,10,'#B9A6FF');label('SHIP TENT',-30,16,22,'#FFD24A');label('DESPACIO',50,18,-30,'#FF4F9A');
   var lights={};Object.keys(stagesObj).forEach(function(k){var o=stagesObj[k];var pl=new THREE.PointLight(o.material.emissive.getHex(),1.2,70);pl.position.set(o.position.x,o.position.y+14,o.position.z);scene.add(pl);lights[k]=pl;});
+  /* crowd: instanced boxes that bob near whichever stage is live */
+  var CROWD=700,crowd=new THREE.InstancedMesh(new THREE.BoxGeometry(1.2,2.6,1.2),new THREE.MeshStandardMaterial({color:0xffffff,roughness:.9}),CROWD);var dummy=new THREE.Object3D();var cpos=[];for(var ci=0;ci<CROWD;ci++){cpos.push({x:-110+Math.random()*220,z:-36+Math.random()*60,ph:Math.random()*6.28,c:cols[ci%cols.length]});dummy.position.set(cpos[ci].x,3.3,cpos[ci].z);dummy.updateMatrix();crowd.setMatrixAt(ci,dummy.matrix);crowd.setColorAt(ci,new THREE.Color(cpos[ci].c));}crowd.instanceMatrix.needsUpdate=true;scene.add(crowd);
+  /* light beams: cones on each stage that sweep */
+  var beams=[];Object.keys(stagesObj).forEach(function(k){var o=stagesObj[k];for(var bi=0;bi<3;bi++){var cone=new THREE.Mesh(new THREE.ConeGeometry(6,60,10,1,true),new THREE.MeshBasicMaterial({color:o.material.emissive.getHex(),transparent:true,opacity:0.12,side:THREE.DoubleSide,depthWrite:false}));cone.position.set(o.position.x+(bi-1)*8,o.position.y+34,o.position.z);cone.rotation.x=Math.PI;scene.add(cone);beams.push({m:cone,k:k,i:bi});}});
+  /* stars for night */
+  var starGeo=new THREE.BufferGeometry();var sp=[];for(var si=0;si<400;si++){sp.push((Math.random()-0.5)*900,80+Math.random()*250,(Math.random()-0.5)*900);}starGeo.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));var stars=new THREE.Points(starGeo,new THREE.PointsMaterial({color:0xffffff,size:1.6,transparent:true,opacity:0}));scene.add(stars);
   /* lasers on the crane, hidden until tapped */
   var lasers=[],laserOn=0;for(var l=0;l<6;l++){var lm=new THREE.Mesh(new THREE.CylinderGeometry(.15,.15,90,6),new THREE.MeshBasicMaterial({color:l%2?0xFF4F9A:0x19C2B8,transparent:true,opacity:0}));lm.position.set(20,48,-24);scene.add(lm);lasers.push(lm);}
   /* camera orbit */
@@ -269,6 +338,10 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
     scene.background=skyFor(h);scene.fog.color=scene.background;var ang=((h-6)/14)*Math.PI;sun.position.set(Math.cos(ang)*200,Math.max(5,Math.sin(ang)*200),60);sun.intensity=h<19?1.1:0.15;hemi.intensity=h<19?.9:.35;
     var t=ts/1000;for(var i=0;i<wpos.count;i++){var x=wbase[i*3],y=wbase[i*3+1];wpos.array[i*3+2]=Math.sin(x*0.08+t*1.2)*0.6+Math.cos(y*0.11+t*0.9)*0.5;}wpos.needsUpdate=true;
     var n=nowMins();Object.keys(stagesObj).forEach(function(k){var live=SETS.some(function(s){return s[0]===k&&n>=mins(s[2])&&n<mins(s[3]);});var pulse=live?1.4+Math.sin(t*8)*0.6:0.5+Math.sin(t*1.5)*0.15;lights[k].intensity=pulse;stagesObj[k].material.emissiveIntensity=live?0.7+Math.sin(t*8)*0.3:0.35;});
+    var liveK=Object.keys(stagesObj).filter(function(k){return SETS.some(function(s){return s[0]===k&&n>=mins(s[2])&&n<mins(s[3]);});});var focus=liveK.length?stagesObj[liveK[0]].position:null;
+    for(var ci=0;ci<CROWD;ci++){var cp=cpos[ci];var tx=cp.x,tz=cp.z;if(focus){tx+=(focus.x-cp.x)*0.55;tz+=(focus.z+18-cp.z)*0.55;}var bob=liveK.length?Math.abs(Math.sin(t*5+cp.ph))*1.6:Math.abs(Math.sin(t*1.2+cp.ph))*0.4;dummy.position.set(tx,3.3+bob,tz);dummy.rotation.y=cp.ph;dummy.updateMatrix();crowd.setMatrixAt(ci,dummy.matrix);}crowd.instanceMatrix.needsUpdate=true;
+    var night=h>=19.2;stars.material.opacity=night?0.9:(h>18.5?(h-18.5)/0.7*0.9:0);
+    beams.forEach(function(b){var live=liveK.indexOf(b.k)>=0;b.m.material.opacity=live?(night?0.22:0.1):(night?0.06:0.02);b.m.rotation.z=Math.sin(t*(0.7+b.i*0.3)+b.i)*0.5;b.m.rotation.y=t*0.4+b.i;});
     lasers.forEach(function(lm,i){lm.material.opacity=laserOn?0.8:0;lm.rotation.z=Math.sin(t*1.3+i)*0.9;lm.rotation.x=Math.cos(t*0.9+i*0.7)*0.6+0.4;});
     theta+=(want.theta-theta)*0.08;phi+=(want.phi-phi)*0.08;dist+=(want.dist-dist)*0.08;target.lerp(want.target,0.08);
     cam.position.set(target.x+dist*Math.sin(phi)*Math.sin(theta),target.y+dist*Math.cos(phi),target.z+dist*Math.sin(phi)*Math.cos(theta));cam.lookAt(target);
