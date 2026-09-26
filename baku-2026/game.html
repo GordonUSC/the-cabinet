@@ -53,8 +53,8 @@ a{color:var(--gold)}
     <button class="btn" id="go">Lights out</button>
     <button class="btn alt" id="swap">Swap sides</button>
     <p>Three laps of a Baku-shaped street circuit: the castle squeeze, the long shoreline straight, the walls that end races. Tap the left or right side of your half to steer. Hold both to brake. Throttle is automatic, because it is Baku and lifting is for cowards.</p>
-    <p>Gordon's challenge: be the best, and be the most fabulous. Fastest to three laps wins the race. Most style points, earned by kissing walls at speed without hitting them, wins Most Fabulous. Two trophies. Settle it.</p>
-    <p style="font-size:12px;opacity:.65">Best on iPhone in landscape, add to Home Screen for full screen. <a href="index.html">Back to the dossier</a></p>
+    <p>Gordon's challenge: be the best, and be the most fabulous. Fastest to three laps wins the race. Most style points, earned by kissing walls at speed without hitting them, wins Most Fabulous. Two trophies. Settle it. Nothing here knows how the real race went; that is yours to watch.</p>
+    <p style="font-size:12px;opacity:.65">Sound on: engine, wall thuds and a fanfare. Best on iPhone in landscape, add to Home Screen for full screen. <a href="index.html">Back to the dossier</a></p>
   </div>
 </div>
 <script>
@@ -85,7 +85,7 @@ Car.prototype.step=function(dt){if(this.done)return;this.time+=dt;
   this.x+=Math.cos(this.a)*this.v*dt;this.y+=Math.sin(this.a)*this.v*dt;
   var j=nearest(this.x,this.y,this.seg);var s=S[j];var dx=this.x-s.x,dy=this.y-s.y,d=Math.hypot(dx,dy);
   /* wall */
-  if(d>s.w-8){var nx=dx/(d||1),ny=dy/(d||1);this.x=s.x+nx*(s.w-8);this.y=s.y+ny*(s.w-8);this.v*=0.45;this.hits++;this.style=Math.max(0,this.style-40);this.kiss=0;shake=6;}
+  if(d>s.w-8){var nx=dx/(d||1),ny=dy/(d||1);this.x=s.x+nx*(s.w-8);this.y=s.y+ny*(s.w-8);this.v*=0.45;this.hits++;this.style=Math.max(0,this.style-40);this.kiss=0;shake=6;thud(this.i);}
   else if(d>s.w-20&&this.v>200){this.kiss+=dt;if(this.kiss>0.35){this.style+=Math.round(this.v/20);this.kiss=0;}}
   else this.kiss=0;
   /* progress and laps */
@@ -93,6 +93,12 @@ Car.prototype.step=function(dt){if(this.done)return;this.time+=dt;
   if(this.prog>=N){this.prog-=N;this.lap++;if(this.lap>3){this.done=true;this.finishT=this.time;}}
 };
 var cars=[new Car(0),new Car(1)],running=false,shake=0,t0=0,last=0,winner=null;window.__cars=cars;
+/* sound: a tiny WebAudio engine, thud and fanfare; created on first tap so iOS allows it */
+var AC=null,eng=[];function audioOn(){if(AC)return;try{AC=new (window.AudioContext||window.webkitAudioContext)();for(var i=0;i<2;i++){var o=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();o.type='sawtooth';o.frequency.value=60;f.type='lowpass';f.frequency.value=600;g.gain.value=0;o.connect(f);f.connect(g);g.connect(AC.destination);o.start();eng.push({o:o,g:g,f:f});}}catch(e){AC=null;}}
+function engineTick(){if(!AC)return;for(var i=0;i<2;i++){var c=cars[i],e=eng[i];if(!e)continue;var t=AC.currentTime;e.o.frequency.setTargetAtTime(55+c.v*0.55,t,0.05);e.f.frequency.setTargetAtTime(400+c.v*3,t,0.05);e.g.gain.setTargetAtTime(running&&!c.done?0.035+c.v/300*0.05:0,t,0.08);}}
+function thud(i){if(!AC)return;var t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();o.type='square';o.frequency.setValueAtTime(110,t);o.frequency.exponentialRampToValueAtTime(40,t+0.18);g.gain.setValueAtTime(0.25,t);g.gain.exponentialRampToValueAtTime(0.001,t+0.2);o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+0.22);}
+function fanfare(){if(!AC)return;var t=AC.currentTime;[523,659,784,1047].forEach(function(f,k){var o=AC.createOscillator(),g=AC.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t+k*0.12);g.gain.exponentialRampToValueAtTime(0.2,t+k*0.12+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+k*0.12+0.5);o.connect(g);g.connect(AC.destination);o.start(t+k*0.12);o.stop(t+k*0.12+0.55);});}
+
 
 /* touch: left half belongs to car 0, right half to car 1; within a half, left third steers left, right third steers right */
 var touches={};
@@ -126,7 +132,7 @@ function drawHalf(car,ox){ctx.save();ctx.beginPath();ctx.rect(ox,0,W/2,H);ctx.cl
   ctx.save();ctx.font='700 13px ui-monospace,Menlo,monospace';ctx.fillStyle=colors[car.i];ctx.textAlign='center';ctx.fillText(Math.round(car.v*1.05)+' km/h   ·   style '+car.style,ox+W/4,H-52);ctx.restore();}
 
 function frame(ts){if(!running)return;var dt=Math.min(0.033,(ts-last)/1000||0.016);last=ts;
-  cars[0].step(dt);cars[1].step(dt);if(shake>0)shake-=30*dt;if(shake<0)shake=0;
+  cars[0].step(dt);cars[1].step(dt);engineTick();if(shake>0)shake-=30*dt;if(shake<0)shake=0;
   ctx.clearRect(0,0,W,H);drawHalf(cars[0],0);drawHalf(cars[1],W/2);
   ctx.fillStyle='rgba(255,255,255,.25)';ctx.fillRect(W/2-1,0,2,H);
   document.getElementById('lapA').textContent=names[0]+' · lap '+Math.min(3,cars[0].lap)+'/3';
@@ -135,11 +141,13 @@ function frame(ts){if(!running)return;var dt=Math.min(0.033,(ts-last)/1000||0.01
   if(cars[0].done&&cars[1].done){finish();return;}
   requestAnimationFrame(frame);}
 
-function finish(){running=false;var a=cars[0],b=cars[1];var fast=a.finishT<b.finishT?0:1;var fab=a.style===b.style?fast:(a.style>b.style?0:1);
+
+function confetti(){var n=90,parts=[];for(var i=0;i<n;i++)parts.push({x:W/2,y:H*0.35,vx:(Math.random()-0.5)*520,vy:-Math.random()*520-120,c:['#19e6d2','#ff4fb0','#ffd23f','#ffffff'][i%4],r:Math.random()*6+3,a:Math.random()*6});var t0c=performance.now();function f(ts){var dt=Math.min(0.033,(ts-(f.l||ts))/1000);f.l=ts;var el=(ts-t0c)/1000;if(el>2.6)return;ctx.save();for(var i=0;i<n;i++){var p=parts[i];p.vy+=900*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.a+=dt*6;ctx.fillStyle=p.c;ctx.globalAlpha=Math.max(0,1-el/2.6);ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.a);ctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);ctx.restore();}ctx.restore();requestAnimationFrame(f);}requestAnimationFrame(f);}
+function finish(){running=false;engineTick();fanfare();confetti();var a=cars[0],b=cars[1];var fast=a.finishT<b.finishT?0:1;var fab=a.style===b.style?fast:(a.style>b.style?0:1);
   var o=document.getElementById('overlay');o.classList.remove('hidden');
   o.innerHTML='<div><h1>Chequered flag</h1><p><b style="color:'+colors[fast]+'">'+names[fast]+'</b> wins the race: '+cars[fast].finishT.toFixed(2)+' s to '+cars[1-fast].finishT.toFixed(2)+' s.</p><p><b style="color:'+colors[fab]+'">'+names[fab]+'</b> is Most Fabulous: '+cars[fab].style+' style points to '+cars[1-fab].style+', with '+cars[fab].hits+' wall strikes to '+cars[1-fab].hits+'.</p><p style="color:#ffd23f">'+(fast===fab?names[fast]+' took both trophies. Gordon will hear about this.':'Split decision. One of you is fast, one of you is fabulous, and the couch is still shared.')+'</p><button class="btn" id="again">Race again</button> <a class="btn alt" href="index.html">Dossier</a></div>';
   document.getElementById('again').addEventListener('click',start);}
-function start(){cars[0].reset();cars[1].reset();winner=null;document.getElementById('overlay').classList.add('hidden');running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}
+function start(){audioOn();cars[0].reset();cars[1].reset();winner=null;document.getElementById('overlay').classList.add('hidden');running=true;t0=performance.now();last=t0;requestAnimationFrame(frame);}
 document.getElementById('go').addEventListener('click',start);
 document.getElementById('swap').addEventListener('click',function(){names.reverse();document.querySelector('.who .a').textContent=names[0]+' · left half';document.querySelector('.who .b').textContent=names[1]+' · right half';});
 /* idle attract: draw the track once so the page is never blank */

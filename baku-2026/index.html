@@ -7,11 +7,12 @@
 <meta name="theme-color" content="#0b0716">
 <title>Baku, Saturday</title>
 <!-- STYLE: Neon riso race programme, dark ground, Baku magenta and teal with gold accents, Clash Display headlines over Switzer body, one hero video and one voice | WHY: David and Trent will read this on a couch at four in the morning; a printed race programme is the object fans actually hold, and riso texture keeps the eight generated colors from looking like a stock sports app | ALT: a white broadsheet with editorial serif was considered and dropped because the room is dark and the game page had to share a palette -->
-<meta name="description" content="A race day guide to the 2026 Azerbaijan Grand Prix, made for David and Trent.">
+<meta name="description" content="A spoiler-free race day guide to the 2026 Azerbaijan Grand Prix, made for David and Trent.">
 <style>
 @font-face{font-family:"Clash Display";src:url("../fonts/ClashDisplay-Variable.woff2") format("woff2");font-weight:200 700;font-display:swap}
 @font-face{font-family:"Switzer";src:url("../fonts/Switzer-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
-:root{color-scheme:dark;--bg:#0b0716;--bg2:#140d2a;--ink:#f6f2ff;--muted:#bfb4de;--teal:#19e6d2;--mag:#ff4fb0;--gold:#ffd23f;--vio:#8b5cf6;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.12)}
+:root{color-scheme:dark;--bg:#0b0716;--bg2:#140d2a;--ink:#f6f2ff;--muted:#bfb4de;--teal:#19e6d2;--mag:#ff4fb0;--gold:#ffd23f;--vio:#8b5cf6;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.12);--me:var(--gold)}
+html[data-who="david"]{--me:var(--teal)}html[data-who="trent"]{--me:var(--mag)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Switzer",system-ui,-apple-system,sans-serif;overflow-x:hidden}
@@ -34,12 +35,23 @@ a{color:var(--teal)}
 .count{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;margin-top:14px;font-family:"Clash Display",system-ui}
 .count b{font-size:clamp(34px,9vw,54px);font-weight:700;color:var(--gold);letter-spacing:-.02em}
 .count small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.banner{position:sticky;top:0;z-index:5;margin:0 -18px;padding:10px 18px;background:rgba(11,7,22,.86);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);font:600 12px/1.3 "Clash Display",system-ui;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:flex;gap:10px;align-items:center;justify-content:space-between}
+.banner span{color:var(--muted);letter-spacing:.06em;text-transform:none;font-family:"Switzer",system-ui;font-weight:500;font-size:13px}
+.who{display:flex;gap:10px;margin:14px 0 4px}
+.who button{flex:1;padding:14px 10px;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:700 15px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.who button[data-w="david"]{color:var(--teal);border-color:rgba(25,230,210,.5)}.who button[data-w="trent"]{color:var(--mag);border-color:rgba(255,79,176,.5)}
+.who button.on{background:var(--me);color:#0b0716;border-color:var(--me);box-shadow:0 8px 30px rgba(255,255,255,.12)}
+.hello{font-size:15px;color:var(--muted);min-height:1.5em}
 section{padding:40px 0 8px;border-bottom:1px solid var(--line)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}
 .card.teal{border-color:rgba(25,230,210,.4)}.card.mag{border-color:rgba(255,79,176,.4)}.card.gold{border-color:rgba(255,210,63,.45)}
 .big{font:700 clamp(40px,11vw,72px)/1 "Clash Display",system-ui;letter-spacing:-.03em}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:520px){.grid{grid-template-columns:1fr}}
+figure{margin:18px -18px;position:relative;overflow:hidden}
+figure img,figure video{display:block;width:100%;height:auto}
+figcaption{position:absolute;left:18px;bottom:12px;right:18px;font:600 12px/1.3 "Clash Display",system-ui;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.tilt{transition:transform .25s ease;transform-style:preserve-3d;will-change:transform}
 audio{width:100%;margin:10px 0;filter:hue-rotate(300deg) saturate(1.2)}
 details{margin:8px 0}
 summary{cursor:pointer;font:600 14px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
@@ -48,15 +60,23 @@ th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertic
 th{font:600 11px "Clash Display",system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 td.pos{font:700 18px "Clash Display",system-ui;color:var(--gold);width:44px}
 tr.merc td{border-left:3px solid #19e6d2;padding-left:8px}tr.fer td{border-left:3px solid #ff3b3b;padding-left:8px}tr.mcl td{border-left:3px solid #ff8a00;padding-left:8px}tr.rb td{border-left:3px solid #3b6cff;padding-left:8px}tr.pen td{opacity:.85}
+tbody tr{opacity:0;transform:translateX(-10px);transition:opacity .4s ease,transform .4s ease}
+tbody tr.in{opacity:1;transform:none}
 .pill{display:inline-block;font:600 11px "Clash Display",system-ui;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:rgba(255,210,63,.14);color:var(--gold);margin-left:6px}
 .pill.red{background:rgba(255,59,59,.16);color:#ff8a8a}
 .pick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media (max-width:520px){.pick{grid-template-columns:1fr}}
 .pick label{display:block;font:600 12px "Clash Display",system-ui;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px}
 select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:16px "Switzer",system-ui}
-.btn{display:inline-block;margin:10px 8px 0 0;padding:14px 20px;border-radius:14px;border:0;font:700 15px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;color:#0b0716;background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(255,210,63,.3)}
+.btn{display:inline-block;margin:10px 8px 0 0;padding:14px 20px;border-radius:14px;border:0;font:700 15px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;color:#0b0716;background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(255,210,63,.3);cursor:pointer}
 .btn.teal{background:var(--teal);box-shadow:0 8px 30px rgba(25,230,210,.3)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.bingo{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.bingo button{aspect-ratio:1;border-radius:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:600 12px/1.25 "Switzer",system-ui;padding:8px;cursor:pointer;transition:transform .15s ease,background .2s ease}
+.bingo button.on{background:var(--me);color:#0b0716;border-color:var(--me);transform:scale(1.04)}
+.bingo button:active{transform:scale(.96)}
+.facts{display:flex;flex-direction:column;gap:10px}
+.fact{font-size:18px;min-height:3.2em}
 .challenge{background:linear-gradient(135deg,rgba(255,79,176,.22),rgba(25,230,210,.18));border:1px solid rgba(255,255,255,.2)}
 .challenge .big{background:linear-gradient(90deg,var(--teal),var(--gold),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent}
 .foot{font-size:13px;color:var(--muted)}
@@ -65,11 +85,13 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
 .q cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:4px}
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.reveal,tbody tr{opacity:1;transform:none;transition:none}.tilt{transition:none}}
 .srcs a{word-break:break-all}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:9}
 </style>
 </head>
 <body data-m26="progress,remember" data-m26-key="baku-2026">
+<canvas id="fx"></canvas>
 <main>
 <header class="hero">
   <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero.jpg"><source src="assets/hero.mp4" type="video/mp4"></video>
@@ -77,13 +99,24 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
   <div class="copy">
     <div class="eyebrow">Azerbaijan Grand Prix · Saturday 26 September 2026 · for David and Trent</div>
     <h1><span class="a">Baku,</span><span class="b">Saturday.</span></h1>
-    <p class="lede">Lights out at 4:00 AM Pacific. Fifty one laps, a castle, a two kilometer straight, and the championship leader starting sixteenth. Gordon asked for this to be yours.</p>
+    <p class="lede">Fifty one laps, a castle, a two kilometer straight, and the championship leader starting sixteenth. Gordon asked for this to be yours, and it knows nothing that happened after lights out.</p>
     <div class="count" id="count"><b id="cd">4:00 AM</b><small id="cdl">Pacific, lights out</small></div>
   </div>
 </header>
 
+<div class="banner"><div>Spoiler-free zone</div><span>Nothing on this page was written after lights out. Watch first, then argue.</span></div>
+
 <section>
-  <div class="eyebrow">01 · The briefing, 65 seconds</div>
+  <div class="eyebrow">00 · Who is holding the phone</div>
+  <h2>Say your name.</h2>
+  <div class="who"><button data-w="david">I am David</button><button data-w="trent">I am Trent</button></div>
+  <p class="hello" id="hello">Tap yours. The page turns your colour and says hello.</p>
+  <audio id="hiDavid" preload="none" src="assets/hi-david.mp3"></audio>
+  <audio id="hiTrent" preload="none" src="assets/hi-trent.mp3"></audio>
+</section>
+
+<section>
+  <div class="eyebrow">01 · The briefing, 65 seconds, recorded before the race</div>
   <h2>Press play, then argue.</h2>
   <div class="card teal">
     <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing. The transcript is below.</audio>
@@ -92,6 +125,8 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
     </details>
   </div>
 </section>
+
+<figure class="tilt reveal"><video autoplay muted loop playsinline poster="assets/couch.jpg"><source src="assets/couch.mp4" type="video/mp4"></video><noscript><img src="assets/couch.jpg" alt="Two friends on a couch at dawn watching a neon circuit on the TV"></noscript><figcaption>The couch, drawn for you two. Gordon is somewhere off frame making coffee.</figcaption></figure>
 
 <section>
   <div class="eyebrow">02 · Five things that make this one strange</div>
@@ -103,11 +138,13 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
   <div class="card reveal"><h3>Saturday, and new physics</h3><p>First Saturday race in Baku's history: the weekend moved forward for Azerbaijan's Day of Remembrance on 27 September. And 2026 cars carry active aerodynamics and far more energy deployment, so the old DRS train down the straight is gone. Formula 1's own strategy desk says "we're going to see something a bit different." Almost certainly one stop, all three compounds in play, pit windows wide.</p></div>
 </section>
 
+<figure class="tilt reveal"><img src="assets/castle.jpg" alt="A neon Formula 1 car threading the castle walls of Baku's Old City" loading="lazy"><figcaption>Turns 8 to 10. The narrowest piece of road in Formula 1.</figcaption></figure>
+
 <section>
-  <div class="eyebrow">03 · Your calls, locked before lights out</div>
+  <div class="eyebrow">03 · Your calls</div>
   <h2>Pick your podium.</h2>
   <div class="card">
-    <p>Each of you picks a winner, a podium wildcard, and where Antonelli finishes. The page remembers on this phone. Loser buys the first drink at Portola tonight.</p>
+    <p>Each of you picks a winner, a podium wildcard, and where Antonelli finishes. The page remembers on this phone and never checks the answer. Loser buys the first drink at Portola tonight.</p>
     <div class="pick">
       <div><label>David · winner</label><select id="dW"></select><label>David · surprise on the podium</label><select id="dS"></select><label>David · Antonelli finishes</label><select id="dA"></select></div>
       <div><label>Trent · winner</label><select id="tW"></select><label>Trent · surprise on the podium</label><select id="tS"></select><label>Trent · Antonelli finishes</label><select id="tA"></select></div>
@@ -117,12 +154,21 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
 </section>
 
 <section>
-  <div class="eyebrow">04 · The grid</div>
+  <div class="eyebrow">04 · Baku bingo, mark them as you watch</div>
+  <h2>Nine things that might happen.</h2>
+  <div class="card">
+    <div class="bingo" id="bingo"></div>
+    <p class="foot" id="bingoMsg">Tap a square when it happens. Three in a row and the other one makes breakfast.</p>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">05 · The grid</div>
   <h2>Where they start.</h2>
   <p class="foot">Qualifying classification with the Sainz five place penalty and the Alonso and Stroll power unit penalties applied. Verstappen's engine change is confirmed; any grid effect was not confirmed when this was published. Team bars: Mercedes teal, Ferrari red, McLaren orange, Red Bull blue.</p>
   <table>
     <thead><tr><th>P</th><th>Driver</th><th>Team</th><th>Gap</th></tr></thead>
-    <tbody>
+    <tbody id="gridBody">
       <tr class="merc"><td class="pos">1</td><td>George Russell</td><td>Mercedes</td><td>1:42.526</td></tr>
       <tr class="fer"><td class="pos">2</td><td>Charles Leclerc</td><td>Ferrari</td><td>+0.837</td></tr>
       <tr class="mcl"><td class="pos">3</td><td>Oscar Piastri</td><td>McLaren</td><td>+0.838</td></tr>
@@ -150,36 +196,38 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
 </section>
 
 <section>
-  <div class="eyebrow">05 · The season in numbers</div>
+  <div class="eyebrow">06 · The season in numbers, before Baku</div>
   <h2>Who is chasing whom.</h2>
   <div class="grid">
     <div class="card"><h3>Drivers</h3>
       <table><tbody>
-        <tr class="merc"><td class="pos">1</td><td>Antonelli</td><td>292</td></tr>
-        <tr class="merc"><td class="pos">2</td><td>Russell</td><td>211</td></tr>
-        <tr class="fer"><td class="pos">3</td><td>Hamilton</td><td>191</td></tr>
-        <tr class="mcl"><td class="pos">4</td><td>Norris</td><td>186</td></tr>
-        <tr class="fer"><td class="pos">5</td><td>Leclerc</td><td>167</td></tr>
-        <tr class="rb"><td class="pos">6</td><td>Verstappen</td><td>145</td></tr>
-        <tr class="mcl"><td class="pos">7</td><td>Piastri</td><td>120</td></tr>
-        <tr class="rb"><td class="pos">8</td><td>Hadjar</td><td>71</td></tr>
+        <tr class="merc in"><td class="pos">1</td><td>Antonelli</td><td>292</td></tr>
+        <tr class="merc in"><td class="pos">2</td><td>Russell</td><td>211</td></tr>
+        <tr class="fer in"><td class="pos">3</td><td>Hamilton</td><td>191</td></tr>
+        <tr class="mcl in"><td class="pos">4</td><td>Norris</td><td>186</td></tr>
+        <tr class="fer in"><td class="pos">5</td><td>Leclerc</td><td>167</td></tr>
+        <tr class="rb in"><td class="pos">6</td><td>Verstappen</td><td>145</td></tr>
+        <tr class="mcl in"><td class="pos">7</td><td>Piastri</td><td>120</td></tr>
+        <tr class="rb in"><td class="pos">8</td><td>Hadjar</td><td>71</td></tr>
       </tbody></table></div>
     <div class="card"><h3>Constructors</h3>
       <table><tbody>
-        <tr class="merc"><td class="pos">1</td><td>Mercedes</td><td>503</td></tr>
-        <tr class="fer"><td class="pos">2</td><td>Ferrari</td><td>358</td></tr>
-        <tr class="mcl"><td class="pos">3</td><td>McLaren</td><td>306</td></tr>
-        <tr class="rb"><td class="pos">4</td><td>Red Bull</td><td>230</td></tr>
-        <tr><td class="pos">5</td><td>Racing Bulls</td><td>77</td></tr>
-        <tr><td class="pos">6</td><td>Alpine</td><td>68</td></tr>
-        <tr><td class="pos">11</td><td>Cadillac, debut year</td><td>0</td></tr>
+        <tr class="merc in"><td class="pos">1</td><td>Mercedes</td><td>503</td></tr>
+        <tr class="fer in"><td class="pos">2</td><td>Ferrari</td><td>358</td></tr>
+        <tr class="mcl in"><td class="pos">3</td><td>McLaren</td><td>306</td></tr>
+        <tr class="rb in"><td class="pos">4</td><td>Red Bull</td><td>230</td></tr>
+        <tr class="in"><td class="pos">5</td><td>Racing Bulls</td><td>77</td></tr>
+        <tr class="in"><td class="pos">6</td><td>Alpine</td><td>68</td></tr>
+        <tr class="in"><td class="pos">11</td><td>Cadillac, debut year</td><td>0</td></tr>
       </tbody></table></div>
   </div>
   <p class="foot">Antonelli's lead is 81 points over his own teammate. Russell needs the win and a bad day for the kid to make October interesting. Norris won Hungary and Zandvoort in a row before this.</p>
 </section>
 
+<figure class="tilt reveal"><img src="assets/towers.jpg" alt="The Flame Towers of Baku glowing over the shoreline straight at night" loading="lazy"><figcaption>The Flame Towers over the shoreline straight, where the passing happens.</figcaption></figure>
+
 <section>
-  <div class="eyebrow">06 · The circuit, in the words that matter</div>
+  <div class="eyebrow">07 · The circuit, in the words that matter</div>
   <h2>A castle and a runway.</h2>
   <div class="grid">
     <div class="card"><div class="big">6.0 km</div><p>51 laps. Twenty corners. Lap record 1:43.009, Leclerc, 2019.</p></div>
@@ -187,28 +235,29 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
     <div class="card"><div class="big">T8 to T10</div><p>The castle section, walls of the Old City on both sides, the narrowest piece of track in Formula 1. Nobody passes here. Everybody can crash here.</p></div>
     <div class="card"><div class="big">57%</div><p>Safety car probability. Wind off the Caspian moves the cars around; 24 degrees and dry for the race.</p></div>
   </div>
+  <div class="card facts"><div class="eyebrow">Surprise me</div><div class="fact" id="fact">Baku's main straight is 2.2 kilometers, long enough that a car at full chat spends about 25 seconds with the throttle pinned.</div><button class="btn ghost" id="factBtn">Another one</button></div>
   <p class="q">"It's been a while, so it definitely feels good. It's probably the biggest margin of my whole career."<cite>George Russell, after pole, formula1.com</cite></p>
   <p class="q">"A sitting duck."<cite>Lewis Hamilton on his qualifying, via formula1.com What To Watch For</cite></p>
 </section>
 
 <section>
-  <div class="eyebrow">07 · How to watch from David's couch</div>
-  <h2>4:00 AM Pacific, 7:00 AM Eastern.</h2>
-  <div class="card"><p>In the US every session streams on Apple TV through its new F1 channel this season; F1 TV Pro carries it in supported countries. Formation lap is just before 4:00, so be on the couch by 3:50 with the good coffee. Then sleep, then Portola at 1:00 PM doors, Dog Blood at 9:00.</p></div>
+  <div class="eyebrow">08 · How to watch from David's couch</div>
+  <h2>Whenever you are ready.</h2>
+  <div class="card"><p>In the US every session streams on Apple TV through its new F1 channel this season; F1 TV Pro carries it in supported countries, and the replay is there the moment you are. Nothing here will tell you what happened. Then sleep, then Portola at 1:00 PM doors, Dog Blood at 9:00.</p></div>
 </section>
 
 <section>
-  <div class="eyebrow">08 · Gordon's challenge</div>
+  <div class="eyebrow">09 · Gordon's challenge</div>
   <div class="card challenge">
     <div class="big">Be the best. Be the most fabulous.</div>
-    <p>Baku Duel is a two player street race on one iPhone. Turn the phone sideways: David takes the left half, Trent the right. Tap your side to steer, hold both thumbs to brake. Three laps of a Baku-shaped circuit with the castle squeeze and the long straight. Fastest to the flag wins the race. Most style points, earned by running the walls at speed without touching them, wins Most Fabulous. Gordon expects a report with both trophies named.</p>
+    <p>Baku Duel is a two player street race on one iPhone, now with engine noise, wall thuds and a fanfare. Turn the phone sideways: David takes the left half, Trent the right. Tap your side to steer, hold both thumbs to brake. Three laps of a Baku-shaped circuit with the castle squeeze and the long straight. Fastest to the flag wins the race. Most style points, earned by running the walls at speed without touching them, wins Most Fabulous. Gordon expects a report with both trophies named.</p>
     <a class="btn" href="game.html">Play Baku Duel</a>
-    <a class="btn ghost" href="#count">Back to the countdown</a>
+    <a class="btn ghost" href="#count">Back to the top</a>
   </div>
 </section>
 
 <section class="srcs">
-  <div class="eyebrow">Sources, read at 3 AM Pacific on 26 September 2026</div>
+  <details><summary>Sources, read at 3 AM Pacific before the race. Spoiler warning: these are live sites and will show the result now.</summary>
   <ul class="foot">
     <li><a href="https://www.formula1.com/en/latest/article/russell-charges-to-pole-position-as-antonelli-suffers-shock-exit-in-qualifying-for-azerbaijan-gp.6vFe7216mR8JZuWE4QIB4w">Formula1.com qualifying report: Russell pole, Antonelli exit, Alonso and Stroll penalties</a></li>
     <li><a href="https://www.planetf1.com/news/f1-results-azerbaijan-grand-prix-2026-qualifying">PlanetF1: full qualifying classification, 22 cars</a></li>
@@ -218,8 +267,8 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
     <li><a href="https://www.formula1.com/en/results/2026/drivers">Formula1.com drivers' standings</a> and <a href="https://www.formula1.com/en/results/2026/team">constructors' standings</a></li>
     <li><a href="https://www.formula1.com/en/latest/article/strategy-guide-what-are-the-tactical-options-for-the-azerbaijan-gp.5iDS0mk2NragziXUR0jLlP">Formula1.com strategy guide: one stop, all three compounds, active aero</a></li>
     <li><a href="https://racingnews365.com/2026-f1-azerbaijan-grand-prix-baku-time-schedule">RacingNews365: Saturday race, Day of Remembrance</a></li>
-  </ul>
-  <p class="foot">Made by Darby for David Vermillion and Trent Collings at Gordon's ask, 26 September 2026. Hero art generated with Higgsfield, narration with ElevenLabs. Private page, not indexed. Not affiliated with Formula 1.</p>
+  </ul></details>
+  <p class="foot">Made by Darby for David Vermillion and Trent Collings at Gordon's ask, 26 September 2026. Art generated with Higgsfield, voices with ElevenLabs. Private page, not indexed. Not affiliated with Formula 1.</p>
 </section>
 </main>
 <script src="../motion-2026.js" defer></script>
@@ -228,17 +277,41 @@ select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);b
   var race=new Date('2026-09-26T11:00:00Z');
   var cd=document.getElementById('cd'),cdl=document.getElementById('cdl');
   function tick(){var d=race-Date.now();if(d>0){var h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);cd.textContent=(h?h+'h ':'')+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';cdl.textContent='to lights out · '+race.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})+' your time';}
-    else if(d>-2.5*3.6e6){cd.textContent='Lights out';cdl.textContent='51 laps, watch turn one';}
-    else{cd.textContent='Chequered';cdl.textContent='Argue about it at Portola';}}
+    else{cd.textContent='No spoilers';cdl.textContent='the race is waiting on your replay';}}
   tick();setInterval(tick,1000);
+  /* who */
+  var who=null;try{who=localStorage.getItem('baku2026who');}catch(e){}
+  var hello={david:"Hello, David. Ride or die. Your colour is teal, your half of the game is the left, and Trent is faster than he looks.",trent:"Hello, Trent. The quiet one on the rail. Your colour is magenta, your half is the right, and David has been practising."};
+  function setWho(w,play){who=w;document.documentElement.setAttribute('data-who',w);document.querySelectorAll('.who button').forEach(function(b){b.classList.toggle('on',b.dataset.w===w);});document.getElementById('hello').textContent=hello[w];try{localStorage.setItem('baku2026who',w);}catch(e){}
+    if(play){var a=document.getElementById(w==='david'?'hiDavid':'hiTrent');var o=document.getElementById(w==='david'?'hiTrent':'hiDavid');try{o.pause();a.currentTime=0;a.play();}catch(e){}burst(w==='david'?'#19e6d2':'#ff4fb0');}}
+  document.querySelectorAll('.who button').forEach(function(b){b.addEventListener('click',function(){setWho(b.dataset.w,true);});});
+  if(who)setWho(who,false);
+  /* picks */
   var drivers=['George Russell','Charles Leclerc','Oscar Piastri','Isack Hadjar','Lando Norris','Lewis Hamilton','Pierre Gasly','Max Verstappen','Franco Colapinto','Oliver Bearman','Liam Lawson','Alexander Albon','Esteban Ocon','Carlos Sainz','Arvid Lindblad','Kimi Antonelli','Gabriel Bortoleto','Nico Hulkenberg','Sergio Perez','Valtteri Bottas','Fernando Alonso','Lance Stroll'];
   var fin=['Wins it','Podium','P4 to P6','P7 to P10','Points, just','Out of the points','Does not finish'];
   function fill(id,list){var s=document.getElementById(id);list.forEach(function(x){var o=document.createElement('option');o.textContent=x;s.appendChild(o);});}
   ['dW','dS','tW','tS'].forEach(function(i){fill(i,drivers);});['dA','tA'].forEach(function(i){fill(i,fin);});
   var ids=['dW','dS','dA','tW','tS','tA'],key='baku2026picks';
   try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved){ids.forEach(function(i){if(saved[i])document.getElementById(i).value=saved[i];});document.getElementById('locked').textContent='Locked '+saved.when+'. Change and lock again if you dare.';}}catch(e){}
-  document.getElementById('lock').addEventListener('click',function(){var o={when:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})};ids.forEach(function(i){o[i]=document.getElementById(i).value;});try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}document.getElementById('locked').textContent='Locked '+o.when+'. No takebacks after lights out.';});
-  var els=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(e){io.observe(e);});}else{els.forEach(function(e){e.classList.add('in');});}
+  document.getElementById('lock').addEventListener('click',function(){var o={when:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})};ids.forEach(function(i){o[i]=document.getElementById(i).value;});try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}document.getElementById('locked').textContent='Locked '+o.when+'. No takebacks.';burst('#ffd23f');});
+  /* bingo */
+  var squares=['Safety car before lap 10','Antonelli passes five cars in one lap','Someone kisses the castle wall and survives','Verstappen on the radio, unhappy','A pit stop under two and a half seconds','Leclerc and Piastri side by side down the straight','A car parked in the Turn 15 escape road','Russell leads every lap of the first stint','David says "he is going to bin it" and is right'];
+  var bk='baku2026bingo',bset={};try{bset=JSON.parse(localStorage.getItem(bk)||'{}');}catch(e){}
+  var bingo=document.getElementById('bingo');squares.forEach(function(t,i){var b=document.createElement('button');b.textContent=t;b.type='button';if(bset[i])b.classList.add('on');b.addEventListener('click',function(){b.classList.toggle('on');bset[i]=b.classList.contains('on');try{localStorage.setItem(bk,JSON.stringify(bset));}catch(e){}check();});bingo.appendChild(b);});
+  function check(){var L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];var win=L.some(function(l){return l.every(function(i){return bset[i];});});document.getElementById('bingoMsg').textContent=win?'Bingo. Breakfast is on the other one.':'Tap a square when it happens. Three in a row and the other one makes breakfast.';if(win)burst('#ffd23f');}
+  /* facts */
+  var facts=['Baku\'s main straight is 2.2 kilometers, long enough that a car at full chat spends about 25 seconds with the throttle pinned.','The castle section between Turns 8 and 10 is about 7.6 meters wide at its narrowest. A 2026 car is 2 meters wide. Do the arithmetic while holding your breath.','Only two drivers have won here more than once: Sergio Perez and Max Verstappen. Perez starts nineteenth today in a Cadillac.','Russell\'s 0.837 second pole margin is bigger than the gap from second to seventh on the grid.','Antonelli has eight wins this season and has never started lower than sixth in 2026 until today.','Wind off the Caspian is the invisible driver here: a gust at the end of the straight adds or removes 20 meters of braking.','Williams reached Q3 for the first time this season, then lost five places for a yellow flag in the same session.','Cadillac\'s first season sits at zero points after fifteen rounds. Their two cars start nineteenth and twentieth.','The lap record, 1:43.009, has stood since 2019. Russell\'s pole lap was half a second quicker than that.','Baku is a Saturday race for the first time ever, so tonight David and Trent watch a replay with no notifications on. Phones face down.'];
+  var fi=0;document.getElementById('factBtn').addEventListener('click',function(){fi=(fi+1)%facts.length;var el=document.getElementById('fact');el.style.opacity=0;setTimeout(function(){el.textContent=facts[fi];el.style.opacity=1;},180);});
+  /* reveal and grid rows */
+  var els=document.querySelectorAll('.reveal');var rows=document.querySelectorAll('#gridBody tr');
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(e){io.observe(e);});
+    var ro=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){var i=Array.prototype.indexOf.call(rows,e.target);setTimeout(function(){e.target.classList.add('in');},i*40);ro.unobserve(e.target);}});},{threshold:.1});rows.forEach(function(r){ro.observe(r);});}
+  else{els.forEach(function(e){e.classList.add('in');});rows.forEach(function(r){r.classList.add('in');});}
+  /* tilt on figures */
+  if(window.matchMedia&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.tilt').forEach(function(f){f.addEventListener('pointermove',function(ev){var r=f.getBoundingClientRect();var x=(ev.clientX-r.left)/r.width-.5,y=(ev.clientY-r.top)/r.height-.5;f.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg)';});f.addEventListener('pointerleave',function(){f.style.transform='';});});}
+  /* confetti */
+  var fx=document.getElementById('fx'),fctx=fx.getContext('2d');function size(){fx.width=innerWidth;fx.height=innerHeight;}size();addEventListener('resize',size);
+  function burst(color){var parts=[];for(var i=0;i<80;i++)parts.push({x:innerWidth/2,y:innerHeight*0.4,vx:(Math.random()-0.5)*600,vy:-Math.random()*600-150,c:[color,'#ffffff','#ffd23f'][i%3],r:Math.random()*7+3,a:Math.random()*6});var t0=performance.now(),l=t0;function f(ts){var dt=Math.min(0.033,(ts-l)/1000);l=ts;var el=(ts-t0)/1000;fctx.clearRect(0,0,fx.width,fx.height);if(el>2.4)return;for(var i=0;i<parts.length;i++){var p=parts[i];p.vy+=950*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.a+=dt*7;fctx.globalAlpha=Math.max(0,1-el/2.4);fctx.fillStyle=p.c;fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.a);fctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);fctx.restore();}requestAnimationFrame(f);}requestAnimationFrame(f);}
   var v=document.getElementById('heroVideo');if(v){v.addEventListener('error',function(){v.style.display='none';var i=new Image();i.src='assets/hero.jpg';i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover';v.parentNode.insertBefore(i,v);});}
 })();
 </script>
