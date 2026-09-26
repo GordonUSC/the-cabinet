@@ -92,7 +92,7 @@ Car.prototype.step=function(dt){if(this.done)return;this.time+=dt;
   var adv=((j-this.seg)%N+N)%N;if(adv<N/2){this.prog+=adv;}else{this.prog-=(N-adv);}this.seg=j;
   if(this.prog>=N){this.prog-=N;this.lap++;if(this.lap>3){this.done=true;this.finishT=this.time;}}
 };
-var cars=[new Car(0),new Car(1)],running=false,shake=0,t0=0,last=0,winner=null;
+var cars=[new Car(0),new Car(1)],running=false,shake=0,t0=0,last=0,winner=null;window.__cars=cars;
 
 /* touch: left half belongs to car 0, right half to car 1; within a half, left third steers left, right third steers right */
 var touches={};
