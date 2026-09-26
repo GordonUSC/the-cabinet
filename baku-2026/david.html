@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0B0A18">
+<title>Baku · David's telemetry</title>
+<!-- STYLE: Greiman idiom, layered telemetry: rotated translucent panes, scan lines, Chakra Petch readouts over Archivo body, indigo ground with teal and hot pink instruments | WHY: David is the ride or die who reads the room from the rail; his edition is a pit-wall readout, layers stacked the way Greiman stacked systems, so numbers feel like instruments rather than a table | ALT: the riso programme of the shared page was the first version and is kept live as index.html for the side by side -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0B0A18;--ink:#F2EEFF;--muted:#C9C2E8;--dim:#8B84AD;--cyan:#9FE8FF;--teal:#5AF0D9;--pink:#FF62B0;--gold:#FFE45E;--mint:#78FFC8}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(120% 90% at 15% 0%,#2B1B5E 0%,transparent 55%),radial-gradient(80% 70% at 95% 30%,#0F4A6B 0%,transparent 60%),var(--bg);color:var(--ink);font:17px/1.62 Archivo,Helvetica,Arial,sans-serif;overflow-x:hidden;min-height:100vh}
+.scan{position:fixed;inset:0;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.05) 0 1px,transparent 1px 4px);pointer-events:none;z-index:0}
+main{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:28px 18px 90px}
+h1,h2,h3{font-family:"Chakra Petch",monospace;margin:0;line-height:1.02}
+h1{font-weight:700;font-size:clamp(40px,10vw,74px);letter-spacing:-.01em;max-width:14ch}
+h1 i{font-style:normal;color:var(--pink)}
+h2{font-weight:700;font-size:clamp(24px,5.5vw,36px);margin:0 0 12px}
+h3{font-weight:600;font-size:17px;letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);margin:0 0 6px}
+p{margin:0 0 12px;color:var(--muted);max-width:52ch}
+a{color:var(--cyan)}
+.tagvert{position:fixed;right:10px;top:120px;writing-mode:vertical-rl;font-family:"Chakra Petch",monospace;font-size:12px;letter-spacing:.38em;color:var(--cyan);opacity:.8;z-index:1}
+@media (max-width:700px){.tagvert{display:none}}
+.plate{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;line-height:1.7;color:var(--dim)}
+.plate b{color:var(--ink);font-weight:600}
+.pane{position:relative;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(2px);padding:18px;margin:22px 0;background:linear-gradient(135deg,rgba(255,90,180,.28),rgba(90,200,255,.12))}
+.pane.b{background:linear-gradient(135deg,rgba(120,255,200,.22),rgba(160,90,255,.22))}
+.pane.c{background:linear-gradient(135deg,rgba(255,220,90,.22),rgba(255,60,120,.2))}
+.pane.r1{transform:rotate(-1.2deg)}.pane.r2{transform:rotate(.8deg)}.pane.r3{transform:rotate(-.6deg)}
+.pane>*{transform:none}
+.readout{font-family:"Chakra Petch",monospace;font-size:14px;line-height:2.1;letter-spacing:.1em;color:var(--cyan)}
+.readout b{color:var(--gold);font-weight:600}
+.num{font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.stack{position:relative;height:260px;margin:12px 0 26px}
+.stack .pane{position:absolute;margin:0;padding:14px 16px;width:min(440px,78%)}
+.stack .s1{left:0;top:0;transform:rotate(-6deg)}
+.stack .s2{left:18%;top:70px;transform:rotate(4deg)}
+.stack .s3{left:6%;top:150px;transform:rotate(-2deg)}
+.who{display:flex;gap:10px;margin:8px 0 6px}
+.who button{flex:1;padding:12px;border:1px solid rgba(255,255,255,.4);background:transparent;color:var(--ink);font:600 13px "Chakra Petch",monospace;letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
+.who button.on{background:var(--teal);color:#0B0A18;border-color:var(--teal)}
+audio{width:100%;margin:8px 0;filter:hue-rotate(200deg)}
+table{width:100%;border-collapse:collapse;font-family:"Chakra Petch",monospace;font-size:13px;letter-spacing:.04em}
+td,th{padding:6px 6px;border-bottom:1px solid rgba(255,255,255,.14);text-align:left;vertical-align:top}
+th{font-size:10px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+td.pos{color:var(--gold);width:40px;font-weight:700}
+.bar{height:6px;background:rgba(255,255,255,.12);margin-top:4px}.bar i{display:block;height:100%;background:var(--pink)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.btn{display:inline-block;margin:8px 8px 0 0;padding:12px 18px;border:1px solid var(--teal);color:var(--teal);font:700 13px "Chakra Petch",monospace;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;background:transparent}
+.btn.fill{background:var(--pink);border-color:var(--pink);color:#0B0A18}
+.spoil{position:sticky;top:0;z-index:4;background:rgba(11,10,24,.9);border-bottom:1px solid rgba(255,255,255,.25);padding:8px 0;font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+figure{margin:18px 0;border:1px solid rgba(255,255,255,.3)}figure img{display:block;width:100%;height:auto;mix-blend-mode:screen}
+figcaption{padding:8px 10px;font-family:"Chakra Petch",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+details summary{cursor:pointer;font-family:"Chakra Petch",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink)}
+select{width:100%;padding:9px;background:#161235;color:var(--ink);border:1px solid rgba(255,255,255,.3);font:14px Archivo,sans-serif;margin:4px 0 8px}
+label{display:block;font-family:"Chakra Petch",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="scan"></div>
+<div class="tagvert">TELEMETRY · DAVID V. · BAKU 26.09.2026 · NO SPOILERS</div>
+<main>
+<div class="spoil">Spoiler-free readout · nothing here was written after lights out</div>
+<p class="num" style="margin-top:18px">SESSION 04 · RACE · BAKU CITY CIRCUIT · 51 LAPS · 15:00 LOCAL · 04:00 PACIFIC</p>
+<h1>Baku, read like a <i>pit wall</i>.</h1>
+<p style="margin-top:14px">David, this is your edition: the same race, laid out as instruments. Layers, readouts, deltas. Gordon is on your couch. Nothing below knows how it went.</p>
+<div class="who"><button data-w="david" class="on">David, confirm</button><a class="btn" href="trent.html" style="flex:1;text-align:center;margin:0">Trent's edition</a><a class="btn" href="index.html" style="flex:1;text-align:center;margin:0">Shared programme</a></div>
+<audio id="hi" preload="none" src="assets/hi-david.mp3"></audio>
+<p id="hello" style="min-height:1.6em;color:var(--cyan);font-family:'Chakra Petch',monospace;font-size:13px;letter-spacing:.06em"></p>
+
+<div class="stack">
+  <div class="pane s1"><h3>Pole</h3><div class="readout">RUSSELL · MERCEDES · <b>1:42.526</b><br>MARGIN <b>+0.837</b> · CAREER BEST</div></div>
+  <div class="pane b s2"><h3>Leader</h3><div class="readout">ANTONELLI · P16 · <b>+81 PTS</b><br>Q1 · TURN 1 · WALL</div></div>
+  <div class="pane c s3"><h3>Risk</h3><div class="readout">SAFETY CAR <b>57%</b> · WIND OFF THE CASPIAN<br>ONE STOP · THREE COMPOUNDS</div></div>
+</div>
+
+<section class="pane r1"><h3>01 · Briefing, 65 s, recorded before the race</h3>
+  <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing.</audio>
+  <div class="readout">T-MINUS <b id="cd">--</b> · <span id="cdl">lights out</span></div>
+</section>
+
+<section class="pane b r2"><h3>02 · Five readouts that matter</h3>
+  <div class="readout">01 · LEADER FROM P16 · <b>ANTONELLI</b> · 8 WINS · 81 PT LEAD · Q1 CRASH<br>02 · POLE MARGIN · <b>0.837 s</b> · "BIGGEST OF MY CAREER"<br>03 · P2 TO P3 · <b>0.001 s</b> · LECLERC / PIASTRI<br>04 · VERSTAPPEN · P8 · <b>ENGINE CHANGE</b> · "NOT GOOD ENOUGH"<br>05 · FIRST SATURDAY BAKU · <b>ACTIVE AERO</b> · NO DRS TRAIN</div>
+  <p style="margin-top:10px">A safety car compresses the field and hands the leader his race back for free. If it stays green, P16 to the points is a 51 lap clinic. Mercedes owns the straight, Ferrari and McLaren own the castle.</p>
+</section>
+
+<figure><img src="assets/castle.jpg" alt="The castle section of Baku's Old City" loading="lazy"><figcaption>Sector 2 · Turns 8 to 10 · narrowest road in Formula 1</figcaption></figure>
+
+<section class="pane c r3"><h3>03 · Your calls, locked on this phone</h3>
+  <div class="grid2">
+    <div><label>Winner</label><select id="w"></select><label>Surprise on the podium</label><select id="s"></select><label>Antonelli finishes</label><select id="a"></select></div>
+    <div><p>The page never checks the answer. Loser buys the first drink at Portola tonight.</p><a class="btn fill" id="lock" href="#lock">Lock</a> <span class="num" id="locked"></span></div>
+  </div>
+</section>
+
+<section class="pane r1"><h3>04 · Grid, penalties applied</h3>
+  <table><thead><tr><th>P</th><th>Driver</th><th>Team</th><th>Gap</th></tr></thead><tbody>
+    <tr><td class="pos">1</td><td>Russell</td><td>Mercedes</td><td>1:42.526</td></tr>
+    <tr><td class="pos">2</td><td>Leclerc</td><td>Ferrari</td><td>+0.837</td></tr>
+    <tr><td class="pos">3</td><td>Piastri</td><td>McLaren</td><td>+0.838</td></tr>
+    <tr><td class="pos">4</td><td>Hadjar</td><td>Red Bull</td><td>+0.974</td></tr>
+    <tr><td class="pos">5</td><td>Norris</td><td>McLaren</td><td>+1.146</td></tr>
+    <tr><td class="pos">6</td><td>Hamilton</td><td>Ferrari</td><td>+1.332</td></tr>
+    <tr><td class="pos">7</td><td>Gasly</td><td>Alpine</td><td>+1.521</td></tr>
+    <tr><td class="pos">8</td><td>Verstappen · engine change</td><td>Red Bull</td><td>+1.555</td></tr>
+    <tr><td class="pos">9</td><td>Colapinto</td><td>Alpine</td><td>+2.437</td></tr>
+    <tr><td class="pos">10</td><td>Bearman</td><td>Haas</td><td>Q2</td></tr>
+    <tr><td class="pos">11</td><td>Lawson</td><td>Racing Bulls</td><td>Q2</td></tr>
+    <tr><td class="pos">12</td><td>Albon</td><td>Williams</td><td>Q2</td></tr>
+    <tr><td class="pos">13</td><td>Ocon</td><td>Haas</td><td>Q2</td></tr>
+    <tr><td class="pos">14</td><td>Sainz · 5 places, yellow flag</td><td>Williams</td><td>+2.040 in Q3</td></tr>
+    <tr><td class="pos">15</td><td>Lindblad</td><td>Racing Bulls</td><td>Q2</td></tr>
+    <tr><td class="pos">16</td><td>Antonelli · crashed Q1</td><td>Mercedes</td><td>Q1</td></tr>
+    <tr><td class="pos">17</td><td>Bortoleto</td><td>Audi</td><td>Q1</td></tr>
+    <tr><td class="pos">18</td><td>Hulkenberg</td><td>Audi</td><td>Q1</td></tr>
+    <tr><td class="pos">19</td><td>Perez</td><td>Cadillac</td><td>Q1</td></tr>
+    <tr><td class="pos">20</td><td>Bottas</td><td>Cadillac</td><td>Q1</td></tr>
+    <tr><td class="pos">21</td><td>Alonso · power unit</td><td>Aston Martin</td><td>Q1</td></tr>
+    <tr><td class="pos">22</td><td>Stroll · power unit</td><td>Aston Martin</td><td>Q1</td></tr>
+  </tbody></table>
+  <p class="num" style="margin-top:8px">VERSTAPPEN ENGINE CHANGE CONFIRMED · GRID EFFECT UNCONFIRMED AT PUBLISH</p>
+</section>
+
+<section class="pane b r2"><h3>05 · Championship, before Baku</h3>
+  <div class="grid2">
+    <div class="readout">ANTONELLI <b>292</b><div class="bar"><i style="width:100%"></i></div>RUSSELL <b>211</b><div class="bar"><i style="width:72%"></i></div>HAMILTON <b>191</b><div class="bar"><i style="width:65%"></i></div>NORRIS <b>186</b><div class="bar"><i style="width:64%"></i></div>LECLERC <b>167</b><div class="bar"><i style="width:57%"></i></div>VERSTAPPEN <b>145</b><div class="bar"><i style="width:50%"></i></div></div>
+    <div class="readout">MERCEDES <b>503</b><div class="bar"><i style="width:100%"></i></div>FERRARI <b>358</b><div class="bar"><i style="width:71%"></i></div>MCLAREN <b>306</b><div class="bar"><i style="width:61%"></i></div>RED BULL <b>230</b><div class="bar"><i style="width:46%"></i></div>RACING BULLS <b>77</b><div class="bar"><i style="width:15%"></i></div>CADILLAC <b>0</b><div class="bar"><i style="width:0"></i></div></div>
+  </div>
+</section>
+
+<figure><img src="assets/towers.jpg" alt="The Flame Towers over the shoreline straight" loading="lazy"><figcaption>Sector 3 · shoreline straight · 2.2 km · 220 mph · the passing place</figcaption></figure>
+
+<section class="pane c r3"><h3>06 · Circuit</h3>
+  <div class="readout">LENGTH <b>6.0 km</b> · LAPS <b>51</b> · CORNERS <b>20</b> · RECORD <b>1:43.009</b> LECLERC 2019<br>CASTLE T8 TO T10 · NARROWEST IN F1 · KERBS RED · WALLS SANDSTONE<br>WEATHER <b>24 C</b> · DRY · GUSTS FROM THE CASPIAN</div>
+</section>
+
+<section class="pane r1"><h3>07 · Watch, then race</h3>
+  <p>Apple TV carries every session in the US this season; the replay is waiting whenever you are. Then Portola: doors 1:00 PM, Dog Blood 9:00.</p>
+  <p>Gordon's challenge stands. Baku Duel, two players on one iPhone, now with sectors, purple splits, Manual Override and stewards. Be the best. Be the most fabulous.</p>
+  <a class="btn fill" href="game.html">Play Baku Duel</a>
+</section>
+
+<details style="margin-top:20px"><summary>Sources · spoiler warning, live sites show the result now</summary>
+  <p class="plate" style="margin-top:10px">Formula1.com qualifying report, penalties and standings · PlanetF1 classification · The Race analysis · ESPN preview · RacingNews365 schedule. Read at 3 AM Pacific before the race. Art by Higgsfield, voice by ElevenLabs. Not affiliated with Formula 1. Private page, not indexed.</p>
+</details>
+<p class="plate" style="margin-top:18px"><b>Darby</b> for David Vermillion · at Gordon's ask · 26.09.2026 · edition: telemetry</p>
+</main>
+<script>
+(function(){
+  var race=new Date('2026-09-26T11:00:00Z'),cd=document.getElementById('cd'),cdl=document.getElementById('cdl');
+  function tick(){var d=race-Date.now();if(d>0){var h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);cd.textContent=(h?h+'h ':'')+m+'m '+s+'s';cdl.textContent='to lights out';}else{cd.textContent='REPLAY';cdl.textContent='no spoilers, the race is waiting on you';}}
+  tick();setInterval(tick,1000);
+  var b=document.querySelector('.who button');b.addEventListener('click',function(){var a=document.getElementById('hi');try{a.currentTime=0;a.play();}catch(e){}document.getElementById('hello').textContent='CONFIRMED · DAVID · TEAL · LEFT HALF OF THE DUEL · TRENT IS FASTER THAN HE LOOKS';});
+  var drivers=['George Russell','Charles Leclerc','Oscar Piastri','Isack Hadjar','Lando Norris','Lewis Hamilton','Pierre Gasly','Max Verstappen','Franco Colapinto','Oliver Bearman','Liam Lawson','Alexander Albon','Esteban Ocon','Carlos Sainz','Arvid Lindblad','Kimi Antonelli','Gabriel Bortoleto','Nico Hulkenberg','Sergio Perez','Valtteri Bottas','Fernando Alonso','Lance Stroll'];
+  var fin=['Wins it','Podium','P4 to P6','P7 to P10','Points, just','Out of the points','Does not finish'];
+  function fill(id,list){var s=document.getElementById(id);list.forEach(function(x){var o=document.createElement('option');o.textContent=x;s.appendChild(o);});}
+  fill('w',drivers);fill('s',drivers);fill('a',fin);var key='baku2026picks_david';
+  try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved){['w','s','a'].forEach(function(i){if(saved[i])document.getElementById(i).value=saved[i];});document.getElementById('locked').textContent='LOCKED '+saved.when;}}catch(e){}
+  document.getElementById('lock').addEventListener('click',function(ev){ev.preventDefault();var o={when:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})};['w','s','a'].forEach(function(i){o[i]=document.getElementById(i).value;});try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}document.getElementById('locked').textContent='LOCKED '+o.when+' · NO TAKEBACKS';});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#EDE4D3">
+<title>Baku · Trent's geometry</title>
+<!-- STYLE: Tanaka idiom, a physical setup explained by geometry: cream paper, black, vermilion and ochre circles and bands, Zen Kaku Gothic New, generous calm, a legend instead of a hero | WHY: Trent is the quiet one on the rail; his edition explains the circuit and the grid as shapes and a legend, the way Tanaka explained a face with three circles, so the day reads as calm and exact rather than loud | ALT: the shared riso programme (index.html) and David's telemetry edition (david.html) are both dark; this one is deliberately paper so the three can be judged by contrast -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--paper:#EDE4D3;--ink:#151515;--text:#3C3C3C;--dim:#6A6154;--red:#C8322B;--ochre:#C8A02B;--sea:#2C5F8A}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.7 "Zen Kaku Gothic New",system-ui,sans-serif;overflow-x:hidden}
+main{max-width:860px;margin:0 auto;padding:30px 22px 100px}
+h1,h2{margin:0;line-height:1.06;letter-spacing:-.02em;font-weight:700}
+h1{font-size:clamp(38px,9vw,60px);max-width:15ch}
+h2{font-size:clamp(24px,5vw,34px);margin:0 0 14px}
+p{margin:0 0 16px;color:var(--text);max-width:46ch}
+a{color:var(--red)}
+.plate{font-family:ui-monospace,Menlo,monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;line-height:1.7;color:var(--dim)}
+.plate b{color:var(--ink);font-weight:700}
+.spoil{position:sticky;top:0;z-index:4;background:var(--paper);border-bottom:2px solid var(--ink);padding:8px 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.fig{position:relative;width:min(520px,100%);aspect-ratio:520/640;margin:26px auto}
+.f{position:absolute}
+.head{left:21%;top:6%;width:58%;aspect-ratio:1;border-radius:50%;background:var(--ink)}
+.key{left:11%;top:19%;width:29%;aspect-ratio:1;border-radius:50%;background:var(--red)}
+.fill{left:29%;top:61%;width:42%;height:17%;background:var(--ochre);border-radius:999px 999px 0 0}
+.rim{left:68%;top:15%;width:25%;aspect-ratio:1;border-radius:50%;background:var(--paper);box-shadow:0 0 0 14px var(--ink)}
+.band{left:11%;top:84%;width:77%;height:2.5%;background:var(--ink)}
+.band2{left:11%;top:89%;width:48%;height:2.5%;background:var(--red)}
+.legend{margin:10px 0 30px;display:grid;gap:10px}
+.legend div{display:flex;gap:14px;align-items:center;font-size:15px}
+.legend i{width:22px;height:22px;display:block;flex:none;border-radius:50%}
+section{padding:28px 0;border-top:2px solid var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:600px){.two{grid-template-columns:1fr}}
+.num{font-size:clamp(40px,10vw,64px);font-weight:700;line-height:1;letter-spacing:-.03em}
+.num.red{color:var(--red)}.num.ochre{color:var(--ochre)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{padding:7px 6px;border-bottom:1px solid rgba(21,21,21,.18);text-align:left;vertical-align:top}
+th{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
+td.pos{width:40px;font-weight:700}
+tr.m td.pos{color:var(--sea)}tr.f td.pos{color:var(--red)}tr.o td.pos{color:var(--ochre)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:middle;margin-right:8px}
+.who{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.who button,.who a{flex:1;min-width:140px;padding:12px;border:2px solid var(--ink);background:transparent;color:var(--ink);font:700 13px "Zen Kaku Gothic New",sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:center;text-decoration:none;cursor:pointer}
+.who button.on{background:var(--ink);color:var(--paper)}
+audio{width:100%;margin:8px 0}
+.btn{display:inline-block;padding:12px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;text-decoration:none;margin:8px 8px 0 0}
+.btn.red{background:var(--red);border-color:var(--red)}
+select{width:100%;padding:9px;background:#fff;color:var(--ink);border:2px solid var(--ink);font:15px "Zen Kaku Gothic New",sans-serif;margin:4px 0 10px}
+label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700}
+figure{margin:20px 0}figure img{display:block;width:100%;height:auto;border:2px solid var(--ink)}
+figcaption{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:6px;font-weight:700}
+details summary{cursor:pointer;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--red)}
+.q{border-left:4px solid var(--ochre);padding-left:14px;font-style:italic}
+.q cite{display:block;font-style:normal;font-size:13px;color:var(--dim)}
+</style>
+</head>
+<body>
+<main>
+<div class="spoil">Spoiler-free · nothing here was written after lights out</div>
+<p class="plate" style="margin-top:18px">Race 04 · Baku City Circuit · 51 laps · Saturday 26 September 2026 · 15:00 local · 04:00 Pacific</p>
+<h1>Baku, explained by three circles and two bands.</h1>
+<p style="margin-top:14px">Trent, this is your edition: the same day, drawn as geometry. A circuit is three shapes and a legend. Gordon is on your couch. Nothing below knows how it went.</p>
+<div class="who"><button data-w="trent" class="on">Trent, confirm</button><a href="david.html">David's edition</a><a href="index.html">Shared programme</a></div>
+<audio id="hi" preload="none" src="assets/hi-trent.mp3"></audio>
+<p id="hello" style="min-height:1.6em;font-weight:700;font-size:14px;letter-spacing:.04em"></p>
+
+<div class="fig" aria-hidden="true"><div class="f head"></div><div class="f key"></div><div class="f fill"></div><div class="f rim"></div><div class="f band"></div><div class="f band2"></div></div>
+<div class="legend">
+  <div><i style="background:var(--ink)"></i>The black circle is the Old City. The castle section, Turns 8 to 10, runs along its wall. Nobody passes there. Everybody can crash there.</div>
+  <div><i style="background:var(--red)"></i>The vermilion circle is the safety car probability, 57 percent. It sits inside the city because that is where it is born.</div>
+  <div><i style="background:var(--ochre)"></i>The ochre arch is the Flame Towers, and the ochre in the legend below is McLaren.</div>
+  <div><i style="background:var(--ink);border-radius:0;height:6px"></i>The long black band is the shoreline straight, 2.2 kilometers, 220 miles an hour, the one real passing place.</div>
+  <div><i style="background:var(--red);border-radius:0;height:6px"></i>The short red band is Russell's pole margin, 0.837 seconds, the largest of his career.</div>
+</div>
+
+<section><h2>Listen once, before the replay.</h2>
+  <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing.</audio>
+  <p class="plate"><b id="cd">--</b> <span id="cdl">to lights out</span></p>
+</section>
+
+<section><h2>Five facts, as shapes.</h2>
+  <div class="two">
+    <div><div class="num red">P16</div><p>Where the championship leader starts. Kimi Antonelli, 81 points clear with eight wins, hit the Turn 1 wall in Q1. A safety car hands him the race back for free; a green race is a 51 lap climb.</p></div>
+    <div><div class="num">0.837</div><p>Seconds between Russell on pole and Leclerc in second. The Race called it Mercedes' most dominant performance of 2026. Mercedes owns the straight; Ferrari and McLaren own the castle.</p></div>
+    <div><div class="num ochre">0.001</div><p>Seconds between Leclerc and Piastri, two philosophies of car separated by a millisecond.</p></div>
+    <div><div class="num">P8</div><p>Verstappen, fresh engine after an ICE failure, a yellow flag on his last lap, and a verdict on his own team: "not good enough." One of two drivers who has won here more than once.</p></div>
+  </div>
+  <p>And one more without a number: the first Saturday race in Baku's history, moved for the Day of Remembrance, with 2026 cars carrying active aerodynamics, so the old DRS train down the straight is gone. One stop, all three compounds in play.</p>
+</section>
+
+<figure><img src="assets/couch.jpg" alt="Two friends on a couch at dawn watching a neon circuit" loading="lazy"><figcaption>The couch, drawn for you two</figcaption></figure>
+
+<section><h2>Your calls.</h2>
+  <div class="two">
+    <div><label>Winner</label><select id="w"></select><label>Surprise on the podium</label><select id="s"></select><label>Antonelli finishes</label><select id="a"></select></div>
+    <div><p>The page remembers on this phone and never checks the answer. Loser buys the first drink at Portola tonight.</p><a class="btn red" id="lock" href="#lock">Lock</a> <span class="plate" id="locked"></span></div>
+  </div>
+</section>
+
+<section><h2>The grid, penalties applied.</h2>
+  <p class="plate" style="margin-bottom:8px"><span class="dot" style="background:var(--sea)"></span>Mercedes &nbsp; <span class="dot" style="background:var(--red)"></span>Ferrari &nbsp; <span class="dot" style="background:var(--ochre)"></span>McLaren</p>
+  <table><thead><tr><th>P</th><th>Driver</th><th>Team</th><th>Gap</th></tr></thead><tbody>
+    <tr class="m"><td class="pos">1</td><td>George Russell</td><td>Mercedes</td><td>1:42.526</td></tr>
+    <tr class="f"><td class="pos">2</td><td>Charles Leclerc</td><td>Ferrari</td><td>+0.837</td></tr>
+    <tr class="o"><td class="pos">3</td><td>Oscar Piastri</td><td>McLaren</td><td>+0.838</td></tr>
+    <tr><td class="pos">4</td><td>Isack Hadjar</td><td>Red Bull</td><td>+0.974</td></tr>
+    <tr class="o"><td class="pos">5</td><td>Lando Norris</td><td>McLaren</td><td>+1.146</td></tr>
+    <tr class="f"><td class="pos">6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>+1.332</td></tr>
+    <tr><td class="pos">7</td><td>Pierre Gasly</td><td>Alpine</td><td>+1.521</td></tr>
+    <tr><td class="pos">8</td><td>Max Verstappen, engine change</td><td>Red Bull</td><td>+1.555</td></tr>
+    <tr><td class="pos">9</td><td>Franco Colapinto</td><td>Alpine</td><td>+2.437</td></tr>
+    <tr><td class="pos">10</td><td>Oliver Bearman</td><td>Haas</td><td>Q2</td></tr>
+    <tr><td class="pos">11</td><td>Liam Lawson</td><td>Racing Bulls</td><td>Q2</td></tr>
+    <tr><td class="pos">12</td><td>Alexander Albon</td><td>Williams</td><td>Q2</td></tr>
+    <tr><td class="pos">13</td><td>Esteban Ocon</td><td>Haas</td><td>Q2</td></tr>
+    <tr><td class="pos">14</td><td>Carlos Sainz, five places for a yellow flag</td><td>Williams</td><td>+2.040 in Q3</td></tr>
+    <tr><td class="pos">15</td><td>Arvid Lindblad</td><td>Racing Bulls</td><td>Q2</td></tr>
+    <tr class="m"><td class="pos">16</td><td>Kimi Antonelli, crashed in Q1</td><td>Mercedes</td><td>Q1</td></tr>
+    <tr><td class="pos">17</td><td>Gabriel Bortoleto</td><td>Audi</td><td>Q1</td></tr>
+    <tr><td class="pos">18</td><td>Nico Hulkenberg</td><td>Audi</td><td>Q1</td></tr>
+    <tr><td class="pos">19</td><td>Sergio Perez</td><td>Cadillac</td><td>Q1</td></tr>
+    <tr><td class="pos">20</td><td>Valtteri Bottas</td><td>Cadillac</td><td>Q1</td></tr>
+    <tr><td class="pos">21</td><td>Fernando Alonso, power unit</td><td>Aston Martin</td><td>Q1</td></tr>
+    <tr><td class="pos">22</td><td>Lance Stroll, power unit</td><td>Aston Martin</td><td>Q1</td></tr>
+  </tbody></table>
+  <p class="plate" style="margin-top:8px">Verstappen's engine change is confirmed; its grid effect was not confirmed when this was published.</p>
+</section>
+
+<section><h2>The season, before Baku.</h2>
+  <div class="two">
+    <table><tbody><tr class="m"><td class="pos">1</td><td>Antonelli</td><td>292</td></tr><tr class="m"><td class="pos">2</td><td>Russell</td><td>211</td></tr><tr class="f"><td class="pos">3</td><td>Hamilton</td><td>191</td></tr><tr class="o"><td class="pos">4</td><td>Norris</td><td>186</td></tr><tr class="f"><td class="pos">5</td><td>Leclerc</td><td>167</td></tr><tr><td class="pos">6</td><td>Verstappen</td><td>145</td></tr></tbody></table>
+    <table><tbody><tr class="m"><td class="pos">1</td><td>Mercedes</td><td>503</td></tr><tr class="f"><td class="pos">2</td><td>Ferrari</td><td>358</td></tr><tr class="o"><td class="pos">3</td><td>McLaren</td><td>306</td></tr><tr><td class="pos">4</td><td>Red Bull</td><td>230</td></tr><tr><td class="pos">5</td><td>Racing Bulls</td><td>77</td></tr><tr><td class="pos">11</td><td>Cadillac, debut year</td><td>0</td></tr></tbody></table>
+  </div>
+  <p class="q">"It's been a while, so it definitely feels good. It's probably the biggest margin of my whole career."<cite>George Russell, after pole</cite></p>
+</section>
+
+<section><h2>Watch, then race.</h2>
+  <p>Apple TV carries every session in the US this season; the replay is waiting whenever you are. Then Portola, doors 1:00 PM, Dog Blood at 9:00.</p>
+  <p>Gordon's challenge stands. Baku Duel: two players, one iPhone, sectors, purple splits, Manual Override, stewards. You take the right half. Be the best. Be the most fabulous.</p>
+  <a class="btn" href="game.html">Play Baku Duel</a>
+</section>
+
+<details style="margin-top:20px"><summary>Sources · spoiler warning, live sites show the result now</summary>
+  <p class="plate" style="margin-top:10px">Formula1.com qualifying report, penalties and standings · PlanetF1 classification · The Race analysis · ESPN preview · RacingNews365 schedule. Read at 3 AM Pacific before the race. Art by Higgsfield, voice by ElevenLabs. Not affiliated with Formula 1. Private page, not indexed.</p>
+</details>
+<p class="plate" style="margin-top:18px"><b>Darby</b> for Trent Collings · at Gordon's ask · 26 September 2026 · edition: geometry</p>
+</main>
+<script>
+(function(){
+  var race=new Date('2026-09-26T11:00:00Z'),cd=document.getElementById('cd'),cdl=document.getElementById('cdl');
+  function tick(){var d=race-Date.now();if(d>0){var h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);cd.textContent=(h?h+'h ':'')+m+'m '+s+'s';cdl.textContent='to lights out';}else{cd.textContent='Replay';cdl.textContent='no spoilers, the race is waiting on you';}}
+  tick();setInterval(tick,1000);
+  document.querySelector('.who button').addEventListener('click',function(){var a=document.getElementById('hi');try{a.currentTime=0;a.play();}catch(e){}document.getElementById('hello').textContent='Confirmed. Trent, magenta, the right half of the duel. David has been practising.';});
+  var drivers=['George Russell','Charles Leclerc','Oscar Piastri','Isack Hadjar','Lando Norris','Lewis Hamilton','Pierre Gasly','Max Verstappen','Franco Colapinto','Oliver Bearman','Liam Lawson','Alexander Albon','Esteban Ocon','Carlos Sainz','Arvid Lindblad','Kimi Antonelli','Gabriel Bortoleto','Nico Hulkenberg','Sergio Perez','Valtteri Bottas','Fernando Alonso','Lance Stroll'];
+  var fin=['Wins it','Podium','P4 to P6','P7 to P10','Points, just','Out of the points','Does not finish'];
+  function fill(id,list){var s=document.getElementById(id);list.forEach(function(x){var o=document.createElement('option');o.textContent=x;s.appendChild(o);});}
+  fill('w',drivers);fill('s',drivers);fill('a',fin);var key='baku2026picks_trent';
+  try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved){['w','s','a'].forEach(function(i){if(saved[i])document.getElementById(i).value=saved[i];});document.getElementById('locked').textContent='Locked '+saved.when;}}catch(e){}
+  document.getElementById('lock').addEventListener('click',function(ev){ev.preventDefault();var o={when:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})};['w','s','a'].forEach(function(i){o[i]=document.getElementById(i).value;});try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}document.getElementById('locked').textContent='Locked '+o.when+', no takebacks';});
+})();
+</script>
+</body>
+</html>
