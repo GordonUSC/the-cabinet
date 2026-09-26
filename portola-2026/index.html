@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#120A1F">
+<title>Portola, Saturday</title>
+<!-- STYLE: Mellier idiom, one coral seed deriving many: overprinted translucent colour blocks in screen blend on a deep violet ground, Archivo headlines with IBM Plex Mono process notes, a live 3D pier as the poster | WHY: a festival guide is a poster you carry, and Mellier's process colour lets the same four inks rebuild every panel so the page feels printed at the pier, not templated; the 3D scene is the one moving element and it tells the time | ALT: the Baku riso programme system and the Greiman telemetry system were both rejected because this page must read outdoors in sun and then in the dark, so higher contrast blocks and bigger type -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#120A1F;--ink:#FFF6EE;--muted:#D9C9E8;--seed:#FF6B4A;--teal:#19C2B8;--vio:#7C5CFF;--gold:#FFD24A;--rose:#FF4F9A}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.55 Archivo,system-ui,sans-serif;overflow-x:hidden}
+main{max-width:820px;margin:0 auto;padding:0 18px 90px}
+h1,h2,h3{margin:0;font-family:Archivo,system-ui,sans-serif;font-weight:900;letter-spacing:-.02em;line-height:1}
+h1{font-size:clamp(46px,13vw,104px)}
+h2{font-size:clamp(28px,7vw,46px);margin:0 0 14px}
+h3{font-size:19px;font-weight:700;margin:0 0 6px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+p{margin:.5em 0;color:var(--muted)}
+a{color:var(--teal)}
+.stage3d{position:relative;margin:0 -18px;height:100svh;min-height:520px;overflow:hidden;background:#120A1F}
+#gl{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.stage3d img.fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.stage3d .copy{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;pointer-events:none}
+.stage3d .copy>*{pointer-events:auto}
+.stage3d::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,10,31,0) 45%,rgba(18,10,31,.9) 85%);pointer-events:none;z-index:1}
+h1 span{display:block}h1 .a{color:var(--seed)}h1 .b{color:var(--gold)}
+.now{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media (max-width:420px){.now{grid-template-columns:1fr}}
+.block{position:relative;padding:14px 16px;border-radius:14px;mix-blend-mode:screen;background:linear-gradient(135deg,rgba(255,107,74,.55),rgba(124,92,255,.45))}
+.block.t{background:linear-gradient(135deg,rgba(25,194,184,.55),rgba(255,210,74,.4))}
+.block.v{background:linear-gradient(135deg,rgba(124,92,255,.55),rgba(255,79,154,.45))}
+.block.g{background:linear-gradient(135deg,rgba(255,210,74,.5),rgba(255,107,74,.4))}
+.block .mono{color:#fff;opacity:.85}
+.block b{display:block;font-size:20px;font-weight:900;line-height:1.15;margin-top:2px;color:#fff}
+.block small{display:block;color:#fff;opacity:.9;font-size:13px}
+.stagebar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.stagebar button{padding:10px 14px;border-radius:999px;border:1.5px solid rgba(255,255,255,.35);background:rgba(18,10,31,.7);color:var(--ink);font:700 13px Archivo,sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px)}
+.stagebar button.on{background:var(--seed);border-color:var(--seed);color:#120A1F}
+section{padding:40px 0 10px;border-top:1px solid rgba(255,255,255,.14)}
+.card{border-radius:18px;padding:18px;margin:14px 0;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+.overprint{position:relative;overflow:hidden}
+.overprint::before{content:"";position:absolute;inset:-40% -20% auto auto;width:60%;height:120%;background:radial-gradient(closest-side,rgba(255,107,74,.35),transparent);mix-blend-mode:screen;pointer-events:none}
+audio{width:100%;margin:8px 0}
+.sched{display:grid;gap:8px}
+.set{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.set.now{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold) inset}
+.set.past{opacity:.45}
+.set .t{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--gold);white-space:nowrap}
+.set .n{font-weight:700}
+.set .n small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+.set button{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:var(--ink);font-size:18px;cursor:pointer}
+.set button.on{background:var(--gold);border-color:var(--gold);color:#120A1F}
+.clash{color:var(--rose);font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.06em;margin-top:6px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 12px}
+.tabs button{padding:8px 12px;border-radius:999px;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:var(--ink);font:700 12px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.tabs button.on{background:var(--teal);border-color:var(--teal);color:#120A1F}
+.wx{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.wx div{flex:0 0 76px;text-align:center;padding:10px 6px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.wx b{display:block;font-size:20px;font-weight:900}
+.wx small{display:block;font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.wx .sun{border-color:var(--gold)}
+.btn{display:inline-block;margin:10px 8px 0 0;padding:14px 20px;border-radius:14px;border:0;font:900 14px Archivo,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#120A1F;background:var(--gold);text-decoration:none;cursor:pointer;box-shadow:0 8px 30px rgba(255,210,74,.3)}
+.btn.seed{background:var(--seed);box-shadow:0 8px 30px rgba(255,107,74,.3)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(255,255,255,.25);box-shadow:none}
+.big{font-size:clamp(40px,11vw,72px);font-weight:900;line-height:1;letter-spacing:-.03em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+figure{margin:18px -18px;position:relative}
+figure img{display:block;width:100%;height:auto}
+figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.7)}
+.surprise{min-height:3.4em;font-size:19px;color:var(--ink)}
+.foot{font-size:13px;color:var(--muted)}
+#fx{position:fixed;inset:0;pointer-events:none;z-index:9}
+.hint{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7)}
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<canvas id="fx"></canvas>
+<main>
+<header class="stage3d">
+  <canvas id="gl"></canvas>
+  <noscript><img class="fallback" src="assets/hero.jpg" alt="Riso illustration of Pier 80 at sunset with the blue cranes"></noscript>
+  <div class="copy">
+    <div class="mono" id="clock">Saturday 26 September · Pier 80</div>
+    <h1><span class="a">Portola,</span><span class="b">Saturday.</span></h1>
+    <div class="now">
+      <div class="block"><span class="mono">On now</span><b id="onNow">Doors at 1:00</b><small id="onNowWhere">900 Marin St, T Third to Marin</small></div>
+      <div class="block t"><span class="mono">Next for you</span><b id="nextUp">Oskar Med K 3:40</b><small id="nextIn">Pier Stage</small></div>
+    </div>
+    <div class="stagebar" id="stagebar"><button data-s="pier" class="on">Pier</button><button data-s="crane">Crane</button><button data-s="warehouse">Warehouse</button><button data-s="ship">Ship Tent</button><button data-s="despacio">Despacio</button><button data-s="overview">Whole pier</button></div>
+    <div class="hint" style="margin-top:8px">Drag to spin · tap a stage · the sky keeps real time</div>
+  </div>
+</header>
+
+<section>
+  <div class="mono">01 · Gate briefing, 44 seconds</div>
+  <h2>Ears in. Then go.</h2>
+  <div class="card overprint">
+    <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing.</audio>
+    <p>Gordon, with Brennan, on the rail. David has the couch. Bring your ID, it is 21 and over, cashless, and your empty bottle, the refill stations are free.</p>
+    <p class="mono" style="color:var(--rose)">Gate check: your June order was a payment plan and nothing in your mail confirms the last two payments. Open the AXS app before you reach the gate.</p>
+  </div>
+</section>
+
+<section>
+  <div class="mono">02 · The day, stage by stage</div>
+  <h2>Star what you want. It flags the clashes.</h2>
+  <div class="tabs" id="tabs"><button data-f="all" class="on">All</button><button data-f="pier">Pier Stage</button><button data-f="crane">Crane Stage</button><button data-f="warehouse">Warehouse</button><button data-f="ship">Ship Tent</button><button data-f="despacio">Despacio</button><button data-f="mine">My plan</button></div>
+  <div class="sched" id="sched"></div>
+  <div class="clash" id="clashes"></div>
+  <a class="btn ghost" id="planA" href="#planA">Load Gordon's plan A</a>
+  <p class="foot" style="margin-top:10px">Plan A: USA v Peru first half at McTeague's on Polk, leave at halftime about 2:20, all of Oskar Med K at 3:40, Tove Lo at 5:40, Robyn at 7:10, Dog Blood at 9:00. Set times from the festival's official Saturday image, version 2, all five rooms, 34 sets.</p>
+</section>
+
+<figure class="reveal"><img src="assets/pier.jpg" alt="The Pier Stage at night" loading="lazy"><figcaption>Pier Stage · Robyn 7:10 · Dog Blood 9:00 · their first show since 2019</figcaption></figure>
+
+<section>
+  <div class="mono">03 · Weather at Pier 80, hourly</div>
+  <h2>Warm now, windy later, cold for Dog Blood.</h2>
+  <div class="wx" id="wx"></div>
+  <p class="foot">Read at 12:14 PT from Open-Meteo for the pier itself. Sunset 7:01 PM. The wind doubles between 3 and 7, that is the layer, not the temperature. <a href="#wx" id="wxRefresh">Refresh now</a></p>
+</section>
+
+<section>
+  <div class="mono">04 · Getting there, getting in</div>
+  <h2>900 Marin Street.</h2>
+  <div class="grid">
+    <div class="card"><h3>Transit</h3><p>T Third light rail to the Marin Street stop, then walk to the entrance at 900 Marin. Rideshare drop at the same address. No parking at Pier 80 at all. BART shuttles run during the festival.</p></div>
+    <div class="card"><h3>Before the gate</h3><p>21 and over, bring ID. Cashless, cards only. Empty reusable bottle for the refill stations. No professional cameras, no signs, no LED apparel. Charging lockers are a separate booking.</p></div>
+    <div class="card"><h3>VIP</h3><p>Priority entry lanes, VIP viewing areas, dedicated restrooms and merch, and the Farmhouse World dining room, reservations through OpenTable.</p></div>
+    <div class="card"><h3>Despacio, two of them</h3><p>On the official Saturday grid Despacio runs 2:45 to 9:45 as its own room. The festival's info page also lists a 5th birthday Despacio party at 401 Cesar Chavez, 5 to 11 PM, separate entrance and separate ticket. Ask at the gate which one your wristband opens.</p></div>
+  </div>
+  <div class="card"><h3>USA v Peru, 1:30</h3><p>American Outlaws SF watch at McTeague's Saloon, 1237 Polk Street. First half there, out at halftime, and you are on the pier before Oskar Med K.</p></div>
+</section>
+
+<figure class="reveal"><img src="assets/crane.jpg" alt="The Crane Stage at dusk" loading="lazy"><figcaption>Crane Stage · Tricky 3:30 · DJ Shadow 6:10 · Fatboy Slim 7:55 · Soulwax 9:55</figcaption></figure>
+
+<section>
+  <div class="mono">05 · Surprise me</div>
+  <h2>Tap when the set gets slow.</h2>
+  <div class="card overprint">
+    <p class="surprise" id="surprise">A fact, a nudge, a memory, or confetti. Tap and see.</p>
+    <button class="btn seed" id="surpriseBtn">Surprise me</button>
+    <a class="btn ghost" href="#gl">Find the crane</a>
+  </div>
+</section>
+
+<section>
+  <div class="mono">06 · Fifteen years on the floor</div>
+  <h2>Tonight is your sixth Skrillex.</h2>
+  <div class="card">
+    <p>Second Sky, Oakland, 2022. Red Rocks with Brennan, 2023, five hours. The surprise set with Jamie xx on the Coliseum fifty yard line, 2023. Skrillex b2b Four Tet at HARD Summer, 2023. ISOxo b2b Skrillex at NiteHarts, 2025, with Brennan, Quinn and Mason. And tonight, Dog Blood, the first time you see him as half of it.</p>
+    <p class="foot">By your own word, you saw Dog Blood at Electric Zoo on September 1, 2019. If that is right, tonight closes a seven year loop. Brennan holds the second ticket.</p>
+  </div>
+</section>
+
+<figure class="reveal"><img src="assets/warehouse.jpg" alt="Inside the Warehouse" loading="lazy"><figcaption>Warehouse · Groove Armada 4:45 · Kettama 7:15 · Prospa 9:45 · for when you want the dark</figcaption></figure>
+
+<section>
+  <div class="mono">07 · Countdown</div>
+  <div class="card overprint"><div class="mono" id="cdLabel">To Dog Blood, Pier Stage</div><div class="big" id="cd">--</div><p class="foot">Counts to your next starred set; Dog Blood when nothing is starred.</p></div>
+</section>
+
+<section class="foot">
+  <p>Made by Darby for Gordon at Gordon's ask, Saturday 26 September 2026, 12:14 to 12:55 PT. Set times: portolamusicfestival.com official Saturday image, version 2. Venue, transit and policies: portolamusicfestival.com know before you go and FAQ pages. Weather: Open-Meteo hourly for 37.752, -122.381. Sunset: sunrise-sunset.org. Skrillex history: Gordon's live music ledger. Art: Higgsfield. Voice: ElevenLabs. 3D: three.js r128, MIT. Private page, not indexed.</p>
+</section>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  /* ---------- schedule: official Saturday image v2 ---------- */
+  var STAGES={pier:'Pier Stage',crane:'Crane Stage',warehouse:'Warehouse',ship:'Ship Tent',despacio:'Despacio'};
+  var SETS=[
+    ['pier','Airwolf Paradise','13:30','14:30'],['pier','Gelli Haha','14:40','15:30'],['pier','Oskar Med K','15:40','16:30'],['pier','Fcukers','16:40','17:30'],['pier','Tove Lo','17:40','18:30'],['pier','Robyn','19:10','20:10'],['pier','Dog Blood (Skrillex + Boys Noize)','21:00','22:15'],
+    ['crane','Erika b2b SFCowboy','13:30','15:10'],['crane','Tricky','15:30','16:30'],['crane','Nimino','16:50','17:50'],['crane','DJ Shadow, 30 years of Endtroducing','18:10','19:10'],['crane','Fatboy Slim','19:55','21:25'],['crane','Soulwax','21:55','22:55'],
+    ['warehouse','Sam Alfred','13:30','14:45'],['warehouse','Ranger Trucco b2b Alisha','14:45','15:45'],['warehouse','Chloe Caillet','15:45','16:45'],['warehouse','Groove Armada','16:45','18:00'],['warehouse','Max Styler','18:00','19:15'],['warehouse','Kettama','19:15','20:30'],['warehouse','Beltran b2b Ben Sterling','20:30','21:45'],['warehouse','Prospa','21:45','23:00'],
+    ['ship','Felly Fell','13:40','14:40'],['ship','MGNA CRRRTA','14:50','15:30'],['ship','Six Sex','15:40','16:20'],['ship','Mike D 5D','16:40','17:30'],['ship','Jyoty','17:40','18:40'],['ship','Bassvictim','18:50','19:40'],['ship','Jigitz','19:50','20:40'],['ship','Nate Sib','20:55','21:35'],['ship','Melanie C (DJ set)','21:50','22:30'],
+    ['despacio','Despacio, James Murphy and 2manydjs','14:45','21:45']
+  ];
+  function mins(t){var p=t.split(':');return +p[0]*60+ +p[1];}
+  function nowMins(){var d=new Date();return d.getHours()*60+d.getMinutes()+d.getSeconds()/60;}
+  function fmt(t){var m=mins(t);var h=Math.floor(m/60),mm=m%60;return (h>12?h-12:h)+':'+String(mm).padStart(2,'0');}
+  var key='portola2026stars',stars={};try{stars=JSON.parse(localStorage.getItem(key)||'{}');}catch(e){}
+  var filter='all';
+  function id(s){return s[0]+'|'+s[1];}
+  function render(){var box=document.getElementById('sched');box.innerHTML='';var n=nowMins();var shown=SETS.filter(function(s){return filter==='all'||(filter==='mine'?stars[id(s)]:s[0]===filter);}).sort(function(a,b){return mins(a[2])-mins(b[2]);});
+    shown.forEach(function(s){var d=document.createElement('div');var st=mins(s[2]),en=mins(s[3]);d.className='set'+(n>=st&&n<en?' now':'')+(n>=en?' past':'');d.innerHTML='<span class="t">'+fmt(s[2])+' to '+fmt(s[3])+'</span><span class="n">'+s[1]+'<small>'+STAGES[s[0]]+'</small></span>';var b=document.createElement('button');b.textContent=stars[id(s)]?'★':'☆';b.className=stars[id(s)]?'on':'';b.addEventListener('click',function(){stars[id(s)]=!stars[id(s)];try{localStorage.setItem(key,JSON.stringify(stars));}catch(e){}render();tick();if(stars[id(s)])burst('#FFD24A');});d.appendChild(b);box.appendChild(d);});
+    var mine=SETS.filter(function(s){return stars[id(s)];}).sort(function(a,b){return mins(a[2])-mins(b[2]);});var cl=[];
+    for(var i=0;i<mine.length;i++)for(var j=i+1;j<mine.length;j++){if(mins(mine[j][2])<mins(mine[i][3])&&mine[i][0]!==mine[j][0])cl.push(mine[i][1]+' and '+mine[j][1]+' overlap, '+STAGES[mine[i][0]]+' to '+STAGES[mine[j][0]]);}
+    document.getElementById('clashes').textContent=cl.length?'Clash: '+cl.join(' · '):(mine.length?'No clashes. '+mine.length+' starred.':'');}
+  document.getElementById('tabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;filter=b.dataset.f;document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x===b);});render();});
+  document.getElementById('planA').addEventListener('click',function(e){e.preventDefault();['pier|Oskar Med K','pier|Tove Lo','pier|Robyn','pier|Dog Blood'].forEach(function(k){stars[k]=true;});try{localStorage.setItem(key,JSON.stringify(stars));}catch(x){}render();tick();burst('#FF6B4A');});
+  /* ---------- now, next, countdown ---------- */
+  function tick(){var n=nowMins();var d=new Date();document.getElementById('clock').textContent='Saturday 26 September · Pier 80 · '+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    var on=SETS.filter(function(s){return n>=mins(s[2])&&n<mins(s[3]);}).sort(function(a,b){return a[0]==='pier'?-1:1;});
+    var onEl=document.getElementById('onNow'),whEl=document.getElementById('onNowWhere');
+    if(n<13*60){onEl.textContent='Doors at 1:00';whEl.textContent='900 Marin St, T Third to Marin';}else if(on.length){onEl.textContent=on.map(function(s){return s[1];}).join(' · ');whEl.textContent=on.map(function(s){return STAGES[s[0]];}).join(' · ');}else if(n>23*60){onEl.textContent='Chequered';whEl.textContent='Get home safe';}else{onEl.textContent='Changeover';whEl.textContent='Water. Now.';}
+    var mine=SETS.filter(function(s){return stars[id(s)]&&mins(s[2])>n;}).sort(function(a,b){return mins(a[2])-mins(b[2])});
+    var nx=mine[0]||SETS.filter(function(s){return mins(s[2])>n;}).sort(function(a,b){return mins(a[2])-mins(b[2])})[0];
+    if(nx){document.getElementById('nextUp').textContent=nx[1]+' '+fmt(nx[2]);document.getElementById('nextIn').textContent=STAGES[nx[0]]+' · in '+Math.max(0,Math.round(mins(nx[2])-n))+' min';}else{document.getElementById('nextUp').textContent='That was the day';document.getElementById('nextIn').textContent='Fifteen years on the floor';}
+    var target=mine[0]||SETS[6];var tm=mins(target[2])-n;document.getElementById('cdLabel').textContent='To '+target[1]+', '+STAGES[target[0]];document.getElementById('cd').textContent=tm>0?Math.floor(tm/60)+'h '+String(Math.floor(tm%60)).padStart(2,'0')+'m '+String(Math.floor((tm*60)%60)).padStart(2,'0')+'s':(n<mins(target[3])?'On now':'Done');
+    document.querySelectorAll('.set').forEach(function(el){});}
+  render();tick();setInterval(tick,1000);setInterval(render,60000);
+  /* ---------- weather ---------- */
+  var WX=[[12,66,3,96],[13,69,2,83],[14,70,6,17],[15,67,10,93],[16,66,11,17],[17,65,12,2],[18,63,13,36],[19,60,14,100],[20,59,14,100],[21,58,14,100],[22,58,13,100],[23,57,10,100]];
+  function drawWx(rows){var w=document.getElementById('wx');w.innerHTML='';rows.forEach(function(r){var d=document.createElement('div');if(r[0]===19)d.className='sun';d.innerHTML='<small>'+(r[0]>12?r[0]-12+' pm':'12 pm')+'</small><b>'+Math.round(r[1])+'°</b><small>'+Math.round(r[2])+' mph</small><small>'+(r[3]>60?'cloud':(r[3]>25?'mixed':'clear'))+'</small>';w.appendChild(d);});}
+  drawWx(WX);
+  document.getElementById('wxRefresh').addEventListener('click',function(e){e.preventDefault();fetch('https://api.open-meteo.com/v1/forecast?latitude=37.752&longitude=-122.381&hourly=temperature_2m,wind_speed_10m,cloud_cover&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FLos_Angeles&forecast_days=1').then(function(r){return r.json();}).then(function(j){var h=j.hourly,rows=[];for(var i=12;i<24;i++)rows.push([i,h.temperature_2m[i],h.wind_speed_10m[i],h.cloud_cover[i]]);drawWx(rows);burst('#19C2B8');}).catch(function(){});});
+  /* ---------- surprises ---------- */
+  var S=[['fact','Dog Blood is Skrillex and Boys Noize. This is their first show since 2019, and the last time you saw them was Electric Zoo, by your own word.'],['nudge','Water. The refill stations are free and your bottle is empty. Go now, the set will still be here.'],['fact','The wind at this pier doubles between 3 and 7 PM. The layer is for the wind, not the cold.'],['nudge','Text Brennan where you are standing. Rail, left of the desk, is the Bellamy default.'],['fact','Portola is five years old today. Despacio, across the street at 401 Cesar Chavez, is the birthday party, 5 to 11.'],['confetti','Confetti, because you are here.'],['fact','Robyn at 7:10 lands ten minutes after sunset. Face the water for the last light, then turn around.'],['nudge','Look up at the crane. Then tap it on the 3D pier. Something happens.'],['fact','Robyn ends at 8:10 and Fatboy Slim starts at 7:55 on the Crane. Fifteen minutes of overlap, about six minutes of walking. Leave Robyn on the last chorus.'],['fact','Melanie C plays a DJ set in the Ship Tent at 9:50. Sporty Spice, forty minutes, while Dog Blood is on the Pier. That is a choice.'],['fact','DJ Shadow at 6:10 on the Crane is celebrating thirty years of Endtroducing. Groove Armada is in the Warehouse at 4:45. Your twenties are on this pier.'],['memory','Red Rocks, 2023, five hours of Skrillex with Brennan. Tonight is the sixth time and the first as half of Dog Blood.']];
+  var si=-1;document.getElementById('surpriseBtn').addEventListener('click',function(){si=(si+1+Math.floor(Math.random()*3))%S.length;var s=S[si];document.getElementById('surprise').textContent=s[1];burst(s[0]==='confetti'?'#FF4F9A':(s[0]==='nudge'?'#19C2B8':'#FFD24A'));});
+  /* ---------- confetti ---------- */
+  var fx=document.getElementById('fx'),fctx=fx.getContext('2d');function size(){fx.width=innerWidth;fx.height=innerHeight;}size();addEventListener('resize',size);
+  function burst(color){var parts=[];for(var i=0;i<90;i++)parts.push({x:innerWidth/2,y:innerHeight*0.45,vx:(Math.random()-0.5)*640,vy:-Math.random()*640-160,c:[color,'#fff','#FFD24A','#FF6B4A'][i%4],r:Math.random()*7+3,a:Math.random()*6});var t0=performance.now(),l=t0;function f(ts){var dt=Math.min(0.033,(ts-l)/1000);l=ts;var el=(ts-t0)/1000;fctx.clearRect(0,0,fx.width,fx.height);if(el>2.4)return;for(var i=0;i<parts.length;i++){var p=parts[i];p.vy+=950*dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.a+=dt*7;fctx.globalAlpha=Math.max(0,1-el/2.4);fctx.fillStyle=p.c;fctx.save();fctx.translate(p.x,p.y);fctx.rotate(p.a);fctx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);fctx.restore();}requestAnimationFrame(f);}requestAnimationFrame(f);}
+  window.__burst=burst;
+  /* ---------- reveal ---------- */
+  var els=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(e){io.observe(e);});}else{els.forEach(function(e){e.classList.add('in');});}
+  /* ---------- 3D pier ---------- */
+  var cv=document.getElementById('gl');
+  function fallback(){var img=new Image();img.className='fallback';img.src='assets/hero.jpg';cv.parentNode.insertBefore(img,cv);cv.style.display='none';}
+  if(!window.THREE){fallback();return;}
+  var renderer;try{renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:false});}catch(e){fallback();return;}
+  renderer.setPixelRatio(Math.min(1.5,window.devicePixelRatio||1));
+  var scene=new THREE.Scene();scene.fog=new THREE.Fog(0x120A1F,120,420);
+  var cam=new THREE.PerspectiveCamera(50,1,1,1000);
+  var hemi=new THREE.HemisphereLight(0xffe0c0,0x1a0f2e,.9);scene.add(hemi);var sun=new THREE.DirectionalLight(0xffd6a0,1.1);scene.add(sun);
+  var water=new THREE.Mesh(new THREE.PlaneGeometry(600,600,60,60),new THREE.MeshStandardMaterial({color:0x0e3a5a,metalness:.2,roughness:.6,flatShading:true}));water.rotation.x=-Math.PI/2;water.position.y=-2;scene.add(water);var wpos=water.geometry.attributes.position;var wbase=wpos.array.slice();
+  var pier=new THREE.Mesh(new THREE.BoxGeometry(220,4,80),new THREE.MeshStandardMaterial({color:0x2a2340,roughness:.9}));scene.add(pier);
+  function box(w,h,d,color,x,y,z,emissive){var m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color:color,roughness:.7,emissive:emissive||0x000000,emissiveIntensity:.8}));m.position.set(x,y,z);scene.add(m);return m;}
+  var stagesObj={};
+  stagesObj.pier=box(34,16,10,0x3a2a5a,-88,10,-8,0xFF6B4A);
+  stagesObj.crane=box(26,12,10,0x2a3a5a,20,8,-24,0x19C2B8);
+  stagesObj.warehouse=box(44,10,22,0x1e1630,74,7,10,0x7C5CFF);
+  stagesObj.ship=new THREE.Mesh(new THREE.CylinderGeometry(9,14,9,12),new THREE.MeshStandardMaterial({color:0xf4f0ff,roughness:.5,emissive:0xFFD24A,emissiveIntensity:.35}));stagesObj.ship.position.set(-30,6.5,22);scene.add(stagesObj.ship);
+  stagesObj.despacio=new THREE.Mesh(new THREE.SphereGeometry(11,16,12,0,Math.PI*2,0,Math.PI/2),new THREE.MeshStandardMaterial({color:0x2a2340,roughness:.4,emissive:0xFF4F9A,emissiveIntensity:.4}));stagesObj.despacio.position.set(50,2,-30);scene.add(stagesObj.despacio);
+  /* crane frame */
+  var craneGroup=new THREE.Group();[[-14,-30],[14,-30],[-14,-18],[14,-18]].forEach(function(p){var leg=new THREE.Mesh(new THREE.BoxGeometry(2,46,2),new THREE.MeshStandardMaterial({color:0x2f6fd6}));leg.position.set(20+p[0],25,p[1]);craneGroup.add(leg);});var beam=new THREE.Mesh(new THREE.BoxGeometry(34,3,3),new THREE.MeshStandardMaterial({color:0x2f6fd6}));beam.position.set(20,48,-24);craneGroup.add(beam);var jib=new THREE.Mesh(new THREE.BoxGeometry(3,3,70),new THREE.MeshStandardMaterial({color:0x2f6fd6}));jib.position.set(20,48,-40);jib.rotation.x=.35;craneGroup.add(jib);scene.add(craneGroup);
+  /* containers */
+  var cols=[0xFF6B4A,0x19C2B8,0xFFD24A,0x7C5CFF,0xFF4F9A];for(var i=0;i<26;i++){var c=cols[i%cols.length];box(10,4,4,c,-100+Math.random()*200,3+Math.floor(Math.random()*3)*4,28+Math.random()*10);}
+  /* labels as sprites */
+  function label(text,x,y,z,color){var c=document.createElement('canvas');c.width=512;c.height=128;var g=c.getContext('2d');g.fillStyle='rgba(18,10,31,.75)';g.fillRect(0,0,512,128);g.font='900 60px Archivo, sans-serif';g.fillStyle=color;g.textAlign='center';g.textBaseline='middle';g.fillText(text,256,64);var t=new THREE.CanvasTexture(c);var s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true}));s.scale.set(34,8.5,1);s.position.set(x,y,z);scene.add(s);return s;}
+  label('PIER STAGE',-88,24,-8,'#FF6B4A');label('CRANE',20,20,-24,'#19C2B8');label('WAREHOUSE',74,18,10,'#B9A6FF');label('SHIP TENT',-30,16,22,'#FFD24A');label('DESPACIO',50,18,-30,'#FF4F9A');
+  var lights={};Object.keys(stagesObj).forEach(function(k){var o=stagesObj[k];var pl=new THREE.PointLight(o.material.emissive.getHex(),1.2,70);pl.position.set(o.position.x,o.position.y+14,o.position.z);scene.add(pl);lights[k]=pl;});
+  /* lasers on the crane, hidden until tapped */
+  var lasers=[],laserOn=0;for(var l=0;l<6;l++){var lm=new THREE.Mesh(new THREE.CylinderGeometry(.15,.15,90,6),new THREE.MeshBasicMaterial({color:l%2?0xFF4F9A:0x19C2B8,transparent:true,opacity:0}));lm.position.set(20,48,-24);scene.add(lm);lasers.push(lm);}
+  /* camera orbit */
+  var target=new THREE.Vector3(0,6,0),theta=-.6,phi=1.05,dist=190,want={theta:theta,phi:phi,dist:dist,target:target.clone()};
+  var views={overview:{t:[0,6,0],th:-.6,ph:1.05,d:190},pier:{t:[-88,10,-8],th:-.9,ph:1.15,d:90},crane:{t:[20,20,-24],th:.4,ph:1.0,d:100},warehouse:{t:[74,7,10],th:.9,ph:1.2,d:90},ship:{t:[-30,6,22],th:-.3,ph:1.25,d:80},despacio:{t:[50,4,-30],th:.7,ph:1.1,d:85}};
+  function goTo(k){var v=views[k]||views.overview;want.target.set(v.t[0],v.t[1],v.t[2]);want.theta=v.th;want.phi=v.ph;want.dist=v.d;document.querySelectorAll('#stagebar button').forEach(function(b){b.classList.toggle('on',b.dataset.s===k);});if(k!=='overview'&&STAGES[k]){filter=k;document.querySelectorAll('#tabs button').forEach(function(x){x.classList.toggle('on',x.dataset.f===k);});render();}}
+  document.getElementById('stagebar').addEventListener('click',function(e){var b=e.target.closest('button');if(b)goTo(b.dataset.s);});
+  var drag=null,moved=0;function pd(e){drag={x:e.clientX,y:e.clientY,th:want.theta,ph:want.phi};moved=0;}function pm(e){if(!drag)return;var dx=e.clientX-drag.x,dy=e.clientY-drag.y;moved+=Math.abs(dx)+Math.abs(dy);want.theta=drag.th-dx*0.006;want.phi=Math.max(.5,Math.min(1.45,drag.ph+dy*0.004));}
+  function pu(e){if(drag&&moved<6){pick(e.clientX,e.clientY);}drag=null;}
+  cv.addEventListener('pointerdown',pd);cv.addEventListener('pointermove',pm);cv.addEventListener('pointerup',pu);cv.addEventListener('pointercancel',function(){drag=null;});
+  cv.addEventListener('wheel',function(e){e.preventDefault();want.dist=Math.max(50,Math.min(320,want.dist+e.deltaY*0.2));},{passive:false});
+  var ray=new THREE.Raycaster(),v2=new THREE.Vector2();
+  function pick(x,y){var r=cv.getBoundingClientRect();v2.x=((x-r.left)/r.width)*2-1;v2.y=-((y-r.top)/r.height)*2+1;ray.setFromCamera(v2,cam);var objs=Object.keys(stagesObj).map(function(k){return stagesObj[k];}).concat(craneGroup.children);var hit=ray.intersectObjects(objs,false)[0];if(!hit)return;if(craneGroup.children.indexOf(hit.object)>=0){laserOn=1;burst('#19C2B8');setTimeout(function(){laserOn=0;},6000);document.getElementById('surprise').textContent='You found the crane. Six lasers, on the house.';return;}var k=Object.keys(stagesObj).filter(function(k){return stagesObj[k]===hit.object;})[0];goTo(k);burst(k==='pier'?'#FF6B4A':k==='crane'?'#19C2B8':k==='warehouse'?'#7C5CFF':k==='despacio'?'#FF4F9A':'#FFD24A');}
+  function resize3(){var w=cv.clientWidth||innerWidth,h=cv.clientHeight||520;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}resize3();addEventListener('resize',resize3);
+  function skyFor(h){var day=new THREE.Color(0x8fb7ff),dusk=new THREE.Color(0xff8a5b),night=new THREE.Color(0x120a1f);if(h<17.5)return day;if(h<19.0)return day.lerp(dusk,(h-17.5)/1.5);if(h<19.6)return dusk.lerp(night,(h-19)/0.6);return night;}
+  var last=performance.now();
+  function frame(ts){var dt=Math.min(.05,(ts-last)/1000);last=ts;var d=new Date();var h=d.getHours()+d.getMinutes()/60;
+    scene.background=skyFor(h);scene.fog.color=scene.background;var ang=((h-6)/14)*Math.PI;sun.position.set(Math.cos(ang)*200,Math.max(5,Math.sin(ang)*200),60);sun.intensity=h<19?1.1:0.15;hemi.intensity=h<19?.9:.35;
+    var t=ts/1000;for(var i=0;i<wpos.count;i++){var x=wbase[i*3],y=wbase[i*3+1];wpos.array[i*3+2]=Math.sin(x*0.08+t*1.2)*0.6+Math.cos(y*0.11+t*0.9)*0.5;}wpos.needsUpdate=true;
+    var n=nowMins();Object.keys(stagesObj).forEach(function(k){var live=SETS.some(function(s){return s[0]===k&&n>=mins(s[2])&&n<mins(s[3]);});var pulse=live?1.4+Math.sin(t*8)*0.6:0.5+Math.sin(t*1.5)*0.15;lights[k].intensity=pulse;stagesObj[k].material.emissiveIntensity=live?0.7+Math.sin(t*8)*0.3:0.35;});
+    lasers.forEach(function(lm,i){lm.material.opacity=laserOn?0.8:0;lm.rotation.z=Math.sin(t*1.3+i)*0.9;lm.rotation.x=Math.cos(t*0.9+i*0.7)*0.6+0.4;});
+    theta+=(want.theta-theta)*0.08;phi+=(want.phi-phi)*0.08;dist+=(want.dist-dist)*0.08;target.lerp(want.target,0.08);
+    cam.position.set(target.x+dist*Math.sin(phi)*Math.sin(theta),target.y+dist*Math.cos(phi),target.z+dist*Math.sin(phi)*Math.cos(theta));cam.lookAt(target);
+    renderer.render(scene,cam);requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
