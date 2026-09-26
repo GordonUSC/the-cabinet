@@ -158,6 +158,23 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   <div class="card"><h3>USA v Peru, 1:30</h3><p>American Outlaws SF watch at McTeague's Saloon, 1237 Polk Street. First half there, out at halftime, and you are on the pier before Oskar Med K.</p></div>
 </section>
 
+
+<section id="find">
+  <div class="mono">04b · Find each other</div>
+  <h2>Send your exact spot.</h2>
+  <div class="card overprint">
+    <p>One tap reads your phone's GPS and opens the share sheet with a pin and a line about where you are standing. Whoever opens the link sees your pin here and can send theirs back. Nothing is stored anywhere.</p>
+    <label class="mono" for="who">I am</label>
+    <div class="tabs" style="margin-top:6px"><button data-w="Gordon" class="on">Gordon</button><button data-w="Dave">Dave</button><button data-w="Trent">Trent</button></div>
+    <label class="mono" for="spot">Standing at</label>
+    <select id="spot"><option>Pier Stage, rail left of the desk</option><option>Pier Stage, back by the sound tower</option><option>Crane Stage, under the crane</option><option>Warehouse, inside</option><option>Ship Tent</option><option>Despacio</option><option>Water refill</option><option>VIP area</option><option>Entrance, 900 Marin</option><option>Somewhere else, see the pin</option></select>
+    <button class="btn seed" id="sendLoc">Send my location</button>
+    <button class="btn ghost" id="copyLoc">Copy the link</button>
+    <p class="foot" id="locStatus"></p>
+    <div class="card" id="theirPin" style="display:none;border-color:var(--gold)"><div class="mono">Pin received</div><b id="pinWho" style="font-size:22px;display:block"></b><p id="pinWhere"></p><a class="btn" id="pinMaps" href="#">Open in Maps</a><a class="btn ghost" id="pinReply" href="#find">Send mine back</a></div>
+  </div>
+</section>
+
 <figure class="reveal"><img src="assets/crane.jpg" alt="The Crane Stage at dusk" loading="lazy"><figcaption>Crane Stage · Tricky 3:30 · DJ Shadow 6:10 · Fatboy Slim 7:55 · Soulwax 9:55</figcaption></figure>
 
 <section>
@@ -261,6 +278,15 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   document.getElementById('drawerClose').addEventListener('click',function(){drawer.classList.remove('open');});
   /* mood dial */
   document.getElementById('mood').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;moodOn=moodOn===b.dataset.m?null:b.dataset.m;document.querySelectorAll('#mood button').forEach(function(x){x.classList.toggle('on',x.dataset.m===moodOn);});render();if(moodOn)burst(moodOn==='dark'?'#7C5CFF':moodOn==='euphoric'?'#FFD24A':moodOn==='disco'?'#FF4F9A':'#FF6B4A');});
+
+  /* ---------- find each other: GPS to a share sheet, pins read from the URL, nothing stored ---------- */
+  var me='Gordon';document.querySelectorAll('#find .tabs button').forEach(function(b){b.addEventListener('click',function(){me=b.dataset.w;document.querySelectorAll('#find .tabs button').forEach(function(x){x.classList.toggle('on',x===b);});});});
+  var locStatus=document.getElementById('locStatus');
+  function locLink(lat,lon,acc){var spot=document.getElementById('spot').value;var u=new URL(location.href.split('#')[0]);u.search='';u.searchParams.set('at',lat.toFixed(5)+','+lon.toFixed(5));u.searchParams.set('who',me);u.searchParams.set('spot',spot);u.searchParams.set('t',new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'}));return {guide:u.toString()+'#find',maps:'https://maps.apple.com/?ll='+lat.toFixed(5)+','+lon.toFixed(5)+'&q='+encodeURIComponent(me+' at Portola'),text:me+' is here: '+spot+' (GPS within '+Math.round(acc)+' m).'};}
+  function getPos(cb){if(!navigator.geolocation){locStatus.textContent='This phone will not share GPS in the browser. Send an Apple Maps pin instead.';return;}locStatus.textContent='Reading GPS';navigator.geolocation.getCurrentPosition(function(p){cb(p.coords.latitude,p.coords.longitude,p.coords.accuracy||0);},function(e){locStatus.textContent='GPS said no: '+e.message+'. Check Settings, Safari, Location.';},{enableHighAccuracy:true,timeout:12000,maximumAge:0});}
+  document.getElementById('sendLoc').addEventListener('click',function(){getPos(function(lat,lon,acc){var L=locLink(lat,lon,acc);locStatus.textContent='Got you within '+Math.round(acc)+' m.';burst('#FF6B4A');var body=L.text+' Pin: '+L.maps+' Guide: '+L.guide;if(navigator.share){navigator.share({title:me+' at Portola',text:body}).catch(function(){});}else{location.href='sms:&body='+encodeURIComponent(body);}});});
+  document.getElementById('copyLoc').addEventListener('click',function(){getPos(function(lat,lon,acc){var L=locLink(lat,lon,acc);var body=L.text+' Pin: '+L.maps+' Guide: '+L.guide;if(navigator.clipboard){navigator.clipboard.writeText(body).then(function(){locStatus.textContent='Copied. Paste it into Messages.';burst('#19C2B8');});}else{locStatus.textContent=body;}});});
+  (function(){var q=new URLSearchParams(location.search);var at=q.get('at');if(!at)return;var ll=at.split(',');if(ll.length!==2)return;var who=q.get('who')||'Someone',spot=q.get('spot')||'',t=q.get('t')||'';document.getElementById('theirPin').style.display='block';document.getElementById('pinWho').textContent=who+' is here'+(t?' as of '+t:'');document.getElementById('pinWhere').textContent=(spot?spot+'. ':'')+'GPS '+ll[0]+', '+ll[1]+'.';document.getElementById('pinMaps').href='https://maps.apple.com/?ll='+ll[0]+','+ll[1]+'&q='+encodeURIComponent(who+' at Portola');if(who==='Gordon'){me='Dave';document.querySelectorAll('#find .tabs button').forEach(function(x){x.classList.toggle('on',x.dataset.w==='Dave');});}setTimeout(function(){document.getElementById('find').scrollIntoView({behavior:'smooth'});burst('#FFD24A');},800);})();
   /* ---------- now, next, countdown ---------- */
   function tick(){var n=nowMins();var d=new Date();document.getElementById('clock').textContent='Saturday 26 September · Pier 80 · '+d.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
     var on=SETS.filter(function(s){return n>=mins(s[2])&&n<mins(s[3]);}).sort(function(a,b){return a[0]==='pier'?-1:1;});
