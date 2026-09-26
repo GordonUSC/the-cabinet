@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0b0716">
+<title>Baku, Saturday</title>
+<!-- STYLE: Neon riso race programme, dark ground, Baku magenta and teal with gold accents, Clash Display headlines over Switzer body, one hero video and one voice | WHY: David and Trent will read this on a couch at four in the morning; a printed race programme is the object fans actually hold, and riso texture keeps the eight generated colors from looking like a stock sports app | ALT: a white broadsheet with editorial serif was considered and dropped because the room is dark and the game page had to share a palette -->
+<meta name="description" content="A race day guide to the 2026 Azerbaijan Grand Prix, made for David and Trent.">
+<style>
+@font-face{font-family:"Clash Display";src:url("../fonts/ClashDisplay-Variable.woff2") format("woff2");font-weight:200 700;font-display:swap}
+@font-face{font-family:"Switzer";src:url("../fonts/Switzer-Variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root{color-scheme:dark;--bg:#0b0716;--bg2:#140d2a;--ink:#f6f2ff;--muted:#bfb4de;--teal:#19e6d2;--mag:#ff4fb0;--gold:#ffd23f;--vio:#8b5cf6;--card:rgba(255,255,255,.05);--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Switzer",system-ui,-apple-system,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(60% 40% at 80% 0%,rgba(139,92,246,.22),transparent 60%),radial-gradient(50% 40% at 0% 100%,rgba(25,230,210,.14),transparent 60%);z-index:0}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:0 18px 80px}
+h1,h2,h3{font-family:"Clash Display",system-ui,sans-serif;letter-spacing:-.02em;line-height:1;margin:0}
+h1{font-size:clamp(52px,14vw,112px);font-weight:700}
+h2{font-size:clamp(28px,7vw,44px);font-weight:600;margin:0 0 14px}
+h3{font-size:19px;font-weight:600;margin:0 0 6px}
+.eyebrow{font:600 12px/1 "Clash Display",system-ui;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+p{margin:.5em 0}
+a{color:var(--teal)}
+.hero{position:relative;margin:0 -18px;min-height:78vh;display:grid;align-items:end;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero video,.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,7,22,.05) 20%,rgba(11,7,22,.92) 78%)}
+.hero .copy{position:relative;z-index:2;padding:26px 18px 22px}
+.hero h1 span{display:block}
+.hero h1 .a{color:var(--teal)}.hero h1 .b{color:var(--mag)}
+.lede{font-size:19px;color:var(--ink);max-width:36ch;margin-top:12px}
+.count{display:flex;gap:14px;flex-wrap:wrap;align-items:baseline;margin-top:14px;font-family:"Clash Display",system-ui}
+.count b{font-size:clamp(34px,9vw,54px);font-weight:700;color:var(--gold);letter-spacing:-.02em}
+.count small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+section{padding:40px 0 8px;border-bottom:1px solid var(--line)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}
+.card.teal{border-color:rgba(25,230,210,.4)}.card.mag{border-color:rgba(255,79,176,.4)}.card.gold{border-color:rgba(255,210,63,.45)}
+.big{font:700 clamp(40px,11vw,72px)/1 "Clash Display",system-ui;letter-spacing:-.03em}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+audio{width:100%;margin:10px 0;filter:hue-rotate(300deg) saturate(1.2)}
+details{margin:8px 0}
+summary{cursor:pointer;font:600 14px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+table{width:100%;border-collapse:collapse;font-size:15px;margin:10px 0}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 11px "Clash Display",system-ui;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+td.pos{font:700 18px "Clash Display",system-ui;color:var(--gold);width:44px}
+tr.merc td{border-left:3px solid #19e6d2;padding-left:8px}tr.fer td{border-left:3px solid #ff3b3b;padding-left:8px}tr.mcl td{border-left:3px solid #ff8a00;padding-left:8px}tr.rb td{border-left:3px solid #3b6cff;padding-left:8px}tr.pen td{opacity:.85}
+.pill{display:inline-block;font:600 11px "Clash Display",system-ui;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:rgba(255,210,63,.14);color:var(--gold);margin-left:6px}
+.pill.red{background:rgba(255,59,59,.16);color:#ff8a8a}
+.pick{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.pick{grid-template-columns:1fr}}
+.pick label{display:block;font:600 12px "Clash Display",system-ui;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px}
+select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font:16px "Switzer",system-ui}
+.btn{display:inline-block;margin:10px 8px 0 0;padding:14px 20px;border-radius:14px;border:0;font:700 15px "Clash Display",system-ui;letter-spacing:.08em;text-transform:uppercase;color:#0b0716;background:var(--gold);text-decoration:none;box-shadow:0 8px 30px rgba(255,210,63,.3)}
+.btn.teal{background:var(--teal);box-shadow:0 8px 30px rgba(25,230,210,.3)}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);box-shadow:none}
+.challenge{background:linear-gradient(135deg,rgba(255,79,176,.22),rgba(25,230,210,.18));border:1px solid rgba(255,255,255,.2)}
+.challenge .big{background:linear-gradient(90deg,var(--teal),var(--gold),var(--mag));-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot{font-size:13px;color:var(--muted)}
+.foot li{margin:4px 0}
+.q{border-left:3px solid var(--vio);padding-left:12px;color:var(--ink);font-style:italic}
+.q cite{display:block;font-style:normal;font-size:13px;color:var(--muted);margin-top:4px}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.srcs a{word-break:break-all}
+</style>
+</head>
+<body data-m26="progress,remember" data-m26-key="baku-2026">
+<main>
+<header class="hero">
+  <video id="heroVideo" autoplay muted loop playsinline poster="assets/hero.jpg"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <noscript><img src="assets/hero.jpg" alt="Illustration of a Formula 1 car through the castle section of Baku with the Flame Towers glowing behind"></noscript>
+  <div class="copy">
+    <div class="eyebrow">Azerbaijan Grand Prix · Saturday 26 September 2026 · for David and Trent</div>
+    <h1><span class="a">Baku,</span><span class="b">Saturday.</span></h1>
+    <p class="lede">Lights out at 4:00 AM Pacific. Fifty one laps, a castle, a two kilometer straight, and the championship leader starting sixteenth. Gordon asked for this to be yours.</p>
+    <div class="count" id="count"><b id="cd">4:00 AM</b><small id="cdl">Pacific, lights out</small></div>
+  </div>
+</header>
+
+<section>
+  <div class="eyebrow">01 · The briefing, 65 seconds</div>
+  <h2>Press play, then argue.</h2>
+  <div class="card teal">
+    <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing. The transcript is below.</audio>
+    <details><summary>Transcript</summary>
+      <p>Good morning, David and Trent. Darby here with your Baku briefing. Lights out at four a.m. Pacific. Baku races on a Saturday for the first time ever: fifty one laps around the old city walls, then down a two kilometer shoreline straight where the cars pass two hundred and twenty miles an hour. George Russell starts on pole by eight tenths of a second, the biggest margin of his career. Charles Leclerc and Oscar Piastri sit behind him, separated by one thousandth of a second. Now the twist. Championship leader Kimi Antonelli, eighty one points clear, put his Mercedes into the wall at turn one in Q1 and starts sixteenth. Max Verstappen starts eighth with a fresh engine and a grudge. Carlos Sainz loses five places for a yellow flag. There is a fifty seven percent chance of a safety car, and in Baku a safety car rewrites everything. Watch Antonelli's climb. Watch Russell's start. And watch turn one, every single lap. Enjoy it together. Ride or die.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">02 · Five things that make this one strange</div>
+  <h2>The surprising plays</h2>
+  <div class="card gold reveal"><h3>The leader starts from sixteenth</h3><p>Kimi Antonelli leads the championship by 81 points with eight wins, and put his Mercedes into the Turn 1 wall in Q1 with terminal suspension damage. Baku has a 57 percent safety car history. A safety car compresses the field and hands him the race back for free. If it stays green, this is a 51 lap overtaking clinic from P16.</p></div>
+  <div class="card teal reveal"><h3>Russell's biggest margin ever</h3><p>Pole by 0.837 seconds over Leclerc, a 1:42.526, his fifth pole of 2026 and, in his words, "probably the biggest margin of my whole career." The Race called it Mercedes' most dominant performance of the season. The catch: Mercedes is fastest on the straights, and the shoreline straight is where Baku races are decided.</p></div>
+  <div class="card mag reveal"><h3>One thousandth of a second</h3><p>Leclerc 1:43.363, Piastri 1:43.364. Ferrari and McLaren are built for the castle section, Mercedes for the straight. The first stint is a fight between two philosophies with a millisecond between them.</p></div>
+  <div class="card reveal"><h3>Verstappen, eighth, fresh engine, no patience</h3><p>An ICE failure forced a late engine change, a yellow flag wrecked his final Q3 lap, and he called Red Bull's qualifying "not good enough." His teammate Isack Hadjar starts fourth. Verstappen is one of only two drivers who has won here more than once. The grid effect of the engine change was not confirmed at publish time.</p></div>
+  <div class="card reveal"><h3>Saturday, and new physics</h3><p>First Saturday race in Baku's history: the weekend moved forward for Azerbaijan's Day of Remembrance on 27 September. And 2026 cars carry active aerodynamics and far more energy deployment, so the old DRS train down the straight is gone. Formula 1's own strategy desk says "we're going to see something a bit different." Almost certainly one stop, all three compounds in play, pit windows wide.</p></div>
+</section>
+
+<section>
+  <div class="eyebrow">03 · Your calls, locked before lights out</div>
+  <h2>Pick your podium.</h2>
+  <div class="card">
+    <p>Each of you picks a winner, a podium wildcard, and where Antonelli finishes. The page remembers on this phone. Loser buys the first drink at Portola tonight.</p>
+    <div class="pick">
+      <div><label>David · winner</label><select id="dW"></select><label>David · surprise on the podium</label><select id="dS"></select><label>David · Antonelli finishes</label><select id="dA"></select></div>
+      <div><label>Trent · winner</label><select id="tW"></select><label>Trent · surprise on the podium</label><select id="tS"></select><label>Trent · Antonelli finishes</label><select id="tA"></select></div>
+    </div>
+    <button class="btn teal" id="lock">Lock the calls</button> <span id="locked" class="foot"></span>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">04 · The grid</div>
+  <h2>Where they start.</h2>
+  <p class="foot">Qualifying classification with the Sainz five place penalty and the Alonso and Stroll power unit penalties applied. Verstappen's engine change is confirmed; any grid effect was not confirmed when this was published. Team bars: Mercedes teal, Ferrari red, McLaren orange, Red Bull blue.</p>
+  <table>
+    <thead><tr><th>P</th><th>Driver</th><th>Team</th><th>Gap</th></tr></thead>
+    <tbody>
+      <tr class="merc"><td class="pos">1</td><td>George Russell</td><td>Mercedes</td><td>1:42.526</td></tr>
+      <tr class="fer"><td class="pos">2</td><td>Charles Leclerc</td><td>Ferrari</td><td>+0.837</td></tr>
+      <tr class="mcl"><td class="pos">3</td><td>Oscar Piastri</td><td>McLaren</td><td>+0.838</td></tr>
+      <tr class="rb"><td class="pos">4</td><td>Isack Hadjar</td><td>Red Bull</td><td>+0.974</td></tr>
+      <tr class="mcl"><td class="pos">5</td><td>Lando Norris</td><td>McLaren</td><td>+1.146</td></tr>
+      <tr class="fer"><td class="pos">6</td><td>Lewis Hamilton</td><td>Ferrari</td><td>+1.332</td></tr>
+      <tr><td class="pos">7</td><td>Pierre Gasly</td><td>Alpine</td><td>+1.521</td></tr>
+      <tr class="rb"><td class="pos">8</td><td>Max Verstappen <span class="pill">engine change</span></td><td>Red Bull</td><td>+1.555</td></tr>
+      <tr><td class="pos">9</td><td>Franco Colapinto</td><td>Alpine</td><td>+2.437</td></tr>
+      <tr><td class="pos">10</td><td>Oliver Bearman</td><td>Haas</td><td>Q2</td></tr>
+      <tr><td class="pos">11</td><td>Liam Lawson</td><td>Racing Bulls</td><td>Q2</td></tr>
+      <tr><td class="pos">12</td><td>Alexander Albon</td><td>Williams</td><td>Q2</td></tr>
+      <tr><td class="pos">13</td><td>Esteban Ocon</td><td>Haas</td><td>Q2</td></tr>
+      <tr class="pen"><td class="pos">14</td><td>Carlos Sainz <span class="pill red">5 places, yellow flag</span></td><td>Williams</td><td>+2.040 in Q3</td></tr>
+      <tr><td class="pos">15</td><td>Arvid Lindblad</td><td>Racing Bulls</td><td>Q2</td></tr>
+      <tr class="merc"><td class="pos">16</td><td>Kimi Antonelli <span class="pill red">crashed Q1</span></td><td>Mercedes</td><td>Q1</td></tr>
+      <tr><td class="pos">17</td><td>Gabriel Bortoleto</td><td>Audi</td><td>Q1</td></tr>
+      <tr><td class="pos">18</td><td>Nico Hulkenberg</td><td>Audi</td><td>Q1</td></tr>
+      <tr><td class="pos">19</td><td>Sergio Perez</td><td>Cadillac</td><td>Q1</td></tr>
+      <tr><td class="pos">20</td><td>Valtteri Bottas</td><td>Cadillac</td><td>Q1</td></tr>
+      <tr class="pen"><td class="pos">21</td><td>Fernando Alonso <span class="pill red">power unit</span></td><td>Aston Martin</td><td>Q1</td></tr>
+      <tr class="pen"><td class="pos">22</td><td>Lance Stroll <span class="pill red">power unit</span></td><td>Aston Martin</td><td>Q1</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="eyebrow">05 · The season in numbers</div>
+  <h2>Who is chasing whom.</h2>
+  <div class="grid">
+    <div class="card"><h3>Drivers</h3>
+      <table><tbody>
+        <tr class="merc"><td class="pos">1</td><td>Antonelli</td><td>292</td></tr>
+        <tr class="merc"><td class="pos">2</td><td>Russell</td><td>211</td></tr>
+        <tr class="fer"><td class="pos">3</td><td>Hamilton</td><td>191</td></tr>
+        <tr class="mcl"><td class="pos">4</td><td>Norris</td><td>186</td></tr>
+        <tr class="fer"><td class="pos">5</td><td>Leclerc</td><td>167</td></tr>
+        <tr class="rb"><td class="pos">6</td><td>Verstappen</td><td>145</td></tr>
+        <tr class="mcl"><td class="pos">7</td><td>Piastri</td><td>120</td></tr>
+        <tr class="rb"><td class="pos">8</td><td>Hadjar</td><td>71</td></tr>
+      </tbody></table></div>
+    <div class="card"><h3>Constructors</h3>
+      <table><tbody>
+        <tr class="merc"><td class="pos">1</td><td>Mercedes</td><td>503</td></tr>
+        <tr class="fer"><td class="pos">2</td><td>Ferrari</td><td>358</td></tr>
+        <tr class="mcl"><td class="pos">3</td><td>McLaren</td><td>306</td></tr>
+        <tr class="rb"><td class="pos">4</td><td>Red Bull</td><td>230</td></tr>
+        <tr><td class="pos">5</td><td>Racing Bulls</td><td>77</td></tr>
+        <tr><td class="pos">6</td><td>Alpine</td><td>68</td></tr>
+        <tr><td class="pos">11</td><td>Cadillac, debut year</td><td>0</td></tr>
+      </tbody></table></div>
+  </div>
+  <p class="foot">Antonelli's lead is 81 points over his own teammate. Russell needs the win and a bad day for the kid to make October interesting. Norris won Hungary and Zandvoort in a row before this.</p>
+</section>
+
+<section>
+  <div class="eyebrow">06 · The circuit, in the words that matter</div>
+  <h2>A castle and a runway.</h2>
+  <div class="grid">
+    <div class="card"><div class="big">6.0 km</div><p>51 laps. Twenty corners. Lap record 1:43.009, Leclerc, 2019.</p></div>
+    <div class="card"><div class="big">220+ mph</div><p>On the shoreline straight, the longest flat-out run on the calendar and the one real passing place.</p></div>
+    <div class="card"><div class="big">T8 to T10</div><p>The castle section, walls of the Old City on both sides, the narrowest piece of track in Formula 1. Nobody passes here. Everybody can crash here.</p></div>
+    <div class="card"><div class="big">57%</div><p>Safety car probability. Wind off the Caspian moves the cars around; 24 degrees and dry for the race.</p></div>
+  </div>
+  <p class="q">"It's been a while, so it definitely feels good. It's probably the biggest margin of my whole career."<cite>George Russell, after pole, formula1.com</cite></p>
+  <p class="q">"A sitting duck."<cite>Lewis Hamilton on his qualifying, via formula1.com What To Watch For</cite></p>
+</section>
+
+<section>
+  <div class="eyebrow">07 · How to watch from David's couch</div>
+  <h2>4:00 AM Pacific, 7:00 AM Eastern.</h2>
+  <div class="card"><p>In the US every session streams on Apple TV through its new F1 channel this season; F1 TV Pro carries it in supported countries. Formation lap is just before 4:00, so be on the couch by 3:50 with the good coffee. Then sleep, then Portola at 1:00 PM doors, Dog Blood at 9:00.</p></div>
+</section>
+
+<section>
+  <div class="eyebrow">08 · Gordon's challenge</div>
+  <div class="card challenge">
+    <div class="big">Be the best. Be the most fabulous.</div>
+    <p>Baku Duel is a two player street race on one iPhone. Turn the phone sideways: David takes the left half, Trent the right. Tap your side to steer, hold both thumbs to brake. Three laps of a Baku-shaped circuit with the castle squeeze and the long straight. Fastest to the flag wins the race. Most style points, earned by running the walls at speed without touching them, wins Most Fabulous. Gordon expects a report with both trophies named.</p>
+    <a class="btn" href="game.html">Play Baku Duel</a>
+    <a class="btn ghost" href="#count">Back to the countdown</a>
+  </div>
+</section>
+
+<section class="srcs">
+  <div class="eyebrow">Sources, read at 3 AM Pacific on 26 September 2026</div>
+  <ul class="foot">
+    <li><a href="https://www.formula1.com/en/latest/article/russell-charges-to-pole-position-as-antonelli-suffers-shock-exit-in-qualifying-for-azerbaijan-gp.6vFe7216mR8JZuWE4QIB4w">Formula1.com qualifying report: Russell pole, Antonelli exit, Alonso and Stroll penalties</a></li>
+    <li><a href="https://www.planetf1.com/news/f1-results-azerbaijan-grand-prix-2026-qualifying">PlanetF1: full qualifying classification, 22 cars</a></li>
+    <li><a href="https://www.formula1.com/en/latest/article/sainz-hit-with-five-place-grid-penalty-for-azerbaijan-gp-after-yellow-flag-breach-in-qualifying.1gS7cC7mRmvBvIrJGRH6Bb">Formula1.com: Sainz five place penalty, P9 to P14</a></li>
+    <li><a href="https://www.the-race.com/formula-1/azerbaijan-grand-prix-qualifying-results/">The Race: Mercedes' most dominant performance of 2026</a></li>
+    <li><a href="https://www.espn.com/f1/story/_/id/49963170/azerbaijan-grand-prix-2026-circuit-baku-race-f1-start-s-how-watch-schedule-usa-tv-channel-live-stream-predictions-results">ESPN: start time, circuit facts, 57 percent safety car, Apple TV, Antonelli's 81 point lead</a></li>
+    <li><a href="https://www.formula1.com/en/results/2026/drivers">Formula1.com drivers' standings</a> and <a href="https://www.formula1.com/en/results/2026/team">constructors' standings</a></li>
+    <li><a href="https://www.formula1.com/en/latest/article/strategy-guide-what-are-the-tactical-options-for-the-azerbaijan-gp.5iDS0mk2NragziXUR0jLlP">Formula1.com strategy guide: one stop, all three compounds, active aero</a></li>
+    <li><a href="https://racingnews365.com/2026-f1-azerbaijan-grand-prix-baku-time-schedule">RacingNews365: Saturday race, Day of Remembrance</a></li>
+  </ul>
+  <p class="foot">Made by Darby for David Vermillion and Trent Collings at Gordon's ask, 26 September 2026. Hero art generated with Higgsfield, narration with ElevenLabs. Private page, not indexed. Not affiliated with Formula 1.</p>
+</section>
+</main>
+<script src="../motion-2026.js" defer></script>
+<script>
+(function(){
+  var race=new Date('2026-09-26T11:00:00Z');
+  var cd=document.getElementById('cd'),cdl=document.getElementById('cdl');
+  function tick(){var d=race-Date.now();if(d>0){var h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4),s=Math.floor(d%6e4/1e3);cd.textContent=(h?h+'h ':'')+String(m).padStart(2,'0')+'m '+String(s).padStart(2,'0')+'s';cdl.textContent='to lights out · '+race.toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})+' your time';}
+    else if(d>-2.5*3.6e6){cd.textContent='Lights out';cdl.textContent='51 laps, watch turn one';}
+    else{cd.textContent='Chequered';cdl.textContent='Argue about it at Portola';}}
+  tick();setInterval(tick,1000);
+  var drivers=['George Russell','Charles Leclerc','Oscar Piastri','Isack Hadjar','Lando Norris','Lewis Hamilton','Pierre Gasly','Max Verstappen','Franco Colapinto','Oliver Bearman','Liam Lawson','Alexander Albon','Esteban Ocon','Carlos Sainz','Arvid Lindblad','Kimi Antonelli','Gabriel Bortoleto','Nico Hulkenberg','Sergio Perez','Valtteri Bottas','Fernando Alonso','Lance Stroll'];
+  var fin=['Wins it','Podium','P4 to P6','P7 to P10','Points, just','Out of the points','Does not finish'];
+  function fill(id,list){var s=document.getElementById(id);list.forEach(function(x){var o=document.createElement('option');o.textContent=x;s.appendChild(o);});}
+  ['dW','dS','tW','tS'].forEach(function(i){fill(i,drivers);});['dA','tA'].forEach(function(i){fill(i,fin);});
+  var ids=['dW','dS','dA','tW','tS','tA'],key='baku2026picks';
+  try{var saved=JSON.parse(localStorage.getItem(key)||'null');if(saved){ids.forEach(function(i){if(saved[i])document.getElementById(i).value=saved[i];});document.getElementById('locked').textContent='Locked '+saved.when+'. Change and lock again if you dare.';}}catch(e){}
+  document.getElementById('lock').addEventListener('click',function(){var o={when:new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})};ids.forEach(function(i){o[i]=document.getElementById(i).value;});try{localStorage.setItem(key,JSON.stringify(o));}catch(e){}document.getElementById('locked').textContent='Locked '+o.when+'. No takebacks after lights out.';});
+  var els=document.querySelectorAll('.reveal');if('IntersectionObserver' in window){var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(e){io.observe(e);});}else{els.forEach(function(e){e.classList.add('in');});}
+  var v=document.getElementById('heroVideo');if(v){v.addEventListener('error',function(){v.style.display='none';var i=new Image();i.src='assets/hero.jpg';i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover';v.parentNode.insertBefore(i,v);});}
+})();
+</script>
+</body>
+</html>
