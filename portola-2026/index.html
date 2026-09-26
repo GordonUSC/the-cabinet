@@ -100,11 +100,11 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
 </header>
 
 <section>
-  <div class="mono">01 · Gate briefing, 44 seconds</div>
+  <div class="mono">01 · Gate briefing, 50 seconds</div>
   <h2>Ears in. Then go.</h2>
   <div class="card overprint">
     <audio controls preload="metadata" src="assets/briefing.mp3">Your browser cannot play the briefing.</audio>
-    <p>Gordon, with Brennan, on the rail. David has the couch. Bring your ID, it is 21 and over, cashless, and your empty bottle, the refill stations are free.</p>
+    <p>Gordon, with Dave and Trent, on the rail. Bring your ID, it is 21 and over, cashless, and your empty bottle, the refill stations are free.</p>
     <p class="mono" style="color:var(--rose)">Gate check: your June order was a payment plan and nothing in your mail confirms the last two payments. Open the AXS app before you reach the gate.</p>
   </div>
 </section>
@@ -157,7 +157,7 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   <h2>Tonight is your sixth Skrillex.</h2>
   <div class="card">
     <p>Second Sky, Oakland, 2022. Red Rocks with Brennan, 2023, five hours. The surprise set with Jamie xx on the Coliseum fifty yard line, 2023. Skrillex b2b Four Tet at HARD Summer, 2023. ISOxo b2b Skrillex at NiteHarts, 2025, with Brennan, Quinn and Mason. And tonight, Dog Blood, the first time you see him as half of it.</p>
-    <p class="foot">By your own word, you saw Dog Blood at Electric Zoo on September 1, 2019. If that is right, tonight closes a seven year loop. Brennan holds the second ticket.</p>
+    <p class="foot">By your own word, you saw Dog Blood at Electric Zoo on September 1, 2019. If that is right, tonight closes a seven year loop. Dave and Trent are on the rail with you, eight years after you walked Dave into his first rave.</p>
   </div>
 </section>
 
@@ -215,7 +215,7 @@ figcaption{position:absolute;left:18px;bottom:12px;right:18px;font-family:"IBM P
   drawWx(WX);
   document.getElementById('wxRefresh').addEventListener('click',function(e){e.preventDefault();fetch('https://api.open-meteo.com/v1/forecast?latitude=37.752&longitude=-122.381&hourly=temperature_2m,wind_speed_10m,cloud_cover&temperature_unit=fahrenheit&wind_speed_unit=mph&timezone=America%2FLos_Angeles&forecast_days=1').then(function(r){return r.json();}).then(function(j){var h=j.hourly,rows=[];for(var i=12;i<24;i++)rows.push([i,h.temperature_2m[i],h.wind_speed_10m[i],h.cloud_cover[i]]);drawWx(rows);burst('#19C2B8');}).catch(function(){});});
   /* ---------- surprises ---------- */
-  var S=[['fact','Dog Blood is Skrillex and Boys Noize. This is their first show since 2019, and the last time you saw them was Electric Zoo, by your own word.'],['nudge','Water. The refill stations are free and your bottle is empty. Go now, the set will still be here.'],['fact','The wind at this pier doubles between 3 and 7 PM. The layer is for the wind, not the cold.'],['nudge','Text Brennan where you are standing. Rail, left of the desk, is the Bellamy default.'],['fact','Portola is five years old today. Despacio, across the street at 401 Cesar Chavez, is the birthday party, 5 to 11.'],['confetti','Confetti, because you are here.'],['fact','Robyn at 7:10 lands ten minutes after sunset. Face the water for the last light, then turn around.'],['nudge','Look up at the crane. Then tap it on the 3D pier. Something happens.'],['fact','Robyn ends at 8:10 and Fatboy Slim starts at 7:55 on the Crane. Fifteen minutes of overlap, about six minutes of walking. Leave Robyn on the last chorus.'],['fact','Melanie C plays a DJ set in the Ship Tent at 9:50. Sporty Spice, forty minutes, while Dog Blood is on the Pier. That is a choice.'],['fact','DJ Shadow at 6:10 on the Crane is celebrating thirty years of Endtroducing. Groove Armada is in the Warehouse at 4:45. Your twenties are on this pier.'],['memory','Red Rocks, 2023, five hours of Skrillex with Brennan. Tonight is the sixth time and the first as half of Dog Blood.']];
+  var S=[['fact','Dog Blood is Skrillex and Boys Noize. This is their first show since 2019, and the last time you saw them was Electric Zoo, by your own word.'],['nudge','Water. The refill stations are free and your bottle is empty. Go now, the set will still be here.'],['fact','The wind at this pier doubles between 3 and 7 PM. The layer is for the wind, not the cold.'],['nudge','Tell Dave and Trent where you are standing. Rail, left of the desk, is the Bellamy default.'],['fact','Portola is five years old today. Despacio, across the street at 401 Cesar Chavez, is the birthday party, 5 to 11.'],['confetti','Confetti, because you are here.'],['fact','Robyn at 7:10 lands ten minutes after sunset. Face the water for the last light, then turn around.'],['nudge','Look up at the crane. Then tap it on the 3D pier. Something happens.'],['fact','Robyn ends at 8:10 and Fatboy Slim starts at 7:55 on the Crane. Fifteen minutes of overlap, about six minutes of walking. Leave Robyn on the last chorus.'],['fact','Melanie C plays a DJ set in the Ship Tent at 9:50. Sporty Spice, forty minutes, while Dog Blood is on the Pier. That is a choice.'],['fact','DJ Shadow at 6:10 on the Crane is celebrating thirty years of Endtroducing. Groove Armada is in the Warehouse at 4:45. Your twenties are on this pier.'],['memory','Red Rocks, 2023, five hours of Skrillex with Brennan. Tonight is the sixth time and the first as half of Dog Blood.']];
   var si=-1;document.getElementById('surpriseBtn').addEventListener('click',function(){si=(si+1+Math.floor(Math.random()*3))%S.length;var s=S[si];document.getElementById('surprise').textContent=s[1];burst(s[0]==='confetti'?'#FF4F9A':(s[0]==='nudge'?'#19C2B8':'#FFD24A'));});
   /* ---------- confetti ---------- */
   var fx=document.getElementById('fx'),fctx=fx.getContext('2d');function size(){fx.width=innerWidth;fx.height=innerHeight;}size();addEventListener('resize',size);
