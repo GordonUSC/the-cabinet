@@ -55,3 +55,14 @@ iframe{width:100%;aspect-ratio:16/9;border:0}section{scroll-margin-top:20px}
 @media(max-width:700px){main{padding:30px 18px}body{font-size:18px}.step{grid-template-columns:1fr;gap:4px}nav{gap:12px}table{font-size:15px}td,th{padding:9px 6px}
   .term{grid-template-columns:1fr}.stations{grid-template-columns:1fr}h1{text-shadow:2px 0 0 var(--cyan),-2px 0 0 var(--mag)}.hero{box-shadow:8px 8px 0 var(--mag)}}
 @media print{nav,.noprint,button{display:none}body{background:white;color:#111;font-size:12pt;background-image:none}main{padding:0;max-width:none}h1{font-size:26pt;text-shadow:none}h2{font-size:18pt}.run{break-before:page}.step{break-inside:avoid}a{color:inherit}.quiet{font-size:10pt}.hero,.plate,.linkrow,.note,.station{box-shadow:none}}
+/* Student run of show: one row per block, time column, readable at 390 */
+.ros{list-style:none;margin:22px 0 30px;padding:0;border:4px solid var(--ink);background:var(--panel);box-shadow:6px 6px 0 var(--cyan)}
+.ros li{display:grid;grid-template-columns:7.2em 1fr;gap:4px 14px;padding:14px 16px;border-top:2px solid var(--ink)}
+.ros li:first-child{border-top:0}
+.ros .t{font:800 16px/1.3 "Bricolage Grotesque",Inter,sans-serif;font-variant-numeric:tabular-nums}
+.ros b{display:block;font:800 19px/1.25 "Bricolage Grotesque",Inter,sans-serif}
+.ros span.do{display:block;font-size:16px;margin-top:2px}
+.ros a{font-size:15px;font-weight:600}
+.ros li.brk{background:var(--paper)}
+@media(max-width:420px){.ros li{grid-template-columns:1fr}}
+@media print{.ros{box-shadow:none}.ros li{break-inside:avoid;padding:8px 10px}}
