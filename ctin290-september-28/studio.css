@@ -1,0 +1,57 @@
+/* CTIN 290 student studio, Session 11. Spider-Verse print idiom: halftone, slipped registration, panels, big type.
+   Legibility rules: body ink on paper at 19px or more, headings never rely on the color offset to be read,
+   projector screens are ink ground with type at 44px or more and AAA contrast. */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;600&display=swap');
+:root{--paper:#F6EFE3;--ink:#141216;--cyan:#1FA7D6;--mag:#E0359A;--yel:#F5C400;--red:#E23D2A;--muted:#5A5550;--panel:#FFFDF8;--rule:#141216}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:19px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background-image:radial-gradient(circle at 1px 1px, rgba(20,18,22,.10) 1px, transparent 1.6px);background-size:9px 9px}
+a{color:var(--ink);text-decoration-color:var(--mag);text-decoration-thickness:3px;text-underline-offset:4px;overflow-wrap:anywhere}
+a:hover{text-decoration-color:var(--cyan)}
+nav{background:var(--ink);color:#fff;padding:14px 5vw;display:flex;gap:22px;flex-wrap:wrap;font:600 15px/1.4 Inter,system-ui,sans-serif;letter-spacing:.01em}
+nav a{color:#fff;text-decoration:none;border-bottom:3px solid transparent}nav a:hover{border-bottom-color:var(--yel)}
+main{max-width:1100px;margin:auto;padding:44px 28px 70px}
+h1,h2,h3{font-family:"Bricolage Grotesque",Inter,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.02}
+h1{font-size:clamp(40px,6.4vw,84px);margin:8px 0 22px;text-shadow:3px 0 0 var(--cyan),-3px 0 0 var(--mag)}
+h2{font-size:clamp(28px,3.4vw,40px);margin:40px 0 14px;padding-top:14px;border-top:5px solid var(--ink)}
+h3{font-size:22px;margin:18px 0 8px}
+.eyebrow,.time{font:800 14px/1.5 "Bricolage Grotesque",Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:var(--yel);display:inline-block;padding:3px 8px;transform:rotate(-1deg)}
+.lede{font-size:clamp(22px,2.4vw,27px);max-width:840px;line-height:1.4;font-weight:600}
+.note{padding:20px 24px;border:4px solid var(--ink);background:var(--panel);margin:26px 0;box-shadow:8px 8px 0 var(--cyan)}
+.quiet{font-size:16px;color:var(--muted)}
+.say{background:var(--panel);border-left:6px solid var(--mag);padding:12px 16px;font-weight:600}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin:26px 0}
+.linkrow{border:4px solid var(--ink);background:var(--panel);padding:18px 18px 16px;position:relative;box-shadow:6px 6px 0 var(--mag)}
+.linkrow:nth-child(even){box-shadow:6px 6px 0 var(--cyan)}.linkrow:nth-child(3n){box-shadow:6px 6px 0 var(--yel)}
+.linkrow a{font:800 24px/1.15 "Bricolage Grotesque",Inter,sans-serif;text-decoration:none;display:block}
+.linkrow a::after{content:" \2192"}.linkrow p{margin:8px 0 0;font-size:16px}
+.run{border-top:4px solid var(--ink);padding:26px 0}
+.step{display:grid;grid-template-columns:80px 1fr;gap:18px;margin:22px 0}.step p{margin:0 0 10px}
+.button,button{display:inline-block;border:3px solid var(--ink);background:var(--ink);color:#fff;border-radius:0;padding:12px 18px;font:800 17px/1.3 "Bricolage Grotesque",Inter,sans-serif;text-decoration:none;cursor:pointer;box-shadow:5px 5px 0 var(--yel)}
+.button:hover,button:hover{background:var(--mag);border-color:var(--mag);color:#fff;box-shadow:5px 5px 0 var(--ink)}
+button.secondary{background:var(--panel);color:var(--ink)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:4px solid var(--cyan);outline-offset:3px}
+table{border-collapse:collapse;width:100%;font-size:17px;background:var(--panel);border:4px solid var(--ink)}
+td,th{text-align:left;vertical-align:top;border-bottom:2px solid var(--ink);padding:12px 10px}th{background:var(--yel);font:800 14px/1.4 "Bricolage Grotesque",Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+ul,ol{padding-left:26px}li{margin-bottom:10px}
+footer{border-top:4px solid var(--ink);padding:18px 28px;font-size:14px;color:var(--muted)}
+textarea,input[type=text]{display:block;width:100%;border:3px solid var(--ink);border-radius:0;background:var(--panel);color:var(--ink);font:18px/1.5 Inter,system-ui;padding:12px;margin:8px 0 22px;min-height:120px;box-shadow:inset 0 0 0 0 transparent}
+textarea:focus{box-shadow:6px 6px 0 var(--cyan)}
+label{font:800 18px/1.3 "Bricolage Grotesque",Inter,sans-serif}
+details{border-top:2px solid var(--ink);padding:16px 0}summary{cursor:pointer;font-weight:800}
+iframe{width:100%;aspect-ratio:16/9;border:0}section{scroll-margin-top:20px}
+/* plates */
+.hero{position:relative;margin:0 0 28px;border:5px solid var(--ink);background:var(--ink);box-shadow:12px 12px 0 var(--mag)}
+.hero img{display:block;width:100%;height:auto}
+.plate{border:4px solid var(--ink);background:var(--panel);box-shadow:8px 8px 0 var(--cyan);margin:14px 0 18px;overflow:hidden}
+.plate img{display:block;width:100%;height:auto}
+.plate figcaption{padding:10px 14px;font:600 14px/1.4 Inter,sans-serif;background:var(--panel);border-top:3px solid var(--ink)}
+.term{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:26px;align-items:start}
+.stations{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
+.station{border:4px solid var(--ink);background:var(--panel);padding:16px;box-shadow:6px 6px 0 var(--yel);position:relative}
+.station b{font:800 44px/1 "Bricolage Grotesque",Inter,sans-serif;display:block;margin-bottom:6px;text-shadow:2px 0 0 var(--cyan),-2px 0 0 var(--mag)}
+.station .win{font:800 20px/1.2 "Bricolage Grotesque",Inter,sans-serif}
+.badge{display:inline-block;background:var(--ink);color:#fff;font:800 13px/1 "Bricolage Grotesque",Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:6px 8px;margin-right:8px}
+@media(max-width:700px){main{padding:30px 18px}body{font-size:18px}.step{grid-template-columns:1fr;gap:4px}nav{gap:12px}table{font-size:15px}td,th{padding:9px 6px}
+  .term{grid-template-columns:1fr}.stations{grid-template-columns:1fr}h1{text-shadow:2px 0 0 var(--cyan),-2px 0 0 var(--mag)}.hero{box-shadow:8px 8px 0 var(--mag)}}
+@media print{nav,.noprint,button{display:none}body{background:white;color:#111;font-size:12pt;background-image:none}main{padding:0;max-width:none}h1{font-size:26pt;text-shadow:none}h2{font-size:18pt}.run{break-before:page}.step{break-inside:avoid}a{color:inherit}.quiet{font-size:10pt}.hero,.plate,.linkrow,.note,.station{box-shadow:none}}
