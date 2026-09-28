@@ -66,3 +66,11 @@ iframe{width:100%;aspect-ratio:16/9;border:0}section{scroll-margin-top:20px}
 .ros li.brk{background:var(--paper)}
 @media(max-width:420px){.ros li{grid-template-columns:1fr}}
 @media print{.ros{box-shadow:none}.ros li{break-inside:avoid;padding:8px 10px}}
+/* Navigation: pinned menu, you-are-here, way home */
+html{scroll-padding-top:90px}
+nav{position:sticky;top:0;z-index:20}
+nav a[aria-current="page"]{background:var(--yel);color:var(--ink);padding:1px 8px;border-bottom:0}
+.howto ol{margin:8px 0 0;padding-left:1.3em;display:grid;gap:6px}
+.backlink{margin-top:40px}.backlink a{font:800 20px/1.3 "Bricolage Grotesque",Inter,sans-serif}
+/* phones: the menu stays one line and scrolls sideways instead of stacking three rows deep */
+@media(max-width:700px){nav{flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:12px 16px}nav::-webkit-scrollbar{display:none}}
