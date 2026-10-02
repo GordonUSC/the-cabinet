@@ -59,15 +59,34 @@
     var o = AC.createOscillator(), g = AC.createGain(), t = AC.currentTime;
     o.type = "square"; o.frequency.value = hz(semi + 24);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.08, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + (len || 0.18));
-    o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + (len || 0.18) + 0.05);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + (len || 0.18) + 0.05);
   }
   var arm = $("#arm");
   function setArmed(on) {
     armed = on; if (arm) { arm.setAttribute("aria-pressed", on); $(".arm-l", arm).textContent = on ? "Sound on" : "Sound off"; }
-    if (on) { if (!ensureAC()) return; if (AC.state === "suspended") AC.resume(); master.gain.setTargetAtTime(0.9, AC.currentTime, 0.2); if (deck) deck.sound(); blip(12, 0.25); }
+    if (on) { if (!ensureAC()) { armed=false; arm.setAttribute("aria-pressed","false"); $(".arm-l",arm).textContent="Sound unavailable"; return; } if (AC.state === "suspended") AC.resume(); master.gain.setTargetAtTime(0.9, AC.currentTime, 0.2); if (deck) deck.sound(); blip(12, 0.25); }
     else if (AC) master.gain.setTargetAtTime(0.0001, AC.currentTime, 0.15);
   }
   if (arm) arm.addEventListener("click", function () { setArmed(!armed); });
+
+
+  // A gentle, original 120 BPM groove. Only starts after an explicit gesture.
+  var grooveTimer=null, grooveStep=0, grooveUntil=0, nextBeat=0;
+  var preview=$("#preview-mix"), mixStatus=$("#mix-status");
+  function kick(t) { var o=AC.createOscillator(),g=AC.createGain(); o.frequency.setValueAtTime(120,t);o.frequency.exponentialRampToValueAtTime(42,t+.15);g.gain.setValueAtTime(.28,t);g.gain.exponentialRampToValueAtTime(.001,t+.2);o.connect(g);g.connect(master);o.start(t);o.stop(t+.22); }
+  function hat(t,accent) { var o=AC.createOscillator(),g=AC.createGain(),f=AC.createBiquadFilter();o.type="square";o.frequency.value=accent?7100:5900;f.type="highpass";f.frequency.value=6000;g.gain.setValueAtTime(accent?.018:.01,t);g.gain.exponentialRampToValueAtTime(.0001,t+.035);o.connect(f);f.connect(g);g.connect(master);o.start(t);o.stop(t+.04); }
+  function stopGroove(){clearInterval(grooveTimer);grooveTimer=null;if(preview){preview.textContent="Play my mix · 30 sec";preview.setAttribute("aria-pressed","false");}D.body.classList.remove("mix-playing");$$(".beat-lights i").forEach(function(e){e.classList.remove("on");});}
+  function pulse(){
+    if(!armed || D.hidden){stopGroove();setArmed(false);if(mixStatus)mixStatus.textContent="Mix paused. Press play whenever you’re ready.";return;}
+    if(AC.currentTime>=grooveUntil){stopGroove();setArmed(false);if(mixStatus)mixStatus.textContent="Your mix, made. Pick a night above to make the next memory.";return;}
+    while(nextBeat<AC.currentTime+.08){var k=grooveStep++;if(k%2===0)kick(nextBeat);hat(nextBeat,k%4===2);nextBeat+=.25;}
+    var beat=Math.floor(AC.currentTime*2)%4;if(!reduce)$$(".beat-lights i").forEach(function(e,i){e.classList.toggle("on",i===beat);});
+
+  }
+  if(preview)preview.addEventListener("click",function(){if(grooveTimer){stopGroove();setArmed(false);mixStatus.textContent="Mix paused. Your blend is still here.";return;}setArmed(true);if(!AC)return;AC.resume().then(function(){grooveStep=0;nextBeat=AC.currentTime+.05;grooveUntil=AC.currentTime+30;if(mixStatus)mixStatus.textContent="Playing your original 120 BPM mix. Stops after 30 seconds.";preview.textContent="Stop my mix";preview.setAttribute("aria-pressed","true");D.body.classList.add("mix-playing");grooveTimer=setInterval(pulse,25);});});
+  if(arm)arm.addEventListener("click",function(){if(!armed)stopGroove();});
+  D.addEventListener("visibilitychange",function(){if(D.hidden){var wasPlaying=!!grooveTimer;stopGroove();setArmed(false);if(wasPlaying&&mixStatus)mixStatus.textContent="Mix paused while you were away. Press play to start again.";}});
+  W.addEventListener("pagehide",function(){stopGroove();setArmed(false);});
 
   /* ---------- faders: a little lift and a note per friend ---------- */
   $$(".fader").forEach(function (f) {
@@ -215,7 +234,7 @@
   /* filters for open seats and solo nights */
   $$(".filters button").forEach(function (b) {
     var f = b.getAttribute("data-f"); if (f !== "open" && f !== "solo") return;
-    b.addEventListener("click", function () { $$(".rack .strip").forEach(function (s) { s.hidden = !s.getAttribute(f === "open" ? "data-open" : "data-solo"); }); });
+    b.addEventListener("click", function () { $$(".rack .strip").forEach(function (s) { s.hidden = s.getAttribute(f === "open" ? "data-open" : "data-solo") !== "1"; }); });
   });
   $$(".filters button").forEach(function (b) {
     var f = b.getAttribute("data-f"); if (f === "open" || f === "solo") return;
@@ -225,12 +244,13 @@
   var sur = $("#surprise");
   if (sur && EV) sur.addEventListener("click", function () {
     var pool = EV.filter(function (e) { return e.date && daysTo(e.endDate || e.date) >= 0; }), a = pool[Math.floor(Math.random() * pool.length)], b;
+    if (!pool.length) { sur.textContent="No upcoming nights to mix yet"; return; }
     do { b = pool[Math.floor(Math.random() * pool.length)]; } while (pool.length > 1 && b === a);
     $("#deckA").value = a.id; $("#deckB").value = b.id; $("#deckA").dispatchEvent(new Event("change")); var x = $("#xfader"); x.value = 50; x.dispatchEvent(new Event("input"));
     blip(0, 0.1); setTimeout(function () { blip(7, 0.14); }, 120);
   });
   /* wristbands: nights you have opened */
-  var seen = []; try { seen = JSON.parse(store("mx_seen") || "[]"); } catch (e) {}
+  var seen = []; try { var savedSeen = JSON.parse(store("mx_seen") || "[]"); if (Array.isArray(savedSeen)) seen = savedSeen.filter(function(x){return typeof x === "string";}); } catch (e) {}
   var nightEl = $("article.night[data-id]");
   if (nightEl) { var id = nightEl.getAttribute("data-id"); if (seen.indexOf(id) < 0) { seen.push(id); store("mx_seen", JSON.stringify(seen)); } }
   var bands = $("#bands"), row = $("#bandRow");
@@ -239,7 +259,7 @@
     if (got) {
       bands.hidden = false;
       $("#bandsNote").textContent = got + " of " + EV.length + " nights opened. Every night page you visit adds its band.";
-      EV.forEach(function (e) { var a = D.createElement("a"); a.href = "night/" + e.id + ".html"; a.style.setProperty("--c", e.color || "#9dcaff"); if (seen.indexOf(e.id) < 0) a.className = "off";
+      EV.forEach(function (e) { var a = D.createElement("a"); a.href = (D.body.getAttribute("data-pre") || "") + "next/night/" + e.id + ".html"; a.style.setProperty("--c", e.color || "#9dcaff"); if (seen.indexOf(e.id) < 0) a.className = "off";
         var s = D.createElement("span"); s.textContent = e.name; a.appendChild(s); a.title = e.name; row.appendChild(a); });
     }
   }

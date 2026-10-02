@@ -4,18 +4,8 @@ PRODID:-//After Hours Mixer//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:Nights with Brennan
 BEGIN:VEVENT
-UID:portola-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
-DTSTART;VALUE=DATE:20260926
-DTEND;VALUE=DATE:20260927
-SUMMARY:Portola with friends
-LOCATION:Pier 80\, San Francisco
-DESCRIPTION:Different crowds. The same instinct to find each other. With Brennan. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/portola.html
-URL:https://www.portolamusicfestival.com/lineup/
-END:VEVENT
-BEGIN:VEVENT
 UID:niteharts-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261012
 SUMMARY:Niteharts with friends
@@ -25,7 +15,7 @@ URL:https://www.niteharts.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:latenite-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261011
 DTEND;VALUE=DATE:20261012
 SUMMARY:Latenite with friends
@@ -35,7 +25,7 @@ URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
 SUMMARY:Pokémon Night Out with friends
@@ -45,7 +35,7 @@ URL:https://30.pokemon.com/en-us/night-out
 END:VEVENT
 BEGIN:VEVENT
 UID:ggp-games-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270301
 DTEND;VALUE=DATE:20270302
 SUMMARY:GGP · Zero Proof with friends
@@ -55,7 +45,7 @@ URL:https://gaygamingpros.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:ggp-mixer-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270302
 DTEND;VALUE=DATE:20270303
 SUMMARY:GGP · The Mixer with friends

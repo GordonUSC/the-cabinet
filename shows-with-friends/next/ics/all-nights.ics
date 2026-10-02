@@ -4,38 +4,8 @@ PRODID:-//After Hours Mixer//EN
 CALSCALE:GREGORIAN
 X-WR-CALNAME:After Hours: every night
 BEGIN:VEVENT
-UID:portola-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
-DTSTART;VALUE=DATE:20260926
-DTEND;VALUE=DATE:20260927
-SUMMARY:Portola with friends
-LOCATION:Pier 80\, San Francisco
-DESCRIPTION:Different crowds. The same instinct to find each other. With Brennan. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/portola.html
-URL:https://www.portolamusicfestival.com/lineup/
-END:VEVENT
-BEGIN:VEVENT
-UID:folsom-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
-DTSTART;VALUE=DATE:20260927
-DTEND;VALUE=DATE:20260928
-SUMMARY:Folsom Street Fair with friends
-LOCATION:Folsom Street · SoMa · 11 AM to 6 PM\, San Francisco
-DESCRIPTION:A familiar city. A friend for the ages. With Shannon. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/folsom.html
-URL:https://www.folsomstreet.org/folsom-street-fair-1
-END:VEVENT
-BEGIN:VEVENT
-UID:foundry-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
-DTSTART;VALUE=DATE:20260927
-DTEND;VALUE=DATE:20260928
-SUMMARY:The Foundry with friends
-LOCATION:1425 Folsom\, San Francisco
-DESCRIPTION:A dance today. Our own gathering next. With A stop. https://gordonusc.github.io/the-cabinet/shows-with-friends/next/night/foundry.html
-URL:https://www.eventbrite.com/e/boof-presents-mcmlxxxv-herrensauna-at-the-foundry-folsom-street-fair-tickets-1999721840857
-END:VEVENT
-BEGIN:VEVENT
 UID:zeds-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261003
 DTEND;VALUE=DATE:20261004
 SUMMARY:Zeds Dead with friends
@@ -45,7 +15,7 @@ URL:https://www.insomniac.com/events/zeds-dead-2026-10-03-los-angeles-ca/
 END:VEVENT
 BEGIN:VEVENT
 UID:niteharts-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261009
 DTEND;VALUE=DATE:20261012
 SUMMARY:Niteharts with friends
@@ -55,7 +25,7 @@ URL:https://www.niteharts.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:latenite-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261011
 DTEND;VALUE=DATE:20261012
 SUMMARY:Latenite with friends
@@ -65,7 +35,7 @@ URL:https://www.axs.com/sg/events/1521587/niteharts-presents-latenite-tickets
 END:VEVENT
 BEGIN:VEVENT
 UID:pokemon-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
 SUMMARY:Pokémon Night Out with friends
@@ -75,7 +45,7 @@ URL:https://30.pokemon.com/en-us/night-out
 END:VEVENT
 BEGIN:VEVENT
 UID:pride-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261106
 DTEND;VALUE=DATE:20261110
 SUMMARY:Palm Springs · Pride + Birthday with friends
@@ -85,7 +55,7 @@ URL:https://www.pspride.org/news
 END:VEVENT
 BEGIN:VEVENT
 UID:summit-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261212
 DTEND;VALUE=DATE:20261213
 SUMMARY:John Summit with friends
@@ -95,7 +65,7 @@ URL:https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/
 END:VEVENT
 BEGIN:VEVENT
 UID:stevie-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261219
 DTEND;VALUE=DATE:20261220
 SUMMARY:Stevie Wonder with friends
@@ -105,7 +75,7 @@ URL:https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performa
 END:VEVENT
 BEGIN:VEVENT
 UID:countdown-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20261231
 DTEND;VALUE=DATE:20270102
 SUMMARY:Countdown with friends
@@ -115,7 +85,7 @@ URL:https://press.insomniac.com/blog/countdown-nye-will-expand-to-two-days-and-r
 END:VEVENT
 BEGIN:VEVENT
 UID:sincity-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270114
 DTEND;VALUE=DATE:20270119
 SUMMARY:Sin City · Dodgeball with friends
@@ -125,7 +95,7 @@ URL:https://www.sincityclassic.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:ggp-games-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270301
 DTEND;VALUE=DATE:20270302
 SUMMARY:GGP · Zero Proof with friends
@@ -135,7 +105,7 @@ URL:https://gaygamingpros.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:ggp-mixer-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270302
 DTEND;VALUE=DATE:20270303
 SUMMARY:GGP · The Mixer with friends
@@ -145,7 +115,7 @@ URL:https://gaygamingpros.org/
 END:VEVENT
 BEGIN:VEVENT
 UID:gryphus-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270430
 DTEND;VALUE=DATE:20270503
 SUMMARY:Gryphus with friends
@@ -155,7 +125,7 @@ URL:https://gryphusmusicfestival.com/
 END:VEVENT
 BEGIN:VEVENT
 UID:edc-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270521
 DTEND;VALUE=DATE:20270524
 SUMMARY:EDC · Dawn with friends
@@ -165,7 +135,7 @@ URL:https://lasvegas.edc.com/guide/faq/
 END:VEVENT
 BEGIN:VEVENT
 UID:shambhala-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20270723
 DTEND;VALUE=DATE:20270727
 SUMMARY:Shambhala with friends
@@ -175,7 +145,7 @@ URL:https://www.shambhalamusicfestival.com/tickets-camping
 END:VEVENT
 BEGIN:VEVENT
 UID:olympics-swf@gordonusc.github.io
-DTSTAMP:20260923T000000Z
+DTSTAMP:20261002T000000Z
 DTSTART;VALUE=DATE:20280715
 DTEND;VALUE=DATE:20280719
 SUMMARY:LA28 · With Foster with friends
