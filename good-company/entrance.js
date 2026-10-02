@@ -18,5 +18,13 @@
   $('#guide-next').onclick=()=>{if(step<2){step++;show();}else{$('#guide').hidden=true;$('#doors').scrollIntoView({behavior:calm?'auto':'smooth'});$('.door').focus();}};
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#guide').hidden)close();});
   $('#perspective-more').onclick=()=>{const p=$('#perspective-note');p.hidden=!p.hidden;$('#perspective-more').setAttribute('aria-expanded',String(!p.hidden));};
-  $('#copy-link').onclick=async()=>{if(location.hostname==='127.0.0.1'||location.hostname==='localhost'){$('#status').textContent='This is your local review. A shareable link will be added when the approved edition is published.';return;}try{await navigator.clipboard.writeText(location.href.split('#')[0]);$('#status').textContent='Link copied. Share it with someone you’d like to explore with.';}catch(_){$('#status').textContent='Copy the page address from your browser to share it.';}};
+  const shareField=$('#share-url');
+  shareField.addEventListener('click',()=>shareField.select());
+  $('#copy-link').onclick=async()=>{
+    shareField.focus();shareField.select();shareField.setSelectionRange(0,shareField.value.length);
+    let copied=false;
+    try{copied=document.execCommand('copy');}catch(_){}
+    if(!copied&&navigator.clipboard){try{await navigator.clipboard.writeText(shareField.value);copied=true;}catch(_){}}
+    $('#status').textContent=copied?'Your link is ready. Select and copy the address if your browser didn’t copy automatically.':'The link is selected. Use Copy, or press Ctrl+C (Command+C on a Mac).';
+  };
 })();
