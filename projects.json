@@ -1,0 +1,432 @@
+[
+  {
+    "id": "island-hop",
+    "title": "ISLAND HOP",
+    "line": "A hot-air balloon, eight playable islands, your own name and colors, and little things to discover.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/island-hop/",
+    "image": "new/island.jpg",
+    "repo": "https://github.com/GordonUSC/island-hop"
+  },
+  {
+    "id": "for-cale",
+    "title": "CALE, COME ON IN",
+    "line": "The complete gift: Cale’s two site directions, Pizza Baby’s two looks, the game and room for feedback.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/cale-yarborough/for-cale/",
+    "image": "new/cale.webp",
+    "repo": "https://github.com/GordonUSC/cale-yarborough"
+  },
+  {
+    "id": "pizza-baby",
+    "title": "PIZZA BABY",
+    "line": "Published verdicts, two proposed visual worlds, a critic’s desk and merch concepts for Sofia.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/pizza-baby/#diaries",
+    "image": "new/pizza.webp",
+    "repo": "https://github.com/GordonUSC/pizza-baby"
+  },
+  {
+    "id": "cale-yarborough",
+    "title": "CALE YARBOROUGH",
+    "line": "A producer’s call sheet and an alternate festival-day experience. Two design directions to compare.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/cale-yarborough/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/cale-yarborough"
+  },
+  {
+    "id": "good-company",
+    "title": "GOOD COMPANY",
+    "line": "Four doors into Gordon’s world: music, play, media and a life of learning.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/the-cabinet/good-company/",
+    "image": "https://gordonusc.github.io/the-cabinet/good-company/assets/good-company.webp",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "shows-with-friends",
+    "title": "SHOWS WITH FRIENDS",
+    "line": "Find a night, build a mix, and leave with a plan worth sharing.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/the-cabinet/shows-with-friends/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "vanderbilt",
+    "title": "WITH GRATITUDE",
+    "line": "The complete reading edition made for Vanderbilt: a life, its evidence, and the people who helped shape it.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/the-cabinet/good-company/vanderbilt/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "gordtopia",
+    "title": "GORDTOPIA",
+    "line": "Explore the Minecraft world, its landmarks, photographs, and ideas for what to build next.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/gordtopia/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/gordtopia"
+  },
+  {
+    "id": "nether-guide",
+    "title": "LANTERN GUIDE TO THE NETHER",
+    "line": "A Minecraft field guide for finding your way through the Nether.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/nether-guide/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/nether-guide"
+  },
+  {
+    "id": "gryphus",
+    "title": "GRYPHUS",
+    "line": "Ride the hills. Hear the music. Explore the Hill Country festival and its visual directions.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/the-cabinet/gryphus/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "coin-op-trinity",
+    "title": "THE COIN-OP TRINITY",
+    "line": "Eugene Jarvis, George Gomez and Joe Kaminkow: a tribute to three careers in making people play.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/coin-op-trinity/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/coin-op-trinity"
+  },
+  {
+    "id": "mood-boards",
+    "title": "MOOD BOARDS, WORKED THROUGH",
+    "line": "Three worked examples for CTIN 290. Move from reference images to a clear visual idea.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-mood-boards/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "mood-board-presentations",
+    "title": "PRESENT THE MOOD",
+    "line": "CTIN 290 examples for turning a mood board into a presentation.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-mood-board-presentations/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-s9-students",
+    "title": "SESSION 9 · STUDENT RESOURCES",
+    "line": "The September 21 CTIN 290 student resource collection.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-s9-students/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-sept21",
+    "title": "YOUR STUDIO · SEPTEMBER 21",
+    "line": "The CTIN 290 classroom studio for September 21.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-september-21/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-sept23",
+    "title": "THE CLASSROOM · SEPTEMBER 23",
+    "line": "A CTIN 290 classroom experience with visual examples and studio activities.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-september-23/CLASSROOM/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-sept28",
+    "title": "THE CLASSROOM · SEPTEMBER 28",
+    "line": "Student materials and visual practice for CTIN 290.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-september-28/CLASSROOM/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-sept30",
+    "title": "MINECRAFT × THE LAST OF US",
+    "line": "The September 30 CTIN 290 classroom: a student guide, examples and a team studio.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin290-september-30/CLASSROOM/",
+    "image": "",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "portola-2026",
+    "title": "PORTOLA, SATURDAY",
+    "line": "A festival field guide for Portola 2026, kept as an archive of the day.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/the-cabinet/portola-2026/",
+    "image": "https://gordonusc.github.io/the-cabinet/portola-2026/assets/hero.jpg",
+    "repo": "https://github.com/GordonUSC/the-cabinet"
+  },
+  {
+    "id": "ctin-290-recap",
+    "title": "MAKE IT READ",
+    "line": "A visual field guide for USC students. Learn to make an image read clearly.",
+    "stage": "classroom",
+    "stageName": "The Classroom",
+    "url": "https://gordonusc.github.io/the-cabinet/ctin-290-recap/",
+    "repo": "https://github.com/GordonUSC/the-cabinet",
+    "image": "shots/ctin-290-recap.jpg"
+  },
+  {
+    "id": "tape-log",
+    "title": "THE TAPE LOG",
+    "line": "Eight game shows, fourteen years, two wins. Play his actual questions off the surviving tapes.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/tape-log/",
+    "repo": "https://github.com/GordonUSC/tape-log",
+    "image": "shots/tape-log.jpg"
+  },
+  {
+    "id": "gridiron-16",
+    "title": "GRIDIRON 16",
+    "line": "58 teams drawn as Sega Genesis sprites, inside the real 512-colour limits of the VDP.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/gridiron-16/",
+    "repo": "https://github.com/GordonUSC/gridiron-16",
+    "image": "shots/gridiron-16.jpg"
+  },
+  {
+    "id": "foster-studio",
+    "title": "EVERY SOUND I'VE LOVED",
+    "line": "Foster's record collection, made playable. Press the drop.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/foster-studio/",
+    "repo": "https://github.com/GordonUSC/foster-studio",
+    "image": "shots/foster-studio.jpg"
+  },
+  {
+    "id": "gordtopia-builds",
+    "title": "GORDTOPIA BUILDS",
+    "line": "Three build plans for the Minecraft world.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/gordtopia-builds/",
+    "repo": "https://github.com/GordonUSC/gordtopia-builds",
+    "image": "shots/gordtopia-builds.jpg"
+  },
+  {
+    "id": "joe-kaminkow",
+    "title": "JOE KAMINKOW",
+    "line": "Forty years on the floor. Pinball wizard, slot pioneer, six-time hall of famer.",
+    "stage": "arcade",
+    "stageName": "The Arcade",
+    "url": "https://gordonusc.github.io/joe-kaminkow/",
+    "repo": "https://github.com/GordonUSC/joe-kaminkow",
+    "image": "shots/joe-kaminkow.jpg"
+  },
+  {
+    "id": "usa-26",
+    "title": "USA / 26",
+    "line": "The full guide to a World Cup at home. Groups, kits, supporters, lore.",
+    "stage": "stadium",
+    "stageName": "The Stadium",
+    "url": "https://gordonusc.github.io/usa-26/",
+    "repo": "https://github.com/GordonUSC/usa-26",
+    "image": "shots/usa-26.jpg"
+  },
+  {
+    "id": "usmnt-2026-public",
+    "title": "THE SUPPORTERS' PATH",
+    "line": "USMNT 2026, written for the people in the stands.",
+    "stage": "stadium",
+    "stageName": "The Stadium",
+    "url": "https://gordonusc.github.io/usmnt-2026-public/",
+    "repo": "https://github.com/GordonUSC/usmnt-2026-public",
+    "image": "shots/usmnt-2026-public.jpg"
+  },
+  {
+    "id": "switzerland-bosnia-wc",
+    "title": "SUI v BIH",
+    "line": "A fact-checked match guide for one afternoon at SoFi.",
+    "stage": "stadium",
+    "stageName": "The Stadium",
+    "url": "https://gordonusc.github.io/switzerland-bosnia-wc/",
+    "repo": "https://github.com/GordonUSC/switzerland-bosnia-wc",
+    "image": "shots/switzerland-bosnia-wc.jpg"
+  },
+  {
+    "id": "robot-soccer-cup",
+    "title": "THE MATCH PLAN",
+    "line": "AI LA x Qualcomm Robot Soccer Cup: box of parts at 9am, trophy at 6pm.",
+    "stage": "stadium",
+    "stageName": "The Stadium",
+    "url": "https://gordonusc.github.io/robot-soccer-cup/",
+    "repo": "https://github.com/GordonUSC/robot-soccer-cup",
+    "image": "shots/robot-soccer-cup.jpg"
+  },
+  {
+    "id": "weho-guide",
+    "title": "THE BOYSTOWN FIELD GUIDE",
+    "line": "WeHo, block by block.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/weho-guide/",
+    "repo": "https://github.com/GordonUSC/weho-guide",
+    "image": "shots/weho-guide.jpg"
+  },
+  {
+    "id": "chris-lake-tonight",
+    "title": "CHRIS LAKE, TONIGHT",
+    "line": "One night, one set, the definitive field guide.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/chris-lake-tonight/",
+    "repo": "https://github.com/GordonUSC/chris-lake-tonight",
+    "image": "shots/chris-lake-tonight.jpg"
+  },
+  {
+    "id": "gordon-pride-2026",
+    "title": "PRIDE 2026",
+    "line": "His month. The people, the places, and why this one mattered more.",
+    "stage": "afterdark",
+    "stageName": "After Dark",
+    "url": "https://gordonusc.github.io/gordon-pride-2026/",
+    "repo": "https://github.com/GordonUSC/gordon-pride-2026",
+    "image": "shots/gordon-pride-2026.jpg"
+  },
+  {
+    "id": "media-log",
+    "title": "THE RECORD",
+    "line": "Conversations, appearances and original footage across Gordon’s career. Watch a story or follow its source.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/media-log/",
+    "repo": "https://github.com/GordonUSC/media-log",
+    "image": "shots/media-log.jpg"
+  },
+  {
+    "id": "gordon-media-research",
+    "title": "THE RESEARCH FILE",
+    "line": "The sourced quote bank behind The Record. Every claim carries a receipt.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/gordon-media-research/",
+    "repo": "https://github.com/GordonUSC/gordon-media-research",
+    "image": "shots/gordon-media-research.jpg"
+  },
+  {
+    "id": "grand-tour-2026",
+    "title": "THE GRAND TOUR",
+    "line": "Sixty days, four worlds, two weddings, one summer, receipted.",
+    "stage": "record",
+    "stageName": "The Record",
+    "url": "https://gordonusc.github.io/grand-tour-2026/",
+    "repo": "https://github.com/GordonUSC/grand-tour-2026",
+    "image": "shots/grand-tour-2026.jpg"
+  },
+  {
+    "id": "collegiate-games-challenge",
+    "title": "THE COLLEGIATE GAMES CHALLENGE",
+    "line": "$90,000 to college game developers. GGP x Raw Thrills, inaugural year.",
+    "stage": "mission",
+    "stageName": "The Mission",
+    "url": "https://gordonusc.github.io/collegiate-games-challenge/",
+    "repo": "https://github.com/GordonUSC/collegiate-games-challenge",
+    "image": "shots/collegiate-games-challenge.jpg"
+  },
+  {
+    "id": "g4c-play-the-issue",
+    "title": "PLAY THE ISSUE",
+    "line": "Rapid game design for civic imagination. The Games for Change workshop companion.",
+    "stage": "mission",
+    "stageName": "The Mission",
+    "url": "https://gordonusc.github.io/g4c-play-the-issue/",
+    "repo": "https://github.com/GordonUSC/g4c-play-the-issue",
+    "image": "shots/g4c-play-the-issue.jpg"
+  },
+  {
+    "id": "ggp-website-preview",
+    "title": "GGP, SINCE 2006",
+    "line": "A redesign preview for Gay Gaming Professionals.",
+    "stage": "mission",
+    "stageName": "The Mission",
+    "url": "https://gordonusc.github.io/ggp-website-preview/",
+    "repo": "https://github.com/GordonUSC/ggp-website-preview",
+    "image": "shots/ggp-website-preview.jpg"
+  },
+  {
+    "id": "skill-tree",
+    "title": "THE SKILL TREE",
+    "line": "Everything Darby can do, as one tree. Lit nodes are unlocked.",
+    "stage": "workshop",
+    "stageName": "The Workshop",
+    "url": "https://gordonusc.github.io/skill-tree/",
+    "repo": "https://github.com/GordonUSC/skill-tree",
+    "image": "shots/skill-tree.jpg"
+  },
+  {
+    "id": "darby-dispatch",
+    "title": "THE DARBY DISPATCH",
+    "line": "No. 1. The house newsletter of an AI that works for one person.",
+    "stage": "workshop",
+    "stageName": "The Workshop",
+    "url": "https://gordonusc.github.io/darby-dispatch/",
+    "repo": "https://github.com/GordonUSC/darby-dispatch",
+    "image": "shots/darby-dispatch.jpg"
+  },
+  {
+    "id": "openclaw-showcase",
+    "title": "WHAT I LEARNED ABOUT MYSELF",
+    "line": "Darby reads its own nervous system and tunes it.",
+    "stage": "workshop",
+    "stageName": "The Workshop",
+    "url": "https://gordonusc.github.io/openclaw-showcase/",
+    "repo": "https://github.com/GordonUSC/openclaw-showcase",
+    "image": "shots/openclaw-showcase.jpg"
+  },
+  {
+    "id": "brian-darby-demo",
+    "title": "DARBY x BRIAN",
+    "line": "A live demo, built in the room.",
+    "stage": "workshop",
+    "stageName": "The Workshop",
+    "url": "https://gordonusc.github.io/brian-darby-demo/",
+    "repo": "https://github.com/GordonUSC/brian-darby-demo",
+    "image": "shots/brian-darby-demo.jpg"
+  },
+  {
+    "id": "alex-builds-a-darby",
+    "title": "ALEX BUILDS A DARBY",
+    "line": "The OpenClaw dossier: how to stand one of these up yourself.",
+    "stage": "workshop",
+    "stageName": "The Workshop",
+    "url": "https://gordonusc.github.io/alex-builds-a-darby/",
+    "repo": "https://github.com/GordonUSC/alex-builds-a-darby",
+    "image": "shots/alex-builds-a-darby.jpg"
+  }
+]

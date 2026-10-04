@@ -100,7 +100,7 @@
   var EV = W.MIXER_EVENTS || null, deck = null;
   if (EV && $("#deck")) {
     var byId = {}; EV.forEach(function (e, i) { e.i = i; byId[e.id] = e; });
-    var selA = $("#deckA"), selB = $("#deckB"), xf = $("#xfader"), pA = $("#plateA"), pB = $("#plateB"), rd = $("#xfread");
+    var selA = $("#deckA"), selB = $("#deckB"), xf = $("#xfader"), pA = $("#plateA"), pB = $("#plateB"), mixReadout = $("#xfread");
     var ahead = EV.filter(function (e) { return e.date && daysTo(e.endDate || e.date) >= 0; });
     var a0 = store("mx_a") || (ahead[0] || EV[0]).id, b0 = store("mx_b") || (ahead[1] || EV[1]).id;
     selA.value = byId[a0] ? a0 : EV[0].id; selB.value = byId[b0] ? b0 : EV[1].id;
@@ -116,7 +116,7 @@
     function mix() {
       var x = +xf.value / 100, a = Math.cos(x * Math.PI / 2), b = Math.cos((1 - x) * Math.PI / 2);
       pA.style.opacity = (0.25 + 0.75 * a).toFixed(2); pB.style.opacity = (0.25 + 0.75 * b).toFixed(2);
-      rd.textContent = "A " + Math.round(a * a * 100) + " · B " + Math.round(b * b * 100);
+      mixReadout.textContent = "A " + Math.round(a * a * 100) + " · B " + Math.round(b * b * 100);
       if (AC && busA) { busA.gain.setTargetAtTime(a, AC.currentTime, 0.05); busB.gain.setTargetAtTime(b, AC.currentTime, 0.05); }
     }
     function load() {
