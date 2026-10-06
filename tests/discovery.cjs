@@ -1,0 +1,32 @@
+const fs=require('fs'),path=require('path'),assert=require('node:assert/strict');
+const {JSDOM}=require(process.env.JSDOM_PATH||'jsdom');
+const root=path.join(__dirname,'..');
+async function run(){
+ const dom=new JSDOM(fs.readFileSync(path.join(root,'index.html'),'utf8'),{url:'https://gordonusc.github.io/the-cabinet/?for=cale&q=dodgeball&room=stadium#projects',runScripts:'outside-only',pretendToBeVisual:true});
+ const w=dom.window,d=w.document;w.matchMedia=()=>({matches:true});w.HTMLElement.prototype.scrollIntoView=function(){};
+ let copied='';Object.defineProperty(w.navigator,'clipboard',{configurable:true,value:{writeText:async s=>{copied=s}}});
+ w.eval(fs.readFileSync(path.join(root,'cabinet-20261003.js'),'utf8'));
+ const q=d.querySelector('#search'),room=d.querySelector('#room'),sort=d.querySelector('#sort');
+ const cards=()=>[...d.querySelectorAll('.project')],visible=()=>cards().filter(p=>!p.hidden),titles=()=>cards().map(p=>p.querySelector('.project-name').firstChild.textContent);
+ const initial=titles();
+ assert.equal(cards().length,44);assert.equal(d.querySelector('#project-total').textContent,'44');assert.equal(d.querySelector('#footer-total').textContent,'44');assert.equal(visible().length,1);assert.match(visible()[0].textContent,/FINAL BOSS/);
+ d.querySelector('#clear-filters').click();assert.equal(visible().length,44);assert.equal(w.location.search,'?for=cale');assert.equal(d.activeElement,q);
+ q.value='CÁLE';q.dispatchEvent(new w.Event('input'));assert.ok(visible().length>=2);
+ q.value='music';room.value='afterdark';room.dispatchEvent(new w.Event('change'));assert.ok(visible().length);assert.ok(visible().every(p=>p.dataset.stage==='afterdark'));
+ sort.value='az';sort.dispatchEvent(new w.Event('change'));
+ assert.deepEqual(titles(),[...initial].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'})));assert.equal(new w.URL(w.location.href).searchParams.get('sort'),'az');assert.equal(q.value,'music');assert.equal(room.value,'afterdark');
+ d.querySelector('#clear-filters').click();assert.equal(sort.value,'az');assert.equal(visible().length,44);
+ sort.value='curated';sort.dispatchEvent(new w.Event('change'));assert.deepEqual(titles(),initial);assert.equal(new w.URL(w.location.href).searchParams.has('sort'),false);
+ q.value='no-such-xyz';q.dispatchEvent(new w.Event('input'));assert.equal(visible().length,0);assert.equal(d.querySelector('#empty').hidden,false);d.querySelector('#clear-filters').click();assert.equal(d.querySelector('#empty').hidden,true);
+ w.history.replaceState(null,'','?for=cale&sort=az&q=kit+dodgeball&room=stadium');w.dispatchEvent(new w.PopStateEvent('popstate'));assert.equal(visible().length,1);assert.equal(sort.value,'az');
+ d.querySelector('#deal').click();assert.equal(d.querySelector('#adventure').hidden,false);assert.equal(d.querySelectorAll('#adventure-stops li').length,3);assert.equal(new w.URL(w.location.href).searchParams.get('adventure'),'lift');assert.ok(d.querySelector('#adventure-stops a').href.includes('?pilot=cale'));assert.equal(d.activeElement.id,'adventure');
+ d.querySelector('#copy-adventure').click();await new Promise(r=>setTimeout(r,0));assert.equal(copied,w.location.href);assert.equal(new w.URL(copied).searchParams.get('for'),'cale');assert.match(d.querySelector('#adventure-status').textContent,/copied/);
+ d.querySelector('#redeal').click();assert.equal(new w.URL(w.location.href).searchParams.get('adventure'),'company');
+ Object.defineProperty(w.navigator,'clipboard',{value:{writeText:async()=>{throw Error('unavailable')}}});d.querySelector('#copy-adventure').click();await new Promise(r=>setTimeout(r,0));const fallback=d.querySelector('#adventure-link');assert.equal(fallback.hidden,false);assert.equal(d.activeElement,fallback);assert.equal(fallback.value,w.location.href);assert.equal(fallback.selectionEnd,fallback.value.length);
+ w.history.replaceState(null,'',copied);w.dispatchEvent(new w.PopStateEvent('popstate'));assert.match(d.querySelector('#adventure-title').textContent,/little lift/);assert.equal(fallback.hidden,true);assert.equal(sort.value,'az');
+ w.history.replaceState(null,'','?adventure=curiosity');w.dispatchEvent(new w.Event('pageshow'));assert.match(d.querySelector('#adventure-title').textContent,/curious side/);
+ w.history.replaceState(null,'','?adventure=invalid&sort=invalid&room=invalid');w.dispatchEvent(new w.PopStateEvent('popstate'));assert.equal(d.querySelector('#adventure').hidden,true);assert.equal(sort.value,'curated');assert.equal(room.value,'all');assert.deepEqual(titles(),initial);
+ assert.ok(fs.readFileSync(path.join(root,'index.html'),'utf8').includes('Nine game shows, fourteen years, three wins'));
+ dom.window.close();console.log('PASS Cabinet: existing discovery regression, alphabetical and curated order, compound filters, sort URL recovery, three adventure routes, Cale invitation, copy success/fallback, and history restoration. jsdom only; no visual or real clipboard verification.');
+}
+run().catch(e=>{console.error(e);process.exitCode=1});
