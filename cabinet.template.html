@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Cabinet · Games, worlds, and things made for people</title>
+<meta name="description" content="Explore Gordon Bellamy’s creative collaborations with people and AI. Play a game, try an instrument, explore a design, or follow a story.">
+<meta name="theme-color" content="#f6f2e9"><meta property="og:title" content="The Cabinet · Games, worlds, and things made for people"><meta property="og:description" content="Play a game, try a tool, or explore the story behind it."><meta property="og:image" content="https://gordonusc.github.io/the-cabinet/new/final-boss.jpg">
+<link rel="stylesheet" href="cabinet-20261003.css"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f6f2e9'/%3E%3Ctext x='9' y='49' font-family='Georgia,serif' font-size='52' font-style='italic' fill='%23632d3e'%3EC.%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#new">Skip to Start here</a>
+<header id="top"><a class="wordmark" href="#top"><span class="brand-mark" aria-hidden="true">C.</span><span>THE CABINET<small>Gordon Bellamy</small></span></a><nav aria-label="Main"><a href="#new">Start here</a><a href="#collections">Collections</a><a href="#projects">All projects</a><a href="#about">About</a></nav></header>
+<main>
+<section class="introduction" aria-labelledby="welcome">
+<div><p class="eyebrow">Creative collaborations · Gordon Bellamy</p><h1 id="welcome">Games, worlds, and<br> things made for <em>people.</em></h1></div>
+<div class="intro-copy"><p>A collection of Gordon Bellamy’s creative collaborations with people and AI. Play a game, try a tool, or explore the story behind it.</p><div class="intro-actions"><a class="solid" href="#new">Start exploring <span aria-hidden="true">↓</span></a><a class="quiet-link" href="#projects">Browse all projects</a></div></div>
+<p id="recipient-note" hidden>Cale, your personal invitation is still here. <a href="https://gordonusc.github.io/cale-yarborough/for-cale/">Open Cale, Come On In ↗</a></p>
+</section>
+<section id="new" class="start-here" aria-labelledby="start-title"><div class="section-heading"><h2 id="start-title">Start here.</h2><p>Three different ways in. Choose what you feel like doing.</p></div><div class="start-composition">{{FEATURES}}</div></section>
+<section class="route-section js-only" aria-labelledby="routes-title"><div class="route-intro"><p class="eyebrow">A little guidance</p><h2 id="routes-title">Follow a curiosity.</h2><p>Want a few suggestions? Choose a route. Each one connects three projects you can explore at your own pace.</p></div><div class="route-picker">{{ROUTES}}</div>
+<section class="adventure" id="adventure" hidden aria-labelledby="adventure-title" tabindex="-1"><div class="adventure-heading"><h3 id="adventure-title"></h3><p id="adventure-note"></p></div><ol id="adventure-stops"></ol><div class="adventure-actions"><button type="button" class="text-button" id="copy-adventure">Copy this route</button><p id="adventure-status" role="status" aria-live="polite"></p><input id="adventure-link" type="text" readonly aria-label="Route link to copy" hidden></div></section></section>
+<section class="directory" id="collections" aria-labelledby="directory-title"><div class="section-heading"><div><p class="eyebrow">The complete collection</p><h2 id="directory-title">Browse by <em>curiosity.</em></h2></div><p>Follow a subject, find a familiar name, or go somewhere unexpected. <span id="project-total">{{COUNT}}</span> entries, including related editions and earlier experiments.</p></div><nav class="collection-nav" aria-label="Collections">{{COLLECTION_NAV}}</nav>
+<div id="projects" class="index-start"><div class="directory-tools js-only"><label>Find something<input type="search" id="search" placeholder="Try music, Minecraft, Cale…" aria-describedby="results" autocomplete="off"></label><label>Collection<select id="room"><option value="all">All collections</option>{{OPTIONS}}</select></label><label>Order<select id="sort"><option value="curated">By collection</option><option value="az">Name A–Z</option></select></label></div><div class="filter-state"><p id="results" aria-live="polite">{{COUNT}} entries</p><button type="button" class="text-button" id="clear-filters" hidden>Clear search &amp; collection</button><p id="empty" hidden>No matches. Try another word, or clear the filters to explore every entry.</p></div></div>
+<div class="project-list">{{COLLECTIONS}}</div><ul id="alphabetical-index" aria-label="Projects in alphabetical order" hidden></ul>
+</section>
+<section class="about" id="about" aria-labelledby="about-title"><p class="eyebrow">About the Cabinet</p><div><h2 id="about-title">Made through<br><em>collaboration.</em></h2><p>The Cabinet brings together Gordon Bellamy’s creative work with people and AI collaborators, including Darby and Astra. The projects range from games and visual stories to teaching tools, design concepts, and experiments.</p><p>Each project keeps its own story and credits. Labels identify proposals, earlier editions, and dated guides so you know what you’re opening.</p><a class="line-link" href="#new">Find your next beginning <span aria-hidden="true">↑</span></a></div></section>
+</main>
+<footer><span>Gordon Bellamy · Darby · Astra</span><span><span id="footer-total">{{COUNT}}</span> entries · Curated October 2026</span><a href="https://github.com/GordonUSC/the-cabinet">How it’s made ↗</a></footer>
+<script id="cabinet-data" type="application/json">{{DATA}}</script><script src="cabinet-20261003.js" defer></script>
+</body></html>
