@@ -9,3 +9,6 @@
 .directory-tools{grid-template-columns:1.5fr 1fr 1fr}.directory-tools #results{grid-column:1/-1;margin:0}
 .adventure-actions{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;grid-column:1/-1}.adventure-actions .fine{flex-basis:100%;margin:0}.adventure-actions .fine:empty{display:none}.adventure-actions input{width:100%;min-width:0;padding:12px;border:1px solid currentColor;background:transparent;font:inherit;color:inherit}
 @media(max-width:680px){.directory-tools{grid-template-columns:1fr}.adventure-actions{align-items:flex-start;flex-direction:column}}
+
+/* Restored FINAL BOSS arrival door. */
+.boss-feature{margin-top:64px;display:grid;grid-template-columns:1.04fr 1fr;gap:7%;align-items:center}.boss-art{display:block;background:#0c0612;overflow:hidden}.boss-art img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.boss-feature h3{font-size:clamp(38px,4.7vw,66px);letter-spacing:-.065em;line-height:.98;margin:0 0 22px}.boss-feature .eyebrow{margin-bottom:16px}.boss-feature>div>p:not(.eyebrow):not(.fine){max-width:38ch}@media(max-width:680px){.boss-feature{grid-template-columns:1fr;gap:25px;margin-top:44px}.boss-feature h3{font-size:44px}}
