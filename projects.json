@@ -78,7 +78,7 @@
         },
         {
           "id": "island-hop",
-          "action": "Take a flight or read the world"
+          "action": "Play an island or take a voyage"
         }
       ]
     },
@@ -156,8 +156,8 @@
     {
       "id": "island-hop",
       "title": "Island Hop",
-      "subtitle": "A balloon journey through eight islands",
-      "purpose": "Lift through rings, explore floating islands, or follow the world in its reading edition.",
+      "subtitle": "Eight islands, eight ways to play",
+      "purpose": "Play eight activities inspired by Gordon’s life today, or take a three-island voyage and collect keepsakes.",
       "collection": "play",
       "url": "https://gordonusc.github.io/island-hop/",
       "aliases": [
@@ -169,7 +169,7 @@
       "legacyRooms": [
         "arcade"
       ],
-      "note": "3D flight · reading alternative",
+      "note": "Original balloon flight and Joy Circuit still available",
       "family": null,
       "image": "new/island.jpg",
       "repo": "https://github.com/GordonUSC/island-hop",
@@ -203,8 +203,8 @@
     {
       "id": "joe-kaminkow",
       "title": "Joe K: Forty Years on the Floor",
-      "subtitle": "A playable pinball tribute",
-      "purpose": "Explore Joe Kaminkow’s career in games through a tribute with pinball to play.",
+      "subtitle": "Free-play reels, pinball, and an interactive garage",
+      "purpose": "Spin the reels, launch pinball, or explore Joe Kaminkow’s world of games and cars.",
       "collection": "play",
       "url": "https://gordonusc.github.io/joe-kaminkow/",
       "aliases": [
@@ -216,7 +216,7 @@
       "legacyRooms": [
         "arcade"
       ],
-      "note": "",
+      "note": "Free play · no money or prizes",
       "family": null,
       "image": "shots/joe-kaminkow.jpg",
       "repo": "https://github.com/GordonUSC/joe-kaminkow",
@@ -315,7 +315,8 @@
         "cta": "Explore FINAL BOSS",
         "url": "https://gordonusc.github.io/final-boss/",
         "note": "The game uses 3D graphics; team and kit pages can be explored without playing.",
-        "image": "new/final-boss.jpg"
+        "image": "new/final-boss.jpg",
+        "imageAlt": "Generated illustration of Gordon in a FINAL BOSS jersey, holding a dodgeball"
       },
       "role": "experience"
     },
@@ -1120,8 +1121,8 @@
     {
       "id": "alex-builds-a-darby",
       "title": "Alex Builds a Darby",
-      "subtitle": "Setup-guide experiment, August 2026",
-      "purpose": "Read a dated experiment in explaining how to set up an AI assistant.",
+      "subtitle": "A practical guide to your first AI assistant",
+      "purpose": "Set up OpenClaw, make one useful draft, and choose what access to add next.",
       "collection": "ai",
       "url": "https://gordonusc.github.io/alex-builds-a-darby/",
       "aliases": [
@@ -1134,7 +1135,7 @@
       "legacyRooms": [
         "workshop"
       ],
-      "note": "Archive · instructions not verified as current",
+      "note": "Guide reviewed October 6, 2026",
       "family": null,
       "image": "shots/alex-builds-a-darby.jpg",
       "repo": "https://github.com/GordonUSC/alex-builds-a-darby",
