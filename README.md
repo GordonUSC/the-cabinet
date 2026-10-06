@@ -19,7 +19,7 @@ The build generates `index.html`, including the complete static directory and it
 
 ## Discovery and compatibility
 
-The default order is By collection; `?sort=az#projects` selects Name A–Z. Search covers current and original titles, project purpose, types, and people aliases. Clearing search and collection keeps the selected sort.
+The default order is By collection; `?sort=az#projects` selects Name A to Z. Search covers current and original titles, project purpose, types, and people aliases. Clearing search and collection keeps the selected sort.
 
 Current `room` values are `play`, `design`, `music`, `learn`, `people`, `sport`, and `ai`. Saved links using `arcade`, `afterdark`, `classroom`, `record`, `mission`, `workshop`, or `stadium` still select their original category membership, shown as a saved category.
 
