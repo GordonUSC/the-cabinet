@@ -9,7 +9,8 @@ const clearFilters = document.querySelector('#clear-filters');
 const projects = [...document.querySelectorAll('.project')];
 const groups = [...document.querySelectorAll('.collection')].map(section => ({section,list:section.querySelector('.collection-projects'),children:[...section.querySelector('.collection-projects').children]}));
 const normalize = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase();
-const searchable = new Map(projects.map(item => [item.dataset.id, normalize(item.dataset.search)]));
+const relatedItems = [...document.querySelectorAll('[data-related-id]')];
+const searchable = new Map([...projects,...relatedItems].map(item => [item.dataset.id || item.dataset.relatedId, normalize(item.dataset.search)]));
 const flatIndex = document.querySelector('#alphabetical-index');
 const recipient = () => new URLSearchParams(location.search).get('for') === 'cale';
 function targetURL(id, override) {
@@ -24,13 +25,21 @@ function restoreRecipient() {
 }
 function filter(updateURL = true) {
   const terms = normalize(search.value.trim()).split(/\s+/).filter(Boolean);
+  const inCollection = p => room.value === 'all' || p.collection === room.value || (catalogue.legacyRooms[room.value] && p.legacyRooms.includes(room.value));
+  const matched = new Map(catalogue.projects.map(p => [p.id, inCollection(p) && terms.every(term => searchable.get(p.id).includes(term))]));
   let count = 0;
   projects.forEach(item => {
-    const p=byId.get(item.dataset.id);
-    const inCollection = room.value === 'all' || p.collection === room.value || (catalogue.legacyRooms[room.value] && p.legacyRooms.includes(room.value));
-    item.hidden = !(inCollection && terms.every(term => searchable.get(p.id).includes(term)));
+    const id=item.dataset.id;
+    item.hidden = !(matched.get(id) || catalogue.projects.some(p => p.role==='related' && p.parentId===id && matched.get(p.id)));
     if (!item.hidden) count++;
   });
+  relatedItems.forEach(item => {
+    const p=byId.get(item.dataset.relatedId);
+    item.hidden = !(matched.get(p.id) || (p.parentId && inCollection(p) && matched.get(p.parentId)));
+  });
+  document.querySelectorAll('.related-group').forEach(group => group.hidden = ![...group.querySelectorAll('[data-related-id]')].some(item=>!item.hidden));
+  const relatedCount=relatedItems.filter(item=>!item.hidden).length;
+  document.querySelector('.related-tour').hidden = !relatedItems.some(item=>!byId.get(item.dataset.relatedId).parentId&&!item.hidden);
   const alphabetical = sort.value === 'az';
   flatIndex.hidden = !alphabetical;
   if (alphabetical) flatIndex.replaceChildren(...[...projects].sort((a,b) => byId.get(a.dataset.id).title.localeCompare(byId.get(b.dataset.id).title,'en',{sensitivity:'base'})));
@@ -38,11 +47,14 @@ function filter(updateURL = true) {
   groups.forEach(g => {
     const visible=g.children.filter(el=>el.classList.contains('project')&&!el.hidden);
     g.section.hidden=alphabetical||!visible.length;
-    g.section.querySelector('.collection-count').textContent=visible.length+' '+(visible.length===1?'entry':'entries');
+    g.section.querySelector('.collection-count').textContent=visible.length+' '+(visible.length===1?'experience':'experiences');
     g.children.filter(el=>el.classList.contains('family-heading')).forEach(h=>h.hidden=!visible.some(p=>p.dataset.family===h.dataset.family));
   });
-  document.querySelector('#results').textContent=count+' '+(count===1?'entry':'entries');
-  document.querySelector('#empty').hidden=count>0;
+  const counts=[];
+  if(count||!relatedCount)counts.push(count+' '+(count===1?'experience':'experiences'));
+  if(relatedCount)counts.push(relatedCount+' related '+(relatedCount===1?'link':'links'));
+  document.querySelector('#results').textContent=counts.join(' · ');
+  document.querySelector('#empty').hidden=count+relatedCount>0;
   clearFilters.hidden=!search.value&&room.value==='all';
   if(updateURL){const url=new URL(location.href);search.value.trim()?url.searchParams.set('q',search.value.trim()):url.searchParams.delete('q');room.value==='all'?url.searchParams.delete('room'):url.searchParams.set('room',room.value);sort.value==='az'?url.searchParams.set('sort','az'):url.searchParams.delete('sort');history.replaceState(history.state,'',url);}
 }
@@ -57,7 +69,8 @@ search.addEventListener('input',()=>filter());room.addEventListener('change',()=
 clearFilters.addEventListener('click',()=>{search.value='';room.value='all';filter();search.focus();});
 // Collection navigation also clears an active filter, keeping its target reachable.
 document.querySelectorAll('.collection-nav a').forEach(a=>a.addEventListener('click',()=>{search.value='';room.value='all';sort.value='curated';filter();}));
-document.querySelectorAll('#project-total,#footer-total').forEach(el=>el.textContent=catalogue.projects.length);
+document.querySelectorAll('#project-total,#footer-total').forEach(el=>el.textContent=projects.length);
+document.querySelectorAll('[data-related-total]').forEach(el=>el.textContent=relatedItems.length);
 let routeKey = null;
 function showRoute(key, moveFocus=false) {
   const route=catalogue.routes.find(r=>r.key===key),section=document.querySelector('#adventure');

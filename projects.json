@@ -53,7 +53,7 @@
     },
     "ctin": {
       "title": "CTIN 290 · Fall 2026 sessions",
-      "description": "Public classroom archives from Gordon’s USC course. The two September 21 links lead to the same lesson material."
+      "description": "Public classroom archives from Gordon’s USC course. The September 21 lesson retains its alternate student-resources link."
     }
   },
   "featured": [
@@ -150,7 +150,8 @@
         "url": "https://gordonusc.github.io/tape-log/#round1",
         "note": "Five questions. A 60-second round you start yourself.",
         "image": "shots/tape-log.jpg"
-      }
+      },
+      "role": "experience"
     },
     {
       "id": "island-hop",
@@ -173,7 +174,8 @@
       "image": "new/island.jpg",
       "repo": "https://github.com/GordonUSC/island-hop",
       "spotlight": true,
-      "action": "Explore Island Hop"
+      "action": "Explore Island Hop",
+      "role": "experience"
     },
     {
       "id": "gridiron-16",
@@ -195,7 +197,8 @@
       "note": "",
       "family": null,
       "image": "shots/gridiron-16.jpg",
-      "repo": "https://github.com/GordonUSC/gridiron-16"
+      "repo": "https://github.com/GordonUSC/gridiron-16",
+      "role": "experience"
     },
     {
       "id": "joe-kaminkow",
@@ -216,7 +219,8 @@
       "note": "",
       "family": null,
       "image": "shots/joe-kaminkow.jpg",
-      "repo": "https://github.com/GordonUSC/joe-kaminkow"
+      "repo": "https://github.com/GordonUSC/joe-kaminkow",
+      "role": "experience"
     },
     {
       "id": "gordtopia",
@@ -236,7 +240,8 @@
       "note": "World atlas · not a server login",
       "family": "minecraft",
       "image": "",
-      "repo": "https://github.com/GordonUSC/gordtopia"
+      "repo": "https://github.com/GordonUSC/gordtopia",
+      "role": "experience"
     },
     {
       "id": "gordtopia-builds",
@@ -256,7 +261,8 @@
       "note": "Companion to Gordtopia",
       "family": "minecraft",
       "image": "shots/gordtopia-builds.jpg",
-      "repo": "https://github.com/GordonUSC/gordtopia-builds"
+      "repo": "https://github.com/GordonUSC/gordtopia-builds",
+      "role": "experience"
     },
     {
       "id": "nether-guide",
@@ -277,7 +283,8 @@
       "note": "Companion to Gordtopia",
       "family": "minecraft",
       "image": "",
-      "repo": "https://github.com/GordonUSC/nether-guide"
+      "repo": "https://github.com/GordonUSC/nether-guide",
+      "role": "experience"
     },
     {
       "id": "final-boss",
@@ -309,7 +316,8 @@
         "url": "https://gordonusc.github.io/final-boss/",
         "note": "The game uses 3D graphics; team and kit pages can be explored without playing.",
         "image": "new/final-boss.jpg"
-      }
+      },
+      "role": "experience"
     },
     {
       "id": "pizza-baby",
@@ -334,7 +342,8 @@
       "image": "new/pizza.webp",
       "repo": "https://github.com/GordonUSC/pizza-baby",
       "spotlight": true,
-      "action": "Explore the Diaries"
+      "action": "Explore the Diaries",
+      "role": "experience"
     },
     {
       "id": "cale-yarborough",
@@ -355,7 +364,8 @@
       "note": "Portfolio concept",
       "family": "cale",
       "image": "",
-      "repo": "https://github.com/GordonUSC/cale-yarborough"
+      "repo": "https://github.com/GordonUSC/cale-yarborough",
+      "role": "experience"
     },
     {
       "id": "gryphus",
@@ -376,7 +386,8 @@
       "note": "Website concept",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "ggp-website-preview",
@@ -397,7 +408,8 @@
       "note": "Unofficial design concept",
       "family": null,
       "image": "shots/ggp-website-preview.jpg",
-      "repo": "https://github.com/GordonUSC/ggp-website-preview"
+      "repo": "https://github.com/GordonUSC/ggp-website-preview",
+      "role": "experience"
     },
     {
       "id": "for-cale",
@@ -419,7 +431,10 @@
       "note": "Personal invitation · Cale & Pizza Baby",
       "family": "cale",
       "image": "new/cale.webp",
-      "repo": "https://github.com/GordonUSC/cale-yarborough"
+      "repo": "https://github.com/GordonUSC/cale-yarborough",
+      "role": "related",
+      "parentId": "cale-yarborough",
+      "relationship": "Personal gift invitation"
     },
     {
       "id": "foster-studio",
@@ -455,7 +470,8 @@
         "imageAlt": "Playable synth controls in Every Sound I’ve Loved, with Muse selected",
         "imageWidth": 349,
         "imageHeight": 302
-      }
+      },
+      "role": "experience"
     },
     {
       "id": "shows-with-friends",
@@ -477,7 +493,8 @@
       "note": "Some linked listening uses external services",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "portola-2026",
@@ -498,7 +515,8 @@
       "note": "Archive · September 2026",
       "family": null,
       "image": "https://gordonusc.github.io/the-cabinet/portola-2026/assets/hero.jpg",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "chris-lake-tonight",
@@ -520,7 +538,8 @@
       "note": "Archive · June 2026",
       "family": null,
       "image": "shots/chris-lake-tonight.jpg",
-      "repo": "https://github.com/GordonUSC/chris-lake-tonight"
+      "repo": "https://github.com/GordonUSC/chris-lake-tonight",
+      "role": "experience"
     },
     {
       "id": "weho-guide",
@@ -541,7 +560,8 @@
       "note": "Archive · June 2026",
       "family": null,
       "image": "shots/weho-guide.jpg",
-      "repo": "https://github.com/GordonUSC/weho-guide"
+      "repo": "https://github.com/GordonUSC/weho-guide",
+      "role": "experience"
     },
     {
       "id": "gordon-pride-2026",
@@ -561,7 +581,8 @@
       "note": "Personal archive · summer 2026",
       "family": null,
       "image": "shots/gordon-pride-2026.jpg",
-      "repo": "https://github.com/GordonUSC/gordon-pride-2026"
+      "repo": "https://github.com/GordonUSC/gordon-pride-2026",
+      "role": "experience"
     },
     {
       "id": "ctin-290-recap",
@@ -586,7 +607,8 @@
       "image": "shots/ctin-290-recap.jpg",
       "repo": "https://github.com/GordonUSC/the-cabinet",
       "spotlight": true,
-      "action": "Try a visual idea"
+      "action": "Try a visual idea",
+      "role": "experience"
     },
     {
       "id": "mood-boards",
@@ -608,7 +630,8 @@
       "note": "Teaching examples",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "mood-board-presentations",
@@ -629,7 +652,8 @@
       "note": "Teaching examples",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "g4c-play-the-issue",
@@ -650,7 +674,8 @@
       "note": "Workshop companion",
       "family": null,
       "image": "shots/g4c-play-the-issue.jpg",
-      "repo": "https://github.com/GordonUSC/g4c-play-the-issue"
+      "repo": "https://github.com/GordonUSC/g4c-play-the-issue",
+      "role": "experience"
     },
     {
       "id": "ctin-sept21",
@@ -671,7 +696,8 @@
       "note": "Classroom archive",
       "family": "ctin",
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "ctin-s9-students",
@@ -693,7 +719,10 @@
       "family": "ctin",
       "image": "",
       "repo": "https://github.com/GordonUSC/the-cabinet",
-      "alternateOf": "ctin-sept21"
+      "alternateOf": "ctin-sept21",
+      "role": "related",
+      "parentId": "ctin-sept21",
+      "relationship": "Alternate lesson URL"
     },
     {
       "id": "ctin-sept23",
@@ -714,7 +743,8 @@
       "note": "Classroom archive",
       "family": "ctin",
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "ctin-sept28",
@@ -735,7 +765,8 @@
       "note": "Public lesson · some viewing requires a subscription",
       "family": "ctin",
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "ctin-sept30",
@@ -757,7 +788,8 @@
       "note": "Public lesson · some viewing requires a subscription",
       "family": "ctin",
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "media-log",
@@ -779,7 +811,8 @@
       "note": "Some linked viewing uses external services",
       "family": "record",
       "image": "shots/media-log.jpg",
-      "repo": "https://github.com/GordonUSC/media-log"
+      "repo": "https://github.com/GordonUSC/media-log",
+      "role": "experience"
     },
     {
       "id": "vanderbilt",
@@ -800,7 +833,8 @@
       "note": "Personal reading edition",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
     },
     {
       "id": "coin-op-trinity",
@@ -823,7 +857,8 @@
       "note": "",
       "family": null,
       "image": "",
-      "repo": "https://github.com/GordonUSC/coin-op-trinity"
+      "repo": "https://github.com/GordonUSC/coin-op-trinity",
+      "role": "experience"
     },
     {
       "id": "collegiate-games-challenge",
@@ -845,7 +880,8 @@
       "note": "Retrospective · 2025",
       "family": null,
       "image": "shots/collegiate-games-challenge.jpg",
-      "repo": "https://github.com/GordonUSC/collegiate-games-challenge"
+      "repo": "https://github.com/GordonUSC/collegiate-games-challenge",
+      "role": "experience"
     },
     {
       "id": "grand-tour-2026",
@@ -865,7 +901,8 @@
       "note": "Personal archive · summer 2026",
       "family": null,
       "image": "shots/grand-tour-2026.jpg",
-      "repo": "https://github.com/GordonUSC/grand-tour-2026"
+      "repo": "https://github.com/GordonUSC/grand-tour-2026",
+      "role": "experience"
     },
     {
       "id": "gordon-media-research",
@@ -887,7 +924,10 @@
       "note": "Research companion",
       "family": "record",
       "image": "shots/gordon-media-research.jpg",
-      "repo": "https://github.com/GordonUSC/gordon-media-research"
+      "repo": "https://github.com/GordonUSC/gordon-media-research",
+      "role": "related",
+      "parentId": "media-log",
+      "relationship": "Research companion"
     },
     {
       "id": "good-company",
@@ -909,7 +949,10 @@
       "note": "Earlier collection tour",
       "family": null,
       "image": "https://gordonusc.github.io/the-cabinet/good-company/assets/good-company.webp",
-      "repo": "https://github.com/GordonUSC/the-cabinet"
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "related",
+      "parentId": null,
+      "relationship": "Earlier collection tour"
     },
     {
       "id": "usmnt-2026-public",
@@ -931,7 +974,8 @@
       "note": "World Cup archive · June 2026",
       "family": null,
       "image": "shots/usmnt-2026-public.jpg",
-      "repo": "https://github.com/GordonUSC/usmnt-2026-public"
+      "repo": "https://github.com/GordonUSC/usmnt-2026-public",
+      "role": "experience"
     },
     {
       "id": "usa-26",
@@ -953,7 +997,10 @@
       "note": "World Cup archive · May 2026",
       "family": null,
       "image": "shots/usa-26.jpg",
-      "repo": "https://github.com/GordonUSC/usa-26"
+      "repo": "https://github.com/GordonUSC/usa-26",
+      "role": "related",
+      "parentId": "usmnt-2026-public",
+      "relationship": "Earlier edition · May 2026"
     },
     {
       "id": "switzerland-bosnia-wc",
@@ -975,7 +1022,8 @@
       "note": "Match archive · June 2026",
       "family": null,
       "image": "shots/switzerland-bosnia-wc.jpg",
-      "repo": "https://github.com/GordonUSC/switzerland-bosnia-wc"
+      "repo": "https://github.com/GordonUSC/switzerland-bosnia-wc",
+      "role": "experience"
     },
     {
       "id": "robot-soccer-cup",
@@ -997,7 +1045,8 @@
       "note": "Plan and technical strategy",
       "family": null,
       "image": "shots/robot-soccer-cup.jpg",
-      "repo": "https://github.com/GordonUSC/robot-soccer-cup"
+      "repo": "https://github.com/GordonUSC/robot-soccer-cup",
+      "role": "experience"
     },
     {
       "id": "skill-tree",
@@ -1019,7 +1068,8 @@
       "note": "Retrospective · August 20, 2026",
       "family": null,
       "image": "shots/skill-tree.jpg",
-      "repo": "https://github.com/GordonUSC/skill-tree"
+      "repo": "https://github.com/GordonUSC/skill-tree",
+      "role": "experience"
     },
     {
       "id": "brian-darby-demo",
@@ -1041,7 +1091,8 @@
       "note": "Prototype · not live AI chat",
       "family": null,
       "image": "shots/brian-darby-demo.jpg",
-      "repo": "https://github.com/GordonUSC/brian-darby-demo"
+      "repo": "https://github.com/GordonUSC/brian-darby-demo",
+      "role": "experience"
     },
     {
       "id": "openclaw-showcase",
@@ -1063,7 +1114,8 @@
       "note": "Archive · instructions not verified as current",
       "family": null,
       "image": "shots/openclaw-showcase.jpg",
-      "repo": "https://github.com/GordonUSC/openclaw-showcase"
+      "repo": "https://github.com/GordonUSC/openclaw-showcase",
+      "role": "experience"
     },
     {
       "id": "alex-builds-a-darby",
@@ -1085,7 +1137,8 @@
       "note": "Archive · instructions not verified as current",
       "family": null,
       "image": "shots/alex-builds-a-darby.jpg",
-      "repo": "https://github.com/GordonUSC/alex-builds-a-darby"
+      "repo": "https://github.com/GordonUSC/alex-builds-a-darby",
+      "role": "experience"
     },
     {
       "id": "darby-dispatch",
@@ -1106,7 +1159,8 @@
       "note": "Archive · June 2026",
       "family": null,
       "image": "shots/darby-dispatch.jpg",
-      "repo": "https://github.com/GordonUSC/darby-dispatch"
+      "repo": "https://github.com/GordonUSC/darby-dispatch",
+      "role": "experience"
     }
   ]
 }

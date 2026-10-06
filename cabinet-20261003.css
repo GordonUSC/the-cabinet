@@ -15,3 +15,17 @@
 
 /* Show the authentic instrument detail in full, without clipping its labels. */
 .start-feature[data-feature="foster-studio"] .feature-art img{aspect-ratio:auto;height:auto}
+
+/* Related editions belong to their experience; they are not extra catalogue cards. */
+.featured-reference{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.08em;color:var(--wine);margin-bottom:9px}
+.related-group{margin:0 0 23px 22px;padding-left:20px;border-left:2px solid var(--rule)}
+.related-group ul,.related-tour ul{list-style:none;padding:0;margin:0}
+.related-entry a{display:block;text-decoration:none;padding:7px 0}
+.related-kind{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--wine);font-weight:600;margin-bottom:7px}
+.related-name{display:block;font-size:15px;font-weight:550;line-height:1.35}
+.related-description{display:block;font-size:12px;line-height:1.5;color:var(--muted);max-width:62ch;margin-top:7px}
+.related-entry a:hover .related-name{text-decoration:underline;text-underline-offset:4px}
+.related-tour{padding:28px 0;border-top:1px solid var(--rule);margin-top:12px}
+.related-tour h3{font:normal 29px/1.1 var(--serif);letter-spacing:-.03em;margin:0 0 10px}
+.related-tour>p{font-size:13px;color:var(--muted);margin:0 0 16px}
+@media(max-width:720px){.related-group{margin-left:12px;padding-left:15px}.related-name{font-size:14px}.related-description{font-size:11px}.related-kind{font-size:8px}.related-tour h3{font-size:27px}}

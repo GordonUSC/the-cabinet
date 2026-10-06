@@ -6,7 +6,7 @@ Live: https://gordonusc.github.io/the-cabinet/
 
 ## Edit and build
 
-`projects.json` is the canonical editorial catalogue: 44 entries, seven collections, original title/category aliases, destination URLs, contextual labels, featured copy, and three exploration routes. Keep existing IDs and destination URLs when changing display titles. Counts are derived from the catalogue; related editions and alternate URLs are counted as entries, not unique projects.
+`projects.json` is the canonical editorial catalogue: 44 retained destination records: 39 curated experiences and five related links, in seven collections, original title/category aliases, destination URLs, contextual labels, featured copy, and three exploration routes. Keep existing IDs and destination URLs when changing display titles. Counts are derived from the catalogue; related editions, alternate URLs, invitations, and research companions are nested links rather than extra experiences. The earlier Good Company tour is retained separately as a related collection link.
 
 Edit page structure in `cabinet.template.html`, then run:
 
@@ -15,7 +15,7 @@ node scripts/build-cabinet.cjs
 node scripts/build-cabinet.cjs --check
 ```
 
-The build generates `index.html`, including the complete static directory and its embedded catalogue. The page needs no runtime data fetch. Without JavaScript, every collection and project link remains available. Do not edit the generated index independently.
+The build generates `index.html`, including the complete static directory and its embedded catalogue. The page needs no runtime data fetch. Without JavaScript, every collection, experience, and related link remains available. Do not edit the generated index independently.
 
 ## Discovery and compatibility
 
