@@ -12,8 +12,8 @@ for (const p of data.projects) {
 }
 function feature(id, i) {
   const p = byId.get(id), f = p.feature;
-  return `<article class="start-feature ${i === 0 ? 'feature-lead' : 'feature-support'}">
-<a class="feature-art" href="${esc(f.url)}" aria-label="${esc(f.cta)}"><img src="${esc(f.image)}" alt="${esc(p.title)} project artwork" width="${i===0?1920:760}" height="${i===0?1080:475}" ${i===0?'fetchpriority="high"':'loading="lazy"'}></a>
+  return `<article data-feature="${esc(id)}" class="start-feature ${i === 0 ? 'feature-lead' : 'feature-support'}">
+<a class="feature-art" href="${esc(f.url)}" aria-label="${esc(f.cta)}"><img src="${esc(f.image)}" alt="${esc(f.imageAlt || p.title + ' project artwork')}" width="${f.imageWidth || (i===0?1920:760)}" height="${f.imageHeight || (i===0?1080:475)}" ${i===0?'fetchpriority="high"':'loading="lazy"'}></a>
 <div class="feature-copy"><p class="eyebrow">${esc(f.type)}</p><h3>${esc(p.title)}</h3><p class="feature-description">${esc(f.text)}</p><a class="line-link" href="${esc(f.url)}">${esc(f.cta)} <span aria-hidden="true">↗</span></a><p class="access-note">${esc(f.note)}</p></div></article>`;
 }
 function project(p) {

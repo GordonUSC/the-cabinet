@@ -12,3 +12,6 @@
 /* Keep meaningful choices close together on the first visit. */
 .feature-lead .feature-description{max-width:none}
 @media(max-width:720px){.feature-lead .feature-art img{aspect-ratio:2.15}.feature-support{display:block}.feature-support .feature-art{display:none}.feature-support .feature-copy h3{font-size:28px}}
+
+/* Show the authentic instrument detail in full, without clipping its labels. */
+.start-feature[data-feature="foster-studio"] .feature-art img{aspect-ratio:auto;height:auto}

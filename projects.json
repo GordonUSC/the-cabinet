@@ -145,7 +145,7 @@
       "repo": "https://github.com/GordonUSC/tape-log",
       "feature": {
         "type": "Playable archive",
-        "text": "Try the real questions from Gordon’s television game-show appearances, then see the surviving record.",
+        "text": "Try the real questions from Gordon’s television game-show appearances, then discover the stories behind his time on screen.",
         "cta": "Play the first round",
         "url": "https://gordonusc.github.io/tape-log/#round1",
         "note": "Five questions. A 60-second round you start yourself.",
@@ -451,7 +451,10 @@
         "cta": "Try the instruments",
         "url": "https://gordonusc.github.io/foster-studio/",
         "note": "Sound starts when you choose to play.",
-        "image": "shots/foster-studio.jpg"
+        "image": "new/foster-instruments.png",
+        "imageAlt": "Playable synth controls in Every Sound I’ve Loved, with Muse selected",
+        "imageWidth": 349,
+        "imageHeight": 302
       }
     },
     {
