@@ -1,0 +1,90 @@
+[
+  {
+    "number": 1,
+    "beat": "Dry soil",
+    "action": "A small seedling sits in dry soil.",
+    "camera": "Wide, locked",
+    "time": "00:00\u201300:04",
+    "seconds": 4,
+    "intent": "Establish the pot and its starting condition.",
+    "evidence": "Dry soil, small plant, warm daylight.",
+    "alt": "A young seedling in a cracked terracotta pot on a greenhouse workbench."
+  },
+  {
+    "number": 2,
+    "beat": "A test",
+    "action": "A fingertip tests the soil.",
+    "camera": "Close-up, locked",
+    "time": "00:04\u201300:07",
+    "seconds": 3,
+    "intent": "Make the decision to water readable.",
+    "evidence": "The hand touches the soil before the water arrives.",
+    "alt": "An adult caretaker's hand touches the dry soil beside the seedling."
+  },
+  {
+    "number": 3,
+    "beat": "Water",
+    "action": "Water reaches the soil.",
+    "camera": "Medium close-up, locked",
+    "time": "00:07\u201300:11",
+    "seconds": 4,
+    "intent": "Show contact and its immediate result.",
+    "evidence": "Water and darkening soil share the frame.",
+    "alt": "A watering-can spout pours water into the seedling's pot."
+  },
+  {
+    "number": 4,
+    "beat": "Still waiting",
+    "action": "The plant remains small in evening light.",
+    "camera": "Medium, locked",
+    "time": "00:11\u201300:14",
+    "seconds": 3,
+    "intent": "Give waiting its own beat.",
+    "evidence": "The light changes before the plant changes.",
+    "alt": "The same seedling and pot on the workbench in warm evening light."
+  },
+  {
+    "number": 5,
+    "beat": "Night",
+    "action": "The greenhouse falls into blue night.",
+    "camera": "Medium, locked",
+    "time": "00:14\u201300:18",
+    "seconds": 4,
+    "intent": "Make elapsed time visible without a title card.",
+    "evidence": "Cool darkness follows the evening frame.",
+    "alt": "The same greenhouse workbench and pot under cool night lighting."
+  },
+  {
+    "number": 6,
+    "beat": "Care repeats",
+    "action": "The caretaker returns to water again.",
+    "camera": "Medium, locked",
+    "time": "00:18\u201300:21",
+    "seconds": 3,
+    "intent": "Suggest a continuing routine.",
+    "evidence": "A repeated action arrives after the night shot.",
+    "alt": "The caretaker returns to water the same potted plant in daylight."
+  },
+  {
+    "number": 7,
+    "beat": "Growth",
+    "action": "Larger leaves reveal a change.",
+    "camera": "Close-up, locked",
+    "time": "00:21\u201300:25",
+    "seconds": 4,
+    "intent": "Let the audience discover the result.",
+    "evidence": "The plant is fuller than in the first frame.",
+    "alt": "A hand steadies the familiar pot beside a fuller, upright plant."
+  },
+  {
+    "number": 8,
+    "beat": "A changed room",
+    "action": "The fuller plant occupies the familiar workbench.",
+    "camera": "Wide, locked",
+    "time": "00:25\u201300:30",
+    "seconds": 5,
+    "intent": "Echo the opening setup so the change can be compared.",
+    "evidence": "The pot and bench anchor the before-and-after comparison.",
+    "alt": "A wide view returns to the workbench. The plant now stands upright with several healthy leaves; the caretaker\u2019s hand rests beside it."
+  }
+]

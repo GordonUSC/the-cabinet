@@ -1,0 +1,44 @@
+{
+  "title": "The Care Between",
+  "created_utc": "2026-10-07",
+  "purpose": "CTIN 290 Storyboards & Animatics workshop: passage of time, minimal dialogue",
+  "generation_disclosure": "Original AI-generated fictional teaching imagery made with Higgsfield GPT Image 2.5. No real people or student work. Selected, revised and visually checked; the images are storyboard stills, not live-action footage.",
+  "model": "Higgsfield gpt_image_2_5",
+  "final_generation_settings": {
+    "quality": "high",
+    "resolution": "2k",
+    "aspect_ratio": "8:9"
+  },
+  "processing": "Source masters were cropped with ImageMagick into individual frames and reflowed into a 4-column by 2-row contact sheet. No content was painted or synthesized in Python. Framing comparison outputs were fit inside 1920\u00d71080 without cropping content.",
+  "dimensions": {
+    "master": "1920\u00d72160",
+    "storyboard_frames": "928\u00d7522",
+    "wide_contact_sheet": "3776\u00d71076",
+    "framing_comparison_exports": "1920\u00d71080 (fit, cream matte)"
+  },
+  "qa": {
+    "checked": [
+      "Exactly eight story frames",
+      "Single watering can in each frame",
+      "Caretaker enters from screen right",
+      "Consistent cracked pot, workbench and window motif",
+      "Visible dry-soil diagnosis and watering cause",
+      "No immediate recovery after first watering",
+      "Clearly distinct night pause",
+      "Growth payoff",
+      "No faces, labels, logos or dialogue",
+      "Individual frame boundaries"
+    ],
+    "limitations": "These are illustrative continuity boards, not scientifically timed plant-growth diagrams. Fine crack geometry and window perspective vary slightly across the drawn coverage. The final wide echoes the first rather than being a pixel-identical locked camera."
+  },
+  "timing_seconds": [
+    4,
+    3,
+    4,
+    3,
+    4,
+    3,
+    4,
+    5
+  ]
+}
