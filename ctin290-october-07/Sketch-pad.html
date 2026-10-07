@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- STYLE: Animator's light box (a lit drawing surface on a dark desk, one red pencil, big touch targets) | WHY: students without a pen draw a storyboard frame with a finger or trackpad on a lab PC or phone, so the canvas must dominate and every control must be thumb-sized | ALT: a full paint-app toolbar, rejected because more tools means slower boards in a 60-minute studio -->
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="robots" content="noindex">
+<title>Storyboard Sketch Pad</title>
+<style>
+:root{--desk:#1e2124;--sheet:#fffdf8;--ink:#1b1b1b;--line:#cfcac0;--red:#a3122a;--soft:#c9ccd1;--btn:#2c3036}
+body{margin:0;background:var(--desk);color:#eef0f2;font:16px/1.45 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;padding:12px 12px 32px}
+main{max-width:980px;margin:0 auto;display:grid;gap:10px}
+h1{font-size:20px;margin:0}
+.top{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.top a{color:var(--soft)}
+.help{color:var(--soft);margin:0;font-size:15px}
+.frame{position:relative;background:var(--sheet);border-radius:6px;box-shadow:0 0 0 1px #000,0 10px 30px #0008;touch-action:none}
+#gridov{position:absolute;inset:0;pointer-events:none;border-radius:6px;background:linear-gradient(#a3122a66,#a3122a66) 0 33.33%/100% 2px no-repeat,linear-gradient(#a3122a66,#a3122a66) 0 66.66%/100% 2px no-repeat,linear-gradient(#a3122a66,#a3122a66) 33.33% 0/2px 100% no-repeat,linear-gradient(#a3122a66,#a3122a66) 66.66% 0/2px 100% no-repeat}
+canvas{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:6px;cursor:crosshair;touch-action:none}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+button,label.pill,select,input[type=number]{min-height:44px;border-radius:8px;border:1px solid #454a52;background:var(--btn);color:#fff;font:600 15px/1 inherit;padding:0 14px}
+button[aria-pressed=true]{background:var(--red);border-color:var(--red)}
+button.primary{background:#f2f2f2;color:#111;border-color:#f2f2f2}
+input[type=number]{width:64px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.note{background:#2a2e33;border-radius:8px;padding:10px 12px;font-size:15px;color:#dfe2e6}
+button:focus-visible,a:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
+</style></head><body><main>
+<div class="top"><h1>Storyboard sketch pad</h1><a href="index.html">Workshop home</a></div>
+<p class="help">No pen? Draw one frame here with your finger, mouse or trackpad. Save it, then add it to your storyboard panel.</p>
+<div class="frame"><canvas id="pad" width="1600" height="900" aria-label="Drawing area, 16 by 9 frame"></canvas><div id="gridov" hidden></div></div>
+<div class="tools">
+  <button id="pencil" aria-pressed="true">Pencil</button>
+  <button id="marker" aria-pressed="false">Marker</button>
+  <button id="eraser" aria-pressed="false">Eraser</button>
+  <button id="undo">Undo</button>
+  <button id="clear">Clear</button>
+  <button id="grid" aria-pressed="false">Thirds grid</button>
+</div>
+<div class="row">
+  <label for="panel">Panel</label><input id="panel" type="number" min="1" max="12" value="1">
+  <button class="primary" id="save">Save frame as image</button>
+</div>
+<p class="note" id="status">Then open the <a href="Student-storyboard.html" style="color:#fff">storyboard sheet</a>, tap "Add your sketch" on the same panel, and choose the saved image (Downloads on a laptop, Files on an iPhone, Downloads on Android).</p>
+<noscript><p class="note">This sketch pad needs JavaScript. You can still describe each frame in words on the storyboard sheet.</p></noscript>
+</main>
+<script>
+(function(){
+var c=document.getElementById('pad'),x=c.getContext('2d'),W=c.width,H=c.height;
+var mode='pencil',drawing=false,last=null,hist=[],grid=false;
+function bg(){x.fillStyle='#fffdf8';x.fillRect(0,0,W,H)}
+bg();
+function snap(){try{hist.push(x.getImageData(0,0,W,H));if(hist.length>30)hist.shift()}catch(e){}}
+function pt(e){var r=c.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height}}
+function style(){if(mode==='eraser'){x.strokeStyle='#fffdf8';x.lineWidth=46}else if(mode==='marker'){x.strokeStyle='#1b1b1b';x.lineWidth=14}else{x.strokeStyle='#1b1b1b';x.lineWidth=5}x.lineCap='round';x.lineJoin='round'}
+c.addEventListener('pointerdown',function(e){e.preventDefault();c.setPointerCapture(e.pointerId);snap();drawing=true;last=pt(e);style();x.beginPath();x.moveTo(last.x,last.y);x.lineTo(last.x+0.1,last.y+0.1);x.stroke()});
+c.addEventListener('pointermove',function(e){if(!drawing)return;e.preventDefault();var p=pt(e);x.beginPath();x.moveTo(last.x,last.y);x.lineTo(p.x,p.y);x.stroke();last=p});
+['pointerup','pointercancel','pointerleave'].forEach(function(t){c.addEventListener(t,function(){drawing=false})});
+function setMode(m){mode=m;['pencil','marker','eraser'].forEach(function(id){document.getElementById(id).setAttribute('aria-pressed',String(id===m))})}
+['pencil','marker','eraser'].forEach(function(id){document.getElementById(id).onclick=function(){setMode(id)}});
+document.getElementById('undo').onclick=function(){if(hist.length)x.putImageData(hist.pop(),0,0)};
+document.getElementById('clear').onclick=function(){snap();bg()};
+var g=document.getElementById('grid');
+g.onclick=function(){grid=!grid;g.setAttribute('aria-pressed',String(grid));document.getElementById('gridov').hidden=!grid};
+document.getElementById('save').onclick=function(){
+  var n=Math.max(1,Math.min(12,parseInt(document.getElementById('panel').value||'1',10)));
+  var name='panel-'+(n<10?'0':'')+n+'.png',st=document.getElementById('status');
+  function done(){st.textContent='Saved '+name+'. Now tap "Add your sketch" on panel '+n+' in the storyboard sheet and choose it.'}
+  if(c.toBlob){c.toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(u);a.remove()},1500);done()},'image/png')}
+  else{var a=document.createElement('a');a.href=c.toDataURL('image/png');a.download=name;a.click();done()}
+};
+document.addEventListener('keydown',function(e){if((e.metaKey||e.ctrlKey)&&e.key==='z'){e.preventDefault();document.getElementById('undo').click()}});
+})();
+</script>
+</body></html>
