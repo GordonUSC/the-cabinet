@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- STYLE: architecture-school pin-up crit wall (white wall, pinned index cards, red pin dots, pencil-gray annotations) | WHY: today is a crit, so the page should feel like walking up to a wall where your work is pinned for the room | ALT: broadcast lower-thirds with a live clock, rejected because students read this on phones while they prepare, not on a big screen -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CTIN 290 Studio 16, Wednesday October 14: informal prototype critique.">
+<title>CTIN 290, October 14</title>
+<style>
+  :root { --wall:#f5f4f0; --card:#ffffff; --ink:#1c1c1a; --pencil:#6a6a64; --pin:#c8102e; --line:#dcdad3; --shadow:0 1px 0 rgba(0,0,0,.06), 0 6px 16px rgba(0,0,0,.06); }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --wall:#141413; --card:#1f1f1d; --ink:#eeede8; --pencil:#a9a8a0; --pin:#ff4d5e; --line:#33322e; --shadow:none; } }
+  :root[data-theme="dark"] { --wall:#141413; --card:#1f1f1d; --ink:#eeede8; --pencil:#a9a8a0; --pin:#ff4d5e; --line:#33322e; --shadow:none; }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body { margin:0; background:var(--wall); color:var(--ink); font:17px/1.5 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+  main { max-width:760px; margin:0 auto; padding:24px 16px 56px; }
+  .kicker { font-size:13px; letter-spacing:.12em; text-transform:uppercase; color:var(--pencil); }
+  h1 { font-size:clamp(34px, 8vw, 54px); line-height:1.02; margin:6px 0 8px; letter-spacing:-.02em; }
+  .when { color:var(--pencil); margin:0 0 18px; }
+  .badge { display:inline-block; border:2px solid var(--pin); color:var(--pin); font-weight:700; font-size:14px; padding:3px 10px; border-radius:3px; letter-spacing:.04em; text-transform:uppercase; }
+  .card { position:relative; background:var(--card); border:1px solid var(--line); box-shadow:var(--shadow); padding:20px 18px 18px; margin:22px 0; border-radius:2px; }
+  .card::before { content:""; position:absolute; top:-7px; left:22px; width:14px; height:14px; border-radius:50%; background:var(--pin); box-shadow:0 2px 3px rgba(0,0,0,.25); }
+  h2 { font-size:22px; margin:0 0 10px; letter-spacing:-.01em; }
+  .q { display:grid; grid-template-columns:44px 1fr; gap:10px; align-items:start; margin:12px 0; }
+  .q b { font-size:34px; line-height:1; color:var(--pin); font-weight:800; }
+  .q p { margin:3px 0 0; font-size:19px; }
+  .note { color:var(--pencil); font-size:15px; margin:10px 0 0; }
+  ol.run { list-style:none; padding:0; margin:0; }
+  ol.run li { display:grid; grid-template-columns:62px 1fr; gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+  ol.run li:first-child { border-top:0; }
+  .t { font-variant-numeric:tabular-nums; font-weight:700; }
+  .three { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:6px; }
+  @media (max-width:560px){ .three { grid-template-columns:1fr; } }
+  .three div { border:1px dashed var(--line); padding:12px; border-radius:2px; }
+  .three strong { display:block; color:var(--pin); margin-bottom:4px; }
+  ul { padding-left:20px; margin:8px 0 0; } li { margin:4px 0; }
+  .dates { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:560px){ .dates { grid-template-columns:1fr; } }
+  .dates div { border-left:3px solid var(--pin); padding:4px 0 4px 12px; }
+  .dates b { display:block; font-size:14px; letter-spacing:.06em; text-transform:uppercase; color:var(--pin); }
+  a { color:var(--pin); }
+  footer { color:var(--pencil); font-size:14px; margin-top:28px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">CTIN 290 · Visual Storytelling · Studio 16</div>
+  <h1>Show it running.</h1>
+  <p class="when">Wednesday, October 14 · 10:00 AM to 12:50 PM · SCI L104</p>
+  <span class="badge">Nothing is graded today</span>
+
+  <section class="card">
+    <h2>Your team answers three things</h2>
+    <div class="q"><b>1</b><p>What idea about <strong>time passing</strong> did you test?</p></div>
+    <div class="q"><b>2</b><p>Does it work?</p></div>
+    <div class="q"><b>3</b><p>What did you learn that you didn't know on Monday?</p></div>
+    <p class="note">If your prototype failed and you can say exactly why, that's a great presentation. A prototype's job is to prove one idea, not to be finished.</p>
+  </section>
+
+  <section class="card">
+    <h2>Your five minutes</h2>
+    <ul>
+      <li><strong>Show it running.</strong> Don't describe it; play it.</li>
+      <li><strong>All four of you speak.</strong> That's about 75 seconds each, so decide before 10:13 who covers what.</li>
+      <li>Hard stop at five minutes. There's a visible timer.</li>
+      <li>Then five minutes of feedback from the room.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>How we give feedback</h2>
+    <div class="three">
+      <div><strong>I like…</strong>Something that's working, and why it works.</div>
+      <div><strong>I wish…</strong>Something that got in the way of the idea.</div>
+      <div><strong>What if…</strong>One thing to try next.</div>
+    </div>
+    <p class="note">Talk about the work, be specific, and keep it kind. The room is answering one question: is the idea proven or not?</p>
+  </section>
+
+  <section class="card">
+    <h2>Running order</h2>
+    <ol class="run">
+      <li><span class="t">10:00</span><span>Opening and running order.</span></li>
+      <li><span class="t">10:13</span><span>Critique: Team U, then S, then C. Five minutes showing, five minutes of feedback.</span></li>
+      <li><span class="t">11:13</span><span>Ten-minute break. Take all ten and leave the room.</span></li>
+      <li><span class="t">11:23</span><span>Fix what the room found. Gordon visits each team: <strong>U 11:25 · S 11:45 · C 12:05</strong>.</span></li>
+      <li><span class="t">12:30</span><span>Wrap-up. Each team names one change it's making because of something another team did.</span></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Fix-it ideas for the second half</h2>
+    <ul>
+      <li>Re-stage the shot in the engine, or move the camera.</li>
+      <li>Re-light it: lights, materials, post-process.</li>
+      <li>Adjust shaders, particles or timing.</li>
+      <li>Re-render, or re-cut the sequence.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>What's next</h2>
+    <div class="dates">
+      <div><b>Wed Oct 21</b>Prototype presentations, graded. Five minutes, all four speak, and play your 30-second clip running.</div>
+      <div><b>Thu Oct 22, 5:00 PM PT</b>Prototype file due.</div>
+    </div>
+    <p class="note">The prompt: <strong>the passage of time</strong>, the same as the final project. Examples: aging, seasons, an object decaying or handed down, a relationship shifting through visual cues alone, or time as a game mechanic.</p>
+    <p class="note">Graded on four criteria, 5 points each: Technical Execution, Visual Storytelling, Mood &amp; Tone, Passage of Time. A prototype that shows its idea doesn't work still earns full marks if your team can say exactly why. You're graded on what it proves.</p>
+  </section>
+
+  <footer>Full details are in the <a href="https://docs.google.com/document/d/1acMm6ixmM_0GiHW98JhgRTW4tyZoH7G4iJZmLAq3C3E/edit">course syllabus</a>.</footer>
+</main>
+</body>
+</html>
