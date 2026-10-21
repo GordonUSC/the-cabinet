@@ -1,0 +1,10 @@
+{
+ "person_made_it": "Eric is restoring the Iverson-Johnson House (1898, A. E. Ovren, 327 E. Washington St) and designed the Dragon House emblem; the voxel model's colors and massing come from his own before/after photos, and the emblem on the porch sign and roof flag is his file, untouched.",
+ "emcee_who_is_speaking": "Darby builds it, Gordon signs it: the only voice is the finale line and 'From Gordon'. The title block speaks like a restorer's drawing set.",
+ "what_time_of_day_is_this_room": "Golden-hour autumn in Stoughton, turning to a starry night with lit windows, a dragon-prow on the wind, and fireworks.",
+ "did_the_click_pay_me": "Every tap ripples a whole course of blocks out from your finger with wooden pops and a rising celesta arpeggio, the villager counter climbs, and tiny folk walk up the path; the last block brings night, the windows lighting one by one, fireworks, music, and 3,425 villagers home.",
+ "works_for_the_recipient": "Played to the ending with real taps in WebKit 390x844 (touch) and real clicks in Chromium 1920x1080, auto-build to the ending at 2560x1440, reduced motion in both engines; 0 page errors, no sideways scroll, all targets 44px+, readable with JS off.",
+ "taught_me_something": "Shows the house as a builder sees it: twenty sheets from foundation to roof peak, with the courses of a Queen Anne (sill courses, belt courses, gable ends, porch roof) named as you lay them.",
+ "told_me_the_truth": "Facts used: the house name, 1898, A. E. Ovren, 327 E. Washington St, Eric's emblem, the boys' colors, Gordtopia's motto, and the 3,425 villagers at Minecraft Experience Rosemont on 6/27. The model is a stylized homage, not a survey, and nothing claims otherwise; no Minecraft art or branding is used.",
+ "weakest": "The voxel model is a stylization: at one voxel per ~half meter the corner roof reads square-ish and fine porch detail is lost, and on phones (no bloom tier) the night house reads darker and flatter than on PC."
+}

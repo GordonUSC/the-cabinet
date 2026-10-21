@@ -1,0 +1,91 @@
+{
+ "_note": "Dragon House in Blocks. Art from Higgsfield, all sound and music from ElevenLabs; code only assembles (voxel geometry is procedural, colors sampled from Eric's house photos site/img/house-after.jpg and house-before.jpg). Emblem is Eric's own design (site/img/seal.png), used untouched.",
+ "media/poster.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 16:9, references = site/img/house-after.jpg (media 646654e3) + site/img/seal.png (media f10050da); isometric voxel diorama of THIS Queen Anne: slate clapboard, cream trim, turret porch with conical roof, pediment, burgundy sash, autumn voxel yard by a lake, emblem over the door, no text (job d49748dd-ea9c-449d-a4b9-6d29fb4de310). Used for the JS-off page."
+ },
+ "media/poster-sm.jpg": {
+  "tool": "higgsfield",
+  "prompt": "downscale of media/poster.jpg (job d49748dd)"
+ },
+ "media/skyday.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 21:9 painted golden-hour autumn sky over a calm Wisconsin lake, distant orange and gold treeline, no text (job 9e48de63-bd35-4ffa-bfa6-73827358df25); code mirrored it once horizontally to make a seamless 360 backdrop"
+ },
+ "media/skynight.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 21:9 painted autumn night sky, stars, faint teal aurora, harvest moon, distant small-town lights on a lake (job e84ef997-f6b7-49f5-a8c8-70206b448b68); mirrored for a seamless backdrop"
+ },
+ "media/seal.png": {
+  "tool": "eric (original art)",
+  "prompt": "copy of site/img/seal.png, the Dragon House emblem Eric designed, resized to 384px; on the porch sign and the turret flag"
+ },
+ "media/music.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 40s: warm joyful homecoming theme, music box and glockenspiel, acoustic guitar, soft strings, hardanger-style fiddle lilt, swells to a bright major chorus with gentle timpani, tender ending (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen 3MUK27wUjcHTDtsRnkGC); fade out, loudnorm -16 LUFS"
+ },
+ "media/pop1.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: toy block snapping into place, soft round wooden pop with a bright click (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen qyeULtsntKrb1UaW6R7o, take at 0.22s)"
+ },
+ "media/pop2.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "same generation qyeULtsntKrb1UaW6R7o, take at 0.76s"
+ },
+ "media/pop3.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "same generation qyeULtsntKrb1UaW6R7o, take at 1.83s"
+ },
+ "media/pop4.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "same generation qyeULtsntKrb1UaW6R7o, take at 2.46s"
+ },
+ "media/pop5.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "same prompt (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen FzPeDP097EARFpJdHgFA, take at 1.56s)"
+ },
+ "media/chime.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: one soft warm celesta and glass bell note (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen 8KqJkgqK2ThswWzTEgNG); code pitches it along a pentatonic scale"
+ },
+ "media/chime2.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "same prompt (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen 6ccx0C5wNUkH8SowatZJ)"
+ },
+ "media/lamp.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: warm lamp switching on, tiny click then a glowing shimmer (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen CNQeYbeshhmNTm9RDTz3)"
+ },
+ "media/rise.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: magical rising whoosh with sparkling bell glissando, a building assembling itself (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen aNBVACBKfP1qGVCRrNMh)"
+ },
+ "media/dragon.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: friendly magical dragon swooping past, leathery wing beats and a shimmer trail (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen mVLpKHYidjAFuC1vQeTL)"
+ },
+ "media/cheer.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: small happy crowd of tiny cartoon townsfolk cheering hooray, wordless (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen YyLRdJgz9oSERY63qpZ8)"
+ },
+ "media/fireworks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 10s: small-town fireworks over a lake, whistles, warm booms, crackle, faint crowd (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen pgzgfgzbxvFp9HVggXRa)"
+ },
+ "media/day.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 20s loop: sunny autumn small-town yard, songbirds, rustling leaves, faint porch wind chimes (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen CMJCnVRiff5S5BbHVdgI), loudnorm -26 LUFS"
+ },
+ "media/night.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 20s loop: calm autumn night in a small Wisconsin town, crickets, breeze, distant owl (ElevenLabs flow WMo6bunrQnqPKaT3wwVe, gen vZ8jVjPkYenFHLQ4k9Zd), loudnorm -26 LUFS"
+ },
+ "vendor/three.module.min.js": {
+  "tool": "library",
+  "prompt": "three.js r170 (0.170.0) from cdn.jsdelivr.net/npm/three@0.170.0, vendored with OrbitControls, EffectComposer, RenderPass, GTAOPass, UnrealBloomPass, OutputPass, SMAAPass and their dependencies (MIT)"
+ },
+ "fonts": {
+  "tool": "google fonts",
+  "prompt": "Unbounded, Figtree, IBM Plex Mono"
+ }
+}

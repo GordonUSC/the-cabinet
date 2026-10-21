@@ -1,0 +1,94 @@
+{
+ "img/hero.jpg": {
+  "tool": "higgsfield",
+  "prompt": "producer's desk over a Wisconsin lake at autumn sunset (job a9e0715e) gpt_image_2_5"
+ },
+ "img/house.jpg": {
+  "tool": "higgsfield",
+  "prompt": "historic Victorian house mid-restoration, golden hour (job 8bd0968c)"
+ },
+ "img/dad.jpg": {
+  "tool": "higgsfield",
+  "prompt": "family front yard at dusk with kids' bikes and chalk hearts (job ef580e62)"
+ },
+ "img/cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "backyard Cider Camp with wooden press and apples (job d112fbda)"
+ },
+ "img/work.jpg": {
+  "tool": "higgsfield",
+  "prompt": "office window toward the Wisconsin Capitol with a young plant (job a783ade4)"
+ },
+ "img/dragon.jpg": {
+  "tool": "higgsfield",
+  "prompt": "carved dragon D&D table by candlelight (job eb2aee8c)"
+ },
+ "img/craft.jpg": {
+  "tool": "higgsfield",
+  "prompt": "voxel world with castle house, lantern road and cube sheep (job 2ba5b4f1)"
+ },
+ "img/call.jpg": {
+  "tool": "higgsfield",
+  "prompt": "phone with incoming call on a porch railing over a lake at twilight (job 27080404)"
+ },
+ "img/finale.jpg": {
+  "tool": "higgsfield",
+  "prompt": "restored house at night, fireworks, lit marquee (job 26ac1346)"
+ },
+ "snd/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cozy acoustic folk loop, eleven_music_v2_5, 2s crossfade baked (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/done.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "task-complete chime (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/paint.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "paint roller on clapboard (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/kids.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "kids laughing, bicycle bell (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/cider.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cider pour and jar clink (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/grow.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "rising growth chime (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/d20.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "d20 roll and table cheer (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/dragon.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "friendly dragon roar (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/blocks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "voxel blocks placed, level-up jingle (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/ring.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "marimba ringtone (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/clap.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "clapperboard (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/fireworks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "fireworks over a lake with cheers (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/ovation.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "theater standing ovation (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/finale.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "premiere finale score, eleven_music_v2_5 60s (flow YYvwVc9bMqFyQyzoONjF)"
+ }
+}

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- STYLE: Producer's status board at Wisconsin golden hour, opening into seven painted scenes and a premiere night finale (monday-style groups and pills in Figtree, Fraunces marquee and end credits) | WHY: Eric runs his world on boards, Board then Group then Item then Owner, Status, Timeline, latest update, closing on a Definition of Done, so the gift is his whole life on his kind of board, and every Done opens the scene behind it | ALT: Festival badge lanyard keepsake, rejected because the board is how he actually thinks -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>That's a Wrap</title>
+<meta name="description" content="A season wrap for Eric Francksen, Executive Producer.">
+<meta property="og:title" content="That's a Wrap, for Eric">
+<meta property="og:image" content="https://gordonusc.github.io/gift-eric/img/finale.jpg">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&display=swap">
+<style>
+:root{--done:#00c875;--work:#fdab3d;--ink:#1f2340;--mute:#676879;--line:#e6e9ef;--card:#fffffff0;--gold:#ffd27a;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1a0f08;color:#fff;font:15px/1.45 Figtree,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.stage{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100vw,calc(100svh*9/16));overflow:hidden;background:#1a0f08}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.head{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 12px);text-align:center;padding:0 16px;text-shadow:0 2px 14px #000a}
+.head small{font-weight:800;font-size:11px;letter-spacing:.28em;color:#fff3dc}
+.head h1{font:900 clamp(26px,8.5vw,38px)/1.05 Fraunces,Georgia,serif;margin:3px 0}
+.head p{margin:0 auto;max-width:34ch;font-size:13.5px}
+.board{position:absolute;left:10px;right:10px;top:calc(env(safe-area-inset-top,0px) + 126px);background:var(--card);color:var(--ink);border-radius:14px;padding:9px 9px 7px;box-shadow:0 14px 40px #0007}
+.bt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 2px 3px}
+.bt b{font-weight:800;font-size:14.5px}
+.bt span{font-size:10.5px;color:var(--mute)}
+.cols{display:grid;grid-template-columns:1fr 40px 92px;gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.06em;color:var(--mute);padding:0 4px 2px 8px;text-transform:uppercase}
+.row{display:grid;grid-template-columns:1fr 40px 92px;align-items:center;gap:6px;padding:4px 4px 4px 8px;border-top:1px solid var(--line);position:relative}
+.row::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:4px;border-radius:2px;background:var(--g)}
+.it{min-width:0}
+.it .g{font-weight:800;font-size:9.5px;letter-spacing:.1em;color:var(--g)}
+.it b{display:block;font-weight:800;font-size:13px;line-height:1.15}
+.it em{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-style:normal;font-size:11px;color:var(--mute);line-height:1.25;overflow:hidden}
+.tl{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.tl i{display:block;height:100%;width:var(--w);background:var(--g);border-radius:4px}
+.st{height:30px;border:0;border-radius:6px;background:var(--work);color:#fff;font:800 12px Figtree,sans-serif;cursor:pointer;position:relative;overflow:hidden;transition:background .35s,transform .15s}
+.st:active{transform:scale(.96)}
+.st.done{background:var(--done)}
+.st.done::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#fff8 50%,transparent 70%);animation:shine .8s ease-out 1}
+@keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.bar{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:5px 4px 0}
+.bar i{display:block;height:100%;width:0;background:var(--done);transition:width .5s}
+.dod{margin:5px 4px 0;font-size:11px;color:var(--mute)}
+.dod b{color:var(--ink)}
+.scene{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .6s}
+.scene.on{opacity:1;pointer-events:auto}
+.scene .bg{transform:scale(1.04);transition:transform 8s ease-out}
+.scene.on .bg{transform:scale(1.12)}
+.scene .bg.after{opacity:0;transition:opacity .5s,transform 8s ease-out;filter:saturate(1.4) brightness(1.1)}
+.sc-top{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 16px);text-align:center;padding:0 18px;text-shadow:0 2px 14px #000c}
+.sc-top .g{display:inline-block;font-weight:800;font-size:11px;letter-spacing:.2em;background:var(--g);color:#fff;border-radius:4px;padding:3px 8px;text-shadow:none}
+.sc-top h2{font:900 clamp(28px,9vw,40px)/1.05 Fraunces,Georgia,serif;margin:8px 0 6px}
+.sc-top p{margin:0 auto;max-width:30ch;font-size:15px}
+.sc-bot{position:absolute;left:16px;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 34px);text-align:center}
+.hint{display:inline-block;background:#000a;border:1px solid #fff6;border-radius:20px;padding:8px 16px;font-weight:800;font-size:13px;letter-spacing:.06em}
+.upd{display:none;margin:0 auto 12px;max-width:30ch;background:#fffffff0;color:var(--ink);border-radius:12px;padding:10px 14px;font-size:14px;text-align:left;box-shadow:0 8px 30px #0008}
+.upd small{display:block;font-weight:800;font-size:10px;letter-spacing:.12em;color:var(--mute)}
+.scene.fin .upd{display:block;animation:pop .4s ease}
+.scene.fin .hint{display:none}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:none;opacity:1}}
+.back{margin-top:10px;background:var(--done);color:#fff;border:0;border-radius:8px;padding:10px 18px;font:800 14px Figtree,sans-serif;cursor:pointer;display:none}
+.scene.fin .back{display:inline-block}
+.tapzone{position:absolute;inset:0}
+.jar{position:absolute;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 150px);width:70px;height:96px;transform:translateX(-50%);border:3px solid #fffd;border-top-width:6px;border-radius:10px 10px 16px 16px;overflow:hidden;background:#ffffff22;pointer-events:none}
+.jar i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(#f7b84b,#c8751b);transition:height .4s}
+.d20{position:absolute;left:50%;top:50%;width:120px;height:120px;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 6px 20px #000a)}
+.d20 text{font:900 40px Fraunces,serif}
+.d20.roll{animation:spin .9s cubic-bezier(.2,.8,.3,1)}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(-540deg) scale(.6)}to{transform:translate(-50%,-50%) rotate(0) scale(1)}}
+.nat{position:absolute;left:0;right:0;top:63%;text-align:center;font:900 clamp(30px,10vw,46px) Fraunces,serif;color:var(--gold);text-shadow:0 0 24px #000,0 0 40px #ff9a3c;opacity:0;transition:opacity .4s;pointer-events:none}
+.nat.on{opacity:1}
+.cards{position:absolute;left:0;right:0;top:46%;display:flex;justify-content:center;gap:14px}
+.card{width:76px;height:108px;border-radius:9px;border:0;padding:0;cursor:pointer;background:repeating-linear-gradient(45deg,#7a1020 0 6px,#5a0a16 6px 12px);box-shadow:0 0 0 3px #f3e3c0 inset,0 10px 24px #000a;font:900 30px Fraunces,serif;color:#c8102e;transition:transform .25s}
+.card.face{background:#fffdf6;transform:scaleX(1)}
+.card.face span{display:block;line-height:1}
+.card.face small{display:block;font:800 10px Figtree,sans-serif;letter-spacing:.1em;color:#1f2340;margin-top:6px}
+.card.flip{transform:scaleX(0)}
+.call{position:absolute;left:24px;right:24px;top:30%;background:#101418ee;border-radius:24px;padding:22px 18px;text-align:center;box-shadow:0 20px 60px #000a}
+.call .who{font:700 28px Fraunces,serif}
+.call .sub{font-size:13px;opacity:.8;margin:2px 0 16px}
+.call button{width:64px;height:64px;border-radius:50%;border:0;background:var(--done);color:#fff;font:800 13px Figtree,sans-serif;cursor:pointer;animation:ringb 1s ease-in-out infinite}
+@keyframes ringb{50%{transform:scale(1.1)}}
+.scene.fin .call{display:none}
+canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.clap{position:absolute;left:50%;top:44%;width:150px;transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none;z-index:5}
+.clap.on{animation:clapin 1.4s ease forwards}
+@keyframes clapin{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}20%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
+.clap .top{transform-origin:6px 100%;transform:rotate(-24deg);transition:transform .18s ease-in .35s}
+.clap.on .top{transform:rotate(0)}
+.premiere{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 1s;background:#000}
+.premiere.on{opacity:1;pointer-events:auto}
+.montage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s}
+.montage img.on{opacity:1;animation:kb 1.6s linear forwards}
+@keyframes kb{from{transform:scale(1.15)}to{transform:scale(1.02)}}
+.mlabel{position:absolute;left:0;right:0;bottom:22%;text-align:center;font:900 clamp(26px,8.5vw,38px) Fraunces,serif;text-shadow:0 2px 20px #000;opacity:0;transition:opacity .3s}
+.mlabel.on{opacity:1}
+.fin-bg{opacity:0;transition:opacity 1.2s}
+.fin-bg.on{opacity:1}
+.marquee{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 26px);transform:translateX(-50%);width:min(88%,360px);padding:14px 10px 12px;border-radius:12px;background:#2a0e08ee;border:3px solid var(--gold);text-align:center;box-shadow:0 0 40px #ffb34788;opacity:0;transition:opacity .8s}
+.marquee.on{opacity:1}
+.marquee small{display:block;font-weight:800;font-size:11px;letter-spacing:.3em;color:var(--gold)}
+.marquee .name{font:900 clamp(24px,8vw,36px)/1.05 Fraunces,serif;letter-spacing:.04em;white-space:nowrap}
+.marquee .name span{opacity:.15;transition:opacity .15s,text-shadow .15s}
+.marquee .name span.lit{opacity:1;text-shadow:0 0 14px #ffd27a}
+.bulbs{display:flex;justify-content:space-between;margin:6px 4px 0}
+.bulbs i{width:7px;height:7px;border-radius:50%;background:#ffd27a;box-shadow:0 0 8px #ffd27a;animation:chase 1s steps(2) infinite}
+.bulbs i:nth-child(odd){animation-delay:.5s}
+@keyframes chase{50%{opacity:.25}}
+.credits{position:absolute;left:0;right:0;top:100%;text-align:center;padding:0 22px;font-family:Fraunces,Georgia,serif;text-shadow:0 2px 16px #000e}
+.credits.roll{animation:roll 42s linear forwards}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(calc(-100% - 105svh))}}
+.credits .k{font:800 11px Figtree,sans-serif;letter-spacing:.3em;color:var(--gold);margin-top:30px}
+.credits .v{font-size:clamp(22px,7vw,30px);font-weight:700;margin-top:4px}
+.credits .s{font-size:16px;margin-top:4px}
+.credits .big{font-size:clamp(34px,11vw,50px);line-height:1.05;font-weight:900}
+.final{position:absolute;left:16px;right:16px;top:32%;text-align:center;padding:26px 10px;border-radius:20px;background:radial-gradient(closest-side,#000b,#0000);opacity:0;transition:opacity 1.6s;pointer-events:none;text-shadow:0 2px 18px #000c}
+.final.on{opacity:1;pointer-events:auto}
+.final h2{font:900 clamp(34px,11vw,52px)/1.05 Fraunces,Georgia,serif;margin:0 0 10px}
+.final p{margin:0 auto 12px;max-width:28ch;font-size:15px}
+.final .pill{display:inline-block;background:var(--done);color:#fff;font:800 15px Figtree,sans-serif;padding:8px 16px;border-radius:6px;text-shadow:none}
+.final .btns{display:flex;gap:8px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.final button{background:#0007;color:#fff;border:1px solid #fff8;border-radius:20px;padding:8px 16px;font:700 13px Figtree,sans-serif;cursor:pointer}
+.foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);text-align:center;font-size:11px;opacity:.8;text-shadow:0 1px 6px #000;z-index:6;pointer-events:none}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <img class="bg" src="img/hero.jpg" alt="A producer's desk with a clapperboard and sticky notes, looking out over a Wisconsin lake at sunset through autumn maples">
+  <div class="head"><small>FOR ERIC FRANCKSEN</small><h1>That's a Wrap</h1><p>Your year, on your kind of board. Tap a status to open the scene behind it. Sound on.</p></div>
+  <div class="board" id="board">
+    <div class="bt"><b>Eric Francksen: Season '26</b><span>Owner: Eric · Priority: Must have</span></div>
+    <div class="cols"><span>Item</span><span>Time</span><span>Status</span></div>
+    <div class="row" style="--g:#e2445c"><div class="it"><span class="g">HOME</span><b>Restore the historic house</b><em>Latest: scraped, primed, painted, board by board</em></div><div class="tl" style="--w:85%"><i></i></div><button class="st" data-s="0">Working on it</button></div>
+    <div class="row" style="--g:#ff7575"><div class="it"><span class="g">FAMILY</span><b>Be an incredible dad</b><em>Latest: every single day, no days off</em></div><div class="tl" style="--w:100%"><i></i></div><button class="st" data-s="1">Working on it</button></div>
+    <div class="row" style="--g:#fdab3d"><div class="it"><span class="g">COMMUNITY</span><b>Run Cider Camp</b><em>Latest: apples in, neighbors in, press turning</em></div><div class="tl" style="--w:70%"><i></i></div><button class="st" data-s="2">Working on it</button></div>
+    <div class="row" style="--g:#579bfc"><div class="it"><span class="g">WORK</span><b>Grow in the day job</b><em>Latest: steady, healthy, always learning</em></div><div class="tl" style="--w:60%"><i></i></div><button class="st" data-s="3">Working on it</button></div>
+    <div class="row" style="--g:#a25ddc"><div class="it"><span class="g">PLAY</span><b>Host the Dragon House</b><em>Latest: legends welcome, chair pulled out</em></div><div class="tl" style="--w:90%"><i></i></div><button class="st" data-s="4">Working on it</button></div>
+    <div class="row" style="--g:#00a9ff"><div class="it"><span class="g">PLAY</span><b>Build Gordtopia</b><em>Latest: all roads lead home</em></div><div class="tl" style="--w:75%"><i></i></div><button class="st" data-s="5">Working on it</button></div>
+    <div class="row" style="--g:#00c875"><div class="it"><span class="g">FRIENDSHIP</span><b>Call Gordon</b><em>Latest: love, trust and delight, delivered</em></div><div class="tl" style="--w:100%"><i></i></div><button class="st" data-s="6">Working on it</button></div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="dod"><b>Definition of Done:</b> every item green, and Eric knows how much it all means.</div>
+  </div>
+
+  <div class="scene" data-k="house" style="--g:#e2445c">
+    <img class="bg" src="img/house.jpg" alt="A historic Victorian house mid-restoration with a ladder and fresh paint at golden hour">
+    <img class="bg after" src="img/house.jpg" alt="">
+    <div class="tapzone"></div>
+    <div class="sc-top"><span class="g">HOME</span><h2>Board by Board</h2><p>A historic house, brought back to life by your own hands.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>Fresh coat on. This old house has a steward who loves it.</div><span class="hint">TAP TO PAINT · <span class="n">0</span>/5</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="dad" style="--g:#ff7575">
+    <img class="bg" src="img/dad.jpg" alt="Three kids' bikes beside a grown-up's bike in a front yard at dusk with chalk hearts on the sidewalk">
+    <div class="tapzone"></div>
+    <div class="sc-top"><span class="g">FAMILY</span><h2>Head of Dad</h2><p>The most important show you run, and you show up for every episode.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>Three boys who know exactly how loved they are.</div><span class="hint">TAP THE YARD · <span class="n">0</span>/3</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="cider" style="--g:#fdab3d">
+    <img class="bg" src="img/cider.jpg" alt="A wooden cider press, bushels of apples and jars of cider under string lights at a backyard Cider Camp">
+    <div class="tapzone"></div><div class="jar"><i id="cjar"></i></div>
+    <div class="sc-top"><span class="g">COMMUNITY</span><h2>Cider Camp</h2><p>You built a weekend where a whole community presses something sweet together.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>Jars full. Hearts fuller. Same time next fall.</div><span class="hint">TAP TO POUR · <span class="n">0</span>/4</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="work" style="--g:#579bfc">
+    <img class="bg" src="img/work.jpg" alt="Morning light through an office window toward the Wisconsin State Capitol, a young plant on the desk">
+    <div class="tapzone"></div>
+    <div class="sc-top"><span class="g">WORK</span><h2>Always Growing</h2><p>Healthy growth, steady and true, the way you do everything.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>New leaves this quarter. Roots holding strong.</div><span class="hint">TAP TO GROW · <span class="n">0</span>/4</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="dragon" style="--g:#a25ddc">
+    <img class="bg" src="img/dragon.jpg" alt="A carved dragon gaming table with candles, dice and miniatures in a cozy game room">
+    <div class="tapzone"></div>
+    <svg class="d20" id="d20" viewBox="0 0 120 120" aria-hidden="true"><polygon points="60,4 112,32 112,88 60,116 8,88 8,32" fill="#6b2fa8" stroke="#ffd27a" stroke-width="3"/><polygon points="60,22 98,86 22,86" fill="#8a45d1" stroke="#ffd27a" stroke-width="2"/><text id="d20n" x="60" y="74" fill="#fff" text-anchor="middle">?</text></svg>
+    <div class="nat" id="nat">NATURAL 20</div>
+    <div class="sc-top"><span class="g">PLAY</span><h2>The Dragon House</h2><p>Where industry legends pull up a chair, because you made the table that welcoming.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>Critical success. The table is set for the next session.</div><span class="hint">TAP TO ROLL</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="craft" style="--g:#00a9ff">
+    <img class="bg" src="img/craft.jpg" alt="A blocky voxel world at sunset with a castle house, a lantern road and cube sheep">
+    <div class="tapzone"></div>
+    <div class="sc-top"><span class="g">PLAY</span><h2>Gordtopia</h2><p>A whole nation built block by block, with Gordon and your boys. All roads lead home.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · ERIC</small>New build complete. The Dragon House stands in Gordtopia too.</div><span class="hint">TAP TO BUILD · <span class="n">0</span>/6</span><br><button class="back" type="button">Mark Done</button></div>
+  </div>
+  <div class="scene" data-k="call" style="--g:#00c875">
+    <img class="bg" src="img/call.jpg" alt="A phone glowing with an incoming call on a porch railing beside a mug of cider over a Wisconsin lake at twilight">
+    <div class="call" id="callcard"><div class="who">Gordon</div><div class="sub">incoming call · Los Angeles</div><button type="button" id="answer">Answer</button></div>
+    <div class="sc-top"><span class="g">FRIENDSHIP</span><h2>The Standing Call</h2><p>You make time. You bring Gordon love, trust and delight, every time.</p></div>
+    <div class="sc-bot"><div class="upd"><small>LATEST UPDATE · GORDON</small>Best call of my week, every week. Thank you, friend.</div><button class="back" type="button">Mark Done</button></div>
+  </div>
+
+  <svg class="clap" id="clap" viewBox="0 0 150 120" aria-hidden="true">
+    <rect x="6" y="40" width="138" height="74" rx="6" fill="#1b1b1b"/>
+    <text x="75" y="88" fill="#fff" font-family="Figtree,sans-serif" font-weight="800" font-size="20" text-anchor="middle">WRAP</text>
+    <g class="top"><rect x="6" y="18" width="138" height="22" rx="4" fill="#1b1b1b"/><path d="M20 18h16l-10 22H10zM56 18h16l-10 22H46zM92 18h16l-10 22H82zM128 18h16l-10 22h-16z" fill="#fff"/></g>
+  </svg>
+
+  <div class="premiere" id="prem">
+    <div class="montage" id="mont"></div>
+    <div class="mlabel" id="mlabel"></div>
+    <img class="bg fin-bg" id="finbg" src="img/finale.jpg" alt="The restored historic house at night with every window glowing, fireworks over the lake and a lit marquee">
+    <div class="marquee" id="marq"><small>WORLD PREMIERE</small><div class="name" id="mname"></div><div class="bulbs"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div class="credits" id="credits">
+      <div class="k">GGP PRESENTS</div><div class="v">A Season of Showing Up</div>
+      <div class="k">EXECUTIVE PRODUCER</div><div class="v big">Eric Francksen</div>
+      <div class="k">RESTORATION LEAD</div><div class="s">one historic house, board by board</div>
+      <div class="k">HEAD OF DAD</div><div class="s">three very lucky boys</div>
+      <div class="k">COMMUNITY PRODUCER</div><div class="s">Cider Camp</div>
+      <div class="k">ALWAYS GROWING</div><div class="s">the day job, with heart</div>
+      <div class="k">HOST</div><div class="s">the Dragon House, where legends pull up a chair</div>
+      <div class="k">MASTER BUILDER</div><div class="s">Gordtopia</div>
+      <div class="k">STANDING CALL</div><div class="s">Gordon, with love, trust and delight</div>
+      <div class="k">PRIORITIES</div><div class="s">Must have: Eric. Should have: more Eric.</div>
+      <div class="k">LEADING WITH</div><div class="v">love and integrity</div>
+      <div class="k">SET IN</div><div class="s">Stoughton, Wisconsin</div>
+      <div class="k">SPECIAL THANKS</div><div class="s">the whole Francksen family</div>
+      <div class="k">FROM</div><div class="v">Gordon</div>
+    </div>
+    <div class="final" id="final"><h2>Thank you, Eric.</h2><p>For the house, the boys, the cider, the table, the calls, and the man behind all of it.</p><span class="pill">Status: Loved</span><div class="btns"><button id="again" type="button">Roll it again</button><button id="toboard" type="button">Back to the board</button></div></div>
+  </div>
+  <canvas id="c"></canvas>
+  <button id="sndtog" type="button" aria-pressed="true" style="position:absolute;top:calc(env(safe-area-inset-top,0px) + 10px);right:10px;z-index:9;background:#000a;color:#fff;border:1px solid #fff8;border-radius:16px;padding:6px 12px;font:700 12px Figtree,sans-serif;cursor:pointer">Sound on</button>
+  <div class="foot">made by Darby, Gordon's AI assistant, with love from Gordon</div>
+</div>
+<script>
+// ElevenLabs sound design: cozy folk bed, done chime, paint, kids, cider, growth, d20, dragon, blocks, ringtone, clapperboard, fireworks, ovation, premiere score. Code only mixes.
+document.addEventListener('DOMContentLoaded',()=>{});
+const SND=['bed','done','paint','kids','cider','grow','d20','dragon','blocks','ring','clap','fireworks','ovation','finale'];
+let ac=null, master=null, bufs={}, bed=null, score=null, ringing=null;
+function audio(){ if(!ac){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); master=ac.createGain(); master.gain.value=.9; master.connect(ac.destination); SND.forEach(load);}catch(e){} } if(ac&&ac.state==='suspended') ac.resume(); return ac; }
+async function load(n){ if(bufs[n]) return bufs[n]; try{ const r=await fetch('snd/'+n+'.mp3'); const a=await r.arrayBuffer(); bufs[n]=await new Promise((ok,no)=>ac.decodeAudioData(a,ok,no)); }catch(e){} return bufs[n]; }
+async function play(n,vol=1,loop=false,rate=1){ if(!audio()) return null; const b=await load(n); if(!b) return null; const s=ac.createBufferSource(), g=ac.createGain(); s.buffer=b; s.loop=loop; s.playbackRate.value=rate; g.gain.value=vol; s.connect(g).connect(master); s.start(); return {s,g}; }
+let muted=false; setTimeout(()=>{ const t=document.getElementById('sndtog'); if(t) t.onclick=()=>{ audio(); muted=!muted; if(master) master.gain.setTargetAtTime(muted?0:.9,ac.currentTime,.05); t.textContent=muted?'Sound off':'Sound on'; t.setAttribute('aria-pressed',!muted); }; },0);
+function fade(h,v,t=.4){ if(h&&ac) h.g.gain.setTargetAtTime(v,ac.currentTime,t); }
+function stop(h){ if(h) try{h.s.stop()}catch(e){} }
+
+const $=s=>document.querySelector(s), btns=[...document.querySelectorAll('.st')], scenes=[...document.querySelectorAll('.scene')];
+const CALL=scenes.findIndex(s=>s.dataset.k==='call');
+const c=$('#c'), x=c.getContext('2d'), D=Math.min(devicePixelRatio||1,2);
+function size(){ c.width=c.clientWidth*D; c.height=c.clientHeight*D; } size(); addEventListener('resize',size);
+let parts=[], fx=[], blocks=[], vine=null, done=new Set(), cur=-1;
+const LEAF=['#d9481c','#f08a24','#f6c544','#b8321a','#00c875'];
+function pt(e){ const r=c.getBoundingClientRect(); return [(e.clientX-r.left)*D,(e.clientY-r.top)*D]; }
+function center(el){ const r=el.getBoundingClientRect(), s=c.getBoundingClientRect(); return [(r.left+r.width/2-s.left)*D,(r.top+r.height/2-s.top)*D]; }
+function burst(px,py,cols,n=22,kind='leaf'){ for(let i=0;i<n;i++){ const a=i/n*Math.PI*2; parts.push({x:px,y:py,vx:Math.cos(a)*(2+i%4)*D,vy:Math.sin(a)*(2+i%3)*D-2*D,r:a,vr:(i%2?.1:-.1),a:1,c:cols[i%cols.length],z:(5+i%4)*D,k:kind}); } }
+function hearts(px,py,n=6){ for(let i=0;i<n;i++) parts.push({x:px+(i-n/2)*10*D,y:py,vx:(i%3-1)*.6*D,vy:-(2+i%3)*D,r:0,vr:0,a:1,c:'#ff6b8b',z:(9+i%3)*D,k:'heart',float:true}); }
+
+btns.forEach(b=>b.addEventListener('click',()=>{ audio(); if(!bed) play('bed',.32,true).then(h=>bed=h); const i=+b.dataset.s; if(done.has(i)){ revisit(i); return; } openScene(i); }));
+function openScene(i){ cur=i; const s=scenes[i], k=s.dataset.k; s.classList.remove('fin'); s.querySelectorAll('.n').forEach(n=>n.textContent='0'); s.dataset.t='0'; s.classList.add('on'); fade(bed,.14);
+  if(k==='house') s.querySelector('.after').style.opacity=0;
+  if(k==='cider') $('#cjar').style.height='0';
+  if(k==='dragon'){ $('#d20n').textContent='?'; $('#nat').classList.remove('on'); }
+  if(k==='craft') blocks=[];
+  if(k==='work') vine={h:0,target:0};
+  if(k==='call'){ ringing=null; play('ring',.7,true).then(h=>{ if(cur===CALL&&!s.classList.contains('fin')) ringing=h; else stop(h); }); } }
+function finish(s){ s.classList.add('fin'); }
+scenes.forEach((s,i)=>{
+  const tz=s.querySelector('.tapzone'), need={house:5,dad:3,cider:4,work:4,dragon:1,craft:6}[s.dataset.k];
+  if(tz) tz.addEventListener('pointerdown',e=>{ if(s.classList.contains('fin')) return; audio(); const [px,py]=pt(e); let t=+s.dataset.t+1; if(t>need) return; s.dataset.t=t; const n=s.querySelector('.n'); if(n) n.textContent=t;
+    const k=s.dataset.k;
+    if(k==='house'){ play('paint',.8); s.querySelector('.after').style.opacity=t/need; burst(px,py,['#2f4f6f','#e8d9b5','#7a2e2e','#f6c544'],14); }
+    if(k==='dad'){ play('kids',.7); hearts(px,py,8); }
+    if(k==='cider'){ play('cider',.75,false,1+t*.03); $('#cjar').style.height=(t/need*100)+'%'; burst(px,py,['#e23b3b','#f6c544','#c8751b'],12,'apple'); }
+    if(k==='work'){ play('grow',.75,false,1+t*.08); vine.target=t/need; burst(px,py,['#7ed957','#3fae5a','#ffe9a8'],10); }
+    if(k==='dragon'){ play('d20',.9); const d=$('#d20'); d.classList.remove('roll'); void d.getBoundingClientRect(); d.classList.add('roll'); let f=0; const iv=setInterval(()=>{ $('#d20n').textContent=1+((f*7)%19); if(++f>8){ clearInterval(iv); $('#d20n').textContent='20'; $('#nat').classList.add('on'); play('dragon',.65); burst(c.width/2,c.height/2,['#ffd27a','#a25ddc','#ff9a3c'],36); } },95); }
+    if(k==='craft'){ play('blocks',.7,false,1+t*.04); blocks.push({i:t-1,a:0}); }
+    if(t>=need) setTimeout(()=>finish(s), k==='dragon'?1400:500); });
+  s.querySelector('.back').addEventListener('click',()=>closeScene(i));
+});
+$('#answer').addEventListener('click',()=>{ audio(); stop(ringing); ringing=null; play('done',.6); hearts(c.width/2,c.height*.45,14); setTimeout(()=>finish(scenes[CALL]),300); });
+function revisit(i){ cur=i; const s=scenes[i]; s.classList.add('on','fin'); const bk=s.querySelector('.back'); if(bk) bk.textContent='Back to board'; fade(bed,.14); }
+function closeScene(i){ scenes[i].classList.remove('on'); if(done.has(i)){ cur=-1; fade(bed,.32); stop(ringing); ringing=null; return; } stop(ringing); ringing=null; cur=-1; fade(bed,.32);
+  const b=btns[i]; done.add(i); b.classList.add('done'); b.textContent='Done'; play('done',.85,false,1+done.size*.04);
+  const [px,py]=center(b); burst(px,py,LEAF);
+  $('#bar').style.width=(done.size/btns.length*100)+'%'; if(done.size===btns.length) setTimeout(premiere,1000); }
+
+const MONT=[['house','The house'],['dad','The boys'],['cider','The cider'],['work','The growth'],['dragon','The table'],['craft','The world'],['call','The calls']];
+const mont=$('#mont'); MONT.forEach(([k])=>{ const im=new Image(); im.src='img/'+k+'.jpg'; im.alt=''; mont.appendChild(im); });
+$('#mname').innerHTML=[...'ERIC FRANCKSEN'].map(ch=>'<span>'+(ch===' '?'&nbsp;':ch)+'</span>').join('');
+let timers=[];
+function later(f,t){ timers.push(setTimeout(f,t)); }
+const STEP=1500, M=MONT.length*STEP;
+function premiere(){ timers.forEach(clearTimeout); timers=[]; fade(bed,0,.6); play('clap',1); const cl=$('#clap'); cl.classList.remove('on'); void cl.getBoundingClientRect(); cl.classList.add('on');
+  const P=$('#prem'); $('#final').classList.remove('on'); $('#finbg').classList.remove('on'); $('#marq').classList.remove('on'); [...$('#mname').children].forEach(s=>s.classList.remove('lit'));
+  const cr=$('#credits'); cr.classList.remove('roll');
+  later(()=>{ P.classList.add('on'); stop(score); play('finale',.85).then(h=>score=h);
+    const ims=[...mont.children]; ims.forEach((im,i)=>later(()=>{ ims.forEach(o=>o.classList.remove('on')); im.classList.add('on'); const L=$('#mlabel'); L.textContent=MONT[i][1]; L.classList.add('on'); },i*STEP));
+    later(()=>{ ims.forEach(o=>o.classList.remove('on')); $('#mlabel').classList.remove('on'); $('#finbg').classList.add('on'); $('#marq').classList.add('on'); play('fireworks',.7); fireworks(6);
+      [...$('#mname').children].forEach((s,i)=>later(()=>s.classList.add('lit'),i*110)); },M);
+    later(()=>{ $('#marq').classList.remove('on'); void cr.getBoundingClientRect(); cr.classList.add('roll'); fireworks(4); play('fireworks',.45); },M+3500);
+    later(()=>{ fireworks(8); play('fireworks',.6); },M+24000);
+    later(()=>{ $('#marq').classList.add('on'); $('#final').classList.add('on'); play('ovation',.75); fireworks(10); },M+3500+42000);
+  },1300); }
+$('#again').onclick=()=>premiere();
+$('#toboard').onclick=()=>{ timers.forEach(clearTimeout); stop(score); $('#prem').classList.remove('on'); fade(bed,.32); };
+function fireworks(n){ for(let k=0;k<n;k++) later(()=>{ const s=fx.length+k, cx=(.15+Math.abs(Math.sin(s*2.3))*.7)*c.width, cy=(.12+Math.abs(Math.cos(s*1.7))*.25)*c.height, col=['#ffd27a','#ff6b8b','#7ad7ff','#9cff9c','#ff9a3c'][k%5];
+  for(let i=0;i<40;i++){ const a=i/40*Math.PI*2, sp=(2.5+(i%5)*.5)*D; fx.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,a:1,c:col}); } },k*380); }
+
+(function loop(){ x.clearRect(0,0,c.width,c.height); const W=c.width,H=c.height;
+  if(cur===3&&vine){ vine.h+=(vine.target-vine.h)*.06; const bx=W*.5, by=H*.72, top=by-vine.h*H*.34, sx=yy=>bx+Math.sin((by-yy)/(28*D))*10*D;
+    x.strokeStyle='#3fae5a'; x.lineWidth=6*D; x.lineCap='round'; x.beginPath(); x.moveTo(bx,by); for(let yy=by;yy>=top;yy-=4*D) x.lineTo(sx(yy),yy); x.stroke();
+    for(let yy=by-30*D, j=0; yy>top; yy-=36*D, j++){ x.fillStyle=j%2?'#7ed957':'#5cc46a'; x.save(); x.translate(sx(yy),yy); x.rotate(j%2?.7:-.7); x.beginPath(); x.ellipse(j%2?14*D:-14*D,0,16*D,7*D,0,0,7); x.fill(); x.restore(); }
+    if(vine.h>.97){ x.fillStyle='#ffd27a'; x.beginPath(); x.arc(sx(top),top,10*D,0,7); x.fill(); } }
+  if(cur===5){ const S=34*D, ox=W*.5-S*1.5, oy=H*.66, pos=[[0,1],[1,1],[2,1],[0,0],[2,0],[1,-1]], col=['#9c6b3f','#9c6b3f','#9c6b3f','#c9c9c9','#c9c9c9','#a3332d'];
+    blocks.forEach(b=>{ b.a=Math.min(b.a+.12,1); const [gx,gy]=pos[b.i], yy=oy+gy*S-(1-b.a)*60*D; x.globalAlpha=b.a; x.fillStyle=col[b.i]; x.fillRect(ox+gx*S,yy,S-2*D,S-2*D); x.fillStyle='#0003'; x.fillRect(ox+gx*S,yy+S*.7,S-2*D,S*.3-2*D); x.globalAlpha=1; }); }
+  parts.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; p.r+=p.vr; if(p.float){ p.vy*=.99; p.a-=.012; } else { p.vy+=.12*D; p.a-=.014; }
+    x.save(); x.globalAlpha=Math.max(p.a,0); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.beginPath(); const z=p.z;
+    if(p.k==='heart'){ x.moveTo(0,z*.3); x.bezierCurveTo(-z,-z*.5,-z*.5,-z*1.1,0,-z*.45); x.bezierCurveTo(z*.5,-z*1.1,z,-z*.5,0,z*.3); }
+    else if(p.k==='apple'){ x.arc(0,0,z*.7,0,7); }
+    else if(p.k==='star'){ for(let j=0;j<10;j++){ const rr=j%2?z*.4:z, a=j*Math.PI/5; x.lineTo(Math.cos(a)*rr,Math.sin(a)*rr); } }
+    else { x.ellipse(0,0,z,z*.5,0,0,7); }
+    x.fill(); x.restore(); });
+  parts=parts.filter(p=>p.a>0);
+  fx.forEach(f=>{ f.x+=f.vx; f.y+=f.vy; f.vy+=.05*D; f.vx*=.985; f.a-=.012; x.globalAlpha=Math.max(f.a,0); x.fillStyle=f.c; x.beginPath(); x.arc(f.x,f.y,2.4*D,0,7); x.fill(); }); x.globalAlpha=1; fx=fx.filter(f=>f.a>0);
+  requestAnimationFrame(loop); })();
+</script>
+</body>
+</html>

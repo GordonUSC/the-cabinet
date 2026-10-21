@@ -1,0 +1,46 @@
+{
+ "media/skyship.mp4": {
+  "tool": "higgsfield",
+  "prompt": "seedance_2_5 omni_reference, start_image = still job b98c5b23; the watercolor sky galleon comes alive, sails fill, rises out of golden clouds, slow orbit, sails toward the sun; no text; 10s 9:16 720p, audio off (job 293ef663-70c6-438f-81f7-5b3303574cfb)"
+ },
+ "media/poster.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5, reference = the real Sky Ship Studios logo (media 6f50c706); repaint THIS same watercolor galleon as a vertical golden-hour cloud scene, no text (job b98c5b23-eb98-43cf-a38e-8e7c9bfdfa9b)"
+ },
+ "media/clouds.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5, style reference = job b98c5b23; dense luminous watercolor cloud wall, warm glow behind center, no ship, no text (job 97ba027c-81ee-42d3-b9d8-0c4fbc6b6656)"
+ },
+ "media/music.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 30s: warm uplifting orchestral swell, celesta and harp to horns and strings, grateful major-key shanty lullaby, no drums (flow DlAVbP87eFKfwcri3S2r, gen Zyj9BAdTFuKR0Jij1HGH), loudnorm -18 LUFS"
+ },
+ "media/wind.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 10s: high-altitude wind in billowing canvas sails, ropes and hull creak, distant gulls (flow DlAVbP87eFKfwcri3S2r, gen gNCOXdskdGXIjABJGKXX)"
+ },
+ "media/chime.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 3s: soft magical reveal chime, glass wind chimes and rising bell glissando (flow DlAVbP87eFKfwcri3S2r, gen w6Jmun1mDBQUmacslUoc)"
+ },
+ "media/whoosh.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2s: soft whoosh of clouds parting (flow DlAVbP87eFKfwcri3S2r, gen yH3c0JUNI2gWxlKrZkOb)"
+ },
+ "media/bank.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2s: ship banking, sails catch a gust, wood creak, sparkle twinkle trail (flow DlAVbP87eFKfwcri3S2r, gen dBwdhxmTE1ZWh3AKsi0n)"
+ },
+ "media/skyship-mark.png": {
+  "tool": "recipient-own-mark",
+  "prompt": "Eric's own Sky Ship Studios logo, skyshipstudios.com original, used as homage. Source: https://www.skyshipstudios.com/images/skyshipstudios/banner.png (kept byte-identical in ../ref/banner.png). Only change: the banner's separate site-header backdrop layer (a large ghost ship, pure white at alpha 117) set transparent and the canvas cropped to the mark; no mark pixel recolored, redrawn, or moved. Not connector-made on purpose: Gordon asked for an homage to THIS logo."
+ },
+ "media/clouds@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 97ba027c-81ee-42d3-b9d8-0c4fbc6b6656 (media/clouds.jpg's source), Lanczos to 1440 wide, JPEG q80; 2x for the phone cloud curtains and the PC canvas at DPR 2",
+  "job": "c7131dee-1d99-435c-967a-4e94e2396040",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ }
+}

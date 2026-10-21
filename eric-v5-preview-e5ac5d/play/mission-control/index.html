@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1c120c">
+<title>Mission Control: Executive Producer</title>
+<meta name="description" content="Eric runs a GGP event launch on a board in his own format, with an AI crew that does the work and a stage that lights up when it ships.">
+<!-- STYLE: "Walnut Mission Control" (Retro-futurist): a 1960s flight-control room in warm walnut, amber and teal glass, with clay-toy crew characters and Eric's own board format (Board > Group > Item, Owner, Status, latest update) as the console. | WHY: an Executive Producer is a flight director; giving his real way of organizing a launch room makes the homage his, by mechanic, with no borrowed branding. | ALT: "Stage Manager's Prompt Book", a paper call-sheet and cue-light look; warmer, but it would not carry the crew as characters. -->
+<!-- FORBIDS: any Monday.com logo, wordmark or UI chrome; pill tabs; cream card template. Walnut panels, glass glow, rounded console type, status chips in his four states. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+html{font-synthesis-weight:none}
+:root{
+  --walnut:#1c120c; --wood:#2b1b12; --panel:rgba(30,20,14,.86); --line:rgba(255,190,110,.22); --amber:#ffb347; --amber2:#ffd28a; --teal:#3fd0c9; --cream:#fff3e0; --dim:#cdb8a0;
+  --done:#00c875; --work:#fdab3d; --stuck:#e2445c; --ns:#c4c4c4;
+  --disp:"Young Serif",Georgia,serif; --sans:"Instrument Sans",system-ui,sans-serif; --mono:"Instrument Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;background:var(--walnut)}
+@media (min-width:900px) and (min-aspect-ratio:1/1){html{font-size:clamp(16px,1vw,30px)}}
+body{min-height:100%;background:var(--walnut);color:var(--cream);font-family:var(--sans);font-size:1rem;-webkit-tap-highlight-color:transparent}
+a{color:var(--amber2)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+kbd{font-family:var(--mono);font-weight:600;font-size:.82em;display:inline-block;min-width:1.5em;padding:0 .35em;border:1px solid rgba(255,210,138,.6);border-bottom-width:3px;border-radius:5px;color:var(--amber2);background:rgba(0,0,0,.35);line-height:1.35;text-align:center}
+@media (hover:none){kbd,.kh{display:none!important}}
+
+/* JS off */
+.static{max-width:820px;margin:0 auto;padding:24px 16px 48px}
+.static h1{font-family:var(--disp);font-size:34px;line-height:1.1;color:var(--amber2)}
+.static h2{font-family:var(--disp);font-size:20px;margin:24px 0 8px;color:var(--amber2)}
+.static p,.static li,.static td,.static th{font-size:17px;line-height:1.5}
+.static img{width:100%;height:auto;border-radius:8px;margin:14px 0;display:block}
+.static table{width:100%;border-collapse:collapse;margin-top:8px}
+.static th,.static td{text-align:left;border-bottom:1px solid var(--line);padding:8px 6px;vertical-align:top}
+.static .back{display:inline-block;margin-top:24px;padding:12px 18px;border:2px solid var(--amber);border-radius:6px;text-decoration:none;font-weight:700}
+html.js .static{display:none}
+.app{display:none}
+html.js .app{display:block}
+
+/* ---------- app shell ---------- */
+.room{position:fixed;inset:0;background:url(img/room-wide-1x.webp) center/cover no-repeat;filter:saturate(1.05)}
+@media (min-width:1921px),(min-resolution:1.5dppx) and (min-aspect-ratio:1/1){.room{background-image:url(img/room-wide.webp)}}
+@media (max-aspect-ratio:1/1){.room{background-image:url(img/room-tall.webp)}}
+.room:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,18,12,.55),rgba(28,18,12,.82))}
+.top{position:relative;z-index:20;display:flex;align-items:center;gap:.6rem;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px}
+.top .b{display:inline-flex;align-items:center;gap:.5em;min-height:44px;min-width:44px;justify-content:center;padding:0 .9rem;border:1px solid var(--line);background:rgba(20,13,9,.75);border-radius:10px;font-weight:600;text-decoration:none;color:var(--cream)}
+.top .b:hover{border-color:var(--amber);background:rgba(60,38,22,.9)}
+.top h1{flex:1;text-align:center;font-family:var(--disp);font-weight:700;font-size:1.15rem;letter-spacing:.01em;color:var(--amber2)}
+@media (max-width:899px){.top h1{display:none}.top .sp{flex:1}}
+@media (min-width:900px){.top .sp{display:none}}
+
+/* intro */
+.screen{position:relative;z-index:10}
+.screen.hide{display:none}
+.intro{min-height:calc(100vh - 70px);display:flex;align-items:center;justify-content:center;padding:16px 16px 40px}
+.icard{width:min(100%,58rem);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,3vw,3rem);box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,220,170,.15);text-align:center}
+.icard .kick{font-weight:600;color:var(--teal);letter-spacing:.06em}
+.icard h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,3.4rem,76px);line-height:1.02;margin:.35em 0 .3em;color:var(--cream)}
+.icard h2 span{color:var(--amber)}
+.icard p{font-size:1.1rem;line-height:1.5;color:var(--dim);max-width:38em;margin:0 auto}
+.crewrow{display:flex;justify-content:center;gap:clamp(4px,1.4vw,1.6rem);margin:1.2rem 0 .4rem}
+.crewrow figure{width:clamp(56px,7.5rem,180px);text-align:center}
+.crewrow img{width:100%;height:clamp(56px,7.5rem,180px);object-fit:contain;filter:drop-shadow(0 10px 16px rgba(0,0,0,.5));animation:bob 3s ease-in-out infinite}
+.crewrow figure:nth-child(2) img{animation-delay:-.6s}.crewrow figure:nth-child(3) img{animation-delay:-1.2s}.crewrow figure:nth-child(4) img{animation-delay:-1.8s}.crewrow figure:nth-child(5) img{animation-delay:-2.4s}
+.crewrow figcaption{font-weight:700;font-size:1rem;margin-top:.2rem}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.namer{margin:1.4rem auto 0;text-align:left;max-width:46rem}
+.namer .lbl{font-weight:700;color:var(--amber2);margin:.9rem 0 .4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{min-height:44px;padding:.5rem .9rem;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.25);font-weight:600;text-align:left}
+.chip:hover{border-color:var(--amber)}
+.chip[aria-pressed=true]{background:var(--amber);color:#2a1606;border-color:var(--amber)}
+.preview{margin-top:1.2rem;padding:.9rem 1rem;border-radius:12px;background:#0d0a07;border:1px solid rgba(63,208,201,.35);font-family:var(--mono);font-weight:600;font-size:1.05rem;color:var(--teal);text-align:center;line-height:1.4}
+.preview small{display:block;font-family:var(--sans);font-weight:500;color:var(--dim);font-size:.95rem;margin-top:.3rem}
+.go{display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:0 1.6rem;border-radius:14px;background:linear-gradient(180deg,#ffc56a,#f59a2a);color:#2a1606;font-family:var(--disp);font-weight:700;font-size:1.05rem;box-shadow:0 5px 0 #8a4d0e,0 16px 30px rgba(0,0,0,.4);text-decoration:none}
+.go:hover{filter:brightness(1.08)}
+.go:active{transform:translateY(3px);box-shadow:0 2px 0 #8a4d0e}
+.go kbd{color:#2a1606;border-color:rgba(42,22,6,.45);background:rgba(255,255,255,.3)}
+.go.alt{background:transparent;color:var(--cream);border:2px solid var(--amber);box-shadow:none}
+.go.alt kbd{color:var(--amber2);background:rgba(0,0,0,.35);border-color:rgba(255,210,138,.6)}
+.icard .row{margin-top:1.4rem;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+
+/* board */
+.deck{display:grid;grid-template-columns:minmax(0,1fr) 22rem;gap:1.2rem;padding:0 16px 16px;align-items:start}
+@media (max-width:899px),(max-aspect-ratio:1/1){.deck{display:block;padding:0 12px 150px}}
+.board{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.bhead{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem;padding:1rem 1.2rem .8rem;border-bottom:1px solid var(--line)}
+.crumb{font-weight:600;color:var(--dim)}
+.crumb b{color:var(--cream);font-family:var(--disp);font-weight:700}
+.crumb i{font-style:normal;color:var(--amber);margin:0 .35em}
+.battery{flex:1;min-width:10rem;display:flex;height:.8rem;border-radius:5px;overflow:hidden;background:#3a2c22}
+.battery span{height:100%;transition:width .5s}
+.bcount{font-family:var(--mono);font-weight:600;color:var(--teal)}
+.ename{width:100%;font-family:var(--mono);font-weight:600;color:var(--teal);font-size:.95rem}
+.group{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.2rem;font-family:var(--disp);font-weight:700;color:var(--teal)}
+.group:before{content:"";width:.35rem;height:1.3rem;border-radius:3px;background:var(--teal)}
+.cols,.item{display:grid;grid-template-columns:minmax(0,2.2fr) 9.5rem 9.5rem minmax(0,2.4fr);align-items:center}
+.cols{padding:.3rem 1.2rem .5rem 1.6rem;font-weight:600;color:var(--dim);font-size:.9rem;border-bottom:1px solid var(--line)}
+.item{position:relative;min-height:4.6rem;padding:.5rem 1.2rem .5rem 1.6rem;border-bottom:1px solid rgba(255,190,110,.12);cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.item:before{content:"";position:absolute;left:0;top:0;bottom:0;width:.35rem;background:var(--teal);opacity:.7}
+@media (hover:hover){.item:hover{background:rgba(255,179,71,.06)}}
+.item.sel{background:rgba(63,208,201,.12);box-shadow:inset 0 0 0 2px var(--teal)}
+.item.drop{box-shadow:inset 0 0 0 2px var(--amber)}
+.item.ep:before{background:var(--amber)}
+.item.ep{animation:slidein .6s cubic-bezier(.2,1.3,.4,1)}
+@keyframes slidein{from{transform:translateY(-12px);opacity:0}}
+.item .nm{font-weight:700;font-size:1.05rem;padding-right:.8rem;line-height:1.25}
+.item .nm .k{margin-right:.4em}
+.owner{display:flex;align-items:center;gap:.45rem;font-weight:600;min-width:0}
+.owner img{width:2.2rem;height:2.2rem;object-fit:contain}
+.owner .none{width:2.2rem;height:2.2rem;border-radius:50%;border:2px dashed rgba(255,210,138,.45)}
+.owner .on{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status{position:relative;height:2.6rem;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1d140d;overflow:hidden;margin:0 .5rem;perspective:400px;text-align:center;font-size:.95rem;line-height:1.1;padding:0 .3rem}
+.status .fill{position:absolute;left:0;top:0;bottom:0;background:rgba(255,255,255,.35);width:0}
+.status span{position:relative}
+.status.ns{background:var(--ns)}.status.work{background:var(--work)}.status.stuck{background:var(--stuck);color:#fff}.status.done{background:var(--done);color:#062a17}
+.status.flip{animation:flip .5s ease}
+@keyframes flip{0%{transform:rotateX(0)}45%{transform:rotateX(90deg)}55%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.upd{color:var(--dim);font-size:.98rem;line-height:1.35;padding-left:.6rem}
+.upd b{color:var(--cream)}
+.choice{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+.choice button{min-height:44px;padding:.4rem .8rem;border-radius:10px;background:var(--cream);color:#2a1606;font-weight:700;font-size:.95rem;text-align:left;box-shadow:0 3px 0 #b88a55}
+.choice button:hover{background:#fff}
+.choice button small{display:block;font-weight:600;font-size:.82rem;opacity:.85;margin-top:.15rem}
+.choice button kbd{color:#2a1606;background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.3)}
+.signoff{min-height:44px;padding:.4rem 1rem;border-radius:10px;background:var(--amber);color:#2a1606;font-weight:800;margin-top:.3rem;box-shadow:0 3px 0 #8a4d0e}
+.bfoot{padding:.8rem 1.2rem;color:var(--dim);font-size:.95rem;line-height:1.4}
+.toast{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 70px);transform:translate(-50%,-10px);z-index:60;background:#0d0a07;border:1px solid var(--amber);color:var(--cream);padding:.7rem 1.1rem;border-radius:12px;font-weight:600;opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;max-width:92vw;text-align:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* crew */
+.crew{display:flex;flex-direction:column;gap:.7rem}
+.ccard{position:relative;display:grid;grid-template-columns:7rem 1fr;align-items:center;gap:.6rem;min-height:8.6rem;padding:.6rem .9rem .6rem .5rem;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-shadow:0 12px 30px rgba(0,0,0,.35);text-align:left;width:100%;transition:transform .2s,border-color .2s}
+@media (hover:hover){.ccard:hover{border-color:var(--amber);transform:translateX(-3px)}}
+.ccard.drop{border-color:var(--amber);box-shadow:0 0 0 3px rgba(255,179,71,.5)}
+.ccard.ready{box-shadow:0 0 0 2px rgba(63,208,201,.55),0 12px 30px rgba(0,0,0,.35)}
+.ccard .art{position:relative;width:7rem;height:7.6rem}
+.ccard .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5));animation:bob 3.2s ease-in-out infinite}
+.ccard.work .art img{animation:busy .45s ease-in-out infinite}
+.ccard.stuck .art img{animation:huh 1.2s ease-in-out infinite}
+.ccard.cheer .art img{animation:hop .6s cubic-bezier(.2,1.6,.4,1) 2}
+@keyframes busy{50%{transform:translateY(-4px) rotate(-2deg)}}
+@keyframes huh{0%,100%{transform:rotate(0)}30%{transform:rotate(-7deg)}60%{transform:rotate(5deg)}}
+@keyframes hop{50%{transform:translateY(-18px) scale(1.06)}}
+.ccard .who{font-family:var(--disp);font-weight:700;font-size:1.15rem}
+.ccard .role{color:var(--dim);font-size:.95rem;margin-top:.1rem}
+.ccard .st{margin-top:.45rem;font-weight:600;font-size:.95rem;color:var(--teal);display:flex;align-items:center;gap:.4rem;min-height:1.4em}
+.ccard.stuck .st{color:#ff8a9a}
+.ccard .kh{position:absolute;right:.6rem;top:.55rem}
+.dots i{display:inline-block;width:.38rem;height:.38rem;margin-right:.18rem;border-radius:50%;background:var(--amber);animation:dot 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{50%{opacity:.2;transform:translateY(-3px)}}
+.bubble{position:absolute;left:4.6rem;top:.2rem;background:var(--cream);color:#2a1606;font-weight:800;border-radius:10px;padding:.05rem .45rem;font-size:1rem;opacity:0;transform:scale(.6);transition:all .25s cubic-bezier(.2,1.6,.4,1)}
+.ccard.stuck .bubble{opacity:1;transform:scale(1)}
+.spark{position:fixed;pointer-events:none;z-index:70;width:.5rem;height:.5rem;border-radius:50%}
+.ghost{position:fixed;z-index:80;pointer-events:none;padding:.6rem .9rem;border-radius:10px;background:var(--amber);color:#2a1606;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.5);transform:translate(-50%,-120%)}
+
+/* phone: items become cards, crew becomes a dock */
+@media (max-width:899px),(max-aspect-ratio:1/1){
+  html{scroll-padding-bottom:170px;scroll-padding-top:20px}
+  .cols{display:none}
+  .item{grid-template-columns:1fr auto;grid-template-areas:"nm nm" "ow st" "up up";gap:.45rem .5rem;padding:.8rem .9rem .8rem 1.1rem}
+  .item .nm{grid-area:nm}.item .owner{grid-area:ow}.item .status{grid-area:st;min-width:8.6rem;margin:0}.item .upd{grid-area:up;padding-left:0}
+  .crew{position:fixed;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:0;padding:6px 4px calc(env(safe-area-inset-bottom,0px) + 6px);background:rgba(18,12,8,.96);box-shadow:inset 0 1px 0 var(--line)}
+  .ccard{display:flex;flex-direction:column;align-items:center;min-height:0;padding:4px 2px;border-radius:12px;background:transparent;border:1px solid transparent;box-shadow:none;gap:0;text-align:center;flex:1;min-width:0}
+  .ccard .art{width:56px;height:58px}
+  .ccard .who{font-family:var(--sans);font-size:16px;font-weight:700}
+  .ccard .role{display:none}
+  .ccard .st{margin:0;font-size:13px;justify-content:center;min-height:16px;white-space:nowrap}
+  .ccard .st .t{display:none}
+  .ccard .bubble{left:auto;right:4px;top:0}
+  .ccard.ready{box-shadow:none;border-color:rgba(63,208,201,.6)}
+}
+
+/* finale */
+.show{position:fixed;inset:0;z-index:50;background:#000;overflow:hidden}
+.show.hide{display:none}
+.show .venue{position:absolute;inset:0;background:url(img/venue-wide-1x.webp) center/cover no-repeat;filter:brightness(.06) saturate(.6);transition:filter .35s}
+@media (min-width:1921px),(min-resolution:1.5dppx) and (min-aspect-ratio:1/1){.show .venue{background-image:url(img/venue-wide.webp)}}
+@media (max-aspect-ratio:1/1){.show .venue{background-image:url(img/venue-tall.webp)}}
+.beams{position:absolute;inset:-20% -10% 0;opacity:0;transition:opacity .8s;mix-blend-mode:screen;pointer-events:none}
+.beams i{position:absolute;bottom:0;width:22%;height:120%;transform-origin:50% 100%;background:linear-gradient(0deg,rgba(255,220,150,.0),rgba(255,220,150,.35) 40%,rgba(255,220,150,0));filter:blur(8px);clip-path:polygon(45% 100%,55% 100%,100% 0,0 0);animation:sweep 5s ease-in-out infinite alternate}
+.beams i:nth-child(2n){background:linear-gradient(0deg,rgba(63,208,201,0),rgba(63,208,201,.35) 40%,rgba(63,208,201,0));animation-duration:6.5s}
+.beams i:nth-child(1){left:2%;--a:-28deg}.beams i:nth-child(2){left:22%;--a:-12deg}.beams i:nth-child(3){left:40%;--a:6deg}.beams i:nth-child(4){left:58%;--a:14deg}.beams i:nth-child(5){left:76%;--a:28deg}
+@keyframes sweep{from{transform:rotate(var(--a))}to{transform:rotate(calc(var(--a) * -1))}}
+.show.lit .beams{opacity:1}
+.banner{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 2%;font-family:var(--disp);font-weight:800;color:#3a1f08;opacity:0;transition:opacity .8s;line-height:1.1;text-shadow:0 1px 0 rgba(255,255,255,.4)}
+.show.lit .banner{opacity:1}
+.cap{position:absolute;left:50%;transform:translateX(-50%);width:min(94vw,70rem);text-align:center;opacity:0;transition:opacity 1s,transform 1s}
+.cap.on{opacity:1}
+
+.cap .l1{font-family:var(--disp);font-weight:800;font-size:clamp(26px,3.1rem,84px);line-height:1.05;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.9),0 0 30px rgba(255,179,71,.5)}
+.cap .l2{margin-top:.8rem;font-size:clamp(18px,1.5rem,40px);font-weight:600;color:var(--amber2);text-shadow:0 2px 14px rgba(0,0,0,.9)}
+.cap .l2 em{font-style:normal;color:#fff}
+.cap .l3{margin-top:.7rem;font-size:clamp(16px,1.05rem,26px);font-weight:600;color:#fff3e0;text-shadow:0 2px 12px rgba(0,0,0,.95)}
+.cap .l3 b{color:var(--teal)}
+.hardnote{min-height:1.2em;margin-top:.3rem;font-size:1rem;color:var(--amber2)}
+.proof{display:block;margin:.35rem 0 .1rem;padding:.35rem .6rem;border-radius:8px;background:#0d0a07;color:var(--teal);font-weight:600}
+.lineup{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:clamp(2px,1.5vw,2rem);opacity:0;transition:opacity 1s}
+.lineup.on{opacity:1}
+.lineup img{width:clamp(60px,8rem,210px);height:clamp(60px,8rem,210px);object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));animation:hop 1.1s ease-in-out infinite}
+.lineup img:nth-child(2){animation-delay:.15s}.lineup img:nth-child(3){animation-delay:.3s}.lineup img:nth-child(4){animation-delay:.45s}.lineup img:nth-child(5){animation-delay:.6s}
+.endrow{position:absolute;left:0;right:0;display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;opacity:0;transition:opacity .8s;padding:0 16px}
+.endrow.on{opacity:1}
+canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+@media (max-aspect-ratio:1/1){.show .cap .l1{font-size:min(8.4vw,44px)}.show .cap .l2{font-size:18px}.show .lineup img{width:16vw;height:16vw}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}.beams i{animation:none}.show .venue{transition:filter .2s}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/ledger.js"></script>
+</head>
+<body>
+
+<article class="static">
+  <h1>Mission Control: Executive Producer</h1>
+  <p>Eric runs a GGP event launch on a board in his own format: Board, then Group, then Item, with an Owner, a Status, and the latest update. His AI crew does the work. He assigns, makes the calls only he can make, and signs off on the Definition of Done.</p>
+  <img src="img/poster.jpg" alt="A venue from the back of the room, spotlights in teal and gold sweeping over an empty stage, a blank glowing banner, a cheering crowd in silhouette.">
+  <h2>The crew</h2>
+  <ul>
+    <li><strong>Darby</strong>: builds and delivers</li>
+    <li><strong>dot</strong>: reviews</li>
+    <li><strong>Astra</strong>: checks sources</li>
+    <li><strong>Tasklet</strong>: email and calendar</li>
+    <li><strong>Ideas</strong>: that's Gordon, big swings</li>
+  </ul>
+  <h2>GGP Launch Board &gt; Launch Week</h2>
+  <table>
+    <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
+    <tr><td>Lock the venue and date</td><td>Tasklet</td><td>Done</td></tr>
+    <tr><td>Run of show, minute by minute</td><td>Darby</td><td>Done</td></tr>
+    <tr><td>Review the speaker lineup</td><td>dot</td><td>Done</td></tr>
+    <tr><td>Tech check: stream, mics, slides</td><td>Darby</td><td>Done</td></tr>
+    <tr><td>The wow moment</td><td>Ideas</td><td>Done</td></tr>
+    <tr><td>Check the social posts</td><td>Astra</td><td>Done</td></tr>
+    <tr><td>Review the partner thank-yous</td><td>dot</td><td>Done</td></tr>
+    <tr><td>Partner shout-out in the opener (comes in late)</td><td>Astra</td><td>Done</td></tr>
+    <tr><td>Day-of checklist (comes in late)</td><td>Tasklet</td><td>Done</td></tr>
+    <tr><td>Definition of Done check</td><td>Eric, Executive Producer</td><td>Done</td></tr>
+  </table>
+  <h2>Then it ships</h2>
+  <p>The stage lights come up one bank at a time, the room applauds, and the line reads: <strong>Every great crew needs an Executive Producer.</strong> And the season's theme: <strong>he brings the ideas, you bring the follow-through.</strong></p>
+  <p>Turn on JavaScript to run the launch yourself, with sound.</p>
+  <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
+</article>
+
+<div class="app" id="app">
+  <div class="room"></div>
+  <div class="top">
+    <a class="b" href="../../index.html" data-board="../../">Back to the board</a>
+    <h1>Mission Control: Executive Producer</h1>
+    <span class="sp"></span>
+    <button class="b" id="mute" aria-pressed="false"><span>Sound on</span><kbd>M</kbd></button>
+    <button class="b" id="fs"><span>Full screen</span><kbd>F</kbd></button>
+  </div>
+
+  <section class="screen intro" id="intro">
+    <div class="icard">
+      <div class="kick">For Eric, from Gordon and Darby</div>
+      <h2>Mission Control: <span>Executive Producer</span></h2>
+      <p>Your crew is standing by. You set the plan, they do the work, and you make the calls only you can make.</p>
+      <div class="crewrow" aria-hidden="true">
+        <figure><img src="img/crew-darby.webp" alt=""><figcaption>Darby</figcaption></figure>
+        <figure><img src="img/crew-dot.webp" alt=""><figcaption>dot</figcaption></figure>
+        <figure><img src="img/crew-astra.webp" alt=""><figcaption>Astra</figcaption></figure>
+        <figure><img src="img/crew-tasklet.webp" alt=""><figcaption>Tasklet</figcaption></figure>
+        <figure><img src="img/crew-ideas.webp" alt=""><figcaption>Ideas</figcaption></figure>
+      </div>
+      <div class="namer">
+        <div class="lbl">Name the launch, your way</div>
+        <div class="chips" data-g="ev"></div>
+        <div class="chips" data-g="vn" style="margin-top:.5rem"></div>
+        <div class="chips" data-g="dt" style="margin-top:.5rem"></div>
+        <div class="preview"><span id="pv"></span><small>Event @ Venue (Day, time). Named the way you name them.</small></div>
+      </div>
+      <div id="hardhost"></div><div class="hardnote" id="hardnote"></div>
+      <div class="row"><button class="go" id="open">Open the board <kbd>Enter</kbd></button></div>
+    </div>
+  </section>
+
+  <section class="screen hide" id="boardScr">
+    <div class="deck">
+      <div class="board">
+        <div class="bhead">
+          <div class="crumb"><b>GGP Launch Board</b><i>&gt;</i>Launch Week</div>
+          <div class="battery" id="bat" aria-hidden="true"><span style="background:var(--done)"></span><span style="background:var(--work)"></span><span style="background:var(--stuck)"></span><span style="background:var(--ns)"></span></div>
+          <div class="bcount" id="bcount">0 of 7 Done</div>
+          <div class="ename" id="ename"></div>
+        </div>
+        <div class="group">Launch Week</div>
+        <div class="cols" aria-hidden="true"><div>Item</div><div>Owner</div><div style="text-align:center">Status</div><div style="padding-left:.6rem">Latest update</div></div>
+        <div id="items" role="list"></div>
+        <div class="bfoot" id="bfoot">Pick an item, then a crew member. Or drag an item onto a crew card.<span class="kh"> Keys: <kbd>&uarr;</kbd><kbd>&darr;</kbd> pick, <kbd>1</kbd> to <kbd>5</kbd> assign.</span></div>
+      </div>
+      <div class="crew" id="crew"></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="show hide" id="show">
+    <div class="venue" id="venue"></div>
+    <div class="beams"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="banner" id="banner"></div>
+    <canvas class="fx" id="fx"></canvas>
+    <div class="cap" id="cap"><div class="l1">Every great crew needs an Executive Producer.</div><div class="l2"><em>He brings the ideas. You bring the follow-through.</em></div><div class="l3" id="calls"></div></div>
+    <div class="lineup" id="lineup"><img src="img/crew-darby.webp" alt="Darby"><img src="img/crew-dot.webp" alt="dot"><img src="img/crew-astra.webp" alt="Astra"><img src="img/crew-tasklet.webp" alt="Tasklet"><img src="img/crew-ideas.webp" alt="Ideas"></div>
+    <div class="endrow" id="endrow"><button class="go" id="again">Run another launch <kbd>R</kbd></button><a class="go alt" href="../../index.html" data-board="../../">Back to the board <kbd>B</kbd></a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $=function(s){return document.querySelector(s)};
+var CREW=[
+  {k:'darby',n:'Darby',role:'Builds and delivers'},
+  {k:'dot',n:'dot',role:'Reviews'},
+  {k:'astra',n:'Astra',role:'Checks sources'},
+  {k:'tasklet',n:'Tasklet',role:'Email and calendar'},
+  {k:'ideas',n:'Ideas',role:"That's Gordon. Big swings."}
+];
+var ITEMS=[
+  {n:'Lock the venue and date',best:'tasklet',work:'Holding the calendar',done:'Venue held. Calendar invites are out.'},
+  {n:'Run of show, minute by minute',best:'darby',work:'Drafting the run of show',done:'Run of show drafted. Every minute accounted for.'},
+  {n:'Review the speaker lineup',best:'dot',work:'Reviewing the lineup',stuckAt:.45,q:'Two guests want the opening slot. Your call?',opts:['Alphabetical, keep it fair','Whoever said yes first'],done:'Lineup reviewed. Speaking order locked.'},
+  {n:'Tech check: stream, mics, slides',best:'darby',work:'Testing the stream',stuckAt:.55,q:'Backup plan if the stream drops?',opts:['Backup laptop on standby','Spare mic and a hotspot'],done:'Tech check passed. Backup ready.'},
+  {n:'The wow moment',best:'ideas',work:'Having ideas',stuckAt:.4,q:'I have eleven ideas. Pick one?',opts:['The one with confetti','Surprise me'],done:'Wow moment locked. Confetti cleared with the venue.'},
+  {n:'Check the social posts',best:'astra',work:'Checking every name and link',done:'Three posts checked. Every name and link verified.'},
+  {n:'Review the partner thank-yous',best:'dot',work:'Reviewing the thank-yous',done:'Thank-you notes reviewed and ready for your signature.'},
+  {n:'Partner shout-out in the opener',best:'astra',late:20,work:'Checking the partner details',done:'Shout-out written. Names and spellings double-checked.'},
+  {n:'Day-of checklist',best:'tasklet',late:36,work:'Building the checklist',done:'Day-of checklist sent to the whole crew.'}
+];
+var NAMES={ev:['GGP Weekly Connect','IGNITE Impact Challenge Kickoff','D&D night'],vn:['The Dragon House','Stoughton','Madison'],dt:['Thursday, 7:00 PM','Saturday, 10:00 AM','Tuesday, 12:00 PM']};
+var pick={ev:0,vn:0,dt:0};
+/* calls only Eric can make. Hard mode on a return visit draws 3 from this pool, rotated by month and visit.
+   Detail calls (det) hide one wrong field in a proof; catching it is the call. Missing it never fails: the crew double-checks. */
+function swapOne(g){ var o=NAMES[g].slice(); o.splice(pick[g],1); return o[(new Date().getMonth()+pick.ev)%o.length]; }
+function nameWith(g,v){ var c={ev:NAMES.ev[pick.ev],vn:NAMES.vn[pick.vn],dt:NAMES.dt[pick.dt]}; c[g]=v; return c.ev+' @ '+c.vn+' ('+c.dt+')'; }
+var CALLS=[
+  {id:'opening',q:function(){return 'Two guests want the opening slot. Your call?';},opts:['Alphabetical, keep it fair','Whoever said yes first']},
+  {id:'stream',q:function(){return 'Backup plan if the stream drops?';},opts:['Backup laptop on standby','Spare mic and a hotspot']},
+  {id:'wow',q:function(){return 'I have eleven ideas. Pick one?';},opts:['The one with confetti','Surprise me']},
+  {id:'proof-day',det:0,q:function(){ return 'Banner proof. Every detail right?<span class="proof">'+nameWith('dt',swapOne('dt'))+'</span>';},opts:['The day is wrong','Ship it as is'],fix:'the day'},
+  {id:'proof-venue',det:0,q:function(){ return 'Banner proof. Every detail right?<span class="proof">'+nameWith('vn',swapOne('vn'))+'</span>';},opts:['The venue is wrong','Ship it as is'],fix:'the venue'},
+  {id:'credits',det:0,q:function(){ return 'Run of show credits. Every name right?<span class="proof">Darby, dot, Asta, Tasklet, Ideas</span>';},opts:['Astra is misspelled','Looks right'],fix:'a crew name'},
+  {id:'doors',q:function(){return 'When do doors open?';},opts:['30 minutes early','15 minutes early']},
+  {id:'qa',q:function(){return 'We are running long. Your call?';},opts:['Trim the intro, keep the Q and A','End on time, Q and A after']},
+  {id:'thanks',q:function(){return 'Who gets the first thank-you on stage?';},opts:['The crew','The partners']}
+];
+var HARD=false, drawn=[], answers=[];
+/* every call Eric makes hands a head start to one of the two Items that arrive later (DESIGN: the call sets which later Item gets an assist) */
+var LATE=ITEMS.filter(function(d){return d.late;}), HEAD={}, heads=[];
+function headFor(j){ return LATE[j%LATE.length]; }
+function giveHead(t,fromItem){
+  var add=.35; HEAD[t.n]=Math.min(.7,(HEAD[t.n]||0)+add); heads.push({to:t.n,from:fromItem});
+  var x=items.filter(function(y){return y.d===t;})[0];
+  if(x){ if(x.st==='work'){ x.p=Math.min(.95,x.p+add); x.fill.style.width=(x.p*100)+'%'; burst(x.stEl,10,'#3fd0c9'); x.upd.innerHTML=x.upd.innerHTML.replace(/<em class="hd">.*?<\/em>/,'')+'<em class="hd"> Head start from your call.</em>'; }
+    else if(x.st==='ns'){ x.head=HEAD[t.n]; x.upd.textContent='Head start from your call: '+Math.round(x.head*100)+'% done already.'; x.fill.style.width=(x.head*100)+'%'; burst(x.el,8,'#3fd0c9'); } }
+  toast('Head start for "'+t.n+'".');
+}
+function drawCalls(){
+  if(!HARD){ drawn=[CALLS[0],CALLS[1],CALLS[2]]; return drawn; }
+  var d=new Date(), v=0; try{ v=window.ledger?(+ledger.get().visits||0):0; }catch(e){}
+  var seed=d.getMonth()+v*2, det=CALLS.filter(function(c){return c.det!=null;}), gen=CALLS.filter(function(c){return c.det==null;});
+  var a=gen[seed%gen.length], b=gen[(seed+2)%gen.length], c=det[seed%det.length];
+  drawn=[a,c,b]; return drawn;
+}
+function eventName(){return NAMES.ev[pick.ev]+' @ '+NAMES.vn[pick.vn]+' ('+NAMES.dt[pick.dt]+')';}
+
+/* ---------- audio ---------- */
+var AC=null,master=null,bufs={},muted=false,groove=null,grooveG=null,typing=null,typingG=null;
+var SND=['groove','typing','fanfare','applause','assign','done','stuck','unblock','lights','launch','go','intro'];
+function initAudio(){
+  if(AC) return; try{AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.gain.value=muted?0:1; master.connect(AC.destination);
+    SND.forEach(function(n){ fetch('snd/'+n+'.mp3').then(function(r){return r.arrayBuffer()}).then(function(a){return new Promise(function(res,rej){AC.decodeAudioData(a,res,rej)})}).then(function(b){bufs[n]=b; if(n==='groove'&&state==='board'&&!groove)startGroove(); if(n==='typing'&&!typing)startTyping(); if(n==='intro'&&pendingIntro){pendingIntro=false;play('intro');}}).catch(function(){}); });
+  }catch(e){AC=null}
+}
+function play(n,g){ if(!AC||!bufs[n]) return null; var s=AC.createBufferSource(); s.buffer=bufs[n]; var gg=AC.createGain(); gg.gain.value=g==null?1:g; s.connect(gg); gg.connect(master); s.start(); return s; }
+function loopSrc(n){ var s=AC.createBufferSource(); s.buffer=bufs[n]; s.loop=true; s.loopStart=.05; s.loopEnd=bufs[n].duration-.05; var g=AC.createGain(); s.connect(g); g.connect(master); return [s,g]; }
+function startGroove(){ if(!AC||!bufs.groove||groove) return; var a=loopSrc('groove'); groove=a[0]; grooveG=a[1]; grooveG.gain.value=0; groove.start(0,.05); grooveG.gain.linearRampToValueAtTime(1,AC.currentTime+1.5); }
+function startTyping(){ if(!AC||!bufs.typing||typing) return; var a=loopSrc('typing'); typing=a[0]; typingG=a[1]; typingG.gain.value=0; typing.start(0,.05); }
+function setTyping(on){ if(!typingG) return; typingG.gain.setTargetAtTime(on?1:0,AC.currentTime,.12); }
+function fadeGroove(){ if(!grooveG) return; grooveG.gain.setValueAtTime(grooveG.gain.value,AC.currentTime); grooveG.gain.linearRampToValueAtTime(0,AC.currentTime+1.2); var g=groove; groove=null; setTimeout(function(){try{g.stop()}catch(e){}},1400); }
+function applyMute(m){ muted=m; if(master) master.gain.value=m?0:1; $('#mute span').textContent=m?'Sound off':'Sound on'; $('#mute').setAttribute('aria-pressed',m?'true':'false'); }
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function setMute(m){ if(window.ledger) ledger.setSound(!m); else applyMute(m); }
+if(window.ledger) ledger.bindSound(function(on){ applyMute(!on); });
+var pendingIntro=false;
+
+/* ---------- intro: name the launch ---------- */
+Object.keys(NAMES).forEach(function(g){
+  var box=document.querySelector('.chips[data-g='+g+']');
+  NAMES[g].forEach(function(v,i){ var b=document.createElement('button'); b.className='chip'; b.textContent=v; b.setAttribute('aria-pressed',i===pick[g]?'true':'false');
+    b.addEventListener('click',function(){ pick[g]=i; [].forEach.call(box.children,function(c,j){c.setAttribute('aria-pressed',j===i?'true':'false')}); renderName(); if(AC) play('assign',.8); });
+    box.appendChild(b); });
+});
+function renderName(){ $('#pv').textContent=eventName(); }
+renderName();
+
+/* ---------- board ---------- */
+var bt=0, state='intro', items=[], crew={}, sel=-1, epRow=null, t=0, last=0, launched=false;
+var itemsEl=$('#items'), crewEl=$('#crew');
+CREW.forEach(function(c,i){
+  var b=document.createElement('button'); b.className='ccard'; b.type='button'; b.dataset.k=c.k;
+  b.setAttribute('aria-label','Assign to '+c.n+', key '+(i+1));
+  b.innerHTML='<div class="art"><img alt="" src="img/crew-'+c.k+'.webp"><div class="bubble">?</div></div><div><div class="who">'+c.n+'</div><div class="role">'+c.role+'</div><div class="st"><span class="t">Ready</span></div></div><kbd class="kh">'+(i+1)+'</kbd>';
+  crewEl.appendChild(b);
+  crew[c.k]={c:c,el:b,st:b.querySelector('.st'),busy:null};
+  b.addEventListener('click',function(){ if(dragging) return; crewTap(c.k); });
+});
+function buildItems(){
+  itemsEl.innerHTML=''; items=[]; sel=-1; epRow=null; bt=0;
+  ITEMS.forEach(function(d){ if(!d.late) addItem(d); });
+  sel=0; paintSel();
+}
+function addItem(d){
+  var i=items.length;
+    var r=document.createElement('div'); r.className='item'; r.setAttribute('role','listitem'); r.tabIndex=0;
+    r.innerHTML='<div class="nm">'+d.n+'</div><div class="owner"><span class="none"></span><span class="on">Unassigned</span></div><div class="status ns"><div class="fill"></div><span>Not started</span></div><div class="upd">Waiting for an owner.</div>';
+    itemsEl.appendChild(r);
+    var it={i:i,d:d,el:r,own:r.querySelector('.owner'),stEl:r.querySelector('.status'),fill:r.querySelector('.fill'),stTx:r.querySelector('.status span'),upd:r.querySelector('.upd'),
+      st:'ns',who:null,p:0,dur:0,stuckDone:false};
+    r.addEventListener('click',function(e){ if(dragging||e.target.closest('.choice')) return; select(i); });
+    r.addEventListener('keydown',function(e){ if(e.key==='Enter'&&it.st==='ns'){ select(i);} });
+    r.addEventListener('pointerdown',function(e){ startDrag(e,it); });
+    items.push(it);
+    if(d.late){ r.classList.add('ep'); it.head=HEAD[d.n]||0; r.querySelector('.upd').textContent=it.head?'Just came in, '+Math.round(it.head*100)+'% done already: head start from your call.':'Just came in. Needs an owner.'; if(it.head) it.fill.style.width=(it.head*100)+'%'; toast('New item: '+d.n); play('assign'); if(sel<0||!items[sel]||items[sel].st!=='ns'){sel=i;} paintSel(); counts(); }
+}
+function paintSel(){ items.forEach(function(it,i){it.el.classList.toggle('sel',i===sel)}); var ready=sel>=0&&items[sel]&&items[sel].st==='ns';
+  CREW.forEach(function(c){ crew[c.k].el.classList.toggle('ready', ready && !crew[c.k].busy); }); }
+function select(i){ var it=items[i]; if(!it) return; if(it.st!=='ns'){ if(it.st==='stuck'){ var b=it.el.querySelector('.choice button'); if(b) b.focus(); } sel=i; paintSel(); return; } sel=i; paintSel(); if(AC) play('assign',.5); }
+function nextOpen(){ for(var i=0;i<items.length;i++) if(items[i].st==='ns') return i; return -1; }
+function toast(s){ var el=$('#toast'); el.textContent=s; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(function(){el.classList.remove('on')},2200); }
+function crewTap(k){
+  if(state!=='board') return;
+  var cr=crew[k];
+  if(cr.busy){ if(cr.busy.st==='stuck'){ var b=cr.busy.el.querySelector('.choice button'); if(b){b.focus(); cr.busy.el.scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});} return; }
+    toast(cr.c.n+' is mid-task. Pick someone who is free.'); shake(cr.el); return; }
+  var i = (sel>=0 && items[sel] && items[sel].st==='ns') ? sel : nextOpen();
+  if(i<0){ toast('Every item has an owner. Let them cook.'); return; }
+  assign(items[i],k);
+}
+function shake(el){ if(RM) return; el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260}); }
+function assign(it,k){
+  var cr=crew[k]; if(cr.busy||it.st!=='ns') return;
+  it.who=k; cr.busy=it; it.st='work'; it.p=it.head||0; var match=it.d.best===k; it.dur=match?10:15;
+  it.own.innerHTML='<img alt="" src="img/crew-'+k+'.webp"><span class="on">'+cr.c.n+'</span>';
+  setStatus(it,'work','Working on it');
+  it.upd.innerHTML=(match?'<b>Perfect match.</b> ':'')+cr.c.n+': '+it.d.work+'...';
+  cr.el.classList.add('work'); cr.st.innerHTML='<span class="dots"><i></i><i></i><i></i></span><span class="t">'+it.d.work+'</span>';
+  play('assign'); if(match) burst(cr.el,10,'#3fd0c9');
+  var n=nextOpen(); sel=n; paintSel(); counts();
+}
+function setStatus(it,cls,txt){ it.stEl.className='status '+cls+(RM?'':' flip'); it.stTx.textContent=txt; if(cls!=='work') it.fill.style.width='0'; }
+function stuck(it){
+  it.st='stuck'; setStatus(it,'stuck','Stuck'); play('stuck');
+  var cr=crew[it.who]; cr.el.classList.remove('work'); cr.el.classList.add('stuck'); cr.st.innerHTML='<span class="t">Needs your call</span>';
+  var si=ITEMS.filter(function(d){return d.stuckAt;}).indexOf(it.d); it.call=drawn[si]||CALLS[si]||CALLS[0];
+  it.upd.innerHTML='<b>'+cr.c.n+':</b> '+it.call.q()+'<div class="choice">'+it.call.opts.map(function(o,j){return '<button type="button" data-j="'+j+'">'+o+' <kbd>'+(j?'J':'U')+'</kbd><small>Head start: '+headFor(j).n+'</small></button>'}).join('')+'</div>';
+  [].forEach.call(it.upd.querySelectorAll('.choice button'),function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); unblock(it,+b.dataset.j); }); });
+  counts();
+}
+function unblock(it,j){
+  if(it.st!=='stuck') return;
+  it.stuckDone=true; it.st='work'; setStatus(it,'work','Working on it'); play('unblock');
+  var cr=crew[it.who]; cr.el.classList.remove('stuck'); cr.el.classList.add('work'); cr.st.innerHTML='<span class="dots"><i></i><i></i><i></i></span><span class="t">'+it.d.work+'</span>';
+  var c=it.call||CALLS[0], caught=c.det!=null&&j===c.det, missed=c.det!=null&&j!==c.det;
+  var hd=headFor(j); answers.push({id:c.id,pick:c.opts[j],detail:c.det!=null,caught:caught,head:hd.n});
+  it.upd.innerHTML='<b>You:</b> '+c.opts[j]+'. <b>'+cr.c.n+':</b> '+(caught?'Good catch. Fixed.':missed?'Double-checked, and '+c.fix+' was off. Fixed.':'On it.')+' <em>Head start to '+hd.n+'.</em>'; giveHead(hd,it.d.n);
+  if(caught){ play('done',.6); try{ if(window.ledger) ledger.first('mc-catch','First detail caught in Mission Control'); }catch(e){} }
+  burst(it.stEl,12,'#ffd28a'); counts();
+}
+function finish(it){
+  it.st='done'; it.p=1; setStatus(it,'done','Done'); play('done');
+  var cr=crew[it.who]; cr.busy=null; cr.el.classList.remove('work','stuck'); cr.el.classList.add('cheer'); setTimeout(function(){cr.el.classList.remove('cheer')},1300);
+  cr.st.innerHTML='<span class="t">Done. Ready for more</span>';
+  it.upd.innerHTML='<b>'+cr.c.n+':</b> '+it.d.done;
+  burst(it.stEl,16,'#00c875'); counts(); paintSel();
+  checkAll();
+}
+function checkAll(){ if(items.length===ITEMS.length && items.every(function(x){return x.st==='done'})) setTimeout(addEP,700); }
+function counts(){
+  var n={done:0,work:0,stuck:0,ns:0}; items.forEach(function(it){n[it.st]++}); var T=items.length||1; if(n.ns===0&&n.work===0&&n.stuck===0&&items.length<ITEMS.length&&state==='board'){ $('#bfoot').textContent='All caught up. Something new usually comes in around now.'; }
+  var sp=$('#bat').children; sp[0].style.width=(n.done/T*100)+'%'; sp[1].style.width=(n.work/T*100)+'%'; sp[2].style.width=(n.stuck/T*100)+'%'; sp[3].style.width=(n.ns/T*100)+'%';
+  $('#bcount').textContent=n.done+' of '+T+' Done';
+  setTyping(n.work>0 && state==='board');
+}
+function addEP(){
+  if(epRow||state!=='board') return;
+  var r=document.createElement('div'); r.className='item ep'; r.setAttribute('role','listitem');
+  r.innerHTML='<div class="nm">Definition of Done check</div><div class="owner"><span class="none" style="border-color:var(--amber)"></span><span class="on">You, EP</span></div><div class="status ns"><div class="fill"></div><span>Not started</span></div><div class="upd">Every detail right? Only you can sign this one.<div class="choice"><button type="button" class="signoff" id="sign">Sign off <kbd>Enter</kbd></button></div></div>';
+  itemsEl.appendChild(r); epRow=r;
+  $('#bfoot').textContent='Every crew item is Done. One item left, and it is yours.';
+  $('#bcount').textContent=items.length+' of '+(items.length+1)+' Done';
+  play('stuck',.6);
+  r.scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});
+  $('#sign').addEventListener('click',signOff); setTimeout(function(){ var sb=$('#sign'); if(sb&&!launched) sb.focus({preventScroll:true}); },200);
+}
+function signOff(){
+  if(!epRow||launched) return; launched=true;
+  var st=epRow.querySelector('.status'); st.className='status done'+(RM?'':' flip'); st.querySelector('span').textContent='Done';
+  epRow.querySelector('.upd').innerHTML='<b>You:</b> Signed. Every detail right.';
+  $('#bcount').textContent=(items.length+1)+' of '+(items.length+1)+' Done'; play('done'); burst(st,24,'#00c875'); setTyping(false);
+  setTimeout(launch,1100);
+}
+
+/* ---------- drag (mouse and pen; touch uses tap, tap) ---------- */
+var dragging=false, drag=null;
+function startDrag(e,it){
+  if(e.pointerType==='touch'||it.st!=='ns'||state!=='board') return;
+  drag={it:it,x:e.clientX,y:e.clientY,ghost:null,id:e.pointerId};
+}
+addEventListener('pointermove',function(e){
+  if(!drag) return;
+  if(!dragging && Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>8){ dragging=true; var g=document.createElement('div'); g.className='ghost'; g.textContent=drag.it.d.n; document.body.appendChild(g); drag.ghost=g; select(drag.it.i); }
+  if(dragging){ drag.ghost.style.left=e.clientX+'px'; drag.ghost.style.top=e.clientY+'px';
+    var t=document.elementFromPoint(e.clientX,e.clientY), c=t&&t.closest('.ccard');
+    CREW.forEach(function(k){crew[k.k].el.classList.toggle('drop',crew[k.k].el===c)}); }
+});
+addEventListener('pointerup',function(e){
+  if(!drag) return;
+  if(dragging){ var t=document.elementFromPoint(e.clientX,e.clientY), c=t&&t.closest('.ccard');
+    if(drag.ghost) drag.ghost.remove(); CREW.forEach(function(k){crew[k.k].el.classList.remove('drop')});
+    if(c){ var k=c.dataset.k; if(crew[k].busy){ toast(crew[k].c.n+' is mid-task. Pick someone who is free.'); shake(c);} else assign(drag.it,k); }
+    setTimeout(function(){dragging=false},0); }
+  drag=null;
+});
+
+/* ---------- loop ---------- */
+function loop(now){
+  var dt=Math.min(.05,(now-last)/1000); last=now; t+=dt;
+  if(state==='board'){
+    bt+=dt; ITEMS.forEach(function(d){ if(d.late && bt>=d.late && !items.some(function(x){return x.d===d})) addItem(d); });
+    items.forEach(function(it){
+      if(it.st!=='work') return;
+      it.p=Math.min(1,it.p+dt/it.dur); it.fill.style.width=(it.p*100)+'%';
+      if(it.d.stuckAt && !it.stuckDone && it.p>=it.d.stuckAt) stuck(it);
+      else if(it.p>=1) finish(it);
+    });
+  }
+  stepFx(dt);
+  requestAnimationFrame(loop);
+}
+
+/* ---------- finale ---------- */
+var fx=$('#fx'), cx=fx.getContext('2d'), parts=[];
+function sizeFx(){ var d=window.devicePixelRatio||1; fx.width=innerWidth*d; fx.height=innerHeight*d; placeBanner(); }
+function placeBanner(){
+  var b=$('#banner'), W=innerWidth, H=innerHeight, port=W/H<1;
+  var iw=port?1520:3840, ih=port?2688:2160, box=port?[.175,.175,.82,.27]:[.29,.14,.715,.29];
+  var s=Math.max(W/iw,H/ih), dw=iw*s, dh=ih*s, ox=(W-dw)/2, oy=(H-dh)/2;
+  var x=ox+box[0]*dw, y=oy+box[1]*dh, w=(box[2]-box[0])*dw, h=(box[3]-box[1])*dh;
+  b.style.left=x+'px'; b.style.top=y+'px'; b.style.width=w+'px'; b.style.height=h+'px';
+  b.style.fontSize=Math.max(13,Math.min(h*.24,w/30))+'px';
+  var cap=$('#cap'); cap.style.top=(y+h+Math.max(16,H*.06))+'px';
+  var eb=Math.max(16,H*.035), er=$('#endrow'); er.style.bottom=eb+'px';
+  $('#lineup').style.bottom=(eb+(er.offsetHeight||60)+(port?12:H*.02))+'px';
+}
+function launch(){
+  state='show'; fadeGroove(); setTyping(false); play('launch');
+  var sh=$('#show'); sh.classList.remove('hide'); sizeFx();
+  $('#banner').textContent=eventName();
+  var nc=answers.filter(function(a){return a.caught;}).length, nd=answers.filter(function(a){return a.detail;}).length, wide=innerWidth>=1000;
+  $('#calls').innerHTML='Your calls: '+(wide?answers.map(function(a){return a.caught?'<b>caught a detail</b>':a.pick;}).join('. ')+'.':answers.length+' made.')+(nd?' Details caught: <b>'+nc+' of '+nd+'</b>.':'')+(heads.length?' Head starts handed on: <b>'+heads.length+'</b>.':'');
+  window.__mcCalls={drawn:drawn.map(function(c){return c.id;}),answers:answers.slice(),hard:HARD};
+  try{ if(window.ledger){ var pm=items.filter(function(x){return x.who===x.d.best;}).length; ledger.done('mission-control',HARD?'Launched. '+nc+' of '+nd+' details caught.':'Launched. '+pm+' of '+items.length+' perfect matches.',{event:eventName(),matches:pm,items:items.length,calls:answers.map(function(a){return a.pick;}),heads:heads.map(function(h){return h.to;}),caught:nc,details:nd,hard:HARD}); ledger.add('launches',1); } }catch(e){}
+  var v=$('#venue'); v.style.filter='brightness(.06) saturate(.6)';
+  setTimeout(function(){ play('go'); },700);
+  var L=[.25,.45,.7,1.05];
+  setTimeout(function(){ play('lights');
+    L.forEach(function(b,i){ setTimeout(function(){ v.style.filter='brightness('+b+') saturate('+(0.7+i*.12)+')'; if(i===L.length-1) sh.classList.add('lit'); },i*620); });
+  },3600);
+  setTimeout(function(){ play('fanfare'); play('applause'); confetti(); $('#cap').classList.add('on'); },6400);
+  setTimeout(function(){ $('#lineup').classList.add('on'); },7600);
+  setTimeout(function(){ $('#endrow').classList.add('on'); state='end'; $('#again').focus({preventScroll:true}); },10500);
+}
+var COLS=['#ffb347','#ffd28a','#3fd0c9','#00c875','#fff3e0','#e2445c'];
+function confetti(){ var W=innerWidth,H=innerHeight,n=RM?40:240; for(var i=0;i<n;i++) parts.push({x:W*Math.random(),y:-20-Math.random()*H*.6,vx:(Math.random()-.5)*100,vy:60+Math.random()*120,g:RM?15:60,life:9,age:0,sz:6+Math.random()*8,c:COLS[(Math.random()*COLS.length)|0],rot:Math.random()*6,vr:(Math.random()-.5)*8}); }
+function burst(el,n,c){ if(RM) n=Math.min(n,4); var r=el.getBoundingClientRect(); for(var i=0;i<n;i++){ var s=document.createElement('i'); s.className='spark'; s.style.background=c; s.style.left=(r.left+r.width/2)+'px'; s.style.top=(r.top+r.height/2)+'px'; document.body.appendChild(s);
+  var a=Math.random()*6.28, d=30+Math.random()*60; s.animate([{transform:'translate(-50%,-50%)',opacity:1},{transform:'translate(calc(-50% + '+Math.cos(a)*d+'px),calc(-50% + '+Math.sin(a)*d+'px)) scale(.3)',opacity:0}],{duration:600+Math.random()*300,easing:'cubic-bezier(.2,.8,.3,1)'}).onfinish=function(){this.effect.target.remove()}; } }
+function stepFx(dt){ if(!parts.length&&!fx._d) return; var d=window.devicePixelRatio||1,W=innerWidth,H=innerHeight; cx.setTransform(d,0,0,d,0,0); cx.clearRect(0,0,W,H); fx._d=parts.length>0;
+  for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; p.age+=dt; if(p.age>p.life||p.y>H+40){parts.splice(i,1);continue;} p.vy=Math.min(p.vy+p.g*dt,170); p.x+=p.vx*dt; p.y+=p.vy*dt; p.rot+=p.vr*dt;
+    cx.globalAlpha=1-p.age/p.life*.3; cx.fillStyle=p.c; cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot); cx.fillRect(-p.sz/2,-p.sz/4,p.sz,p.sz/2*Math.abs(Math.cos(p.rot*1.7))+1); cx.restore(); } cx.globalAlpha=1; }
+
+/* ---------- flow ---------- */
+function openBoard(){
+  initAudio(); if(AC&&AC.state==='suspended') AC.resume();
+  state='board'; launched=false; $('#intro').classList.add('hide'); $('#boardScr').classList.remove('hide'); $('#show').classList.add('hide');
+  ['#cap','#lineup','#endrow'].forEach(function(s){$(s).classList.remove('on')}); $('#show').classList.remove('lit'); parts=[];
+  $('#ename').textContent=eventName(); answers=[]; HEAD={}; heads=[]; drawCalls();
+  $('#bfoot').innerHTML='Pick an item, then a crew member. Or drag an item onto a crew card.<span class="kh"> Keys: <kbd>&uarr;</kbd><kbd>&darr;</kbd> pick, <kbd>1</kbd> to <kbd>5</kbd> assign.</span>';
+  CREW.forEach(function(c){ var cr=crew[c.k]; cr.busy=null; cr.el.className='ccard'; cr.st.innerHTML='<span class="t">Ready</span>'; });
+  buildItems(); counts(); scrollTo(0,0);
+  if(bufs.intro) play('intro'); else pendingIntro=true;
+  startGroove(); startTyping();
+}
+$('#open').addEventListener('click',openBoard);
+$('#again').addEventListener('click',function(){ $('#show').classList.add('hide'); state='intro'; $('#boardScr').classList.add('hide'); $('#intro').classList.remove('hide'); scrollTo(0,0); });
+$('#mute').addEventListener('click',function(){setMute(!muted)});
+$('#fs').addEventListener('click',toggleFs);
+function toggleFs(){ var d=document,e=d.documentElement; if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d);} else if(e.requestFullscreen) e.requestFullscreen().catch(function(){}); else if(e.webkitRequestFullscreen) e.webkitRequestFullscreen(); }
+if(!(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen)) $('#fs').style.display='none';
+addEventListener('keydown',function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey) return; var k=e.key;
+  if(k==='m'||k==='M'){setMute(!muted);return;}
+  if(k==='f'||k==='F'){toggleFs();return;}
+  if(state==='intro'){ if(k==='Enter'&&!(document.activeElement&&document.activeElement.classList.contains('chip'))){e.preventDefault();openBoard();} return; }
+  if(state==='end'){ if(k==='r'||k==='R') $('#again').click(); if(k==='b'||k==='B') location.href=(window.ledger?ledger.boardHref('../../'):'../../index.html'); return; }
+  if(state!=='board') return;
+  if(k==='ArrowDown'||k==='ArrowUp'){ e.preventDefault(); var n=items.length, i=sel<0?0:sel; i=(i+(k==='ArrowDown'?1:n-1))%n; select(i); items[i].el.focus({preventScroll:false}); return; }
+  if(k>='1'&&k<='5'){ crewTap(CREW[+k-1].k); return; }
+  if(k==='u'||k==='U'||k==='j'||k==='J'){ var s=items.filter(function(x){return x.st==='stuck'})[0]; if(s) unblock(s,(k==='u'||k==='U')?0:1); return; }
+  if(k==='Enter' && epRow && !launched){ e.preventDefault(); signOff(); }
+});
+addEventListener('resize',function(){ if(state==='show'||state==='end') sizeFx(); });
+document.addEventListener('visibilitychange',function(){ if(!AC) return; if(document.hidden) AC.suspend(); else AC.resume(); });
+last=performance.now(); requestAnimationFrame(loop);
+function applyHard(on){ HARD=!!on; $('#hardnote').textContent=HARD?'Hard: three calls drawn from a pool of nine, new each month and visit. Some hide a wrong detail.':''; }
+if(window.ledger){ ledger.hardToggle('mission-control',$('#hardhost'),applyHard,'rotating call pool'); applyHard(ledger.hard('mission-control')); }
+window.__mc={get state(){return state}, get items(){return items.map(function(x){return {st:x.st,who:x.who,best:x.d.best}})}, crew:crew, get hard(){return HARD}, get drawn(){return drawn.map(function(c){return c.id;})}, get answers(){return answers.slice()}, get heads(){return heads.slice()}, get headStart(){return JSON.parse(JSON.stringify(HEAD))}, CALLS:CALLS};
+})();
+</script>
+</body>
+</html>

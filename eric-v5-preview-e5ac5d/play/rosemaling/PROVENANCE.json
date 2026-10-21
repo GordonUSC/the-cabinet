@@ -1,0 +1,55 @@
+{
+ "_receipt_facts": "VERIFIED 2026-10-19: Stoughton Chamber of Commerce (stoughtonwi.com) says it hosts 'the largest Syttende Mai celebration in the United States'; Wikipedia (Stoughton, Wisconsin, citing Milwaukee Magazine) says the city is 'known for its Norwegian heritage' with a citywide Syttende Mai; UW-Madison Center for the Study of Upper Midwestern Cultures (folklife.wisc.edu, 'A Style of Their Own: Upper Midwestern Rosemalers') says 'Dane County in Wisconsin, and Stoughton in particular, is a center of Rogaland style' and 'Typically a symmetrical design of baroque scrolls and acanthus leaves are arranged around a central flower.' Rosemaling = Norwegian decorative folk painting with C and S scrolls, acanthus, flowers (Vesterheim, Wikipedia Rose-painting).",
+ "_code": "Painting engine, dragon-prow emblem vector (drawn from seal.png as reference only), gold rim, keepsake frame and PNG export are original canvas code. Code only assembles; every image and sound below is from a connector.",
+ "media/bench-wide.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 16:9: top-down warm aged pine painter's workbench in a Norwegian-American folk art studio, rosemaling brushes and paint pots in deep red, ochre, cream, blue-green, teal around the edges, empty center, no text (job ad3f203b-7ccd-4712-8f5a-d1086d8045fd)"
+ },
+ "media/bench-wide@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance_image_upscale 4k of job ad3f203b (job 8d68f7f3-364a-483d-bec3-ba7ac45d62d9), resized to 2880 wide"
+ },
+ "media/bench-tall.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 9:16: same workbench, pots along top and bottom edges (job 437ae4e4-4e21-4685-a6cd-e81ffbdd867b)"
+ },
+ "media/bowl.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: traditional Rogaland-style rosemaling ale bowl, symmetrical C and S scrolls, acanthus, tulips, central rose, deep red, ochre, cream, blue-green, gold on deep teal (job a91c370d-c59b-4bb6-bb93-0d36b0e2842a)"
+ },
+ "media/bowl@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance_image_upscale 2k of job a91c370d (job 8f29eaa7-5cbf-4773-80f6-ed3f005dbc3b)"
+ },
+ "media/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 45s loopable: warm cozy Norwegian folk bed, Hardanger fiddle drone and soft melody, fingerpicked nylon guitar, soft harp, slow 3/4, D major, no drums, no vocals (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen E295jUcZzG4y50lv4Bu9); whisper check: instrumental; loudnorm -22 LUFS"
+ },
+ "media/note.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: single sustained bowed Hardanger fiddle note around D, sympathetic strings (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen zjYcASWLMyuqjvrK80pi, best of 4); measured 294.0 Hz (D4); pitched in the browser to a D major folk scale [-5,-3,0,2,4,7,9,12,14,16] semitones; loudnorm -16 LUFS"
+ },
+ "media/bloom.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: rising bell tree and celesta glissando with Hardanger fiddle trill blooming into a warm chord (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen 7LqZP3KQMbiF1odEBHJD, best of 4)"
+ },
+ "media/frame.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: bright music box twinkle and glockenspiel ding rising (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen tWIr5jWlJrZ6oOJVsIzm)"
+ },
+ "_note_2026_10_20": "Wave 2: all Rogaland and Syttende Mai copy removed from the page, keepsake text and rubric (unverified against the Eric profile; no heritage claims). Prompt records below are kept as historical records of how assets were made.",
+ "media/bench-wide-1920.jpg": {
+  "tool": "higgsfield",
+  "prompt": "derived: media/bench-wide@2x.jpg (the Higgsfield bytedance 4k upscale already logged here) resized with Lanczos to 1920 wide, so a 1920x1080 PC screen at DPR 1 gets native pixels instead of the 1344 px 1x stretched 1.44x",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/bench-tall@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 437ae4e4-4e21-4685-a6cd-e81ffbdd867b (the existing 1x file's source) to 2160x3856, Lanczos to 1500 wide, JPEG q82; served as the 2x of an image-set/srcset so phones at DPR 2 to 3 get native pixels",
+  "job": "c8e71ca0-af31-46fa-b1c5-f0ad578a7736",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ }
+}

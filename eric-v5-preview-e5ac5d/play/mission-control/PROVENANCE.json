@@ -1,0 +1,117 @@
+{
+ "_fact_sources": {
+  "Board > Group > Item, Owner, Status (Done / Working on it / Stuck / Not started), 'Event @ Venue (Day, time)', Definition of Done, 'I have ideas. You have follow-through.'": "v4-play/BRIEF.md",
+  "crew names and roles (Darby, dot, Astra, Tasklet; Gordon as Ideas)": "task from main; memory project_dot_openai_agent.md, project_tasklet_agent.md",
+  "event, venue and day choices": "player-chosen placeholders, not claims about a real event"
+ },
+ "img/room-wide.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "retro 1960s mission control room as a cozy studio, walnut consoles, amber and teal screens with abstract shapes, no text, 16:9 4k (job 19049674-c56f-47d7-bd82-4d0f522a08be)",
+  "processing": "webp q80 3840; room-wide-1x.webp 1920"
+ },
+ "img/room-wide-1x.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same as room-wide (job 19049674), 1920px"
+ },
+ "img/room-tall.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same room, vertical 9:16 2k (job e9539937-7fea-49b0-83ad-3990dd8f62bd)"
+ },
+ "img/venue-wide.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "venue from the back of the room, teal and gold spotlights through haze, empty stage, blank glowing banner, crowd silhouettes, no faces, 16:9 4k (job e4f61029-5291-4f40-ad2f-3ec015fa1f92)",
+  "processing": "webp q80 3840; venue-wide-1x 1920; poster.jpg 1600 for JS-off; the event name is set in code over the blank banner"
+ },
+ "img/venue-wide-1x.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same as venue-wide (job e4f61029), 1920px"
+ },
+ "img/poster.jpg": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same as venue-wide (job e4f61029), 1600px JPEG for the JS-off page"
+ },
+ "img/venue-tall.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same venue, vertical 9:16 2k (job 90e40d98-c455-4f73-9526-e2e096a61bf6)"
+ },
+ "img/crew-darby.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "clay-toy 3D character, full body, no human face, transparent bg, 2k: Darby, terracotta robot butler with a glowing lantern head, teal bow tie, clipboard (job 2a972a7c-3fcd-4d7d-840f-b70156edbdf2); trimmed, 900px webp"
+ },
+ "img/crew-dot.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "clay-toy 3D character, full body, no human face, transparent bg, 2k: dot, glossy cobalt sphere with an orbit ring (job 5c8f70b5-8091-4349-8640-2219b5107ae7); trimmed, 900px webp"
+ },
+ "img/crew-astra.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "clay-toy 3D character, full body, no human face, transparent bg, 2k: Astra, silver-lavender star navigator with cap and brass telescope (job d3a9ea34-7a3d-41f0-aea0-daa3159b06d2); trimmed, 900px webp"
+ },
+ "img/crew-tasklet.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "clay-toy 3D character, full body, no human face, transparent bg, 2k: Tasklet, mint unicycle robot with a checkmark antenna, envelopes and calendar (job 84c8a2ba-64a9-4350-88ab-348cc004c751); trimmed, 900px webp"
+ },
+ "img/crew-ideas.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "clay-toy 3D character, full body, no human face, transparent bg, 2k: Ideas (Gordon), glowing lightbulb with a heart filament and sparkles; no likeness of Gordon (job 3c0fd161-4516-4f32-82d1-79347e2dae38); trimmed, 900px webp"
+ },
+ "snd/groove.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 48s: 1960s space-age lounge funk, vibraphone, wah guitar, bass, drums, organ, ~108 bpm, steady (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen i9rXg2zi8uV1mydjeteq, picked over wR7zsvnoQo5PNswYvqri)",
+  "processing": "1.5s crossfade loop, -24 LUFS"
+ },
+ "snd/fanfare.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 22s: triumphant launch fanfare, timpani roll, brass and strings over a funky groove, bright final chord (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen I24x8qquPN0trGWArikl)",
+  "processing": "-18 LUFS"
+ },
+ "snd/typing.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 4s: cozy fast typing on a soft mechanical keyboard, loop (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen SVGETdigLUDfVwrWd5Ok)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/done.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1.2s: rubber stamp thunk then bright two-note ascending chime (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen ba0wbY8FeCHMkbzZ9W0P)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/stuck.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1s: gentle two-note marimba 'uh oh', not alarming (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen GPZ83t7J3jrfCocgH7rU)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/unblock.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 0.9s: upward zip, cork pop, sparkle (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen Vmf0I8AsOIOfIUwdtamo)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/assign.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 0.5s: magnetic snap of a card onto a board (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen 8d893m2ZiAmY3KxcN537)",
+  "processing": "too short for loudness gating, peak set to -9 dBFS"
+ },
+ "snd/lights.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 3.5s: stage light banks switching on, heavy relay clunks, rising hum (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen t4HYiiQG15hRPSly4Hes)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/applause.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 9s: packed venue applause and cheering (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen zQVdUD7vhCJg2q8FGIdC)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/launch.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 3s: deep rumble into a bright soaring whoosh (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen uwajBApthewCHiuyvcJv)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/go.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_v4 TTS, voice 'Marc - Warm & Friendly' (pr83gb0rIZHOxsQJS6Oz): '[warmly, building excitement] Every item reads Done. Executive Producer... you are go for launch!' (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen WSmRVZwnwjaZMffAoj4t)",
+  "processing": "-16 LUFS; whisper.cpp readback: 'every item reads done. Executive Producer, you are go for launch!'"
+ },
+ "snd/intro.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_v4 TTS, voice Marc (pr83gb0rIZHOxsQJS6Oz): '[friendly, crisp] Mission Control, crew is standing by. The board is yours.' (ElevenLabs flow Z31NyOht2CJa7yn24jIO, gen 9flqJTgZGBmrOgXYwekN)",
+  "processing": "-17 LUFS; whisper.cpp readback matches"
+ }
+}

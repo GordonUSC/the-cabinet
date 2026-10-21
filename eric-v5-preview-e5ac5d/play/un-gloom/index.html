@@ -1,0 +1,484 @@
+<!doctype html>
+<!-- STYLE: Edwardian storybook acetate (Gorey-adjacent ink and crosshatch, turned sunlit with watercolor, see-through cards with gold joy seals) | WHY: Gloom's soul is stacked clear cards and a macabre storybook voice, so the homage keeps the ink and the clear plastic and flips only the feeling, to joy | ALT: Art Nouveau tarot table (Mucha borders, velvet, candlelight), richer but it would read mystical instead of family-bright -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Un-Gloom</title>
+<meta name="description" content="A see-through card game for the Francksens: stack translucent joy cards on five family portraits, where only the visible symbols count, until everyone lives happily ever after.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+html{font-synthesis-weight:none}
+:root{
+  --paper:#f7efd9; --paper2:#efe2c2; --ink:#2b2320; --ink2:#5a4a40;
+  --sun:#f5c84c; --sunlo:#c8901c; --sky:#7fc4e8; --rose:#e46a8a; --teal:#1f8a84;
+  --glass:rgba(255,252,240,.10); --glassedge:rgba(255,255,255,.75);
+}
+*{box-sizing:border-box}
+html{font-size:clamp(16px,0.5vw + 9.5px,24px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--ink);font-family:"Instrument Sans",system-ui,sans-serif;font-size:1rem;line-height:1.4;background:#bfe3f3;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;background:#bfe3f3 url(media/house-tall.jpg) center bottom/cover no-repeat;background-image:-webkit-image-set(url(media/house-tall.jpg) 1x,url(media/house-tall@2x.jpg) 2x);background-image:image-set(url(media/house-tall.jpg) 1x,url(media/house-tall@2x.jpg) 2x)}
+@media (min-aspect-ratio:1/1){.bg{background-image:url(media/house-wide-1920.jpg);background-image:-webkit-image-set(url(media/house-wide-1920.jpg) 1x,url(media/house-wide@2x.jpg) 2x);background-image:image-set(url(media/house-wide-1920.jpg) 1x,url(media/house-wide@2x.jpg) 2x)}}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(247,239,217,.35),rgba(247,239,217,0) 30%,rgba(43,35,32,.05) 70%,rgba(43,35,32,.35))}
+a{color:#7a3f12}
+.fell{font-family:"Young Serif",Georgia,serif;font-weight:400}
+.app{position:relative;z-index:auto;min-height:100vh;overflow-x:clip;display:flex;flex-direction:column;gap:10px;padding:max(10px,env(safe-area-inset-top)) 16px 16px}
+header{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.back{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:700;border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+.back:hover{background:#fff}
+h1{margin:0;font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:2rem;line-height:1;color:var(--ink);text-shadow:0 0 12px rgba(255,255,255,.9),0 0 3px #fff}
+.meter{flex:1 1 18rem;min-width:14rem;display:flex;align-items:center;gap:.6rem;background:rgba(247,239,217,.92);border:2px solid var(--ink);border-radius:999px;padding:.3rem .8rem;box-shadow:3px 3px 0 var(--ink)}
+.meter .lbl{font-family:"Young Serif",serif;font-size:1.1rem;white-space:nowrap}
+.tube{position:relative;flex:1;height:1.2rem;border-radius:999px;border:2px solid var(--ink);background:repeating-linear-gradient(45deg,#fff 0 6px,#f3ead3 6px 12px);overflow:hidden}
+.tube i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,#1f8a84,#7a1f35,#d33a2c,#2f8f3a,#f08a24,#2f6fd0);transition:width .7s cubic-bezier(.2,.9,.2,1)}
+.tube i::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,0) 60%)}
+.pct{font-weight:700;min-width:3.2em;text-align:right}
+.iconbtn{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;min-width:44px;padding:0 .8rem;border-radius:999px;background:var(--paper);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);font:700 1rem "Instrument Sans",serif;color:var(--ink);cursor:pointer}
+kbd{display:none;font:700 .8rem "Instrument Sans",serif;background:var(--ink);color:var(--paper);border-radius:4px;padding:0 .35em;min-width:1.4em;text-align:center}
+.hint{margin:0;font-style:italic;font-family:"Instrument Sans",serif;font-size:1.1rem;text-align:center;color:var(--ink);text-shadow:0 0 8px #fff,0 0 2px #fff;min-height:1.5em}
+/* portraits */
+.family{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:0;padding:0;list-style:none}
+.family li{grid-column:span 2}
+.family li:nth-child(4){grid-column:2/span 2}
+.portrait{position:relative;display:block;width:100%;aspect-ratio:2/3;padding:0;border:3px solid var(--ink);border-radius:12px;background:var(--paper);box-shadow:4px 4px 0 var(--ink);cursor:pointer;overflow:hidden;transition:transform .25s, box-shadow .25s}
+.portrait>img.face{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.portrait .nm{position:absolute;left:0;right:0;top:0;padding:.15rem .3rem;font-family:"Young Serif",serif;font-size:1.05rem;text-align:center;background:linear-gradient(90deg,var(--c1),var(--c2));color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.6);z-index:2}
+.pips{position:absolute;left:6%;right:6%;top:1.9rem;display:flex;justify-content:center;gap:2px;z-index:1}
+.pips b{width:14%;max-width:1.1rem;aspect-ratio:1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 18C3 13 1 9 1 6a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 3-2 7-9 12z' fill='%23fff' stroke='%232b2320' stroke-width='1.6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .3s}
+.pips b.on{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 18C3 13 1 9 1 6a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 3-2 7-9 12z' fill='%23e8475f' stroke='%232b2320' stroke-width='1.6'/%3E%3C/svg%3E");transform:scale(1.15)}
+.base-slot{position:absolute;right:4%;width:24%;aspect-ratio:1;border-radius:50%;border:2px dashed rgba(43,35,32,.55);background:rgba(255,255,255,.35);z-index:1}
+.portrait .s0,.ov .s0{top:24%}.portrait .s1,.ov .s1{top:45%}.portrait .s2,.ov .s2{top:66%}
+.portrait.full{box-shadow:0 0 0 4px var(--sun),4px 4px 0 var(--ink),0 0 30px rgba(245,200,76,.9)}
+.portrait.full .nm::after{content:" \2665"}
+.family.hard .pips{gap:1px}.family.hard .pips b{width:10%}
+.pips b.x{filter:hue-rotate(-20deg) saturate(.6);opacity:.75}
+.pips b.x.on{filter:none;opacity:1;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 18C3 13 1 9 1 6a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 3-2 7-9 12z' fill='%23f5c84c' stroke='%232b2320' stroke-width='1.6'/%3E%3C/svg%3E")}
+.portrait.crown{box-shadow:0 0 0 6px #f5c84c,4px 4px 0 var(--ink),0 0 44px rgba(245,200,76,1)}
+.portrait.crown .nm::before{content:"\2605 "}
+.hardnote{margin:.2rem 0 0;font-size:1rem;font-style:italic;min-height:1.2em}
+.portrait.target{transform:translateY(-6px) rotate(-1deg);box-shadow:0 0 0 4px #fff,6px 8px 0 var(--ink)}
+.portrait.low{animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{box-shadow:0 0 0 4px rgba(255,255,255,.9),4px 4px 0 var(--ink)}}
+.delta{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);z-index:30;font:700 1.6rem "Instrument Sans",serif;color:#fff;background:var(--ink);border-radius:999px;padding:.1rem .7rem;pointer-events:none;opacity:0;transition:opacity .15s}
+.portrait.target .delta{opacity:1}
+/* acetate overlay */
+.ov{position:absolute;inset:0;z-index:3;border-radius:9px;border:2px solid var(--glassedge);background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.04) 40%,rgba(255,255,255,.12));box-shadow:inset 0 0 0 1px rgba(43,35,32,.25);pointer-events:none;transform:translate(calc(var(--d)*-2px),calc(var(--d)*-2px))}
+.ov .vig{position:absolute;left:6%;top:24%;width:44%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid var(--ink);box-shadow:2px 2px 0 rgba(43,35,32,.6)}
+.ov .rib{position:absolute;left:4%;right:4%;bottom:4%;padding:.2rem .3rem;border:2px solid var(--ink);border-radius:6px;background:rgba(247,239,217,.94);font-family:"Instrument Sans",serif;font-size:1rem;line-height:1.15;text-align:center}
+.seal{position:absolute;right:4%;width:24%;aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font:700 1rem "Instrument Sans",serif;color:var(--ink);background:radial-gradient(circle at 35% 30%,#fff2b0,var(--sun) 55%,var(--sunlo));border:2px solid var(--ink);box-shadow:1px 2px 0 rgba(43,35,32,.7)}
+.seal::before{content:"";position:absolute;inset:12%;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 18C3 13 1 9 1 6a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1c0 3-2 7-9 12z' fill='%23e8475f' opacity='.35'/%3E%3C/svg%3E") center/contain no-repeat}
+.seal span{position:relative}
+.ov.fresh{animation:snapin .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes snapin{0%{transform:translate(0,-30px) scale(1.12) rotate(-4deg);opacity:.2}100%{opacity:1}}
+/* hand */
+.handwrap{margin-top:auto}
+.hand{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0;padding:0;list-style:none}
+.jcard{position:relative;width:100%;aspect-ratio:3/4.2;padding:0;border:3px solid var(--ink);border-radius:12px;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;background:linear-gradient(140deg,rgba(255,255,255,.65),rgba(232,244,250,.45) 50%,rgba(255,255,255,.6));backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);box-shadow:4px 5px 0 var(--ink);transition:transform .2s, box-shadow .2s;color:var(--ink);font:inherit;overflow:hidden}
+.jcard:hover{transform:translateY(-6px) rotate(-1deg)}
+.jcard[aria-pressed="true"]{transform:translateY(-14px) rotate(-2deg);box-shadow:0 0 0 4px var(--sun),5px 8px 0 var(--ink)}
+.jcard .vig{position:absolute;left:7%;top:6%;width:62%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:2px solid var(--ink)}
+.jcard .seal{width:24%}
+.jcard .s0{top:6%}.jcard .s1{top:27%}.jcard .s2{top:48%}
+.jcard .empty{position:absolute;right:4%;width:24%;aspect-ratio:1;border-radius:50%;border:2px dashed rgba(43,35,32,.35)}
+.jcard .ttl{position:absolute;left:5%;right:5%;bottom:5%;font-family:"Instrument Sans",serif;font-size:1rem;line-height:1.15;text-align:center}
+.jcard .ttl small{display:none;font-family:"Instrument Sans",serif;font-size:1rem;color:var(--ink2);font-style:italic;margin-top:.15rem}
+.jcard kbd{position:absolute;left:6px;bottom:6px}
+.jcard.out{transform:translateY(140%) rotate(8deg);opacity:0;transition:none}
+.jcard.enter{animation:deal .45s cubic-bezier(.2,.9,.3,1.2)}
+@keyframes deal{0%{transform:translate(60%,120%) rotate(20deg);opacity:0}100%{opacity:1}}
+.ghost{position:fixed;z-index:50;pointer-events:none;transform:translate(-50%,-50%) rotate(-4deg) scale(1.02);opacity:.93;transition:none;box-shadow:10px 14px 0 rgba(43,35,32,.5)}
+.fly{position:fixed;z-index:50;pointer-events:none;transition:transform .42s cubic-bezier(.3,.9,.3,1),opacity .42s}
+/* intro + ending */
+#snd{position:relative;z-index:61}
+.sheet{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(43,35,32,.45);overflow:auto}
+.paper{max-width:48rem;width:100%;background:var(--paper);border:3px solid var(--ink);border-radius:16px;box-shadow:8px 8px 0 var(--ink);padding:1.3rem;display:grid;gap:.8rem;position:relative}
+.paper::before{content:"";position:absolute;inset:8px;border:1px solid rgba(43,35,32,.35);border-radius:10px;pointer-events:none}
+.paper h2{margin:0;font-family:"Young Serif",serif;font-weight:400;font-size:2.4rem;line-height:1}
+.paper p{margin:0;font-size:1.05rem}
+.paper .it{font-family:"Instrument Sans",serif;font-style:italic;font-size:1.2rem}
+.big{min-height:52px;padding:.4rem 1.2rem;border-radius:999px;border:3px solid var(--ink);background:var(--sun);box-shadow:4px 4px 0 var(--ink);font:700 1.1rem "Instrument Sans",serif;color:var(--ink);cursor:pointer;justify-self:start;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem}
+.big:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.big.soft{background:var(--paper)}
+.nojs{border:2px dashed var(--ink);border-radius:10px;padding:.6rem .8rem;background:#fff8e6}
+.js .nojs{display:none}
+.jsonly{display:none}
+.js .jsonly{display:inline-flex}
+.introrow{display:flex;gap:.8rem;align-items:center}
+.introrow img{width:5.5rem;flex:none;border:3px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--ink);aspect-ratio:2/3;object-fit:cover}
+.end{display:none;position:fixed;inset:0;z-index:70;align-items:center;justify-content:center;padding:16px;overflow:auto;background:radial-gradient(ellipse at 50% 40%,rgba(255,240,190,.85),rgba(43,35,32,.6))}
+.end.on{display:flex}
+.fanzone{position:fixed;inset:0;z-index:65;pointer-events:none;overflow:hidden;contain:paint}
+.par{display:flex;align-items:center;gap:.5rem;background:rgba(247,239,217,.92);border:2px solid var(--ink);border-radius:999px;padding:.3rem .9rem;box-shadow:3px 3px 0 var(--ink);font-family:"Young Serif",serif;font-size:1.1rem;white-space:nowrap}
+.par b{font-family:"Instrument Sans",serif;font-size:1.15rem}
+.lostflash{position:absolute;left:50%;top:28%;transform:translate(-50%,-50%);z-index:31;font:700 1.7rem "Instrument Sans",serif;color:#fff;background:#9b2a20;border:2px solid #fff;border-radius:999px;padding:.1rem .8rem;pointer-events:none;white-space:nowrap;animation:lostf 1.6s ease-out forwards}
+@keyframes lostf{0%{opacity:0;transform:translate(-50%,-30%) scale(1.3)}12%{opacity:1;transform:translate(-50%,-50%) scale(1)}75%{opacity:1}100%{opacity:0;transform:translate(-50%,-120%)}}
+.portrait.lost{box-shadow:0 0 0 4px #9b2a20}
+.endcard{position:relative;max-width:min(64rem,94vw);width:100%;background:var(--paper);border:3px solid var(--ink);border-radius:18px;box-shadow:10px 10px 0 var(--ink);overflow:hidden;display:grid}
+.end.anim .endcard{animation:rise 1.1s .9s cubic-bezier(.2,.9,.2,1) both}
+@keyframes rise{0%{transform:translateY(40px) scale(.9);opacity:0}100%{opacity:1}}
+.endcard img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover;border-bottom:3px solid var(--ink)}
+.endcard .txt{padding:1rem 1.2rem 1.3rem;display:grid;gap:.5rem;text-align:center;justify-items:center}
+.endcard h2{margin:0;font-family:"Young Serif",serif;font-weight:400;font-size:2.4rem;line-height:1.02}
+.endcard .names{font-family:"Instrument Sans",serif;font-style:italic;font-size:1.3rem;margin:0}
+.endcard .ded{margin:0;font-size:1.05rem;border-top:1px dashed rgba(43,35,32,.5);padding-top:.5rem}
+.endcard .row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.toast{position:fixed;left:50%;top:12px;transform:translateX(-50%);z-index:80;background:var(--paper);border:2px solid var(--ink);border-radius:999px;padding:.4rem 1rem;font-weight:700;box-shadow:3px 3px 0 var(--ink);opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+.sparkle{position:fixed;z-index:55;pointer-events:none;width:12px;height:12px;border-radius:50%;background:var(--sun);box-shadow:0 0 10px var(--sun)}
+.rib .st,.ttl .st{display:none}
+@media (max-width:999px){
+  header{gap:8px} h1{font-size:1.55rem;flex:1;white-space:nowrap} .sl{display:none} .meter{order:5;flex-basis:100%}
+  .rib .lt,.ttl .lt{display:none} .rib .st,.ttl .st{display:inline}
+  .ov .vig{width:40%;top:22%} .ov .rib{bottom:3%}
+  .jcard .vig{width:56%;top:5%;left:6%}
+  .jcard .seal,.jcard .empty{width:22%}
+  .jcard .s0{top:5%}.jcard .s1{top:23%}.jcard .s2{top:41%}
+  .jcard .ttl{bottom:4%}
+}
+@media (hover:hover) and (pointer:fine){kbd{display:inline-block}}
+@media (min-width:1000px){
+  .app{padding:18px 32px 22px;gap:14px;height:100vh;min-height:0}
+  h1{font-size:2.6rem}
+  .family{grid-template-columns:repeat(5,1fr);gap:1.1rem;max-width:min(100%,calc((100vh - 23rem) * 3.33));margin:0 auto;width:100%}
+  .family li,.family li:nth-child(4){grid-column:auto}
+  .hand{grid-template-columns:repeat(4,1fr);gap:1.1rem;max-width:min(80rem,100%);margin:0 auto}
+  .jcard{aspect-ratio:3/1.85}
+  .jcard .vig{width:30%;left:4%;top:50%;transform:translateY(-50%)}
+  .jcard .seal,.jcard .empty{width:15%}
+  .jcard .seal,.jcard .empty{width:13%}
+  .jcard .s0{top:9%}.jcard .s1{top:36%}.jcard .s2{top:63%}
+  .jcard .ttl{left:37%;right:19%;top:50%;bottom:auto;transform:translateY(-50%);text-align:left;font-size:1.15rem}
+  .jcard .ttl small{display:block}
+  .portrait .nm{font-size:1.25rem}
+  .ov .rib{font-size:1.1rem}
+  .seal{font-size:1.15rem}
+  .introrow img{width:9rem}
+  .endcard{grid-template-columns:1.25fr 1fr}
+  .endcard img{aspect-ratio:auto;height:100%;border-bottom:0;border-right:3px solid var(--ink)}
+  .endcard .txt{align-content:center;padding:2rem}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="../../js/ledger.js"></script>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="app" id="app">
+  <header>
+    <a class="back" href="../../index.html" data-board="../../">&larr; Back to the board</a>
+    <h1>Un-Gloom</h1>
+    <div class="meter" role="img" aria-label="Family joy meter" id="meterbox"><span class="lbl">Family Joy</span><div class="tube"><i id="tube"></i></div><span class="pct" id="pct">0%</span></div>
+    <div class="par jsonly" id="par" aria-live="polite"><span id="parlbl">Par 11 plays</span> <span aria-hidden="true">/</span> Played <b id="plays">0</b></div>
+    <button class="iconbtn jsonly" id="snd" type="button" aria-pressed="true" aria-label="Sound on or off"><span aria-hidden="true">&#9835;</span><span class="sl">Sound</span> <kbd>M</kbd></button>
+  </header>
+  <p class="hint" id="hint">Drag a see-through joy card onto someone. Only the symbols that still show count.</p>
+  <ul class="family" id="family" aria-label="The Francksens"></ul>
+  <div class="handwrap"><ul class="hand" id="hand" aria-label="Your joy cards"></ul></div>
+</div>
+
+<div class="sheet" id="intro">
+  <div class="paper">
+    <h2>Un-Gloom</h2>
+    <p class="it">A see-through card game in which nothing dreadful happens to anyone at all.</p>
+    <div class="introrow">
+      <img src="media/cardback.jpg" alt="The back of a joy card: suns, hearts and vines around a white dragon-prow on teal."><img src="media/eric.jpg" alt="A storybook portrait card: a tall figure in a teal coat holding a dragon-headed walking stick.">
+      <p>Sky Ship Studios shipped <b>Gloom: Digital Edition</b> with Atlas Games and Asmodee. In Gloom you stack clear cards on a family, and only what still shows through counts. Tonight the stack counts <b>joy</b>.</p>
+    </div>
+    <p>Five portraits: Eric, Crystal, James, Henry, and Oscar. Lay joy cards on them. A card's gold seals cover the seals beneath; its clear spots let older joys shine through. Fill every heart and the family lives happily ever after.</p>
+    <p class="nojs">This card table needs JavaScript. It is a stack-the-clear-cards game for the Francksens that always ends happily ever after. <a href="../../index.html" data-board="../../">Back to the board</a>.</p>
+    <div class="jsonly" id="hardhost"></div><p class="jsonly hardnote" id="hardnote"></p>
+    <button class="big jsonly" id="begin" type="button">Deal the joy</button>
+  </div>
+</div>
+
+<div class="fanzone" id="fanzone" aria-hidden="true"></div>
+<div class="end" id="end" role="dialog" aria-modal="true" aria-labelledby="endh">
+  <div class="endcard">
+    <img src="media/ending.jpg" srcset="media/ending.jpg 1024w, media/ending@2x.jpg 2400w" sizes="(min-width:1000px) 36rem, 94vw" alt="A storybook ending: five figures holding hands in front of an 1898 Queen Anne house at sunrise, confetti in the sky.">
+    <div class="txt">
+      <h2 id="endh">The Francksens Lived Happily Ever After</h2>
+      <p class="names">Eric, Crystal, James, Henry, and Oscar</p>
+      <p id="played"></p>
+      <p class="ded">For Sky Ship Studios, Madison, 2014. The chapter that built the rest.</p>
+      <div class="row">
+        <button class="big" id="again" type="button">Deal again</button>
+        <a class="big soft" href="../../index.html" data-board="../../">Back to the board</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+'use strict';
+var RM=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+var FINE=window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches;
+var FULL=6, HARD=false, CROWN=8;
+function maxJoy(){ var m=0,w=-1; FAM.forEach(function(p,i){ var j=joy(i); if(j>m){m=j;w=i;} }); return {j:m,i:w}; }
+var FAM=[
+  {id:'eric',name:'Eric',c1:'#1f8a84',c2:'#c9a13b',alt:'Eric: a tall storybook figure in a teal coat with a dragon-headed walking stick.'},
+  {id:'crystal',name:'Crystal',c1:'#e46a8a',c2:'#b04a6a',alt:'Crystal: a storybook figure in a white pharmacist coat over a rose dress, holding a mortar and pestle.'},
+  {id:'james',name:'James',c1:'#7a1f35',c2:'#5a1426',alt:'James: a storybook child figure dressed in burgundy.'},
+  {id:'henry',name:'Henry',c1:'#d33a2c',c2:'#2f8f3a',alt:'Henry: a storybook child figure in a red coat with a green scarf and cap.'},
+  {id:'oscar',name:'Oscar',c1:'#f08a24',c2:'#2f6fd0',alt:'Oscar: a storybook child figure in an orange coat with a blue scarf and cap.'}
+];
+var CARDS=[
+  {k:'villagers',sh:'3,425 villagers',t:'Saved 3,425 villagers',s:'Minecraft Experience, Rosemont, 6/27',v:[3,0,1]},
+  {k:'pride',sh:'First Pride',t:'First Pride, Chicago',s:'June 28, 2026',v:[1,3,0]},
+  {k:'cider',sh:'Cider Camp',t:'Cider Camp',s:'Eric runs it',v:[0,1,2]},
+  {k:'dragontable',sh:'D&D night',t:'D&D night',s:'At the Dragon House',v:[2,0,2]},
+  {k:'dawn',sh:'Second Dawn',t:'Second Dawn with Crystal and Gordon',s:'The eclipse',v:[0,2,3]},
+  {k:'browncoat',sh:'Browncoat',t:'A Browncoat at heart',s:'Firefly, always',v:[2,1,0]},
+  {k:'house',sh:'Dragon House',t:'Restoring the Dragon House',s:'Queen Anne, 1898, A. E. Ovren',v:[0,0,3]},
+  {k:'connect',sh:'Weekly Connect',t:'GGP Weekly Connect',s:'Eric runs it',v:[1,1,1]},
+  {k:'ignite',sh:'IGNITE',t:'IGNITE Impact Challenge',s:'Co-led with Games for Change',v:[0,3,1]},
+  {k:'done',sh:'Status: Done',t:'Status: Done',s:'Definition of Done',v:[2,0,1]},
+  {k:'roads',sh:'All Roads',t:'All Roads Lead Home',s:'Gordtopia',v:[1,0,2]},
+  {k:'ideas',sh:'Follow-through',t:'Ideas, meet follow-through',s:'Gordon brings the ideas. You bring the follow-through.',v:[3,1,0]},
+  {k:'skyship',sh:'Gloom shipped',t:'Shipped Gloom: Digital Edition',s:'Sky Ship Studios, with Atlas Games and Asmodee',v:[1,2,1]},
+  {k:'pharmacy',sh:'Main Street',t:'The pharmacist on Main Street',s:'Crystal',v:[2,2,0]}
+];
+var $=function(id){return document.getElementById(id);};
+var HAND_N=innerWidth>=1000?4:3, HKEYS=['a','s','d','f'];
+var S={stacks:FAM.map(function(){return [];}), hand:[], deck:[], sel:-1, played:0, won:false, sound:true};
+
+/* ---------- audio ---------- */
+var AC=null,BUF={},master=null,bed=null;
+function ensureAudio(){
+  if(AC){if(AC.state==='suspended')AC.resume();return;}
+  var C=window.AudioContext||window.webkitAudioContext; if(!C) return;
+  AC=new C(); master=AC.createGain(); master.gain.value=S.sound?1:0; master.connect(AC.destination);
+  ['snap','joy','fan','bed','end'].forEach(function(k){
+    fetch('media/'+k+'.mp3').then(function(r){return r.arrayBuffer();}).then(function(ab){return new Promise(function(res,rej){AC.decodeAudioData(ab,res,rej);});})
+    .then(function(b){BUF[k]=b; if(k==='bed'&&!S.won) startBed();}).catch(function(){});
+  });
+}
+function play(k,vol,rate){ if(!AC||!BUF[k]) return null; var s=AC.createBufferSource(); s.buffer=BUF[k]; if(rate) s.playbackRate.value=rate; var g=AC.createGain(); g.gain.value=vol; s.connect(g); g.connect(master); s.start(); return {s:s,g:g}; }
+function startBed(){ if(bed||!BUF.bed) return; bed=play('bed',0); bed.s.loop=true; bed.g.gain.linearRampToValueAtTime(0.5,AC.currentTime+2.5); }
+function stopBed(){ if(!bed) return; var g=bed.g, s=bed.s; g.gain.cancelScheduledValues(AC.currentTime); g.gain.setValueAtTime(g.gain.value,AC.currentTime); g.gain.linearRampToValueAtTime(0,AC.currentTime+1.2); setTimeout(function(){try{s.stop();}catch(e){}},1400); bed=null; }
+
+/* ---------- model ---------- */
+function visible(i){ var out=[0,0,0]; S.stacks[i].forEach(function(c){ c.v.forEach(function(x,j){ if(x>0) out[j]=x; }); }); return out; }
+function joy(i){ return visible(i).reduce(function(a,b){return a+b;},0); }
+function joyWith(i,card){ var v=visible(i); card.v.forEach(function(x,j){ if(x>0) v[j]=x; }); return v[0]+v[1]+v[2]; }
+function shuffle(a){ for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t;} return a; }
+function draw(){ for(var t=0;t<40;t++){ if(!S.deck.length) S.deck=shuffle(CARDS.slice()); var c=S.deck.pop(); if(S.hand.indexOf(c)<0) return c; } return CARDS[0]; }
+
+/* ---------- DOM ---------- */
+function seals(v,cls){ return v.map(function(x,j){ return x>0? '<span class="seal s'+j+'" aria-hidden="true"><span>+'+x+'</span></span>' : (cls?'<span class="'+cls+' s'+j+'" aria-hidden="true"></span>':''); }).join(''); }
+function vlabel(v){ var n=['top','middle','bottom'], o=[]; v.forEach(function(x,j){ if(x>0) o.push('+'+x+' '+n[j]); }); return o.join(', '); }
+function buildFamily(){
+  var ul=$('family'); ul.innerHTML='';
+  FAM.forEach(function(p,i){
+    var li=document.createElement('li');
+    li.innerHTML='<button class="portrait" type="button" data-i="'+i+'" style="--c1:'+p.c1+';--c2:'+p.c2+'">'+
+      '<img class="face" src="media/'+p.id+'.jpg" srcset="media/'+p.id+'.jpg 450w, media/'+p.id+'@2x.jpg 900w" sizes="(min-width:1000px) 18vw, 32vw" alt="">'+
+      '<span class="nm">'+p.name+(FINE?' <kbd>'+(i+1)+'</kbd>':'')+'</span><span class="pips"></span>'+
+      '<span class="base-slot s0"></span><span class="base-slot s1"></span><span class="base-slot s2"></span><span class="ovs"></span><span class="delta"></span></button>';
+    ul.appendChild(li);
+  });
+  ul.querySelectorAll('.portrait').forEach(function(b){
+    b.addEventListener('click',function(){ if(S.sel>=0) playCard(S.sel,+b.dataset.i); else toast('Pick a joy card first, then tap '+FAM[+b.dataset.i].name+'.'); });
+    b.addEventListener('pointerenter',function(){ if(S.sel>=0||drag) preview(+b.dataset.i); });
+    b.addEventListener('pointerleave',function(){ preview(-1); });
+  });
+  renderFamily();
+}
+function renderFamily(){
+  var tot=0;
+  document.querySelectorAll('.portrait').forEach(function(b,i){
+    var j=joy(i); tot+=Math.min(FULL,j);
+    var NP=HARD?9:FULL, pips=''; for(var k=0;k<NP;k++) pips+='<b class="'+(k<j?'on':'')+(k>=FULL?' x':'')+'"></b>';
+    b.querySelector('.pips').innerHTML=pips;
+    b.classList.toggle('full',j>=FULL); b.classList.toggle('crown',HARD&&j>=CROWN);
+    b.setAttribute('aria-label',FAM[i].alt+' Joy '+Math.min(j,FULL)+' of '+FULL+'. '+(S.stacks[i].length? 'Cards: '+S.stacks[i].map(function(c){return c.t;}).join('; ')+'.':'No cards yet.'));
+  });
+  var low=-1, lv=99; FAM.forEach(function(p,i){var j=joy(i); if(j<FULL&&j<lv){lv=j;low=i;}});
+  document.querySelectorAll('.portrait').forEach(function(b,i){ b.classList.toggle('low',i===low && S.played>0); });
+  var pct=HARD ? Math.round((tot+Math.min(CROWN-FULL,Math.max(0,maxJoy().j-FULL)))/(FULL*FAM.length+CROWN-FULL)*100) : Math.round(tot/(FULL*FAM.length)*100);
+  $('tube').style.width=pct+'%'; $('pct').textContent=pct+'%'; $('meterbox').setAttribute('aria-label','Family joy '+pct+' percent');
+  return pct;
+}
+function addOverlay(i,card,fresh){
+  var b=document.querySelectorAll('.portrait')[i], box=b.querySelector('.ovs');
+  var d=S.stacks[i].length-1;
+  var ov=document.createElement('span'); ov.className='ov'+(fresh&&!RM?' fresh':'');
+  ov.style.setProperty('--d',0);
+  ov.innerHTML='<img class="vig" src="media/j-'+card.k+'.jpg" alt="">'+seals(card.v)+'<span class="rib"><span class="lt">'+card.t+'</span><span class="st">'+card.sh+'</span></span>';
+  box.appendChild(ov);
+  // older sheets settle back a step so the stack reads as layered acetate
+  Array.prototype.forEach.call(box.children,function(el,ix){ el.style.setProperty('--d',box.children.length-1-ix); el.style.zIndex=3+ix; });
+}
+function cardHTML(c,slot){
+  return '<img class="vig" src="media/j-'+c.k+'.jpg" alt="">'+seals(c.v,'empty')+'<span class="ttl"><span class="lt">'+c.t+'</span><span class="st">'+c.sh+'</span><small>'+c.s+'</small></span>'+(FINE?'<kbd>'+HKEYS[slot].toUpperCase()+'</kbd>':'');
+}
+function buildHand(){
+  var ul=$('hand'); ul.innerHTML='';
+  for(var s=0;s<HAND_N;s++){ S.hand[s]=S.hand[s]||draw(); var li=document.createElement('li'); li.innerHTML='<button class="jcard" type="button" data-s="'+s+'" aria-pressed="false"></button>'; ul.appendChild(li); fillSlot(s,false); }
+  ul.querySelectorAll('.jcard').forEach(function(btn){ bindCard(btn); });
+}
+function fillSlot(s,anim){
+  var btn=$('hand').querySelectorAll('.jcard')[s], c=S.hand[s];
+  btn.innerHTML=cardHTML(c,s); btn.setAttribute('aria-label','Joy card: '+c.t+'. '+c.s+'. Seals: '+vlabel(c.v)+'.');
+  btn.classList.remove('out'); if(anim&&!RM){ btn.classList.remove('enter'); void btn.offsetWidth; btn.classList.add('enter'); }
+}
+function select(s){
+  S.sel=(S.sel===s)?-1:s;
+  $('hand').querySelectorAll('.jcard').forEach(function(b,i){ b.setAttribute('aria-pressed',i===S.sel); });
+  setHint(S.sel>=0? 'Now tap someone to lay "'+S.hand[S.sel].t+'" on them.' : null);
+}
+function preview(i){
+  document.querySelectorAll('.portrait').forEach(function(b,j){
+    var on=(j===i && (S.sel>=0||drag)); b.classList.toggle('target',on);
+    if(on){ var c=S.hand[drag?drag.s:S.sel], d=joyWith(j,c)-joy(j); b.querySelector('.delta').textContent=(d>0?'+'+d:d===0?'+0':String(d))+' joy'; }
+  });
+}
+var baseHint=$('hint').textContent;
+function setHint(t){ $('hint').textContent=t||baseHint; }
+function toast(t){var el=$('toast'); el.textContent=t; el.classList.add('on'); clearTimeout(toast.h); toast.h=setTimeout(function(){el.classList.remove('on');},2200);}
+
+/* ---------- play ---------- */
+function playCard(s,i){
+  if(S.won) return;
+  ensureAudio();
+  var card=S.hand[s], before=joy(i), btn=$('hand').querySelectorAll('.jcard')[s], target=document.querySelectorAll('.portrait')[i];
+  S.sel=-1; $('hand').querySelectorAll('.jcard').forEach(function(b){b.setAttribute('aria-pressed','false');}); preview(-1);
+  var land=function(){
+    S.stacks[i].push(card); S.played++;
+    addOverlay(i,card,true); play('snap',0.9);
+    var after=joy(i), gain=after-before;
+    if(gain>0){ setTimeout(function(){ play('joy',0.55,1+Math.min(after,FULL)*0.05); },140); sparkle(target,Math.min(10,gain*3)); }
+    var pct=renderFamily();
+    var nm=FAM[i].name; $('plays').textContent=S.played;
+    if(gain<0){ flashLost(target,gain); }
+    var crownHint = HARD && pct<100 && FAM.every(function(p,q){return joy(q)>=FULL;}) ? 'Everyone is full. Now crown one: raise someone to 8 of 9. Bright seals go last.' : '';
+    if(HARD&&after>=CROWN&&before<CROWN){ toast(nm+' reached 8 of 9. Crowned.'); sparkle(target,12); }
+    if(crownHint) setHint(crownHint); else setHint(gain>0? (after>=FULL&&before<FULL? nm+"'s joy is full. "+(pct<100?'Who is next?':'') : '"'+card.t+'" shows through for '+nm+': +'+gain+'.') : gain<0 ? '"'+card.t+'" covered brighter seals on '+nm+': '+gain+' joy. Bright seals stay bright when the clear spots line up.' : '"'+card.t+'" is tucked in the stack. Lay a card whose seals land on the empty spots.');
+    S.hand[s]=draw(); fillSlot(s,true);
+    if(pct>=100) win();
+  };
+  if(RM){ land(); return; }
+  // slide from the hand to the portrait, then snap
+  var a=btn.getBoundingClientRect(), b=target.getBoundingClientRect();
+  var fly=btn.cloneNode(true); fly.className='jcard fly'; fly.removeAttribute('data-s');
+  fly.style.left=a.left+'px'; fly.style.top=a.top+'px'; fly.style.width=a.width+'px'; fly.style.height=a.height+'px'; fly.style.margin='0';
+  document.body.appendChild(fly); btn.classList.add('out');
+  var sx=b.width/a.width, sy=b.height/a.height;
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    fly.style.transformOrigin='0 0';
+    fly.style.transform='translate('+(b.left-a.left)+'px,'+(b.top-a.top)+'px) scale('+sx+','+sy+')'; fly.style.opacity='.35';
+  });});
+  setTimeout(function(){ fly.remove(); land(); },430);
+}
+function flashLost(el,d){ if(!el) return; var f=document.createElement('span'); f.className='lostflash'; f.textContent=d+' joy'; el.appendChild(f); el.classList.add('lost'); setTimeout(function(){ f.remove(); el.classList.remove('lost'); },1600); }
+function sparkle(el,n){
+  if(RM) return; var r=el.getBoundingClientRect();
+  for(var k=0;k<n;k++){ (function(k){ var d=document.createElement('i'); d.className='sparkle'; var x=r.left+r.width*(0.2+Math.random()*0.6), y=r.top+r.height*(0.3+Math.random()*0.4);
+    d.style.left=x+'px'; d.style.top=y+'px'; document.body.appendChild(d);
+    var dx=(Math.random()-.5)*160, dy=-60-Math.random()*120;
+    d.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx+'px,'+dy+'px) scale(.2)',opacity:0}],{duration:700+Math.random()*400,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=function(){d.remove();}; })(k); }
+}
+
+/* ---------- drag ---------- */
+var drag=null;
+function bindCard(btn){
+  btn.addEventListener('pointerdown',function(e){
+    if(S.won||e.button>0) return;
+    var s=+btn.dataset.s; drag={s:s,x0:e.clientX,y0:e.clientY,moved:false,el:null,btn:btn,id:e.pointerId};
+    try{btn.setPointerCapture(e.pointerId);}catch(_){}
+  });
+  btn.addEventListener('pointermove',function(e){
+    if(!drag||drag.btn!==btn) return;
+    if(!drag.moved && Math.hypot(e.clientX-drag.x0,e.clientY-drag.y0)>8){
+      drag.moved=true; ensureAudio(); var r=btn.getBoundingClientRect();
+      var g=btn.cloneNode(true); g.className='jcard ghost'; g.style.width=r.width+'px'; g.style.height=r.height+'px'; document.body.appendChild(g); drag.el=g; btn.style.opacity='.35';
+    }
+    if(drag.moved){ e.preventDefault(); drag.el.style.left=e.clientX+'px'; drag.el.style.top=e.clientY+'px';
+      var t=portraitAt(e.clientX,e.clientY); preview(t); }
+  });
+  var end=function(e){
+    if(!drag||drag.btn!==btn) return;
+    var d=drag; drag=null; btn.style.opacity='';
+    if(d.moved){ if(d.el) d.el.remove(); var t=portraitAt(e.clientX,e.clientY); preview(-1); if(t>=0 && e.type!=='pointercancel') playCard(d.s,t); }
+    else if(e.type==='pointerup'){ select(d.s); }
+  };
+  btn.addEventListener('pointerup',end); btn.addEventListener('pointercancel',end);
+  btn.addEventListener('click',function(e){ if(e.detail===0){ select(+btn.dataset.s); } }); // keyboard Enter/Space
+}
+function portraitAt(x,y){
+  var ps=document.querySelectorAll('.portrait');
+  for(var i=0;i<ps.length;i++){ var r=ps[i].getBoundingClientRect(); if(x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom) return i; }
+  return -1;
+}
+
+/* ---------- win ---------- */
+function win(){
+  S.won=true; setHint('Everyone is full of joy.');
+  stopBed();
+  setTimeout(function(){
+    var zone=$('fanzone'); zone.innerHTML='';
+    var all=[]; S.stacks.forEach(function(st,i){ st.forEach(function(c){ all.push({c:c,i:i}); }); });
+    var ps=document.querySelectorAll('.portrait'), n=all.length, W=innerWidth, H=innerHeight;
+    var cw=Math.min(W>=1000?190:120,W*0.24), chh=cw*1.4, cx=W/2, top=Math.max(8,H*0.03);
+    play('fan',0.9);
+    all.forEach(function(o,k){
+      var r=ps[o.i].getBoundingClientRect(), el=document.createElement('div');
+      el.className='jcard'; el.style.cssText='position:fixed;margin:0;left:'+(r.left)+'px;top:'+(r.top)+'px;width:'+cw+'px;height:'+chh+'px;transform-origin:50% 320%;transition:transform .9s cubic-bezier(.2,.9,.25,1.1) '+(k*0.04)+'s, left .9s cubic-bezier(.2,.9,.25,1) '+(k*0.04)+'s, top .9s cubic-bezier(.2,.9,.25,1) '+(k*0.04)+'s;box-shadow:3px 4px 0 #2b2320';
+      el.innerHTML='<img class="vig" src="media/j-'+o.c.k+'.jpg" alt="" style="left:19%;width:62%">';
+      zone.appendChild(el);
+      var ang=(n>1? (k/(n-1)-0.5) : 0)*Math.min(W>=1000?110:70,n*9);
+      requestAnimationFrame(function(){requestAnimationFrame(function(){ el.style.left=(cx-cw/2)+'px'; el.style.top=top+'px'; el.style.transform='rotate('+ang+'deg)'; });});
+    });
+    setTimeout(function(){
+      play('end',0.95);
+      var P=S.played, PAR=11, tot=0; FAM.forEach(function(p,i){ tot+=joy(i); });
+      var mj=maxJoy(), cn=mj.i>=0?FAM[mj.i].name:'';
+      if(HARD) $('played').textContent=P+' plays. Hard target met: '+cn+' reached '+Math.min(9,mj.j)+' of 9, and everyone else is full.';
+      else $('played').textContent=P+' plays. Par is '+PAR+'. '+(P<PAR?'Under par, and every joy showed.':P===PAR?'Right at par, and every joy showed.':'Every joy showed. Deal again to chase par.');
+      var upd=HARD?'Hard target met. '+cn+' crowned, '+P+' plays.':P<PAR?'Happily ever after in '+P+'. Under par.':P===PAR?'Happily ever after in '+P+' plays. At par.':'Happily ever after in '+P+' plays.';
+      try{ if(window.ledger){ ledger.done('un-gloom',upd,{plays:P,par:PAR,joy:tot,hard:HARD,crown:HARD?mj.j:0}); ledger.add('joy',tot); if(!HARD&&P<=PAR) ledger.first('ungloom-par','Un-Gloom at par or better'); if(HARD) ledger.first('ungloom-hard','Un-Gloom hard target, 8 of 9'); } }catch(e){}
+      window.__ungloomResult={plays:P,joy:tot,update:upd,hard:HARD,crown:mj.j};
+      var e=$('end'); e.classList.add('on'); if(!RM) e.classList.add('anim');
+      setTimeout(function(){ $('again').focus({preventScroll:true}); window.__ungloomDone=true; }, RM?50:1900);
+    }, RM?50:(W>=1000?1300:1900));
+  }, RM?0:650);
+}
+function reset(){
+  S.stacks=FAM.map(function(){return [];}); S.hand=[]; S.deck=[]; S.sel=-1; S.played=0; S.won=false; window.__ungloomDone=false; $('plays').textContent='0';
+  $('end').classList.remove('on','anim'); $('fanzone').innerHTML='';
+  buildFamily(); buildHand(); setHint(null); ensureAudio(); startBed();
+}
+
+/* ---------- boot ---------- */
+function applyHard(on){ HARD=!!on; $('family').classList.toggle('hard',HARD);
+  $('parlbl').textContent=HARD?'Hard: crown one at 8 of 9':'Par 11 plays';
+  var hn=$('hardnote'); if(hn) hn.textContent=HARD?'Hard target: fill everyone, then raise one portrait to 8 of a possible 9 joy. Three +3 seals make 9.':'';
+  baseHint=HARD?'Hard: fill everyone to 6, then crown one at 8 of 9. Only the symbols that still show count.':'Drag a see-through joy card onto someone. Only the symbols that still show count.';
+  if(!S.played) setHint(null); renderFamily(); }
+buildFamily(); buildHand();
+if(window.ledger){ ledger.hardToggle('un-gloom',$('hardhost'),applyHard,'target 8 of 9'); applyHard(ledger.hard('un-gloom')); }
+$('begin').onclick=function(){ $('intro').style.display='none'; ensureAudio(); };
+$('again').onclick=reset;
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function applySound(on){ S.sound=!!on; var b=$('snd'); b.setAttribute('aria-pressed',S.sound?'true':'false'); b.setAttribute('aria-label',S.sound?'Sound on':'Sound off'); var l=b.querySelector('.sl'); if(l) l.textContent=S.sound?'Sound on':'Sound off'; if(master) master.gain.value=S.sound?1:0; }
+$('snd').onclick=function(){ if(window.ledger) ledger.setSound(!S.sound); else applySound(!S.sound); toast(S.sound?'Sound on':'Sound off'); };
+if(window.ledger) ledger.bindSound(applySound);
+window.addEventListener('keydown',function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  var k=e.key.toLowerCase();
+  if($('intro').style.display!=='none'){ if(k==='enter'||k===' '){ e.preventDefault(); $('begin').click(); } return; }
+  if(S.won){ if(k==='enter'&&document.activeElement===document.body){$('again').click();} return; }
+  var hs=HKEYS.indexOf(k); if(hs>=0 && hs<HAND_N){ select(hs); return; }
+  if(k>='1'&&k<='5'){ var i=+k-1; if(S.sel>=0) playCard(S.sel,i); else toast('Pick a card with A, S, D'+(HAND_N>3?' or F':'')+' first.'); return; }
+  if(k==='m'){ $('snd').click(); }
+  if(k==='escape'){ if(S.sel>=0) select(S.sel); }
+});
+window.__ungloom={S:S,joy:joy,joyWith:joyWith,FULL:FULL,get hard(){return HARD},CROWN:CROWN,maxJoy:maxJoy};
+})();
+</script>
+</body>
+</html>

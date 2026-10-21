@@ -1,0 +1,795 @@
+{
+ "img/master-wide.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Dragon House (Iverson-Johnson House, 1898) as hero of tilt-shift diorama, mid-restoration, cider barn, 3 bikes, stone doorway, river, skyline+rainbow; nano_banana_pro 2k 16:9",
+  "job": "9bedbc03-679e-4030-a56a-e7c6823d776a",
+  "refs": "painted tilt-shift miniature diorama, style ref job 147e0ade; house refs = Wisconsin Historical Society photos (record 5974) uploaded as media 27af4cc7 + 486793cd"
+ },
+ "img/master-tall.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Recompose master-wide as 9:16, one house only; nano_banana_pro 2k",
+  "job": "6c180a1d-29cd-4810-bf45-140550155826"
+ },
+ "img/house-after.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Close-up of the restored 327 corner porch, fully restored, wreath, pumpkins",
+  "job": "8305051e-c35e-4761-9b98-b1d0d1e9993e"
+ },
+ "img/house-before.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Same composition as house-after, BEFORE restoration: peeling white paint, scraper, ladder",
+  "job": "9f2ae46b-fb8d-4e4c-b8e1-1c06056312ba"
+ },
+ "img/dad.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Backyard catch, dad from behind in Eric's own black FRANCKSEN 5 jersey (from Gordon photo IMG_2573, described not uploaded)",
+  "job": "11897374-9c97-4d1d-8f29-9f844746041c"
+ },
+ "img/cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Inside the red barn: wooden cider press, neighbors from behind, amber jars, lanterns",
+  "job": "b6c63d20-1ba1-45e6-a167-0b208a4c6221"
+ },
+ "img/grow.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Young oak on a hill, Madison capitol dome on its isthmus behind",
+  "job": "8dda7682-962d-4100-bbd9-a699ce36282c"
+ },
+ "img/portal.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Stone-block doorway igniting into a blocky voxel landscape (Gordtopia nod), original design",
+  "job": "dd345bd8-0277-44c5-90fe-65a9d5c7bb3f"
+ },
+ "img/pride.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Miniature big-city pride parade, rainbow flags, friends from behind, one in a USA soccer jersey",
+  "job": "f04ffcfb-9f38-4b3d-a4b2-7357d9e17fe3"
+ },
+ "img/porch.jpg": {
+  "tool": "higgsfield",
+  "prompt": "The curved porch at blue hour, porch light, cider mug and glowing phone on the rail",
+  "job": "49305bfc-ff30-4e11-9865-153fe573e1a7"
+ },
+ "img/table.jpg": {
+  "tool": "higgsfield",
+  "prompt": "The Dragon Table dining room per Gordon photo IMG_1481 (described in text, no photo uploaded): rose-pink walls, oak trim, brass chandelier, black cabinets with dragon figurines, hex-tile space game, d20",
+  "job": "77165946-25db-4638-bb92-75ad37ac582e"
+ },
+ "img/ship.png": {
+  "tool": "higgsfield",
+  "prompt": "Original rugged ship isolated on white (job ea6759ac), then Higgsfield remove_background (job 4a70b005); cropped",
+  "job": "4a70b005-8412-4d01-a6cb-b622a30c0685"
+ },
+ "img/patch.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Embroidered SHINY / STOUGHTON, WIS. patch: original ship over golden maple leaf and the house",
+  "job": "54dd6a11-c7b4-4eb9-a86a-f71ae19bab5e"
+ },
+ "img/finale.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Night version, restoration complete (no scaffold), fireworks over the river",
+  "job": "a3000895-96d3-4a2a-886d-cf289b12ac52"
+ },
+ "snd/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "90s warm Midwestern autumn folk loop, D major, 84 BPM (eleven_music_v2_5, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "UbzGIQywe12bWjBucvsL"
+ },
+ "snd/scrape.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "paint scraper stroke on clapboard (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "kI5u6pqP7PizQTgXwXLF"
+ },
+ "snd/paint.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "wet brush stroke on siding (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "kpGHKUXks7DWxOortHZP"
+ },
+ "snd/catch.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "foam ball caught in glove + kid giggle (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "FYthIOj1AsslFb42k2c4"
+ },
+ "snd/press.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cider press screw creak + crush + pour (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "tE7XyvwWls2lpJeLO9Pr"
+ },
+ "snd/jar.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cider into mason jar, lid click (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "GgpZXJ8DRwejoOakeL7b"
+ },
+ "snd/d20.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "resin d20 on felt-lined wood table (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "Os0X5qSzs9gIr4xLRhJL"
+ },
+ "snd/nat20.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "critical-success fantasy sting (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "0JNiXosOU7SJHP36Rq3U"
+ },
+ "snd/portal.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "stone block thunk + doorway ignite (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "peR6NxjDZ9Ov3OiCfKjD"
+ },
+ "snd/parade.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "pride parade drums, crowd, confetti cannons (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "BXo8JEgIdL1mjlXwZlee"
+ },
+ "snd/ring.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "friendly marimba ringtone, answer click (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "pzHwZop3NFrGcrkECeNj"
+ },
+ "snd/grow.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "oak growing, leaves, rising marimba (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "1sWlR2Z452xG6QRwxVhf"
+ },
+ "snd/ship.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "small rugged ship flyby + twangy guitar phrase (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "3cEVo1aYZ3vahkS4S7iD"
+ },
+ "snd/done.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "marimba two-note rise + glockenspiel + town bell (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "h7omH189qXOFgq82q75H"
+ },
+ "snd/fireworks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "small-town fireworks over river + cheering (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "1K5J4Kx9lTkCbnKwsErB"
+ },
+ "snd/grill.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "grill lid creak, sizzle, drumroll stop (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "hWNeWUOcYLlGpPEVRPh4"
+ },
+ "snd/ovation.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "theater standing ovation (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/clap.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "clapperboard (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/finale-v2.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "premiere finale score, eleven_music_v2_5 60s (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "img/pc/master.jpg": {
+  "tool": "higgsfield",
+  "prompt": "= img/master-wide at 2560",
+  "job": "9bedbc03-679e-4030-a56a-e7c6823d776a"
+ },
+ "img/pc/finale.jpg": {
+  "tool": "higgsfield",
+  "prompt": "= img/finale at 2560",
+  "job": "a3000895-96d3-4a2a-886d-cf289b12ac52"
+ },
+ "img/pc/house-after.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide restored 327 house front",
+  "job": "0e3cdc70-9e66-4e99-9d68-d9d47e3da810"
+ },
+ "img/pc/house-before.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 edit of house-after to pre-restoration peeling white (job 4fb4781f), Higgsfield upscale (job bb572164), aligned to after",
+  "job": "bb572164-6562-4f9d-9a0c-e87e7ae6e057"
+ },
+ "img/pc/dad.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide backyard catch, dad in black FRANCKSEN 5 jersey",
+  "job": "6c615d1b-129c-4c85-b399-03b543891eae"
+ },
+ "img/pc/cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide cider barn",
+  "job": "ef7c9059-f5b4-43b3-ae54-5d54841f4c3b"
+ },
+ "img/pc/grow.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide oak with Madison capitol",
+  "job": "4fb5e451-b7d7-4ef9-91cc-65dc4e8e3bf6"
+ },
+ "img/pc/portal.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide stone doorway portal",
+  "job": "f72e3f75-b928-4b74-a164-54842ecc1194"
+ },
+ "img/pc/pride.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide pride parade",
+  "job": "27fc72c2-ceac-4e15-956e-7d62e41482af"
+ },
+ "img/pc/porch.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide porch at night with phone",
+  "job": "e59c44e2-bec2-41d7-b3c5-141339d453e3"
+ },
+ "img/pc/table.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide Dragon Table room",
+  "job": "42beb96f-b0a1-4825-9ef1-9cd519afb8e6"
+ },
+ "video/town.mp4": {
+  "tool": "higgsfield",
+  "prompt": "kling3_0 pro 10s, start=end frame = master job 9bedbc03 (seamless loop): leaves drift, lanterns flicker, river flows, locked camera",
+  "job": "7e69e078-35e4-44b9-b333-11617d0e4416"
+ },
+ "img/mainstreet.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Stoughton-style main street, Norwegian + US flags on lampposts (per Gordon photo IMG_1533), town applauding",
+  "job": "d0d98953-79f5-4922-bcef-4f870bf67746"
+ },
+ "img/pc/mainstreet.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide main street curtain call, Norwegian + US flags",
+  "job": "a3e9f92e-83df-4f75-b363-1d674774778a"
+ },
+ "img/seal.png": {
+  "tool": "higgsfield",
+  "prompt": "Faithful frontal render of the Dragon House emblem, designed by Eric (Gordon photo 21:27, cropped, hand excluded; media 139bf74b) via gpt_image_2_5 job 7927ae21, background removed job 8264dd1f",
+  "job": "8264dd1f-d2f6-481a-971f-0a8bc0460906"
+ },
+ "img/seal-poster.jpg": {
+  "tool": "derived:img/seal.png",
+  "prompt": "seal.png centered on night color for the intro video poster"
+ },
+ "video/dragon.mp4": {
+  "tool": "higgsfield",
+  "prompt": "seedance_2_5 omni_reference 10s 1080p: start = night finale (job a3000895), ref = Eric emblem render (job 7927ae21); the emblem dragon comes alive, soars over the river and fireworks, curls around the chimney",
+  "job": "8d77c071-b6c9-4fd2-811f-fdc2a50cb14e"
+ },
+ "video/opening.mp4": {
+  "tool": "higgsfield",
+  "prompt": "kling3_0 pro 8s: start = Eric emblem render (job 7927ae21), end = master diorama (job 9bedbc03); glint, enamel turns to water, camera dives into the miniature town",
+  "job": "328e2453-45cd-4fe0-acee-7c46a3ab86aa"
+ },
+ "snd/gordon.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "Gordon's cloned voice (voice qb6kL81Flh9FzLNFr8j2, approved by Gordon for Eric 8/1) reading only his own verbatim tribute lines; eleven_v3, flow fQZxK78zqjz6WaGxpOKC",
+  "generation": "q7KMbbXMmaejdIkXg7xv"
+ },
+ "snd/finale.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "75s season-finale with wonder: folk theme, Nordic horn and hardanger-style fiddle as the dragon takes flight, brass lift, tender credits reprise (eleven_music_v2_5, flow fQZxK78zqjz6WaGxpOKC); instrumental verified by transcription",
+  "generation": "VR4v3EuTde0SWyzMqzFr"
+ },
+ "v2/img/hero.jpg": {
+  "tool": "higgsfield",
+  "prompt": "producer's desk over a Wisconsin lake at autumn sunset (job a9e0715e) gpt_image_2_5"
+ },
+ "v2/img/house.jpg": {
+  "tool": "higgsfield",
+  "prompt": "historic Victorian house mid-restoration, golden hour (job 8bd0968c)"
+ },
+ "v2/img/dad.jpg": {
+  "tool": "higgsfield",
+  "prompt": "family front yard at dusk with kids' bikes and chalk hearts (job ef580e62)"
+ },
+ "v2/img/cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "backyard Cider Camp with wooden press and apples (job d112fbda)"
+ },
+ "v2/img/work.jpg": {
+  "tool": "higgsfield",
+  "prompt": "office window toward the Wisconsin Capitol with a young plant (job a783ade4)"
+ },
+ "v2/img/dragon.jpg": {
+  "tool": "higgsfield",
+  "prompt": "carved dragon D&D table by candlelight (job eb2aee8c)"
+ },
+ "v2/img/craft.jpg": {
+  "tool": "higgsfield",
+  "prompt": "voxel world with castle house, lantern road and cube sheep (job 2ba5b4f1)"
+ },
+ "v2/img/call.jpg": {
+  "tool": "higgsfield",
+  "prompt": "phone with incoming call on a porch railing over a lake at twilight (job 27080404)"
+ },
+ "v2/img/finale.jpg": {
+  "tool": "higgsfield",
+  "prompt": "restored house at night, fireworks, lit marquee (job 26ac1346)"
+ },
+ "v2/snd/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cozy acoustic folk loop, eleven_music_v2_5, 2s crossfade baked (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/done.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "task-complete chime (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/paint.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "paint roller on clapboard (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/kids.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "kids laughing, bicycle bell (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/cider.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "cider pour and jar clink (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/grow.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "rising growth chime (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/d20.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "d20 roll and table cheer (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/dragon.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "friendly dragon roar (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/blocks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "voxel blocks placed, level-up jingle (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/ring.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "marimba ringtone (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/clap.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "clapperboard (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/fireworks.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "fireworks over a lake with cheers (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/ovation.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "theater standing ovation (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "v2/snd/finale.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "premiere finale score, eleven_music_v2_5 60s (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "keepsake/eric-keepsake-5x7.pdf": {
+  "tool": "canva",
+  "note": "Season-wrap keepsake card; dot's layout, Darby swapped in the real house art (img/master-wide.jpg) and Eric's emblem (img/seal.png); footer merged with dot's line",
+  "exported": "2026-10-17 23:1x PT",
+  "format": "pdf, 1 page, pro",
+  "design_id": "DAHYU1dxvfs"
+ },
+ "keepsake/eric-keepsake.jpg": {
+  "tool": "canva",
+  "note": "Season-wrap keepsake card; dot's layout, Darby swapped in the real house art (img/master-wide.jpg) and Eric's emblem (img/seal.png); footer merged with dot's line",
+  "exported": "2026-10-17 23:1x PT",
+  "format": "png 1500x2100 export, converted to jpeg q88 for phones",
+  "design_id": "DAHYU1dxvfs"
+ },
+ "img/shiny.jpg": {
+  "tool": "higgsfield",
+  "model": "nano_banana_pro",
+  "job": "4cc3dfd2-6c55-4bd2-961d-9dd1541144c9",
+  "prompt": "Eric's frontier ship (img/ship.png) flying low over the real Dragon House at dusk (img/master-wide.jpg as reference); house number hand-corrected to 327 (one glyph opened from 8 to 3)",
+  "note": "Firefly homage, original ship design"
+ },
+ "video/shiny.mp4": {
+  "tool": "higgsfield",
+  "model": "kling3_0",
+  "job": "8b5e27c5-c8c5-43f9-ac6d-2639ee3d223c",
+  "prompt": "ship glides left to right over the roof, engine glow, leaves in its wake; start frame img/shiny.jpg",
+  "audio": "snd/sting.mp3"
+ },
+ "snd/sting.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "flow": "fQZxK78zqjz6WaGxpOKC",
+  "generation": "bXpNs06ivSHZpWbutU7O",
+  "prompt": "short space-western flourish: fiddle, slide guitar, acoustic strum, engine hum; original melody, no vocals"
+ },
+ "img/galleon.png": {
+  "tool": "derived: Eric's own Sky Ship Studios logo, used with Gordon's YES (chat 9, 2026-10-18 01:05)",
+  "source": "Sky Ship Studios mark (skyship/media/skyship-mark.png), ship portion cropped",
+  "note": "Gordon YES 2026-10-18 01:05 chat 9 to use Eric's real logo"
+ },
+ "skyship/media/skyship.mp4": {
+  "tool": "higgsfield",
+  "prompt": "seedance_2_5 omni_reference, start_image = still job b98c5b23; the watercolor sky galleon comes alive, sails fill, rises out of golden clouds, slow orbit, sails toward the sun; no text; 10s 9:16 720p, audio off (job 293ef663-70c6-438f-81f7-5b3303574cfb)"
+ },
+ "skyship/media/poster.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5, reference = the real Sky Ship Studios logo (media 6f50c706); repaint THIS same watercolor galleon as a vertical golden-hour cloud scene, no text (job b98c5b23-eb98-43cf-a38e-8e7c9bfdfa9b)"
+ },
+ "skyship/media/clouds.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5, style reference = job b98c5b23; dense luminous watercolor cloud wall, warm glow behind center, no ship, no text (job 97ba027c-81ee-42d3-b9d8-0c4fbc6b6656)"
+ },
+ "skyship/media/music.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 30s: warm uplifting orchestral swell, celesta and harp to horns and strings, grateful major-key shanty lullaby, no drums (flow DlAVbP87eFKfwcri3S2r, gen Zyj9BAdTFuKR0Jij1HGH), loudnorm -18 LUFS"
+ },
+ "skyship/media/wind.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 10s: high-altitude wind in billowing canvas sails, ropes and hull creak, distant gulls (flow DlAVbP87eFKfwcri3S2r, gen gNCOXdskdGXIjABJGKXX)"
+ },
+ "skyship/media/chime.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 3s: soft magical reveal chime, glass wind chimes and rising bell glissando (flow DlAVbP87eFKfwcri3S2r, gen w6Jmun1mDBQUmacslUoc)"
+ },
+ "skyship/media/whoosh.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2s: soft whoosh of clouds parting (flow DlAVbP87eFKfwcri3S2r, gen yH3c0JUNI2gWxlKrZkOb)"
+ },
+ "skyship/media/bank.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2s: ship banking, sails catch a gust, wood creak, sparkle twinkle trail (flow DlAVbP87eFKfwcri3S2r, gen dBwdhxmTE1ZWh3AKsi0n)"
+ },
+ "skyship/media/skyship-mark.png": {
+  "tool": "derived: Eric's own Sky Ship Studios logo, used with Gordon's YES (chat 9, 2026-10-18 01:05)",
+  "prompt": "Eric's own Sky Ship Studios logo, skyshipstudios.com original, used as homage. Source: https://www.skyshipstudios.com/images/skyshipstudios/banner.png (kept byte-identical in ../ref/banner.png). Only change: the banner's separate site-header backdrop layer (a large ghost ship, pure white at alpha 117) set transparent and the canvas cropped to the mark; no mark pixel recolored, redrawn, or moved. Not connector-made on purpose: Gordon asked for an homage to THIS logo."
+ },
+ "img/v5/month-oct.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in October at golden hour: red barn with string lights, bushels of red apples and cider jars, maples in orange and gold, river with a footbridge. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "06dba086-f50b-4b45-9ace-1e975acd4a56 (upscale 3fd92e01-5a06-4e9d-9bda-4675a58743ca)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-oct-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in October at golden hour: red barn with string lights, bushels of red apples and cider jars, maples in orange and gold, river with a footbridge. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "06dba086-f50b-4b45-9ace-1e975acd4a56 (upscale 3fd92e01-5a06-4e9d-9bda-4675a58743ca)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-nov.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in November: first frost, bare trees, cozy brick brewpub with warm windows and mugs on a shelf, chimney smoke, river footbridge. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "34102ea4-a634-4d50-bd21-67212a942da5 (upscale dd003597-d320-4145-baba-4ee4232a283c)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-nov-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in November: first frost, bare trees, cozy brick brewpub with warm windows and mugs on a shelf, chimney smoke, river footbridge. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "34102ea4-a634-4d50-bd21-67212a942da5 (upscale dd003597-d320-4145-baba-4ee4232a283c)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-dec.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in December golden dusk: fresh snow, warm amber windows, porch string lights, snowy evergreens. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "65c401fd-d1a4-4081-b993-239b50497aa6 (upscale 4636a376-b19c-4130-9815-5a651c271b4e)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-dec-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in December golden dusk: fresh snow, warm amber windows, porch string lights, snowy evergreens. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "65c401fd-d1a4-4081-b993-239b50497aa6 (upscale 4636a376-b19c-4130-9815-5a651c271b4e)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-jan.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in January: deep snow, frozen blue river, golden late sun, long blue shadows. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "6def7061-27c2-4c9b-9583-401d768ccd4d (upscale 10f4b6af-d3e8-4891-aec6-f7b1448bce0f)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-jan-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in January: deep snow, frozen blue river, golden late sun, long blue shadows. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "6def7061-27c2-4c9b-9583-401d768ccd4d (upscale 10f4b6af-d3e8-4891-aec6-f7b1448bce0f)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-feb.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in February twilight: ice on branches, frozen pond with small glowing paper lanterns. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "7a35e006-7ecb-42ab-b0a0-739ae6fc0c18 (upscale 34b9599d-de9c-4fb1-9f6d-1cbe67980c88)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-feb-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in February twilight: ice on branches, frozen pond with small glowing paper lanterns. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "7a35e006-7ecb-42ab-b0a0-739ae6fc0c18 (upscale 34b9599d-de9c-4fb1-9f6d-1cbe67980c88)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-mar.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in March thaw: melting snow, wet streets, river with ice floes, crocuses, budding trees. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "2dcd038f-923b-4592-9da9-e0f341b6509e (upscale ae6eac07-a50b-45f3-b5a3-282ded5cdfe8)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/month-mar-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Tilt-shift miniature diorama photograph of a small Wisconsin river town in March thaw: melting snow, wet streets, river with ice floes, crocuses, budding trees. 16:9. No people faces, no text, no logos, no flags.",
+  "job": "2dcd038f-923b-4592-9da9-e0f341b6509e (upscale ae6eac07-a50b-45f3-b5a3-282ded5cdfe8)",
+  "date": "2026-10-20",
+  "notes": "Month Group banner; matched to img/pc/master.jpg golden-hour miniature style",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/breathe.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Calm tilt-shift miniature diorama at dusk: still lake, tiny Victorian shoreline at the edges, wide quiet teal sky and water in the center, gentle gold glow, negative space for a breathing circle. 16:9. No people, no text.",
+  "job": "c6072e64-0e5c-42b4-a9f3-7d5b04607582 (upscale caf33d41-a516-479b-a16a-5fde5d6bb280)",
+  "date": "2026-10-20",
+  "notes": "Stuck \"First, breathe\" scene, PC",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/breathe-960.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Calm tilt-shift miniature diorama at dusk: still lake, tiny Victorian shoreline at the edges, wide quiet teal sky and water in the center, gentle gold glow, negative space for a breathing circle. 16:9. No people, no text.",
+  "job": "c6072e64-0e5c-42b4-a9f3-7d5b04607582 (upscale caf33d41-a516-479b-a16a-5fde5d6bb280)",
+  "date": "2026-10-20",
+  "notes": "Stuck \"First, breathe\" scene, PC",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/breathe-tall.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + bytedance_image_upscale 2k",
+  "prompt": "Same calm dusk lake scene, vertical 9:16, shoreline at the bottom, tall quiet sky.",
+  "job": "fb9a35b7-b968-4f1c-8676-825dca699d62 (upscale 003ee2a4-5d2e-4f80-b080-cc6b7f0ad140)",
+  "date": "2026-10-20",
+  "notes": "Stuck breathe scene, phone",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/guardian.png": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + image_background_remover",
+  "prompt": "An original friendly guardian golem as a handcrafted miniature: rounded body of mossy grey river stones joined with polished brass bands and rivets, kind glowing amber eyes, holding up a brass lantern-torch; full body, plain cream background. Original design, not blocky, not from any game or franchise. 1:1.",
+  "job": "521a9107-c2a7-4e78-a46e-e1c254695500 (bg removal 400d178b-2104-4d80-a98b-ae6cd07a9eae)",
+  "date": "2026-10-20",
+  "notes": "Guardian figure for Dragon House in Blocks; transparent PNG cropped to subject, quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/guardian-512.png": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + image_background_remover",
+  "prompt": "An original friendly guardian golem as a handcrafted miniature: rounded body of mossy grey river stones joined with polished brass bands and rivets, kind glowing amber eyes, holding up a brass lantern-torch; full body, plain cream background. Original design, not blocky, not from any game or franchise. 1:1.",
+  "job": "521a9107-c2a7-4e78-a46e-e1c254695500 (bg removal 400d178b-2104-4d80-a98b-ae6cd07a9eae)",
+  "date": "2026-10-20",
+  "notes": "Guardian figure for Dragon House in Blocks; transparent PNG cropped to subject, quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-1.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Celebrate: warm string lights and confetti bokeh, cream, soft gold, pale teal, low contrast. Suitable behind dark text. No text, no people.",
+  "job": "7ef8c335-24fb-404e-8cce-32c80fd20bf0",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 1 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-1-600.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Celebrate: warm string lights and confetti bokeh, cream, soft gold, pale teal, low contrast. Suitable behind dark text. No text, no people.",
+  "job": "7ef8c335-24fb-404e-8cce-32c80fd20bf0",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 1 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-2.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Gather Data: brass-cornered open ledger with pencil tally marks and red apples, very soft focus, pale. Suitable behind dark text. No text, no people.",
+  "job": "6b79839b-8194-4f31-b895-55bbeb5c5efb",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 2 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-2-600.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Gather Data: brass-cornered open ledger with pencil tally marks and red apples, very soft focus, pale. Suitable behind dark text. No text, no people.",
+  "job": "6b79839b-8194-4f31-b895-55bbeb5c5efb",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 2 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-3.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Explore Learnings: small glowing brass lantern on a path through frosted grass, pale mist. Suitable behind dark text. No text, no people.",
+  "job": "8636d11c-1293-408f-ae38-a5db9e599142",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 3 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-3-600.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Explore Learnings: small glowing brass lantern on a path through frosted grass, pale mist. Suitable behind dark text. No text, no people.",
+  "job": "8636d11c-1293-408f-ae38-a5db9e599142",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 3 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-4.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Dream of What's Next: dawn sky in peach, cream and teal over a tiny miniature town skyline. Suitable behind dark text. No text, no people.",
+  "job": "0b4b11e8-98f2-4aa4-bd01-d6341dbc2ee3",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 4 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/retro-4-600.jpg": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5",
+  "prompt": "Soft light low-contrast background, portrait 3:4: Dream of What's Next: dawn sky in peach, cream and teal over a tiny miniature town skyline. Suitable behind dark text. No text, no people.",
+  "job": "0b4b11e8-98f2-4aa4-bd01-d6341dbc2ee3",
+  "date": "2026-10-20",
+  "notes": "Finale retro card 4 background",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/token-notstarted.png": {
+  "tool": "blender",
+  "model": "Blender 5.2.2 Cycles",
+  "prompt": "Brushed brass coin with teal enamel ring and gray-teal enamel, raised brass ring; status token, no text. 192x192 (2x of 96).",
+  "job": "v5-meta/wave2/blender/tokens.py (Cycles 96 spp, AgX Punchy, transparent film) receipt ~/work/creative-tools/run-1792521779968067000.json",
+  "date": "2026-10-20",
+  "notes": "Status token; quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/token-working.png": {
+  "tool": "blender",
+  "model": "Blender 5.2.2 Cycles",
+  "prompt": "Brushed brass coin with teal enamel ring and amber enamel, three brass beads; status token, no text. 192x192 (2x of 96).",
+  "job": "v5-meta/wave2/blender/tokens.py (Cycles 96 spp, AgX Punchy, transparent film) receipt ~/work/creative-tools/run-1792521779968067000.json",
+  "date": "2026-10-20",
+  "notes": "Status token; quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/token-stuck.png": {
+  "tool": "blender",
+  "model": "Blender 5.2.2 Cycles",
+  "prompt": "Brushed brass coin with teal enamel ring and red enamel, brass bar; status token, no text. 192x192 (2x of 96).",
+  "job": "v5-meta/wave2/blender/tokens.py (Cycles 96 spp, AgX Punchy, transparent film) receipt ~/work/creative-tools/run-1792521779968067000.json",
+  "date": "2026-10-20",
+  "notes": "Status token; quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/token-done.png": {
+  "tool": "blender",
+  "model": "Blender 5.2.2 Cycles",
+  "prompt": "Brushed brass coin with teal enamel ring and green enamel, raised brass check; status token, no text. 192x192 (2x of 96).",
+  "job": "v5-meta/wave2/blender/tokens.py (Cycles 96 spp, AgX Punchy, transparent film) receipt ~/work/creative-tools/run-1792521779968067000.json",
+  "date": "2026-10-20",
+  "notes": "Status token; quantized to 256 colors",
+  "wave": "v5 wave 2"
+ },
+ "img/v5/d20.png": {
+  "tool": "blender",
+  "model": "Blender 5.2.2 Cycles",
+  "prompt": "Icosahedron d20 in deep teal enamel with brass wireframe edges, 400x400 (2x), transparent.",
+  "job": "v5-meta/wave2/blender/tokens.py (Cycles 96 spp, AgX Punchy, transparent film) receipt ~/work/creative-tools/run-1792521779968067000.json",
+  "date": "2026-10-20",
+  "notes": "d20 die, no numerals",
+  "wave": "v5 wave 2"
+ },
+ "snd/v5-month-close.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "prompt": "Short warm celebratory orchestral stinger in D major, brass and strings swell and resolve on a bright major chord, 2.5 seconds, clean ending",
+  "job": "flow 4OS2zluVKziI2byP7w5d gen eay4JmMSsNW1oKEzMUPa (picked 1 of 4)",
+  "date": "2026-10-20",
+  "notes": "2.0 s; FFT shows F#/A/C# prominent, closest of 4 to D major (one had Bb major); silence-trimmed, loudnorm -16 LUFS, 0.3 s fade; no pitch shift",
+  "wave": "v5 wave 2"
+ },
+ "snd/v5-first.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_text_to_sound_v2",
+  "prompt": "Bright glockenspiel chime, two quick rising notes in D major, sparkling bell shimmer, close-mic, under one second",
+  "job": "flow NA1UbDaZ07hZIMRzj26w gen laptwSaN6ejPliJCDI3N (picked 1 of 4)",
+  "date": "2026-10-20",
+  "notes": "1.0 s; FFT D/G/B/A, fits D major; loudnorm -16 LUFS",
+  "wave": "v5 wave 2"
+ },
+ "snd/v5-breathe.mp3": {
+  "tool": "elevenlabs",
+  "model": "eleven_music_v2_5",
+  "prompt": "Calm ambient pad in D major, soft warm synth strings slowly swelling in and out like a slow breath, no drums, no melody, very slow tempo, gentle and seamless, loopable, about 10 seconds.",
+  "job": "flow mJ3BueF3WrKOAtBB4COI gen FqynQZL2BhXIJraCh1i1 (picked 1 of 4)",
+  "date": "2026-10-20",
+  "notes": "FFT D/A only (D major); 10 s cut to an 8.0 s seamless loop by equal-power crossfading the last 2 s into the head; loudnorm -18 LUFS (bed level)",
+  "wave": "v5 wave 2"
+ },
+ "img/galleon-2x.png": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + image_background_remover",
+  "prompt": "Repaint THIS same watercolor sky galleon at high resolution, same composition, same angle and same palette: loose sky-blue and lavender watercolor sails with soft washes, a violet-to-olive-green hill-shaped hull, white cloud wisps curling under the bow, brush streaks trailing from the masts. Crisp clean watercolor edges, fine paper texture, isolated on a plain pure white background, centered with margin, no text, no letters, no logo, no people, no flags with symbols.",
+  "job": "gen 5f0c2be3-9197-4db3-a28e-f97a00f05c0e (picked 1 of 2; other dabe0b70-c42c-46ab-afa8-42bbed10ca7b), background removed by job 80ed7b53-c180-42c5-8c3c-fdbc70e25386; reference = img/galleon.png flattened on white (media 1e211767-fc35-4309-92f0-0d844aaf0f57)",
+  "date": "2026-10-20",
+  "notes": "2x repaint of img/galleon.png, which is the ship portion of Eric's own Sky Ship Studios mark (Gordon YES, chat 9, 2026-10-18 01:05). No text, no people. White-fringe decontaminated, cropped to alpha bbox, Lanczos to 900 px; 600 px copy for phone DPR 3. Spend about 0.5 credits for 2 images plus the background removal.",
+  "wave": "v5 wave 3",
+  "dims": "900x677"
+ },
+ "img/galleon-600.png": {
+  "tool": "higgsfield",
+  "model": "gpt_image_2_5 + image_background_remover",
+  "prompt": "Repaint THIS same watercolor sky galleon at high resolution, same composition, same angle and same palette: loose sky-blue and lavender watercolor sails with soft washes, a violet-to-olive-green hill-shaped hull, white cloud wisps curling under the bow, brush streaks trailing from the masts. Crisp clean watercolor edges, fine paper texture, isolated on a plain pure white background, centered with margin, no text, no letters, no logo, no people, no flags with symbols.",
+  "job": "gen 5f0c2be3-9197-4db3-a28e-f97a00f05c0e (picked 1 of 2; other dabe0b70-c42c-46ab-afa8-42bbed10ca7b), background removed by job 80ed7b53-c180-42c5-8c3c-fdbc70e25386; reference = img/galleon.png flattened on white (media 1e211767-fc35-4309-92f0-0d844aaf0f57)",
+  "date": "2026-10-20",
+  "notes": "2x repaint of img/galleon.png, which is the ship portion of Eric's own Sky Ship Studios mark (Gordon YES, chat 9, 2026-10-18 01:05). No text, no people. White-fringe decontaminated, cropped to alpha bbox, Lanczos to 900 px; 600 px copy for phone DPR 3. Spend about 0.5 credits for 2 images plus the background removal.",
+  "wave": "v5 wave 3",
+  "dims": "600x451"
+ },
+ "img/master-tall-2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 6c180a1d-29cd-4810-bf45-140550155826 (the existing 1x file's source) to 2160x3856, Lanczos to 1500 wide, JPEG q82; served as the 2x of an image-set/srcset so phones at DPR 2 to 3 get native pixels",
+  "job": "86269969-f5f8-4e20-a913-309265297e11",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "skyship/media/clouds@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 97ba027c-81ee-42d3-b9d8-0c4fbc6b6656 (media/clouds.jpg's source), Lanczos to 1440 wide, JPEG q80; 2x for the phone cloud curtains and the PC canvas at DPR 2",
+  "job": "c7131dee-1d99-435c-967a-4e94e2396040",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "play/thumbs/rosemaling.jpg": {
+  "tool": "derived: screenshot of this site's own game (end or title screen), 800x450",
+  "source": "play/rosemaling/ rendered in the browser; every asset in the frame has its own entry in play/rosemaling/PROVENANCE.json",
+  "note": "entry added in wave 3 after a file audit; origin identified by eye (2026-10-20), capture date per git c5130d9/80f6408 (2026-10-19)",
+  "wave": "v5 wave 3"
+ },
+ "play/thumbs/dragon-house-blocks.jpg": {
+  "tool": "derived: screenshot of this site's own game (end or title screen), 800x450",
+  "source": "play/dragon-house-blocks/ rendered in the browser; every asset in the frame has its own entry in play/dragon-house-blocks/PROVENANCE.json",
+  "note": "entry added in wave 3 after a file audit; origin identified by eye (2026-10-20), capture date per git c5130d9/80f6408 (2026-10-19)",
+  "wave": "v5 wave 3"
+ },
+ "play/thumbs/mission-control.jpg": {
+  "tool": "derived: screenshot of this site's own game (end or title screen), 800x450",
+  "source": "play/mission-control/ rendered in the browser; every asset in the frame has its own entry in play/mission-control/PROVENANCE.json",
+  "note": "entry added in wave 3 after a file audit; origin identified by eye (2026-10-20), capture date per git c5130d9/80f6408 (2026-10-19)",
+  "wave": "v5 wave 3"
+ },
+ "play/thumbs/un-gloom.jpg": {
+  "tool": "derived: screenshot of this site's own game (end or title screen), 800x450",
+  "source": "play/un-gloom/ rendered in the browser; every asset in the frame has its own entry in play/un-gloom/PROVENANCE.json",
+  "note": "entry added in wave 3 after a file audit; origin identified by eye (2026-10-20), capture date per git c5130d9/80f6408 (2026-10-19)",
+  "wave": "v5 wave 3"
+ },
+ "play/thumbs/doing-the-most.jpg": {
+  "tool": "derived: screenshot of this site's own game (end or title screen), 800x450",
+  "source": "play/doing-the-most/ rendered in the browser; every asset in the frame has its own entry in play/doing-the-most/PROVENANCE.json",
+  "note": "entry added in wave 3 after a file audit; origin identified by eye (2026-10-20), capture date per git c5130d9/80f6408 (2026-10-19)",
+  "wave": "v5 wave 3"
+ }
+}

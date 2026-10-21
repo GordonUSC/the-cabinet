@@ -1,0 +1,113 @@
+{
+ "_fact_sources": {
+  "rosemaling still thrives in Stoughton": "https://www.visitstoughton.com/norwegian-heritage-tour (Rosemaling Workshop: 'This traditional decorative painting style dates back to the 18th century and still thrives here in Stoughton'), checked 2026-10-19",
+  "Syttende Mai, Norwegian heritage": "https://www.cityofstoughton.com/209/Special-Events (not used on page)",
+  "all Eric facts": "v4-play/BRIEF.md facts list"
+ },
+ "img/stage-wide.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "painted folk-art circus bandstand in Norwegian rosemaling, teal velvet curtains, gold fringe, lanterns, empty stage, 16:9 4k (job 12bdab3f-0fc1-4706-9f69-fc5147115243)",
+  "processing": "webp q80 3840px; stage-wide-1x.webp 1920px; poster.jpg 1600px for JS-off"
+ },
+ "img/stage-wide-1x.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same as stage-wide (job 12bdab3f), downscaled 1920"
+ },
+ "img/poster.jpg": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same as stage-wide (job 12bdab3f), 1600px JPEG for the JS-off page"
+ },
+ "img/stage-tall.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "same bandstand, vertical 9:16 2k (job e0419f31-d0d2-4c1a-b5e1-0660dc6f98b9)"
+ },
+ "img/plate-dad.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: a heart sheltering three small stars (James, Henry, and Oscar); reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job 6fb70e93-2745-4360-84df-651c580d182d)"
+ },
+ "img/plate-house.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: Queen Anne Victorian house with round corner tower and wraparound porch; reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job 6fdcb51a-37da-48b9-beff-1303b38b82a1)"
+ },
+ "img/plate-cider.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: apple and stoneware cider jug; reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job 901552c5-edf9-47de-84d1-000ee96253fb)"
+ },
+ "img/plate-ggp.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: director's clapperboard with a star; reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job efa9124a-265f-4776-9116-cd070b2ee9bf)"
+ },
+ "img/plate-ai.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: constellation spark of connected nodes (AI); reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job c63cc96e-1912-427d-b9a1-a9244b8787f4)"
+ },
+ "img/plate-table.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "round enamel porcelain plate, top-down, deep teal enamel with gold rim, white rosemaling border, center icon: twenty-sided die with a dragon wing; reference = site/img/seal.png, the Dragon House emblem Eric designed (media f7925adf); transparent bg, 2k (job 0e82dc5d-31d6-4c6f-beff-648b7b554522)"
+ },
+ "img/hand-crystal.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "folk-art gouache forearm in gold leaf reaching up, finger raised to balance a plate; sleeve: white pharmacist's lab coat, teal cuff; no face, transparent bg, 2k (job d28dc6a7-2673-4b57-bd5e-3ffdc89e2f34); top painted plate cropped off, trimmed, 700px webp"
+ },
+ "img/hand-gordon.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "folk-art gouache forearm in gold leaf reaching up, finger raised to balance a plate; sleeve: deep indigo with gold embroidered stars; no face, transparent bg, 2k (job c69b926d-0208-4632-84f9-5817ffed8eb7); top painted plate cropped off, trimmed, 700px webp"
+ },
+ "img/hand-james.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "folk-art gouache forearm in gold leaf reaching up, finger raised to balance a plate; sleeve: burgundy sweater (James's color, per brief); no face, transparent bg, 2k (job 52a83ff0-070c-47d4-948d-f02dee6aec72); top painted plate cropped off, trimmed, 700px webp"
+ },
+ "img/hand-henry.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "folk-art gouache forearm in gold leaf reaching up, finger raised to balance a plate; sleeve: red and green stripes (Henry's colors, per brief); no face, transparent bg, 2k (job f0bb3708-0bea-4b72-b688-c9205781f01a); top painted plate cropped off, trimmed, 700px webp"
+ },
+ "img/hand-oscar.webp": {
+  "tool": "higgsfield gpt_image_2_5 (quality high)",
+  "prompt": "folk-art gouache forearm in gold leaf reaching up, finger raised to balance a plate; sleeve: orange and blue stripes (Oscar's colors, per brief); no face, transparent bg, 2k (job 109d4f21-3d29-46fe-93fd-eb7e9f8ac19a); top painted plate cropped off, trimmed, 700px webp"
+ },
+ "snd/score.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 48s: joyful Scandinavian folk circus band, fiddle, accordion, oom-pah tuba, banjo, glockenspiel, claps, bouncy 2/4 ~116 bpm, steady for looping (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen fcnwIFmxagtkOfSLEH6N, picked over AcsOZ2N3t0oCzeaj6sNb)",
+  "processing": "1.5s equal-power tail-to-head crossfade loop, -22 LUFS; sped 1.0x to 1.2x in play as tempo builds"
+ },
+ "snd/finale.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 20s: triumphant folk circus finale, drum roll, victory refrain, grand final chord (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen mxHH2VX74I963Wx7zBL8)",
+  "processing": "-18 LUFS"
+ },
+ "snd/spin.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1.4s: rising whoosh of a plate spun on a pole, porcelain ring (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen sRPd2HnzynbtxUAS5HPv)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/wobble.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1.6s: ceramic plate wobbling and rattling as it slows (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen qGNfD6zV9RNtnbxEFIpk)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/catch.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1.5s: hand catches a falling plate, soft clink, warm chime (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen KUWwmxjqFNFPaOJ5tpjP)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/helper.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 1.6s: cheerful harp glissando with sleigh bells, helper arrives (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen OoGUzy2jzDRGXiyRkchz)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/cheer.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 7s: small-town crowd cheering and clapping under a circus tent (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen cNu8eo1EDstcqx2Q4wQG)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/confetti.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2.2s: confetti cannon pop and paper flutter (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen v9h09vNNQrh2G1SV5hAH)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ },
+ "snd/magic.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2 2.5s: ascending celesta and glockenspiel sparkle (ElevenLabs flow fneDIo5YCy66qURWCBk6, gen KVRYsqDs2WzpxVlGRKoe)",
+  "processing": "silence trim, two-pass loudnorm, -1.5 dBTP, level baked in"
+ }
+}

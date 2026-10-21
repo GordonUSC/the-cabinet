@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0f3f3a">
+<title>Doing the Most</title>
+<meta name="description" content="A plate-spinning show for Eric: six plates, all of them his, and the people who step in to help.">
+<!-- STYLE: "Rosemaling Folk Circus" (Lived): a hand-painted rosemaling bandstand, with six enamel plates cut from Eric's own Dragon House emblem palette, teal, white and gold. | WHY: plate spinning is the honest picture of his year, and painting it in folk rosemaling and his own emblem makes it his stage, not a stock circus. | ALT: "Ringmaster Letterpress", a flat two-color circus poster with wood type; louder, but it would look like any circus. -->
+<!-- FORBIDS: card grids, pill buttons, mono kicker labels, cream template cards. Painted wood, enamel, gold leaf, serif display. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html{font-synthesis-weight:none}
+:root{
+  --teal:#0f3f3a; --teal2:#17594f; --deep:#08201e; --gold:#d9a93f; --gold2:#f3d27a; --cream:#fbf5e6; --rose:#b3362c; --ink:#14201e;
+  --display:"Young Serif",Georgia,serif; --sans:"Instrument Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--deep);color:var(--cream);font-family:var(--sans);font-size:18px;-webkit-tap-highlight-color:transparent}
+a{color:var(--gold2)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+kbd{font-family:var(--sans);font-weight:800;font-size:14px;display:inline-block;min-width:22px;padding:1px 6px;border:1px solid rgba(243,210,122,.7);border-bottom-width:3px;border-radius:5px;color:var(--gold2);background:rgba(8,32,30,.6);line-height:1.3;text-align:center}
+
+/* ---------- JS OFF: the whole story, readable ---------- */
+.static{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+.static img{width:100%;height:auto;border:3px solid var(--gold);border-radius:6px;display:block;margin:12px 0 20px}
+.static h1{font-family:var(--display);font-weight:400;font-size:44px;line-height:1.05;color:var(--gold2)}
+.static h2{font-family:var(--display);font-weight:400;font-size:26px;margin:22px 0 8px;color:var(--gold2)}
+.static p,.static li{font-size:18px;line-height:1.5}
+.static ul{padding-left:20px}
+.static .back{display:inline-block;margin-top:24px;padding:12px 18px;border:2px solid var(--gold);border-radius:4px;text-decoration:none;font-weight:700}
+html.js .static{display:none}
+.app{display:none}
+html.js .app{display:block}
+
+/* ---------- STAGE ---------- */
+.app{position:fixed;inset:0;overflow:hidden;background:var(--deep)}
+.bg{position:absolute;inset:0;background:url(img/stage-wide-1x.webp) center/cover no-repeat}
+@media (min-width:1921px),(min-resolution:1.5dppx) and (min-aspect-ratio:1/1){.bg{background-image:url(img/stage-wide.webp)}}
+@media (max-aspect-ratio:1/1){.bg{background-image:url(img/stage-tall.webp)}}
+.vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 90% at 50% 60%,rgba(8,32,30,0) 45%,rgba(8,32,30,.65) 100%)}
+.top{position:absolute;left:0;right:0;top:0;display:flex;align-items:center;gap:10px;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;z-index:30}
+.top .back,.top .tool{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 14px;border:1px solid rgba(243,210,122,.6);background:rgba(8,32,30,.72);border-radius:4px;color:var(--cream);font-weight:700;font-size:16px;text-decoration:none}
+.top .back:hover,.top .tool:hover{background:rgba(23,89,79,.9);border-color:var(--gold2)}
+.top .sp{flex:1}
+.top .tool kbd{margin-left:8px}
+@media (hover:none){.top .tool kbd,.label kbd,.hint kbd,.go kbd{display:none}.hint .hp{display:none}}
+@media (hover:hover){.hint .ht{display:none}}
+.rig.parked .pw{opacity:0;transition:opacity .3s}.rig.parked .pole{opacity:.45}.rig.parked{pointer-events:none}
+.tally{position:absolute;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 46px);z-index:20;font-size:16px;font-weight:700;color:var(--cream);text-shadow:0 2px 8px #000;pointer-events:none}
+.tally b{color:var(--gold2)}
+.receipt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px auto 0;max-width:640px}
+.receipt div{background:rgba(8,32,30,.7);border:1px solid var(--gold);border-radius:8px;padding:10px 6px}
+.receipt b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(28px,2.6vw,44px);color:var(--gold2);line-height:1}
+.receipt span{display:block;font-size:15px;margin-top:4px}
+.receipt.five{grid-template-columns:repeat(5,minmax(0,1fr));max-width:760px}
+@media (max-width:560px){.receipt,.receipt.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tempo i{transition:none}@media (max-width:480px){.tempo i{width:84px}}
+.marquee{position:absolute;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 64px);z-index:20;text-align:center;pointer-events:none;width:min(92vw,980px)}
+.marquee .t{font-family:var(--display);font-size:clamp(26px,3.4vw,58px);line-height:1;color:var(--gold2);text-shadow:0 2px 0 #5a3a0a,0 6px 24px rgba(0,0,0,.6)}
+.marquee .s{margin-top:8px;font-size:clamp(17px,1.35vw,26px);font-weight:700;color:var(--cream);text-shadow:0 2px 10px rgba(0,0,0,.8);min-height:1.3em;transition:opacity .3s}
+.tempo{position:absolute;right:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:20;font-size:16px;font-weight:700;color:var(--gold2);text-shadow:0 2px 8px #000;pointer-events:none;display:flex;align-items:center;gap:8px}
+.tempo i{display:block;width:120px;height:8px;border:1px solid var(--gold);border-radius:4px;overflow:hidden;background:rgba(8,32,30,.6)}
+.tempo b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--rose))}
+.hint{position:absolute;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:20;font-size:16px;color:var(--cream);text-shadow:0 2px 8px #000;pointer-events:none}
+
+/* rigs: pole + plate, one per part of his life */
+.rig{position:absolute;transform-origin:50% 100%;z-index:10;touch-action:manipulation;outline:none}
+.rig .pole{position:absolute;left:50%;bottom:0;width:7px;margin-left:-3.5px;border-radius:4px;background:linear-gradient(90deg,#7a5410,#f3d27a 45%,#a77a1e)}
+.rig .base{position:absolute;left:50%;bottom:-6px;width:46px;height:14px;margin-left:-23px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0))}
+.rig .pw{position:absolute;z-index:3;left:50%;top:0;perspective:900px;transform:translate(-50%,-50%)}
+.rig .plate{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.rig .plate img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.rig .plate img.g1{opacity:0}.rig .plate img.g2{opacity:0}
+.rig .shine{position:absolute;inset:4%;border-radius:50%;pointer-events:none;opacity:0;background:conic-gradient(from 0deg,rgba(255,240,190,0) 0deg,rgba(255,240,190,.55) 18deg,rgba(255,240,190,0) 40deg,rgba(255,240,190,0) 180deg,rgba(255,240,190,.4) 198deg,rgba(255,240,190,0) 220deg)}
+.rig .ring{position:absolute;left:50%;top:0;transform:translate(-50%,-50%) scaleY(.55);border-radius:50%;pointer-events:none;opacity:0;box-shadow:0 0 0 4px rgba(243,210,122,.0),0 0 26px 8px rgba(179,54,44,.0)}
+.rig.low .ring{opacity:1;animation:pulse .7s ease-in-out infinite alternate}
+@keyframes pulse{from{box-shadow:0 0 0 3px rgba(243,210,122,.7),0 0 18px 6px rgba(179,54,44,.45)}to{box-shadow:0 0 0 5px rgba(243,210,122,.95),0 0 34px 12px rgba(179,54,44,.7)}}
+.rig.solo .ring{opacity:1;animation:none;box-shadow:0 0 0 3px rgba(243,210,122,.85),0 0 40px 14px rgba(243,210,122,.45)}
+@media (hover:hover){.rig:hover .pw{filter:drop-shadow(0 0 14px rgba(243,210,122,.85))}}
+.rig:focus-visible .pw{filter:drop-shadow(0 0 14px rgba(243,210,122,.85))}
+.rig:focus-visible .pole{box-shadow:0 0 0 3px var(--gold2)}
+.rig.off,.label.off{opacity:0;pointer-events:none}
+.rig.enter{animation:enter .55s cubic-bezier(.2,1.6,.4,1)}
+@keyframes enter{from{transform:translateY(40px) scale(.6);opacity:0}to{opacity:1}}
+.hand{position:absolute;left:50%;pointer-events:none;opacity:0;transform:translate(-50%,40%);transition:opacity .25s,transform .45s cubic-bezier(.2,1.4,.4,1);-webkit-mask-image:linear-gradient(180deg,#000 62%,transparent 100%);mask-image:linear-gradient(180deg,#000 62%,transparent 100%);z-index:2}
+.hand img{width:100%;height:auto;display:block}
+.hand.on{opacity:1;transform:translate(-50%,0)}
+.tag{position:absolute;left:50%;transform:translate(-50%,0);white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .25s;z-index:4;padding:4px 12px 5px;border-radius:3px;background:var(--cream);color:var(--ink);font-weight:800;font-size:16px;box-shadow:0 3px 0 var(--gold),0 6px 18px rgba(0,0,0,.45)}
+.tag.on{opacity:1}
+.tag .sw{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.label{position:absolute;transform:translateX(-50%);text-align:center;z-index:12;pointer-events:none;width:15vw}
+.label .n{font-family:var(--display);font-size:clamp(17px,1.25vw,28px);line-height:1.05;color:var(--cream);text-shadow:0 2px 0 #000,0 2px 12px rgba(0,0,0,.9)}
+.label .d{font-size:clamp(16px,.95vw,21px);font-weight:700;color:var(--gold2);text-shadow:0 2px 8px #000;margin-top:3px}
+.label kbd{margin-top:6px}
+.fall .pw{transition:none}
+.rig.guarded .pw{filter:drop-shadow(0 0 18px rgba(243,210,122,.95)) drop-shadow(0 0 30px rgba(23,180,160,.8))}
+.rig.guarded .ring{opacity:1;animation:guard 1.3s ease-out;box-shadow:0 0 0 5px rgba(243,210,122,.95),0 0 44px 16px rgba(23,180,160,.6)}
+@keyframes guard{from{transform:translate(-50%,-50%) scaleY(.55) scale(1.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-50%) scaleY(.55) scale(1)}}
+.rig.row2 .pole{background:linear-gradient(90deg,#0d5a50,#7fd6c4 45%,#0f3f3a)}
+.guardbadge{display:inline-flex;align-items:center;gap:10px;margin:18px auto 0;padding:10px 16px;border:2px solid var(--gold);border-radius:8px;background:rgba(15,63,58,.85);font-size:17px;font-weight:600;line-height:1.35;text-align:left;max-width:34em}
+.guardbadge b{font-family:var(--display);font-weight:400;color:var(--gold2)}
+.guardbadge svg{flex:none}
+.hardrow{margin-top:14px}
+.hardnote{font-size:16px;color:var(--gold2);margin-top:4px;min-height:1.2em}
+.spark{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:15}
+
+/* overlays */
+.panel{position:absolute;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:radial-gradient(80% 70% at 50% 50%,rgba(8,32,30,.55),rgba(8,32,30,.92))}
+.panel.hide{display:none}
+.card{max-width:760px;text-align:center}
+.card h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,6vw,104px);line-height:.95;color:var(--gold2);text-shadow:0 3px 0 #5a3a0a,0 10px 40px rgba(0,0,0,.6)}
+.card .kick{font-size:clamp(17px,1.3vw,24px);font-weight:700;letter-spacing:.04em;color:var(--cream);margin-bottom:10px}
+.card p{font-size:clamp(18px,1.4vw,26px);line-height:1.45;margin:16px auto 0;max-width:34em}
+.card .row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px}
+.go{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 28px;background:var(--gold);color:var(--ink);font-weight:800;font-size:20px;border-radius:4px;box-shadow:0 4px 0 #7a5410,0 10px 26px rgba(0,0,0,.4);text-decoration:none}
+.go:hover{background:var(--gold2);transform:translateY(-1px)}
+.go:active{transform:translateY(2px);box-shadow:0 2px 0 #7a5410}
+.go.alt{background:transparent;color:var(--cream);border:2px solid var(--gold);box-shadow:none}
+.go.alt:hover{background:rgba(23,89,79,.7)}
+.go kbd{border-color:rgba(20,32,30,.5);color:var(--ink);background:rgba(255,255,255,.35)}
+.go.alt kbd{color:var(--gold2);background:rgba(8,32,30,.6);border-color:rgba(243,210,122,.7)}
+.card .who{margin-top:18px;font-size:clamp(17px,1.2vw,22px);color:var(--gold2);font-weight:700}
+.card .credit{margin-top:22px;font-size:16px;opacity:.85;line-height:1.45}
+.final{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);z-index:35;text-align:center;opacity:0;transition:opacity .9s,transform 1.2s cubic-bezier(.2,1,.3,1);pointer-events:none;width:min(94vw,1300px)}
+.final.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.final .t{font-family:var(--display);font-size:clamp(34px,5.4vw,112px);line-height:1;color:var(--cream);text-shadow:0 3px 0 #5a3a0a,0 0 40px rgba(217,169,63,.7),0 10px 50px rgba(0,0,0,.8)}
+canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:36}
+@media (prefers-reduced-motion:reduce){.rig.enter{animation:none}.rig.low .ring{animation:none;opacity:1;box-shadow:0 0 0 4px rgba(243,210,122,.9)}.hand{transition:opacity .2s}.final{transition:opacity .4s}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+<script src="../../js/ledger.js"></script>
+</head>
+<body>
+
+<article class="static">
+  <h1>Doing the Most</h1>
+  <p>A plate-spinning show for Eric Francksen. Six plates on six poles, and every one is a real part of his life. They wobble and slow, and he taps to give each a spin while a folk band speeds up behind him.</p>
+  <img src="img/poster.jpg" alt="A painted rosemaling bandstand at night, teal curtains, gold trim and lantern light, the stage empty and waiting.">
+  <h2>The six plates</h2>
+  <ul>
+    <li><strong>Dad</strong>: James, Henry, and Oscar</li>
+    <li><strong>The House</strong>: the Iverson-Johnson House, 1898</li>
+    <li><strong>Cider Camp</strong></li>
+    <li><strong>GGP Executive Producer</strong>: Weekly Connect and IGNITE</li>
+    <li><strong>The Day Job</strong>: product owner by day</li>
+    <li><strong>The Dragon Table</strong>: D&amp;D night at the Dragon House</li>
+  </ul>
+  <h2>Then it gets frantic</h2>
+  <p>When there are too many plates for two hands, his people step in. Crystal. Gordon. James, Henry, and Oscar, each in their own colors. A plate that falls gets caught. Nobody loses here.</p>
+  <p>At the end every plate spins on its own, and the line reads: <strong>You don't have to spin them all alone.</strong></p>
+  <p>Turn on JavaScript to play it, with sound.</p>
+  <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
+</article>
+
+<div class="app" id="app" aria-live="polite">
+  <div class="bg"></div>
+  <div class="vignette"></div>
+  <div class="top">
+    <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
+    <span class="sp"></span>
+    <button class="tool" id="mute" aria-pressed="false">Sound on<kbd>M</kbd></button>
+    <button class="tool" id="fs">Full screen<kbd>F</kbd></button>
+  </div>
+  <div class="marquee"><div class="t" id="mt">Doing the Most</div><div class="s" id="ms"></div></div>
+  <div id="rigs"></div>
+  <div class="hint" id="hint"><span class="hp">Click a plate to spin it. <kbd>1</kbd> to <kbd>6</kbd> spins a plate, <kbd>Space</kbd> spins the slowest.</span><span class="ht">Tap a plate to spin it.</span></div>
+  <div class="tally" id="tally" aria-hidden="true"></div>
+  <div class="tempo" aria-hidden="true">Tempo <i><b id="tb"></b></i></div>
+  <div class="final" id="final"><div class="t">You don't have to spin them all alone.</div></div>
+  <canvas class="fx" id="fx"></canvas>
+
+  <div class="panel" id="start">
+    <div class="card">
+      <div class="kick">For Eric, from Gordon and Darby</div>
+      <h1>Doing the Most</h1>
+      <p>Six plates, all of them yours. Keep them spinning. It is going to get busy. Catch a wobbling plate before it drops. If one falls, one of your people holds it for you.</p>
+      <div id="guardbadge" hidden></div>
+      <div class="hardrow" id="hardrow"></div><div class="hardnote" id="hardnote"></div>
+      <div class="row"><button class="go" id="play">Start the show <kbd>Enter</kbd></button></div>
+      <p class="credit">Best with sound. Tap or click a plate to spin it.</p>
+    </div>
+  </div>
+
+  <div class="panel hide" id="end">
+    <div class="card">
+      <h1>You don't have to spin them all alone.</h1>
+      <p id="endline">Crystal. Gordon. James, Henry, and Oscar. Your people have you, and every plate is still in the air.</p>
+      <div class="receipt" id="receipt"></div>
+      <div class="row">
+        <button class="go" id="again">Spin it again <kbd>R</kbd></button>
+        <a class="go alt" href="../../index.html" data-board="../../">Back to the board <kbd>B</kbd></a>
+      </div>
+      <p class="credit">Painted in rosemaling, in the teal, white and gold of the Dragon House emblem you designed.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function(s){return document.querySelector(s)};
+var PLATES = [
+  {k:'dad',   n:'Dad',            d:'James, Henry, and Oscar'},
+  {k:'house', n:'The House',      d:'Iverson-Johnson, 1898'},
+  {k:'cider', n:'Cider Camp',     d:'the camp you run'},
+  {k:'ggp',   n:'GGP Executive Producer', d:'Weekly Connect and IGNITE'},
+  {k:'ai',    n:'The Day Job',    d:'product owner by day'},
+  {k:'table', n:'The Dragon Table', d:'D&D night'}
+];
+var HELPERS = [
+  {k:'crystal', n:'Crystal', c:['#ffffff','#17594f']},
+  {k:'gordon',  n:'Gordon',  c:['#23306e','#d9a93f']},
+  {k:'james',   n:'James',   c:['#7a1f2b','#7a1f2b']},
+  {k:'henry',   n:'Henry',   c:['#c0392b','#2e7d32']},
+  {k:'oscar',   n:'Oscar',   c:['#ef7d1a','#2a5db0']}
+];
+var ROW2 = [
+  {k:'table', n:'Gordtopia', d:'the server you keep', f:'hue-rotate(140deg) saturate(1.2)'},
+  {k:'ggp',   n:'Weekly Connect', d:'GGP, every week', f:'hue-rotate(60deg)'},
+  {k:'ggp',   n:'IGNITE', d:'GGP, lit up', f:'hue-rotate(-70deg) saturate(1.3)'}
+];
+var ENTER_AT = [0,5,10,15,20,25,29,33,37];
+var HARD=false, GUARD=false, protectedN=0, GUARD_MAX=2; /* the guardian saves at most two drops a run, so catching still matters */
+function nActive(){ return HARD?9:6; }
+var JOIN_AT = [33,40,46,51,56];
+var MAGIC_AT = 64;
+
+/* ---------- audio: WebAudio, levels baked into files ---------- */
+var AC=null, master=null, bufs={}, muted=false, score=null, scoreGain=null;
+var SND=['score','finale','spin','wobble','catch','helper','cheer','confetti','magic'];
+function initAudio(){
+  if(AC) return;
+  try{
+    AC = new (window.AudioContext||window.webkitAudioContext)();
+    master = AC.createGain(); master.gain.value = muted?0:1; master.connect(AC.destination);
+    SND.forEach(function(n){
+      fetch('snd/'+n+'.mp3').then(function(r){return r.arrayBuffer()}).then(function(a){
+        return new Promise(function(res,rej){AC.decodeAudioData(a,res,rej)});
+      }).then(function(b){bufs[n]=b; if(n==='score'&&running&&!score) startScore();}).catch(function(){});
+    });
+  }catch(e){AC=null}
+}
+function play(n,rate,gain){
+  if(!AC||!bufs[n]) return null;
+  var s=AC.createBufferSource(); s.buffer=bufs[n]; if(rate) s.playbackRate.value=rate;
+  var g=AC.createGain(); g.gain.value=gain==null?1:gain; s.connect(g); g.connect(master); s.start(); return s;
+}
+function startScore(){
+  if(!AC||!bufs.score) return;
+  score=AC.createBufferSource(); score.buffer=bufs.score; score.loop=true;
+  score.loopStart=0.05; score.loopEnd=bufs.score.duration-0.05;
+  scoreGain=AC.createGain(); scoreGain.gain.value=1; score.connect(scoreGain); scoreGain.connect(master); score.start(0,0.05);
+}
+function applyMute(m){muted=m; if(master) master.gain.value=m?0:1; var b=$('#mute'); b.firstChild.nodeValue=m?'Sound off':'Sound on'; b.setAttribute('aria-pressed',m?'true':'false');}
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function setMute(m){ if(window.ledger) ledger.setSound(!m); else applyMute(m); }
+if(window.ledger) ledger.bindSound(function(on){ applyMute(!on); });
+
+/* ---------- build the rigs ---------- */
+var rigsEl=$('#rigs'), rigs=[];
+PLATES.concat(ROW2).forEach(function(p,i){
+  var b=document.createElement('button'); b.className='rig off'+(i>=6?' row2':''); b.type='button';
+  b.setAttribute('aria-label','Spin '+p.n+' ('+p.d+'), key '+(i+1));
+  b.innerHTML='<div class="base"></div><div class="pole"></div><div class="hand"><img alt="" src=""></div>'+
+    '<div class="ring"></div><div class="pw"><div class="plate"><img class="g2" alt="" src="img/plate-'+p.k+'.webp"><img class="g1" alt="" src="img/plate-'+p.k+'.webp"><img class="b" alt="" src="img/plate-'+p.k+'.webp"><div class="shine"></div></div></div><div class="tag"></div>';
+  if(p.f) b.querySelector('.plate').style.filter=p.f;
+  var lab=document.createElement('div'); lab.className='label off';
+  lab.innerHTML='<div class="n">'+p.n+'</div><div class="d">'+p.d+'</div><kbd>'+(i+1)+'</kbd>';
+  rigsEl.appendChild(b); rigsEl.appendChild(lab);
+  var r={i:i,p:p,el:b,lab:lab,pw:b.querySelector('.pw'),plate:b.querySelector('.plate'),g1:b.querySelector('.g1'),g2:b.querySelector('.g2'),shine:b.querySelector('.shine'),
+    ring:b.querySelector('.ring'),hand:b.querySelector('.hand'),handImg:b.querySelector('.hand img'),tag:b.querySelector('.tag'),pole:b.querySelector('.pole'),
+    active:false,om:0,ang:Math.random()*360,ph:Math.random()*6,fall:0,falling:false,assistUntil:0,lowWarned:false,x:0,y:0,D:0,H:0};
+  b.addEventListener('pointerdown',function(e){e.preventDefault(); spin(r,true);});
+  b.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();spin(r,true);}});
+  rigs.push(r);
+});
+
+var W=0,H=0,portrait=false;
+function layout(){
+  W=innerWidth; H=innerHeight; portrait = W/H < 1;
+  rigs.forEach(function(r,i){
+    var x,floor,ph,D,lw;
+    r.el.style.display = (i<nActive())?'':'none'; r.lab.style.display = (i<nActive())?'':'none';
+    if(i>=6){ var j=i-6;
+      if(!portrait){ x=W*(0.263+j*0.237); floor=H*0.50; ph=H*0.17; D=Math.min(W*0.088,H*0.17); lw=W*0.13; }
+      else { x=W*(0.18+j*0.32); floor=H*0.40; ph=H*0.10; D=Math.min(W*0.24,H*0.105); lw=W*0.31; }
+    } else if(!portrait){
+      x = W*(0.105 + i*0.158); floor=H*0.79; ph=H*0.37; D=Math.min(W*0.128,H*0.27); lw=W*0.15;
+    } else if(HARD){
+      var c2=i%3,r2=(i/3)|0;
+      x = W*(0.18+c2*0.32); floor = H*(r2?0.86:0.63); ph=H*0.10; D=Math.min(W*0.24,H*0.105); lw=W*0.31;
+    } else {
+      var col=i%3,row=(i/3)|0;
+      x = W*(0.18+col*0.32); floor = H*(row?0.84:0.52); ph=H*0.15; D=Math.min(W*0.29,H*0.14); lw=W*0.31;
+    }
+    r.x=x; r.y=floor; r.D=D; r.H=ph;
+    var el=r.el; el.style.left=(x-D/2)+'px'; el.style.width=D+'px'; el.style.top=(floor-ph)+'px'; el.style.height=ph+'px';
+    r.pole.style.height=ph+'px';
+    r.pw.style.width=D+'px'; r.pw.style.height=D+'px'; r.pw.style.left='50%';
+    r.ring.style.width=(D*0.98)+'px'; r.ring.style.height=(D*0.98)+'px';
+    var hw=D*0.4; r.hand.style.width=hw+'px'; r.hand.style.top=(D*0.13)+'px';
+    r.tag.style.top=(Math.min(ph*0.62, ph-30))+'px';
+    r.lab.style.left=x+'px'; r.lab.style.top=(floor+10)+'px'; r.lab.style.width=lw+'px';
+    r.lab.querySelector('.d').style.display = portrait ? 'none':'block';
+  });
+  fx.width=W*(window.devicePixelRatio||1); fx.height=H*(window.devicePixelRatio||1);
+}
+
+/* ---------- game state ---------- */
+var spins=0, saves=0, streak=0, best=0, lost=[];
+var looping=false, running=false, t=0, last=0, joined=[], queue=[], helperNext={}, phase='idle', magic=false, ended=false, msgUntil=0;
+var mt=$('#mt'), ms=$('#ms'), tb=$('#tb');
+function say(s,hold){ms.textContent=s; msgUntil=t+(hold||3);}
+function decay(){ if(magic) return 0; var k=(t-8)/40; k=k<0?0:k>1?1:k; return 0.07+0.13*k; }
+function tempo(){ var k=t/58; return k<0?0:k>1?1:k; }
+
+function spin(r,byEric){
+  if(!running||!r.active||r.falling||r.parked) return;
+  if(byEric){ spins++; if(r.om<0.5&&!magic){ saves++; streak++; if(streak>best) best=streak; } tallyHud(); }
+  if(!byEric && r.om>0.8) return;
+  var before=r.om; r.om=Math.min(1,r.om+(byEric?0.5:1)); r.lowWarned=false;
+  play('spin',0.9+before*0.25+Math.random()*0.08, byEric?1:0.8);
+  sparks(r, byEric?10:6);
+  if(byEric && phase==='warm' && t>2) {}
+}
+function tallyHud(){ var e=$('#tally'); if(e) e.innerHTML='Caught <b>'+saves+'</b>. Streak <b>'+streak+'</b>. Spinning <b>'+(nActive()-lost.length)+'</b> of '+nActive()+'.'+(GUARD?' Guardian saves <b>'+protectedN+'</b> of '+GUARD_MAX+'.':''); }
+function slowest(){ var m=null; rigs.forEach(function(r){ if(r.active&&!r.falling&&!r.parked&&t>=r.assistUntil&&(!m||r.om<m.om)) m=r; }); return m; }
+
+function showHand(r,h,dur){
+  if(h.at && h.at!==r && !magic){ h.at.hand.classList.remove('on'); h.at.tag.classList.remove('on'); h.at.assistUntil=Math.min(h.at.assistUntil,t); }
+  h.at=r;
+  r.handImg.src='img/hand-'+h.k+'.webp'; r.handImg.alt=h.n+"'s hand";
+  r.hand.classList.add('on');
+  r.tag.innerHTML='<span class="sw" style="background:linear-gradient(90deg,'+h.c[0]+' 50%,'+h.c[1]+' 50%)"></span>'+h.n;
+  r.tag.classList.add('on');
+  r.assistUntil=t+dur;
+  clearTimeout(r._ht); r._ht=setTimeout(function(){ if(!magic){r.hand.classList.remove('on'); r.tag.classList.remove('on');} }, dur*1000);
+}
+function join(h){
+  if(joined.indexOf(h)>=0) return;
+  joined.push(h); queue.splice(queue.indexOf(h),1);
+  helperNext[h.k]=t+2.5;
+  play('helper');
+  var line = h.k==='james'||h.k==='henry'||h.k==='oscar' ? h.n+' jumps in.' : h.n+' steps in.';
+  if(joined.length===1) line='Crystal steps in. You are not doing this alone.';
+  say(line,3.2);
+  var r=slowest(); if(r){ showHand(r,h,1.8); spin(r,false); }
+}
+function assist(h){
+  var r=slowest(); if(!r||r.om>0.72) return false;
+  showHand(r,h,1.6); spin(r,false); return true;
+}
+function protect(r){
+  protectedN++; r.om=0.9; r.lowWarned=false; r.el.classList.remove('low');
+  r.el.classList.remove('guarded'); void r.el.offsetWidth; r.el.classList.add('guarded');
+  clearTimeout(r._gt); r._gt=setTimeout(function(){ r.el.classList.remove('guarded'); },1400);
+  clearTimeout(r._ht); r.tag.innerHTML='<span class="sw" style="background:linear-gradient(90deg,#d9a93f 50%,#17594f 50%)"></span>Protected.'; r.tag.classList.add('on');
+  r._ht=setTimeout(function(){ if(!magic) r.tag.classList.remove('on'); },1500);
+  play('catch',1.5,0.7); play('spin',1.3,0.5);
+  var keep=COLS; COLS=['#d9a93f','#f3d27a','#17594f','#7fd6c4']; sparks(r,18); COLS=keep;
+  var left=GUARD_MAX-protectedN; say(r.p.n+' glowed and landed. Protected.'+(left?' Your guardian has one more save.':' The guardian is spent. The rest are yours.'),2.6); tallyHud();
+}
+function drop(r){
+  if(GUARD&&protectedN<GUARD_MAX){ protect(r); return; }
+  r.falling=true; r.fall=0; r.el.classList.add('fall');
+  play('wobble',1.15,0.8);
+  var h = HELPERS[lost.length % HELPERS.length]; // a different one of his people holds each fallen plate
+  setTimeout(function(){
+    if(joined.indexOf(h)<0) join(h);
+    r.falling=false; r.fall=0; r.el.classList.remove('fall','low'); r.om=0; r.lowWarned=false;
+    r.parked=h; r.el.classList.add('parked'); lost.push({plate:r.p.n,by:h.n}); streak=0; tallyHud();
+    clearTimeout(r._ht); r.tag.innerHTML='<span class="sw" style="background:linear-gradient(90deg,'+h.c[0]+' 50%,'+h.c[1]+' 50%)"></span>'+h.n+' holds it'; r.tag.classList.add('on');
+    play('catch'); sparks(r,14);
+    say(h.n+' caught '+r.p.n+' and is holding it.',2.6);
+  }, 420);
+}
+
+function begin(){
+  initAudio(); if(AC&&AC.state==='suspended') AC.resume();
+  $('#start').classList.add('hide'); $('#end').classList.add('hide');
+  HARD=!!(window.ledger&&ledger.hard('doing-the-most')); GUARD=!!(window.ledger&&ledger.guardian()); protectedN=0; layout();
+  spins=0; saves=0; streak=0; best=0; lost=[]; tallyHud();
+  rigs.forEach(function(r){r.parked=null;r.el.classList.remove('parked');r.active=false;r.om=0;r.el.classList.add('off');r.lab.classList.add('off');r.el.classList.remove('solo','low');r.hand.classList.remove('on');r.tag.classList.remove('on');r.assistUntil=0;});
+  $('#final').classList.remove('on');
+  HELPERS.forEach(function(h){h.at=null}); joined=[]; queue=HELPERS.slice(); helperNext={}; magic=false; ended=false; t=0; phase='warm'; parts=[];
+  mt.textContent='Doing the Most'; say('Start with Dad. Tap to keep him spinning.',4);
+  running=true; last=performance.now();
+  if(score){try{score.stop()}catch(e){} score=null;}
+  startScore();
+  setTimeout(function(){rigs[0].el.focus({preventScroll:true})},50);
+  if(!looping){looping=true; requestAnimationFrame(loop);}
+}
+
+function enter(r){
+  r.active=true; r.om=0.95; r.el.classList.remove('off'); r.lab.classList.remove('off');
+  if(!RM){r.el.classList.remove('enter'); void r.el.offsetWidth; r.el.classList.add('enter');}
+  play('spin',1.1,0.7);
+  var lines=['','The House joins in.','Cider Camp, too.','GGP needs you.','And the day job.','And the Dragon Table. Six plates.','Hard mode: Gordtopia joins the back row.','Weekly Connect, too.','And IGNITE. Nine plates.'];
+  if(r.i) say(lines[r.i],2.6);
+}
+
+function startMagic(){
+  var kept=nActive()-lost.length; magic=true; phase='magic'; finishLedger(kept);
+  rigs.forEach(function(r){ if(r.parked){ r.parked=null; r.el.classList.remove('parked'); } });
+  HELPERS.forEach(function(h){ if(joined.indexOf(h)<0){joined.push(h);} });
+  play('magic');
+  var hs=HELPERS.slice();
+  rigs.forEach(function(r){ clearTimeout(r._ht); r.hand.classList.remove('on'); r.tag.classList.remove('on'); });
+  HELPERS.forEach(function(h){h.at=null});
+  rigs.forEach(function(r,i){ r.om=1; r.lowWarned=false; r.el.classList.remove('low');
+    var h = hs[i%hs.length]; if(i<5) showHand(r,h,99); });
+  mt.textContent=''; ms.textContent='';
+  setTimeout(function(){ // hands let go, plates spin on their own
+    rigs.forEach(function(r){r.hand.classList.remove('on'); r.tag.classList.remove('on'); r.el.classList.add('solo');});
+    $('#final').classList.add('on');
+  },2600);
+  setTimeout(function(){
+    if(scoreGain&&AC){ scoreGain.gain.setValueAtTime(scoreGain.gain.value,AC.currentTime); scoreGain.gain.linearRampToValueAtTime(0,AC.currentTime+1.2); }
+    play('finale'); play('confetti'); setTimeout(function(){play('cheer')},350); confetti();
+  },3200);
+  setTimeout(function(){ ended=true; $('#final').classList.remove('on'); $('#end').classList.remove('hide'); $('#again').focus({preventScroll:true}); },10500);
+}
+
+function finishLedger(kept){
+  var ln=$('#endline'), rc=$('#receipt');
+  var held=lost.map(function(x){return x.by+' held '+x.plate+'.';}).join(' ');
+  var N=nActive(), all=kept===N, word=N===9?'nine':'six', idle=spins===0;
+  var gl = GUARD ? (protectedN ? ' Your guardian kept '+protectedN+' safe.' : ' Your guardian stood watch.') : '';
+  /* the receipt credits real play: a run with no spins says so, kindly, and never reads as a full result */
+  var lead = idle ? 'Your people kept '+kept+' of '+N+' in the air while you watched. Jump in next run and they spin even higher.'+(held?' '+held:'')
+    : all ? 'All '+word+' stayed in the air, and your people still showed up. Crystal. Gordon. James, Henry, and Oscar.'
+    : 'You kept '+kept+' of '+N+' spinning. '+held+' Your people have you.';
+  if(ln) ln.textContent = lead+gl;
+  var cells=[[kept+' of '+N,'kept spinning'],[saves,'your catches'],[best,'best streak'],[spins,'spins']]; if(GUARD) cells.splice(1,0,[protectedN,'guardian saves']);
+  if(rc) rc.classList.toggle('five',GUARD);
+  if(rc) rc.innerHTML=cells.map(function(a){return '<div><b>'+a[0]+'</b><span>'+a[1]+'</span></div>';}).join('');
+  var upd = GUARD&&protectedN ? 'Guardian kept '+protectedN+' safe. Your catches: '+saves+'.'
+    : idle ? 'Family kept '+kept+' of '+N+' spinning.'
+    : all ? (saves ? saves+' catches. Every plate still spinning.' : spins+' spins. Every plate still spinning.')
+    : kept+' of '+N+' spinning. Family held '+(N-kept)+'.';
+  if(HARD&&all&&!idle&&!(GUARD&&protectedN)) upd=(saves?saves+' catches.':spins+' spins.')+' All nine spinning.';
+  try{ if(window.ledger){ ledger.done('doing-the-most',upd,{kept:kept,total:N,caught:saves,best:best,spins:spins,protected:protectedN,hard:HARD});
+    ledger.add('plates',saves); if(protectedN) ledger.add('protected',protectedN);
+    if(all&&N===6) ledger.first('dtm-six','All six plates kept spinning');
+    if(all&&N===9) ledger.first('dtm-nine','All nine plates kept spinning');
+    if(protectedN) ledger.first('dtm-protected','First protected plate'); } }catch(e){}
+  window.__dtmReceipt={kept:kept,total:N,caught:saves,best:best,spins:spins,protected:protectedN,hard:HARD,update:upd};
+}
+function loop(now){
+  if(!running) return;
+  var dt=Math.min(0.05,(now-last)/1000); last=now; t+=dt;
+  // enter plates
+  for(var i=0;i<nActive();i++){ if(!rigs[i].active && t>=ENTER_AT[i]) enter(rigs[i]); }
+  // tempo
+  var tk=tempo(); tb.style.width=(magic?100:tk*100)+'%';
+  if(score&&!magic) score.playbackRate.value=1+0.2*tk;
+  if(t>27 && phase==='warm'){ phase='frantic'; say('This is a lot. You are doing the most.',3.2); }
+  // helpers join on schedule (or earlier, by catching a plate)
+  for(var j=0;j<JOIN_AT.length;j++){ if(t>=JOIN_AT[j] && joined.length<=j && queue.length) join(queue[0]); }
+  if(!magic){
+    joined.forEach(function(h){ if(t>=helperNext[h.k]){ var did=assist(h); helperNext[h.k]=t+(did?3+Math.random()*1.6:0.6); } });
+    if(t>=MAGIC_AT) startMagic();
+  }
+  if(!magic && t>msgUntil && ms.textContent && phase!=='magic'){ ms.textContent=''; }
+  // physics + render
+  var k=decay();
+  rigs.forEach(function(r){
+    if(!r.active) return;
+    if(r.parked) return;
+    if(r.falling){ r.fall+=dt; }
+    else if(t>=r.assistUntil || magic){ r.om=Math.max(0,r.om-k*dt); }
+    if(!magic && !r.falling && r.om<=0) drop(r);
+    var L = magic?0:Math.max(0,Math.min(1,(0.5-r.om)/0.5));
+    if(!r.lowWarned && r.om<0.28 && !magic){ r.lowWarned=true; play('wobble',1,0.9); }
+    r.el.classList.toggle('low', r.om<0.3 && !magic && !r.falling);
+    r.ph += dt*(5+9*L);
+    r.ang = (r.ang + dt*(120+840*r.om)) % 360;
+    var wx = (RM?0.3:1)*L*16*Math.sin(r.ph), wy=(RM?0.3:1)*L*13*Math.cos(r.ph);
+    var sway = RM?0:(L*4.5*Math.sin(r.ph*0.5) + 0.6*Math.sin(t*1.3+r.i));
+    var fy = r.falling ? 260*r.fall*r.fall*4 : 0, fr = r.falling? r.fall*240:0;
+    r.el.style.transform='rotate('+sway.toFixed(2)+'deg)';
+    r.pw.style.transform='translate(-50%,'+(-50+fy/r.D*100).toFixed(1)+'%) rotate('+fr.toFixed(1)+'deg)';
+    r.plate.style.transform='rotateX('+(56+wx).toFixed(2)+'deg) rotateY('+wy.toFixed(2)+'deg) rotateZ('+r.ang.toFixed(1)+'deg)';
+    if(!RM){
+      var s=r.om; r.g1.style.opacity=(s*0.42).toFixed(2); r.g2.style.opacity=(s*0.26).toFixed(2);
+      r.g1.style.transform='rotate('+(-9*s).toFixed(1)+'deg)'; r.g2.style.transform='rotate('+(-18*s).toFixed(1)+'deg)';
+      r.shine.style.opacity=(0.15+0.7*s).toFixed(2);
+    }
+  });
+  stepFx(dt);
+  requestAnimationFrame(loop);
+}
+
+/* ---------- sparks and confetti ---------- */
+var fx=$('#fx'), cx=fx.getContext('2d'), parts=[];
+var COLS=['#d9a93f','#f3d27a','#fbf5e6','#17594f','#b3362c','#2e7d32'];
+function sparks(r,n){
+  if(RM) n=Math.min(n,4);
+  for(var i=0;i<n;i++){ var a=Math.random()*Math.PI*2, v=120+Math.random()*220;
+    parts.push({x:r.x,y:r.y-r.H,vx:Math.cos(a)*v,vy:Math.sin(a)*v*0.5-80,g:300,life:0.6+Math.random()*0.4,age:0,sz:3+Math.random()*3,c:COLS[(Math.random()*3)|0],kind:0}); }
+}
+function confetti(){
+  var n=RM?40:260;
+  for(var i=0;i<n;i++){ parts.push({x:W*(0.1+Math.random()*0.8),y:-20-Math.random()*H*0.5,vx:(Math.random()-0.5)*120,vy:60+Math.random()*120,g:RM?20:60,life:9,age:0,sz:6+Math.random()*8,c:COLS[(Math.random()*COLS.length)|0],kind:1,rot:Math.random()*6,vr:(Math.random()-0.5)*8}); }
+  for(var k=0;k<2;k++){ var x=k?W*0.85:W*0.15; for(var j=0;j<(RM?0:70);j++){ var a=-Math.PI/2+(Math.random()-0.5)*0.9+(k?-0.35:0.35);var v=500+Math.random()*500;
+    parts.push({x:x,y:H,vx:Math.cos(a)*v,vy:Math.sin(a)*v,g:520,life:5,age:0,sz:6+Math.random()*7,c:COLS[(Math.random()*COLS.length)|0],kind:1,rot:0,vr:(Math.random()-0.5)*10}); } }
+}
+function stepFx(dt){
+  var dpr=window.devicePixelRatio||1; cx.setTransform(dpr,0,0,dpr,0,0); cx.clearRect(0,0,W,H);
+  for(var i=parts.length-1;i>=0;i--){ var p=parts[i]; p.age+=dt; if(p.age>p.life||p.y>H+40){parts.splice(i,1);continue;}
+    p.vy+=p.g*dt; if(p.kind){p.vx*=0.99; p.vy=Math.min(p.vy,160);} p.x+=p.vx*dt; p.y+=p.vy*dt;
+    cx.globalAlpha=Math.max(0,1-p.age/p.life*(p.kind?0.3:1)); cx.fillStyle=p.c;
+    if(p.kind){ p.rot+=p.vr*dt; cx.save(); cx.translate(p.x,p.y); cx.rotate(p.rot); cx.fillRect(-p.sz/2,-p.sz/4,p.sz,p.sz/2*Math.abs(Math.cos(p.rot*1.7))+1); cx.restore(); }
+    else { cx.beginPath(); cx.arc(p.x,p.y,p.sz,0,7); cx.fill(); }
+  }
+  cx.globalAlpha=1;
+}
+
+/* ---------- controls ---------- */
+$('#play').addEventListener('click',begin);
+$('#again').addEventListener('click',begin);
+$('#mute').addEventListener('click',function(){setMute(!muted)});
+$('#fs').addEventListener('click',toggleFs);
+function toggleFs(){ var d=document, e=d.documentElement;
+  if(d.fullscreenElement||d.webkitFullscreenElement){ (d.exitFullscreen||d.webkitExitFullscreen).call(d); }
+  else if(e.requestFullscreen) e.requestFullscreen().catch(function(){}); else if(e.webkitRequestFullscreen) e.webkitRequestFullscreen(); }
+if(!(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen)) $('#fs').style.display='none';
+addEventListener('keydown',function(e){
+  if(e.metaKey||e.ctrlKey||e.altKey) return;
+  var k=e.key;
+  if(k==='m'||k==='M'){setMute(!muted);return;}
+  if(k==='f'||k==='F'){toggleFs();return;}
+  if(!running && !$('#start').classList.contains('hide') && (k==='Enter'||k===' ')){e.preventDefault();begin();return;}
+  if(ended){ if(k==='r'||k==='R'){begin();} if(k==='b'||k==='B'){location.href=(window.ledger?ledger.boardHref('../../'):'../../index.html');} return; }
+  if(k>='1'&&k<=String(nActive())){ spin(rigs[+k-1],true); return; }
+  if(k===' '){ e.preventDefault(); var r=slowest(); if(r) spin(r,true); }
+});
+addEventListener('resize',layout);
+document.addEventListener('visibilitychange',function(){ if(!AC) return; if(document.hidden) AC.suspend(); else AC.resume(); });
+layout();
+/* start screen: guardian badge (cross-game rule) and the return-visit hard toggle */
+function setupStart(){
+  GUARD=!!(window.ledger&&ledger.guardian());
+  var gb=$('#guardbadge');
+  if(GUARD){ gb.hidden=false; gb.className='guardbadge'; gb.innerHTML='<svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><path d="M17 2 31 8v11c0 9-6 16-14 19C9 35 3 28 3 19V8z" fill="#17594f" stroke="#f3d27a" stroke-width="2.5"/><path d="M17 11v16M11 17h12" stroke="#f3d27a" stroke-width="3" stroke-linecap="round"/></svg><span><b>Guardian on watch.</b> You placed one in Dragon House in Blocks, so your first two falling plates glow and land. After that, every catch is yours.</span>'; }
+  var hr=$('#hardrow'), hn=$('#hardnote');
+  function note(on){ var hp=document.querySelector('#hint .hp'); if(hp) hp.innerHTML='Click a plate to spin it. <kbd>1</kbd> to <kbd>'+(on?9:6)+'</kbd> spins a plate, <kbd>Space</kbd> spins the slowest.'; hn.textContent=on?'A second spinner row joins: nine plates. Keys 7 to 9 for the back row.':''; HARD=on; layout(); }
+  if(window.ledger){ var b=ledger.hardToggle('doing-the-most',hr,note,'second spinner row'); if(b) note(ledger.hard('doing-the-most')); }
+}
+setupStart();
+window.__dtm={get t(){return t}, get ended(){return ended}, get joined(){return joined.map(function(h){return h.n})}, rigs:rigs, get protected(){return protectedN}, get hard(){return HARD}, get guardian(){return GUARD}, get nActive(){return nActive()}};
+})();
+</script>
+</body>
+</html>

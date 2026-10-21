@@ -1,0 +1,167 @@
+{
+ "_note": "Homage to Sky Ship Studios' Gloom: Digital Edition by mechanic only (stacked see-through cards, only visible symbols count), inverted to joy. No Gloom, Atlas Games or Asmodee art, logo or text. Card facts come only from the v4 BRIEF fact list. Card values, layout and fan-out are original code.",
+ "media/house-wide.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 16:9: whimsical crosshatched storybook illustration, bright and cheerful, 1898 Queen Anne house with turret and wraparound porch, garden, bunting, blue sky, no people (job a36678ce-65b4-4463-88ff-d679029ac724)"
+ },
+ "media/house-wide@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance_image_upscale 4k of job a36678ce (job 12164b34-d786-4988-9c22-4fea16114235), resized to 2880"
+ },
+ "media/house-tall.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 9:16 version of the same house scene (job 35c10eee-14f1-4249-ab6c-6013b80f37fe)"
+ },
+ "media/ending.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 3:2: storybook ending, five faceless figures (adults in teal and rose, children in burgundy, red with green, orange with blue) holding hands before a turreted Queen Anne house at sunrise, confetti (job c2c6fbb2-67f2-4b39-a863-1398f79c6c18)"
+ },
+ "media/ending@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance_image_upscale 4k of job c2c6fbb2 (job bf0a4974-a1e5-486d-b202-d6dd1927befd), resized to 2400"
+ },
+ "media/eric.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: Victorian storybook portrait, blank featureless face, teal frock coat with gold buttons, walking stick topped with a white Norse dragon head, oval vignette on cream (job b34d45dd-58d5-4ad8-86af-3ae81199e995); @2x = upscale job 27502b07-9a4e-4fb5-aa3d-06a3e2c87bc0"
+ },
+ "media/crystal.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: storybook portrait, blank featureless face, white pharmacist coat over rose dress, mortar and pestle (job 668fc109-a5ac-43e3-9597-a454744104b8); @2x = upscale job c26cbd85-77a1-4b69-93e4-564d9b90c89b"
+ },
+ "media/james.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: storybook child portrait, blank featureless face, burgundy coat, cap and scarf, no props (job a803c0b4-9637-47c4-a288-ff59d6f3723a); @2x = upscale job 3edf4b60-491a-4a48-adfa-46478567e9ca"
+ },
+ "media/henry.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: storybook child portrait, blank featureless face, red coat, green scarf and cap, no props (job f63e8978-c864-4d2a-90a1-5c960478f978); @2x = upscale job a7e1ff7a-f0a0-49b7-90ad-63147aed5801"
+ },
+ "media/oscar.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: storybook child portrait, blank featureless face, orange coat, blue scarf and cap, no props (job f851fd64-803b-4d16-98ed-eb99f5aa133e); @2x = upscale job bd218969-2c00-403f-ba60-1ca4a6dcbc16"
+ },
+ "media/cardback.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 2:3: ornate storybook card back, filigree vines, suns and hearts around a white Norse dragon-prow on teal, gold border (job c3acf2ce-e1e2-4851-9263-7621dda2d7f4); shown on the intro sheet as the deck"
+ },
+ "media/bed.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 45s loopable: quiet whimsical parlor music, music box, pizzicato strings, gentle bassoon, cheerful not spooky (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen SxxjpHPyjTwSNhAK3FyB); whisper check instrumental; loudnorm -22 LUFS"
+ },
+ "media/end.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_music_v2_5 instrumental 40s: whimsical storybook chamber music turned joyful, pizzicato, bassoon, clarinet tiptoe waltz, accordion, glockenspiel, triumphant happily-ever-after finale (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen Ag1lpJsW3SciSLvYt54g); loudnorm -16 LUFS"
+ },
+ "media/snap.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: playing card slides across a wooden table and snaps down on another card (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen QujGSSVQfhL8XFnClJEb, best of 4), trimmed to 1.2s"
+ },
+ "media/joy.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: cheerful music box twinkle and glockenspiel ding rising (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen mALfO4kVRQ3qRdyTpTwr); pitched up per joy level in the browser"
+ },
+ "media/fan.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "eleven_text_to_sound_v2: whole deck fanned out in one smooth flourish, riffle whoosh (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen jWW0V6SBR7vJkVHw2jHo)"
+ },
+ "media/j-villagers.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: cheering storybook villagers before a village with a bell tower; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job f60ed1cf-efa9-486f-bc6a-89c7928ad6dd)"
+ },
+ "media/j-pride.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: rainbow pride flag over a lakeside city skyline, confetti; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 79fa294e-3f93-4fc4-a722-dc8e706ca198)"
+ },
+ "media/j-cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: wooden cider press, apples, jug of cider; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 64852612-8862-4d69-88ff-139cafba5836)"
+ },
+ "media/j-dragontable.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: candlelit game table, dragon figurine, dice, map; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 5b0dbc63-8feb-4bda-acca-0bb4eae92185)"
+ },
+ "media/j-dawn.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: total solar eclipse diamond ring, second dawn over a field; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job e6f67201-709a-4b8f-9bd0-d023cd1023be)"
+ },
+ "media/j-browncoat.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: cozy movie night, popcorn, projector, brown duster coat on a hook; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 5aea8c87-82dc-4490-b1c5-36b9a8d43527)"
+ },
+ "media/j-house.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: 1898 Queen Anne house being restored, ladder, paint; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 34e7d6ea-27b7-4d8d-91e5-87c9da09aaee)"
+ },
+ "media/j-connect.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: grid of bright windows with waving hands; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 29cb0409-5ad0-40b8-a15a-2d7628cf4d05)"
+ },
+ "media/j-ignite.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: match spark igniting a flame with stars, gears, controllers; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 39873c8f-8da7-47f7-9ee4-9a03f2f252f1)"
+ },
+ "media/j-done.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: checklist with a big green check mark; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job b30d6f24-5c49-461c-a237-4320bdf0cdb1)"
+ },
+ "media/j-roads.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: winding roads leading to one glowing cottage; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job aad8518b-8c5d-41cf-aab6-417c99b60787)"
+ },
+ "media/j-ideas.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: lightbulb above a bridge being finished; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job ff0d4092-5c95-4fe4-8139-24047a9670ce)"
+ },
+ "media/j-skyship.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: sailing galleon of fanned cards flying through golden clouds; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job 8adf9a4e-5351-4881-afe2-48ac342c48d0)"
+ },
+ "media/j-pharmacy.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 1:1: small-town Main Street pharmacy with mortar-and-pestle sign; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job d98845f9-c1b9-4c69-b0de-e2cc33b3ee35)"
+ },
+ "media/house-wide-1920.jpg": {
+  "tool": "higgsfield",
+  "prompt": "derived: media/house-wide@2x.jpg (the Higgsfield bytedance 4k upscale already logged here) resized with Lanczos to 1920 wide, so a 1920x1080 PC screen at DPR 1 gets native pixels instead of the 1344 px 1x stretched 1.44x",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/house-tall@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 35c10eee-14f1-4249-ab6c-6013b80f37fe (the existing 1x file's source) to 2160x3856, Lanczos to 1500 wide, JPEG q82; served as the 2x of an image-set/srcset so phones at DPR 2 to 3 get native pixels",
+  "job": "7d7b6a61-0970-406a-8639-e6b7479ebd0e",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/eric@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/eric.jpg's job (upscale job 27502b07-9a4e-4fb5-aa3d-06a3e2c87bc0); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/crystal@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/crystal.jpg's job (upscale job c26cbd85-77a1-4b69-93e4-564d9b90c89b); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/james@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/james.jpg's job (upscale job 3edf4b60-491a-4a48-adfa-46478567e9ca); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/henry@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/henry.jpg's job (upscale job a7e1ff7a-f0a0-49b7-90ad-63147aed5801); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/oscar@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/oscar.jpg's job (upscale job bd218969-2c00-403f-ba60-1ca4a6dcbc16); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ }
+}

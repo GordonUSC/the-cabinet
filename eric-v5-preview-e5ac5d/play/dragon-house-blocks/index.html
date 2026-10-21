@@ -1,0 +1,251 @@
+<!doctype html>
+<!-- STYLE: Architect's blueprint title block over a hand-built voxel diorama, set in the season's one type system (Young Serif + Instrument Sans) | WHY: Eric is restoring a real 1898 house, so the interface reads like the drawings a restorer works from, while the 3D world stays warm, autumnal, and handmade | ALT: Norwegian rosemaling folk-craft frame with painted scrollwork borders -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dragon House in Blocks</title>
+<meta name="description" content="Build the Iverson-Johnson House block by block: a voxel Queen Anne in Stoughton, Wisconsin, for Eric.">
+<meta name="theme-color" content="#0f2236">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="preload" href="media/poster.jpg" as="image">
+<script>document.documentElement.classList.add('js');</script>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+</script>
+<style>
+:root{
+  --ink:#0f2236; --ink2:#16314d; --ink3:#1e4266; --line:#8fdcff; --line2:#4fb6e6;
+  --paper:#f3ead6; --paper2:#e6d9bb; --burg:#6e2232; --teal:#0f6b5a; --gold:#d9a441; --slate:#5a6c80;
+  --glass:rgba(15,34,54,.78); --glass2:rgba(15,34,54,.9);
+  --safe-b:env(safe-area-inset-bottom,0px); --safe-t:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--ink);color:var(--paper);font-family:"Instrument Sans",system-ui,sans-serif;font-size:16px;-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+a{color:var(--line)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+/* ---------- JS-off and fallback page ---------- */
+#static{max-width:760px;margin:0 auto;padding:24px 16px 48px}
+#static img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line2);display:block}
+#static h1{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:clamp(28px,6vw,44px);line-height:1.05;margin:20px 0 8px;letter-spacing:-.01em}
+#static .kicker{font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:16px;color:var(--line);letter-spacing:.06em;text-transform:uppercase}
+#static p{font-size:18px;line-height:1.55;color:var(--paper)}
+#static .line{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:22px;color:var(--gold)}
+.backlink{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line2);text-decoration:none;font-weight:700;color:var(--paper);background:var(--ink2)}
+.js.ready #static{display:none}
+.js.nogl #static{display:block}
+.js.nogl #app{display:none}
+
+/* ---------- app ---------- */
+#app{display:none}
+.js.ready #app{display:block}
+#c{position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;display:block;touch-action:none;outline:none;background:#0f2236}
+.hud{position:fixed;z-index:5;pointer-events:none}
+.hud>*{pointer-events:auto}
+.top{top:calc(10px + var(--safe-t));left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(143,220,255,.35);color:var(--paper);text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap}
+.pill:hover{border-color:var(--line)}
+.counter{text-align:right;padding:6px 14px 8px;border-radius:14px;background:var(--glass);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(217,164,65,.45);transition:transform .25s}
+.counter .num{display:block;font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:28px;line-height:1.05;color:var(--gold);font-variant-numeric:tabular-nums}
+.counter .lbl{display:block;font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:16px;color:var(--paper2);white-space:nowrap}
+.fin .dock,.fin .hint{opacity:0;pointer-events:none}
+.dock{transition:opacity .4s}
+.counter.bump{transform:scale(1.08)}
+.counter.full .num{color:#ffe29a;text-shadow:0 0 18px rgba(255,214,120,.65)}
+
+/* architect's title block */
+.titleblock{position:fixed;z-index:5;left:12px;top:calc(86px + var(--safe-t));width:min(430px,calc(100vw - 24px));background:rgba(15,34,54,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1.5px solid var(--line2);font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--paper);pointer-events:none}
+.tb-row{padding:6px 10px;border-bottom:1px solid rgba(79,182,230,.45);font-size:16px;line-height:1.25}
+.tb-name{font-family:"Young Serif",Georgia,serif;font-weight:400;font-size:16px;letter-spacing:.04em;color:var(--line)}
+.tb-sub{color:var(--paper2)}
+.tb-sheet b{color:var(--gold)}
+.tb-bar{height:6px;background:rgba(143,220,255,.12)}
+.tb-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--line),var(--gold));transform-origin:left;transform:scaleX(0);transition:transform .5s}
+
+.hint{position:fixed;z-index:5;left:50%;bottom:calc(150px + var(--safe-b));transform:translate(-50%,10px);max-width:calc(100vw - 32px);padding:10px 16px;border-radius:12px;background:var(--glass2);border:1px solid var(--line2);font-weight:600;font-size:16px;text-align:center;opacity:0;transition:opacity .4s,transform .4s;pointer-events:none}
+.hint.show{opacity:1;transform:translate(-50%,0)}
+
+.dock{position:fixed;z-index:6;left:0;right:0;bottom:0;padding:8px 12px calc(10px + var(--safe-b));display:flex;flex-direction:column;align-items:center;gap:8px;background:linear-gradient(to top,rgba(15,34,54,.92),rgba(15,34,54,.55) 70%,transparent)}
+.palette{display:flex;gap:6px;justify-content:center}
+.palette button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-width:62px;min-height:58px;padding:5px 4px;border-radius:12px;border:1.5px solid transparent;background:rgba(15,34,54,.6);cursor:pointer}
+.palette button[aria-checked="true"]{border-color:var(--gold);background:rgba(217,164,65,.16)}
+.palette .sw{width:28px;height:28px;border-radius:7px;border:2px solid var(--paper);box-shadow:0 1px 0 rgba(0,0,0,.4)}
+.palette .nm{font-size:16px;font-weight:600;line-height:1}
+.actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;min-width:46px;padding:0 16px;border-radius:12px;border:1.5px solid var(--line2);background:var(--ink2);font-weight:700;font-size:16px;cursor:pointer}
+.btn:hover{border-color:var(--line)}
+.btn.primary{background:var(--gold);color:#1d1406;border-color:var(--gold)}
+.btn[aria-pressed="true"]{background:var(--ink3);border-color:var(--line)}
+.btn.primary[aria-pressed="true"]{background:#f0c56a}
+.btn.icon{padding:0 11px}
+.btn svg{width:22px;height:22px;flex:none}
+#snd.off .wave{display:none}
+#qmenu{position:fixed;z-index:9;right:12px;bottom:calc(132px + var(--safe-b));width:250px;padding:10px;border-radius:14px;background:var(--glass2);border:1px solid var(--line2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+#qmenu h2{margin:2px 4px 8px;font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:16px;font-weight:600;color:var(--line);letter-spacing:.06em;text-transform:uppercase}
+#qmenu button{display:flex;width:100%;justify-content:space-between;align-items:center;min-height:44px;padding:0 12px;margin:2px 0;border-radius:10px;border:1px solid transparent;background:transparent;font-size:16px;font-weight:600;cursor:pointer;text-align:left}
+#qmenu button small{font-size:16px;font-weight:400;color:var(--paper2)}
+#qmenu button[aria-checked="true"]{border-color:var(--gold);background:rgba(217,164,65,.14)}
+.keys{font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:16px;color:var(--paper2)}
+
+/* intro + finale cards */
+.card{position:fixed;z-index:10;left:50%;top:50%;transform:translate(-50%,-46%);width:min(540px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;padding:22px 22px 20px;border-radius:18px;background:rgba(15,34,54,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1.5px solid var(--line2);box-shadow:0 30px 80px rgba(0,0,0,.45);opacity:0;transition:opacity .45s,transform .45s}
+.card.in{opacity:1;transform:translate(-50%,-50%)}
+.card.out{opacity:0;transform:translate(-50%,-54%);pointer-events:none}
+.card .kicker{font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--line);margin:0 0 6px}
+.card h1,.card h2{font-family:"Young Serif",Georgia,serif;font-weight:400;margin:0 0 10px;line-height:1.05;letter-spacing:-.01em}
+.card h1{font-size:clamp(28px,7vw,40px)}
+.card p{font-size:17px;line-height:1.5;margin:0 0 12px}
+.card .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.card .row .btn{flex:1 1 auto}
+#finale{width:min(620px,calc(100vw - 32px));top:auto;bottom:calc(16px + var(--safe-b));transform:translate(-50%,20px);text-align:center;background:rgba(10,20,40,.82)}
+#finale.in{transform:translate(-50%,0)}
+#finale h2{font-size:clamp(26px,6.4vw,40px);color:var(--paper)}
+#finale h2 span{display:block;color:var(--gold)}
+#finale .sig{font-family:"Instrument Sans",system-ui,sans-serif;font-variant-numeric:tabular-nums;color:var(--paper2);font-size:16px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+@media (min-width:900px){
+  .top{left:20px;right:20px;top:18px}
+  .titleblock{left:20px;top:78px}
+  .counter .num{font-size:36px}
+  .dock{flex-direction:row;justify-content:center;gap:18px;padding:12px 20px 16px}
+  .hint{bottom:110px}
+  #qmenu{bottom:96px;right:20px}
+  #finale{bottom:28px}
+  .titleblock{top:78px}
+}
+@media (max-width:420px){
+  .palette button{min-width:58px}
+  .tb-sub{display:none}
+  .actions{gap:6px}
+  .btn{padding:0 12px}
+  .btn.icon{padding:0 10px}
+  .pill{padding:0 14px}
+}
+@media (pointer:coarse){ #fs{display:none} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+
+/* v5: live course judgments, perfect flash, guardian card */
+#flash{position:fixed;inset:0;z-index:4;background:#fff;opacity:0;pointer-events:none}
+.judge{position:fixed;z-index:6;left:50%;top:calc(22% + var(--safe-t));transform:translate(-50%,0) scale(.8);font-family:"Young Serif",Georgia,serif;font-size:clamp(30px,5vw,56px);color:var(--paper);text-shadow:0 3px 18px rgba(0,0,0,.6);opacity:0;pointer-events:none}
+.judge.perfect{color:#ffe29a}.judge.good{color:var(--line)}.judge.placed{color:var(--paper2);font-size:clamp(24px,3.6vw,40px)}
+.judge.pop{animation:jpop .7s ease-out forwards}
+@keyframes jpop{0%{opacity:0;transform:translate(-50%,10px) scale(.7)}18%{opacity:1;transform:translate(-50%,0) scale(1.08)}70%{opacity:1;transform:translate(-50%,-6px) scale(1)}100%{opacity:0;transform:translate(-50%,-16px) scale(1)}}
+.tb-perf b{color:#ffe29a}
+#guardcard{text-align:center;top:auto;bottom:calc(16px + var(--safe-b));transform:translate(-50%,20px);width:min(620px,calc(100vw - 32px));background:rgba(10,20,40,.84)}
+#guardcard.in{transform:translate(-50%,0)}
+@media (min-width:900px){#guardcard{bottom:28px}}
+#guardcard img{display:block;width:min(160px,36vw);height:auto;margin:0 auto 10px;border-radius:12px}
+#guard-line{margin:4px 0 0;font-size:16px;color:var(--paper2)}
+.hardhost{margin-top:6px}
+@media (prefers-reduced-motion:reduce){.judge.pop{animation:none;opacity:1}}
+</style>
+<script src="../../js/ledger.js"></script>
+</head>
+<body>
+<main id="static">
+  <p class="kicker">For Eric · Stoughton, Wisconsin</p>
+  <img src="media/poster.jpg" width="1344" height="752" alt="A voxel model of an 1898 Queen Anne house in blue clapboard with cream trim and a wraparound porch, in an autumn yard, with the teal Dragon House emblem over the door.">
+  <h1>Dragon House in Blocks</h1>
+  <p>A voxel build of the Iverson-Johnson House, the 1898 Queen Anne by architect A. E. Ovren that Eric is restoring at 327 E. Washington St. Tap the glowing blueprint to lay it course by course, from the foundation to the roof peak and its Dragon House flag. Paint the sash in James, Henry, and Oscar's colors. Switch to night and the windows light one by one while a dragon-prow circles the house.</p>
+  <p>A sign in the yard reads "Gordtopia: All Roads Lead Home," and a counter welcomes 3,425 villagers home, in honor of the 3,425 villagers saved at Minecraft Experience Rosemont on 6/27.</p>
+  <p class="line">Home, built block by block. Restored by Eric.</p>
+  <p>This experience needs JavaScript and WebGL to play.</p>
+  <p><a class="backlink" href="../../index.html" data-board="../../">Back to the board</a></p>
+</main>
+
+<div id="app">
+  <canvas id="c" aria-label="3D voxel build of the Dragon House. Tap or click the glowing blueprint to place the next course of blocks. Drag to orbit, pinch or scroll to zoom." tabindex="0"></canvas>
+
+  <div class="hud top">
+    <a class="pill" href="../../index.html" data-board="../../"><span aria-hidden="true">&larr;</span> Back to the board</a>
+    <div class="counter" id="counter"><span class="num" id="vcount">0</span><span class="lbl">villagers home</span></div>
+  </div>
+
+  <aside class="titleblock" aria-label="Drawing title block">
+    <div class="tb-row tb-name">IVERSON-JOHNSON HOUSE</div>
+    <div class="tb-row tb-sub">Queen Anne, 1898 · A. E. Ovren, architect</div>
+    <div class="tb-row tb-sheet">Sheet <b id="sheet">1</b> of 20 · <span id="stagename">Stone foundation</span></div>
+    <div class="tb-row tb-perf">Perfect <b id="perf">0</b> · lay each course as it lands</div>
+    <div class="tb-bar"><i id="bar"></i></div>
+  </aside>
+
+  <div id="flash" aria-hidden="true"></div>
+  <div class="judge" id="judge" aria-hidden="true"></div>
+  <div class="hint" id="hint" aria-hidden="true"></div>
+  <div class="sr" id="live" aria-live="polite"></div>
+
+  <nav class="dock" aria-label="Build controls">
+    <div class="palette" role="radiogroup" aria-label="Paint color for sash and trim">
+      <button type="button" role="radio" data-pal="house" aria-checked="true"><span class="sw"></span><span class="nm">House</span></button>
+      <button type="button" role="radio" data-pal="james" aria-checked="false"><span class="sw"></span><span class="nm">James</span></button>
+      <button type="button" role="radio" data-pal="henry" aria-checked="false"><span class="sw"></span><span class="nm">Henry</span></button>
+      <button type="button" role="radio" data-pal="oscar" aria-checked="false"><span class="sw"></span><span class="nm">Oscar</span></button>
+      <button type="button" role="radio" data-pal="dragon" aria-checked="false"><span class="sw"></span><span class="nm">Dragon</span></button>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="auto" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 20h16v-2H4v2zm2-4h4v-4H6v4zm6 0h4V8h-4v8zM6 10h4V6H6v4z"/></svg>Auto-build</button>
+      <button type="button" class="btn" id="night" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14.5 2.5a9.5 9.5 0 1 0 7 15.9A8 8 0 0 1 14.5 2.5z"/></svg><span class="lbl">Night</span></button>
+      <button type="button" class="btn icon" id="snd" aria-pressed="true" aria-label="Sound on">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="wave" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/></svg></button>
+      <button type="button" class="btn icon" id="qbtn" aria-haspopup="true" aria-expanded="false" aria-label="Graphics quality">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 17h10v2H3v-2zm0-6h6v2H3v-2zm0-6h14v2H3V5zm16 6h2v2h-2v-2zm-4 6h6v2h-6v-2zm-4-6h6v2h-6v-2zm8-6h2v2h-2V5z"/></svg><span class="sr" id="qlabel">High</span></button>
+      <button type="button" class="btn icon" id="fs" aria-label="Full screen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h6v2H6v4H4V4zm10 0h6v6h-2V6h-4V4zM4 14h2v4h4v2H4v-6zm14 0h2v6h-6v-2h4v-4z"/></svg></button>
+    </div>
+  </nav>
+
+  <div id="qmenu" role="menu" aria-label="Graphics quality" hidden>
+    <h2>Graphics</h2>
+    <button type="button" role="menuitemradio" data-q="low" aria-checked="false">Low <small>fastest</small></button>
+    <button type="button" role="menuitemradio" data-q="medium" aria-checked="false">Medium <small>phone</small></button>
+    <button type="button" role="menuitemradio" data-q="high" aria-checked="false">High <small>AO, bloom</small></button>
+    <button type="button" role="menuitemradio" data-q="ultra" aria-checked="false">Ultra <small>full AO, 4K shadows</small></button>
+  </div>
+
+  <section class="card" id="intro" aria-labelledby="intro-h">
+    <p class="kicker">For Eric · 327 E. Washington St</p>
+    <h1 id="intro-h">Dragon House in Blocks</h1>
+    <p>Twenty sheets of drawings, one house. Each course drops toward its glowing blueprint. Tap as it lands for a Perfect. Early or late, it still goes in.</p>
+    <p class="keys">Drag to orbit · pinch or scroll to zoom<span class="pc-only"> · WASD or arrows orbit · Space or click lays a course · N night · F full screen</span></p>
+    <div class="row">
+      <button type="button" class="btn primary" id="go">Start building</button>
+      <button type="button" class="btn" id="go-auto">Watch it auto-build</button>
+    </div>
+    <div class="hardhost"></div>
+  </section>
+
+  <section class="card" id="finale" hidden aria-labelledby="fin-h">
+    <h2 id="fin-h">Home, built block by block. <span>Restored by Eric.</span></h2>
+    <p class="sig">3,425 villagers home · From Gordon</p>
+    <p class="sig" id="fin-perf"></p>
+    <p id="guard-line">Place a guardian to keep the town safe.</p>
+    <div class="row">
+      <button type="button" class="btn primary" id="fin-guard">Place a guardian</button>
+      <button type="button" class="btn" id="fin-again">Build it again</button>
+      <button type="button" class="btn" id="fin-watch">Keep watching</button>
+      <a class="btn" href="../../index.html" data-board="../../">Back to the board</a>
+    </div>
+  </section>
+  <section class="card" id="guardcard" hidden aria-labelledby="guard-h">
+    <img id="guardimg" src="../../img/v5/guardian.png" alt="The guardian: a stone and brass sentinel holding up a lantern.">
+    <h2 id="guard-h">Guardian on watch.</h2>
+    <p>Torch beacons mark the boundary around the Dragon House. Everyone inside it is safe.</p>
+    <p>Posted to your board: in Doing the Most, plates now glow and land safe.</p>
+    <div class="row">
+      <a class="btn primary" id="guard-board" href="../../index.html" data-board="../../">Back to the board</a>
+      <button type="button" class="btn" id="guard-watch">Keep watching</button>
+    </div>
+  </section>
+</div>
+<script>if(matchMedia('(pointer: coarse)').matches){document.querySelectorAll('.pc-only').forEach(function(e){e.remove()})}</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
