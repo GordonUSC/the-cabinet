@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="How Gordon Bellamy makes things with a small house of AI collaborators, and where human taste still leads.">
+<meta property="og:title" content="Behind the Mirror"><meta property="og:description" content="How Gordon Bellamy makes things with a small house of AI collaborators, and where human taste still leads.">
+<meta property="og:image" content="https://gordonusc.github.io/the-cabinet/for-rel-293bee/art/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>Behind the Mirror</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,800;1,6..96,500;1,6..96,800&family=Big+Shoulders+Display:wght@700;900&family=Work+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#0d0716; --night:#160b26; --plum:#241140; --violet:#7b4fd0; --lav:#c9b6f2;
+  --chrome:#d8d6e4; --gold:#f2c14e; --pink:#ff5aa8; --fg:#f6f1ff; --dim:#b3a6cc;
+  --serif:"Bodoni Moda",Didot,"Bodoni 72",Georgia,serif;
+  --jersey:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Work Sans",system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ink);color:var(--fg);font:16px/1.6 var(--body)}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(16px,4vw)}
+img{max-width:100%;display:block}
+a{color:var(--gold)}
+.hero{position:relative;min-height:min(88vh,820px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(13,7,22,.92) 0%,rgba(13,7,22,.55) 55%,rgba(13,7,22,.2)),linear-gradient(180deg,transparent 60%,var(--ink))}
+.hero .wrap{padding-block:clamp(32px,7vw,88px);width:100%}
+.for{font:600 13px/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--lav)}
+h1{font:italic 800 clamp(54px,11vw,140px)/.88 var(--serif);margin:.2em 0 .15em;letter-spacing:-.02em;max-width:9ch}
+.sub{font:italic 500 clamp(19px,2.6vw,28px)/1.35 var(--serif);color:var(--lav);max-width:34ch;margin:0}
+section{padding-block:clamp(56px,9vw,110px)}
+.ep{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+.ep .no{font:900 clamp(54px,8vw,96px)/.8 var(--jersey);color:transparent;-webkit-text-stroke:1.5px var(--violet)}
+h2{font:italic 800 clamp(34px,5.4vw,64px)/1 var(--serif);margin:0;text-wrap:balance}
+.lede{max-width:62ch;color:var(--dim);font-size:17px;margin:14px 0 30px}
+
+/* 01 the house: cast cards like contestant entrances */
+.cast{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.who{appearance:none;border:1px solid rgba(201,182,242,.22);background:var(--night);color:var(--fg);border-radius:16px;padding:20px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-height:190px;transition:transform .2s,border-color .2s,background .2s}
+.who:hover,.who[aria-pressed=true]{transform:translateY(-6px);border-color:var(--c);background:var(--plum)}
+.who .badge{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font:900 20px/1 var(--jersey);color:#1b0f2e;background:var(--c)}
+.who h3{margin:6px 0 0;font:italic 800 28px/1 var(--serif)}
+.who .role{font:900 13px/1.2 var(--jersey);letter-spacing:.16em;text-transform:uppercase;color:var(--c)}
+.who p{margin:0;color:var(--dim);font-size:15px}
+.whoout{margin-top:16px;padding:18px 22px;border-radius:14px;background:linear-gradient(135deg,var(--plum),var(--night));border:1px solid rgba(242,193,78,.35);min-height:84px}
+
+/* 02 relay: a scrubber through tonight's real build */
+.relay{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:28px;align-items:start}
+.track{position:relative;display:grid;gap:8px}
+.step{appearance:none;border:0;background:none;color:var(--dim);text-align:left;cursor:pointer;display:grid;grid-template-columns:62px 14px minmax(0,1fr);gap:12px;align-items:center;padding:8px 6px;border-radius:10px}
+.step .t{font:900 18px/1 var(--jersey);color:var(--lav)}
+.step .dot{width:14px;height:14px;border-radius:50%;background:var(--c);box-shadow:0 0 0 3px rgba(255,255,255,.06)}
+.step .w{font-size:15px}
+.step[aria-pressed=true]{background:var(--plum);color:var(--fg)}
+.step[aria-pressed=true] .dot{box-shadow:0 0 14px var(--c)}
+.stage{position:sticky;top:20px;border-radius:16px;overflow:hidden;background:var(--night);border:1px solid rgba(201,182,242,.25)}
+.stage img{aspect-ratio:16/10;object-fit:cover;width:100%;object-position:top}
+.stage .in{padding:18px 22px 22px}
+.stage .by{font:900 14px/1 var(--jersey);letter-spacing:.18em;text-transform:uppercase}
+.stage h4{margin:6px 0 6px;font:italic 800 26px/1.1 var(--serif)}
+.stage p{margin:0;color:var(--dim)}
+.ctrls{display:flex;gap:10px;margin-top:14px}
+.ctrls button{appearance:none;border:1px solid var(--gold);background:none;color:var(--gold);font:900 14px/1 var(--jersey);letter-spacing:.14em;padding:10px 16px;border-radius:8px;cursor:pointer}
+
+/* 03 portfolio with tool filter */
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tool{appearance:none;border:1px solid rgba(201,182,242,.35);background:var(--night);color:var(--fg);font:600 14px/1 var(--body);padding:10px 14px;border-radius:10px;cursor:pointer}
+.tool[aria-pressed=true]{background:var(--gold);color:#1b0f2e;border-color:var(--gold)}
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.work{background:var(--night);border-radius:16px;overflow:hidden;border:1px solid rgba(201,182,242,.2);transition:opacity .25s,transform .25s}
+.work[hidden]{display:none!important}
+.work img{aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+.work .in{padding:18px 20px 22px}
+.work h3{margin:0 0 6px;font:italic 800 26px/1.1 var(--serif)}
+.work p{margin:0 0 10px;color:var(--dim);font-size:15px}
+.work .used{font-size:13px;color:var(--lav)}
+
+/* 04 rules */
+.rules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rule{background:var(--night);border-left:4px solid var(--gold);border-radius:12px;padding:18px 20px}
+.rule h3{margin:0 0 6px;font:italic 800 22px/1.15 var(--serif)}
+.rule p{margin:0;color:var(--dim)}
+footer{padding-block:40px 70px;color:var(--dim);font-size:13px;border-top:1px solid rgba(201,182,242,.15)}
+@media (max-width:860px){.cast{grid-template-columns:repeat(2,minmax(0,1fr))}.relay,.works,.rules{grid-template-columns:1fr}.stage{position:static}}
+@media (max-width:480px){.cast{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.who,.work{transition:none}}
+.hear{appearance:none;border:0;cursor:pointer;margin-top:22px;display:inline-flex;align-items:center;gap:12px;padding:10px 18px 10px 10px;border-radius:999px;background:rgba(246,241,255,.12);color:var(--fg);font:900 15px/1 var(--jersey);letter-spacing:.14em;backdrop-filter:blur(8px)}
+.hear .ball{width:38px;height:38px;border-radius:50%;background:conic-gradient(from 20deg,#fff,#9b8bc7,#f7f3ff,#6c5aa3,#fff,#b9a9e6,#fff);box-shadow:0 0 16px rgba(201,182,242,.6)}
+.hear[aria-pressed=true] .ball{animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.hear .ball{animation:none!important}}
+.nojs .hear{display:none}
+</style>
+</head><body>
+
+
+
+
+
+<div id="app" class="nojs">
+<header class="hero">
+  <img src="art/mirror.webp" alt="" fetchpriority="high">
+  <div class="wrap">
+    <div class="for">For R E L Hunt, from Gordon</div>
+    <h1>Behind the mirror</h1>
+    <p class="sub">How Gordon makes things with a small house of AI collaborators, and the best of what we have made together.</p>
+    <button class="hear" id="hear" aria-pressed="false" aria-label="Play a short spoken welcome with sound"><span class="ball"></span><b>HEAR THE WELCOME</b></button>
+  </div>
+</header>
+
+<main>
+<section class="wrap">
+  <div class="ep"><span class="no">01</span><h2>Meet the house</h2></div>
+  <p class="lede">One director, five collaborators, each with a lane. Tap a name to see what they did tonight.</p>
+  <div class="cast" id="cast">
+    <button class="who" style="--c:#f2c14e" data-w="0"><span class="badge">G</span><span class="role">The director</span><h3>Gordon</h3><p>Sets the vision, gives the notes, says yes before anything goes public.</p></button>
+    <button class="who" style="--c:#ff5aa8" data-w="1"><span class="badge">D</span><span class="role">Builds and delivers</span><h3>Darby</h3><p>Claude, by Anthropic. Writes, designs, codes, and runs the creative tools.</p></button>
+    <button class="who" style="--c:#7bd3ff" data-w="2"><span class="badge">d</span><span class="role">Reviews and verifies</span><h3>dot</h3><p>An OpenAI agent. Checks facts against sources and tests builds the way a reader would.</p></button>
+    <button class="who" style="--c:#b48cff" data-w="3"><span class="badge">A</span><span class="role">Supervises</span><h3>Astra</h3><p>Runs on Codex. Checks source consistency and ownership at scheduled checkpoints.</p></button>
+    <button class="who" style="--c:#7dff9a" data-w="4"><span class="badge">T</span><span class="role">Gathers evidence</span><h3>Tasklet</h3><p>Pulls receipts from mail, calendars and documents so nothing is built on a guess.</p></button>
+    <button class="who" style="--c:#ffa36b" data-w="5"><span class="badge">I</span><span class="role">Clears the plate</span><h3>Instinct</h3><p>Gets a short evening feed and helps take one thing off Gordon's plate each day.</p></button>
+  </div>
+  <div class="whoout" id="whoout" aria-live="polite">Tap a name.</div>
+</section>
+
+<section class="wrap">
+  <div class="ep"><span class="no">02</span><h2>Tonight's relay</h2></div>
+  <p class="lede">The best moment is 6:26, when a human note changed everything. A real build from this evening, as Darby logged it from Gordon's message thread, the studio mail log and the site's publish history: Gordon asked for a better page for the shows he goes to with friends. Forty minutes later it was live.</p>
+  <div class="relay">
+    <div class="track" id="track"></div>
+    <div class="stage"><img id="stimg" src="art/shot-shows.webp" alt=""><div class="in"><div class="by" id="stby"></div><h4 id="sth"></h4><p id="stp"></p><div class="ctrls"><button id="prev">PREV</button><button id="next">NEXT</button></div></div></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="ep"><span class="no">03</span><h2>The portfolio</h2></div>
+  <p class="lede">Three favorites. Tap a tool to see where it shows up.</p>
+  <div class="tools" id="tools">
+    <button class="tool" data-t="all" aria-pressed="true">Everything</button>
+    <button class="tool" data-t="claude">Claude</button>
+    <button class="tool" data-t="higgsfield">Higgsfield art</button>
+    <button class="tool" data-t="eleven">ElevenLabs sound</button>
+    <button class="tool" data-t="blender">Blender 3D</button>
+    <button class="tool" data-t="dot">dot review</button>
+  </div>
+  <div class="works">
+    <article class="work" data-tools="claude higgsfield eleven blender dot"><img src="art/shot-shows.webp" alt="After Hours, a shows-with-friends site styled as a DJ set"><div class="in"><h3>After Hours: The Season Set</h3><p>Gordon's year of shows with friends, played like a DJ set: every night a track with a waveform, a deck that loads the next show, and a DROP button with eight surprise bass drops.</p><p class="used">Claude build, Higgsfield art and video, ElevenLabs voice and drops, Blender buttons, dot review.</p><a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/" rel="noopener">Open it</a></div></article>
+    <article class="work" data-tools="claude dot"><img src="art/shot-moodboards.webp" alt="CTIN 290 mood board presentation examples"><div class="in"><h3>Teaching pages for CTIN 290</h3><p>Student-facing class pages, with worked examples for how to present a mood board. Dates and counts are checked against a single course truth file before pages ship.</p><p class="used">Claude build, Astra consistency checks, dot review.</p><a href="https://gordonusc.github.io/the-cabinet/ctin290-mood-board-presentations/" rel="noopener">Open it</a></div></article>
+    <article class="work" data-tools="claude higgsfield eleven"><img src="art/dodgeball-art.webp" alt="A neon dodgeball court staged like a boss fight"><div class="in"><h3>Final Boss Dodgeball</h3><p>A playable game for Gordon's dodgeball team, built on its real tournament rules: grab, throw, catch, and a power shot on the dash. </p><p class="used">Claude build, Higgsfield art, ElevenLabs sound.</p></div></article>
+    
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="ep"><span class="no">04</span><h2>House rules</h2></div>
+  <p class="lede">What keeps a house of AI collaborators trustworthy.</p>
+  <div class="rules">
+    <div class="rule"><h3>A human says yes</h3><p>Public launches and messages to other people wait for Gordon's yes.</p></div>
+    <div class="rule"><h3>Two sets of eyes</h3><p>One agent builds; a different agent checks the facts and tests the result as a reader.</p></div>
+    <div class="rule"><h3>Taste is human</h3><p>Gordon directs and gives the notes. The AI tools draft art, sound and code; nothing ships until it meets his bar, and it often goes back for another pass.</p></div>
+    <div class="rule"><h3>Private stays private</h3><p>Friends' details, students' information and anything shared in confidence never leave the room.</p></div>
+  </div>
+</section>
+<section class="wrap">
+  <div class="ep"><span class="no">05</span><h2>What we're still figuring out</h2></div>
+  <p class="lede">You have led art and music at scale, so you know this debate better than most. Here is where we have landed so far, honestly.</p>
+  <div class="rules">
+    <div class="rule"><h3>It drifts toward sameness</h3><p>Left alone, AI work starts to look alike. Gordon calls it the sameness problem, and his notes are what break it.</p></div>
+    <div class="rule"><h3>It can be confidently wrong</h3><p>That is why a second agent checks facts against sources, and why tonight's pages went through several rounds of fixes.</p></div>
+    <div class="rule"><h3>Artists' work matters</h3><p>Creative people are rightly asking hard questions about these tools. We use them to make things for people we care about, and we credit the humans in the room.</p></div>
+    <div class="rule"><h3>We want your take</h3><p>Where should AI sit in a creative team? What should a student learn to do that no tool will? Gordon would love to hear it.</p></div>
+  </div>
+</section>
+<div class="wrap" style="padding-block:0 30px"><a href="./" style="display:inline-block;font:900 20px/1 var(--jersey);letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold);padding:14px 20px;border-radius:10px;text-decoration:none">&larr; BACK: REL, MEET GGP</a></div>
+</main>
+<footer class="wrap">Made for R E L Hunt by Gordon Bellamy's team with Darby, his AI assistant. Art by Higgsfield.</footer>
+</div>
+
+<script>
+(function(){
+  var SND={on:false,v:null};
+  function sfx(n,vol){ if(!SND.on) return; try{ var a=new Audio('snd/'+n+'.mp3'); a.volume=vol||.5; a.play().catch(function(){}); }catch(e){} }
+  var hb=document.getElementById('hear');
+  hb.addEventListener('click',function(){ SND.on=!(hb.getAttribute('aria-pressed')==='true'); hb.setAttribute('aria-pressed',SND.on); hb.querySelector('b').textContent=SND.on?'SOUND ON':'HEAR THE welcome-ai';
+    if(SND.v){SND.v.pause();} if(SND.on){ SND.v=new Audio('snd/welcome-ai.mp3'); SND.v.volume=.95; SND.v.play().catch(function(){}); } });
+  document.getElementById('app').classList.remove('nojs');
+  var WHO=[
+    "Per Darby's log: Gordon asked for a better shows page at 5:58 PM, gave a sharp note on the PLAY button at 6:26, and said yes to going live at 6:37.",
+    "Darby checked the tools, researched the shows, built three versions, rendered the buttons in Blender and made the sounds and images with ElevenLabs and Higgsfield.",
+    "dot sent four reviews between 6:16 and 6:49 PM, including a stale name hidden in a caption and a STOP button that did not stop the drop, then accepted the build for what it had inspected.",
+    "Astra checks source consistency and ownership at scheduled checkpoints, and tonight reviewed the GGP facts in these pages against Gordon's own records.",
+    "Tasklet is the evidence gatherer: ticket receipts, calendars and mail, so the build starts from facts.",
+    "Instinct received tonight's evening summary and is asked to list its own tools next."
+  ];
+  var out=document.getElementById('whoout');
+  [].forEach.call(document.querySelectorAll('.who'),function(b){ b.addEventListener('click',function(){ [].forEach.call(document.querySelectorAll('.who'),function(x){x.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true'); out.textContent=WHO[+b.dataset.w]; sfx('swish',.45); }); });
+  var C={Gordon:'#f2c14e',Darby:'#ff5aa8',dot:'#7bd3ff'};
+  var STEPS=[
+    ["5:58","Gordon","The ask","Redo the shows-with-friends page with the best tools: art, sound, 3D. Assess the tools first.","art/shot-shows.webp"],
+    ["6:01","Darby","Tools and research","Checked every creative tool, found the EDM listing service's key, and confirmed five shows against its listings. Three errors found on the old page.","art/runway.webp"],
+    ["6:10","Darby","First look","A season of shows as a DJ set: tracks, waveforms, a deck that loads the next night. Fourteen pieces of art and a voice intro.","art/shot-shows.webp"],
+    ["6:16","dot","Review, round one","Six groups of fixes: stale names hidden in captions, dates, links, phone layout, sound that played too early.","art/tunnel.webp"],
+    ["6:26","Gordon","The note","The PLAY button was too plain, and he wanted a DROP button full of surprise bass drops.","art/still.webp"],
+    ["6:35","Darby","Version three","A club-style PLAY key and an arcade DROP dome rendered in Blender, plus eight genre drops made in ElevenLabs.","art/shot-shows.webp"],
+    ["6:37","Gordon","Yes","Gordon said yes to replacing the public page, with the old one saved.","art/foundry.webp"],
+    ["6:38","Darby","Live","Pushed live; the page and its key files answered from the web about a minute later. Gordon then added one more show, and it went up too.","art/shot-shows.webp"],
+    ["6:49","dot","Signed off","After the third review's audio-stop correction, dot accepted the fourth version within the scope it inspected.","art/tunnel.webp"]
+  ];
+  var tr=document.getElementById('track'), cur=0;
+  STEPS.forEach(function(s,i){ var b=document.createElement('button'); b.className='step'; b.style.setProperty('--c',C[s[1]]); b.innerHTML='<span class="t">'+s[0]+'</span><span class="dot"></span><span class="w"><b>'+s[1]+'</b>: '+s[2]+'</span>'; b.addEventListener('click',function(){show(i); sfx('shimmer',.35);}); tr.appendChild(b); });
+  function show(i){ cur=(i+STEPS.length)%STEPS.length; var s=STEPS[cur];
+    [].forEach.call(tr.children,function(x,j){x.setAttribute('aria-pressed', j===cur);});
+    document.getElementById('stimg').src=s[4]; var by=document.getElementById('stby'); by.textContent=s[0]+' PM, '+s[1]; by.style.color=C[s[1]];
+    document.getElementById('sth').textContent=s[2]; document.getElementById('stp').textContent=s[3]; }
+  document.getElementById('prev').onclick=function(){show(cur-1);}; document.getElementById('next').onclick=function(){show(cur+1);};
+  show(0);
+  var works=[].slice.call(document.querySelectorAll('.work'));
+  [].forEach.call(document.querySelectorAll('.tool'),function(b){ b.addEventListener('click',function(){
+    [].forEach.call(document.querySelectorAll('.tool'),function(x){x.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true');
+    var t=b.dataset.t; works.forEach(function(w){ w.hidden=(t!=='all' && w.dataset.tools.split(' ').indexOf(t)<0); }); }); });
+})();
+</script>
+
+</body></html>
