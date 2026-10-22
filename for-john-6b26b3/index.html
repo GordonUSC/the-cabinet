@@ -1,0 +1,306 @@
+<!-- STYLE: Willis Amber, 1970s American cinema one-sheet and corridor of doors | WHY: John's favorite film is The Godfather, shot by Gordon Willis; Gordon's own line "since you let me in the door" | ALT: The Cawley Effect, Saul Bass flat-color graphic titles -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Door</title>
+<meta name="description" content="A private film and dossier from Gordon Bellamy for his Harvard roommate John H. Cawley: eight doors through a life in economics and a friendship that began in DeWolfe.">
+<meta property="og:title" content="The Door">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --umber:#1a120b; --umber-2:#24180e; --wood:#3a2414; --wood-2:#4a2e19;
+  --amber:#c8873a; --candle:#f2c48d; --bone:#efe3cf; --bone-dim:#cdbfa8;
+  --crimson:#8a1c24; --maroon:#6b1f2a; --carnelian:#b31b1b; --orange:#f76900; --sea:#4a8c78;
+  --display:"Gloock", Georgia, "Times New Roman", serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gutter:16px;
+}
+*{box-sizing:border-box}
+html{background:var(--umber)}
+body{margin:0;background:var(--umber);color:var(--bone);font-family:var(--body);font-size:18px;line-height:1.6;overflow-x:clip;-webkit-text-size-adjust:100%}
+img,video{display:block;max-width:100%;height:auto}
+a{color:var(--candle)}
+.wrap{width:min(1120px,100% - 2*var(--gutter));margin-inline:auto}
+@media (min-width:720px){:root{--gutter:40px}}
+
+/* ---------- hero */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;overflow:clip;isolation:isolate}
+.hero img{position:absolute;inset:0;width:100%;height:100%!important;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 48%,rgba(26,18,11,.55),rgba(26,18,11,.2) 45%,rgba(26,18,11,.85) 100%),linear-gradient(transparent 60%,var(--umber))}
+.hero-inner{padding:96px var(--gutter)}
+.kicker{font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--candle);margin:0 0 18px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(64px,15vw,184px);line-height:.92;letter-spacing:.06em;margin:0;color:var(--bone);text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.sub{font-style:italic;font-size:clamp(18px,2.4vw,26px);color:var(--candle);margin:18px 0 34px}
+.play{display:inline-flex;align-items:center;gap:12px;padding:14px 26px 14px 20px;border:1px solid var(--amber);border-radius:999px;background:rgba(26,18,11,.6);color:var(--bone);text-decoration:none;font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:14px;transition:background .3s}
+.play:hover,.play:focus-visible{background:var(--amber);color:var(--umber)}
+.play svg{width:18px;height:18px;fill:currentColor}
+.hero .line{margin:40px auto 0;max-width:34ch;font-family:var(--display);font-size:clamp(18px,2vw,22px);color:var(--bone-dim)}
+
+/* ---------- film */
+.film{padding:72px 0 40px}
+.film video{width:100%;aspect-ratio:16/9;background:#000;border:1px solid var(--wood-2);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.film p{font-size:14px;color:var(--bone-dim);margin:12px 0 0;letter-spacing:.04em}
+
+/* ---------- doors */
+.intro-doors{padding:64px 0 8px;text-align:center}
+.intro-doors h2{font-family:var(--display);font-weight:400;font-size:clamp(32px,5vw,52px);margin:0 0 10px}
+.intro-doors p{max-width:56ch;margin:0 auto;color:var(--bone-dim)}
+.chapter{padding:72px 0;border-top:1px solid rgba(200,135,58,.14)}
+.chapter .wrap{display:grid;gap:36px;align-items:center}
+@media (min-width:960px){
+  .chapter .wrap{grid-template-columns:1.25fr 1fr;gap:56px}
+  .chapter:nth-of-type(even) .frame{order:2}
+}
+.frame{position:relative;padding:14px 14px 0;background:linear-gradient(180deg,var(--wood-2),var(--wood));border-radius:4px 4px 0 0;box-shadow:inset 0 0 0 2px rgba(0,0,0,.35),0 30px 60px rgba(0,0,0,.5);perspective:1600px}
+.frame .room{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+.frame .room img{width:100%;height:100%!important;object-fit:cover}
+.leaf{position:absolute;inset:0;transform-origin:left center;transform:rotateY(-80deg);transition:transform 1.8s cubic-bezier(.2,.7,.15,1);
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.35),transparent 8%,transparent 92%,rgba(0,0,0,.3)),
+    repeating-linear-gradient(90deg,rgba(255,220,170,.035) 0 3px,transparent 3px 11px),
+    linear-gradient(180deg,#5a3720,#3b2413);
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,.4);backface-visibility:hidden;pointer-events:none}
+.leaf::before,.leaf::after{content:"";position:absolute;left:10%;right:10%;border:2px solid rgba(0,0,0,.35);box-shadow:inset 0 0 0 1px rgba(255,210,160,.08)}
+.leaf::before{top:8%;height:34%}
+.leaf::after{bottom:8%;height:40%}
+.plaque{position:absolute;left:50%;top:21%;transform:translate(-50%,-50%);width:44px;height:56px;background:linear-gradient(160deg,#e3b46a,#9c6a2a);color:#2a1a0c;font-family:var(--display);font-size:30px;display:grid;place-items:center;border-radius:2px;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+.knob{position:absolute;right:7%;top:55%;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f5d18c,#8a5a22)}
+/* With JS and motion allowed, doors start closed and swing open on scroll. Without JS they stay open. */
+.js .chapter:not(.open) .leaf{transform:rotateY(0deg)}
+@media (prefers-reduced-motion: reduce){
+  .leaf,.js .chapter:not(.open) .leaf{transform:rotateY(-80deg)!important;transition:none!important}
+}
+.num{font-family:var(--mono);font-size:13px;letter-spacing:.2em;color:var(--candle);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.num::after{content:"";width:56px;height:3px;background:var(--accent,var(--amber))}
+.chapter h3{font-family:var(--display);font-weight:400;font-size:clamp(34px,4.6vw,54px);line-height:1.04;margin:0 0 8px}
+.place{font-size:15px;letter-spacing:.06em;color:var(--candle);margin:0 0 20px}
+.copy p{margin:0 0 14px;color:var(--bone)}
+blockquote{margin:26px 0 0;padding:0 0 0 20px;border-left:3px solid var(--accent,var(--amber))}
+blockquote p{font-family:var(--display);font-size:clamp(22px,2.4vw,28px);line-height:1.3;margin:0 0 10px!important}
+blockquote cite{font-style:normal;font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+.prints{display:flex;gap:18px;margin:22px 0 0;flex-wrap:wrap}
+.prints figure{margin:0;background:var(--bone);padding:8px 8px 6px;box-shadow:0 10px 26px rgba(0,0,0,.5);flex:0 1 auto}
+.prints figure:first-child{transform:rotate(-1.4deg)}
+.prints figure:last-child{transform:rotate(1.2deg)}
+.prints img{height:min(150px,30vw);width:auto}
+.prints figcaption{font-family:var(--mono);font-size:12px;color:#3b2413;text-align:center;padding-top:6px;letter-spacing:.08em}
+
+/* ---------- numbers */
+.numbers{background:var(--umber-2);border-block:1px solid rgba(200,135,58,.25);padding:72px 0;margin-top:24px}
+.numbers h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,4vw,44px);margin:0 0 32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:1px;background:rgba(200,135,58,.25);border:1px solid rgba(200,135,58,.25)}
+.stat{background:var(--umber-2);padding:22px 20px}
+.stat b{display:block;font-family:var(--mono);font-weight:500;font-size:clamp(28px,3.4vw,38px);color:var(--candle);line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-family:var(--mono);font-size:13px;color:var(--bone-dim);margin-top:8px;line-height:1.45}
+.numbers small{display:block;margin-top:16px;font-size:13px;color:var(--bone-dim)}
+
+/* ---------- close */
+.close{padding:88px 0 64px;text-align:center}
+.close img{width:min(480px,100%);margin:0 auto;box-shadow:0 30px 80px rgba(0,0,0,.65)}
+.close blockquote{border:0;padding:0;margin:48px auto 0;max-width:20em}
+.close blockquote p{font-size:clamp(28px,4vw,42px)}
+footer{padding:24px 0 48px;text-align:center;font-size:13px;color:var(--bone-dim);letter-spacing:.06em}
+</style>
+</head>
+<body>
+<header class="hero" id="top">
+  <img src="media/hero.jpg" alt="A warm amber corridor of numbered wooden doors, the far door open and glowing." width="1600" height="900" fetchpriority="high">
+  <div class="hero-inner">
+    <p class="kicker">Gordon Bellamy presents</p>
+    <h1>THE DOOR</h1>
+    <p class="sub">a film for John H. Cawley</p>
+    <a class="play" href="#film" id="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play the film</a>
+    <p class="line">&ldquo;25 YEARS! since you let me in the door&rdquo;<br><span style="font-family:var(--body);font-size:13px;letter-spacing:.18em;color:var(--amber)">GORDON, 2017</span></p>
+  </div>
+</header>
+
+<main>
+<section class="film" id="film" aria-label="The film">
+  <div class="wrap">
+    <video id="video" controls playsinline preload="none" poster="media/film-poster.jpg" width="1280" height="720">
+      <source src="media/the-door-720p.mp4" type="video/mp4">
+      Your browser cannot play this video. <a href="media/the-door-720p.mp4">Download the film</a>.
+    </video>
+    <p>THE DOOR &middot; 2 min 40 s &middot; original score &middot; turn the sound up</p>
+  </div>
+</section>
+
+<section class="intro-doors">
+  <div class="wrap">
+    <h2>Eight doors</h2>
+    <p>In 1992 John opened a door in DeWolfe. Behind each door below is a chapter of the life he built after that, and of the friendship that never closed.</p>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--amber)" aria-labelledby="c1">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch1.jpg" alt="A lamplit boy's bedroom desk with two worn paperbacks, an industrial skyline at dusk in the window." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">1</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 1</p>
+      <h3 id="c1">The Worldly Philosophers</h3>
+      <p class="place">Scranton, Pennsylvania &middot; before 1989</p>
+      <p>John is a Scranton kid, and he found economics early, through two books he read in high school: <i>The Worldly Philosophers</i> and <i>Free to Choose</i>.</p>
+      <p>He took that curiosity to Harvard in 1989, spent a college summer interning on Capitol Hill, and graduated magna cum laude in economics in 1993.</p>
+      <blockquote><p>&ldquo;Reading The Worldly Philosophers and Free to Choose during high school made a big impression on me.&rdquo;</p><cite>John, ASHEcon interview</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--crimson)" aria-labelledby="c2">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch2.jpg" alt="An early 1990s dorm room through an open door: crimson blanket, a boxy TV, a beige PC, and a Boomerang ticket stub on the desk." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">2</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 2</p>
+      <h3 id="c2">You Let Me In the Door</h3>
+      <p class="place">Harvard, Quincy House (DeWolfe) &middot; 1989 to 1993</p>
+      <p>Gordon and John both arrived at Harvard in 1989 and ended up roommates in DeWolfe. Neither of them owned a camera, so there are no photos from those years, only the stories.</p>
+      <p>ESPN on the TV, PC games, a radio contest win, a Go West concert, and <i>Boomerang</i> in a Boston theater in 1992. Gordon has called it the time John let him in the door ever since.</p>
+      <blockquote><p>&ldquo;Thanks for opening the door&rdquo;</p><cite>Gordon, 2018</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--maroon)" aria-labelledby="c3">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch3.jpg" alt="A gothic Chicago lecture hall in golden light, a chalkboard with supply and demand curves and a shaded map of the United States." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">3</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 3</p>
+      <h3 id="c3">Price Theory</h3>
+      <p class="place">University of Chicago &middot; 1993 to 1999</p>
+      <p>John did not go to Chicago to study health. Then he took Price Theory from Gary Becker, a Nobel laureate, and got hooked on Becker's Theory of Rational Addiction: the idea that even habits we struggle with respond to costs and rewards.</p>
+      <p>He noticed that obesity was large and rising, and made it his subject. Becker chaired his dissertation, and John finished his Ph.D. in 1999, already publishing alongside Nobel laureate James Heckman.</p>
+      <blockquote><p>&ldquo;...was enough to inspire me to start researching obesity.&rdquo;</p><cite>John, ASHEcon interview</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--carnelian)" aria-labelledby="c4">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch4.jpg" alt="A professor's office at Cornell in autumn: a clock tower and gorge waterfall in the window, a red soda can with a price tag and a menu with calorie counts on the desk." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">4</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 4</p>
+      <h3 id="c4">The Price Per Pound</h3>
+      <p class="place">Ithaca, Cornell &middot; 2001 to 2025</p>
+      <p>For 24 years at Cornell, John put real numbers on questions people argue about. His most cited paper used relatives' weights to separate cause from coincidence, and found that the medical costs of obesity were far higher than earlier estimates.</p>
+      <p>He also tested policy. In Berkeley, prices rose by only 43.1% of a soda tax, so shoppers felt just part of it. In Philadelphia the whole tax reached prices, and adults drank soda 31% less often. He even ran a rare randomized experiment on restaurant calorie labels.</p>
+      <blockquote><p>&ldquo;John is not a hand-holder, he teaches his students to develop as independent scholars.&rdquo;</p><cite>His former students, 2019</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--sea)" aria-labelledby="c5">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/pair-pub.jpg" alt="Illustrated: Gordon and John laughing over two pints in a signature-covered pub, seen through the open pub door." loading="lazy" width="1600" height="893"></div><div class="leaf" aria-hidden="true"><span class="plaque">5</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 5</p>
+      <h3 id="c5">Go West Is On</h3>
+      <p class="place">Los Angeles, London, Geneseo &middot; 2012 to 2020</p>
+      <p>The friendship kept its soundtrack across 3,000 miles. Go West came back at Gordon's engagement, and Gordon and Joe married on 5.3.14, the day after John's birthday.</p>
+      <p>They met for dinner in Los Angeles, ran into each other by chance in London in May 2017, and in February 2020 John drove two hours to Geneseo, New York, to hear Gordon speak.</p>
+      <div class="prints">
+        <figure><img src="media/pair-2012.jpg" alt="Real photo: Gordon and John smiling in a selfie outdoors, 2012." loading="lazy" width="640" height="480"><figcaption>2012</figcaption></figure>
+        <figure><img src="media/pair-geneseo-2020.jpg" alt="Real photo: Gordon and John in a selfie at a pub in Geneseo, 2020." loading="lazy" width="720" height="960"><figcaption>Geneseo, NY, 2020</figcaption></figure>
+      </div>
+      <blockquote><p>&ldquo;Wow. I love it when a plan comes together!&rdquo;</p><cite>John, London, 2017</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--candle)" aria-labelledby="c6">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch6.jpg" alt="An empty gym at night through open double doors, red dodgeballs on the floor and a single golden star of light above center court." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">6</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 6</p>
+      <h3 id="c6">The First Star</h3>
+      <p class="place">The friend who knew to ask &middot; 2017 to 2019</p>
+      <p>When Gordon won his dodgeball championship in 2017, he dedicated it to John, the friend who understood what that first star meant and knew to ask about it.</p>
+      <p>On Father's Day 2019, John told Gordon he had the instincts to help, nurture, and protect, the same instincts that led him to teach.</p>
+      <blockquote><p>&ldquo;One of the privileges of lifelong friends is to be truly known.&rdquo;</p><cite>Gordon, 2017</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--orange)" aria-labelledby="c7">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch7.jpg" alt="A stone faculty office in Syracuse with a framed orange jersey reading CAWLEY on the wall." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">7</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 7</p>
+      <h3 id="c7">The Cawley Era</h3>
+      <p class="place">Syracuse, Maxwell School &middot; 2025 to 2026</p>
+      <p>On August 18, 2025, John became the Daniel Patrick Moynihan Chair in Public Policy at Syracuse, with an office in Eggers Hall. He edited the <i>Journal of Health Economics</i> from 2015 to 2020, and he is president-elect of the American Society of Health Economists, serving as president in 2026 to 27.</p>
+      <p>About 30 Ph.D.s had him on their dissertation committees, and many became his co-authors.</p>
+      <blockquote><p>&ldquo;He could speak to anybody, and I think that's sort of the gold standard.&rdquo;</p><cite>John, on Moynihan, taking the chair</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" style="--accent:var(--amber)" aria-labelledby="c8">
+  <div class="wrap">
+    <div class="frame"><div class="room"><img src="media/ch8.jpg" alt="An evening room through a door: a phone face up on the table glowing with a message bubble that reads It me, a theater marquee in the window." loading="lazy" width="1600" height="905"></div><div class="leaf" aria-hidden="true"><span class="plaque">8</span><span class="knob"></span></div></div>
+    <div class="copy">
+      <p class="num">Door 8</p>
+      <h3 id="c8">It Me</h3>
+      <p class="place">The Academy and Cawley Fest &middot; October 2026</p>
+      <p>On October 19, 2026, the National Academy of Medicine elected John &ldquo;For pioneering the field of the economics of obesity.&rdquo; He shared the news with Gordon in two words, Gordon's own catchphrase.</p>
+      <p>Three days later he comes to Los Angeles for Cawley Fest at Gordon and Joe's home: no catching up, just living while he is here.</p>
+      <blockquote><p>&ldquo;It me&rdquo;</p><cite>John, October 19, 2026</cite></blockquote>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="numbers" aria-labelledby="nums">
+  <div class="wrap">
+    <h2 id="nums">By the numbers</h2>
+    <div class="grid">
+      <div class="stat"><b>1989</b><span>arrived at Harvard</span></div>
+      <div class="stat"><b>1993</b><span>A.B. economics, magna cum laude</span></div>
+      <div class="stat"><b>1999</b><span>Ph.D., University of Chicago</span></div>
+      <div class="stat"><b>24 yrs</b><span>at Cornell, 2001 to 2025</span></div>
+      <div class="stat"><b>~16,000</b><span>citations (OpenAlex, approximate)</span></div>
+      <div class="stat"><b>h 63</b><span>h-index (OpenAlex)</span></div>
+      <div class="stat"><b>6 yrs</b><span>editor, Journal of Health Economics, 2015 to 2020</span></div>
+      <div class="stat"><b>~30</b><span>Ph.D. dissertation committees</span></div>
+      <div class="stat"><b>43.1%</b><span>of Berkeley's soda tax passed to prices</span></div>
+      <div class="stat"><b>2026</b><span>National Academy of Medicine</span></div>
+    </div>
+    <small>Figures from public records gathered for this dossier. Citation counts are approximate.</small>
+  </div>
+</section>
+
+<section class="close" aria-label="Closing">
+  <div class="wrap">
+    <img src="media/poster.jpg" alt="Movie poster: THE DOOR, a film for John H. Cawley. Gordon and John under a glowing theater marquee." loading="lazy" width="1200" height="1600">
+    <blockquote><p>&ldquo;Thank you for always being such a great friend to me.&rdquo;</p><cite>John, September 27, 2026</cite></blockquote>
+  </div>
+</section>
+<footer>Made by Gordon for John, one to one. <a href="#top">Back to the first door</a></footer>
+
+<script>
+(function(){
+  var d=document.documentElement; d.classList.add('js');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var chapters=document.querySelectorAll('.chapter');
+  if(reduce||!('IntersectionObserver' in window)){chapters.forEach(function(c){c.classList.add('open')});}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('open');io.unobserve(e.target);}})},{threshold:0.35});
+    chapters.forEach(function(c){io.observe(c)});
+  }
+  var play=document.getElementById('play'), v=document.getElementById('video');
+  play.addEventListener('click',function(e){
+    e.preventDefault();
+    document.getElementById('film').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
+    if(v.paused){var p=v.play(); if(p&&p.catch)p.catch(function(){});}
+  });
+})();
+</script>
+</body>
+</html>
