@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>After Hours · The Season Set</title>
-<meta name="description" content="Gordon's shows with friends, edition 3: 14 nights ahead, played like a DJ set.">
+<meta name="description" content="Gordon's shows with friends, edition 3: 15 nights ahead, played like a DJ set.">
 <meta property="og:image" content="ed3/art/hero.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=JetBrains+Mono:wght@400;700&family=Inter+Tight:wght@400;600&display=swap">
@@ -114,6 +114,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 .drop:active img{transform:translateY(4px) scale(.97)}
 .drop.hit .on{opacity:1}.drop.hit .off{opacity:0}
 @keyframes idle{50%{filter:drop-shadow(0 12px 18px rgba(0,0,0,.6)) drop-shadow(0 0 26px rgba(40,220,255,.6))}}
+.stopdrop{position:fixed;right:max(14px,2.5vw);bottom:calc(env(safe-area-inset-bottom,0px) + 124px);z-index:51;appearance:none;border:1px solid var(--line);background:rgba(16,14,23,.85);color:var(--fg);font:700 11px var(--mono);letter-spacing:.12em;padding:8px 12px;border-radius:999px;cursor:pointer}
 .droptag{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 132px);transform:translate(-50%,20px);z-index:51;opacity:0;pointer-events:none;font:800 clamp(22px,5vw,44px)/1 var(--display);letter-spacing:.02em;text-align:center;white-space:nowrap;background:linear-gradient(90deg,#ff3ea5,#ffd447,#33e1ff,#7dff8a,#b46bff);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .2s,transform .35s cubic-bezier(.2,1.6,.4,1)}
 .droptag small{display:block;font:700 12px var(--mono);letter-spacing:.3em;color:var(--fg);-webkit-text-fill-color:var(--fg);margin-top:6px}
 .droptag.show{opacity:1;transform:translate(-50%,0)}
@@ -145,24 +146,41 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
     <h1>The Season <em>Set</em></h1>
     <p class="sub">Every night ahead, cued up like a DJ set. Tap a track to load it on the deck, see who's coming, and grab the listing.</p>
     <div class="deck" id="deck">
-      <div class="jog"><div><b id="jogN">3</b><small>DAYS</small></div></div>
-      <div class="readout"><div class="lbl" id="deckLbl">DECK A · NEXT UP</div><div class="nm" id="deckName">POKÉMON NIGHT OUT</div><div class="meta" id="deckMeta">Sat Oct 24, 2026 · Intuit Dome</div></div>
+      <div class="jog"><div><b id="jogN">2</b><small>DAYS</small></div></div>
+      <div class="readout"><div class="lbl" id="deckLbl">DECK A · NEXT UP</div><div class="nm" id="deckName">TWO FRIENDS</div><div class="meta" id="deckMeta">Fri Oct 23, 2026 · Hollywood Palladium</div></div>
       <button class="btn-play" id="play" aria-pressed="false" aria-label="Play the intro with sound"><img class="k off" src="ed3/ui/play_off.webp" alt="" width="180" height="150"><img class="k on" src="ed3/ui/play_on.webp" alt="" width="180" height="150"><span class="cap" id="playCap">PLAY</span></button>
     </div>
     <div class="ctlrow"><a class="jump" href="#tracklist">Jump to the shows ↓</a><button class="vidctl" id="vidctl" aria-pressed="false" hidden>PAUSE MOTION</button></div>
-    <div class="stats"><span><b>14</b> nights ahead</span><span><b>10</b> on the decks</span><span><b>9</b> cities</span><span><b>8</b> already played</span></div>
+    <div class="stats"><span><b>15</b> nights ahead</span><span><b>11</b> on the decks</span><span><b>9</b> cities</span><span><b>8</b> already played</span></div>
   </div>
 </header>
 
 <main>
 <section class="wrap" id="tracklist">
   <h2>Tracklist</h2>
-  <p class="h2sub">In running order. T-minus counts days from Oct 21, 2026 6:33 PM PT.</p>
+  <p class="h2sub">In running order. T-minus counts days from Oct 21, 2026 6:42 PM PT.</p>
   <div class="head" aria-hidden="true"><span>#</span><span></span><span>TRACK</span><span>WAVEFORM</span><span>DATE</span><span>CUE</span><span>GENRE</span></div>
   <ol class="tl">
+<li class="trk" id="t-two-friends" data-id="two-friends" data-art="palladium" style="--c:#ff9a6b">
+ <button class="row" aria-expanded="false" aria-controls="d-two-friends">
+  <span class="no">01</span>
+  <span class="thumb"><img src="ed3/art/palladium.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>TWO FRIENDS</b><em class="st st-ok">Going</em><small>Hollywood Palladium · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.799"></i><i style="--h:0.571"></i><i style="--h:0.729"></i><i style="--h:0.281"></i><i style="--h:0.449"></i><i style="--h:0.887"></i><i style="--h:0.587"></i><i style="--h:0.287"></i><i style="--h:0.975"></i><i style="--h:0.903"></i><i style="--h:0.312"></i><i style="--h:0.651"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.679"></i><i style="--h:0.773"></i><i style="--h:0.393"></i><i style="--h:0.298"></i><i style="--h:0.406"></i><i style="--h:0.927"></i><i style="--h:0.293"></i><i style="--h:0.915"></i><i style="--h:0.281"></i><i style="--h:0.574"></i><i style="--h:0.414"></i><i style="--h:0.915"></i><i style="--h:0.449"></i><i style="--h:0.526"></i><i style="--h:0.806"></i><i style="--h:0.63"></i><i style="--h:0.848"></i><i style="--h:0.481"></i><i style="--h:0.799"></i><i style="--h:0.571"></i><i style="--h:0.729"></i><i style="--h:0.281"></i><i style="--h:0.449"></i><i style="--h:0.887"></i><i style="--h:0.587"></i><i style="--h:0.287"></i><i style="--h:0.975"></i><i style="--h:0.903"></i><i style="--h:0.312"></i><i style="--h:0.651"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.679"></i><i style="--h:0.773"></i><i style="--h:0.393"></i><i style="--h:0.298"></i><i style="--h:0.406"></i><i style="--h:0.927"></i><i style="--h:0.293"></i><i style="--h:0.915"></i><i style="--h:0.281"></i><i style="--h:0.574"></i><i style="--h:0.414"></i><i style="--h:0.915"></i><i style="--h:0.449"></i><i style="--h:0.526"></i><i style="--h:0.806"></i><i style="--h:0.63"></i><i style="--h:0.848"></i><i style="--h:0.481"></i></span>
+  <span class="dt">Fri Oct 23, 2026</span>
+  <span class="cd">T-2d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-two-friends">
+  <img class="big" src="ed3/art/palladium.webp" alt="Key art for TWO FRIENDS" loading="lazy">
+  <div class="info"><p class="line">Friday night at the Palladium, all of us.</p><p class="note">A Cawley Fest Friday: Joe, John, Mason and Bailey at the Hollywood Palladium.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Joe, John, Mason + Bailey</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Fri Oct 23, 2026</dd><dt>Where</dt><dd>Hollywood Palladium, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://edmtrain.com/los-angeles-ca/two-friends-501526?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
 <li class="trk" id="t-pokemon" data-id="pokemon" data-art="pokemon" style="--c:#ffd871">
  <button class="row" aria-expanded="false" aria-controls="d-pokemon">
-  <span class="no">01</span>
+  <span class="no">02</span>
   <span class="thumb"><img src="ed3/art/pokemon.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>POKÉMON NIGHT OUT</b><em class="st st-ok">Going</em><small>Intuit Dome · Inglewood</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.915"></i><i style="--h:0.647"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.327"></i><i style="--h:0.799"></i><i style="--h:0.419"></i><i style="--h:0.433"></i><i style="--h:0.356"></i><i style="--h:0.338"></i><i style="--h:0.773"></i><i style="--h:0.325"></i><i style="--h:0.62"></i><i style="--h:0.747"></i><i style="--h:0.561"></i><i style="--h:0.587"></i><i style="--h:0.686"></i><i style="--h:0.306"></i><i style="--h:0.661"></i><i style="--h:0.61"></i><i style="--h:0.927"></i><i style="--h:0.458"></i><i style="--h:0.833"></i><i style="--h:0.542"></i><i style="--h:0.356"></i><i style="--h:0.266"></i><i style="--h:0.406"></i><i style="--h:0.475"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.992"></i><i style="--h:0.729"></i><i style="--h:0.915"></i><i style="--h:0.647"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.327"></i><i style="--h:0.799"></i><i style="--h:0.419"></i><i style="--h:0.433"></i><i style="--h:0.356"></i><i style="--h:0.338"></i><i style="--h:0.773"></i><i style="--h:0.325"></i><i style="--h:0.62"></i><i style="--h:0.747"></i><i style="--h:0.561"></i><i style="--h:0.587"></i><i style="--h:0.686"></i><i style="--h:0.306"></i><i style="--h:0.661"></i><i style="--h:0.61"></i><i style="--h:0.927"></i><i style="--h:0.458"></i><i style="--h:0.833"></i><i style="--h:0.542"></i><i style="--h:0.356"></i><i style="--h:0.266"></i><i style="--h:0.406"></i><i style="--h:0.475"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.992"></i><i style="--h:0.729"></i></span>
@@ -179,7 +197,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-pride" data-id="pride" data-art="palmsprings" style="--c:#f2a7cf">
  <button class="row" aria-expanded="false" aria-controls="d-pride">
-  <span class="no">02</span>
+  <span class="no">03</span>
   <span class="thumb"><img src="ed3/art/palmsprings.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>PALM SPRINGS · PRIDE + BIRTHDAY</b><em class="st st-ok">Going</em><small>Downtown + Arenas District · Birthday November 9 · Palm Springs</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.375"></i><i style="--h:0.254"></i><i style="--h:0.452"></i><i style="--h:0.743"></i><i style="--h:0.422"></i><i style="--h:0.959"></i><i style="--h:0.558"></i><i style="--h:0.951"></i><i style="--h:0.318"></i><i style="--h:0.478"></i><i style="--h:0.597"></i><i style="--h:0.356"></i><i style="--h:0.253"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.256"></i><i style="--h:0.39"></i><i style="--h:0.277"></i><i style="--h:0.266"></i><i style="--h:0.931"></i><i style="--h:0.312"></i><i style="--h:0.344"></i><i style="--h:0.539"></i><i style="--h:0.696"></i><i style="--h:0.829"></i><i style="--h:0.833"></i><i style="--h:0.63"></i><i style="--h:0.478"></i><i style="--h:0.848"></i><i style="--h:0.447"></i><i style="--h:0.351"></i><i style="--h:0.647"></i><i style="--h:0.375"></i><i style="--h:0.254"></i><i style="--h:0.452"></i><i style="--h:0.743"></i><i style="--h:0.422"></i><i style="--h:0.959"></i><i style="--h:0.558"></i><i style="--h:0.951"></i><i style="--h:0.318"></i><i style="--h:0.478"></i><i style="--h:0.597"></i><i style="--h:0.356"></i><i style="--h:0.253"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.256"></i><i style="--h:0.39"></i><i style="--h:0.277"></i><i style="--h:0.266"></i><i style="--h:0.931"></i><i style="--h:0.312"></i><i style="--h:0.344"></i><i style="--h:0.539"></i><i style="--h:0.696"></i><i style="--h:0.829"></i><i style="--h:0.833"></i><i style="--h:0.63"></i><i style="--h:0.478"></i><i style="--h:0.848"></i><i style="--h:0.447"></i><i style="--h:0.351"></i><i style="--h:0.647"></i></span>
@@ -196,7 +214,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-summit" data-id="summit" data-art="summit" style="--c:#8edbde">
  <button class="row" aria-expanded="false" aria-controls="d-summit">
-  <span class="no">03</span>
+  <span class="no">04</span>
   <span class="thumb"><img src="ed3/art/summit.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>JOHN SUMMIT</b><em class="st st-ok">Going</em><small>LA Memorial Coliseum · Los Angeles</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.27"></i><i style="--h:0.613"></i><i style="--h:0.383"></i><i style="--h:0.393"></i><i style="--h:0.53"></i><i style="--h:0.263"></i><i style="--h:0.86"></i><i style="--h:0.907"></i><i style="--h:0.322"></i><i style="--h:0.641"></i><i style="--h:0.253"></i><i style="--h:0.821"></i><i style="--h:0.304"></i><i style="--h:0.696"></i><i style="--h:0.383"></i><i style="--h:0.825"></i><i style="--h:0.284"></i><i style="--h:0.818"></i><i style="--h:0.253"></i><i style="--h:0.441"></i><i style="--h:0.291"></i><i style="--h:0.992"></i><i style="--h:0.258"></i><i style="--h:0.52"></i><i style="--h:0.61"></i><i style="--h:0.441"></i><i style="--h:0.335"></i><i style="--h:0.361"></i><i style="--h:0.444"></i><i style="--h:0.496"></i><i style="--h:0.425"></i><i style="--h:0.654"></i><i style="--h:0.27"></i><i style="--h:0.613"></i><i style="--h:0.383"></i><i style="--h:0.393"></i><i style="--h:0.53"></i><i style="--h:0.263"></i><i style="--h:0.86"></i><i style="--h:0.907"></i><i style="--h:0.322"></i><i style="--h:0.641"></i><i style="--h:0.253"></i><i style="--h:0.821"></i><i style="--h:0.304"></i><i style="--h:0.696"></i><i style="--h:0.383"></i><i style="--h:0.825"></i><i style="--h:0.284"></i><i style="--h:0.818"></i><i style="--h:0.253"></i><i style="--h:0.441"></i><i style="--h:0.291"></i><i style="--h:0.992"></i><i style="--h:0.258"></i><i style="--h:0.52"></i><i style="--h:0.61"></i><i style="--h:0.441"></i><i style="--h:0.335"></i><i style="--h:0.361"></i><i style="--h:0.444"></i><i style="--h:0.496"></i><i style="--h:0.425"></i><i style="--h:0.654"></i></span>
@@ -213,7 +231,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-stevie" data-id="stevie" data-art="stevie" style="--c:#ffd47b">
  <button class="row" aria-expanded="false" aria-controls="d-stevie">
-  <span class="no">04</span>
+  <span class="no">05</span>
   <span class="thumb"><img src="ed3/art/stevie.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>STEVIE WONDER</b><em class="st st-ok">Going</em><small>Intuit Dome · Inglewood</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.806"></i><i style="--h:0.992"></i><i style="--h:0.703"></i><i style="--h:0.349"></i><i style="--h:0.947"></i><i style="--h:0.806"></i><i style="--h:0.262"></i><i style="--h:0.264"></i><i style="--h:0.903"></i><i style="--h:0.931"></i><i style="--h:0.654"></i><i style="--h:0.373"></i><i style="--h:0.433"></i><i style="--h:0.668"></i><i style="--h:0.363"></i><i style="--h:0.58"></i><i style="--h:0.279"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.799"></i><i style="--h:0.398"></i><i style="--h:0.939"></i><i style="--h:0.951"></i><i style="--h:0.567"></i><i style="--h:0.49"></i><i style="--h:0.308"></i><i style="--h:0.287"></i><i style="--h:0.414"></i><i style="--h:0.647"></i><i style="--h:0.761"></i><i style="--h:0.864"></i><i style="--h:0.291"></i><i style="--h:0.806"></i><i style="--h:0.992"></i><i style="--h:0.703"></i><i style="--h:0.349"></i><i style="--h:0.947"></i><i style="--h:0.806"></i><i style="--h:0.262"></i><i style="--h:0.264"></i><i style="--h:0.903"></i><i style="--h:0.931"></i><i style="--h:0.654"></i><i style="--h:0.373"></i><i style="--h:0.433"></i><i style="--h:0.668"></i><i style="--h:0.363"></i><i style="--h:0.58"></i><i style="--h:0.279"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.799"></i><i style="--h:0.398"></i><i style="--h:0.939"></i><i style="--h:0.951"></i><i style="--h:0.567"></i><i style="--h:0.49"></i><i style="--h:0.308"></i><i style="--h:0.287"></i><i style="--h:0.414"></i><i style="--h:0.647"></i><i style="--h:0.761"></i><i style="--h:0.864"></i><i style="--h:0.291"></i></span>
@@ -230,7 +248,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-countdown" data-id="countdown" data-art="countdown" style="--c:#c1b0ff">
  <button class="row" aria-expanded="false" aria-controls="d-countdown">
-  <span class="no">05</span>
+  <span class="no">06</span>
   <span class="thumb"><img src="ed3/art/countdown.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>COUNTDOWN</b><em class="st st-ok">Going</em><small>NOS Event Center · San Bernardino</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.351"></i><i style="--h:0.53"></i><i style="--h:0.53"></i><i style="--h:0.947"></i><i style="--h:0.266"></i><i style="--h:0.955"></i><i style="--h:0.707"></i><i style="--h:0.444"></i><i style="--h:0.6"></i><i style="--h:0.736"></i><i style="--h:0.408"></i><i style="--h:0.641"></i><i style="--h:0.773"></i><i style="--h:0.931"></i><i style="--h:0.837"></i><i style="--h:0.511"></i><i style="--h:0.876"></i><i style="--h:0.259"></i><i style="--h:0.833"></i><i style="--h:0.304"></i><i style="--h:0.499"></i><i style="--h:0.943"></i><i style="--h:0.647"></i><i style="--h:0.679"></i><i style="--h:0.984"></i><i style="--h:0.427"></i><i style="--h:0.848"></i><i style="--h:0.257"></i><i style="--h:0.433"></i><i style="--h:0.383"></i><i style="--h:0.754"></i><i style="--h:0.425"></i><i style="--h:0.351"></i><i style="--h:0.53"></i><i style="--h:0.53"></i><i style="--h:0.947"></i><i style="--h:0.266"></i><i style="--h:0.955"></i><i style="--h:0.707"></i><i style="--h:0.444"></i><i style="--h:0.6"></i><i style="--h:0.736"></i><i style="--h:0.408"></i><i style="--h:0.641"></i><i style="--h:0.773"></i><i style="--h:0.931"></i><i style="--h:0.837"></i><i style="--h:0.511"></i><i style="--h:0.876"></i><i style="--h:0.259"></i><i style="--h:0.833"></i><i style="--h:0.304"></i><i style="--h:0.499"></i><i style="--h:0.943"></i><i style="--h:0.647"></i><i style="--h:0.679"></i><i style="--h:0.984"></i><i style="--h:0.427"></i><i style="--h:0.848"></i><i style="--h:0.257"></i><i style="--h:0.433"></i><i style="--h:0.383"></i><i style="--h:0.754"></i><i style="--h:0.425"></i></span>
@@ -247,7 +265,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-sincity" data-id="sincity" data-art="dodgeball" style="--c:#f99875">
  <button class="row" aria-expanded="false" aria-controls="d-sincity">
-  <span class="no">06</span>
+  <span class="no">07</span>
   <span class="thumb"><img src="ed3/art/dodgeball.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>SIN CITY · DODGEBALL</b><em class="st st-ok">Going</em><small>Sin City Classic Sports Festival · Las Vegas</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.799"></i><i style="--h:0.3"></i><i style="--h:0.829"></i><i style="--h:0.287"></i><i style="--h:0.325"></i><i style="--h:0.814"></i><i style="--h:0.254"></i><i style="--h:0.427"></i><i style="--h:0.444"></i><i style="--h:0.947"></i><i style="--h:0.682"></i><i style="--h:0.979"></i><i style="--h:0.268"></i><i style="--h:0.81"></i><i style="--h:0.333"></i><i style="--h:0.561"></i><i style="--h:0.848"></i><i style="--h:0.25"></i><i style="--h:0.784"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.927"></i><i style="--h:0.841"></i><i style="--h:0.58"></i><i style="--h:0.467"></i><i style="--h:0.552"></i><i style="--h:0.401"></i><i style="--h:0.818"></i><i style="--h:0.743"></i><i style="--h:0.627"></i><i style="--h:0.915"></i><i style="--h:0.351"></i><i style="--h:0.799"></i><i style="--h:0.3"></i><i style="--h:0.829"></i><i style="--h:0.287"></i><i style="--h:0.325"></i><i style="--h:0.814"></i><i style="--h:0.254"></i><i style="--h:0.427"></i><i style="--h:0.444"></i><i style="--h:0.947"></i><i style="--h:0.682"></i><i style="--h:0.979"></i><i style="--h:0.268"></i><i style="--h:0.81"></i><i style="--h:0.333"></i><i style="--h:0.561"></i><i style="--h:0.848"></i><i style="--h:0.25"></i><i style="--h:0.784"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.927"></i><i style="--h:0.841"></i><i style="--h:0.58"></i><i style="--h:0.467"></i><i style="--h:0.552"></i><i style="--h:0.401"></i><i style="--h:0.818"></i><i style="--h:0.743"></i><i style="--h:0.627"></i><i style="--h:0.915"></i><i style="--h:0.351"></i></span>
@@ -264,7 +282,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-oakenfold-crystal-method" data-id="oakenfold-crystal-method" data-art="oakenfold" style="--c:#7fe3c4">
  <button class="row" aria-expanded="false" aria-controls="d-oakenfold-crystal-method">
-  <span class="no">07</span>
+  <span class="no">08</span>
   <span class="thumb"><img src="ed3/art/oakenfold.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>OAKENFOLD + THE CRYSTAL METHOD</b><em class="st st-ok">Going</em><small>The Bellwether · KCRW Presents · Los Angeles</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.923"></i><i style="--h:0.447"></i><i style="--h:0.971"></i><i style="--h:0.255"></i><i style="--h:0.306"></i><i style="--h:0.955"></i><i style="--h:0.298"></i><i style="--h:0.613"></i><i style="--h:0.447"></i><i style="--h:0.365"></i><i style="--h:0.721"></i><i style="--h:0.49"></i><i style="--h:0.293"></i><i style="--h:0.375"></i><i style="--h:0.284"></i><i style="--h:0.263"></i><i style="--h:0.825"></i><i style="--h:0.472"></i><i style="--h:0.776"></i><i style="--h:0.351"></i><i style="--h:0.449"></i><i style="--h:0.841"></i><i style="--h:0.287"></i><i style="--h:0.251"></i><i style="--h:0.714"></i><i style="--h:0.567"></i><i style="--h:0.747"></i><i style="--h:0.499"></i><i style="--h:0.449"></i><i style="--h:0.388"></i><i style="--h:0.464"></i><i style="--h:0.38"></i><i style="--h:0.923"></i><i style="--h:0.447"></i><i style="--h:0.971"></i><i style="--h:0.255"></i><i style="--h:0.306"></i><i style="--h:0.955"></i><i style="--h:0.298"></i><i style="--h:0.613"></i><i style="--h:0.447"></i><i style="--h:0.365"></i><i style="--h:0.721"></i><i style="--h:0.49"></i><i style="--h:0.293"></i><i style="--h:0.375"></i><i style="--h:0.284"></i><i style="--h:0.263"></i><i style="--h:0.825"></i><i style="--h:0.472"></i><i style="--h:0.776"></i><i style="--h:0.351"></i><i style="--h:0.449"></i><i style="--h:0.841"></i><i style="--h:0.287"></i><i style="--h:0.251"></i><i style="--h:0.714"></i><i style="--h:0.567"></i><i style="--h:0.747"></i><i style="--h:0.499"></i><i style="--h:0.449"></i><i style="--h:0.388"></i><i style="--h:0.464"></i><i style="--h:0.38"></i></span>
@@ -281,7 +299,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-ggp-games" data-id="ggp-games" data-art="foundry" style="--c:#e7bd84">
  <button class="row" aria-expanded="false" aria-controls="d-ggp-games">
-  <span class="no">08</span>
+  <span class="no">09</span>
   <span class="thumb"><img src="ed3/art/foundry.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>GGP · ZERO PROOF</b><em class="st st-ok">Going</em><small>The Foundry SF · 1425 Folsom Street at 10th · San Francisco</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.841"></i><i style="--h:0.286"></i><i style="--h:0.907"></i><i style="--h:0.736"></i><i style="--h:0.784"></i><i style="--h:0.552"></i><i style="--h:0.363"></i><i style="--h:0.351"></i><i style="--h:0.304"></i><i style="--h:0.43"></i><i style="--h:0.963"></i><i style="--h:0.414"></i><i style="--h:0.988"></i><i style="--h:0.803"></i><i style="--h:0.316"></i><i style="--h:0.505"></i><i style="--h:0.761"></i><i style="--h:0.487"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.7"></i><i style="--h:0.508"></i><i style="--h:0.502"></i><i style="--h:0.342"></i><i style="--h:0.739"></i><i style="--h:0.38"></i><i style="--h:0.584"></i><i style="--h:0.814"></i><i style="--h:0.769"></i><i style="--h:0.455"></i><i style="--h:0.526"></i><i style="--h:0.818"></i><i style="--h:0.841"></i><i style="--h:0.286"></i><i style="--h:0.907"></i><i style="--h:0.736"></i><i style="--h:0.784"></i><i style="--h:0.552"></i><i style="--h:0.363"></i><i style="--h:0.351"></i><i style="--h:0.304"></i><i style="--h:0.43"></i><i style="--h:0.963"></i><i style="--h:0.414"></i><i style="--h:0.988"></i><i style="--h:0.803"></i><i style="--h:0.316"></i><i style="--h:0.505"></i><i style="--h:0.761"></i><i style="--h:0.487"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.7"></i><i style="--h:0.508"></i><i style="--h:0.502"></i><i style="--h:0.342"></i><i style="--h:0.739"></i><i style="--h:0.38"></i><i style="--h:0.584"></i><i style="--h:0.814"></i><i style="--h:0.769"></i><i style="--h:0.455"></i><i style="--h:0.526"></i><i style="--h:0.818"></i></span>
@@ -298,7 +316,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-ggp-mixer" data-id="ggp-mixer" data-art="foundry" style="--c:#a1e7d5">
  <button class="row" aria-expanded="false" aria-controls="d-ggp-mixer">
-  <span class="no">09</span>
+  <span class="no">10</span>
   <span class="thumb"><img src="ed3/art/foundry.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>GGP · THE MIXER</b><em class="st st-ok">Going</em><small>The Foundry SF · 1425 Folsom Street at 10th · San Francisco</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.818"></i><i style="--h:0.333"></i><i style="--h:0.403"></i><i style="--h:0.561"></i><i style="--h:0.333"></i><i style="--h:0.38"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.624"></i><i style="--h:0.754"></i><i style="--h:0.721"></i><i style="--h:0.289"></i><i style="--h:0.276"></i><i style="--h:0.78"></i><i style="--h:0.267"></i><i style="--h:0.26"></i><i style="--h:0.34"></i><i style="--h:0.475"></i><i style="--h:0.286"></i><i style="--h:0.358"></i><i style="--h:0.472"></i><i style="--h:0.707"></i><i style="--h:0.955"></i><i style="--h:0.414"></i><i style="--h:0.992"></i><i style="--h:0.624"></i><i style="--h:0.347"></i><i style="--h:0.422"></i><i style="--h:0.923"></i><i style="--h:0.814"></i><i style="--h:0.545"></i><i style="--h:0.613"></i><i style="--h:0.818"></i><i style="--h:0.333"></i><i style="--h:0.403"></i><i style="--h:0.561"></i><i style="--h:0.333"></i><i style="--h:0.38"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.624"></i><i style="--h:0.754"></i><i style="--h:0.721"></i><i style="--h:0.289"></i><i style="--h:0.276"></i><i style="--h:0.78"></i><i style="--h:0.267"></i><i style="--h:0.26"></i><i style="--h:0.34"></i><i style="--h:0.475"></i><i style="--h:0.286"></i><i style="--h:0.358"></i><i style="--h:0.472"></i><i style="--h:0.707"></i><i style="--h:0.955"></i><i style="--h:0.414"></i><i style="--h:0.992"></i><i style="--h:0.624"></i><i style="--h:0.347"></i><i style="--h:0.422"></i><i style="--h:0.923"></i><i style="--h:0.814"></i><i style="--h:0.545"></i><i style="--h:0.613"></i></span>
@@ -315,7 +333,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-gryphus" data-id="gryphus" data-art="gryphus" style="--c:#b5dbc8">
  <button class="row" aria-expanded="false" aria-controls="d-gryphus">
-  <span class="no">10</span>
+  <span class="no">11</span>
   <span class="thumb"><img src="ed3/art/gryphus.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>GRYPHUS</b><em class="st st-ok">Going</em><small>Flat Rock Ranch · San Antonio gathering April 29 · Texas Hill Country</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.829"></i><i style="--h:0.747"></i><i style="--h:0.327"></i><i style="--h:0.895"></i><i style="--h:0.935"></i><i style="--h:0.743"></i><i style="--h:0.607"></i><i style="--h:0.848"></i><i style="--h:0.718"></i><i style="--h:0.577"></i><i style="--h:0.868"></i><i style="--h:0.891"></i><i style="--h:0.449"></i><i style="--h:0.721"></i><i style="--h:0.327"></i><i style="--h:0.594"></i><i style="--h:0.868"></i><i style="--h:0.478"></i><i style="--h:0.49"></i><i style="--h:0.322"></i><i style="--h:0.574"></i><i style="--h:0.452"></i><i style="--h:0.523"></i><i style="--h:0.284"></i><i style="--h:0.433"></i><i style="--h:0.258"></i><i style="--h:0.661"></i><i style="--h:0.308"></i><i style="--h:0.49"></i><i style="--h:0.375"></i><i style="--h:0.262"></i><i style="--h:0.736"></i><i style="--h:0.829"></i><i style="--h:0.747"></i><i style="--h:0.327"></i><i style="--h:0.895"></i><i style="--h:0.935"></i><i style="--h:0.743"></i><i style="--h:0.607"></i><i style="--h:0.848"></i><i style="--h:0.718"></i><i style="--h:0.577"></i><i style="--h:0.868"></i><i style="--h:0.891"></i><i style="--h:0.449"></i><i style="--h:0.721"></i><i style="--h:0.327"></i><i style="--h:0.594"></i><i style="--h:0.868"></i><i style="--h:0.478"></i><i style="--h:0.49"></i><i style="--h:0.322"></i><i style="--h:0.574"></i><i style="--h:0.452"></i><i style="--h:0.523"></i><i style="--h:0.284"></i><i style="--h:0.433"></i><i style="--h:0.258"></i><i style="--h:0.661"></i><i style="--h:0.308"></i><i style="--h:0.49"></i><i style="--h:0.375"></i><i style="--h:0.262"></i><i style="--h:0.736"></i></span>
@@ -332,7 +350,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-edc" data-id="edc" data-art="edc" style="--c:#ffb991">
  <button class="row" aria-expanded="false" aria-controls="d-edc">
-  <span class="no">11</span>
+  <span class="no">12</span>
   <span class="thumb"><img src="ed3/art/edc.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>EDC · DAWN</b><em class="st st-tba">Going · crew forming</em><small>Motor Speedway · Las Vegas</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.304"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.907"></i><i style="--h:0.732"></i><i style="--h:0.979"></i><i style="--h:0.375"></i><i style="--h:0.257"></i><i style="--h:0.78"></i><i style="--h:0.517"></i><i style="--h:0.665"></i><i style="--h:0.297"></i><i style="--h:0.879"></i><i style="--h:0.464"></i><i style="--h:0.266"></i><i style="--h:0.281"></i><i style="--h:0.803"></i><i style="--h:0.481"></i><i style="--h:0.879"></i><i style="--h:0.984"></i><i style="--h:0.637"></i><i style="--h:0.799"></i><i style="--h:0.282"></i><i style="--h:0.481"></i><i style="--h:0.791"></i><i style="--h:0.375"></i><i style="--h:0.447"></i><i style="--h:0.895"></i><i style="--h:0.78"></i><i style="--h:0.852"></i><i style="--h:0.841"></i><i style="--h:0.464"></i><i style="--h:0.304"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.907"></i><i style="--h:0.732"></i><i style="--h:0.979"></i><i style="--h:0.375"></i><i style="--h:0.257"></i><i style="--h:0.78"></i><i style="--h:0.517"></i><i style="--h:0.665"></i><i style="--h:0.297"></i><i style="--h:0.879"></i><i style="--h:0.464"></i><i style="--h:0.266"></i><i style="--h:0.281"></i><i style="--h:0.803"></i><i style="--h:0.481"></i><i style="--h:0.879"></i><i style="--h:0.984"></i><i style="--h:0.637"></i><i style="--h:0.799"></i><i style="--h:0.282"></i><i style="--h:0.481"></i><i style="--h:0.791"></i><i style="--h:0.375"></i><i style="--h:0.447"></i><i style="--h:0.895"></i><i style="--h:0.78"></i><i style="--h:0.852"></i><i style="--h:0.841"></i><i style="--h:0.464"></i></span>
@@ -349,7 +367,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-fang-live" data-id="fang-live" data-art="fang" style="--c:#df855e">
  <button class="row" aria-expanded="false" aria-controls="d-fang-live">
-  <span class="no">12</span>
+  <span class="no">13</span>
   <span class="thumb"><img src="ed3/art/fang.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>FANG SPEARE · LIVE</b><em class="st st-tba">Going · date TBA</em><small>Maxfield Engine House · Live date and details to come · Boonton, New Jersey</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.864"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.825"></i><i style="--h:0.508"></i><i style="--h:0.62"></i><i style="--h:0.947"></i><i style="--h:0.478"></i><i style="--h:0.915"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.776"></i><i style="--h:0.499"></i><i style="--h:0.253"></i><i style="--h:0.259"></i><i style="--h:0.52"></i><i style="--h:0.903"></i><i style="--h:0.967"></i><i style="--h:0.682"></i><i style="--h:0.637"></i><i style="--h:0.342"></i><i style="--h:0.279"></i><i style="--h:0.25"></i><i style="--h:0.844"></i><i style="--h:0.469"></i><i style="--h:0.979"></i><i style="--h:0.533"></i><i style="--h:0.393"></i><i style="--h:0.469"></i><i style="--h:0.455"></i><i style="--h:0.308"></i><i style="--h:0.864"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.825"></i><i style="--h:0.508"></i><i style="--h:0.62"></i><i style="--h:0.947"></i><i style="--h:0.478"></i><i style="--h:0.915"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.776"></i><i style="--h:0.499"></i><i style="--h:0.253"></i><i style="--h:0.259"></i><i style="--h:0.52"></i><i style="--h:0.903"></i><i style="--h:0.967"></i><i style="--h:0.682"></i><i style="--h:0.637"></i><i style="--h:0.342"></i><i style="--h:0.279"></i><i style="--h:0.25"></i><i style="--h:0.844"></i><i style="--h:0.469"></i><i style="--h:0.979"></i><i style="--h:0.533"></i><i style="--h:0.393"></i><i style="--h:0.469"></i><i style="--h:0.455"></i><i style="--h:0.308"></i></span>
@@ -366,7 +384,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-shambhala" data-id="shambhala" data-art="shambhala" style="--c:#c5df92">
  <button class="row" aria-expanded="false" aria-controls="d-shambhala">
-  <span class="no">13</span>
+  <span class="no">14</span>
   <span class="thumb"><img src="ed3/art/shambhala.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>SHAMBHALA</b><em class="st st-tba">Going · dates tentative</em><small>Salmo River Ranch · British Columbia</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.736"></i><i style="--h:0.279"></i><i style="--h:0.276"></i><i style="--h:0.425"></i><i style="--h:0.375"></i><i style="--h:0.679"></i><i style="--h:0.286"></i><i style="--h:0.274"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.329"></i><i style="--h:0.654"></i><i style="--h:0.747"></i><i style="--h:0.401"></i><i style="--h:0.475"></i><i style="--h:0.624"></i><i style="--h:0.444"></i><i style="--h:0.259"></i><i style="--h:0.931"></i><i style="--h:0.251"></i><i style="--h:0.907"></i><i style="--h:0.821"></i><i style="--h:0.852"></i><i style="--h:0.25"></i><i style="--h:0.472"></i><i style="--h:0.411"></i><i style="--h:0.267"></i><i style="--h:0.665"></i><i style="--h:0.298"></i><i style="--h:0.493"></i><i style="--h:0.651"></i><i style="--h:0.711"></i><i style="--h:0.736"></i><i style="--h:0.279"></i><i style="--h:0.276"></i><i style="--h:0.425"></i><i style="--h:0.375"></i><i style="--h:0.679"></i><i style="--h:0.286"></i><i style="--h:0.274"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.329"></i><i style="--h:0.654"></i><i style="--h:0.747"></i><i style="--h:0.401"></i><i style="--h:0.475"></i><i style="--h:0.624"></i><i style="--h:0.444"></i><i style="--h:0.259"></i><i style="--h:0.931"></i><i style="--h:0.251"></i><i style="--h:0.907"></i><i style="--h:0.821"></i><i style="--h:0.852"></i><i style="--h:0.25"></i><i style="--h:0.472"></i><i style="--h:0.411"></i><i style="--h:0.267"></i><i style="--h:0.665"></i><i style="--h:0.298"></i><i style="--h:0.493"></i><i style="--h:0.651"></i><i style="--h:0.711"></i></span>
@@ -383,7 +401,7 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </li>
 <li class="trk" id="t-olympics" data-id="olympics" data-art="la28" style="--c:#b8e8ba">
  <button class="row" aria-expanded="false" aria-controls="d-olympics">
-  <span class="no">14</span>
+  <span class="no">15</span>
   <span class="thumb"><img src="ed3/art/la28.webp" alt="" loading="lazy" width="96" height="54"></span>
   <span class="ttl"><b>LA28 · WITH FOSTER</b><em class="st st-ok">Going</em><small>Squash + table tennis · Los Angeles</small></span>
   <span class="wf" aria-hidden="true"><i style="--h:0.43"></i><i style="--h:0.686"></i><i style="--h:0.86"></i><i style="--h:0.388"></i><i style="--h:0.38"></i><i style="--h:0.868"></i><i style="--h:0.923"></i><i style="--h:0.58"></i><i style="--h:0.919"></i><i style="--h:0.279"></i><i style="--h:0.514"></i><i style="--h:0.703"></i><i style="--h:0.268"></i><i style="--h:0.693"></i><i style="--h:0.277"></i><i style="--h:0.452"></i><i style="--h:0.62"></i><i style="--h:0.876"></i><i style="--h:0.487"></i><i style="--h:0.356"></i><i style="--h:0.368"></i><i style="--h:0.856"></i><i style="--h:0.776"></i><i style="--h:0.627"></i><i style="--h:0.6"></i><i style="--h:0.919"></i><i style="--h:0.447"></i><i style="--h:0.773"></i><i style="--h:0.743"></i><i style="--h:0.419"></i><i style="--h:0.505"></i><i style="--h:0.271"></i><i style="--h:0.43"></i><i style="--h:0.686"></i><i style="--h:0.86"></i><i style="--h:0.388"></i><i style="--h:0.38"></i><i style="--h:0.868"></i><i style="--h:0.923"></i><i style="--h:0.58"></i><i style="--h:0.919"></i><i style="--h:0.279"></i><i style="--h:0.514"></i><i style="--h:0.703"></i><i style="--h:0.268"></i><i style="--h:0.693"></i><i style="--h:0.277"></i><i style="--h:0.452"></i><i style="--h:0.62"></i><i style="--h:0.876"></i><i style="--h:0.487"></i><i style="--h:0.356"></i><i style="--h:0.368"></i><i style="--h:0.856"></i><i style="--h:0.776"></i><i style="--h:0.627"></i><i style="--h:0.6"></i><i style="--h:0.919"></i><i style="--h:0.447"></i><i style="--h:0.773"></i><i style="--h:0.743"></i><i style="--h:0.419"></i><i style="--h:0.505"></i><i style="--h:0.271"></i></span>
@@ -409,12 +427,13 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
 </main>
 
 <footer class="wrap">
-  Event listings verified against <a href="https://edmtrain.com/los-angeles-ca" rel="noopener">EDM Train</a> on Oct 21, 2026, plus Gordon's tickets and word. Art made with Higgsfield. Voice and sound made with ElevenLabs. Built Oct 21, 2026 6:33 PM PT.<br>
+  Event listings verified against <a href="https://edmtrain.com/los-angeles-ca" rel="noopener">EDM Train</a> on Oct 21, 2026, plus Gordon's tickets and word. Art made with Higgsfield. Voice and sound made with ElevenLabs. Built Oct 21, 2026 6:42 PM PT.<br>
   <a href="#top">Back to the deck</a> · <a href="edition-2.html">Edition 2, The Mixer</a> · <a href="edition-1.html">Edition 1</a>
 </footer>
 
 <div class="flash" id="flash" aria-hidden="true"></div>
 <div class="droptag" id="droptag" aria-live="polite"></div>
+<button class="stopdrop" id="stopdrop" hidden aria-label="Stop the drop">■ STOP DROP</button>
 <button class="drop" id="drop" aria-label="Drop a surprise bass drop"><img class="off" src="ed3/ui/drop_off.webp" alt="" width="104" height="94"><img class="on" src="ed3/ui/drop_on.webp" alt="" width="104" height="94"></button>
 <script>
 (function(){
@@ -427,7 +446,8 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
   vc.addEventListener('click',function(){ var paused=vc.getAttribute('aria-pressed')==='true';
     if(paused){vid.play().catch(function(){});vc.setAttribute('aria-pressed','false');vc.textContent='PAUSE MOTION';}
     else{vid.pause();vc.setAttribute('aria-pressed','true');vc.textContent='PLAY MOTION';} });
-  function stopAll(){ clearTimeout(introTimer); Object.keys(A).forEach(function(k){A[k].pause();}); }
+  var cur=null; function stopDrop(){ if(cur){cur.pause();} var sd=document.getElementById('stopdrop'); if(sd) sd.hidden=true; }
+  function stopAll(){ clearTimeout(introTimer); Object.keys(A).forEach(function(k){A[k].pause();}); stopDrop(); }
   btn.addEventListener('click',function(){
     soundOn=!soundOn; btn.setAttribute('aria-pressed',soundOn); document.getElementById('playCap').textContent=soundOn?'STOP':'PLAY';
     btn.setAttribute('aria-label',soundOn?'Stop the sound':'Play the intro with sound'); deck.classList.toggle('playing',soundOn);
@@ -451,11 +471,12 @@ footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim)
     });
   });
   var DROPS=[['dubstep','DUBSTEP','140 BPM · wobble'],['riddim','RIDDIM','150 BPM · square wubs'],['melodic','MELODIC BASS','150 BPM · supersaws'],['dnb','DRUM & BASS','174 BPM · reese'],['tearout','TEAROUT','150 BPM · metal'],['futurebass','FUTURE BASS','150 BPM · chord stabs'],['basshouse','BASS HOUSE','126 BPM · rubber bass'],['bigroom','BIG ROOM','128 BPM · mainstage']];
-  var bag=[], last=null, cur=null, dropBtn=document.getElementById('drop'), tag=document.getElementById('droptag'), fl=document.getElementById('flash'), tl=document.querySelector('.tl'), tagT=null, pumpT=null;
+  var bag=[], last=null, dropBtn=document.getElementById('drop'), tag=document.getElementById('droptag'), fl=document.getElementById('flash'), tl=document.querySelector('.tl'), tagT=null, pumpT=null;
   function nextDrop(){ if(!bag.length){ bag=DROPS.slice(); for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=bag[i];bag[i]=bag[j];bag[j]=x;} if(bag[0]===last) bag.push(bag.shift()); } last=bag.shift(); return last; }
+  document.getElementById('stopdrop').addEventListener('click',stopDrop);
   dropBtn.addEventListener('click',function(){
     var d=nextDrop(); if(cur){cur.pause();}
-    cur=new Audio('ed3/snd/drops/'+d[0]+'.mp3'); cur.volume=.9; cur.play().catch(function(){});
+    cur=new Audio('ed3/snd/drops/'+d[0]+'.mp3'); cur.volume=.9; cur.play().catch(function(){}); var sd=document.getElementById('stopdrop'); sd.hidden=false; cur.addEventListener('ended',function(){sd.hidden=true;});
     tag.innerHTML=d[1]+'<small>'+d[2]+'</small>'; tag.classList.add('show'); clearTimeout(tagT); tagT=setTimeout(function(){tag.classList.remove('show');},2600);
     dropBtn.classList.add('hit'); setTimeout(function(){dropBtn.classList.remove('hit');},450);
     fl.style.setProperty('--a',Math.floor(Math.random()*360)+'deg'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
