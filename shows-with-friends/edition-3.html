@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>After Hours · The Season Set</title>
+<meta name="description" content="Gordon's shows with friends, edition 3: 15 nights ahead, played like a DJ set.">
+<meta property="og:image" content="ed3/art/hero.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=JetBrains+Mono:wght@400;700&family=Inter+Tight:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#07060b; --panel:#100e17; --line:#262233; --fg:#f3eefb; --dim:#9c93b3;
+  --pink:#ff3ea5; --cyan:#33e1ff; --amber:#ffb547; --play:#7dff8a;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --body:"Inter Tight",system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+a{color:var(--cyan)}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:max(16px,4vw)}
+
+/* HERO: the booth */
+.hero{position:relative;min-height:min(86vh,820px);display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,6,11,.25) 0%,rgba(7,6,11,.35) 45%,var(--bg) 96%)}
+.hero .wrap{padding-block:clamp(24px,6vw,72px);width:100%}
+.kicker{font:700 12px/1 var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+h1{font:800 clamp(44px,10vw,124px)/.9 var(--display);letter-spacing:-.02em;margin:.25em 0 .2em;text-wrap:balance;text-shadow:0 0 40px rgba(255,62,165,.35)}
+h1 em{font-style:normal;color:var(--pink)}
+.sub{max-width:56ch;color:#ddd5ee;font-size:clamp(16px,2vw,19px);margin:0 0 28px}
+
+/* DECK A: next show readout */
+.deck{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:rgba(16,14,23,.82);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:14px;padding:14px 18px;max-width:760px}
+.jog{width:92px;height:92px;border-radius:50%;background:conic-gradient(from 0deg,#1b1826,#2c2740,#1b1826,#2c2740,#1b1826);border:2px solid #3a3450;display:grid;place-items:center;position:relative;box-shadow:inset 0 0 0 10px #0c0b12}
+.jog::before{content:"";position:absolute;top:8px;left:50%;width:3px;height:16px;margin-left:-1.5px;background:var(--amber);border-radius:2px;box-shadow:0 0 8px var(--amber)}
+.jog b{font:800 22px/1 var(--display)}
+.jog small{display:block;font:700 9px/1 var(--mono);letter-spacing:.15em;color:var(--dim);text-align:center}
+.playing .jog{animation:spin 1.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.readout{min-width:0}
+.readout .lbl{font:700 10px/1 var(--mono);letter-spacing:.2em;color:var(--amber)}
+.readout .nm{font:800 clamp(18px,3vw,28px)/1.1 var(--display);margin:6px 0 4px;overflow-wrap:anywhere}
+.readout .meta{font:400 13px/1.3 var(--mono);color:var(--dim)}
+.btn-play{appearance:none;border:0;background:none;cursor:pointer;position:relative;width:118px;padding:0;display:grid;justify-items:center;gap:2px;-webkit-tap-highlight-color:transparent}
+.btn-play .k{grid-area:1/1;width:118px;height:auto;transition:opacity .18s,transform .12s,filter .3s;filter:drop-shadow(0 10px 14px rgba(0,0,0,.55))}
+.btn-play .on{opacity:0}
+.btn-play:hover .off{filter:drop-shadow(0 10px 14px rgba(0,0,0,.55)) drop-shadow(0 0 10px rgba(80,255,120,.35))}
+.btn-play:active .k{transform:translateY(3px) scale(.985)}
+.btn-play[aria-pressed=true] .on{opacity:1;animation:beat .469s ease-in-out infinite}
+.btn-play[aria-pressed=true] .off{opacity:0}
+@keyframes beat{50%{filter:drop-shadow(0 6px 10px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(60,255,110,.75))}}
+.btn-play .cap{font:700 11px var(--mono);letter-spacing:.24em;color:var(--play)}
+.btn-play[aria-pressed=true] .cap{color:var(--amber)}
+.nojs .btn-play,.nojs .drop{display:none}
+
+/* STATS strip */
+.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin:22px 0 0;font:400 13px var(--mono);color:var(--dim)}
+.stats b{color:var(--fg);font-weight:700}
+
+/* TRACKLIST */
+section{padding-block:clamp(40px,7vw,80px)}
+h2{font:800 clamp(24px,4vw,40px)/1 var(--display);margin:0 0 6px}
+.h2sub{color:var(--dim);margin:0 0 22px;font-size:15px}
+.head,.row{display:grid;grid-template-columns:34px 96px minmax(0,1.5fr) minmax(0,1.2fr) 190px 78px 92px;gap:14px;align-items:center}
+.head{font:700 10px/1 var(--mono);letter-spacing:.18em;color:var(--dim);padding:0 14px 10px;border-bottom:1px solid var(--line)}
+ol.tl{list-style:none;margin:0;padding:0}
+.trk{border-bottom:1px solid var(--line)}
+.row{width:100%;appearance:none;background:none;border:0;color:inherit;text-align:left;cursor:pointer;padding:12px 14px;font:inherit;border-left:3px solid transparent;transition:background .15s}
+.row:hover,.trk.open .row{background:var(--panel);border-left-color:var(--c)}
+.trk.loaded .row{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 18%,transparent),transparent 60%)}
+.no{font:700 13px var(--mono);color:var(--dim)}
+.thumb img,.thumb .ph{display:block;width:96px;height:54px;border-radius:6px;object-fit:cover;background:#1a1724}
+.ttl{min-width:0}.ttl b{display:block;font:800 15px/1.2 var(--display);letter-spacing:.01em;overflow-wrap:anywhere}
+.ttl small{display:block;color:var(--dim);font-size:13px;margin-top:3px;overflow-wrap:anywhere}
+.wf{display:flex;align-items:center;gap:1px;height:36px}
+.wf i{flex:1;height:calc(var(--h)*100%);background:linear-gradient(180deg,var(--c),color-mix(in srgb,var(--c) 40%,#fff 0%));border-radius:1px;opacity:.85}
+.dt{font:400 13px/1.3 var(--mono)}
+.cd{font:700 13px var(--mono);color:var(--amber)}
+.kd{font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--c);border:1px solid color-mix(in srgb,var(--c) 50%,transparent);border-radius:999px;padding:5px 9px;justify-self:start}
+.det{display:none;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:24px;padding:4px 14px 26px 51px}
+.trk.open .det{display:grid}
+.nojs .det{display:grid}
+.det .big{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;max-width:100%}
+.line{font:500 clamp(18px,2.2vw,22px)/1.3 var(--display);margin:0 0 14px;text-wrap:balance}
+dl{display:grid;grid-template-columns:70px 1fr;gap:6px 12px;margin:0 0 14px;font-size:15px}
+dt{font:700 10px/2 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+dd{margin:0}
+.et{font:700 13px var(--mono);display:inline-block;margin-bottom:8px}
+.note{color:#d9d1ea;font-size:15px;margin:0 0 14px;max-width:60ch}
+.acts{display:flex;flex-wrap:wrap;gap:14px;margin:0}
+.st{display:inline-block;font:700 9px/1 var(--mono);font-style:normal;letter-spacing:.14em;text-transform:uppercase;padding:4px 7px;border-radius:4px;margin-top:6px}
+.st-ok{color:var(--play);background:rgba(125,255,138,.1)}.st-tba{color:var(--amber);background:rgba(255,181,71,.12)}
+.jump{display:inline-block;margin-top:18px;font:700 13px var(--mono);letter-spacing:.08em;color:var(--fg)}
+.ctlrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:18px}.ctlrow .jump{margin-top:0}
+.vidctl{appearance:none;border:1px solid var(--line);background:rgba(16,14,23,.7);color:var(--dim);font:700 11px var(--mono);letter-spacing:.1em;padding:7px 12px;border-radius:999px;cursor:pointer}
+.nojs .vidctl{display:none}
+.row:focus-visible,.btn-play:focus-visible,.vidctl:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* PLAYED */
+.played ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.played li{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:800 13px/1.3 var(--display)}
+.played li span{display:block;font:700 11px var(--mono);color:var(--play);letter-spacing:.14em;margin-bottom:4px}
+.played li span::before{content:"✓ PLAYED  ";}
+.played small{display:block;font:400 12px var(--body);color:var(--dim);margin-top:3px}
+footer{border-top:1px solid var(--line);padding-block:28px 48px;color:var(--dim);font:400 13px/1.6 var(--mono)}
+
+.drop{position:fixed;right:max(14px,2.5vw);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:50;appearance:none;border:0;background:none;padding:0;cursor:pointer;width:104px;-webkit-tap-highlight-color:transparent}
+.drop img{grid-area:1/1;width:104px;height:auto;display:block;transition:transform .12s,opacity .15s;filter:drop-shadow(0 12px 18px rgba(0,0,0,.6)) drop-shadow(0 0 16px rgba(255,40,160,.45));animation:idle 2.2s ease-in-out infinite}
+.drop{display:grid}.drop .on{opacity:0}
+.drop:active img{transform:translateY(4px) scale(.97)}
+.drop.hit .on{opacity:1}.drop.hit .off{opacity:0}
+@keyframes idle{50%{filter:drop-shadow(0 12px 18px rgba(0,0,0,.6)) drop-shadow(0 0 26px rgba(40,220,255,.6))}}
+.stopdrop{position:fixed;right:max(14px,2.5vw);bottom:calc(env(safe-area-inset-bottom,0px) + 124px);z-index:51;appearance:none;border:1px solid var(--line);background:rgba(16,14,23,.85);color:var(--fg);font:700 11px var(--mono);letter-spacing:.12em;padding:8px 12px;border-radius:999px;cursor:pointer}
+.droptag{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 132px);transform:translate(-50%,20px);z-index:51;opacity:0;pointer-events:none;font:800 clamp(22px,5vw,44px)/1 var(--display);letter-spacing:.02em;text-align:center;white-space:nowrap;background:linear-gradient(90deg,#ff3ea5,#ffd447,#33e1ff,#7dff8a,#b46bff);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .2s,transform .35s cubic-bezier(.2,1.6,.4,1)}
+.droptag small{display:block;font:700 12px var(--mono);letter-spacing:.3em;color:var(--fg);-webkit-text-fill-color:var(--fg);margin-top:6px}
+.droptag.show{opacity:1;transform:translate(-50%,0)}
+.flash{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;background:conic-gradient(from var(--a,0deg) at 50% 110%,#ff3ea5,#ffd447,#33e1ff,#7dff8a,#b46bff,#ff3ea5);mix-blend-mode:screen}
+.flash.go{animation:flash .9s ease-out}
+@keyframes flash{0%{opacity:.55}100%{opacity:0}}
+.pump .wf i{animation:pump .23s ease-in-out infinite alternate}
+@keyframes pump{to{transform:scaleY(.45)}}
+@media (max-width:900px){
+  .head{display:none}
+  .row{grid-template-columns:26px minmax(0,1fr) auto;grid-template-areas:"no tt tt" "no dt cd" "no wf kd";row-gap:6px;column-gap:10px}
+  .no{grid-area:no;align-self:start;padding-top:2px}.thumb{display:none}.ttl{grid-area:tt}.dt{grid-area:dt;font-size:12px}.cd{grid-area:cd;justify-self:end}.kd{grid-area:kd;justify-self:end}.wf{grid-area:wf;height:18px}
+  .ttl b{font-size:16px}
+  .det{grid-template-columns:1fr;padding:4px 14px 22px}
+  .deck{grid-template-columns:auto minmax(0,1fr);}
+  .btn-play{grid-column:1/-1;justify-self:center}
+  .jog{width:72px;height:72px}
+}
+@media (prefers-reduced-motion:reduce){.playing .jog{animation:none}.hero video{display:none}.drop img,.btn-play .on{animation:none!important}.flash{display:none}.pump .wf i{animation:none}}
+</style>
+</head>
+<body>
+<div id="app" class="nojs">
+<header class="hero" id="top">
+  <img class="poster" src="ed3/art/hero.webp" alt="" fetchpriority="high">
+  <video id="heroVid" muted playsinline loop preload="none" poster="ed3/art/hero.webp" aria-hidden="true"></video>
+  <div class="wrap">
+    <div class="kicker">After Hours · Edition 3 · Shows with friends</div>
+    <h1>The Season <em>Set</em></h1>
+    <p class="sub">Every night ahead, cued up like a DJ set. Tap a track to load it on the deck, see who's coming, and grab the listing.</p>
+    <div class="deck" id="deck">
+      <div class="jog"><div><b id="jogN">2</b><small>DAYS</small></div></div>
+      <div class="readout"><div class="lbl" id="deckLbl">DECK A · NEXT UP</div><div class="nm" id="deckName">TWO FRIENDS</div><div class="meta" id="deckMeta">Fri Oct 23, 2026 · Hollywood Palladium</div></div>
+      <button class="btn-play" id="play" aria-pressed="false" aria-label="Play the intro with sound"><img class="k off" src="ed3/ui/play_off.webp" alt="" width="180" height="150"><img class="k on" src="ed3/ui/play_on.webp" alt="" width="180" height="150"><span class="cap" id="playCap">PLAY</span></button>
+    </div>
+    <div class="ctlrow"><a class="jump" href="#tracklist">Jump to the shows ↓</a><button class="vidctl" id="vidctl" aria-pressed="false" hidden>PAUSE MOTION</button></div>
+    <div class="stats"><span><b>15</b> nights ahead</span><span><b>11</b> on the decks</span><span><b>8</b> cities</span><span><b>8</b> already played</span></div>
+  </div>
+</header>
+
+<main>
+<section class="wrap" id="tracklist">
+  <h2>Tracklist</h2>
+  <p class="h2sub">In running order. T-minus counts days from Oct 21, 2026 11:48 PM PT.</p>
+  <div class="head" aria-hidden="true"><span>#</span><span></span><span>TRACK</span><span>WAVEFORM</span><span>DATE</span><span>CUE</span><span>GENRE</span></div>
+  <ol class="tl">
+<li class="trk" id="t-two-friends" data-id="two-friends" data-art="palladium" style="--c:#ff9a6b">
+ <button class="row" aria-expanded="false" aria-controls="d-two-friends">
+  <span class="no">01</span>
+  <span class="thumb"><img src="ed3/art/palladium.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>TWO FRIENDS</b><em class="st st-ok">Going</em><small>Hollywood Palladium · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.799"></i><i style="--h:0.571"></i><i style="--h:0.729"></i><i style="--h:0.281"></i><i style="--h:0.449"></i><i style="--h:0.887"></i><i style="--h:0.587"></i><i style="--h:0.287"></i><i style="--h:0.975"></i><i style="--h:0.903"></i><i style="--h:0.312"></i><i style="--h:0.651"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.679"></i><i style="--h:0.773"></i><i style="--h:0.393"></i><i style="--h:0.298"></i><i style="--h:0.406"></i><i style="--h:0.927"></i><i style="--h:0.293"></i><i style="--h:0.915"></i><i style="--h:0.281"></i><i style="--h:0.574"></i><i style="--h:0.414"></i><i style="--h:0.915"></i><i style="--h:0.449"></i><i style="--h:0.526"></i><i style="--h:0.806"></i><i style="--h:0.63"></i><i style="--h:0.848"></i><i style="--h:0.481"></i><i style="--h:0.799"></i><i style="--h:0.571"></i><i style="--h:0.729"></i><i style="--h:0.281"></i><i style="--h:0.449"></i><i style="--h:0.887"></i><i style="--h:0.587"></i><i style="--h:0.287"></i><i style="--h:0.975"></i><i style="--h:0.903"></i><i style="--h:0.312"></i><i style="--h:0.651"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.679"></i><i style="--h:0.773"></i><i style="--h:0.393"></i><i style="--h:0.298"></i><i style="--h:0.406"></i><i style="--h:0.927"></i><i style="--h:0.293"></i><i style="--h:0.915"></i><i style="--h:0.281"></i><i style="--h:0.574"></i><i style="--h:0.414"></i><i style="--h:0.915"></i><i style="--h:0.449"></i><i style="--h:0.526"></i><i style="--h:0.806"></i><i style="--h:0.63"></i><i style="--h:0.848"></i><i style="--h:0.481"></i></span>
+  <span class="dt">Fri Oct 23, 2026</span>
+  <span class="cd">T-2d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-two-friends">
+  <img class="big" src="ed3/art/palladium.webp" alt="Key art for TWO FRIENDS" loading="lazy">
+  <div class="info"><p class="line">Friday night at the Palladium, all of us.</p><p class="note">A Cawley Fest Friday: Joe, John, Mason and Bailey at the Hollywood Palladium.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Joe, John, Mason + Bailey</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Fri Oct 23, 2026</dd><dt>Where</dt><dd>Hollywood Palladium, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://edmtrain.com/los-angeles-ca/two-friends-501526?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-pokemon" data-id="pokemon" data-art="pokemon" style="--c:#ffd871">
+ <button class="row" aria-expanded="false" aria-controls="d-pokemon">
+  <span class="no">02</span>
+  <span class="thumb"><img src="ed3/art/pokemon.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>POKÉMON NIGHT OUT</b><em class="st st-ok">Going</em><small>Intuit Dome · Inglewood</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.915"></i><i style="--h:0.647"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.327"></i><i style="--h:0.799"></i><i style="--h:0.419"></i><i style="--h:0.433"></i><i style="--h:0.356"></i><i style="--h:0.338"></i><i style="--h:0.773"></i><i style="--h:0.325"></i><i style="--h:0.62"></i><i style="--h:0.747"></i><i style="--h:0.561"></i><i style="--h:0.587"></i><i style="--h:0.686"></i><i style="--h:0.306"></i><i style="--h:0.661"></i><i style="--h:0.61"></i><i style="--h:0.927"></i><i style="--h:0.458"></i><i style="--h:0.833"></i><i style="--h:0.542"></i><i style="--h:0.356"></i><i style="--h:0.266"></i><i style="--h:0.406"></i><i style="--h:0.475"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.992"></i><i style="--h:0.729"></i><i style="--h:0.915"></i><i style="--h:0.647"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.327"></i><i style="--h:0.799"></i><i style="--h:0.419"></i><i style="--h:0.433"></i><i style="--h:0.356"></i><i style="--h:0.338"></i><i style="--h:0.773"></i><i style="--h:0.325"></i><i style="--h:0.62"></i><i style="--h:0.747"></i><i style="--h:0.561"></i><i style="--h:0.587"></i><i style="--h:0.686"></i><i style="--h:0.306"></i><i style="--h:0.661"></i><i style="--h:0.61"></i><i style="--h:0.927"></i><i style="--h:0.458"></i><i style="--h:0.833"></i><i style="--h:0.542"></i><i style="--h:0.356"></i><i style="--h:0.266"></i><i style="--h:0.406"></i><i style="--h:0.475"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.992"></i><i style="--h:0.729"></i></span>
+  <span class="dt">Sat Oct 24, 2026</span>
+  <span class="cd">T-3d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-pokemon">
+  <img class="big" src="ed3/art/pokemon.webp" alt="Key art for POKÉMON NIGHT OUT" loading="lazy">
+  <div class="info"><p class="line">Our playful selves get the night out.</p><p class="note">Brennan and me, with more of the crew still to confirm. Eric has his own plan that night. Our playful selves get the night out.</p>
+  <dl><dt>Crew</dt><dd>Gordon + Brennan, more TBA</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Sat Oct 24, 2026</dd><dt>Where</dt><dd>Intuit Dome, Inglewood</dd></dl>
+  <p class="acts"><a class="et" href="https://30.pokemon.com/en-us/night-out" rel="noopener">Official info</a><a class="et" href="https://edmtrain.com/los-angeles-ca/pokemon-night-out-marshmello-494886?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-pride" data-id="pride" data-art="palmsprings" style="--c:#f2a7cf">
+ <button class="row" aria-expanded="false" aria-controls="d-pride">
+  <span class="no">03</span>
+  <span class="thumb"><img src="ed3/art/palmsprings.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>PALM SPRINGS · PRIDE + BIRTHDAY</b><em class="st st-ok">Going</em><small>Downtown + Arenas District · Birthday November 9 · Palm Springs</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.375"></i><i style="--h:0.254"></i><i style="--h:0.452"></i><i style="--h:0.743"></i><i style="--h:0.422"></i><i style="--h:0.959"></i><i style="--h:0.558"></i><i style="--h:0.951"></i><i style="--h:0.318"></i><i style="--h:0.478"></i><i style="--h:0.597"></i><i style="--h:0.356"></i><i style="--h:0.253"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.256"></i><i style="--h:0.39"></i><i style="--h:0.277"></i><i style="--h:0.266"></i><i style="--h:0.931"></i><i style="--h:0.312"></i><i style="--h:0.344"></i><i style="--h:0.539"></i><i style="--h:0.696"></i><i style="--h:0.829"></i><i style="--h:0.833"></i><i style="--h:0.63"></i><i style="--h:0.478"></i><i style="--h:0.848"></i><i style="--h:0.447"></i><i style="--h:0.351"></i><i style="--h:0.647"></i><i style="--h:0.375"></i><i style="--h:0.254"></i><i style="--h:0.452"></i><i style="--h:0.743"></i><i style="--h:0.422"></i><i style="--h:0.959"></i><i style="--h:0.558"></i><i style="--h:0.951"></i><i style="--h:0.318"></i><i style="--h:0.478"></i><i style="--h:0.597"></i><i style="--h:0.356"></i><i style="--h:0.253"></i><i style="--h:0.548"></i><i style="--h:0.452"></i><i style="--h:0.256"></i><i style="--h:0.39"></i><i style="--h:0.277"></i><i style="--h:0.266"></i><i style="--h:0.931"></i><i style="--h:0.312"></i><i style="--h:0.344"></i><i style="--h:0.539"></i><i style="--h:0.696"></i><i style="--h:0.829"></i><i style="--h:0.833"></i><i style="--h:0.63"></i><i style="--h:0.478"></i><i style="--h:0.848"></i><i style="--h:0.447"></i><i style="--h:0.351"></i><i style="--h:0.647"></i></span>
+  <span class="dt">Fri Nov 6 to Mon 9, 2026</span>
+  <span class="cd">T-16d</span>
+  <span class="kd">Gathering</span>
+ </button>
+ <div class="det" id="d-pride">
+  <img class="big" src="ed3/art/palmsprings.webp" alt="Key art for PALM SPRINGS · PRIDE + BIRTHDAY" loading="lazy">
+  <div class="info"><p class="line">Pride. My birthday. Our people.</p><p class="note">Palm Springs Pride with Shannon Murray, Joe, Mason and Alex Rogers. Shannon is our host, and one of my dearest friends since San Francisco in the 1990s. Pride runs November 6 to 8; my birthday is Monday, November 9. This chapter holds both.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Shannon, Joe, Mason + Alex</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Fri Nov 6 to Mon 9, 2026</dd><dt>Where</dt><dd>Downtown + Arenas District · Birthday November 9, Palm Springs</dd></dl>
+  <p class="acts"><a class="et" href="https://www.pspride.org/news" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-summit" data-id="summit" data-art="summit" style="--c:#8edbde">
+ <button class="row" aria-expanded="false" aria-controls="d-summit">
+  <span class="no">04</span>
+  <span class="thumb"><img src="ed3/art/summit.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>JOHN SUMMIT</b><em class="st st-ok">Going</em><small>LA Memorial Coliseum · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.27"></i><i style="--h:0.613"></i><i style="--h:0.383"></i><i style="--h:0.393"></i><i style="--h:0.53"></i><i style="--h:0.263"></i><i style="--h:0.86"></i><i style="--h:0.907"></i><i style="--h:0.322"></i><i style="--h:0.641"></i><i style="--h:0.253"></i><i style="--h:0.821"></i><i style="--h:0.304"></i><i style="--h:0.696"></i><i style="--h:0.383"></i><i style="--h:0.825"></i><i style="--h:0.284"></i><i style="--h:0.818"></i><i style="--h:0.253"></i><i style="--h:0.441"></i><i style="--h:0.291"></i><i style="--h:0.992"></i><i style="--h:0.258"></i><i style="--h:0.52"></i><i style="--h:0.61"></i><i style="--h:0.441"></i><i style="--h:0.335"></i><i style="--h:0.361"></i><i style="--h:0.444"></i><i style="--h:0.496"></i><i style="--h:0.425"></i><i style="--h:0.654"></i><i style="--h:0.27"></i><i style="--h:0.613"></i><i style="--h:0.383"></i><i style="--h:0.393"></i><i style="--h:0.53"></i><i style="--h:0.263"></i><i style="--h:0.86"></i><i style="--h:0.907"></i><i style="--h:0.322"></i><i style="--h:0.641"></i><i style="--h:0.253"></i><i style="--h:0.821"></i><i style="--h:0.304"></i><i style="--h:0.696"></i><i style="--h:0.383"></i><i style="--h:0.825"></i><i style="--h:0.284"></i><i style="--h:0.818"></i><i style="--h:0.253"></i><i style="--h:0.441"></i><i style="--h:0.291"></i><i style="--h:0.992"></i><i style="--h:0.258"></i><i style="--h:0.52"></i><i style="--h:0.61"></i><i style="--h:0.441"></i><i style="--h:0.335"></i><i style="--h:0.361"></i><i style="--h:0.444"></i><i style="--h:0.496"></i><i style="--h:0.425"></i><i style="--h:0.654"></i></span>
+  <span class="dt">Sat Dec 12, 2026 · 7:30 PM</span>
+  <span class="cd">T-52d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-summit">
+  <img class="big" src="ed3/art/summit.webp" alt="Key art for JOHN SUMMIT" loading="lazy">
+  <div class="info"><p class="line">A sidewalk hello. A much bigger next chapter.</p><p class="note">A sidewalk hello after Worship at the Palladium in March 2024. Another unexpected meeting in November 2025. His Countdown set a few weeks later. Now, the Coliseum. Companions for this next night are still open.</p>
+  <dl><dt>Crew</dt><dd>Companions still open</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Sat Dec 12, 2026 · 7:30 PM</dd><dt>Where</dt><dd>LA Memorial Coliseum, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/" rel="noopener">Official info</a><a class="et" href="https://edmtrain.com/los-angeles-ca/ctrl-escape-john-summit-528715?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-stevie" data-id="stevie" data-art="stevie" style="--c:#ffd47b">
+ <button class="row" aria-expanded="false" aria-controls="d-stevie">
+  <span class="no">05</span>
+  <span class="thumb"><img src="ed3/art/stevie.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>STEVIE WONDER</b><em class="st st-ok">Going</em><small>Intuit Dome · Inglewood</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.806"></i><i style="--h:0.992"></i><i style="--h:0.703"></i><i style="--h:0.349"></i><i style="--h:0.947"></i><i style="--h:0.806"></i><i style="--h:0.262"></i><i style="--h:0.264"></i><i style="--h:0.903"></i><i style="--h:0.931"></i><i style="--h:0.654"></i><i style="--h:0.373"></i><i style="--h:0.433"></i><i style="--h:0.668"></i><i style="--h:0.363"></i><i style="--h:0.58"></i><i style="--h:0.279"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.799"></i><i style="--h:0.398"></i><i style="--h:0.939"></i><i style="--h:0.951"></i><i style="--h:0.567"></i><i style="--h:0.49"></i><i style="--h:0.308"></i><i style="--h:0.287"></i><i style="--h:0.414"></i><i style="--h:0.647"></i><i style="--h:0.761"></i><i style="--h:0.864"></i><i style="--h:0.291"></i><i style="--h:0.806"></i><i style="--h:0.992"></i><i style="--h:0.703"></i><i style="--h:0.349"></i><i style="--h:0.947"></i><i style="--h:0.806"></i><i style="--h:0.262"></i><i style="--h:0.264"></i><i style="--h:0.903"></i><i style="--h:0.931"></i><i style="--h:0.654"></i><i style="--h:0.373"></i><i style="--h:0.433"></i><i style="--h:0.668"></i><i style="--h:0.363"></i><i style="--h:0.58"></i><i style="--h:0.279"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.799"></i><i style="--h:0.398"></i><i style="--h:0.939"></i><i style="--h:0.951"></i><i style="--h:0.567"></i><i style="--h:0.49"></i><i style="--h:0.308"></i><i style="--h:0.287"></i><i style="--h:0.414"></i><i style="--h:0.647"></i><i style="--h:0.761"></i><i style="--h:0.864"></i><i style="--h:0.291"></i></span>
+  <span class="dt">Sat Dec 19, 2026</span>
+  <span class="cd">T-59d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-stevie">
+  <img class="big" src="ed3/art/stevie.webp" alt="Key art for STEVIE WONDER" loading="lazy">
+  <div class="info"><p class="line">Songs that have already lived whole lives with me.</p><p class="note">A little space to feel everything, at my own pace.</p>
+  <dl><dt>Crew</dt><dd>A solo chapter</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Sat Dec 19, 2026</dd><dt>Where</dt><dd>Intuit Dome, Inglewood</dd></dl>
+  <p class="acts"><a class="et" href="https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performances-50th-anniversary-inglewood-12-19-2026/event/09006524823041CB" rel="noopener">Ticketmaster listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-rl-grime-nye" data-id="rl-grime-nye" data-art="rlgrime" style="--c:#ff3b5c">
+ <button class="row" aria-expanded="false" aria-controls="d-rl-grime-nye">
+  <span class="no">06</span>
+  <span class="thumb"><img src="ed3/art/rlgrime.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>RL GRIME · NYE</b><em class="st st-ok">Going</em><small>Academy LA · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.799"></i><i style="--h:0.911"></i><i style="--h:0.27"></i><i style="--h:0.758"></i><i style="--h:0.571"></i><i style="--h:0.947"></i><i style="--h:0.818"></i><i style="--h:0.373"></i><i style="--h:0.891"></i><i style="--h:0.971"></i><i style="--h:0.274"></i><i style="--h:0.293"></i><i style="--h:0.253"></i><i style="--h:0.624"></i><i style="--h:0.682"></i><i style="--h:0.584"></i><i style="--h:0.255"></i><i style="--h:0.62"></i><i style="--h:0.627"></i><i style="--h:0.438"></i><i style="--h:0.6"></i><i style="--h:0.555"></i><i style="--h:0.354"></i><i style="--h:0.282"></i><i style="--h:0.911"></i><i style="--h:0.461"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.297"></i><i style="--h:0.732"></i><i style="--h:0.344"></i><i style="--h:0.478"></i><i style="--h:0.799"></i><i style="--h:0.911"></i><i style="--h:0.27"></i><i style="--h:0.758"></i><i style="--h:0.571"></i><i style="--h:0.947"></i><i style="--h:0.818"></i><i style="--h:0.373"></i><i style="--h:0.891"></i><i style="--h:0.971"></i><i style="--h:0.274"></i><i style="--h:0.293"></i><i style="--h:0.253"></i><i style="--h:0.624"></i><i style="--h:0.682"></i><i style="--h:0.584"></i><i style="--h:0.255"></i><i style="--h:0.62"></i><i style="--h:0.627"></i><i style="--h:0.438"></i><i style="--h:0.6"></i><i style="--h:0.555"></i><i style="--h:0.354"></i><i style="--h:0.282"></i><i style="--h:0.911"></i><i style="--h:0.461"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.297"></i><i style="--h:0.732"></i><i style="--h:0.344"></i><i style="--h:0.478"></i></span>
+  <span class="dt">Thu Dec 31, 2026</span>
+  <span class="cd">T-71d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-rl-grime-nye">
+  <img class="big" src="ed3/art/rlgrime.webp" alt="Key art for RL GRIME · NYE" loading="lazy">
+  <div class="info"><p class="line">A new year, a new room, and a bigger crew.</p><p class="note">We count down under the lasers together.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Joe, Andrew + Michelle</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Thu Dec 31, 2026</dd><dt>Where</dt><dd>Academy LA, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://edmtrain.com/los-angeles-ca/rl-grime-546347?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-sincity" data-id="sincity" data-art="dodgeball" style="--c:#f99875">
+ <button class="row" aria-expanded="false" aria-controls="d-sincity">
+  <span class="no">07</span>
+  <span class="thumb"><img src="ed3/art/dodgeball.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>SIN CITY · DODGEBALL</b><em class="st st-ok">Going</em><small>Sin City Classic Sports Festival · Las Vegas</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.799"></i><i style="--h:0.3"></i><i style="--h:0.829"></i><i style="--h:0.287"></i><i style="--h:0.325"></i><i style="--h:0.814"></i><i style="--h:0.254"></i><i style="--h:0.427"></i><i style="--h:0.444"></i><i style="--h:0.947"></i><i style="--h:0.682"></i><i style="--h:0.979"></i><i style="--h:0.268"></i><i style="--h:0.81"></i><i style="--h:0.333"></i><i style="--h:0.561"></i><i style="--h:0.848"></i><i style="--h:0.25"></i><i style="--h:0.784"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.927"></i><i style="--h:0.841"></i><i style="--h:0.58"></i><i style="--h:0.467"></i><i style="--h:0.552"></i><i style="--h:0.401"></i><i style="--h:0.818"></i><i style="--h:0.743"></i><i style="--h:0.627"></i><i style="--h:0.915"></i><i style="--h:0.351"></i><i style="--h:0.799"></i><i style="--h:0.3"></i><i style="--h:0.829"></i><i style="--h:0.287"></i><i style="--h:0.325"></i><i style="--h:0.814"></i><i style="--h:0.254"></i><i style="--h:0.427"></i><i style="--h:0.444"></i><i style="--h:0.947"></i><i style="--h:0.682"></i><i style="--h:0.979"></i><i style="--h:0.268"></i><i style="--h:0.81"></i><i style="--h:0.333"></i><i style="--h:0.561"></i><i style="--h:0.848"></i><i style="--h:0.25"></i><i style="--h:0.784"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.927"></i><i style="--h:0.841"></i><i style="--h:0.58"></i><i style="--h:0.467"></i><i style="--h:0.552"></i><i style="--h:0.401"></i><i style="--h:0.818"></i><i style="--h:0.743"></i><i style="--h:0.627"></i><i style="--h:0.915"></i><i style="--h:0.351"></i></span>
+  <span class="dt">Thu Jan 14 to Mon 18, 2027</span>
+  <span class="cd">T-85d</span>
+  <span class="kd">Sport</span>
+ </button>
+ <div class="det" id="d-sincity">
+  <img class="big" src="ed3/art/dodgeball.webp" alt="Key art for SIN CITY · DODGEBALL" loading="lazy">
+  <div class="info"><p class="line">Good company. Great dodgeball.</p><p class="note">A Vegas weekend with Joe, Matt, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Joe, Matt, Andrew + Casey</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Thu Jan 14 to Mon 18, 2027</dd><dt>Where</dt><dd>Sin City Classic Sports Festival, Las Vegas</dd></dl>
+  <p class="acts"><a class="et" href="https://www.sincityclassic.org/" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-oakenfold-crystal-method" data-id="oakenfold-crystal-method" data-art="oakenfold" style="--c:#7fe3c4">
+ <button class="row" aria-expanded="false" aria-controls="d-oakenfold-crystal-method">
+  <span class="no">08</span>
+  <span class="thumb"><img src="ed3/art/oakenfold.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>OAKENFOLD + THE CRYSTAL METHOD</b><em class="st st-ok">Going</em><small>The Bellwether · KCRW Presents · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.923"></i><i style="--h:0.447"></i><i style="--h:0.971"></i><i style="--h:0.255"></i><i style="--h:0.306"></i><i style="--h:0.955"></i><i style="--h:0.298"></i><i style="--h:0.613"></i><i style="--h:0.447"></i><i style="--h:0.365"></i><i style="--h:0.721"></i><i style="--h:0.49"></i><i style="--h:0.293"></i><i style="--h:0.375"></i><i style="--h:0.284"></i><i style="--h:0.263"></i><i style="--h:0.825"></i><i style="--h:0.472"></i><i style="--h:0.776"></i><i style="--h:0.351"></i><i style="--h:0.449"></i><i style="--h:0.841"></i><i style="--h:0.287"></i><i style="--h:0.251"></i><i style="--h:0.714"></i><i style="--h:0.567"></i><i style="--h:0.747"></i><i style="--h:0.499"></i><i style="--h:0.449"></i><i style="--h:0.388"></i><i style="--h:0.464"></i><i style="--h:0.38"></i><i style="--h:0.923"></i><i style="--h:0.447"></i><i style="--h:0.971"></i><i style="--h:0.255"></i><i style="--h:0.306"></i><i style="--h:0.955"></i><i style="--h:0.298"></i><i style="--h:0.613"></i><i style="--h:0.447"></i><i style="--h:0.365"></i><i style="--h:0.721"></i><i style="--h:0.49"></i><i style="--h:0.293"></i><i style="--h:0.375"></i><i style="--h:0.284"></i><i style="--h:0.263"></i><i style="--h:0.825"></i><i style="--h:0.472"></i><i style="--h:0.776"></i><i style="--h:0.351"></i><i style="--h:0.449"></i><i style="--h:0.841"></i><i style="--h:0.287"></i><i style="--h:0.251"></i><i style="--h:0.714"></i><i style="--h:0.567"></i><i style="--h:0.747"></i><i style="--h:0.499"></i><i style="--h:0.449"></i><i style="--h:0.388"></i><i style="--h:0.464"></i><i style="--h:0.38"></i></span>
+  <span class="dt">Fri Feb 5, 2027 · 8 PM</span>
+  <span class="cd">T-107d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-oakenfold-crystal-method">
+  <img class="big" src="ed3/art/oakenfold.webp" alt="Key art for OAKENFOLD + THE CRYSTAL METHOD" loading="lazy">
+  <div class="info"><p class="line">Trance royalty meets big beat.</p><p class="note">Two architects of the 90s rave sound in one room, with Jeremy, Jared and Phil.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Jeremy, Jared + Phil</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Fri Feb 5, 2027 · 8 PM</dd><dt>Where</dt><dd>The Bellwether · KCRW Presents, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://edmtrain.com/los-angeles-ca/paul-oakenfold-the-crystal-method-544875?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-ggp-games" data-id="ggp-games" data-art="foundry" style="--c:#e7bd84">
+ <button class="row" aria-expanded="false" aria-controls="d-ggp-games">
+  <span class="no">09</span>
+  <span class="thumb"><img src="ed3/art/foundry.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>GGP · ZERO PROOF</b><em class="st st-ok">Going</em><small>The Foundry SF · 1425 Folsom Street at 10th · San Francisco</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.841"></i><i style="--h:0.286"></i><i style="--h:0.907"></i><i style="--h:0.736"></i><i style="--h:0.784"></i><i style="--h:0.552"></i><i style="--h:0.363"></i><i style="--h:0.351"></i><i style="--h:0.304"></i><i style="--h:0.43"></i><i style="--h:0.963"></i><i style="--h:0.414"></i><i style="--h:0.988"></i><i style="--h:0.803"></i><i style="--h:0.316"></i><i style="--h:0.505"></i><i style="--h:0.761"></i><i style="--h:0.487"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.7"></i><i style="--h:0.508"></i><i style="--h:0.502"></i><i style="--h:0.342"></i><i style="--h:0.739"></i><i style="--h:0.38"></i><i style="--h:0.584"></i><i style="--h:0.814"></i><i style="--h:0.769"></i><i style="--h:0.455"></i><i style="--h:0.526"></i><i style="--h:0.818"></i><i style="--h:0.841"></i><i style="--h:0.286"></i><i style="--h:0.907"></i><i style="--h:0.736"></i><i style="--h:0.784"></i><i style="--h:0.552"></i><i style="--h:0.363"></i><i style="--h:0.351"></i><i style="--h:0.304"></i><i style="--h:0.43"></i><i style="--h:0.963"></i><i style="--h:0.414"></i><i style="--h:0.988"></i><i style="--h:0.803"></i><i style="--h:0.316"></i><i style="--h:0.505"></i><i style="--h:0.761"></i><i style="--h:0.487"></i><i style="--h:0.788"></i><i style="--h:0.754"></i><i style="--h:0.7"></i><i style="--h:0.508"></i><i style="--h:0.502"></i><i style="--h:0.342"></i><i style="--h:0.739"></i><i style="--h:0.38"></i><i style="--h:0.584"></i><i style="--h:0.814"></i><i style="--h:0.769"></i><i style="--h:0.455"></i><i style="--h:0.526"></i><i style="--h:0.818"></i></span>
+  <span class="dt">Mon Mar 1, 2027</span>
+  <span class="cd">T-131d</span>
+  <span class="kd">Gathering</span>
+ </button>
+ <div class="det" id="d-ggp-games">
+  <img class="big" src="ed3/art/foundry.webp" alt="Key art for GGP · ZERO PROOF" loading="lazy">
+  <div class="info"><p class="line">Pull up a chair.</p><p class="note">Monday night at The Foundry SF: the 4th Annual Zero Proof Board Game Night. Eric, Brennan, Alex and Foster, let’s make room at the table. Event hours will follow.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Eric, Brennan, Alex + Foster</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Mon Mar 1, 2027</dd><dt>Where</dt><dd>The Foundry SF · 1425 Folsom Street at 10th, San Francisco</dd></dl>
+  <p class="acts"><a class="et" href="https://gaygamingpros.org/" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-ggp-mixer" data-id="ggp-mixer" data-art="foundry" style="--c:#a1e7d5">
+ <button class="row" aria-expanded="false" aria-controls="d-ggp-mixer">
+  <span class="no">10</span>
+  <span class="thumb"><img src="ed3/art/foundry.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>GGP · THE MIXER</b><em class="st st-ok">Going</em><small>The Foundry SF · 1425 Folsom Street at 10th · San Francisco</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.818"></i><i style="--h:0.333"></i><i style="--h:0.403"></i><i style="--h:0.561"></i><i style="--h:0.333"></i><i style="--h:0.38"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.624"></i><i style="--h:0.754"></i><i style="--h:0.721"></i><i style="--h:0.289"></i><i style="--h:0.276"></i><i style="--h:0.78"></i><i style="--h:0.267"></i><i style="--h:0.26"></i><i style="--h:0.34"></i><i style="--h:0.475"></i><i style="--h:0.286"></i><i style="--h:0.358"></i><i style="--h:0.472"></i><i style="--h:0.707"></i><i style="--h:0.955"></i><i style="--h:0.414"></i><i style="--h:0.992"></i><i style="--h:0.624"></i><i style="--h:0.347"></i><i style="--h:0.422"></i><i style="--h:0.923"></i><i style="--h:0.814"></i><i style="--h:0.545"></i><i style="--h:0.613"></i><i style="--h:0.818"></i><i style="--h:0.333"></i><i style="--h:0.403"></i><i style="--h:0.561"></i><i style="--h:0.333"></i><i style="--h:0.38"></i><i style="--h:0.475"></i><i style="--h:0.806"></i><i style="--h:0.624"></i><i style="--h:0.754"></i><i style="--h:0.721"></i><i style="--h:0.289"></i><i style="--h:0.276"></i><i style="--h:0.78"></i><i style="--h:0.267"></i><i style="--h:0.26"></i><i style="--h:0.34"></i><i style="--h:0.475"></i><i style="--h:0.286"></i><i style="--h:0.358"></i><i style="--h:0.472"></i><i style="--h:0.707"></i><i style="--h:0.955"></i><i style="--h:0.414"></i><i style="--h:0.992"></i><i style="--h:0.624"></i><i style="--h:0.347"></i><i style="--h:0.422"></i><i style="--h:0.923"></i><i style="--h:0.814"></i><i style="--h:0.545"></i><i style="--h:0.613"></i></span>
+  <span class="dt">Tue Mar 2, 2027</span>
+  <span class="cd">T-132d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-ggp-mixer">
+  <img class="big" src="ed3/art/foundry.webp" alt="Key art for GGP · THE MIXER" loading="lazy">
+  <div class="info"><p class="line">Our people. Behind the decks.</p><p class="note">Tuesday night at The Foundry SF: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Dave Vermillion and Trent are on the list. Event hours will follow.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Brennan, Alex, Sam, Foster, Georgia, Eric, Dave + Trent</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Tue Mar 2, 2027</dd><dt>Where</dt><dd>The Foundry SF · 1425 Folsom Street at 10th, San Francisco</dd></dl>
+  <p class="acts"><a class="et" href="https://gaygamingpros.org/" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-gryphus" data-id="gryphus" data-art="gryphus" style="--c:#b5dbc8">
+ <button class="row" aria-expanded="false" aria-controls="d-gryphus">
+  <span class="no">11</span>
+  <span class="thumb"><img src="ed3/art/gryphus.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>GRYPHUS</b><em class="st st-ok">Going</em><small>Flat Rock Ranch · San Antonio gathering April 29 · Texas Hill Country</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.829"></i><i style="--h:0.747"></i><i style="--h:0.327"></i><i style="--h:0.895"></i><i style="--h:0.935"></i><i style="--h:0.743"></i><i style="--h:0.607"></i><i style="--h:0.848"></i><i style="--h:0.718"></i><i style="--h:0.577"></i><i style="--h:0.868"></i><i style="--h:0.891"></i><i style="--h:0.449"></i><i style="--h:0.721"></i><i style="--h:0.327"></i><i style="--h:0.594"></i><i style="--h:0.868"></i><i style="--h:0.478"></i><i style="--h:0.49"></i><i style="--h:0.322"></i><i style="--h:0.574"></i><i style="--h:0.452"></i><i style="--h:0.523"></i><i style="--h:0.284"></i><i style="--h:0.433"></i><i style="--h:0.258"></i><i style="--h:0.661"></i><i style="--h:0.308"></i><i style="--h:0.49"></i><i style="--h:0.375"></i><i style="--h:0.262"></i><i style="--h:0.736"></i><i style="--h:0.829"></i><i style="--h:0.747"></i><i style="--h:0.327"></i><i style="--h:0.895"></i><i style="--h:0.935"></i><i style="--h:0.743"></i><i style="--h:0.607"></i><i style="--h:0.848"></i><i style="--h:0.718"></i><i style="--h:0.577"></i><i style="--h:0.868"></i><i style="--h:0.891"></i><i style="--h:0.449"></i><i style="--h:0.721"></i><i style="--h:0.327"></i><i style="--h:0.594"></i><i style="--h:0.868"></i><i style="--h:0.478"></i><i style="--h:0.49"></i><i style="--h:0.322"></i><i style="--h:0.574"></i><i style="--h:0.452"></i><i style="--h:0.523"></i><i style="--h:0.284"></i><i style="--h:0.433"></i><i style="--h:0.258"></i><i style="--h:0.661"></i><i style="--h:0.308"></i><i style="--h:0.49"></i><i style="--h:0.375"></i><i style="--h:0.262"></i><i style="--h:0.736"></i></span>
+  <span class="dt">Fri Apr 30 to Sun May 2, 2027</span>
+  <span class="cd">T-191d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-gryphus">
+  <img class="big" src="ed3/art/gryphus.webp" alt="Key art for GRYPHUS" loading="lazy">
+  <div class="info"><p class="line">Forty years of friendship. A whole new sky.</p><p class="note">Walt and Cale, two dear lifelong friends, and the festival they create. San Antonio on April 29; Flat Rock Ranch April 30 to May 2. My trip: April 28 to May 3, 2027.</p>
+  <dl><dt>Crew</dt><dd>Gordon, Walt + Cale</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Fri Apr 30 to Sun May 2, 2027</dd><dt>Where</dt><dd>Flat Rock Ranch · San Antonio gathering April 29, Texas Hill Country</dd></dl>
+  <p class="acts"><a class="et" href="https://gryphusmusicfestival.com/" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-edc" data-id="edc" data-art="edc" style="--c:#ffb991">
+ <button class="row" aria-expanded="false" aria-controls="d-edc">
+  <span class="no">12</span>
+  <span class="thumb"><img src="ed3/art/edc.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>EDC · DAWN</b><em class="st st-tba">Going · crew forming</em><small>Motor Speedway · Las Vegas</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.304"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.907"></i><i style="--h:0.732"></i><i style="--h:0.979"></i><i style="--h:0.375"></i><i style="--h:0.257"></i><i style="--h:0.78"></i><i style="--h:0.517"></i><i style="--h:0.665"></i><i style="--h:0.297"></i><i style="--h:0.879"></i><i style="--h:0.464"></i><i style="--h:0.266"></i><i style="--h:0.281"></i><i style="--h:0.803"></i><i style="--h:0.481"></i><i style="--h:0.879"></i><i style="--h:0.984"></i><i style="--h:0.637"></i><i style="--h:0.799"></i><i style="--h:0.282"></i><i style="--h:0.481"></i><i style="--h:0.791"></i><i style="--h:0.375"></i><i style="--h:0.447"></i><i style="--h:0.895"></i><i style="--h:0.78"></i><i style="--h:0.852"></i><i style="--h:0.841"></i><i style="--h:0.464"></i><i style="--h:0.304"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.907"></i><i style="--h:0.732"></i><i style="--h:0.979"></i><i style="--h:0.375"></i><i style="--h:0.257"></i><i style="--h:0.78"></i><i style="--h:0.517"></i><i style="--h:0.665"></i><i style="--h:0.297"></i><i style="--h:0.879"></i><i style="--h:0.464"></i><i style="--h:0.266"></i><i style="--h:0.281"></i><i style="--h:0.803"></i><i style="--h:0.481"></i><i style="--h:0.879"></i><i style="--h:0.984"></i><i style="--h:0.637"></i><i style="--h:0.799"></i><i style="--h:0.282"></i><i style="--h:0.481"></i><i style="--h:0.791"></i><i style="--h:0.375"></i><i style="--h:0.447"></i><i style="--h:0.895"></i><i style="--h:0.78"></i><i style="--h:0.852"></i><i style="--h:0.841"></i><i style="--h:0.464"></i></span>
+  <span class="dt">Fri May 21 to Sun 23, 2027</span>
+  <span class="cd">T-212d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-edc">
+  <img class="big" src="ed3/art/edc.webp" alt="Key art for EDC · DAWN" loading="lazy">
+  <div class="info"><p class="line">Stay for the light. Keep the people.</p><p class="note">Foster is interested. Dave and Trent chose Dusk. Our Dawn chapter is still coming together.</p>
+  <dl><dt>Crew</dt><dd>Dawn crew still taking shape</dd><dt>Status</dt><dd>Going · crew forming</dd><dt>When</dt><dd>Fri May 21 to Sun 23, 2027</dd><dt>Where</dt><dd>Motor Speedway, Las Vegas</dd></dl>
+  <p class="acts"><a class="et" href="https://lasvegas.edc.com/guide/faq/" rel="noopener">Official info</a><a class="et" href="https://edmtrain.com/las-vegas-nv/electric-daisy-carnival-dawn-second-weekend-edc-las-vegas-504220?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-fang-live" data-id="fang-live" data-art="fang" style="--c:#df855e">
+ <button class="row" aria-expanded="false" aria-controls="d-fang-live">
+  <span class="no">13</span>
+  <span class="thumb"><img src="ed3/art/fang.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>FANG SPEARE · LIVE</b><em class="st st-tba">Going · date TBA</em><small>Maxfield Engine House · Live date and details to come · Boonton, New Jersey</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.864"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.825"></i><i style="--h:0.508"></i><i style="--h:0.62"></i><i style="--h:0.947"></i><i style="--h:0.478"></i><i style="--h:0.915"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.776"></i><i style="--h:0.499"></i><i style="--h:0.253"></i><i style="--h:0.259"></i><i style="--h:0.52"></i><i style="--h:0.903"></i><i style="--h:0.967"></i><i style="--h:0.682"></i><i style="--h:0.637"></i><i style="--h:0.342"></i><i style="--h:0.279"></i><i style="--h:0.25"></i><i style="--h:0.844"></i><i style="--h:0.469"></i><i style="--h:0.979"></i><i style="--h:0.533"></i><i style="--h:0.393"></i><i style="--h:0.469"></i><i style="--h:0.455"></i><i style="--h:0.308"></i><i style="--h:0.864"></i><i style="--h:0.542"></i><i style="--h:0.34"></i><i style="--h:0.825"></i><i style="--h:0.508"></i><i style="--h:0.62"></i><i style="--h:0.947"></i><i style="--h:0.478"></i><i style="--h:0.915"></i><i style="--h:0.634"></i><i style="--h:0.256"></i><i style="--h:0.899"></i><i style="--h:0.776"></i><i style="--h:0.499"></i><i style="--h:0.253"></i><i style="--h:0.259"></i><i style="--h:0.52"></i><i style="--h:0.903"></i><i style="--h:0.967"></i><i style="--h:0.682"></i><i style="--h:0.637"></i><i style="--h:0.342"></i><i style="--h:0.279"></i><i style="--h:0.25"></i><i style="--h:0.844"></i><i style="--h:0.469"></i><i style="--h:0.979"></i><i style="--h:0.533"></i><i style="--h:0.393"></i><i style="--h:0.469"></i><i style="--h:0.455"></i><i style="--h:0.308"></i></span>
+  <span class="dt">Date TBA</span>
+  <span class="cd"></span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-fang-live">
+  <img class="big" src="ed3/art/fang.webp" alt="Key art for FANG SPEARE · LIVE" loading="lazy">
+  <div class="info"><p class="line">An old firehouse. A new kind of thunder.</p><p class="note">Fang Speare LIVE, at the Boonton firehouse Foster’s family is reimagining. His birthday weekend in 2027, just before Shambhala. The exact live date and details are still to come.</p>
+  <dl><dt>Crew</dt><dd>Foster’s birthday weekend</dd><dt>Status</dt><dd>Going · date TBA</dd><dt>When</dt><dd>Date TBA</dd><dt>Where</dt><dd>Maxfield Engine House · Live date and details to come, Boonton, New Jersey</dd></dl>
+  <p class="acts"><a class="et" href="https://www.design.upenn.edu/research/boonton-preservation-project" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-shambhala" data-id="shambhala" data-art="shambhala" style="--c:#c5df92">
+ <button class="row" aria-expanded="false" aria-controls="d-shambhala">
+  <span class="no">14</span>
+  <span class="thumb"><img src="ed3/art/shambhala.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>SHAMBHALA</b><em class="st st-tba">Going · dates tentative</em><small>Salmo River Ranch · British Columbia</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.736"></i><i style="--h:0.279"></i><i style="--h:0.276"></i><i style="--h:0.425"></i><i style="--h:0.375"></i><i style="--h:0.679"></i><i style="--h:0.286"></i><i style="--h:0.274"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.329"></i><i style="--h:0.654"></i><i style="--h:0.747"></i><i style="--h:0.401"></i><i style="--h:0.475"></i><i style="--h:0.624"></i><i style="--h:0.444"></i><i style="--h:0.259"></i><i style="--h:0.931"></i><i style="--h:0.251"></i><i style="--h:0.907"></i><i style="--h:0.821"></i><i style="--h:0.852"></i><i style="--h:0.25"></i><i style="--h:0.472"></i><i style="--h:0.411"></i><i style="--h:0.267"></i><i style="--h:0.665"></i><i style="--h:0.298"></i><i style="--h:0.493"></i><i style="--h:0.651"></i><i style="--h:0.711"></i><i style="--h:0.736"></i><i style="--h:0.279"></i><i style="--h:0.276"></i><i style="--h:0.425"></i><i style="--h:0.375"></i><i style="--h:0.679"></i><i style="--h:0.286"></i><i style="--h:0.274"></i><i style="--h:0.743"></i><i style="--h:0.927"></i><i style="--h:0.329"></i><i style="--h:0.654"></i><i style="--h:0.747"></i><i style="--h:0.401"></i><i style="--h:0.475"></i><i style="--h:0.624"></i><i style="--h:0.444"></i><i style="--h:0.259"></i><i style="--h:0.931"></i><i style="--h:0.251"></i><i style="--h:0.907"></i><i style="--h:0.821"></i><i style="--h:0.852"></i><i style="--h:0.25"></i><i style="--h:0.472"></i><i style="--h:0.411"></i><i style="--h:0.267"></i><i style="--h:0.665"></i><i style="--h:0.298"></i><i style="--h:0.493"></i><i style="--h:0.651"></i><i style="--h:0.711"></i></span>
+  <span class="dt">Fri Jul 23 to Mon 26, 2027</span>
+  <span class="cd">T-275d</span>
+  <span class="kd">Music</span>
+ </button>
+ <div class="det" id="d-shambhala">
+  <img class="big" src="ed3/art/shambhala.webp" alt="Key art for SHAMBHALA" loading="lazy">
+  <div class="info"><p class="line">Find each other between the trees.</p><p class="note">First, meet Drake and Mel in Kelowna. Then we go to Shambhala together. Our Farmily: Gordon, Drake, Mel, Dave Vermillion, Trent, Mason, Myke Bailey and Jacob Ferrufino.</p>
+  <dl><dt>Crew</dt><dd>Our eight-person Farmily</dd><dt>Status</dt><dd>Going · dates tentative</dd><dt>When</dt><dd>Fri Jul 23 to Mon 26, 2027</dd><dt>Where</dt><dd>Salmo River Ranch, British Columbia</dd></dl>
+  <p class="acts"><a class="et" href="https://www.shambhalamusicfestival.com/tickets-camping" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+<li class="trk" id="t-olympics" data-id="olympics" data-art="la28" style="--c:#b8e8ba">
+ <button class="row" aria-expanded="false" aria-controls="d-olympics">
+  <span class="no">15</span>
+  <span class="thumb"><img src="ed3/art/la28.webp" alt="" loading="lazy" width="96" height="54"></span>
+  <span class="ttl"><b>LA28 · WITH FOSTER</b><em class="st st-ok">Going</em><small>Squash + table tennis · Los Angeles</small></span>
+  <span class="wf" aria-hidden="true"><i style="--h:0.43"></i><i style="--h:0.686"></i><i style="--h:0.86"></i><i style="--h:0.388"></i><i style="--h:0.38"></i><i style="--h:0.868"></i><i style="--h:0.923"></i><i style="--h:0.58"></i><i style="--h:0.919"></i><i style="--h:0.279"></i><i style="--h:0.514"></i><i style="--h:0.703"></i><i style="--h:0.268"></i><i style="--h:0.693"></i><i style="--h:0.277"></i><i style="--h:0.452"></i><i style="--h:0.62"></i><i style="--h:0.876"></i><i style="--h:0.487"></i><i style="--h:0.356"></i><i style="--h:0.368"></i><i style="--h:0.856"></i><i style="--h:0.776"></i><i style="--h:0.627"></i><i style="--h:0.6"></i><i style="--h:0.919"></i><i style="--h:0.447"></i><i style="--h:0.773"></i><i style="--h:0.743"></i><i style="--h:0.419"></i><i style="--h:0.505"></i><i style="--h:0.271"></i><i style="--h:0.43"></i><i style="--h:0.686"></i><i style="--h:0.86"></i><i style="--h:0.388"></i><i style="--h:0.38"></i><i style="--h:0.868"></i><i style="--h:0.923"></i><i style="--h:0.58"></i><i style="--h:0.919"></i><i style="--h:0.279"></i><i style="--h:0.514"></i><i style="--h:0.703"></i><i style="--h:0.268"></i><i style="--h:0.693"></i><i style="--h:0.277"></i><i style="--h:0.452"></i><i style="--h:0.62"></i><i style="--h:0.876"></i><i style="--h:0.487"></i><i style="--h:0.356"></i><i style="--h:0.368"></i><i style="--h:0.856"></i><i style="--h:0.776"></i><i style="--h:0.627"></i><i style="--h:0.6"></i><i style="--h:0.919"></i><i style="--h:0.447"></i><i style="--h:0.773"></i><i style="--h:0.743"></i><i style="--h:0.419"></i><i style="--h:0.505"></i><i style="--h:0.271"></i></span>
+  <span class="dt">Sat Jul 15, Mon Jul 17 + Tue Jul 18, 2028</span>
+  <span class="cd">T-633d</span>
+  <span class="kd">Sport</span>
+ </button>
+ <div class="det" id="d-olympics">
+  <img class="big" src="ed3/art/la28.webp" alt="Key art for LA28 · WITH FOSTER" loading="lazy">
+  <div class="info"><p class="line">The games are new. The friendship is the throughline.</p><p class="note">Three booked sessions of squash and table tennis. Another chapter together.</p>
+  <dl><dt>Crew</dt><dd>Gordon + Foster</dd><dt>Status</dt><dd>Going</dd><dt>When</dt><dd>Sat Jul 15, Mon Jul 17 + Tue Jul 18, 2028</dd><dt>Where</dt><dd>Squash + table tennis, Los Angeles</dd></dl>
+  <p class="acts"><a class="et" href="https://la28.org/" rel="noopener">Official info</a></p></div>
+ </div>
+</li>
+  </ol>
+</section>
+
+<section class="wrap played" id="played">
+  <h2>Already played</h2>
+  <p class="h2sub">This season's nights so far.</p>
+  <ul><li><span>SEP 13</span> BLIZZCON <small>Anaheim</small></li><li><span>SEP 18</span> BACK TO SCHOOL <small>Los Angeles</small></li><li><span>SEP 26</span> PORTOLA <small>San Francisco</small></li><li><span>SUN SEP 27</span> FOLSOM STREET FAIR <small>San Francisco</small></li><li><span>SEP 27</span> THE FOUNDRY <small>San Francisco</small></li><li><span>OCT 03</span> ZEDS DEAD <small>Los Angeles</small></li><li><span>OCT 09 TO 11</span> NITEHARTS <small>San Diego</small></li><li><span>OCT 11</span> LATENITE <small>San Diego</small></li></ul>
+</section>
+</main>
+
+<footer class="wrap">
+  Event listings verified against <a href="https://edmtrain.com/los-angeles-ca" rel="noopener">EDM Train</a> on Oct 21, 2026, plus Gordon's tickets and word. Art made with Higgsfield. Voice and sound made with ElevenLabs. Built Oct 21, 2026 11:48 PM PT.<br>
+  <a href="#top">Back to the deck</a> · <a href="edition-2.html">Edition 2, The Mixer</a> · <a href="edition-1.html">Edition 1</a>
+</footer>
+
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="droptag" id="droptag" aria-live="polite"></div>
+<button class="stopdrop" id="stopdrop" hidden aria-label="Stop the drop">■ STOP DROP</button>
+<button class="drop" id="drop" aria-label="Drop a surprise bass drop"><img class="off" src="ed3/ui/drop_off.webp" alt="" width="104" height="94"><img class="on" src="ed3/ui/drop_on.webp" alt="" width="104" height="94"></button>
+<script>
+(function(){
+  document.getElementById('app').classList.remove('nojs');
+  var A={}; function snd(n,v,loop){ if(!A[n]){A[n]=new Audio('ed3/snd/'+n+'.mp3');A[n].preload='auto';} var a=A[n]; a.volume=v; a.loop=!!loop; return a; }
+  var deck=document.getElementById('deck'), btn=document.getElementById('play'), vid=document.getElementById('heroVid'), vc=document.getElementById('vidctl');
+  var soundOn=false, introTimer=null;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(vid && !reduce){ vid.src='ed3/hero.mp4'; vid.addEventListener('canplay',function(){vid.play().catch(function(){}); vc.hidden=false;},{once:true}); vid.load(); }
+  vc.addEventListener('click',function(){ var paused=vc.getAttribute('aria-pressed')==='true';
+    if(paused){vid.play().catch(function(){});vc.setAttribute('aria-pressed','false');vc.textContent='PAUSE MOTION';}
+    else{vid.pause();vc.setAttribute('aria-pressed','true');vc.textContent='PLAY MOTION';} });
+  var cur=null; function stopDrop(){ if(cur){cur.pause();} var sd=document.getElementById('stopdrop'); if(sd) sd.hidden=true; }
+  function stopAll(){ clearTimeout(introTimer); Object.keys(A).forEach(function(k){A[k].pause();}); stopDrop(); }
+  btn.addEventListener('click',function(){
+    soundOn=!soundOn; btn.setAttribute('aria-pressed',soundOn); document.getElementById('playCap').textContent=soundOn?'STOP':'PLAY';
+    btn.setAttribute('aria-label',soundOn?'Stop the sound':'Play the intro with sound'); deck.classList.toggle('playing',soundOn);
+    stopAll();
+    if(soundOn){ var r=snd('riser',.55); r.currentTime=0; r.play().catch(function(){});
+      introTimer=setTimeout(function(){ if(!soundOn)return; var i=snd('intro',.95); i.currentTime=0; i.play().catch(function(){}); snd('crowd',.18,true).play().catch(function(){}); },4200); }
+  });
+  var tracks=[].slice.call(document.querySelectorAll('.trk'));
+  var first={name:document.getElementById('deckName').textContent,meta:document.getElementById('deckMeta').textContent,n:document.getElementById('jogN').textContent};
+  function setDeck(lbl,name,meta,n){document.getElementById('deckLbl').textContent=lbl;document.getElementById('deckName').textContent=name;document.getElementById('deckMeta').textContent=meta;document.getElementById('jogN').textContent=n;}
+  tracks.forEach(function(t,idx){
+    var b=t.querySelector('.row');
+    b.addEventListener('click',function(){
+      var open=!t.classList.contains('open');
+      tracks.forEach(function(o){o.classList.remove('open','loaded');o.querySelector('.row').setAttribute('aria-expanded','false');});
+      if(open){ t.classList.add('open','loaded'); b.setAttribute('aria-expanded','true');
+        var cd=t.querySelector('.cd').textContent.replace('T-','').replace('d','');
+        setDeck(idx===0?'DECK A · NEXT UP':'DECK A · LOADED · TRACK '+(idx+1), t.querySelector('.ttl b').textContent, t.querySelector('.dt').textContent+' · '+t.querySelector('.ttl small').textContent, cd||'?');
+        if(soundOn){ var s=snd('spin',.5); s.currentTime=0; s.play().catch(function(){}); }
+      } else { setDeck('DECK A · NEXT UP',first.name,first.meta,first.n); }
+    });
+  });
+  var DROPS=[['dubstep','DUBSTEP','140 BPM · wobble'],['riddim','RIDDIM','150 BPM · square wubs'],['melodic','MELODIC BASS','150 BPM · supersaws'],['dnb','DRUM & BASS','174 BPM · reese'],['tearout','TEAROUT','150 BPM · metal'],['futurebass','FUTURE BASS','150 BPM · chord stabs'],['basshouse','BASS HOUSE','126 BPM · rubber bass'],['bigroom','BIG ROOM','128 BPM · mainstage']];
+  var bag=[], last=null, dropBtn=document.getElementById('drop'), tag=document.getElementById('droptag'), fl=document.getElementById('flash'), tl=document.querySelector('.tl'), tagT=null, pumpT=null;
+  function nextDrop(){ if(!bag.length){ bag=DROPS.slice(); for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var x=bag[i];bag[i]=bag[j];bag[j]=x;} if(bag[0]===last) bag.push(bag.shift()); } last=bag.shift(); return last; }
+  document.getElementById('stopdrop').addEventListener('click',stopDrop);
+  dropBtn.addEventListener('click',function(){
+    var d=nextDrop(); if(cur){cur.pause();}
+    cur=new Audio('ed3/snd/drops/'+d[0]+'.mp3'); cur.volume=.9; cur.play().catch(function(){}); var sd=document.getElementById('stopdrop'); sd.hidden=false; cur.addEventListener('ended',function(){sd.hidden=true;});
+    tag.innerHTML=d[1]+'<small>'+d[2]+'</small>'; tag.classList.add('show'); clearTimeout(tagT); tagT=setTimeout(function(){tag.classList.remove('show');},2600);
+    dropBtn.classList.add('hit'); setTimeout(function(){dropBtn.classList.remove('hit');},450);
+    fl.style.setProperty('--a',Math.floor(Math.random()*360)+'deg'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+    tl.classList.add('pump'); clearTimeout(pumpT); pumpT=setTimeout(function(){tl.classList.remove('pump');},6800);
+  });
+  if(location.hash && /^#t-[a-z0-9-]+$/.test(location.hash)){ var h=document.querySelector(location.hash+' .row'); if(h) h.click(); }
+})();
+</script>
+</div>
+</body>
+</html>

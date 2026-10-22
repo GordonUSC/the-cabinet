@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>After Hours</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Gordon's shows with friends. Tap a pad to load the night.">
+<meta property="og:title" content="Mel, you are on the decks">
+<meta property="og:description" content="Gordon's shows with friends. Tap a pad to load the night.">
+<meta property="og:image" content="https://gordonusc.github.io/the-cabinet/shows-with-friends/for/mel-02e4b/og.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a090e">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Inter+Tight:wght@400;600&family=VT323&display=swap">
+<link rel="preload" as="image" href="../../ui4/jog.webp">
+<style>
+:root{
+  --bg:#0a090e; --chassis:#15131b; --edge:#2a2634; --fg:#f4f0fa; --dim:#a69fb8; --lcd:#9dff6a; --lcdbg:#0b1407; --hot:#ff3ea5;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif; --body:"Inter Tight",system-ui,-apple-system,sans-serif; --lcdf:"VT323",ui-monospace,Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;color:var(--fg);font:17px/1.5 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background:radial-gradient(120% 60% at 50% -10%,#2a1630 0%,transparent 60%),repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px),var(--bg)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:max(16px,4vw)}
+
+/* CHASSIS HERO */
+.booth{position:relative;padding:calc(env(safe-area-inset-top,0px) + 22px) 0 34px;overflow:hidden;isolation:isolate}
+.bgart{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;opacity:.42;-webkit-mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 0%,rgba(0,0,0,.6) 55%,transparent 100%)}
+.booth .glow{position:absolute;inset:-10% -20% auto;height:90%;z-index:-1;background:radial-gradient(50% 50% at 50% 40%,color-mix(in srgb,var(--c,#ff3ea5) 38%,transparent),transparent 70%);filter:blur(10px);transition:background .6s}
+.brand{font:600 11px/1 var(--display);letter-spacing:.42em;color:#6f6880;margin:0 0 18px;text-transform:uppercase}
+h1{font:900 clamp(46px,13vw,132px)/.88 var(--display);letter-spacing:-.035em;margin:0;text-wrap:balance}
+.personal h1{background:linear-gradient(100deg,#fff 10%,var(--c,#ff3ea5) 55%,#ffd36b 95%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(18px,2.4vw,22px);line-height:1.4;max-width:34ch;margin:16px 0 26px;color:#e6dff3}
+
+.deck{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(18px,4vw,44px);align-items:center}
+.platter{position:relative;aspect-ratio:1;max-width:300px;width:100%}
+.platter img{width:100%;height:auto;display:block;filter:drop-shadow(0 22px 30px rgba(0,0,0,.7))}
+.spinning .platter img{animation:spin 1.82s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.platter .hub{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;text-align:center}
+.hub b{display:block;font:900 clamp(30px,8vw,46px)/1 var(--display);color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.hub small{display:block;font:600 11px/1 var(--display);letter-spacing:.24em;margin-top:4px;color:#ffe7f4}
+
+.lcd{background:linear-gradient(180deg,#0e1a09,var(--lcdbg));border:3px solid #050505;border-radius:10px;box-shadow:inset 0 0 0 1px #2c3d1f,inset 0 0 26px rgba(157,255,106,.12),0 1px 0 #333;padding:14px 16px 12px;color:var(--lcd);font:22px/1.15 var(--lcdf);text-shadow:0 0 6px rgba(157,255,106,.55);min-height:150px;position:relative;overflow:hidden}
+.lcd::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);pointer-events:none}
+.lcd .ln1{font-size:16px;opacity:.75;letter-spacing:.06em}
+.lcd .nm{font-size:clamp(30px,5vw,40px);line-height:1;margin:6px 0 8px;overflow-wrap:anywhere;color:#d8ffbf}
+.lcd .crew{opacity:.9}
+.ctl{display:flex;align-items:center;gap:22px;margin-top:20px;flex-wrap:wrap}
+.key{appearance:none;border:0;background:none;padding:0;cursor:pointer;display:grid;width:112px;-webkit-tap-highlight-color:transparent}
+.key img{grid-area:1/1;width:100%;height:auto;transition:opacity .15s,transform .1s;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))}
+.key .on,.imin .on{opacity:0}
+.key[aria-pressed=true] .on{opacity:1;animation:beat .469s ease-in-out infinite}.key[aria-pressed=true] .off{opacity:0}
+.key:active img,.imin:active img{transform:translateY(3px) scale(.97)}
+@keyframes beat{50%{filter:drop-shadow(0 6px 10px rgba(0,0,0,.5)) drop-shadow(0 0 22px rgba(60,255,110,.8))}}
+.keycap{display:block;text-align:center;font:600 11px/1 var(--display);letter-spacing:.22em;margin-top:6px;color:var(--dim)}
+.imin{display:grid;width:128px;-webkit-tap-highlight-color:transparent;animation:invite 2.4s ease-in-out infinite}
+.imin img{grid-area:1/1;width:100%;height:auto;transition:opacity .2s,transform .1s;filter:drop-shadow(0 12px 16px rgba(0,0,0,.6))}
+.imin:hover .on,.imin:focus-visible .on{opacity:1}
+@keyframes invite{50%{filter:drop-shadow(0 0 18px rgba(80,255,130,.55))}}
+.ctl .cap{font:600 15px/1.35 var(--body);color:#d9f7df;max-width:20ch}
+
+/* PADS */
+section{padding-block:clamp(34px,6vw,70px)}
+h2{font:900 clamp(26px,5vw,46px)/1 var(--display);letter-spacing:-.02em;margin:0 0 8px}
+.sub2{color:var(--dim);margin:0 0 22px;max-width:52ch}
+.grid{list-style:none;margin:0;padding:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px;background:linear-gradient(180deg,#1a1721,#121017);border:1px solid var(--edge);border-radius:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 60px rgba(0,0,0,.45)}
+.pad .hit{display:grid;gap:8px;text-decoration:none;-webkit-tap-highlight-color:transparent;outline-offset:4px}
+.strip{display:block;background:#050507;border:2px solid #000;border-radius:8px;padding:6px;box-shadow:inset 0 0 0 1px #24212c}
+.scr{display:block;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:#111}
+.scr img{width:100%;height:100%;object-fit:cover;display:block;transition:filter .3s,transform .4s}
+.strip b{display:block;font:600 12.5px/1.15 var(--display);margin:7px 2px 2px;min-height:2.3em;overflow-wrap:anywhere}
+.strip i{display:block;font:19px/1 var(--lcdf);font-style:normal;color:var(--lcd);margin:0 2px 2px;text-shadow:0 0 5px rgba(157,255,106,.5)}
+.strip em{font-style:normal;color:#ffd36b;text-shadow:0 0 5px rgba(255,200,90,.5)}
+.pad .key{width:72%;max-width:128px;justify-self:center;position:relative;cursor:pointer;margin-top:-22px;z-index:1}
+.pad .key .you{grid-area:1/1;place-self:center;font:900 15px/1 var(--display);letter-spacing:.12em;color:rgba(255,255,255,.92);text-shadow:0 1px 6px rgba(0,0,0,.45);transform:translateY(-6%)}
+.pad.dark .on{opacity:0}.pad.dark .off{opacity:1}
+.pad.lit .on{opacity:1}.pad.lit .off{opacity:0}
+.pad.dark .scr img{filter:grayscale(.75) brightness(.55)}
+.pad.dark .strip b{color:#b9b2c9}
+.pad .hit:hover .scr img{transform:scale(1.05);filter:none}
+.pad .hit:hover .on,.pad.hot .on{opacity:1}.pad.hot .off{opacity:0}
+.pad.hot .key img{transform:translateY(3px) scale(.97)}
+.pad.yours .strip{box-shadow:inset 0 0 0 1px var(--c),0 0 22px color-mix(in srgb,var(--c) 45%,transparent)}
+.hit:focus-visible{outline:2px solid #fff;border-radius:10px}
+
+/* DETAILS: static list without JS, a sheet with JS */
+.shows{display:grid;gap:30px}
+.sx{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:26px;align-items:start;padding-top:8px;border-top:1px solid var(--edge)}
+.sx .big{width:100%;height:auto;max-height:42vh;aspect-ratio:16/9;object-fit:cover;border-radius:12px;display:block}
+.sx h3{font:900 clamp(24px,3.4vw,34px)/1 var(--display);margin:0 0 10px;letter-spacing:-.01em;color:#fff}
+.sx .when{font:22px/1.1 var(--lcdf);color:var(--lcd);margin:0 0 12px}
+.sx .line{font:600 clamp(19px,2.2vw,22px)/1.3 var(--display);margin:0 0 10px;text-wrap:balance}
+.sx .note{color:#ddd5ea;margin:0 0 12px}
+.sx .crew span{display:block;font:600 11px/1 var(--display);letter-spacing:.2em;color:var(--dim);margin-bottom:5px;text-transform:uppercase}
+.sx .crew{margin:0 0 12px;font-size:18px}
+.sx .ask{background:color-mix(in srgb,var(--c) 16%,#100e15);border-left:4px solid var(--c);padding:12px 14px;border-radius:0 10px 10px 0;margin:0 0 12px;font-weight:600}
+.sx .acts{display:flex;flex-wrap:wrap;gap:16px;margin:0}.sx .acts a{color:#7fe8ff;font-weight:600}
+.js .shows{display:none}
+.sheet{visibility:hidden;position:fixed;inset:auto 0 0;z-index:60;max-height:88vh;overflow:auto;background:#121017;border-top:1px solid var(--edge);border-radius:20px 20px 0 0;box-shadow:0 -30px 60px rgba(0,0,0,.6);transform:translateY(105%);transition:transform .38s cubic-bezier(.2,.9,.25,1),visibility 0s .38s;padding:12px max(16px,4vw) calc(env(safe-area-inset-bottom,0px) + 26px)}
+.sheet.open{transform:none;visibility:visible;transition:transform .38s cubic-bezier(.2,.9,.25,1)}
+.sheet .sx{border-top:0;max-width:1080px;margin:0 auto}
+.grab{position:relative;display:flex;justify-content:flex-end;align-items:center;max-width:1080px;margin:0 auto 10px;min-height:40px}
+.grab::before{content:"";position:absolute;left:50%;top:6px;width:44px;height:5px;margin-left:-22px;border-radius:3px;background:#3a3446;pointer-events:none}
+.close{position:relative;z-index:1;appearance:none;border:1px solid #3a3446;background:#1b1822;color:var(--fg);font:600 15px var(--body);cursor:pointer;padding:9px 16px;border-radius:10px;min-height:44px}
+.scrim{position:fixed;inset:0;z-index:55;background:rgba(5,4,8,.55);opacity:0;pointer-events:none;transition:opacity .3s}
+.scrim.open{opacity:1;pointer-events:auto}
+
+/* PLAYED + PICKS */
+.played ul{list-style:none;margin:0;padding:0;display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
+.played li{flex:0 0 150px;scroll-snap-align:start;display:grid;gap:4px;justify-items:start}
+.played img{width:60px;height:60px;filter:brightness(.8)}
+.played b{font:600 13px/1.2 var(--display)}.played i{font-style:normal;font-size:14px;color:var(--dim)}
+.picks ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.picks a{display:grid;gap:3px;text-decoration:none;padding:14px 16px;border-radius:12px;background:linear-gradient(90deg,rgba(255,62,165,.12),transparent);border-left:4px solid var(--hot)}
+.picks b{font:600 18px/1.2 var(--display)}.picks i{font:20px/1 var(--lcdf);font-style:normal;color:var(--lcd)}.picks span{color:#ddd5ea}
+footer{border-top:1px solid var(--edge);padding-block:26px 120px;color:var(--dim);font-size:14px}
+
+/* DROP */
+.drop{position:fixed;right:max(12px,2.5vw);bottom:calc(env(safe-area-inset-bottom,0px) + 12px);z-index:50;appearance:none;border:0;background:none;padding:0;cursor:pointer;width:96px;display:grid;-webkit-tap-highlight-color:transparent}
+.drop img{grid-area:1/1;width:96px;height:auto;filter:drop-shadow(0 12px 18px rgba(0,0,0,.6)) drop-shadow(0 0 16px rgba(255,40,160,.45));transition:transform .12s,opacity .15s}
+.drop .on{opacity:0}.drop.hitd .on{opacity:1}.drop.hitd .off{opacity:0}.drop:active img{transform:translateY(4px) scale(.97)}
+.droptag{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 120px);transform:translate(-50%,20px);z-index:51;opacity:0;pointer-events:none;font:900 clamp(24px,6vw,46px)/1 var(--display);white-space:nowrap;background:linear-gradient(90deg,#ff3ea5,#ffd447,#33e1ff,#7dff8a);-webkit-background-clip:text;background-clip:text;color:transparent;transition:opacity .2s,transform .35s cubic-bezier(.2,1.6,.4,1)}
+.droptag.show{opacity:1;transform:translate(-50%,0)}
+.flash{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:0;background:radial-gradient(60% 50% at 50% 60%,var(--fc,#ff3ea5),transparent 70%);mix-blend-mode:screen}
+.flash.go{animation:flash .7s ease-out}
+@keyframes flash{0%{opacity:.6}100%{opacity:0}}
+.nojs .key,.nojs .drop{display:none}
+
+@media (max-width:760px){
+  .deck{grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:14px}
+  .lcd{min-height:0;padding:10px 12px;font-size:19px}.lcd .nm{font-size:26px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:12px;gap:16px 12px}
+  .sx{grid-template-columns:1fr;gap:14px}
+  .hub b{font-size:28px}.hub small{font-size:9px}
+  .key{width:92px}.imin{width:112px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body class="personal">
+<div id="app" class="nojs">
+<header class="booth" id="top" style="--c:var(--hot)">
+  <img class="bgart" src="../../art/shambhala.webp" alt="" fetchpriority="high"><div class="glow" id="glow"></div>
+  <div class="wrap">
+    <p class="brand">After Hours</p>
+    <h1>Mel,</h1>
+    <p class="lede">Shambhala next July. The eight-person Farmily, back at Salmo River Ranch.</p>
+    <div class="deck" id="deck">
+      <div class="platter"><img src="../../ui4/jog.webp" alt="" width="720" height="720" fetchpriority="high"><div class="hub"><div><b id="hubN" data-d="2027-07-23">274</b><small id="hubL">DAYS</small></div></div></div>
+      <div>
+        <div class="lcd" role="status" aria-live="polite"><div class="ln1" id="lcd1">YOUR NIGHT, in 274 days</div><div class="nm" id="lcdN">SHAMBHALA</div><div id="lcdW">Fri Jul 23 to Mon 26, 2027</div><div class="crew" id="lcdC">Our eight-person Farmily</div></div>
+        <div class="ctl">
+          <div><button class="key" id="play" aria-pressed="false" aria-label="Play the welcome with sound"><img class="off" src="../../ui/play_off.webp" alt="" width="180" height="150"><img class="on" src="../../ui/play_on.webp" alt="" width="180" height="150"></button><span class="keycap" id="playCap">PLAY</span></div>
+          <a class="imin" id="imin" href="sms:+18184727283?&amp;body=I%27m%20in%21%20Shambhala" aria-label="Tell Gordon you are in"><img class="off" src="../../ui4/imin_off.webp" alt="" width="200" height="200"><img class="on" src="../../ui4/imin_on.webp" alt="" width="200" height="200"></a><span class="cap">Tap to tell Gordon you&#x27;re in for Shambhala.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="wrap" id="pads">
+  <h2>Tap a pad</h2>
+  <p class="sub2">Each pad is a night. Lit pads are coming up. Tap one to load it.</p>
+  <ul class="grid">
+<li class="pad lit yours" style="--c:#c5df92">
+ <a class="hit" href="#s-shambhala" data-id="shambhala" aria-label="SHAMBHALA, Fri Jul 23 to Mon 26, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/shambhala.webp" alt="" loading="lazy" width="320" height="180"></span><b>SHAMBHALA</b><i>Jul 23 <em data-d="2027-07-23">274d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"><span class="you">YOU</span></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#ff9a6b">
+ <a class="hit" href="#s-two-friends" data-id="two-friends" aria-label="TWO FRIENDS, Fri Oct 23, 2026">
+  <span class="strip"><span class="scr"><img src="../../art/palladium.webp" alt="" loading="lazy" width="320" height="180"></span><b>TWO FRIENDS</b><i>Oct 23 <em data-d="2026-10-23">1d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#ffd871">
+ <a class="hit" href="#s-pokemon" data-id="pokemon" aria-label="POKÉMON NIGHT OUT, Sat Oct 24, 2026">
+  <span class="strip"><span class="scr"><img src="../../art/pokemon.webp" alt="" loading="lazy" width="320" height="180"></span><b>POKÉMON NIGHT OUT</b><i>Oct 24 <em data-d="2026-10-24">2d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#f2a7cf">
+ <a class="hit" href="#s-pride" data-id="pride" aria-label="PALM SPRINGS · PRIDE + BIRTHDAY, Fri Nov 6 to Mon 9, 2026">
+  <span class="strip"><span class="scr"><img src="../../art/palmsprings.webp" alt="" loading="lazy" width="320" height="180"></span><b>PALM SPRINGS · PRIDE + BIRTHDAY</b><i>Nov 6 <em data-d="2026-11-06">15d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_pink_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#8edbde">
+ <a class="hit" href="#s-summit" data-id="summit" aria-label="JOHN SUMMIT, Sat Dec 12, 2026, 7:30 PM">
+  <span class="strip"><span class="scr"><img src="../../art/summit.webp" alt="" loading="lazy" width="320" height="180"></span><b>JOHN SUMMIT</b><i>Dec 12 <em data-d="2026-12-12">51d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_cyan_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#ffd47b">
+ <a class="hit" href="#s-stevie" data-id="stevie" aria-label="STEVIE WONDER, Sat Dec 19, 2026">
+  <span class="strip"><span class="scr"><img src="../../art/stevie.webp" alt="" loading="lazy" width="320" height="180"></span><b>STEVIE WONDER</b><i>Dec 19 <em data-d="2026-12-19">58d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#ff3b5c">
+ <a class="hit" href="#s-rl-grime-nye" data-id="rl-grime-nye" aria-label="RL GRIME · NYE, Thu Dec 31, 2026">
+  <span class="strip"><span class="scr"><img src="../../art/rlgrime.webp" alt="" loading="lazy" width="320" height="180"></span><b>RL GRIME · NYE</b><i>Dec 31 <em data-d="2026-12-31">70d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_red_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#f99875">
+ <a class="hit" href="#s-sincity" data-id="sincity" aria-label="SIN CITY · DODGEBALL, Thu Jan 14 to Mon 18, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/dodgeball.webp" alt="" loading="lazy" width="320" height="180"></span><b>SIN CITY · DODGEBALL</b><i>Jan 14 <em data-d="2027-01-14">84d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_red_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#7fe3c4">
+ <a class="hit" href="#s-oakenfold-crystal-method" data-id="oakenfold-crystal-method" aria-label="OAKENFOLD + THE CRYSTAL METHOD, Fri Feb 5, 2027, 8 PM">
+  <span class="strip"><span class="scr"><img src="../../art/oakenfold.webp" alt="" loading="lazy" width="320" height="180"></span><b>OAKENFOLD + THE CRYSTAL METHOD</b><i>Feb 5 <em data-d="2027-02-05">106d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_cyan_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#e7bd84">
+ <a class="hit" href="#s-ggp-games" data-id="ggp-games" aria-label="GGP · ZERO PROOF, Mon Mar 1, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/foundry.webp" alt="" loading="lazy" width="320" height="180"></span><b>GGP · ZERO PROOF</b><i>Mar 1 <em data-d="2027-03-01">130d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#a1e7d5">
+ <a class="hit" href="#s-ggp-mixer" data-id="ggp-mixer" aria-label="GGP · THE MIXER, Tue Mar 2, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/foundry.webp" alt="" loading="lazy" width="320" height="180"></span><b>GGP · THE MIXER</b><i>Mar 2 <em data-d="2027-03-02">131d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_cyan_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#b5dbc8">
+ <a class="hit" href="#s-gryphus" data-id="gryphus" aria-label="GRYPHUS, Fri Apr 30 to Sun May 2, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/gryphus.webp" alt="" loading="lazy" width="320" height="180"></span><b>GRYPHUS</b><i>Apr 30 <em data-d="2027-04-30">190d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_green_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#ffb991">
+ <a class="hit" href="#s-edc" data-id="edc" aria-label="EDC · DAWN, Fri May 21 to Sun 23, 2027">
+  <span class="strip"><span class="scr"><img src="../../art/edc.webp" alt="" loading="lazy" width="320" height="180"></span><b>EDC · DAWN</b><i>May 21 <em data-d="2027-05-21">211d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#df855e">
+ <a class="hit" href="#s-fang-live" data-id="fang-live" aria-label="FANG SPEARE · LIVE, Date to come">
+  <span class="strip"><span class="scr"><img src="../../art/fang.webp" alt="" loading="lazy" width="320" height="180"></span><b>FANG SPEARE · LIVE</b><i>Date to come</i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_amber_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+<li class="pad dark" style="--c:#b8e8ba">
+ <a class="hit" href="#s-olympics" data-id="olympics" aria-label="LA28 · WITH FOSTER, Sat Jul 15, Mon Jul 17 + Tue Jul 18, 2028">
+  <span class="strip"><span class="scr"><img src="../../art/la28.webp" alt="" loading="lazy" width="320" height="180"></span><b>LA28 · WITH FOSTER</b><i>Sat Jul 15, Mon Jul 17 + Tue Jul 18, 2028 <em data-d="2028-07-15">632d</em></i></span>
+  <span class="key"><img class="off" src="../../ui4/pad_none_off.webp" alt="" width="180" height="180" loading="lazy"><img class="on" src="../../ui4/pad_green_on.webp" alt="" width="180" height="180" loading="lazy"></span>
+ </a>
+</li>
+  </ul>
+</section>
+
+<section class="wrap shows" id="shows" aria-label="Every show in detail">
+<article class="sx" id="s-shambhala" data-id="shambhala" data-date="2027-07-23" style="--c:#c5df92">
+ <img class="big" src="../../art/shambhala.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>SHAMBHALA</h3>
+  <p class="when">Fri Jul 23 to Mon 26, 2027<br>Salmo River Ranch, British Columbia</p>
+  <p class="line">Find each other between the trees.</p>
+  <p class="note">First, meet Drake and Mel in Kelowna. Then we go to Shambhala together. Our Farmily: Gordon, Drake, Mel, Dave Vermillion, Trent, Mason, Myke Bailey and Jacob Ferrufino.</p>
+  <p class="crew"><span>On the decks</span>Our eight-person Farmily</p>
+  
+  <p class="acts"><a href="https://www.shambhalamusicfestival.com/tickets-camping" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-two-friends" data-id="two-friends" data-date="2026-10-23" style="--c:#ff9a6b">
+ <img class="big" src="../../art/palladium.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>TWO FRIENDS</h3>
+  <p class="when">Fri Oct 23, 2026<br>Hollywood Palladium, Los Angeles</p>
+  <p class="line">Friday night at the Palladium, all of us.</p>
+  <p class="note">A Cawley Fest Friday: Joe, John, Mason and Bailey at the Hollywood Palladium.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Joe, John, Mason + Bailey</p>
+  
+  <p class="acts"><a href="https://edmtrain.com/los-angeles-ca/two-friends-501526?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-pokemon" data-id="pokemon" data-date="2026-10-24" style="--c:#ffd871">
+ <img class="big" src="../../art/pokemon.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>POKÉMON NIGHT OUT</h3>
+  <p class="when">Sat Oct 24, 2026<br>Intuit Dome, Inglewood</p>
+  <p class="line">Our playful selves get the night out.</p>
+  <p class="note">Brennan and me, with more of the crew still to confirm. Eric has his own plan that night. Our playful selves get the night out.</p>
+  <p class="crew"><span>On the decks</span>Gordon + Brennan, more TBA</p>
+  
+  <p class="acts"><a href="https://30.pokemon.com/en-us/night-out" rel="noopener">Official info</a><a href="https://edmtrain.com/los-angeles-ca/pokemon-night-out-marshmello-494886?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-pride" data-id="pride" data-date="2026-11-06" style="--c:#f2a7cf">
+ <img class="big" src="../../art/palmsprings.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>PALM SPRINGS · PRIDE + BIRTHDAY</h3>
+  <p class="when">Fri Nov 6 to Mon 9, 2026<br>Downtown + Arenas District · Birthday November 9, Palm Springs</p>
+  <p class="line">Pride. My birthday. Our people.</p>
+  <p class="note">Palm Springs Pride with Shannon Murray, Joe, Mason and Alex Rogers. Shannon is our host, and one of my dearest friends since San Francisco in the 1990s. Pride runs November 6 to 8; my birthday is Monday, November 9. This chapter holds both.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Shannon, Joe, Mason + Alex</p>
+  
+  <p class="acts"><a href="https://www.pspride.org/news" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-summit" data-id="summit" data-date="2026-12-12" style="--c:#8edbde">
+ <img class="big" src="../../art/summit.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>JOHN SUMMIT</h3>
+  <p class="when">Sat Dec 12, 2026, 7:30 PM<br>LA Memorial Coliseum, Los Angeles</p>
+  <p class="line">A sidewalk hello. A much bigger next chapter.</p>
+  <p class="note">A sidewalk hello after Worship at the Palladium in March 2024. Another unexpected meeting in November 2025. His Countdown set a few weeks later. Now, the Coliseum. Companions for this next night are still open.</p>
+  <p class="crew"><span>On the decks</span>Companions still open</p>
+  
+  <p class="acts"><a href="https://www.insomniac.com/events/john-summit-2026-12-12-los-angeles-ca/" rel="noopener">Official info</a><a href="https://edmtrain.com/los-angeles-ca/ctrl-escape-john-summit-528715?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-stevie" data-id="stevie" data-date="2026-12-19" style="--c:#ffd47b">
+ <img class="big" src="../../art/stevie.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>STEVIE WONDER</h3>
+  <p class="when">Sat Dec 19, 2026<br>Intuit Dome, Inglewood</p>
+  <p class="line">Songs that have already lived whole lives with me.</p>
+  <p class="note">A little space to feel everything, at my own pace.</p>
+  <p class="crew"><span>On the decks</span>A solo chapter</p>
+  
+  <p class="acts"><a href="https://www.ticketmaster.com/stevie-wonder-songs-in-the-key-of-life-performances-50th-anniversary-inglewood-12-19-2026/event/09006524823041CB" rel="noopener">Ticketmaster listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-rl-grime-nye" data-id="rl-grime-nye" data-date="2026-12-31" style="--c:#ff3b5c">
+ <img class="big" src="../../art/rlgrime.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>RL GRIME · NYE</h3>
+  <p class="when">Thu Dec 31, 2026<br>Academy LA, Los Angeles</p>
+  <p class="line">A new year, a new room, and a bigger crew.</p>
+  <p class="note">We count down under the lasers together.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Joe, Andrew + Michelle</p>
+  
+  <p class="acts"><a href="https://edmtrain.com/los-angeles-ca/rl-grime-546347?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-sincity" data-id="sincity" data-date="2027-01-14" style="--c:#f99875">
+ <img class="big" src="../../art/dodgeball.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>SIN CITY · DODGEBALL</h3>
+  <p class="when">Thu Jan 14 to Mon 18, 2027<br>Sin City Classic Sports Festival, Las Vegas</p>
+  <p class="line">Good company. Great dodgeball.</p>
+  <p class="note">A Vegas weekend with Joe, Matt, Andrew Ketchum and Casey Reed. Our crew is confirmed; the 2027 dodgeball match schedule is still to come.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Joe, Matt, Andrew + Casey</p>
+  
+  <p class="acts"><a href="https://www.sincityclassic.org/" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-oakenfold-crystal-method" data-id="oakenfold-crystal-method" data-date="2027-02-05" style="--c:#7fe3c4">
+ <img class="big" src="../../art/oakenfold.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>OAKENFOLD + THE CRYSTAL METHOD</h3>
+  <p class="when">Fri Feb 5, 2027, 8 PM<br>The Bellwether · KCRW Presents, Los Angeles</p>
+  <p class="line">Trance royalty meets big beat.</p>
+  <p class="note">Two architects of the 90s rave sound in one room, with Jeremy, Jared and Phil.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Jeremy, Jared + Phil</p>
+  
+  <p class="acts"><a href="https://edmtrain.com/los-angeles-ca/paul-oakenfold-the-crystal-method-544875?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-ggp-games" data-id="ggp-games" data-date="2027-03-01" style="--c:#e7bd84">
+ <img class="big" src="../../art/foundry.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>GGP · ZERO PROOF</h3>
+  <p class="when">Mon Mar 1, 2027<br>The Foundry SF · 1425 Folsom Street at 10th, San Francisco</p>
+  <p class="line">Pull up a chair.</p>
+  <p class="note">Monday night at The Foundry SF: the 4th Annual Zero Proof Board Game Night. Eric, Brennan, Alex and Foster, let’s make room at the table. Event hours will follow.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Eric, Brennan, Alex + Foster</p>
+  
+  <p class="acts"><a href="https://gaygamingpros.org/" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-ggp-mixer" data-id="ggp-mixer" data-date="2027-03-02" style="--c:#a1e7d5">
+ <img class="big" src="../../art/foundry.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>GGP · THE MIXER</h3>
+  <p class="when">Tue Mar 2, 2027<br>The Foundry SF · 1425 Folsom Street at 10th, San Francisco</p>
+  <p class="line">Our people. Behind the decks.</p>
+  <p class="note">Tuesday night at The Foundry SF: the 21st Annual GGP @ GDC Mixer, with the debut of Fang Speare B2B Capnsmak. Foster Birch and Sam Kennedy, sharing the booth. Dave Vermillion and Trent are on the list. Event hours will follow.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Brennan, Alex, Sam, Foster, Georgia, Eric, Dave + Trent</p>
+  
+  <p class="acts"><a href="https://gaygamingpros.org/" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-gryphus" data-id="gryphus" data-date="2027-04-30" style="--c:#b5dbc8">
+ <img class="big" src="../../art/gryphus.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>GRYPHUS</h3>
+  <p class="when">Fri Apr 30 to Sun May 2, 2027<br>Flat Rock Ranch · San Antonio gathering April 29, Texas Hill Country</p>
+  <p class="line">Forty years of friendship. A whole new sky.</p>
+  <p class="note">Walt and Cale, two dear lifelong friends, and the festival they create. San Antonio on April 29; Flat Rock Ranch April 30 to May 2. My trip: April 28 to May 3, 2027.</p>
+  <p class="crew"><span>On the decks</span>Gordon, Walt + Cale</p>
+  
+  <p class="acts"><a href="https://gryphusmusicfestival.com/" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-edc" data-id="edc" data-date="2027-05-21" style="--c:#ffb991">
+ <img class="big" src="../../art/edc.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>EDC · DAWN</h3>
+  <p class="when">Fri May 21 to Sun 23, 2027<br>Motor Speedway, Las Vegas</p>
+  <p class="line">Stay for the light. Keep the people.</p>
+  <p class="note">Foster is interested. Dave and Trent chose Dusk. Our Dawn chapter is still coming together.</p>
+  <p class="crew"><span>On the decks</span>Dawn crew still taking shape</p>
+  
+  <p class="acts"><a href="https://lasvegas.edc.com/guide/faq/" rel="noopener">Official info</a><a href="https://edmtrain.com/las-vegas-nv/electric-daisy-carnival-dawn-second-weekend-edc-las-vegas-504220?utm_source=2836&amp;utm_medium=api" rel="noopener">EDM Train listing</a></p>
+ </div>
+</article>
+<article class="sx" id="s-fang-live" data-id="fang-live" data-date="" style="--c:#df855e">
+ <img class="big" src="../../art/fang.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>FANG SPEARE · LIVE</h3>
+  <p class="when">Date to come<br>Maxfield Engine House · Live date and details to come, Boonton, New Jersey</p>
+  <p class="line">An old firehouse. A new kind of thunder.</p>
+  <p class="note">Fang Speare LIVE, at the Boonton firehouse Foster’s family is reimagining. His birthday weekend in 2027, just before Shambhala. The exact live date and details are still to come.</p>
+  <p class="crew"><span>On the decks</span>Foster’s birthday weekend</p>
+  
+  <p class="acts"><a href="https://www.design.upenn.edu/research/boonton-preservation-project" rel="noopener">Official info</a></p>
+ </div>
+</article>
+<article class="sx" id="s-olympics" data-id="olympics" data-date="2028-07-15" style="--c:#b8e8ba">
+ <img class="big" src="../../art/la28.webp" alt="" loading="lazy" width="1600" height="900">
+ <div class="txt">
+  <h3>LA28 · WITH FOSTER</h3>
+  <p class="when">Sat Jul 15, Mon Jul 17 + Tue Jul 18, 2028<br>Squash + table tennis, Los Angeles</p>
+  <p class="line">The games are new. The friendship is the throughline.</p>
+  <p class="note">Three booked sessions of squash and table tennis. Another chapter together.</p>
+  <p class="crew"><span>On the decks</span>Gordon + Foster</p>
+  
+  <p class="acts"><a href="https://la28.org/" rel="noopener">Official info</a></p>
+ </div>
+</article>
+</section>
+
+
+
+<section class="wrap played" id="played">
+  <h2>Already played</h2>
+  <p class="sub2">The nights this season has already given us.</p>
+  <ul><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>BLIZZCON</b><i>SEP 13, Anaheim</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>BACK TO SCHOOL</b><i>SEP 18, Los Angeles</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>PORTOLA</b><i>SEP 26, San Francisco</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>FOLSOM STREET FAIR</b><i>SUN SEP 27, San Francisco</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>THE FOUNDRY</b><i>SEP 27, San Francisco</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>ZEDS DEAD</b><i>OCT 03, Los Angeles</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>NITEHARTS</b><i>OCT 09 TO 11, San Diego</i></li><li><img src="../../ui4/pad_none_off.webp" alt="" width="60" height="60" loading="lazy"><b>LATENITE</b><i>OCT 11, San Diego</i></li></ul>
+</section>
+</main>
+
+<footer class="wrap">
+  Listings checked against <a href="https://edmtrain.com/los-angeles-ca" rel="noopener">EDM Train</a>, plus Gordon's own tickets and word. Art made with Higgsfield and Blender. Voice and sound made with ElevenLabs. Updated Oct 22, 2026.<br>
+  <a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/">Every night</a> &nbsp; <a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/edition-3.html">Edition 3</a> &nbsp; <a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/edition-2.html">Edition 2</a> &nbsp; <a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/edition-1.html">Edition 1</a>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Show details"><div class="grab"><button class="close" id="close">Close</button></div><div id="sheetBody"></div></div>
+<div class="flash" id="flash" aria-hidden="true"></div>
+<div class="droptag" id="droptag" aria-live="polite"></div>
+<button class="drop" id="drop" aria-label="Drop a surprise bass drop"><img class="off" src="../../ui/drop_off.webp" alt="" width="104" height="94"><img class="on" src="../../ui/drop_on.webp" alt="" width="104" height="94"></button>
+<script>
+(function(){
+  var P='../../', app=document.getElementById('app'); app.classList.remove('nojs'); app.classList.add('js');
+  var A={}; function snd(src,v){ if(!A[src]){A[src]=new Audio(src);A[src].preload='auto';} var a=A[src]; a.volume=v; return a; }
+  function play(src,v){ var a=snd(src,v); a.currentTime=0; a.play().catch(function(){}); return a; }
+  function stopAll(){ Object.keys(A).forEach(function(k){A[k].pause();}); }
+  var deck=document.getElementById('deck'), booth=document.getElementById('top'), btn=document.getElementById('play'), cap=document.getElementById('playCap');
+  var on=false, tmr=null;
+  btn.addEventListener('click',function(){
+    on=!on; btn.setAttribute('aria-pressed',on); cap.textContent=on?'STOP':'PLAY'; deck.classList.toggle('spinning',on); stopAll(); clearTimeout(tmr);
+    if(on){ play(P+'snd/riser.mp3',.5); tmr=setTimeout(function(){ if(!on)return; var v=play('../../for/mel-02e4b/hello.mp3',1); v.onended=function(){ on=false; btn.setAttribute('aria-pressed',false); cap.textContent='PLAY'; deck.classList.remove('spinning'); }; },1900); }
+  });
+  var sheet=document.getElementById('sheet'), body=document.getElementById('sheetBody'), scrim=document.getElementById('scrim'), fl=document.getElementById('flash');
+  function lcd(sx){
+    var dd=sx.getAttribute('data-date'), d=dd?daysTo(dd):null; document.getElementById('hubN').textContent=d===null?'?':Math.max(d,0); document.getElementById('hubL').textContent=d===1?'DAY':d!==null&&d<=0?'TONIGHT':'DAYS';
+    document.getElementById('lcd1').textContent='LOADED';
+    document.getElementById('lcdN').textContent=sx.querySelector('h3').textContent;
+    document.getElementById('lcdW').textContent=sx.querySelector('.when').innerText.split('\n')[0];
+    document.getElementById('lcdC').textContent=sx.querySelector('.crew').childNodes[1].textContent;
+    booth.style.setProperty('--c',sx.style.getPropertyValue('--c'));
+  }
+  function openShow(id,pad){
+    var sx=document.getElementById('s-'+id); if(!sx) return;
+    body.innerHTML=''; body.appendChild(sx.cloneNode(true)); body.firstChild.removeAttribute('id');
+    sheet.classList.add('open'); scrim.classList.add('open'); lcd(sx);
+    if(pad){ pad.classList.add('hot'); setTimeout(function(){pad.classList.remove('hot');},260); fl.style.setProperty('--fc',sx.style.getPropertyValue('--c')); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go'); }
+    play(P+'snd/spin.mp3',.35);
+    document.getElementById('close').focus({preventScroll:true});
+    if(history.replaceState) history.replaceState(null,'','#s-'+id);
+  }
+  function closeSheet(){ sheet.classList.remove('open'); scrim.classList.remove('open'); if(history.replaceState) history.replaceState(null,'',location.pathname+location.search); }
+  document.getElementById('close').addEventListener('click',closeSheet); scrim.addEventListener('click',closeSheet);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeSheet(); });
+  [].forEach.call(document.querySelectorAll('.pad .hit'),function(a){ a.addEventListener('click',function(e){ e.preventDefault(); openShow(a.getAttribute('data-id'),a.parentNode); }); });
+  var DROPS=[['dubstep','DUBSTEP'],['riddim','RIDDIM'],['melodic','MELODIC BASS'],['dnb','DRUM AND BASS'],['tearout','TEAROUT'],['futurebass','FUTURE BASS'],['basshouse','BASS HOUSE'],['bigroom','BIG ROOM']];
+  var bag=[], cur=null, dropBtn=document.getElementById('drop'), tag=document.getElementById('droptag'), tagT=null;
+  dropBtn.addEventListener('click',function(){
+    if(!bag.length){ bag=DROPS.slice().sort(function(){return Math.random()-.5;}); }
+    var d=bag.shift(); if(cur) cur.pause(); cur=play(P+'snd/drops/'+d[0]+'.mp3',.9);
+    tag.textContent=d[1]; tag.classList.add('show'); clearTimeout(tagT); tagT=setTimeout(function(){tag.classList.remove('show');},2200);
+    dropBtn.classList.add('hitd'); setTimeout(function(){dropBtn.classList.remove('hitd');},420);
+    var pads=document.querySelectorAll('.pad'); [].forEach.call(pads,function(p,i){ setTimeout(function(){p.classList.add('hot'); setTimeout(function(){p.classList.remove('hot');},180);}, i*70); });
+    fl.style.setProperty('--fc','#ff3ea5'); fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  });
+  function daysTo(s){ var p=s.split('-'), t=new Date(); t.setHours(0,0,0,0); return Math.round((new Date(+p[0],p[1]-1,+p[2])-t)/864e5); }
+  function sayDays(n){ return n<=0?'tonight':n===1?'tomorrow':'in '+n+' days'; }
+  [].forEach.call(document.querySelectorAll('em[data-d]'),function(e){ var n=daysTo(e.getAttribute('data-d')); e.textContent=n<=0?'tonight':n+'d'; });
+  var hb=document.getElementById('hubN'), hd=hb.getAttribute('data-d');
+  if(hd){ var n=daysTo(hd); hb.textContent=Math.max(n,0); document.getElementById('hubL').textContent=n===1?'DAY':n<=0?'TONIGHT':'DAYS'; var l1=document.getElementById('lcd1'); l1.textContent=l1.textContent.replace(/(tonight|tomorrow|in \d+ days)$/,sayDays(n)); }
+  if(/^#s-[a-z0-9-]+$/.test(location.hash)) openShow(location.hash.slice(3));
+})();
+</script>
+</div>
+</body>
+</html>
