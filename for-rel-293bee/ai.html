@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- STYLE: Runway-meets-court night program, studio edition (Bodoni couture serif + Big Shoulders jersey numerals on plum night) | WHY: second page of the same two-page invitation; a matched set reads as one host speaking, a new system would read as a different sender | ALT: Na Kim layered-grid studio journal, kept for a standalone process piece -->
+
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="How Gordon Bellamy makes things with a small house of AI collaborators, and where human taste still leads.">
@@ -146,7 +148,7 @@ footer{padding-block:40px 70px;color:var(--dim);font-size:13px;border-top:1px so
     <button class="tool" data-t="dot">dot review</button>
   </div>
   <div class="works">
-    <article class="work" data-tools="claude higgsfield eleven blender dot"><img src="art/shot-shows.webp" alt="After Hours, a shows-with-friends site styled as a DJ set"><div class="in"><h3>After Hours: The Season Set</h3><p>Gordon's year of shows with friends, played like a DJ set: every night a track with a waveform, a deck that loads the next show, and a DROP button with eight surprise bass drops.</p><p class="used">Claude build, Higgsfield art and video, ElevenLabs voice and drops, Blender buttons, dot review.</p><a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/" rel="noopener">Open it</a></div></article>
+    <article class="work" data-tools="claude higgsfield eleven blender dot"><img src="art/shot-booth.webp" alt="After Hours edition 4, The Booth: a DJ controller with a jog wheel, a green screen and backlit cue pads"><div class="in"><h3>After Hours: The Booth</h3><p>Gordon's year of shows with friends, now a DJ controller: a spinning jog wheel, a screen that loads the next night, and a backlit cue pad for every show. Each friend gets their own page that opens on their name, lights their nights, and says hello out loud.</p><p class="used">Claude build, Higgsfield art and video, ElevenLabs voices and drops, Blender hardware, dot review.</p><a href="https://gordonusc.github.io/the-cabinet/shows-with-friends/" rel="noopener">Open it</a></div></article>
     <article class="work" data-tools="claude dot"><img src="art/shot-moodboards.webp" alt="CTIN 290 mood board presentation examples"><div class="in"><h3>Teaching pages for CTIN 290</h3><p>Student-facing class pages, with worked examples for how to present a mood board. Dates and counts are checked against a single course truth file before pages ship.</p><p class="used">Claude build, Astra consistency checks, dot review.</p><a href="https://gordonusc.github.io/the-cabinet/ctin290-mood-board-presentations/" rel="noopener">Open it</a></div></article>
     <article class="work" data-tools="claude higgsfield eleven"><img src="art/dodgeball-art.webp" alt="A neon dodgeball court staged like a boss fight"><div class="in"><h3>Final Boss Dodgeball</h3><p>A playable game for Gordon's dodgeball team, built on its real tournament rules: grab, throw, catch, and a power shot on the dash. </p><p class="used">Claude build, Higgsfield art, ElevenLabs sound.</p></div></article>
     
@@ -183,7 +185,7 @@ footer{padding-block:40px 70px;color:var(--dim);font-size:13px;border-top:1px so
   var SND={on:false,v:null};
   function sfx(n,vol){ if(!SND.on) return; try{ var a=new Audio('snd/'+n+'.mp3'); a.volume=vol||.5; a.play().catch(function(){}); }catch(e){} }
   var hb=document.getElementById('hear');
-  hb.addEventListener('click',function(){ SND.on=!(hb.getAttribute('aria-pressed')==='true'); hb.setAttribute('aria-pressed',SND.on); hb.querySelector('b').textContent=SND.on?'SOUND ON':'HEAR THE welcome-ai';
+  hb.addEventListener('click',function(){ SND.on=!(hb.getAttribute('aria-pressed')==='true'); hb.setAttribute('aria-pressed',SND.on); hb.querySelector('b').textContent=SND.on?'SOUND ON':'HEAR THE WELCOME';
     if(SND.v){SND.v.pause();} if(SND.on){ SND.v=new Audio('snd/welcome-ai.mp3'); SND.v.volume=.95; SND.v.play().catch(function(){}); } });
   document.getElementById('app').classList.remove('nojs');
   var WHO=[
