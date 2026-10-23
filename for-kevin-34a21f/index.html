@@ -1,0 +1,517 @@
+<!-- STYLE: Trade Paper Premiere, a Hollywood trade broadsheet printed on a red-carpet LED wall | WHY: Kevin lives exactly where the trades meet the tech stage: he edits a weekly newsletter, hosts the gala in a red jacket, and turns every screening into "our own personal Hall H", so the page reads like his front page under premiere lights | ALT: Mutant Dossier, an X-Men field-file look with redaction bars and Cerebro blues -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kevin Winston</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="A premiere edition about Kevin Winston, Hollywood plus tech's host, connector and Degree Police. With love from Gordon Bellamy.">
+<meta property="og:title" content="Kevin Winston">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@400;500;700&family=Archivo+Narrow:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --ink:#070a17; --ink-2:#0d1330; --navy:#121a42; --rule:#2a3463;
+  --red:#e01e37; --red-deep:#9e0f24; --led:#3fd0ff; --gold:#f2c14e;
+  --paper:#ebe3d3; --paper-ink:#16121a; --text:#eef0f8; --dim:#aab1cc;
+  --display:"Bodoni Moda", Didot, "Times New Roman", serif;
+  --body:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --narrow:"Archivo Narrow", "Arial Narrow", system-ui, sans-serif;
+  --g:16px;
+}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.6;overflow-x:clip;-webkit-text-size-adjust:100%}
+img,video{display:block;max-width:100%;height:auto}
+a{color:var(--led);text-underline-offset:3px}
+.wrap{width:min(1180px,100% - 2*var(--g));margin-inline:auto}
+@media (min-width:760px){:root{--g:40px} body{font-size:18px}}
+
+/* labels and type */
+.kick{font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin:0 0 14px}
+.kick.led{color:var(--led)}
+h2{font-family:var(--display);font-weight:800;font-size:clamp(40px,8vw,92px);line-height:.95;letter-spacing:-.01em;margin:0 0 20px}
+h2 em{font-style:italic;font-weight:500;color:var(--red)}
+h3{font-family:var(--display);font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.1;margin:0 0 8px}
+.lede{font-size:clamp(19px,2.2vw,24px);line-height:1.45;max-width:36ch;color:var(--text)}
+.dim{color:var(--dim)}
+q,blockquote{quotes:"\201C" "\201D"}
+.cite{display:block;font-family:var(--narrow);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:8px;font-style:normal}
+
+/* masthead */
+.mast{border-bottom:1px solid var(--rule);background:var(--ink)}
+.mast .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 0;font-family:var(--narrow);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.mast b{color:var(--red);font-weight:700}
+
+/* hero */
+.hero{position:relative;isolation:isolate;overflow:clip;min-height:min(100svh,980px);display:flex;flex-direction:column;justify-content:flex-end}
+.hero picture,.hero picture img{position:absolute;inset:0;width:100%;height:100%!important;object-fit:cover;object-position:44% 30%;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,10,23,.15) 0%,rgba(7,10,23,0) 35%,rgba(7,10,23,.78) 72%,var(--ink) 100%),linear-gradient(90deg,rgba(7,10,23,.55),transparent 55%)}
+.hero .wrap{padding:30vh 0 40px}
+@media (min-width:1000px){
+  .hero picture{left:auto;width:68%}
+  .hero picture img{object-position:40% 25%}
+  .hero::after{background:linear-gradient(90deg,var(--ink) 30%,rgba(7,10,23,.7) 42%,rgba(7,10,23,0) 62%),linear-gradient(180deg,transparent 70%,var(--ink) 100%)}
+  .hero .wrap{padding:16vh 0 56px}
+  .hero .wrap>*:not(.toc){max-width:640px}
+  h1{font-size:clamp(90px,10.5vw,168px)}
+}
+.edition{display:inline-block;font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.28em;text-transform:uppercase;background:var(--red);color:#fff;padding:6px 10px;margin-bottom:18px}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(58px,15vw,200px);line-height:.86;letter-spacing:-.02em;margin:0;text-shadow:0 6px 50px rgba(0,0,0,.55)}
+i.w{font-style:inherit;margin-right:-.09em}
+h1 span{display:block;font-style:italic;font-weight:500;color:var(--red)}
+.thesis{font-family:var(--display);font-style:italic;font-size:clamp(21px,2.8vw,32px);line-height:1.25;max-width:24ch;margin:22px 0 0;color:#fff}
+.byline{font-family:var(--narrow);font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:22px}
+
+/* LED crawl */
+.crawl{background:#02040c;border-block:1px solid #1d2a5c;overflow:hidden;position:relative}
+.crawl::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(255,255,255,.08) 1px,transparent 1.4px) 0 0/4px 4px;pointer-events:none}
+.track{display:flex;width:max-content;animation:crawl 46s linear infinite}
+.track p{margin:0;white-space:nowrap;padding:12px 0;font-family:var(--narrow);font-weight:700;font-size:15px;letter-spacing:.18em;text-transform:uppercase;color:var(--led);text-shadow:0 0 10px rgba(63,208,255,.7)}
+.track p i{font-style:normal;color:var(--red);text-shadow:0 0 10px rgba(224,30,55,.8);padding:0 18px}
+@keyframes crawl{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding:clamp(72px,11vw,140px) 0;position:relative}
+.toc{display:flex;flex-wrap:wrap;gap:8px 22px;padding:22px 0 0;margin:0;list-style:none;font-family:var(--narrow);font-size:13px;letter-spacing:.16em;text-transform:uppercase}
+.toc a{color:var(--dim);text-decoration:none}
+.toc a:hover{color:#fff}
+.toc b{color:var(--red);font-weight:700;margin-right:6px}
+
+/* connector: newsprint page */
+.paper{background:var(--paper);color:var(--paper-ink)}
+.paper .kick{color:var(--red-deep)}
+.paper .lede,.next .lede{color:var(--paper-ink)}
+.paper h2 em{color:var(--red-deep)}
+.paper .dim,.paper .cite{color:#5b5361}
+.paper a{color:var(--red-deep)}
+.cols{display:grid;gap:36px}
+@media (min-width:900px){.cols{grid-template-columns:1.1fr .9fr;gap:56px}}
+.storyfig{margin:0}
+.storyfig img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.storyfig figcaption{font-family:var(--narrow);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#5b5361;padding-top:8px}
+.grow{display:grid;grid-template-columns:repeat(3,1fr);margin:34px 0;border-block:2px solid var(--paper-ink)}
+.grow div{padding:16px 10px 14px;border-right:1px solid #b9ae9b}
+.grow div:last-child{border-right:0}
+.grow strong{display:block;font-family:var(--display);font-weight:900;font-size:clamp(34px,6vw,64px);line-height:1;color:var(--red-deep)}
+.grow span{display:block;font-size:14px;line-height:1.35;margin-top:6px}
+.fest{background:var(--paper-ink);color:var(--paper);padding:24px 22px 20px;margin-top:8px}
+.fest .kick{color:var(--gold)}
+.fest ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px}
+@media (min-width:600px){.fest ul{grid-template-columns:repeat(4,1fr)}}
+.fest li{font-size:14px;line-height:1.3;color:#cfc6b5}
+.fest li b{display:block;font-family:var(--display);font-size:34px;line-height:1;color:#fff}
+.pull{font-family:var(--display);font-style:italic;font-size:clamp(24px,3vw,34px);line-height:1.2;margin:34px 0 0;padding-left:18px;border-left:4px solid var(--red-deep)}
+
+/* arc */
+.arc{background:radial-gradient(120% 80% at 90% 0%,var(--navy),var(--ink) 60%)}
+.arc-head{display:grid;gap:30px;align-items:end}
+@media (min-width:900px){.arc-head{grid-template-columns:1fr 420px}}
+.arc-head img{width:100%;aspect-ratio:4/3;object-fit:cover;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.path{list-style:none;margin:48px 0 0;padding:0;counter-reset:reel;display:grid;gap:0}
+.path li{counter-increment:reel;display:grid;grid-template-columns:64px 1fr;gap:16px;padding:22px 0;border-top:1px solid var(--rule)}
+.path li::before{content:counter(reel,decimal-leading-zero);font-family:var(--display);font-style:italic;font-size:34px;line-height:1;color:var(--red)}
+.path h3{font-size:clamp(22px,2.6vw,30px)}
+.path p{margin:0;color:var(--dim);font-size:16px}
+.path li.star{background:linear-gradient(90deg,rgba(224,30,55,.14),transparent 70%)}
+@media (min-width:900px){.path{grid-template-columns:1fr 1fr;column-gap:56px}}
+.stages{display:flex;flex-wrap:wrap;gap:10px;margin:40px 0 0;padding:0;list-style:none}
+.stages li{font-family:var(--narrow);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:14px;border:1px solid var(--led);color:var(--led);padding:8px 14px}
+
+/* fan */
+.fan{background:var(--ink)}
+.bigshot{position:relative;isolation:isolate;overflow:clip;margin:28px 0 0}
+.bigshot img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.bigshot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(7,10,23,.92));z-index:0}
+.bigshot .cap{position:absolute;left:0;right:0;bottom:0;padding:clamp(16px,3vw,40px);z-index:1}
+.bigshot .cap p{font-family:var(--display);font-style:italic;font-size:clamp(22px,4vw,52px);line-height:1.05;margin:0}
+.bigshot .cap .cite{color:#d5d9ea}
+@media (max-width:640px){.bigshot img{aspect-ratio:4/5}}
+.cards{display:grid;gap:2px;margin-top:2px;grid-template-columns:1fr}
+@media (min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1050px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--ink-2);padding:26px 24px 28px;position:relative}
+.card .tag{font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--led)}
+.card p{margin:8px 0 0;color:var(--dim);font-size:16px}
+.card blockquote{margin:14px 0 0;font-family:var(--display);font-style:italic;font-size:21px;line-height:1.3;color:#fff}
+.card.red{background:var(--red-deep)}
+.card.red .tag,.card.red p{color:#ffd9de}
+
+/* degree police */
+.police{background:repeating-linear-gradient(135deg,#0b0b0f 0 22px,#101018 22px 44px)}
+.police-grid{display:grid;gap:40px;align-items:center}
+@media (min-width:900px){.police-grid{grid-template-columns:minmax(0,520px) 1fr;gap:64px}}
+.frame{border:1px solid #3a3a48;padding:10px;background:#000}
+.frame video{width:100%;aspect-ratio:1/1;background:#000}
+.badge{display:inline-block;font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);background:var(--gold);padding:6px 10px;margin-bottom:16px}
+.lines{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:18px}
+.lines li{font-family:var(--display);font-style:italic;font-size:clamp(20px,2.4vw,27px);line-height:1.25}
+.lines li .cite{font-family:var(--narrow)}
+.verify{margin-top:34px;border:1px dashed #6b6b7c;padding:18px 20px}
+.verify h3{font-family:var(--narrow);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.verify ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;font-size:15px}
+.verify li::before{content:"\2713";color:var(--led);margin-right:10px;font-weight:700}
+.verify li.no::before{content:"\2205";color:var(--red)}
+
+/* friendship */
+.us{background:linear-gradient(180deg,var(--ink),var(--navy) 120%)}
+.reel{list-style:none;margin:44px 0 0;padding:0;position:relative}
+.reel::before{content:"";position:absolute;left:11px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--red),var(--led))}
+.reel li{position:relative;padding:0 0 34px 44px}
+.reel li::before{content:"";position:absolute;left:4px;top:7px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--red)}
+.reel time{font-family:var(--narrow);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--led)}
+.reel h3{margin-top:4px;font-size:clamp(22px,2.6vw,30px)}
+.reel p{margin:4px 0 0;color:var(--dim);max-width:60ch}
+.reel q{color:#fff;font-style:italic}
+@media (min-width:900px){
+  .reel::before{left:50%}
+  .reel li{width:50%;padding:0 48px 40px 0;text-align:right}
+  .reel li::before{left:auto;right:-8px}
+  .reel li:nth-child(even){margin-left:50%;padding:0 0 40px 48px;text-align:left}
+  .reel li:nth-child(even)::before{right:auto;left:-8px}
+  .reel li p{margin-left:auto}
+  .reel li:nth-child(even) p{margin-left:0}
+}
+
+/* coming attraction */
+.coming{background:#000;text-align:center}
+.coming .lede{margin-inline:auto;max-width:40ch}
+.screen{margin:40px auto 0;max-width:1100px;padding:clamp(6px,1vw,12px);background:linear-gradient(135deg,var(--red),var(--gold) 50%,var(--red));box-shadow:0 0 80px rgba(224,30,55,.35)}
+.screen video{width:100%;aspect-ratio:16/9;background:#000}
+.dates{font-family:var(--display);font-weight:900;font-size:clamp(40px,8vw,96px);line-height:1;margin:34px 0 6px;color:#fff}
+.dates em{color:var(--red);font-weight:500}
+.stills{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:1100px;margin:28px auto 0}
+.stills img{width:100%;aspect-ratio:16/9;object-fit:cover}
+
+/* next */
+.next{background:var(--paper);color:var(--paper-ink)}
+.next .kick{color:var(--red-deep)}
+.next h2 em{color:var(--red-deep)}
+.invites{display:grid;gap:22px;margin-top:40px}
+@media (min-width:900px){.invites{grid-template-columns:repeat(3,1fr)}}
+.invite{background:#fff;padding:28px 24px 30px;position:relative;box-shadow:0 1px 0 #cfc4b0,0 18px 40px rgba(22,18,26,.12)}
+.invite .no{font-family:var(--display);font-style:italic;font-size:56px;line-height:1;color:var(--red-deep)}
+.invite h3{margin-top:10px}
+.invite p{margin:8px 0 0;font-size:16px;color:#3a3440}
+.invite .ticket{display:inline-block;margin-top:16px;font-family:var(--narrow);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--red-deep);border:1px solid var(--red-deep);padding:6px 10px}
+
+/* sign-off */
+.sign{background:radial-gradient(90% 70% at 50% 100%,rgba(224,30,55,.35),transparent 70%),var(--ink);text-align:center}
+.sign blockquote{font-family:var(--display);font-style:italic;font-size:clamp(30px,5vw,60px);line-height:1.1;margin:0 auto;max-width:18ch}
+.love{font-family:var(--display);font-weight:900;font-size:clamp(46px,9vw,110px);line-height:.95;margin:44px 0 0}
+.love span{display:block;font-style:italic;font-weight:500;color:var(--red)}
+
+/* sources */
+.src{background:#04060f;padding:48px 0 70px;font-size:14px;color:var(--dim)}
+.src h2{font-family:var(--narrow);font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);font-weight:700;margin:0 0 14px}
+.src ol{margin:0;padding-left:20px;display:grid;gap:6px;overflow-wrap:anywhere}
+.src a{color:#8fa3d8}
+
+/* motion, only when JS says it is safe */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .track{animation:none;flex-wrap:wrap;width:auto}
+  .track p[aria-hidden]{display:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<div class="mast"><div class="wrap"><span><b>Premiere Edition</b> &middot; Los Angeles</span><span>Hollywood + Tech</span><span>Vol. 15+ of a friendship</span></div></div>
+
+<header class="hero">
+  <picture>
+    <source srcset="media/hero.webp" type="image/webp">
+    <img src="media/hero.jpg" alt="Kevin Winston in a red jacket, microphone in hand, hosting a Hollywood and tech gala under a film-strip LED wall with the Griffith Observatory at dusk behind him" width="1600" height="895" fetchpriority="high">
+  </picture>
+  <div class="wrap">
+    <span class="edition">Special Report</span>
+    <h1>Kevin <span><i class="w">W</i>inston</span></h1>
+    <p class="thesis">Los Angeles had no room where Hollywood and tech could meet. So he built one, and then he kept the lights on.</p>
+    <p class="byline">A dossier with love, from Gordon Bellamy</p>
+    <ul class="toc">
+      <li><a href="#connector"><b>01</b>The Connector</a></li>
+      <li><a href="#arc"><b>02</b>The Arc</a></li>
+      <li><a href="#fan"><b>03</b>The Fan</a></li>
+      <li><a href="#police"><b>04</b>Degree Police</a></li>
+      <li><a href="#us"><b>05</b>Kevin + Gordon</a></li>
+      <li><a href="#coming"><b>06</b>Coming Attraction</a></li>
+      <li><a href="#next"><b>07</b>What's Next</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="crawl" role="marquee" aria-label="Headlines">
+  <div class="track">
+    <p>Digital LA founder and CEO<i>&#9670;</i>Yale in Hollywood founder and president<i>&#9670;</i>Silicon Beach Fest<i>&#9670;</i>Kevins Assemble<i>&#9670;</i>Degree Police, on duty<i>&#9670;</i>Red Yale is happening<i>&#9670;</i>Now showing: Palm Springs, Nov 6 to 8<i>&#9670;</i></p>
+    <p aria-hidden="true">Digital LA founder and CEO<i>&#9670;</i>Yale in Hollywood founder and president<i>&#9670;</i>Silicon Beach Fest<i>&#9670;</i>Kevins Assemble<i>&#9670;</i>Degree Police, on duty<i>&#9670;</i>Red Yale is happening<i>&#9670;</i>Now showing: Palm Springs, Nov 6 to 8<i>&#9670;</i></p>
+  </div>
+</div>
+
+<main>
+
+<!-- 01 CONNECTOR -->
+<section id="connector" class="paper">
+  <div class="wrap">
+    <p class="kick">01 &middot; The Connector</p>
+    <h2>Ten friends at Ma'kai. <em>Then a city.</em></h2>
+    <div class="cols">
+      <div class="rv">
+        <p class="lede">He was at MySpace, and Los Angeles had no networking group for the people building digital, entertainment and startups. So Kevin started one.</p>
+        <div class="grow" aria-label="How Digital LA grew in its first year">
+          <div><strong>~10</strong><span>friends at the first night, Ma'kai, Santa Monica</span></div>
+          <div><strong>~150</strong><span>showed up the very next month</span></div>
+          <div><strong>~5K</strong><span>in the Facebook group by the end of year one</span></div>
+        </div>
+        <p>Digital LA became the city's largest network for tech, startups and digital entertainment, with one or two events a week and a weekly newsletter at the center of it all. As of 2015, the newsletter and groups reached more than 50,000 people a week. Kevin is still its editor.</p>
+        <blockquote class="pull">&ldquo;So just go out and do it.&rdquo;<span class="cite">Kevin, Santa Monica Daily Press, 2014</span></blockquote>
+      </div>
+      <div class="rv">
+        <figure class="storyfig">
+          <img src="media/silicon-beach.jpg" alt="Santa Monica at night: palm trees, the lit pier wheel, and a rooftop LED wall glowing red and blue over Ocean Avenue" width="1600" height="900" loading="lazy">
+          <figcaption>Silicon Beach after dark</figcaption>
+        </figure>
+        <div class="fest">
+          <p class="kick">Silicon Beach Fest &middot; the 2014 edition</p>
+          <ul>
+            <li><b>2,000+</b>attendees</li>
+            <li><b>350+</b>speakers, over a third of them women</li>
+            <li><b>70</b>panels</li>
+            <li><b>5</b>days, plus a pool party</li>
+          </ul>
+        </div>
+        <p class="dim" style="font-size:15px;margin-top:16px">Founded by Kevin. Add a 25-startup showcase, ten parties, beach games and a Gadget Sandbox. In 2013 a Hollywood edition put startups and studios in one room for a day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ARC -->
+<section id="arc" class="arc">
+  <div class="wrap">
+    <div class="arc-head">
+      <div class="rv">
+        <p class="kick led">02 &middot; The Arc</p>
+        <h2>New Haven to <em>Hollywood</em>, by way of everything.</h2>
+        <p class="lede">The path as his bios tell it, in order. No years printed. The Degree Police would want it that way.</p>
+      </div>
+      <img class="rv" src="media/yale-hollywood.jpg" alt="Still life on a mahogany desk: a navy and crimson knit scarf, a vintage film reel, a clapperboard and a red ticket, with the Hollywood hills lit up in the window" width="1200" height="900" loading="lazy">
+    </div>
+    <ol class="path">
+      <li class="rv"><div><h3>Yale</h3><p>Student council. He had already edited his high school paper and kept starting clubs.</p></div></li>
+      <li class="rv"><div><h3>Harvard, master's degree</h3><p>Two Ivies, one very organized man.</p></div></li>
+      <li class="rv"><div><h3>McKinsey &amp; Company</h3><p>Where you learn how a room really works.</p></div></li>
+      <li class="rv"><div><h3>Sony Pictures Digital Entertainment</h3><p>Studio marketing meets the internet.</p></div></li>
+      <li class="rv"><div><h3>Fox Interactive Media, MySpace, IGN</h3><p>Integrated campaigns for movies, TV and games.</p></div></li>
+      <li class="rv star"><div><h3>Founder and CEO, Digital LA</h3><p>Started at MySpace. Still the editor of the weekly.</p></div></li>
+      <li class="rv"><div><h3>Founder, Silicon Beach Fest</h3><p>Five days of LA tech, with beach games.</p></div></li>
+      <li class="rv star"><div><h3>Founder and president, Yale in Hollywood</h3><p>A volunteer-run home for Yalies in entertainment, plus the global Yale in Hollywood Fest.</p></div></li>
+      <li class="rv"><div><h3>Accelerate Yale, LA chapter head</h3><p>Also president of IVY Entertainment.</p></div></li>
+      <li class="rv"><div><h3>Every November, back to Yale</h3><p>He schedules a talk at Berkeley College on how to get into Hollywood.</p></div></li>
+    </ol>
+    <ul class="stages rv" aria-label="Stages he has spoken on">
+      <li>SXSW</li><li>CES</li><li>VidCon</li><li>San Diego Comic-Con</li><li>Beverly Hills Film Festival</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 03 FAN -->
+<section id="fan" class="fan">
+  <div class="wrap">
+    <p class="kick">03 &middot; The Fan</p>
+    <h2>A nerdy mutant <em>with a guest list.</em></h2>
+    <p class="lede rv">For Kevin, fandom is the ultimate networking event, and he always knows where the line forms.</p>
+  </div>
+  <div class="wrap">
+    <figure class="bigshot rv">
+      <img src="media/hall.jpg" alt="A vast convention hall seen from the back, fans raising phones toward a stage glowing red and gold" width="1600" height="900" loading="lazy">
+      <figcaption class="cap">
+        <p>&ldquo;It was like our own personal Hall H.&rdquo;</p>
+        <span class="cite">Kevins Assemble &middot; August 2024</span>
+      </figcaption>
+    </figure>
+    <div class="cards">
+      <article class="card red rv">
+        <span class="tag">Kevins Assemble &middot; Aug 2024</span>
+        <p>At a private Deadpool &amp; Wolverine screening he met Kevin Feige and, on the spot, organized a fan photo with Lenore Zann, the voice of Rogue. His caption ended:</p>
+        <blockquote>&ldquo;Thanks Gordon!&rdquo;</blockquote>
+      </article>
+      <article class="card rv">
+        <span class="tag">X-Men, for life</span>
+        <p>At the Uncanny X-Men Experience with Adam:</p>
+        <blockquote>&ldquo;we both grew up with and love X-men and each other.&rdquo;</blockquote>
+      </article>
+      <article class="card rv">
+        <span class="tag">Marvel Rivals era</span>
+        <p>Rival-Con report: <q>It's like a comic con!</q> A red Marvel Rivals shirt at GamesBeat, a Spider-Man shirt at the Gaymer Awards. Gordon named it:</p>
+        <blockquote>&ldquo;Heated Marvel Rivalsry Era.&rdquo;</blockquote>
+      </article>
+      <article class="card rv">
+        <span class="tag">Heated Rivalry</span>
+        <p>Superfan. Watch party attendee. Present the night the episode's writer confirmed <q>it's love.</q></p>
+      </article>
+      <article class="card rv">
+        <span class="tag">AWE Long Beach &middot; June 2026</span>
+        <p>Danced with a Unitree G1 robot until it chased him across the floor.</p>
+        <blockquote>&ldquo;Now G1 is chasing me! &hellip; I want to go viral! &#128541;&rdquo;</blockquote>
+      </article>
+      <article class="card red rv">
+        <span class="tag">Red Yale, the look</span>
+        <p>Gordon, the moment he saw it:</p>
+        <blockquote>&ldquo;YOU are the X-man of fashion Vogue.&rdquo;</blockquote>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 04 DEGREE POLICE -->
+<section id="police" class="police">
+  <div class="wrap police-grid">
+    <div class="frame rv">
+      <video controls playsinline preload="none" poster="media/degree.jpg" width="720" height="720" aria-label="The Degree Police, a short noir film">
+        <source src="media/degree.mp4" type="video/mp4">
+        <a href="media/degree.mp4">Watch The Degree Police</a>
+      </video>
+    </div>
+    <div class="rv">
+      <p class="kick led">04 &middot; Case File</p>
+      <span class="badge">The Degree Police</span>
+      <h2>Titles <em>will</em> be verified.</h2>
+      <p class="lede">A noir short for the only man in LA who checks the diploma before the headshot.</p>
+      <ul class="lines">
+        <li>&ldquo;I'm the Degree Police! &#128110;&#127995;&#8205;&#9794;&#65039;&rdquo;<span class="cite">Kevin, October 2026</span></li>
+        <li>&ldquo;BS detector honed in after living in LA when people say they're directors producers haha&rdquo;<span class="cite">Kevin</span></li>
+        <li>&ldquo;Yale Bachelors of Science degree = Yale BS, no bueno lol&rdquo;<span class="cite">Kevin, on himself</span></li>
+        <li>&ldquo;Kevin, first of his name&rdquo;<span class="cite">Gordon</span></li>
+      </ul>
+      <div class="verify">
+        <h3>This dossier submitted itself for inspection</h3>
+        <ul>
+          <li>Yale, verified</li>
+          <li>Harvard master's, verified</li>
+          <li>Founder and CEO of Digital LA, verified</li>
+          <li>Founder and president of Yale in Hollywood, verified</li>
+          <li class="no">Class year, left off on purpose</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 KEVIN + GORDON -->
+<section id="us" class="us">
+  <div class="wrap">
+    <p class="kick led">05 &middot; Kevin + Gordon</p>
+    <h2>Fifteen years, <em>always in the room.</em></h2>
+    <p class="lede rv">A recent stretch of the long run: every time one opens a door, the other walks through it.</p>
+    <ol class="reel">
+      <li class="rv"><time>Nov 2023</time><h3>Red Yale arrives</h3><p>Gordon: <q>Look at you making Red Yale happen.</q></p></li>
+      <li class="rv"><time>Feb 2024</time><h3>An invitation to speak</h3><p>Kevin asked Gordon onto a stage. Gordon offered to moderate State of the Industry. Kevin: <q>Added you.</q></p></li>
+      <li class="rv"><time>Aug 2024</time><h3>The USC screening</h3><p>Gordon got the pass. Kevin got his personal Hall H. <q>Thanks Gordon!</q></p></li>
+      <li class="rv"><time>May 2025</time><h3>A fan of the newsletter</h3><p>Gordon: <q>you are doing the most. Proud of you</q></p></li>
+      <li class="rv"><time>Aug 2025</time><h3>The connector connects</h3><p>Kevin introduced Gordon to Cassie Betts of Made in South LA, and Gordon pointed back to USC's Radical Play Lab.</p></li>
+      <li class="rv"><time>Oct 2025</time><h3>Judge, and logo partner</h3><p>Kevin judged GGP's Lovable buildathon. Gordon: <q>We are proud Digital LA supporters.</q> Kevin: <q>Sure I'll send it!</q></p></li>
+      <li class="rv"><time>Apr 2026</time><h3>The collab offer</h3><p>Kevin: <q>Wanna invite Digital LA on a collab?</q></p></li>
+      <li class="rv"><time>Jun 2026</time><h3>The Gayming Awards</h3><p>Both in the house. Kevin posted it: <q>Yay Gordon and his students.</q></p></li>
+      <li class="rv"><time>Sep 2026</time><h3>Yale, meet USC</h3><p>Gordon introduced Kevin to Theresa Loong, the new head of Yale CCAM, on AI. Kevin: <q>Would love to!</q></p></li>
+      <li class="rv"><time>Oct 2026</time><h3>LA Tech Week, at USC</h3><p>Kevin: <q>Good to c u Gordon at USC!</q></p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 06 COMING ATTRACTION -->
+<section id="coming" class="coming">
+  <div class="wrap">
+    <p class="kick">06 &middot; Coming Attraction</p>
+    <h2>Starring Kevin Winston, <em>in red.</em></h2>
+    <p class="lede">Gordon's birthday weekend in Palm Springs, with Pride. Starring Kevin, in red, cake in hand.</p>
+    <div class="screen rv">
+      <video controls playsinline preload="none" poster="media/flyover-poster.jpg" width="1280" height="720" aria-label="Palm Springs birthday flyover, a short film starring Kevin">
+        <source src="media/flyover.mp4" type="video/mp4">
+        <a href="media/flyover.mp4">Watch the flyover</a>
+      </video>
+    </div>
+    <p class="dates">Nov 6 <em>to</em> 8</p>
+    <p class="dim">Palm Springs &middot; Come fly with us</p>
+    <div class="stills">
+      <img class="rv" src="media/fly1.jpg" alt="Kevin in red, mid-flight over a Palm Springs pool at sunset, holding a Happy Birthday Gordon cake" width="1200" height="672" loading="lazy">
+      <img class="rv" src="media/fly3.jpg" alt="Kevin smiling close to camera above the pool, cake held out, palms and mountains behind" width="1200" height="672" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 07 NEXT -->
+<section id="next" class="next">
+  <div class="wrap">
+    <p class="kick">07 &middot; What's Next</p>
+    <h2>Three open <em>invitations.</em></h2>
+    <p class="lede rv">No homework attached. Say yes to any, all, or none.</p>
+    <div class="invites">
+      <article class="invite rv">
+        <div class="no">I</div>
+        <h3>Digital LA &times; GGP, the collab post</h3>
+        <p>You asked for it in April: a collab invite, so you would not have to write the text or pick the graphic. The next one shows up finished, copy and graphic ready. You just tap accept.</p>
+        <span class="ticket">Admit Digital LA</span>
+      </article>
+      <article class="invite rv">
+        <div class="no">II</div>
+        <h3>Yale CCAM &times; USC Games, on AI</h3>
+        <p>Theresa already said you should come talk. Your November trip to Yale could carry a Hollywood plus games plus AI conversation, with a USC Games voice beside yours.</p>
+        <span class="ticket">Admit New Haven</span>
+      </article>
+      <article class="invite rv">
+        <div class="no">III</div>
+        <h3>State of the Industry, at USC</h3>
+        <p>Your own 2024 topic list: games on screen, AI, diversity, the business. A Digital LA night at USC, Gordon moderating, as he offered in 2024, students on the panel and in the room, not just watching it.</p>
+        <span class="ticket">Admit Trojans</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SIGN-OFF -->
+<section class="sign">
+  <div class="wrap">
+    <p class="kick led">The last word</p>
+    <blockquote class="rv">&ldquo;you are doing the most. Proud of you&rdquo;</blockquote>
+    <span class="cite">Gordon, to Kevin, May 2025</span>
+    <p class="love rv"><i class="w">W</i>ith love <span>from Gordon</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="src">
+  <div class="wrap">
+    <h2>Public sources, for the Degree Police</h2>
+    <ol>
+      <li><a href="https://www.smdp.com/faces-of-silicon-beach-kevin-winston/">Santa Monica Daily Press, Faces of Silicon Beach: Kevin Winston (2014)</a></li>
+      <li><a href="https://www.socaltech.com/what_i_learned_in___4_kevin_winston/s-0058379.html">socaltech interview with Kevin Winston (2015)</a></li>
+      <li><a href="https://bhiff.sched.com/speaker/kevin147">Beverly Hills Film Festival speaker bio</a></li>
+      <li><a href="https://www.builtinla.com/articles/silicon-beach-fest-hollywood-will-unite-startups-and-hollywood-one-day-conference">Built In LA, Silicon Beach Fest Hollywood (2013)</a></li>
+      <li><a href="https://alumni.yale.edu/news/yale-hollywood-fest-concludes-its-4th-annual-global-edition">Yale Alumni, Yale in Hollywood Fest</a></li>
+      <li><a href="https://alumni.yale.edu/events/venture-capitalism-firms-and-startups-southern-california-perspective">Yale Alumni, Accelerate Yale LA webinar (2020)</a></li>
+    </ol>
+    <p style="margin-top:18px">Audience figures are as of the year stated. Quotes from Kevin and Gordon are their own words, from their messages and posts. Art made with Higgsfield.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var d=document.documentElement;
+  if(!('IntersectionObserver' in window))return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  d.classList.add('js');
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>
