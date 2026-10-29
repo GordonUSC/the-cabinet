@@ -290,7 +290,7 @@
       "id": "final-boss",
       "title": "FINAL BOSS",
       "subtitle": "Team identity, kit concepts, and a game",
-      "purpose": "Meet a dodgeball team, compare twenty kit concepts, and explore Boss Rush.",
+      "purpose": "Meet a dodgeball team, compare twenty kit concepts, and play Boss Rush on a phone or a PC.",
       "collection": "design",
       "url": "https://gordonusc.github.io/final-boss/",
       "aliases": [
@@ -319,6 +319,61 @@
         "imageAlt": "Generated illustration of Gordon in a FINAL BOSS jersey, holding a dodgeball"
       },
       "role": "experience"
+    },
+    {
+      "id": "boss-rush",
+      "title": "Boss Rush",
+      "subtitle": "The FINAL BOSS game, phone edition",
+      "purpose": "Go straight to the dodgeball game: Sin City rules, 8 on 8 with five balls and a 15-second ball-control clock. The start screen also links the PC edition.",
+      "collection": "design",
+      "url": "https://gordonusc.github.io/final-boss/play/",
+      "aliases": [
+        "Boss Rush",
+        "dodgeball",
+        "game",
+        "FINAL BOSS",
+        "mobile",
+        "phone",
+        "play"
+      ],
+      "legacyRooms": [
+        "stadium"
+      ],
+      "note": "Playable game · phone",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/final-boss",
+      "role": "related",
+      "parentId": "final-boss",
+      "relationship": "Play the game · phone"
+    },
+    {
+      "id": "boss-rush-pc",
+      "title": "Boss Rush PC",
+      "subtitle": "The FINAL BOSS game, keyboard edition",
+      "purpose": "The same dodgeball game built for a keyboard and a larger screen.",
+      "collection": "design",
+      "url": "https://gordonusc.github.io/final-boss-pc/play/",
+      "aliases": [
+        "Boss Rush",
+        "Boss Rush PC",
+        "dodgeball",
+        "game",
+        "FINAL BOSS",
+        "PC",
+        "desktop",
+        "keyboard"
+      ],
+      "legacyRooms": [
+        "stadium"
+      ],
+      "note": "Playable game · PC",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/final-boss-pc",
+      "role": "related",
+      "parentId": "final-boss",
+      "relationship": "Play the game · PC"
     },
     {
       "id": "pizza-baby",
