@@ -575,6 +575,35 @@
       "role": "experience"
     },
     {
+      "id": "latenite",
+      "title": "LATENITE, Cue by Cue",
+      "subtitle": "A night at Pechanga Arena, October 11, 2026",
+      "purpose": "Replay ISOKNOCK b2b RL Grime at NiteHarts LATENITE as a light show you run: press GO through the night and hold DROP through the build.",
+      "collection": "music",
+      "url": "https://gordonusc.github.io/latenite/",
+      "aliases": [
+        "LATENITE",
+        "LATE NITE",
+        "NiteHarts",
+        "ISOKNOCK",
+        "RL Grime",
+        "ISOxo",
+        "Knock2",
+        "music",
+        "concert",
+        "light show",
+        "San Diego"
+      ],
+      "legacyRooms": [
+        "afterdark"
+      ],
+      "note": "Sound starts when you choose to play · October 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/latenite",
+      "role": "experience"
+    },
+    {
       "id": "chris-lake-tonight",
       "title": "Chris Lake in Los Angeles",
       "subtitle": "Concert guide, June 20, 2026",
@@ -845,6 +874,31 @@
       "family": "ctin",
       "image": "",
       "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
+    },
+    {
+      "id": "bellamy-family-tree",
+      "title": "The Bellamy Family",
+      "subtitle": "A living family tree",
+      "purpose": "A living family tree, seven generations of the Bellamy family, plus the family we choose. Explore the tree and the times the family moved through.",
+      "collection": "people",
+      "url": "https://gordonusc.github.io/bellamy-family-tree/",
+      "aliases": [
+        "Bellamy",
+        "family",
+        "family tree",
+        "genealogy",
+        "Family Matters",
+        "generations",
+        "history"
+      ],
+      "legacyRooms": [
+        "record"
+      ],
+      "note": "Family archive · from the 2022 family book",
+      "family": null,
+      "image": "shots/bellamy-family-tree.jpg",
+      "repo": "https://github.com/GordonUSC/bellamy-family-tree",
       "role": "experience"
     },
     {
