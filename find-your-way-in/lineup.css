@@ -145,7 +145,7 @@ details p{font-size:16px;margin:10px 0 0}
   h1{font-size:132px}
   .hero-in{margin-top:-30vh;display:grid;grid-template-columns:1.05fr 1fr;gap:0 48px;align-items:end}
   .hero-in > .date,.hero-in > h1,.hero-in > .lede{grid-column:1}
-  .hero-in > .nav{grid-column:2;grid-row:1/5;align-self:end;margin:0}
+  .hero-in > .nav{grid-column:2;grid-row:1/5;align-self:end;margin:0;background:rgba(10,10,11,.82);padding:0 18px;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
   .hero-in > .wish,.hero-in > .who{grid-column:1}
   .door{display:grid;grid-template-columns:1.1fr 1fr;gap:0 48px;padding:0 40px 60px}
   .door::before,.door .art{grid-column:1/-1}
