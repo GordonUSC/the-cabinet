@@ -41,6 +41,22 @@ button:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
 #pause{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:12px;font:700 11px "IBM Plex Mono",monospace;letter-spacing:.1em;padding:8px 10px;min-height:36px;background:rgba(10,10,11,.6);color:var(--paper);border:1.5px solid rgba(246,241,231,.5);z-index:3}
 #pause[hidden]{display:none}
 .mini{font-size:11px;color:#bdb6a8;letter-spacing:.04em;margin-top:14px}
+#hub,#post{justify-content:flex-start;overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(10,10,11,.94);padding-top:calc(18px + env(safe-area-inset-top))}
+#hub,#post{padding-left:max(20px,calc(50% - 380px));padding-right:max(20px,calc(50% - 380px))}
+.bar{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.bar span{background:#16161a;border:1px solid #2a2a2e;padding:5px 8px;font-size:11px;letter-spacing:.06em;text-transform:uppercase}.bar b{color:var(--acid)}
+.panel{border-top:2px solid var(--c,var(--acid));margin:16px 0 0;padding-top:10px}.panel h3{font:400 26px/1 Anton,Impact,sans-serif;text-transform:uppercase;margin:0 0 4px;color:var(--c,var(--acid))}.panel .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#bdb6a8;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.card{position:relative;text-align:left;background:#121215;border:2px solid #2a2a2e;padding:0;color:var(--paper);font:500 12px/1.35 "IBM Plex Mono",monospace;text-transform:none;letter-spacing:0;min-height:0}
+.card img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#1d1d22}
+.card .in{padding:8px}.card b{display:block;font:400 18px/1 Anton,Impact,sans-serif;text-transform:uppercase;margin-bottom:4px}
+.card[aria-pressed=true]{border-color:var(--acid);box-shadow:0 0 0 2px var(--acid)}.card[aria-pressed=true]:after{content:"STARTER";position:absolute;top:6px;left:6px;background:var(--acid);color:var(--ink);font:700 10px "IBM Plex Mono";padding:3px 6px}
+.rt{display:grid;grid-template-columns:auto 1fr;gap:2px 6px;font-size:10px;margin:4px 0}.rt i{display:block;height:6px;margin-top:3px;background:linear-gradient(90deg,var(--acid) calc(var(--v)*20%),#2a2a2e 0)}
+.plays{display:grid;gap:8px}.play{text-align:left;background:#121215;border:2px solid #2a2a2e;color:var(--paper);font:500 13px/1.4 "IBM Plex Mono",monospace;text-transform:none;letter-spacing:0;padding:10px 12px;min-height:0}.play b{display:block;font:400 24px/1 Anton,Impact,sans-serif;text-transform:uppercase;color:var(--pink)}.play[aria-pressed=true]{border-color:var(--pink);box-shadow:0 0 0 2px var(--pink)}
+.fgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;max-width:400px}.fgrid button{aspect-ratio:1;min-height:0;padding:0;background:#1a1a1f;border:1px solid #2a2a2e;font:400 14px Anton;color:var(--ink)}.fgrid button.disco{background:var(--acid)}.fgrid button.speaker{background:var(--pink)}.fgrid button.rig{background:var(--cyan)}
+.tools{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tools button{font:700 12px "IBM Plex Mono";padding:8px 10px;min-height:40px;background:#121215;color:var(--paper);border:2px solid #2a2a2e;text-transform:uppercase}.tools button[aria-pressed=true]{border-color:var(--paper)}
+.tree{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.tree .col h4{font:700 11px "IBM Plex Mono";letter-spacing:.1em;margin:0 0 6px;color:var(--c)}.tech{width:100%;text-align:left;background:#121215;border:2px solid #2a2a2e;color:var(--paper);font:500 11px/1.3 "IBM Plex Mono",monospace;text-transform:none;letter-spacing:0;padding:8px;margin-bottom:6px;min-height:0}.tech b{display:block;font:400 16px/1.05 Anton;text-transform:uppercase}.tech.own{border-color:var(--acid);background:#1b2008}.tech:disabled{opacity:.45}
+.math{font:400 30px/1.1 Anton,Impact,sans-serif;margin:8px 0 12px}.math em{font-style:normal;color:var(--pink)}
+.sticky{position:sticky;bottom:calc(-28px - env(safe-area-inset-bottom));background:rgba(10,10,11,.97);border-top:2px solid var(--acid);padding:10px 0 calc(10px + env(safe-area-inset-bottom));margin:16px 0 0;flex-wrap:nowrap}.sticky button{font-size:19px;padding:12px 12px;min-height:48px;flex:1 1 auto}
 noscript p{position:fixed;inset:auto 20px 30px;z-index:5;background:var(--ink);padding:16px;border:2px solid var(--acid)}
 </style>
 </head>
@@ -52,13 +68,17 @@ noscript p{position:fixed;inset:auto 20px 30px;z-index:5;background:var(--ink);p
 <section class="screen" id="start">
   <span class="tag">Nov 9 · Gordon's 56th · after-party</span>
   <h1>Pack<em>the</em>floor</h1>
-  <p>Your guests are dancing up to the door. Tap on the beat as each one reaches it to pull them onto your floor. Fill all 56 spots before the song ends.</p>
-  <div class="how"><span>Tap anywhere</span><span>On the beat</span><span>Gold guests = x2</span></div>
+  <p>Seven nights. One crew. Call the play, build the floor, research the party, then pull every guest in on the beat to your birthday song. Night 7 is your birthday: 56 on the floor.</p>
+  <div class="how"><span>Manage a crew</span><span>Call a play</span><span>Build the floor</span><span>Tap on the beat</span></div>
   <div class="btns">
-    <button id="go" disabled>Loading</button>
+    <button id="season" disabled>New season</button>
+    <button class="pink" id="cont" hidden>Continue</button>
+  </div>
+  <div class="btns" style="margin-top:10px">
+    <button class="alt" id="go" disabled>Quick party</button>
     <button class="alt" id="easy" disabled>Relaxed</button>
   </div>
-  <p class="mini">Sound on. Relaxed mode keeps the beat for you, so the whole party is yours either way. Pass the phone and see who packs it best.</p>
+  <p class="mini">Sound on. Relaxed keeps the beat for you, so every night is yours either way. "Sim night" plays it out from your crew's ratings, Football Manager style.</p>
 </section>
 
 <section class="screen" id="end" hidden>
@@ -77,6 +97,26 @@ noscript p{position:fixed;inset:auto 20px 30px;z-index:5;background:var(--ink);p
   </div>
   <p class="mini" id="beat">Best score on this phone stays here. Can anyone beat it?</p>
 </section>
+<section class="screen" id="hub" hidden>
+  <span class="tag" id="hTag">Night 1 of 7</span>
+  <h2 id="hTitle">Opening night</h2>
+  <div class="bar" id="hBar"></div>
+  <div class="panel" style="--c:var(--acid)"><h3>Crew</h3><p class="k">Football Manager rules: pick <span id="slots">3</span> starters. Ratings stack: Groove widens the beat, Hype raises points, Heart forgives misses.</p><div class="cards" id="crew"></div></div>
+  <div class="panel" style="--c:var(--pink)"><h3>Call the play</h3><p class="k">Madden rules: three plays from your playbook tonight. Each one changes who shows up and how they score.</p><div class="plays" id="plays"></div></div>
+  <div class="panel" style="--c:var(--cyan)"><h3>Build the floor</h3><p class="k">Minecraft and Civ rules: place builds on your 8 by 8 floor. Adjacency pays, but every build takes a spot a dancer could use. Night 7 needs 56 open spots.</p><div class="tools" id="btools"></div><div class="fgrid" id="fgrid"></div></div>
+  <div class="panel" style="--c:var(--uv)"><h3>Research</h3><p class="k">Civilization rules: spend Vibe on the party tech tree. Each branch unlocks in order. One more night.</p><div class="tree" id="tree"></div></div>
+  <div class="sticky btns"><button id="startNight">Start night</button><button class="alt" id="simNight">Sim night</button><button class="alt" id="relaxNight">Relaxed</button></div>
+</section>
+
+<section class="screen" id="post" hidden>
+  <span class="tag" id="pTag">Final whistle</span>
+  <h2 id="pTitle">Win</h2>
+  <div class="math" id="pMath"></div>
+  <div class="bar" id="pBar"></div>
+  <div class="panel" style="--c:var(--acid)"><h3 id="draftH">Sign a free agent</h3><p class="k" id="draftK">Pick one to join your crew.</p><div class="cards" id="draft"></div></div>
+  <div class="sticky btns"><button id="toHub">Next night</button></div>
+</section>
+
 <noscript><p>Pack the Floor needs JavaScript. Happy 56th birthday, Gordon: the room is full because you made it be.</p></noscript>
 
 <script>
@@ -92,13 +132,22 @@ const BEAT=0.5,TRAVEL=2.2,WIN=0.13,PERF=0.05,GOOD=0.09,GOAL=56,NV=24;
 let seed=56;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 
 // chart on the measured 120 BPM grid (beat 0 at 0.00 s, band in at 8 s)
-function chart(){
+function chart(play,extraGold){
   const t=[];
-  for(let s=8;s<40;s+=2)t.push({at:s});
-  for(let s=40;s<80;s+=1){t.push({at:s});if((s-40)%8===6)t.push({at:s+0.5,vip:true})}
-  for(let s=80;s<112;s+=2){t.push({at:s});t.push({at:s+0.5,vip:(s-80)%8===6})}
-  return t.sort((a,b)=>a.at-b.at);
+  if(play==='slow'){for(let s=8;s<112;s+=2)t.push({at:s,vip:(s-8)%16===14})}
+  else if(play==='blitz'){for(let s=8;s<16;s+=1)t.push({at:s});for(let s=16;s<112;s+=1)t.push({at:s,vip:(s-16)%10===9});for(let s=80;s<112;s+=4)t.push({at:s+0.5})}
+  else if(play==='drill'){for(let s=8;s<50;s+=2)t.push({at:s});for(let s=50;s<112;s+=2){t.push({at:s});t.push({at:s+0.5,vip:(s-50)%8===6})}}
+  else{
+    for(let s=8;s<40;s+=2)t.push({at:s});
+    for(let s=40;s<80;s+=1){t.push({at:s});if((s-40)%8===6)t.push({at:s+0.5,vip:true})}
+    for(let s=80;s<112;s+=2){t.push({at:s});t.push({at:s+0.5,vip:(s-80)%8===6})}
+  }
+  if(play==='hail')t.forEach((g,i)=>{if(i%4===3)g.vip=true});
+  t.sort((a,b)=>a.at-b.at);
+  for(let k=0,n=0;k<t.length&&n<(extraGold||0);k+=7){if(!t[k].vip){t[k].vip=true;n++}}
+  return t;
 }
+const BUILD={disco:{n:'Disco ball',d:'Every guest in its row scores +30%',c:0xdcff2e},speaker:{n:'Speaker stack',d:'Guests on the 8 tiles around it score +50%',c:0xff2e88},rig:{n:'Light rig',d:'Every guest in its column scores +30%',c:0x19e0ff}};
 
 class Party extends Phaser.Scene{
   constructor(){super('party')}
@@ -122,7 +171,7 @@ class Party extends Phaser.Scene{
     this.input.keyboard.on('keydown-SPACE',()=>this.judge());
     this.scale.on('resize',()=>this.layout());this.layout();
     window.__ptf={scene:this,chart:()=>this.G.map(g=>g.at),state:()=>({floor:this.floor.length,score:this.score,perfects:this.perfects,best:this.best,running:this.running,won:this.won,t:this.now()})};
-    $('go').disabled=false;$('go').textContent='Play';$('easy').disabled=false;
+    $('go').disabled=false;$('go').textContent='Quick party';$('easy').disabled=false;$('season').disabled=false;window.seasonReady&&window.seasonReady();
   }
   makeTextures(){
     const g=this.make.graphics({x:0,y:0,add:false});
@@ -155,20 +204,29 @@ class Party extends Phaser.Scene{
   }
   layout(){
     const W=this.scale.width,H=this.scale.height;this.W=W;this.H=H;
-    this.doorX=W*0.74;this.laneY=H*0.83;this.floorTop=Math.max(130,H*0.21);this.floorH=H*0.48;
-    this.fw=Math.min(W-36,520);this.fx0=(W-this.fw)/2;this.sc=Math.min(1.1,Math.min((this.fw/8)/44,(this.floorH/7)/70));
+    this.doorX=W*0.74;this.laneY=H*0.83;this.floorTop=Math.max(130,H*0.19);this.floorH=Math.min(H*0.52,(Math.min(W-36,520))*1.15);
+    this.fw=Math.min(W-36,520);this.fx0=(W-this.fw)/2;this.sc=Math.min(1.1,Math.min((this.fw/8)/44,(this.floorH/8)/70));
     const top=Math.max(14,H*0.02);
     this.hud1.setPosition(16,top+46);this.hud2.setPosition(16,top+58);
     this.hud3.setPosition(W-16,top+46);this.hud4.setPosition(W-16,top+58);this.hud5.setPosition(W-16,top+90);
     this.candleY=top+6;
   }
-  spot(i){const cols=8,rows=7,c=i%cols,r=(i/cols)|0,cw=this.fw/cols,rh=this.floorH/rows;return [this.fx0+cw*(c+.5)+((r%2)?cw*.12:-cw*.12),this.floorTop+rh*(r+.9)]}
+  tile(i){return this.free?this.free[Math.min(i,this.free.length-1)]:i}
+  tileXY(k){const cols=8,rows=8,c=k%cols,r=(k/cols)|0,cw=this.fw/cols,rh=this.floorH/rows;return [this.fx0+cw*(c+.5),this.floorTop+rh*(r+.9),c,r]}
+  spot(i){const k=this.tile(i),[x,y,c,r]=this.tileXY(k),cw=this.fw/8;return [x+((r%2)?cw*.12:-cw*.12),y]}
+  adj(k){const B=this.cfg.builds,c=k%8,r=(k/8)|0;let b=0;
+    for(const key in B){const j=+key,bc=j%8,br=(j/8)|0,t=B[key];
+      if(t==='disco'&&br===r)b+=.3;if(t==='rig'&&bc===c)b+=.3;if(t==='speaker'&&Math.abs(bc-c)<=1&&Math.abs(br-r)<=1)b+=.5}
+    return b*this.cfg.builder}
   now(){const c=this.sound.context;if(!(this.running&&!this.paused))return this.pausedAt||0;const pt=(performance.now()-this.perfStart)/1000;if(c&&this.ctxStart!=null){const at=c.currentTime-this.ctxStart;if(at>0.05||pt<0.6)return Math.max(0,at-(c.outputLatency||c.baseLatency||0))}return pt}
-  begin(mode){
-    this.mode=mode;seed=56;
+  begin(mode,cfg){
+    this.mode=mode;this.cfg=cfg=Object.assign({play:'base',win:0,playMult:1,vipMult:2,forgive:0,soon:0,vibeEvery:7,vibeCap:8,start:0,builds:{},target:GOAL,mentor:false,bassDrop:false,extraGold:0,builder:1,scholar:false,hype:0,season:false,label:''},cfg||{});
+    seed=56+(cfg.night||0)*13;
     this.layer.removeAll(true);
-    this.G=chart().map((c,i)=>({...c,v:(rnd()*NV)|0,state:'walk',spr:null}));
-    this.floor=[];this.score=0;this.streak=0;this.best=0;this.perfects=0;this.mult=1;this.won=false;this.pausedAt=0;this.lastBeat=-1;
+    this.G=chart(cfg.play,cfg.extraGold).map((c,i)=>({...c,v:(rnd()*NV)|0,state:'walk',spr:null}));
+    this.free=[];for(let i=0;i<64;i++)if(!cfg.builds[i])this.free.push(i);
+    this.floor=[];this.score=0;this.streak=0;this.best=0;this.perfects=0;this.mult=1;this.won=false;this.pausedAt=0;this.lastBeat=-1;this.forgiven=0;this.bonusPts=0;this.basePts=0;this.perfRun=0;
+    for(let i=0;i<cfg.start;i++){const g={at:-1,v:(rnd()*NV)|0,state:'dance',spr:null};this.G.push(g);g.spot=this.floor.length;this.floor.push(g);const [x,y]=this.spot(g.spot);this.sprite(g).setPosition(x,y).setScale(this.sc).setDepth(y)}
     this.big.setAlpha(0);this.running=true;
     this.song.stop();this.song.play();this.ctxStart=this.sound.context?this.sound.context.currentTime:0;this.perfStart=performance.now();
   }
@@ -178,16 +236,19 @@ class Party extends Phaser.Scene{
     const t=this.now();let cand=null,d=9;
     for(const g of this.G){if(g.state!=='walk')continue;const dd=Math.abs(t-g.at);if(dd<d){d=dd;cand=g}}
     this.ring(this.doorX,this.laneY-46,HEX.paper);
-    const win=this.mode==='easy'?0.3:WIN;
+    const w=this.cfg.win||0,win=this.mode==='easy'?0.3:WIN+w;
     if(!cand||d>win)return;
-    this.admit(cand,this.mode==='easy'||d<=PERF?'PERFECT':d<=GOOD?'GOOD':'IN!');
+    this.admit(cand,this.mode==='easy'||d<=PERF+w*.5?'PERFECT':d<=GOOD+w?'GOOD':'IN!');
   }
   admit(g,q){
     g.state='fly';const s=this.sprite(g);
-    const n=this.floor.length;g.spot=n%GOAL;this.floor.push(g);
-    this.streak++;this.best=Math.max(this.best,this.streak);this.mult=Math.min(8,1+Math.floor(this.streak/7));
-    if(q==='PERFECT')this.perfects++;
-    this.score+=(q==='PERFECT'?100:q==='GOOD'?60:30)*(g.vip?2:1)*this.mult;
+    const n=this.floor.length,cap=this.free.length;g.spot=n<cap?n:(n%cap);this.floor.push(g);
+    const cf=this.cfg;this.streak++;this.best=Math.max(this.best,this.streak);this.mult=Math.min(cf.vibeCap,1+Math.floor(this.streak/cf.vibeEvery));
+    if(q==='PERFECT'){this.perfects++;this.perfRun++;if(cf.scholar&&this.perfRun%7===0){this.streak+=cf.vibeEvery}if(cf.bassDrop&&this.perfRun%16===0){this.score+=500;this.bonusPts+=500;this.confetti.explode(RM?10:60,this.W/2,this.H*.5);this.say('BASS DROP +500','#ff2e88')}}else this.perfRun=0;
+    const base=(q==='PERFECT'?100:q==='GOOD'?60:30)*(g.vip?cf.vipMult:1)*(cf.mentor&&n<7?2:1)*(1+cf.hype);
+    const ab=this.adj(this.tile(g.spot));
+    const pts=Math.round(base*(1+ab)*cf.playMult)*this.mult;this.basePts+=Math.round(base);this.bonusPts+=Math.round(base*ab);
+    this.score+=pts;
     this.say(q+(g.vip?' x2':''),q==='PERFECT'?'#dcff2e':q==='GOOD'?'#19e0ff':'#f6f1e7');
     this.spark.explode(g.vip?30:14,this.doorX,this.laneY-46);
     if(!RM)this.cameras.main.shake(g.vip?160:90,g.vip?.008:.003);
@@ -196,30 +257,32 @@ class Party extends Phaser.Scene{
     s.setDepth(ty);
     this.tweens.add({targets:s,x:tx,scale:this.sc,duration:420,ease:'Cubic.easeOut'});
     this.tweens.add({targets:s,y:{from:s.y,to:ty},duration:420,ease:'Back.easeOut',onComplete:()=>{g.state='dance'}});
-    if(this.floor.length===GOAL&&!this.won){this.won=true;this.packed()}
+    if(this.floor.length===(this.cfg.target||GOAL)&&!this.won){this.won=true;this.packed()}
   }
   packed(){
     this.fl.setAlpha(.7);this.tweens.add({targets:this.fl,alpha:0,duration:600});if(!RM)this.cameras.main.shake(500,.014);
     this.confetti.explode(RM?20:160,this.W/2,this.H*0.55);
-    this.say('FLOOR PACKED!','#ff2e88',true);
+    this.say(this.cfg.target===GOAL?'FLOOR PACKED!':'TARGET HIT!','#ff2e88',true);
     this.big.setPosition(this.W/2,this.H*0.42).setScale(Math.min(.55,this.W/1500)).setAlpha(0);
     this.tweens.add({targets:this.big,alpha:1,scale:Math.min(.6,this.W/1300),duration:500,ease:'Back.easeOut',yoyo:true,hold:1600});
   }
   miss(g){
-    this.streak=0;this.mult=1;this.say('AGAIN','#bdb6a8');
-    const t=this.now();let slot=Math.ceil((t+2.6)*2)/2;const used=new Set(this.G.filter(x=>x.state==='walk').map(x=>x.at));
+    if(this.forgiven<this.cfg.forgive){this.forgiven++;this.say('SAVED','#19e0ff')}else{this.streak=0;this.mult=1;this.say('AGAIN','#bdb6a8')}
+    const t=this.now();let slot=Math.ceil((t+Math.max(0.6,2.6-this.cfg.soon))*2)/2;const used=new Set(this.G.filter(x=>x.state==='walk').map(x=>x.at));
     while(used.has(slot))slot+=0.5;
     if(slot<117.5){g.at=slot;if(g.spr)g.spr.setPosition(-60,this.laneY)}else{g.state='gone';if(g.spr)g.spr.setVisible(false)}
   }
   say(txt,col,big){
     this.word.setText(txt).setColor(col).setFontSize(big?Math.min(72,this.W*.115):38);
-    this.word.setPosition(big?this.W/2:this.doorX,big?this.H*.62:this.laneY-130).setAlpha(1).setScale(1.3);
+    const hw=this.word.width*0.65+8,wx=big?this.W/2:Math.max(hw,Math.min(this.W-hw,this.doorX));
+    this.word.setPosition(wx,big?this.H*.62:this.laneY-130).setAlpha(1).setScale(1.3);
     this.tweens.killTweensOf(this.word);
     this.tweens.add({targets:this.word,scale:1,y:this.word.y-24,alpha:0,duration:big?1800:560,ease:'Quad.easeIn'});
   }
   ring(x,y,c){const r=this.add.circle(x,y,20).setStrokeStyle(3,c).setDepth(5);this.tweens.add({targets:r,radius:70,alpha:0,duration:380,onComplete:()=>r.destroy()})}
   finish(){
     this.running=false;this.song.stop();$('pause').hidden=true;
+    if(this.cfg.season&&window.onNightEnd){window.onNightEnd({guests:this.floor.length,score:this.score,perfects:this.perfects,best:this.best,base:this.basePts,bonus:this.bonusPts,target:this.cfg.target});return}
     const n=Math.min(this.floor.length,GOAL);let b=0;try{b=+localStorage.getItem('ptf_best')||0;if(this.score>b){localStorage.setItem('ptf_best',this.score);b=this.score}}catch(e){b=Math.max(b,this.score)}
     this.results.push({p:this.player,score:this.score});
     $('sGuests').textContent=n+'/'+GOAL;$('sScore').textContent=this.score.toLocaleString();$('sPerf').textContent=this.perfects;$('sBest').textContent=b.toLocaleString();
@@ -241,7 +304,14 @@ class Party extends Phaser.Scene{
     // dance floor tiles light on the beat
     const fh=this.floorH,y0=this.floorTop-6;
     g.fillStyle(HEX.ink,.72).fillRoundedRect(this.fx0-8,y0-8,this.fw+16,fh+16,10);g.lineStyle(2,HEX.acid,.5).strokeRoundedRect(this.fx0-8,y0-8,this.fw+16,fh+16,10);
-    for(let r=0;r<7;r++)for(let c=0;c<8;c++){const on=this.running&&((r+c+b)%5===0);g.fillStyle(on?[HEX.pink,HEX.uv,HEX.cyan,HEX.acid][(r*3+c+b)%4]:HEX.paper,on?.3:.06).fillRect(this.fx0+c*this.fw/8+1,y0+r*fh/7+1,this.fw/8-2,fh/7-2)}
+    const tw=this.fw/8,th=fh/8,B=(this.cfg&&this.cfg.builds)||{};this.cfg=this.cfg||{target:GOAL};
+    for(let r=0;r<8;r++)for(let c=0;c<8;c++){const k=r*8+c,on=this.running&&((r+c+b)%5===0),tx=this.fx0+c*tw,ty=y0+r*th;
+      if(B[k]){const bc=BUILD[B[k]].c,cx=tx+tw/2,cy=ty+th/2,pul=1+(1-ph)*.15;g.fillStyle(bc,.2).fillRect(tx+1,ty+1,tw-2,th-2);
+        if(B[k]==='disco'){g.fillStyle(bc).fillCircle(cx,cy,Math.min(tw,th)*.28*pul);g.fillStyle(HEX.ink).fillRect(cx-1,ty+2,2,th*.2)}
+        else if(B[k]==='speaker'){g.fillStyle(bc).fillRoundedRect(cx-tw*.22,cy-th*.32,tw*.44,th*.64,4);g.fillStyle(HEX.ink).fillCircle(cx,cy+th*.1,Math.min(tw,th)*.13*pul).fillCircle(cx,cy-th*.17,Math.min(tw,th)*.07)}
+        else{g.fillStyle(bc).fillTriangle(cx,cy-th*.32,cx-tw*.28,cy+th*.28,cx+tw*.28,cy+th*.28);g.fillStyle(HEX.ink).fillCircle(cx,cy+th*.05,Math.min(tw,th)*.08*pul)}
+        continue}
+      g.fillStyle(on?[HEX.pink,HEX.uv,HEX.cyan,HEX.acid][(r*3+c+b)%4]:HEX.paper,on?.3:.06).fillRect(tx+1,ty+1,tw-2,th-2)}
     // lane and door
     const x=this.doorX,y=this.laneY,ps=1+(1-ph)*.12;
     g.fillStyle(HEX.ink,.55).fillRect(0,y+2,W,22);g.fillStyle(HEX.cyan);for(let i=-24;i<W;i+=24)g.fillRect(i+((t*96)%24),y+12,10,2);
@@ -263,8 +333,8 @@ class Party extends Phaser.Scene{
       else if(q.state==='dance'&&bt){const s=q.spr;s.setTexture(`p${q.v}${q.vip?'v':''}_${(b+q.v)%2}`);if(!RM)this.tweens.add({targets:s,y:s.y-8*this.sc,duration:110,yoyo:true,ease:'Quad.easeOut'})}
     }
     // hud
-    this.hud1.setText((this.player>1?'P'+this.player+' · ':'')+'ON THE FLOOR');
-    this.hud2.setText(Math.min(this.floor.length,GOAL)+'/'+GOAL).setColor(this.floor.length>=GOAL?'#ff2e88':'#dcff2e');
+    this.hud1.setText(this.cfg.label||((this.player>1?'P'+this.player+' · ':'')+'ON THE FLOOR'));
+    const tg=this.cfg.target||GOAL;this.hud2.setText(this.floor.length+'/'+tg).setColor(this.floor.length>=tg?'#ff2e88':'#dcff2e');
     this.hud4.setText(this.score.toLocaleString());this.hud5.setText(this.mult>1?'VIBE x'+this.mult:'').setColor(this.mult>=5?'#ff2e88':'#dcff2e');
     g.fillStyle(HEX.paper,.2).fillRect(0,H-4,W,4);g.fillStyle(HEX.acid).fillRect(0,H-4,W*Math.min(1,t/(this.song.duration||120)),4);
     if(!this.paused&&t>=(this.song.duration||120)-0.06)this.finish();
@@ -276,12 +346,122 @@ document.fonts&&document.fonts.load('34px Anton');
 const game=new Phaser.Game({type:Phaser.AUTO,parent:'game',transparent:true,scale:{mode:Phaser.Scale.RESIZE,width:innerWidth,height:innerHeight},
   render:{antialias:true,pixelArt:false},fps:{target:60},audio:{disableWebAudio:false},scene:[Party],
   callbacks:{postBoot:g=>{scene=g.scene.keys.party}}});
-const start=m=>{$('start').hidden=true;$('end').hidden=true;$('pause').hidden=false;$('pause').textContent='II PAUSE';scene.paused=false;scene.begin(m)};
+const start=(m,cfg)=>{['start','end','hub','post'].forEach(i=>$(i).hidden=true);$('pause').hidden=false;$('pause').textContent='II PAUSE';scene.paused=false;scene.begin(m,cfg)};window.__start=start;
 $('go').onclick=()=>start('play');$('easy').onclick=()=>start('easy');
-$('again').onclick=()=>start(scene.mode);$('pass').onclick=()=>{scene.player++;start(scene.mode)};
+$('again').onclick=()=>start(scene.mode,scene.cfg);$('pass').onclick=()=>{scene.player++;start(scene.mode,scene.cfg)};
 $('pause').onclick=e=>{e.stopPropagation();if(!scene.running)return;scene.paused=!scene.paused;
   if(scene.paused){scene.paused=false;scene.pausedAt=scene.now();scene.paused=true;scene.song.pause();$('pause').textContent='▶ PLAY'}else{scene.song.resume();scene.ctxStart=scene.sound.context.currentTime-scene.pausedAt;scene.perfStart=performance.now()-scene.pausedAt*1000;$('pause').textContent='II PAUSE'}};
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&scene&&scene.running&&!scene.paused)$('pause').click()});
+})();
+</script>
+
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const CREW=[
+ {id:'scholar',n:'The Scholar',img:'crew/scholar.jpg',g:3,h:2,he:4,a:'Every 7 perfect pulls in a row jumps your VIBE a level.',fx:c=>c.scholar=true},
+ {id:'dj',n:'The DJ',img:'crew/dj.jpg',g:5,h:3,he:1,a:'Reads the room: the beat window is 20 ms wider.',fx:c=>c.win+=0.02},
+ {id:'captain',n:'Dodgeball Captain',img:'crew/captain.jpg',g:2,h:4,he:3,a:'Missed guests get back in line a full bar sooner.',fx:c=>c.soon+=1},
+ {id:'coach',n:'The Coach',img:'crew/coach.jpg',g:2,h:3,he:3,a:'Knows the playbook: your play multiplier gets +0.3.',fx:c=>c.playMult+=0.3},
+ {id:'legend',n:'Drag Legend',img:'crew/legend.jpg',g:3,h:5,he:2,a:'Gold guests score x3 instead of x2.',fx:c=>c.vipMult=Math.max(c.vipMult,3)},
+ {id:'host',n:'Zero Proof Host',img:'crew/host.jpg',g:2,h:2,he:5,a:'Welcomes everyone: 2 more misses forgiven each night.',fx:c=>c.forgive+=2},
+ {id:'builder',n:'World Builder',img:'crew/builder.jpg',g:2,h:2,he:3,a:'Floor builds pay 50% more adjacency.',fx:c=>c.builder+=0.5},
+ {id:'mentor',n:'The Mentor',img:'crew/mentor.jpg',g:3,h:3,he:4,a:'Your first 7 guests each night score double.',fx:c=>c.mentor=true},
+ {id:'raver',n:'The Raver',img:'crew/raver.jpg',g:4,h:3,he:2,a:'VIBE can climb to x10.',fx:c=>c.vibeCap=Math.max(c.vibeCap,10)}];
+const PLAYS={
+ slow:{n:'Slow Jam',d:'A guest every other beat all night. Fewer dancers, every pull scores x1.6.',m:1.6},
+ blitz:{n:'Blitz',d:'A guest on every beat. Pack it fast, x1.0 points.',m:1},
+ hail:{n:'Hail Mary',d:'The normal chart, but every 4th guest is gold. x1.0.',m:1},
+ drill:{n:'Two-Minute Drill',d:'Easy first half, then pairs from 0:50 on. x1.2.',m:1.2},
+ screen:{n:'Screen Pass',d:'Safe and short: the beat window is 30 ms wider, x0.85 points.',m:.85,win:.03},
+ base:{n:'House Party',d:'Your classic night: every other beat, then every beat, then pairs. x1.1.',m:1.1}};
+const TECH={
+ sound:{n:'Sound',c:'var(--pink)',t:[{id:'sub',n:'Subwoofer',d:'Beat window +15 ms.',cost:6},{id:'drop',n:'Bass drop',d:'Every 16 perfect in a row: +500 and confetti.',cost:10},{id:'band',n:'Live band',d:'One more crew starter.',cost:16}]},
+ lights:{n:'Lights',c:'var(--acid)',t:[{id:'strobe',n:'Strobes',d:'VIBE levels up every 6 pulls, not 7.',cost:6},{id:'laser',n:'Lasers',d:'VIBE cap +2.',cost:10},{id:'chrome',n:'Chrome 56',d:'4 extra gold guests every night.',cost:16}]},
+ hosp:{n:'Hospitality',c:'var(--cyan)',t:[{id:'table',n:'Welcome table',d:'First 2 misses each night forgiven.',cost:6},{id:'bar',n:'Zero Proof bar',d:'Missed guests return a bar sooner.',cost:10},{id:'coat',n:'Coat check',d:'Start each night with 4 dancers already on the floor.',cost:16}]}};
+const TARGET=[20,26,32,38,44,50,56];
+const TITLE=['Opening night','Pool party','Game night','Classroom crush','Pride parade','The night before','Your birthday'];
+let S,sel={play:null,tool:'disco'};
+const save=()=>{try{localStorage.setItem('ptf_season',JSON.stringify(S))}catch(e){}};
+const load=()=>{try{return JSON.parse(localStorage.getItem('ptf_season')||'null')}catch(e){return null}};
+let rs=Date.now()%2147483647||5;const rnd=()=>(rs=(rs*16807)%2147483647)/2147483647;
+const pick=(arr,n)=>{const a=arr.slice(),o=[];while(o.length<n&&a.length)o.push(a.splice(rnd()*a.length|0,1)[0]);return o};
+function fresh(){return{night:0,record:[0,0],vibe:4,crew:['dj','host','coach'],start:['dj','host','coach'],tech:[],builds:{24:'disco'},inv:{disco:0,speaker:1,rig:1},hist:[],plays:null,draft:null,total:0}}
+const has=id=>S.tech.includes(id);
+const slots=()=>3+(has('band')?1:0);
+function cfgFor(play){
+  const c={season:true,night:S.night,play,playMult:PLAYS[play].m,win:PLAYS[play].win||0,vipMult:2,forgive:0,soon:0,vibeEvery:7,vibeCap:8,start:0,builds:S.builds,target:TARGET[S.night],builder:1,hype:0,extraGold:0,label:'NIGHT '+(S.night+1)+' · '+PLAYS[play].n.toUpperCase()};
+  let G=0,H=0,HE=0;S.start.forEach(id=>{const k=CREW.find(x=>x.id===id);G+=k.g;H+=k.h;HE+=k.he;k.fx(c)});
+  c.win+=G*0.003;c.hype+=H*0.02;c.forgive+=Math.floor(HE/5);
+  if(has('sub'))c.win+=0.015;if(has('drop'))c.bassDrop=true;if(has('strobe'))c.vibeEvery=6;if(has('laser'))c.vibeCap+=2;if(has('chrome'))c.extraGold=4;if(has('table'))c.forgive+=2;if(has('bar'))c.soon+=2;if(has('coat'))c.start=4;
+  return c;
+}
+function card(k,on,click){const b=document.createElement('button');b.className='card';b.setAttribute('aria-pressed',on?'true':'false');
+  b.innerHTML=`<img alt="" src="${k.img}" onerror="this.style.visibility='hidden'"><div class="in"><b>${k.n}</b><div class="rt"><span>Groove</span><i style="--v:${k.g}"></i><span>Hype</span><i style="--v:${k.h}"></i><span>Heart</span><i style="--v:${k.he}"></i></div>${k.a}</div>`;
+  b.onclick=click;return b}
+function hub(){
+  ['start','end','post'].forEach(i=>$(i).hidden=true);$('pause').hidden=true;
+  if(S.night>=7)return finale();
+  if(!S.plays){const keys=Object.keys(PLAYS);S.plays=pick(keys,3);save()}
+  if(!sel.play||!S.plays.includes(sel.play))sel.play=S.plays[0];
+  $('hTag').textContent='Night '+(S.night+1)+' of 7';$('hTitle').textContent=TITLE[S.night];
+  const open=64-Object.keys(S.builds).length;
+  $('hBar').innerHTML=`<span>Target <b>${TARGET[S.night]}</b> on the floor</span><span>Record <b>${S.record[0]}-${S.record[1]}</b></span><span>Vibe <b>${S.vibe}</b></span><span>Open spots <b>${open}</b></span><span>Season score <b>${S.total.toLocaleString()}</b></span>`;
+  $('slots').textContent=slots();
+  const cr=$('crew');cr.innerHTML='';S.crew.forEach(id=>{const k=CREW.find(x=>x.id===id),on=S.start.includes(id);cr.appendChild(card(k,on,()=>{if(on)S.start=S.start.filter(x=>x!==id);else if(S.start.length<slots())S.start.push(id);else{S.start.shift();S.start.push(id)}save();hub()}))});
+  const pl=$('plays');pl.innerHTML='';S.plays.forEach(id=>{const b=document.createElement('button');b.className='play';b.setAttribute('aria-pressed',sel.play===id?'true':'false');b.innerHTML=`<b>${PLAYS[id].n}</b>${PLAYS[id].d}`;b.onclick=()=>{sel.play=id;hub()};pl.appendChild(b)});
+  const bt=$('btools');bt.innerHTML='';[['disco','Disco ball'],['speaker','Speaker'],['rig','Light rig'],['clear','Remove']].forEach(([t,n])=>{const b=document.createElement('button');b.setAttribute('aria-pressed',sel.tool===t?'true':'false');b.textContent=t==='clear'?n:`${n} (${S.inv[t]||0})`;b.title=t==='clear'?'Remove a build':(window.BUILDINFO&&BUILDINFO[t])||'';b.onclick=()=>{sel.tool=t;hub()};bt.appendChild(b)});
+  const fg=$('fgrid');fg.innerHTML='';for(let i=0;i<64;i++){const b=document.createElement('button'),t=S.builds[i];if(t)b.className=t;b.textContent=t==='disco'?'●':t==='speaker'?'▮':t==='rig'?'▲':'';b.setAttribute('aria-label','Floor tile '+(i+1)+(t?' '+t:''));
+    b.onclick=()=>{if(sel.tool==='clear'){if(t){S.inv[t]=(S.inv[t]||0)+1;delete S.builds[i]}}else if(!t&&(S.inv[sel.tool]||0)>0&&64-Object.keys(S.builds).length>TARGET[6]){S.builds[i]=sel.tool;S.inv[sel.tool]--}save();hub()};fg.appendChild(b)}
+  const tr=$('tree');tr.innerHTML='';for(const key in TECH){const br=TECH[key],col=document.createElement('div');col.className='col';col.style.setProperty('--c',br.c);col.innerHTML=`<h4>${br.n.toUpperCase()}</h4>`;
+    br.t.forEach((t,ix)=>{const b=document.createElement('button');b.className='tech'+(has(t.id)?' own':'');const ok=!has(t.id)&&(ix===0||has(br.t[ix-1].id))&&S.vibe>=t.cost;b.disabled=!has(t.id)&&!ok;b.innerHTML=`<b>${t.n}</b>${has(t.id)?'Owned':t.cost+' Vibe'} · ${t.d}`;b.onclick=()=>{if(ok){S.vibe-=t.cost;S.tech.push(t.id);save();hub()}};col.appendChild(b)});tr.appendChild(col)}
+  $('hub').hidden=false;
+}
+function startNight(mode){const c=cfgFor(sel.play);S.lastPlay=sel.play;save();window.__start(mode,c)}
+function sim(){
+  const c=cfgFor(sel.play);let G=0;S.start.forEach(id=>G+=CREW.find(x=>x.id===id).g);
+  const chartN={slow:52,blitz:112,hail:93,drill:83,screen:93,base:93}[sel.play];
+  const acc=Math.min(.9,.5+G*.012+c.win*2+c.forgive*.01);let guests=c.start,score=0,streak=0,perf=0;
+  for(let i=0;i<chartN;i++){if(rnd()<acc){guests++;streak++;const q=rnd()<.6?100:60;if(q===100)perf++;const m=Math.min(c.vibeCap,1+Math.floor(streak/c.vibeEvery));score+=Math.round(q*(1+c.hype)*c.playMult*1.15)*m}else streak=0}
+  // missed guests come back once
+  guests=Math.min(guests+Math.round(chartN*(1-acc)*.6),64-Object.keys(S.builds).length);
+  window.onNightEnd({guests,score,perfects:perf,best:streak,base:0,bonus:0,target:c.target,sim:true});
+}
+window.onNightEnd=r=>{
+  const T=TARGET[S.night],win=r.guests>=T,earn=Math.round(r.score/4000)+(win?3:1);
+  S.record[win?0:1]++;S.vibe+=earn;S.total+=r.score;S.hist.push({n:S.night+1,play:S.lastPlay||sel.play,...r,win});
+  $('pTag').textContent='Night '+(S.night+1)+' · '+(PLAYS[S.lastPlay||sel.play]||PLAYS.base).n+(r.sim?' · simmed':'');
+  $('pTitle').textContent=win?(S.night===6?'Birthday packed.':'Win.'):'So close.';
+  $('pMath').innerHTML=`${r.guests} on the floor <em>/</em> ${T} target<br>${r.score.toLocaleString()} points`+(r.bonus?`<br><span style="font-size:18px;color:#19e0ff">${r.bonus.toLocaleString()} points came from your floor builds</span>`:'');
+  $('pBar').innerHTML=`<span>Perfect pulls <b>${r.perfects}</b></span><span>Best streak <b>${r.best}</b></span><span>Vibe earned <b>+${earn}</b></span><span>Record <b>${S.record[0]}-${S.record[1]}</b></span>`;
+  S.night++;S.plays=null;
+  const free=CREW.filter(k=>!S.crew.includes(k.id));S.draft=S.night<7?pick(free,3).map(k=>k.id):[];
+  // win also earns a build
+  if(win&&S.night<7){const b=['disco','speaker','rig'][rnd()*3|0];S.inv[b]=(S.inv[b]||0)+1;$('pBar').innerHTML+=`<span>New build <b>${b==='rig'?'light rig':b==='speaker'?'speaker':'disco ball'}</b></span>`}
+  save();
+  const d=$('draft');d.innerHTML='';
+  if(S.draft.length){$('draftH').textContent='Sign a free agent';$('draftK').textContent='Pick one to join your crew. You can start them next night.';
+    S.draft.forEach(id=>{const k=CREW.find(x=>x.id===id);d.appendChild(card(k,false,()=>{S.crew.push(id);S.draft=[];save();[...d.children].forEach(x=>x.disabled=true);d.firstChild&&0;$('draftK').textContent=k.n+' signed.'}))})}
+  else{$('draftH').textContent='Season over';$('draftK').textContent=''}
+  $('toHub').textContent=S.night>=7?'The finale':'Next night';
+  ['hub','start','end'].forEach(i=>$(i).hidden=true);$('post').hidden=false;$('post').scrollTop=0;
+};
+function finale(){
+  const n=S.hist.length?S.hist[S.hist.length-1].guests:0;
+  $('pTag').textContent='Season complete';$('pTitle').textContent=S.record[0]+'-'+S.record[1];
+  $('pMath').innerHTML=`${S.total.toLocaleString()} season points<br><span style="color:#ff2e88">The room is full because you made it be.</span>`;
+  $('pBar').innerHTML=S.hist.map(h=>`<span>N${h.n} <b>${h.guests}/${TARGET[h.n-1]}</b> ${h.win?'W':'L'}</span>`).join('');
+  $('draftH').textContent='Happy 56th, Gordon';$('draftK').textContent='Play again with a new crew, or replay any night.';$('draft').innerHTML='';
+  $('toHub').textContent='New season';$('toHub').onclick=()=>{S=fresh();save();$('toHub').onclick=hub;hub()};
+  ['hub','start','end'].forEach(i=>$(i).hidden=true);$('post').hidden=false;
+  try{localStorage.removeItem('ptf_season')}catch(e){}
+}
+$('toHub').onclick=hub;
+$('season').onclick=()=>{S=fresh();save();hub()};
+$('cont').onclick=()=>{S=load()||fresh();hub()};
+$('startNight').onclick=()=>startNight('play');$('relaxNight').onclick=()=>startNight('easy');$('simNight').onclick=sim;
+window.seasonReady=()=>{const L=load();if(L&&L.night>0&&L.night<7){$('cont').hidden=false;$('cont').textContent='Continue: night '+(L.night+1)}};
+window.__season={get:()=>S,set:v=>{S=v;save()},hub};
 })();
 </script>
 </body>
