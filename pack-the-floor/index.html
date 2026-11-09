@@ -165,6 +165,11 @@ function typed(t,night,secret){
     if(kinds.includes('squad')&&k%13===8&&nxt-g.at>=1){sq++;out.push({...g,squad:sq},{at:g.at+.25,squad:sq},{at:g.at+.5,squad:sq});continue}
     if(kinds.includes('shy')&&k%5===2){out.push({...g,shy:true});continue}
     out.push(g)}
+  if(night===4){let n=0;for(let i=0;i<out.length;i++){const g=out[i];if(!g.vip&&!g.shy&&!g.rope&&!g.squad&&g.at>14&&g.at<108){n++;if(n%9===4){g.float=true;const until=g.at+1.2;for(let j=i+1;j<out.length&&out[j].at<until;j++)out[j].skip=true}}}}
+  if(night===5){for(const g of out)if(g.at>=60&&g.at<76)g.skip=true;for(let s=60;s<76;s+=0.5)out.push({at:s,drop:true})}
+  if(night===6){let n=0;for(const g of out){if(!g.vip&&!g.shy&&!g.rope&&!g.squad&&g.at>10){n++;if(n%6===3)g.candle=true}}}
+  for(let i=out.length-1;i>=0;i--)if(out[i].skip)out.splice(i,1);
+  out.sort((a,b)=>a.at-b.at);
   if(secret){let best=null;for(const g of out){if(g.at>55&&g.at<75&&!g.vip&&!g.shy&&!g.rope&&!g.squad){best=g;break}}if(best)best.cake=true}
   return out;
 }
@@ -219,6 +224,15 @@ class Party extends Phaser.Scene{
     for(let i=0;i<5;i++){g.fillStyle([HEX.cyan,HEX.uv,HEX.acid,HEX.pink,HEX.cyan][i]).fillRect(21+i*5,26,3,11);g.fillStyle(HEX.sun).fillEllipse(22.5+i*5,23,4,7)}
     g.fillStyle(HEX.ink).fillCircle(26,64,2).fillCircle(38,64,2);g.lineStyle(4,HEX.paper).lineBetween(22,76,20,92).lineBetween(42,76,44,92);
     g.generateTexture('cake_0',64,96);g.generateTexture('cake_1',64,96);g.clear();
+    // parade float: a rolling rainbow arch with a crowd
+    g.fillStyle(HEX.pink).fillRoundedRect(4,58,88,26,8);g.fillStyle(HEX.ink).fillCircle(20,86,8).fillCircle(76,86,8);g.fillStyle(HEX.paper).fillCircle(20,86,3).fillCircle(76,86,3);
+    PRIDE.forEach((c,i)=>{g.lineStyle(4,c).beginPath();g.arc(48,60,40-i*4,Math.PI,0,false);g.strokePath()});
+    [[22,0xc68a5b,HEX.acid],[40,0x5a3825,HEX.cyan],[58,0xf1cfa8,HEX.uv],[74,0x7b4a2e,HEX.sun]].forEach(([x,sk,top])=>{g.fillStyle(top).fillRoundedRect(x-6,40,12,18,4);g.fillStyle(sk).fillCircle(x,34,6)});
+    g.generateTexture('float_0',96,96);g.generateTexture('float_1',96,96);g.clear();
+    // candle guest: a walking candle
+    g.fillStyle(HEX.paper).fillRoundedRect(22,30,20,46,6);g.fillStyle(HEX.pink).fillRect(22,44,20,5).fillRect(22,58,20,5);g.fillStyle(HEX.sun).fillEllipse(32,20,12,20);g.fillStyle(0xfff6c0).fillEllipse(32,23,5,9);
+    g.fillStyle(HEX.ink).fillCircle(28,40,2).fillCircle(36,40,2);g.lineStyle(4,HEX.paper).lineBetween(26,76,24,92).lineBetween(38,76,40,92);
+    g.generateTexture('candle_0',64,96);g.generateTexture('candle_1',64,96);g.clear();
     g.destroy();
   }
   drawGuest(g,o,up){
@@ -256,20 +270,25 @@ class Party extends Phaser.Scene{
     return (b+(this.comboTile?this.comboTile[k]:0))*this.cfg.builder}
   now(){const c=this.sound.context;if(!(this.running&&!this.paused))return this.pausedAt||0;const pt=(performance.now()-this.perfStart)/1000;if(c&&this.ctxStart!=null){const at=c.currentTime-this.ctxStart;if(at>0.05||pt<0.6)return Math.max(0,at-(c.outputLatency||c.baseLatency||0))}return pt}
   begin(mode,cfg){
+    const key=cfg&&cfg.track?'t_'+cfg.track:'song';
+    if(key!=='song'&&!this.cache.audio.exists(key)){this.word.setText('LOADING THE MUSIC').setColor('#dcff2e').setFontSize(26).setPosition(this.W/2,this.H*.5).setAlpha(1).setScale(1);this.load.audio(key,cfg.track);this.load.once('complete',()=>{this.word.setAlpha(0);this.begin(mode,cfg)});this.load.start();return}
+    this.songKey=key;
     this.taps=0;this.mode=mode;this.cfg=cfg=Object.assign({boss:0,ghost:0,secret:false,play:'base',win:0,playMult:1,vipMult:2,forgive:0,soon:0,vibeEvery:7,vibeCap:8,start:0,builds:{},target:GOAL,mentor:false,bassDrop:false,extraGold:0,builder:1,scholar:false,hype:0,season:false,label:''},cfg||{});
     seed=56+(cfg.night||0)*13;
     this.layer.removeAll(true);
-    this.G=typed(chart(cfg.play,cfg.extraGold),cfg.season?(cfg.night||0):0,cfg.secret).map((c,i)=>({...c,v:(rnd()*NV)|0,state:'walk',spr:null}));
+    this.BL=60/(cfg.bpm||120);this.OFF=cfg.off||0;const sc=120/(cfg.bpm||120);
+    this.G=typed(chart(cfg.play,cfg.extraGold),cfg.season?(cfg.night||0):0,cfg.secret).map((c,i)=>({...c,at:this.OFF+c.at*sc,v:(rnd()*NV)|0,state:'walk',spr:null}));
+    this.dropWin=(cfg.season&&cfg.night===5)?[this.OFF+60*sc,this.OFF+76*sc]:null;this.dropSaid=false;
     this.stats={squads:0,ropes:0,shy:0,stolen:0,cake:0,ropeFail:0};this.sqHit={};this.holdG=null;
     this.comboTile=combos(cfg.builds).tile;
     this.free=[];for(let i=0;i<64;i++)if(!cfg.builds[i])this.free.push(i);
     this.floor=[];this.score=0;this.streak=0;this.best=0;this.perfects=0;this.mult=1;this.won=false;this.pausedAt=0;this.lastBeat=-1;this.forgiven=0;this.bonusPts=0;this.basePts=0;this.perfRun=0;
     for(let i=0;i<cfg.start;i++){const g={at:-1,v:(rnd()*NV)|0,state:'dance',spr:null};this.G.push(g);g.spot=this.floor.length;this.floor.push(g);const [x,y]=this.spot(g.spot);this.sprite(g).setPosition(x,y).setScale(this.sc).setDepth(y)}
     this.big.setAlpha(0);this.running=true;
-    this.song.stop();this.song.play();this.ctxStart=this.sound.context?this.sound.context.currentTime:0;this.perfStart=performance.now();
+    if(this.song)this.song.stop();this.song=this.sound.get(this.songKey)||this.sound.add(this.songKey);this.song.play();this.ctxStart=this.sound.context?this.sound.context.currentTime:0;this.perfStart=performance.now();
   }
-  tex(g,f){return g.cake?'cake_'+f:`p${g.v}${g.vip?'v':''}_${f}`}
-  sprite(g){if(!g.spr){g.spr=this.add.image(-60,this.laneY,this.tex(g,0)).setOrigin(.5,1);if(g.shy)g.spr.setTint(0xc9b8ff);if(g.rope)g.spr.setTint(0xffd6e8);this.layer.add(g.spr)}return g.spr}
+  tex(g,f){return g.float?'float_'+f:g.candle?'candle_'+f:g.cake?'cake_'+f:`p${g.v}${g.vip?'v':''}_${f}`}
+  sprite(g){if(!g.spr){g.spr=this.add.image(-60,this.laneY,this.tex(g,0)).setOrigin(.5,1);if(g.shy)g.spr.setTint(0xc9b8ff);if(g.float)g.spr.setScale(1.3);if(g.rope)g.spr.setTint(0xffd6e8);this.layer.add(g.spr)}return g.spr}
   judge(){
     if(!this.running||this.paused)return;
     const t=this.now();let cand=null,d=9;
@@ -294,13 +313,15 @@ class Party extends Phaser.Scene{
     const cf=this.cfg;this.streak++;this.best=Math.max(this.best,this.streak);this.mult=Math.min(cf.vibeCap,1+Math.floor(this.streak/cf.vibeEvery));
     if(q==='PERFECT'&&this.perfects===0&&cf.firstNight){this.time.delayedCall(80,()=>{this.confetti.explode(RM?8:50,this.doorX,this.laneY-80);this.say('FIRST PERFECT!','#dcff2e',true)})}
     if(q==='PERFECT'){this.perfects++;this.perfRun++;if(cf.scholar&&this.perfRun%7===0){this.streak+=cf.vibeEvery}if(cf.bassDrop&&this.perfRun%16===0){this.score+=500;this.bonusPts+=500;this.confetti.explode(RM?10:60,this.W/2,this.H*.5);this.say('BASS DROP +500','#ff2e88')}}else this.perfRun=0;
-    const base=(q==='PERFECT'?100:q==='GOOD'?60:30)*(g.vip?cf.vipMult:1)*(g.rope?3:1)*(g.shy?1.5:1)*(cf.mentor&&n<7?2:1)*(1+cf.hype)+(g.cake?1000:0);
+    const base=(q==='PERFECT'?100:q==='GOOD'?60:30)*(g.vip?cf.vipMult:1)*(g.float?4:1)*(g.rope?3:1)*(g.shy?1.5:1)*(cf.mentor&&n<7?2:1)*(1+cf.hype)+(g.cake?1000:0);
+    if(g.float){this.stats.floats=(this.stats.floats||0)+1;for(let k=0;k<3;k++){const e={at:-1,v:(rnd()*NV)|0,state:'fly',spr:null};this.G.push(e);const nn=this.floor.length;e.spot=nn<cap?nn:(nn%cap);this.floor.push(e);const sp=this.sprite(e).setPosition(this.doorX,this.laneY-40).setVisible(true);const [ex,ey]=this.spot(e.spot);sp.setDepth(ey);this.tweens.add({targets:sp,x:ex,y:ey,scale:this.sc,duration:520+k*90,ease:'Back.easeOut',onComplete:()=>{e.state='dance'}})}}
+    if(g.candle){this.stats.candles=(this.stats.candles||0)+1;this.score+=250*this.mult;this.bonusPts+=250}
     if(g.shy)this.stats.shy++;if(g.cake){this.stats.cake++;this.confetti.explode(RM?10:90,this.doorX,this.laneY-60)}
     if(g.squad){this.sqHit[g.squad]=(this.sqHit[g.squad]||0)+1;if(this.sqHit[g.squad]===3){this.stats.squads++;this.score+=300*this.mult;this.bonusPts+=300;setTimeout(()=>this.say('SQUAD GOALS +300','#19e0ff'),220)}}
     const ab=this.adj(this.tile(g.spot));
     const pts=Math.round(base*(1+ab)*cf.playMult)*this.mult;this.basePts+=Math.round(base);this.bonusPts+=Math.round(base*ab);
     this.score+=pts;
-    this.say(g.cake?'SECRET GUEST! +1000':g.rope?'VIP x3':g.shy?q+' · SHY x1.5':q+(g.vip?' x2':''),g.cake?'#ff2e88':q==='PERFECT'?'#dcff2e':q==='GOOD'?'#19e0ff':'#f6f1e7');
+    this.say(g.float?'PARADE FLOAT! +4 DANCERS':g.candle?'CANDLE +250':g.drop?q:g.cake?'SECRET GUEST! +1000':g.rope?'VIP x3':g.shy?q+' · SHY x1.5':q+(g.vip?' x2':''),g.cake?'#ff2e88':q==='PERFECT'?'#dcff2e':q==='GOOD'?'#19e0ff':'#f6f1e7');
     this.spark.explode(g.vip?30:14,this.doorX,this.laneY-46);
     if(!RM)this.cameras.main.shake(g.vip?160:90,g.vip?.008:.003);
     this.fl.setAlpha(g.vip?.28:.12);this.tweens.add({targets:this.fl,alpha:0,duration:g.vip?220:140});
@@ -347,7 +368,7 @@ class Party extends Phaser.Scene{
   }
   update(){
     const g=this.g,W=this.W,H=this.H;g.clear();
-    const t=this.now(),b=Math.floor(t/BEAT),ph=(t/BEAT)%1;
+    const BLn=this.BL||BEAT,t=this.now(),b=Math.floor((t-(this.OFF||0))/BLn),ph=(((t-(this.OFF||0))/BLn)%1+1)%1;
     // candles: one per guest on the floor
     const per=28,cw=Math.min(W-28,560),cx0=(W-cw)/2;
     for(let i=0;i<GOAL;i++){const r=(i/per)|0,c=i%per,x=cx0+cw*(c+.5)/per,y=this.candleY+r*24;
@@ -373,7 +394,10 @@ class Party extends Phaser.Scene{
     if(!this.running)return;
     let nx=null;for(const q of this.G){if(q.state==='walk'&&q.at>=t-WIN){nx=q;break}}
     if(nx&&this.cfg.firstNight&&this.taps===0&&this.mode!=='easy'){const d=nx.at-t;this.hint.setPosition(x,y-170).setVisible(d<0.9&&d>-WIN).setScale(1+Math.max(0,.3-Math.abs(d))*.8)}
-    if(nx){const d=nx.at-t;if(d<1.6&&d>-WIN){g.lineStyle(nx.rope?6:3,nx.cake?HEX.pink:nx.vip?HEX.acid:nx.shy?HEX.uv:nx.squad?HEX.cyan:nx.rope?HEX.pink:HEX.paper,Math.max(.15,1-d/1.6)).strokeCircle(x,y-46,34+Math.max(0,d)*90)}}
+    if(nx){const d=nx.at-t;if(d<1.6&&d>-WIN){g.lineStyle(nx.rope||nx.float?6:3,nx.float?HEX.acid:nx.candle?HEX.sun:nx.cake?HEX.pink:nx.vip?HEX.acid:nx.shy?HEX.uv:nx.squad?HEX.cyan:nx.rope?HEX.pink:HEX.paper,Math.max(.15,1-d/1.6)).strokeCircle(x,y-46,34+Math.max(0,d)*90)}}
+    // THE DROP: double time with lasers
+    if(this.dropWin&&t>=this.dropWin[0]-0.4&&t<this.dropWin[1]){if(!this.dropSaid){this.dropSaid=true;this.say('THE DROP','#ff2e88',true);if(!RM)this.cameras.main.shake(400,.01)}
+      if(!RM){for(let i=0;i<5;i++){const sx=i%2?0:W,ex=this.fx0+((b*37+i*53)%100)/100*this.fw,ey=this.floorTop+((b*61+i*29)%100)/100*this.floorH;g.lineStyle(3,[HEX.pink,HEX.acid,HEX.cyan,HEX.uv,HEX.paper][i],.55*(1-ph)).lineBetween(sx,this.floorTop-40,ex,ey)}}}
     // velvet rope: a VIP held at the door
     if(this.holdG){const hg=this.holdG,k=Math.min(1,Math.max(0,(t-hg.at)/hg.hold));const s=this.sprite(hg);s.x=x;s.y=y;
       g.fillStyle(HEX.ink,.8).fillRect(x-40,y-150,80,10);g.fillStyle(k>=.85?HEX.acid:HEX.pink).fillRect(x-40,y-150,80*k,10);g.lineStyle(2,HEX.paper).strokeRect(x-40,y-150,80,10);
@@ -387,7 +411,7 @@ class Party extends Phaser.Scene{
         if(d>TRAVEL+0.3){if(q.spr)q.spr.setVisible(false);continue}
         if(this.mode==='easy'&&d<-0.02){this.admit(q,'PERFECT');continue}
         if(d<-WIN){this.miss(q);continue}
-        const s=this.sprite(q).setVisible(true);s.setScale(1);s.x=x-(d/TRAVEL)*(x+60);s.y=y-Math.abs(Math.sin(t*Math.PI*4))*4;s.setDepth(y);
+        const s=this.sprite(q).setVisible(true);s.setScale(q.float?1.3:1);s.x=x-(d/TRAVEL)*(x+60);s.y=y-Math.abs(Math.sin(t*Math.PI*4))*4;s.setDepth(y);
         s.setTexture(this.tex(q,b%2))}
       else if(q.state==='dance'&&bt){const s=q.spr;s.setTexture(this.tex(q,(b+q.v)%2));if(!RM){this.tweens.add({targets:s,y:s.y-8*this.sc,duration:110,yoyo:true,ease:'Quad.easeOut'});s.setAngle(((b+q.v)%2?1:-1)*(4+q.v%5))}}
     }
@@ -441,8 +465,10 @@ const TECH={
  hosp:{n:'Hospitality',c:'var(--cyan)',t:[{id:'table',n:'Welcome table',d:'First 2 misses each night forgiven.',cost:6},{id:'bar',n:'Zero Proof bar',d:'Missed guests return a bar sooner.',cost:10},{id:'coat',n:'Coat check',d:'Start each night with 4 dancers already on the floor.',cost:16}]}};
 const TARGET=[20,26,32,38,44,50,56];
 const TITLE=['Opening night','Pool party','Game night','Classroom crush','Pride parade','The night before','Your birthday'];
+const SOUND=['Palm Springs lounge house','Tropical pool house','Chiptune synthwave','Nerdy funk','Marching-band disco','Desert techno','Your song: Here\'s to Gordon'];
+const TRACKS=['music/n0.mp3','music/n1.mp3','music/n2.mp3','music/n3.mp3','music/n4.mp3','music/n5.mp3',null];
 const BOSS={2:{rule:'Every miss, he steals a dancer off your floor. Keep the streak alive.',win:0},5:{rule:'He steals a dancer every miss, and his set tightens the beat window by 20 ms.',win:-0.02}};
-const NEWS=['','Unlocked: CALL THE PLAY. New guest: SHY. Violet ring. Only a PERFECT pull brings them in, and they score x1.5.','Unlocked: BUILD THE FLOOR. New guest: SQUAD. Cyan ring. Three friends on quick eighth notes. Land all three for +300.','Unlocked: RESEARCH. New guest: VELVET ROPE VIP. Pink ring. Tap and HOLD the rope for a beat, then let go. x3.','','',''];
+const NEWS=['','Unlocked: CALL THE PLAY. New guest: SHY. Violet ring. Only a PERFECT pull brings them in, and they score x1.5.','Unlocked: BUILD THE FLOOR. New guest: SQUAD. Cyan ring. Three friends on quick eighth notes. Land all three for +300.','Unlocked: RESEARCH. New guest: VELVET ROPE VIP. Pink ring. Tap and HOLD the rope for a beat, then let go. x3.','New: PARADE FLOATS. Gold ring. One tap pulls a whole float of four dancers onto your floor.','New: THE DROP. At 1:00 the beat doubles: a guest on every half beat under the lasers. And the Rival DJ is back.','New: CANDLE GUESTS. Orange ring. Each one lights up your birthday for +250. Everything you learned comes back for the finale.'];
 const BADGES={first:'Opening night',squad:'Squad goals',rope:'Velvet rope (5 VIPs in a night)',shy:'Shy no more (10 shy in a night)',rival:'Rival defeated',spot:'Spotlight combo',circle:'Dance circle combo',streak:'32 perfect in a row',cake:'Found the secret guest',full:'Signed all 9 crew',bday:'Birthday packed',stars:'14 stars in one season'};
 const loadG=()=>{try{return JSON.parse(localStorage.getItem('ptf_global')||'{}')}catch(e){return {}}};
 const saveG=g=>{try{localStorage.setItem('ptf_global',JSON.stringify(g))}catch(e){}};
@@ -462,6 +488,7 @@ function cfgFor(play){
   const c={season:true,night:S.night,play,playMult:PLAYS[play].m,win:PLAYS[play].win||0,vipMult:2,forgive:0,soon:0,vibeEvery:7,vibeCap:8,start:0,builds:S.builds,target:TARGET[S.night],builder:1,hype:0,extraGold:0,label:'NIGHT '+(S.night+1)+' · '+PLAYS[play].n.toUpperCase()};
   let G=0,H=0,HE=0;S.start.forEach(id=>{const k=CREW.find(x=>x.id===id);G+=k.g;H+=k.h;HE+=k.he;k.fx(c)});
   c.win+=G*0.003;c.hype+=H*0.02;c.forgive+=Math.floor(HE/5);
+  c.track=TRACKS[S.night];c.bpm=120;c.off=0;
   if(BOSS[S.night]){c.boss=1;c.win+=BOSS[S.night].win;c.label+=' · VS RIVAL DJ'}
   c.ghost=GL.ghost[S.night]||0;c.secret=!S.cakeFound&&S.night>=3&&(S.night===6||rnd()<.5);
   if(has('sub'))c.win+=0.015;if(has('drop'))c.bassDrop=true;if(has('strobe'))c.vibeEvery=6;if(has('laser'))c.vibeCap+=2;if(has('chrome'))c.extraGold=4;if(has('table'))c.forgive+=2;if(has('bar'))c.soon+=2;if(has('coat'))c.start=4;
@@ -482,11 +509,11 @@ function hub(){
   $('hStars').innerHTML=TITLE.map((t,i)=>`<span>N${i+1} <b>${i<S.night?'★'.repeat(S.stars[i]||0)+'☆'.repeat(3-(S.stars[i]||0)):i===S.night?'TONIGHT':'·'}</b></span>`).join('')+(NEWS[S.night]?`<span style="border-color:var(--cyan)"><b>${NEWS[S.night]}</b></span>`:'');
   const cb=window.__combos(S.builds).found;cb.forEach(c=>{seen(c);if(award(c==='spotlight'?'spot':'circle'))0});
   $('comboLine').textContent=cb.length?'Active combos: '+cb.map(c=>c==='spotlight'?'SPOTLIGHT (light rig touching a disco ball: its row and column glow)':'DANCE CIRCLE (all three builds inside one 3 by 3: +60% inside)').join(' · '):'Hidden combos exist. Try putting different builds near each other.';
-  const CX=[['gold','Gold guest',1],['shy','Shy guest',S.night>=1||GL.codex.shy],['squad','Squad',S.night>=2||GL.codex.squad],['rope','Velvet rope VIP',S.night>=3||GL.codex.rope],['rival','The Rival DJ',S.night>=2||GL.codex.rival],['cake','??? secret guest',0],['spotlight','Spotlight combo',0],['circle','Dance circle combo',0]];
+  const CX=[['gold','Gold guest',1],['shy','Shy guest',S.night>=1||GL.codex.shy],['squad','Squad',S.night>=2||GL.codex.squad],['rope','Velvet rope VIP',S.night>=3||GL.codex.rope],['rival','The Rival DJ',S.night>=2||GL.codex.rival],['float','Parade float',S.night>=4||GL.codex.float],['drop','The drop',S.night>=5||GL.codex.drop],['candle','Candle guest',S.night>=6||GL.codex.candle],['cake','??? secret guest',0],['spotlight','Spotlight combo',0],['circle','Dance circle combo',0]];
   $('codex').innerHTML=CX.map(([id,n,open])=>`<span>${(open||GL.codex[id])?'<b>'+(id==='cake'&&GL.codex.cake?'The walking birthday cake':n)+'</b>':'???'}</span>`).join('');
   $('badges').innerHTML=Object.keys(BADGES).map(id=>`<span style="${GL.badges[id]?'border-color:var(--acid)':'opacity:.5'}">${GL.badges[id]?'🏅 <b>'+BADGES[id]+'</b>':'🔒 '+BADGES[id]}</span>`).join('');
   const open=64-Object.keys(S.builds).length;
-  $('hBar').innerHTML=`<span>Target <b>${TARGET[S.night]}</b> on the floor</span><span>Record <b>${S.record[0]}-${S.record[1]}</b></span><span>Vibe <b>${S.vibe}</b></span><span>Open spots <b>${open}</b></span><span>Season score <b>${S.total.toLocaleString()}</b></span>`;
+  $('hBar').innerHTML=`<span>Tonight's music <b>${SOUND[S.night]}</b></span><span>Target <b>${TARGET[S.night]}</b> on the floor</span><span>Record <b>${S.record[0]}-${S.record[1]}</b></span><span>Vibe <b>${S.vibe}</b></span><span>Open spots <b>${open}</b></span><span>Season score <b>${S.total.toLocaleString()}</b></span>`;
   $('slots').textContent=slots();
   const cr=$('crew');cr.innerHTML='';S.crew.forEach(id=>{const k=CREW.find(x=>x.id===id),on=S.start.includes(id);cr.appendChild(card(k,on,()=>{if(on)S.start=S.start.filter(x=>x!==id);else if(S.start.length<slots())S.start.push(id);else{S.start.shift();S.start.push(id)}save();hub()}))});
   const pl=$('plays');pl.innerHTML='';S.plays.forEach(id=>{const b=document.createElement('button');b.className='play';b.setAttribute('aria-pressed',sel.play===id?'true':'false');b.innerHTML=`<b>${PLAYS[id].n}</b>${PLAYS[id].d}`;b.onclick=()=>{sel.play=id;hub()};pl.appendChild(b)});
@@ -512,6 +539,7 @@ window.onNightEnd=r=>{
   const st=r.stats||{};const stars=win?(1+(r.guests>=Math.ceil(T*1.25)?1:0)+(r.guests>=Math.ceil(T*1.25)&&r.perfects>=.75*r.guests&&!r.sim?1:0)):0;
   S.stars[S.night]=stars;const got=[];const A=id=>{const b=award(id);if(b)got.push(b)};
   if(win)A('first');if(st.squads)A('squad');if(st.ropes>=5)A('rope');if(st.shy>=10)A('shy');if(BOSS[S.night]&&win&&!r.sim)A('rival');if(r.best>=32&&!r.sim)A('streak');if(st.cake){A('cake');S.cakeFound=true;seen('cake')}
+  if(st.floats)seen('float');if(S.night===5)seen('drop');if(st.candles)seen('candle');
   if(st.shy)seen('shy');if(st.squads)seen('squad');if(st.ropes)seen('rope');if(BOSS[S.night])seen('rival');
   if(S.night===6&&win)A('bday');if(S.stars.reduce((a,b)=>a+(b||0),0)>=14)A('stars');
   const ghostBefore=GL.ghost[S.night]||0;if(!r.sim&&r.score>ghostBefore){GL.ghost[S.night]=r.score;saveG(GL)}
