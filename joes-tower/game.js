@@ -23,10 +23,17 @@ const MAT = {
 };
 const STYLE_IDS = ['glam', 'regency', 'mid'];
 const PERKS = {
-  glam: { name: 'Disco Glam', perk: 'TURBO charges 30% faster on every later floor' },
-  regency: { name: 'Hollywood Regency', perk: '+2 moves (or +8 seconds) on every later floor' },
-  mid: { name: 'Mid-Century', perk: 'Start every later floor with a Power Drill' },
+  glam: { name: 'Disco Glam', perk: 'TURBO charges 30% faster', icon: 'disco' },
+  regency: { name: 'Hollywood Regency', perk: '+2 moves (or +8 seconds) on every later floor', icon: 'regbadge' },
+  mid: { name: 'Mid-Century', perk: 'Start each later floor with a Power Drill (stacks up to 3)', icon: 'drill' },
 };
+function perkSummary(p) {
+  const out = [];
+  if (p.glam) out.push(`TURBO x${(1 + 0.3 * p.glam).toFixed(1)}`);
+  if (p.regency) out.push(`+${p.regency * 2} moves`);
+  if (p.mid) out.push(`${Math.min(3, p.mid)} starting drill${Math.min(3, p.mid) > 1 ? 's' : ''}`);
+  return out.join(', ');
+}
 const FLOORS = [
   { key: 'lobby', name: 'The Lobby', goals: { tile: 10 }, moves: 20, tip: 'Swipe two neighbors to line up 3.', turboRate: 1.6 },
   { key: 'hallbath', name: 'The Hall Bath', goals: { paint: 12, glass: 9 }, moves: 22, tip: 'Your own hall bath: pink time capsule to calm spa.', turboRate: 2.4,
@@ -211,12 +218,21 @@ function makeSharedTextures(scene) {
   canvasTex(scene, 'confetti', 14, 8, (ctx) => { ctx.fillStyle = '#fff'; rr(ctx, 0, 0, 14, 8, 3); ctx.fill(); });
   canvasTex(scene, 'dot', 16, 16, (ctx) => { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(8, 8, 8, 0, Math.PI * 2); ctx.fill(); });
   canvasTex(scene, 'cloth', 84, 84, (ctx, w, h) => {
-    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, 'rgba(250,240,226,0.92)'); g.addColorStop(1, 'rgba(226,210,190,0.92)');
-    ctx.fillStyle = g; rr(ctx, 3, 3, w - 6, h - 6, 14); ctx.fill();
-    ctx.strokeStyle = 'rgba(170,140,110,0.55)'; ctx.lineWidth = 3;
-    for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(10 + i * 18, 6); ctx.quadraticCurveTo(20 + i * 18, 42, 8 + i * 18, h - 6); ctx.stroke(); }
-    ctx.fillStyle = 'rgba(255,255,255,0.35)'; rr(ctx, 8, 6, w - 16, 12, 6); ctx.fill();
-    ctx.strokeStyle = 'rgba(200,150,120,0.8)'; ctx.lineWidth = 2; rr(ctx, 3, 3, w - 6, h - 6, 14); ctx.stroke();
+    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, 'rgba(246,236,220,0.7)'); g.addColorStop(1, 'rgba(214,196,174,0.76)');
+    ctx.fillStyle = 'rgba(60,30,50,0.28)'; rr(ctx, 2, 4, w - 4, h - 4, 14); ctx.fill();
+    ctx.fillStyle = g; rr(ctx, 3, 3, w - 6, h - 7, 14); ctx.fill();
+    ctx.strokeStyle = 'rgba(150,120,95,0.55)'; ctx.lineWidth = 3;
+    for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(12 + i * 18, 10); ctx.quadraticCurveTo(22 + i * 18, 42, 10 + i * 18, h - 8); ctx.stroke(); }
+    ctx.strokeStyle = 'rgba(170,130,100,0.9)'; ctx.lineWidth = 2; ctx.setLineDash([5, 4]); rr(ctx, 7, 7, w - 14, h - 15, 11); ctx.stroke(); ctx.setLineDash([]);
+    const tape = (x, y, a) => { ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.fillStyle = 'rgba(255,214,120,0.95)'; ctx.fillRect(-15, -6, 30, 12); ctx.fillStyle = 'rgba(255,255,255,0.4)'; ctx.fillRect(-15, -6, 30, 4); ctx.restore(); };
+    tape(12, 12, -0.75); tape(w - 12, 12, 0.75); tape(12, h - 14, 0.75); tape(w - 12, h - 14, -0.75);
+    ctx.fillStyle = '#e0306f'; ctx.beginPath(); ctx.arc(w / 2, 14, 6, 0, 7); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.8)'; ctx.beginPath(); ctx.arc(w / 2 - 2, 12, 2, 0, 7); ctx.fill();
+  });
+  canvasTex(scene, 'regbadge', 96, 96, (ctx, w, h) => {
+    ctx.fillStyle = goldGrad(ctx, 0, h); ctx.beginPath(); ctx.arc(48, 48, 44, 0, 7); ctx.fill();
+    ctx.fillStyle = '#145c45'; ctx.beginPath(); ctx.arc(48, 48, 36, 0, 7); ctx.fill();
+    ctx.fillStyle = '#fff'; ctx.font = '700 40px Fredoka'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('+2', 48, 50);
   });
   if (!scene.anims.exists('discospin') && scene.textures.exists('disco_spin')) {
     scene.anims.create({ key: 'discospin', frames: scene.anims.generateFrameNumbers('disco_spin', { start: 0, end: 15 }), frameRate: 12, repeat: -1 });
@@ -635,6 +651,7 @@ class Game extends Phaser.Scene {
     this.turboLabel.setFontStyle('italic 700');
     this.turboFill = this.add.tileSprite(this.tb.x, y, 1, this.tb.h - 4, 'stripes').setOrigin(0, 0.5).setVisible(false);
     this.turboHint = txt(this, this.tb.x + this.tb.w / 2, y, 'Chain cascades to charge', 18, { color: '#ffd9ec', weight: '600' });
+    this.glamTag = txt(this, this.tb.x + this.tb.w - 8, y, '', 17, { ox: 1, color: '#ffffff', stroke: '#c4417f', strokeW: 4 }).setDepth(3);
   }
 
   buildBoard() {
@@ -703,9 +720,10 @@ class Game extends Phaser.Scene {
     this.updateMoves(); this.updateScore(); this.updateTurbo(); this.buildGoalChips(); this.drawReveal(0);
     this.drawTower(i);
     this.fillBoard(i);
+    this.drawPerkStrip();
     this.saveRun();
     if (i === 0 && G.mode !== 'duel') { this.onboard = 1; this.busy = false; this.lastInput = this.time.now; this.showFirstHint(); }
-    else { this.onboard = 0; this.floorIntro(); }
+    else { this.onboard = 0; if (FLOORS[i].cloths && !store.get('seenCloth', false)) { store.set('seenCloth', true); this.clothExplainer(() => this.floorIntro()); } else this.floorIntro(); }
   }
 
   loadDuel() {
@@ -746,6 +764,16 @@ class Game extends Phaser.Scene {
       const c = this.add.container(x + cw / 2, y, [bg, icon, t]);
       this.goalChips.add(c); this.chips[k] = { c, t, bg, cw }; x += cw + gap;
     });
+    if (keys.includes('cloth')) {
+      const q = this.add.container(Math.min(x + 22, this.room.x + this.room.w - 26), y);
+      q.add(this.add.circle(0, 0, 22, 0xffffff, 1).setStrokeStyle(3, 0xe9b94a));
+      q.add(txt(this, 0, 0, '?', 28, { color: '#c4417f' }));
+      q.setSize(48, 48).setInteractive({ useHandCursor: true });
+      q.on('pointerdown', () => { if (this.busy || this.overlay) return; this.busy = true; this.clothExplainer(() => { this.busy = false; this.lastInput = this.time.now; }); });
+      this.goalChips.add(q); this.clothQ = q;
+      const rem = txt(this, this.room.x + this.room.w / 2, y - 46, 'Cloths: match on them to lift them', 19, { color: '#ffffff', shadow: 'rgba(60,15,50,0.95)' });
+      this.goalChips.add(rem);
+    }
     this.updateGoals();
   }
 
@@ -909,7 +937,7 @@ class Game extends Phaser.Scene {
     }
     // drop cloths
     this.cloth = [...Array(N)].map(() => Array(N).fill(null));
-    const nCloth = i >= 0 ? (FLOORS[i].cloths || 0) : 0;
+    const nCloth = i >= 0 && FLOORS[i].cloths ? FLOORS[i].cloths + 2 : 0;
     let placed = 0;
     while (placed < nCloth) {
       const r = 2 + Math.floor(RNG() * (N - 2)), c = Math.floor(RNG() * N);
@@ -928,9 +956,10 @@ class Game extends Phaser.Scene {
     }
     // Mid-Century perk: starting drills
     const drills = i > 0 ? Math.min(3, G.run.perks.mid) : 0;
-    for (let k = 0; k < drills; k++) {
+    this.perkDrills = [];
+    for (let k = 0, guard = 0; k < drills && guard < 50; guard++) {
       const r = 1 + Math.floor(RNG() * 6), c = Math.floor(RNG() * N); const p = this.g[r][c];
-      if (p && !p.special) this.setSpecial(p, RNG() < 0.5 ? 'drillH' : 'drillV', true);
+      if (p && !p.special && !this.covered(r, c)) { this.setSpecial(p, RNG() < 0.5 ? 'drillH' : 'drillV', true); this.perkDrills.push(p); k++; }
     }
   }
 
@@ -1026,8 +1055,16 @@ class Game extends Phaser.Scene {
       if (r1 === r2 && c1 === c2) { this.select(null); return; }
       if (Math.abs(r1 - r2) + Math.abs(c1 - c2) === 1) { this.select(null); this.trySwap([r1, c1], cell); return; }
     }
+    if (this.covered(cell[0], cell[1])) { this.select(null); this.coveredHint(this.cloth[cell[0]][cell[1]]); return; }
     this.select(cell);
     sfx(this, 'swap', { volume: 0.25, rate: 1.5 });
+  }
+  coveredHint(cl) {
+    sfx(this, 'bonk', { volume: 0.5 });
+    if (cl) { this.tweens.killTweensOf(cl); cl.setAngle(0); this.tweens.add({ targets: cl, angle: 7, duration: 60, yoyo: true, repeat: 3, onComplete: () => cl.setAngle(0) }); }
+    this.setPrompt('Covered: match on it to lift the cloth');
+    if (this.covT) this.covT.remove();
+    this.covT = this.time.delayedCall(2000, () => { if (!this.onboard) this.setPrompt(''); });
   }
   select(cell) {
     this.sel = cell;
@@ -1084,8 +1121,7 @@ class Game extends Phaser.Scene {
       G.stats.invalid++; sfx(this, 'bonk', { volume: 0.6 });
       const cl = this.cloth[a[0]][a[1]] || this.cloth[b[0]][b[1]];
       this.tweens.add({ targets: cl, angle: 8, duration: 60, yoyo: true, repeat: 2 });
-      this.setPrompt('Covered! Match next to it to lift the cloth.');
-      this.time.delayedCall(1600, () => { if (!this.onboard) this.setPrompt(''); });
+      this.coveredHint(cl);
       this.busy = false; return;
     }
     sfx(this, 'swap', { volume: 0.55 });
@@ -1356,6 +1392,7 @@ class Game extends Phaser.Scene {
     if (this.turbo || G.mode === 'duel' && false) return;
     const rate = (FLOORS[this.fi] && FLOORS[this.fi].turboRate || 1) * (1 + 0.3 * G.run.perks.glam);
     this.turboMeter = Math.min(100, this.turboMeter + n * rate); this.updateTurbo();
+    if (G.run.perks.glam && this.glamTag && !RM && !this.tweens.isTweening(this.glamTag)) this.tweens.add({ targets: this.glamTag, scale: 1.3, duration: D(120), yoyo: true });
   }
   updateTurbo() {
     const pct = this.turbo ? this.turbo / 3 : this.turboMeter / 100;
@@ -1466,6 +1503,90 @@ class Game extends Phaser.Scene {
   }
   closeCard() { if (this.overlay) { this.overlay.destroy(); this.overlay = null; window.JOE.card = null; } }
 
+  drawPerkStrip() {
+    if (!this.perkStrip) this.perkStrip = this.add.container(0, 0).setDepth(8);
+    this.perkStrip.removeAll(true);
+    const p = G.run.perks; const list = [];
+    if (p.glam) list.push({ icon: 'disco', t: `x${(1 + 0.3 * p.glam).toFixed(1)}` });
+    if (p.regency) list.push({ icon: 'regbadge', t: this.timed ? `+${p.regency * 8}s` : `+${p.regency * 2}` });
+    if (p.mid) list.push({ icon: 'drill', t: `x${Math.min(3, p.mid)}` });
+    if (G.mode === 'duel' || !list.length) return;
+    let x = this.room.x + this.room.w - 12; const y = this.room.y + 22;
+    for (let k = list.length - 1; k >= 0; k--) {
+      const it = list[k]; const w = 96;
+      const bg = this.add.graphics(); bg.fillStyle(0x461a46, 0.7); bg.fillRoundedRect(x - w, y - 18, w, 36, 18); bg.lineStyle(2, 0xe9b94a, 1); bg.strokeRoundedRect(x - w, y - 18, w, 36, 18);
+      this.perkStrip.add([bg, this.add.image(x - w + 20, y, it.icon).setDisplaySize(30, 30), txt(this, x - w + 62, y, it.t, 19, { color: '#ffffff' })]);
+      x -= w + 6;
+    }
+    this.perkStrip.add(txt(this, x - 4, y, 'PERKS', 15, { ox: 1, color: '#ffffff', shadow: 'rgba(60,15,50,0.95)' }));
+    if (this.glamTag) this.glamTag.setText(p.glam ? `Glam x${(1 + 0.3 * p.glam).toFixed(1)}` : '');
+  }
+  showPerkFire() {
+    const p = G.run.perks;
+    if (p.regency && this.fi > 0) {
+      const t = txt(this, W - 118, 104, this.timed ? `+${p.regency * 8}s Regency` : `+${p.regency * 2} Regency`, 24, { color: '#ffffff', stroke: '#145c45', strokeW: 6 }).setDepth(60);
+      this.tweens.add({ targets: this.movesText, scale: 1.3, duration: D(160), yoyo: true, repeat: 1 });
+      this.tweens.add({ targets: t, y: 80, alpha: 0, duration: D(1400), delay: D(900), onComplete: () => t.destroy() });
+    }
+    (this.perkDrills || []).forEach((pc, k) => {
+      if (!pc.c || !pc.c.active) return;
+      this.time.delayedCall(D(200 + k * 250), () => {
+        if (!pc.c.active) return;
+        this.tweens.add({ targets: pc.c, scale: 1.35, duration: D(180), yoyo: true });
+        this.burst.setParticleTint(0xf2a03d); this.burst.explode(RM ? 4 : 16, pc.c.x, pc.c.y);
+        const t = txt(this, pc.c.x, pc.c.y - 50, 'Mid-Century', 20, { color: '#ffffff', stroke: '#b4561f', strokeW: 5 }).setDepth(60);
+        this.tweens.add({ targets: t, y: t.y - 30, alpha: 0, duration: D(1200), delay: D(900), onComplete: () => t.destroy() });
+      });
+    });
+    this.perkDrills = [];
+  }
+  clothExplainer(next) {
+    this.overlay = this.add.container(0, 0).setDepth(82);
+    const dim = this.add.rectangle(W / 2, H / 2, GW, H, 0x4a1d47, 0.5).setInteractive();
+    const panel = this.add.image(W / 2, H / 2, panelTex(this, 'clothp', 640, 900, 40, 0.98));
+    const t = txt(this, W / 2, H / 2 - 380, 'Drop cloths', 54, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t);
+    const sub = txt(this, W / 2, H / 2 - 318, 'The painters left cloths taped over some squares.', 22, { color: '#8a3f78', weight: '600' });
+    // tiny demo: [tile][tile under cloth][paint], a tile drops in from above-right
+    const dy = H / 2 - 170, cx = W / 2;
+    const demoBg = this.add.graphics(); demoBg.fillStyle(0xfff3e8, 1); demoBg.fillRoundedRect(cx - 170, dy - 110, 340, 200, 24); demoBg.lineStyle(3, 0xe9b94a); demoBg.strokeRoundedRect(cx - 170, dy - 110, 340, 200, 24);
+    const a = this.add.image(cx - 90, dy, 'tile').setDisplaySize(70, 70);
+    const b = this.add.image(cx, dy, 'tile').setDisplaySize(70, 70);
+    const c = this.add.image(cx + 90, dy, 'paint').setDisplaySize(70, 70);
+    const up = this.add.image(cx + 90, dy - 82, 'tile').setDisplaySize(70, 70);
+    const cl = this.add.image(cx, dy, 'cloth').setDisplaySize(80, 80);
+    const plus = txt(this, cx, dy - 70, '+1 cloth', 26, { color: '#3f8f6f' }).setAlpha(0);
+    const hand = this.add.circle(cx + 90, dy - 82, 14, 0xff4f93).setStrokeStyle(4, 0xffffff);
+    const demo = [a, b, c, up, cl, plus, hand];
+    const run = () => {
+      if (!this.overlay) return;
+      a.setAlpha(1).setScale(a.scaleX > 0 ? a.scaleX : 1); [a, b, c, up].forEach((o) => { o.setAlpha(1); o.setDisplaySize(70, 70); });
+      up.setPosition(cx + 90, dy - 82); c.setPosition(cx + 90, dy); cl.setPosition(cx, dy).setAlpha(1).setAngle(0); plus.setAlpha(0).setY(dy - 70); hand.setPosition(cx + 90, dy - 82).setAlpha(1);
+      if (RM) { cl.setAlpha(0.35); plus.setAlpha(1); return; }
+      this.tweens.add({ targets: hand, y: dy, duration: 500, delay: 300 });
+      this.tweens.add({ targets: up, y: dy, duration: 220, delay: 800 });
+      this.tweens.add({ targets: c, y: dy - 82, duration: 220, delay: 800 });
+      this.tweens.add({ targets: [a, b, up], scale: 0, alpha: 0, duration: 260, delay: 1150 });
+      this.tweens.add({ targets: hand, alpha: 0, duration: 200, delay: 1100 });
+      this.tweens.add({ targets: cl, y: dy - 90, angle: 25, alpha: 0, duration: 450, delay: 1200 });
+      this.tweens.add({ targets: plus, alpha: 1, y: dy - 95, duration: 300, delay: 1350 });
+    };
+    run();
+    this.explainTimer = this.time.addEvent({ delay: 2900, loop: true, callback: run });
+    const lines = [
+      ['\u2022 A covered piece can\'t be swapped. Tapping it just wiggles the cloth.', '#5a2a55'],
+      ['\u2022 The cloth stays taped to its square. Pieces can still fall into and out of it.', '#5a2a55'],
+      ['\u2022 Lift a cloth by clearing its square: make a match that includes it, or hit it with a special.', '#5a2a55'],
+      ['\u2022 Every lifted cloth counts toward this floor\'s goal.', '#3f8f6f'],
+    ];
+    let y = H / 2 - 20; const items = [dim, panel, t, sub, demoBg, ...demo];
+    lines.forEach(([l, col]) => { const tt = txt(this, W / 2 - 270, y, l, 23, { ox: 0, oy: 0, color: col, weight: '600', wrap: 545, align: 'left' }); items.push(tt); y += tt.height + 8; });
+    items.push(txt(this, W / 2, y + 16, 'Tap ? on the goals bar to see this again.', 19, { color: '#a24c86', weight: '600' }));
+    const by = H / 2 + 380;
+    window.JOE.cardButtons = [{ label: 'Got it', x: W / 2, y: by }];
+    items.push(makeButton(this, W / 2, by, 380, 80, 'Got it', { fs: 30 }, () => { if (this.explainTimer) { this.explainTimer.remove(); this.explainTimer = null; } this.closeCard(); next(); }));
+    this.overlay.add(items);
+    window.JOE.card = 'Drop cloths';
+  }
   floorIntro() {
     this.busy = true;
     const f = FLOORS[this.fi];
@@ -1479,7 +1600,7 @@ class Game extends Phaser.Scene {
       { t: f.tip, s: 24, c: f.boss ? '#e0306f' : '#b0447f' },
     ];
     if (perk.length) lines.push({ t: 'Your decor perks: ' + perk.join(', '), s: 22, c: '#3f8f6f' });
-    this.card(f.boss ? 'Inspection Day!' : (f.secret ? 'A secret floor!' : 'Next floor up!'), lines, [{ label: f.boss ? 'Beat the clock' : "Let's Remodel", fn: () => { this.busy = false; this.lastInput = this.time.now; } }], { h: perk.length ? 600 : 560 });
+    this.card(f.boss ? 'Inspection Day!' : (f.secret ? 'A secret floor!' : 'Next floor up!'), lines, [{ label: f.boss ? 'Beat the clock' : "Let's Remodel", fn: () => { this.busy = false; this.lastInput = this.time.now; this.showPerkFire(); } }], { h: perk.length ? 600 : 560 });
   }
 
   computeStars() {
@@ -1531,22 +1652,33 @@ class Game extends Phaser.Scene {
     mark('firstDecorChoice');
     this.overlay = this.add.container(0, 0).setDepth(80);
     const dim = this.add.rectangle(W / 2, H / 2, GW, H, 0x4a1d47, 0.5).setInteractive();
-    const key = panelTex(this, 'decorp', 660, 900, 40, 0.98);
-    const items = [dim, this.add.image(W / 2, 760, key)];
-    const t = txt(this, W / 2, 360, 'Pick the look', 52, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t); items.push(t);
-    items.push(txt(this, W / 2, 418, 'Each style gives a perk for the floors above.', 22, { color: '#8a3f78', weight: '600' }));
-    STYLE_IDS.forEach((s, k) => {
-      const y = 540 + k * 240;
-      const thumb = this.add.image(W / 2 - 150, y, roomTex(i, s)).setDisplaySize(270, 181);
-      const frame = this.add.rectangle(W / 2 - 150, y, 276, 187).setStrokeStyle(5, 0xe9b94a);
-      const name = txt(this, W / 2 + 20, y - 46, styleName(i, s), 28, { ox: 0, color: '#5a2a55' });
-      const perk = txt(this, W / 2 + 20, y + 6, PERKS[s].perk, 20, { ox: 0, color: '#3f8f6f', weight: '600', wrap: 280, align: 'left' });
-      const hit = this.add.rectangle(W / 2, y, 600, 220, 0xffffff, 0.001).setInteractive({ useHandCursor: true });
-      hit.on('pointerdown', () => this.pickStyle(i, s, next));
-      items.push(thumb, frame, name, perk, hit);
+    const key = panelTex(this, 'decorp2', 680, 1000, 40, 0.98);
+    const items = [dim, this.add.image(W / 2, 700, key)];
+    const t = txt(this, W / 2, 236, 'Pick the look', 52, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t); items.push(t);
+    const hall = !!FLOORS[i].styleNames;
+    items.push(txt(this, W / 2, 294, hall ? 'Each spa accent comes with one perk:' : 'Each look comes with one perk:', 22, { color: '#8a3f78', weight: '600' }));
+    items.push(txt(this, W / 2, 326, 'Perks stack for the rest of your climb.', 24, { color: '#3f8f6f', weight: '700' }));
+    const p = G.run.perks;
+    STYLE_IDS.forEach((s2, k) => {
+      const y = 482 + k * 252;
+      const cardBg = this.add.graphics(); cardBg.fillStyle(0xffffff, 0.75); cardBg.fillRoundedRect(W / 2 - 316, y - 118, 632, 236, 26); cardBg.lineStyle(3, 0xe9b94a, 1); cardBg.strokeRoundedRect(W / 2 - 316, y - 118, 632, 236, 26);
+      const thumb = this.add.image(W / 2 - 180, y, roomTex(i, s2)).setDisplaySize(240, 161);
+      const frame = this.add.rectangle(W / 2 - 180, y, 244, 165).setStrokeStyle(4, 0xe9b94a);
+      const look = txt(this, W / 2 - 40, y - 86, hall ? `Look: ${styleName(i, s2)}` : PERKS[s2].name, 22, { ox: 0, color: '#8a3f78', weight: '700' });
+      const fam = hall ? txt(this, W / 2 - 40, y - 58, `Perk family: ${PERKS[s2].name}`, 17, { ox: 0, color: '#a24c86', weight: '600' }) : null;
+      const icon = this.add.image(W / 2 - 10, y + 8, PERKS[s2].icon).setDisplaySize(52, 52);
+      const perk = txt(this, W / 2 + 26, y + 8, PERKS[s2].perk, 25, { ox: 0, color: '#145c45', weight: '700', wrap: 270, align: 'left' });
+      const now = s2 === 'glam' ? `TURBO x${(1 + 0.3 * p.glam).toFixed(1)} \u2192 x${(1 + 0.3 * (p.glam + 1)).toFixed(1)}`
+        : s2 === 'regency' ? `+${p.regency * 2} \u2192 +${(p.regency + 1) * 2} moves`
+        : `${Math.min(3, p.mid)} \u2192 ${Math.min(3, p.mid + 1)} starting drill${Math.min(3, p.mid + 1) > 1 ? 's' : ''}${p.mid >= 3 ? ' (max)' : ''}`;
+      const nowT = txt(this, W / 2 - 40, y + 92, 'Yours: ' + now, 18, { ox: 0, color: '#8a3f78', weight: '600' });
+      const hit = this.add.rectangle(W / 2, y, 632, 236, 0xffffff, 0.001).setInteractive({ useHandCursor: true });
+      hit.on('pointerdown', () => this.pickStyle(i, s2, next));
+      items.push(cardBg, thumb, frame, look, icon, perk, nowT, hit); if (fam) items.push(fam);
     });
+    if (hall) items.push(txt(this, W / 2, 1150, 'The spa accent itself is just for looks; the perk is what changes play.', 18, { color: '#8a3f78', weight: '600', wrap: 600 }));
     this.overlay.add(items);
-    window.JOE.card = 'Pick the look'; window.JOE.cardButtons = STYLE_IDS.map((s2, k) => ({ label: s2, x: W / 2, y: 540 + k * 240 }));
+    window.JOE.card = 'Pick the look'; window.JOE.cardButtons = STYLE_IDS.map((s3, k) => ({ label: s3, x: W / 2, y: 482 + k * 252 }));
   }
   pickStyle(i, s, next) {
     this.closeCard();
@@ -1556,7 +1688,9 @@ class Game extends Phaser.Scene {
     this.tweens.add({ targets: this.styleImg, alpha: 1, duration: D(500) });
     this.burst.setParticleTint(0xffe28a); this.burst.explode(RM ? 6 : 30, this.room.x + this.room.w / 2, this.room.y + this.room.h / 2);
     sfx(this, 'chime2', { volume: 0.7, rate: 1.4 });
-    toast(this, styleName(i, s) + ' it is!', PERKS[s].perk, null);
+    const what = s === 'glam' ? `TURBO now charges x${(1 + 0.3 * G.run.perks.glam).toFixed(1)} as fast` : s === 'regency' ? `Every later floor starts with +${G.run.perks.regency * 2} moves` : `Every later floor starts with ${Math.min(3, G.run.perks.mid)} Power Drill${Math.min(3, G.run.perks.mid) > 1 ? 's' : ''}`;
+    toast(this, `Perk added: ${PERKS[s].name}`, `${what}. Your perks: ${perkSummary(G.run.perks)}.`, PERKS[s].icon);
+    this.drawPerkStrip();
     if (this.refreshSide) this.refreshSide();
     this.time.delayedCall(D(700), next);
   }
