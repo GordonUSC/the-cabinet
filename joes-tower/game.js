@@ -1,8 +1,14 @@
-/* Joe's Tower: an original match-3 remodel game. Phaser 3.90. */
+/* Joe's Tower v2: an original match-3 remodel game for Joe Heally. Phaser 3.90. */
 (() => {
 'use strict';
 
+// Darby fills this with Gordon's own words for the penthouse. Renders only if non-empty.
+const PENTHOUSE_NOTE = 'Everywhere I go, Every smile i see, I know you are there,  smiling back at me .';
+
 const W = 720, H = 1280;
+const WIDE = (window.innerWidth / Math.max(1, window.innerHeight)) > 1.15;
+const GW = WIDE ? 1760 : W;
+const OX = (GW - W) / 2;
 const N = 8, CELL = 85, BX = 20, BY = 538;
 const RM = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 const PARAMS = new URLSearchParams(location.search);
@@ -11,37 +17,85 @@ const D = (ms) => Math.max(1, ms / SPEED);
 
 const TYPES = ['tile', 'paint', 'wood', 'glass', 'gold', 'velvet'];
 const MAT = {
-  tile: { name: 'Tile', color: 0x2fd08a },
-  paint: { name: 'Paint', color: 0xff4d6d },
-  wood: { name: 'Wood', color: 0xf2a03d },
-  glass: { name: 'Glass', color: 0x4aa8ff },
-  gold: { name: 'Gold', color: 0xffc83d },
-  velvet: { name: 'Velvet', color: 0x9b5cff },
+  tile: { name: 'Tile', color: 0x2fd08a }, paint: { name: 'Paint', color: 0xff4d6d }, wood: { name: 'Wood', color: 0xf2a03d },
+  glass: { name: 'Glass', color: 0x4aa8ff }, gold: { name: 'Gold', color: 0xffc83d }, velvet: { name: 'Velvet', color: 0x9b5cff },
+  cloth: { name: 'Drop cloth', color: 0xf3e6d4 },
+};
+const STYLE_IDS = ['glam', 'regency', 'mid'];
+const PERKS = {
+  glam: { name: 'Disco Glam', perk: 'TURBO charges 30% faster on every later floor' },
+  regency: { name: 'Hollywood Regency', perk: '+2 moves (or +8 seconds) on every later floor' },
+  mid: { name: 'Mid-Century', perk: 'Start every later floor with a Power Drill' },
 };
 const FLOORS = [
-  { name: 'The Lobby', goals: { tile: 15 }, moves: 22, tip: 'Swipe or tap two neighbors to line up 3 or more.' },
-  { name: 'The Kitchen', goals: { paint: 16, tile: 10 }, moves: 25, tip: 'Match 4 in a row to build a Power Drill. It clears a whole line.' },
-  { name: 'The Living Room', goals: { velvet: 20, wood: 12 }, moves: 26, tip: 'Make an L or T shape to build a Wrecking Ball.' },
-  { name: 'The Spa Bath', goals: { glass: 22, tile: 15 }, moves: 25, tip: 'Chain cascades to fill the TURBO meter. TURBO doubles everything.' },
-  { name: 'The Collection', goals: { glass: 16, gold: 16 }, moves: 25, tip: 'A gallery with a lit shelf for every treasure Joe collects.' },
-  { name: 'The Suite', goals: { velvet: 22, paint: 18 }, moves: 26, tip: 'Match 5 in a row to make a Disco Ball.' },
-  { name: 'The Ballroom', goals: { gold: 20, glass: 18, velvet: 14 }, moves: 28, tip: 'Swap a Disco Ball with any piece to clear that whole color.' },
-  { name: 'The Penthouse', goals: { gold: 24, paint: 18, wood: 18 }, moves: 30, tip: 'Top floor. Swap two specials together for a mega combo.' },
+  { key: 'lobby', name: 'The Lobby', goals: { tile: 10 }, moves: 20, tip: 'Swipe two neighbors to line up 3.', turboRate: 1.6 },
+  { key: 'hallbath', name: 'The Hall Bath', goals: { paint: 12, glass: 9 }, moves: 22, tip: 'Your own hall bath: pink time capsule to calm spa.', turboRate: 2.4,
+    styleNames: { glam: 'Sage Spa', regency: 'Greige Spa', mid: 'Warm White Spa' }, styleFiles: { glam: 'hallbath_sage', regency: 'hallbath_greige', mid: 'hallbath_white' } },
+  { key: 'kitchen', name: 'The Kitchen', goals: { paint: 14, tile: 12 }, moves: 24, tip: 'Match 5 in a row for a Disco Ball.', turboRate: 1.3 },
+  { key: 'living', name: 'The Living Room', goals: { velvet: 16, wood: 12, cloth: 6 }, moves: 28, tip: 'New: drop cloths. Match on top of them to lift them.', cloths: 6 },
+  { key: 'gallery', name: 'The Collection', goals: { glass: 14, gold: 14, cloth: 8 }, moves: 26, tip: 'Specials and big cascades can drop treasures for your shelf.', cloths: 8 },
+  { key: 'suite', name: 'The Suite', goals: { velvet: 16, paint: 14, cloth: 6 }, time: 90, tip: 'INSPECTION DAY: no move limit, but beat the clock!', cloths: 6, boss: true },
+  { key: 'ballroom', name: 'The Ballroom', goals: { gold: 18, glass: 14, cloth: 10 }, moves: 28, tip: 'Swap two specials together for a Mega Combo.', cloths: 10 },
+  { key: 'penthouse', name: 'The Penthouse', goals: { gold: 20, paint: 16, wood: 14 }, moves: 30, tip: 'Top floor. Midnight is waiting on the roof.' },
+  { key: 'dome', name: 'The Starlight Dome', goals: { gold: 15, glass: 15, velvet: 12, cloth: 8 }, moves: 30, tip: 'The secret floor your treasures unlocked.', cloths: 8, secret: true },
 ];
-const FLOOR_COLORS = [0xff8fb1, 0x6fdcb5, 0xb59cff, 0xffd166, 0xff9f7a, 0x7cc4ff, 0xf28ad8, 0xffe08a];
+const MAIN_FLOORS = 8;
+const SECRET_NEED = 6;
+const ITEMS = [
+  { id: 'snowglobe', name: 'Snow Globe', cat: 'Glass', story: 'A tiny winter that never melts.' },
+  { id: 'record', name: 'Disco Record', cat: 'Music', story: 'Side B is the one everybody dances to.' },
+  { id: 'top', name: 'Spinning Top', cat: 'Toys', story: 'Still spins like it is brand new.' },
+  { id: 'car', name: 'Tin Coupe', cat: 'Toys', story: 'A little teal coupe with chrome hubcaps.' },
+  { id: 'swan', name: 'Glass Swan', cat: 'Glass', story: 'Catches the light from every angle.' },
+  { id: 'musicbox', name: 'Music Box', cat: 'Music', story: 'Wind it up for a tiny waltz.' },
+  { id: 'teacup', name: 'Gilded Teacup', cat: 'Home', story: 'Gold rim, perfect for one cup.' },
+  { id: 'gem', name: 'Crystal Paperweight', cat: 'Glass', story: 'Holds down the important papers.' },
+  { id: 'duck', name: 'Rubber Duck', cat: 'Home', story: 'Every spa bath needs one.' },
+  { id: 'camera', name: 'Vintage Camera', cat: 'Keepsakes', story: 'Twelve frames of a good day.' },
+  { id: 'lamp', name: 'Lava Lamp', cat: 'Home', story: 'Slow pink bubbles, all night long.' },
+  { id: 'cameo', name: 'Cameo Brooch', cat: 'Keepsakes', story: 'A classic profile in rose and cream.' },
+];
+const ACH = [
+  { id: 'opening', name: 'Opening Night', desc: 'Remodel your first floor' },
+  { id: 'chain', name: 'Chain Reaction', desc: 'Cascade 4 times in one move' },
+  { id: 'mirror', name: 'Mirror Ball', desc: 'Make a Disco Ball' },
+  { id: 'mega', name: 'Mega Combo', desc: 'Swap two specials together' },
+  { id: 'throttle', name: 'Full Throttle', desc: 'Fire up TURBO' },
+  { id: 'designer', name: 'Designer Eye', desc: 'Pick all three decor styles' },
+  { id: 'cloth', name: 'Drop Cloth Pro', desc: 'Lift 20 drop cloths' },
+  { id: 'inspect', name: 'Inspection Passed', desc: 'Beat the clock on Inspection Day' },
+  { id: 'collector', name: 'Collector', desc: 'Shelve 6 treasures' },
+  { id: 'fullshelf', name: 'Full Shelf', desc: 'Shelve all 12 treasures' },
+  { id: 'midnight', name: 'Midnight on the Roof', desc: 'Reach the penthouse countdown' },
+  { id: 'starlight', name: 'Starlight', desc: 'Remodel the secret floor' },
+  { id: 'stars20', name: 'Star Power', desc: 'Earn 20 stars' },
+  { id: 'duel', name: 'Pass the Phone', desc: 'Finish a duel' },
+];
 const PRAISE = ['Nice!', 'Sweet!', 'Fabulous!', 'Gorgeous!', 'Iconic!', 'Showstopper!', 'Legendary!', 'Penthouse Level!'];
 
 // ---------- persistence (always guarded)
 const store = {
-  get(k, d) { try { const v = localStorage.getItem('joeTower.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
-  set(k, v) { try { localStorage.setItem('joeTower.' + k, JSON.stringify(v)); } catch (e) { /* private mode */ } },
+  get(k, d) { try { const v = localStorage.getItem('joeTower2.' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('joeTower2.' + k, JSON.stringify(v)); } catch (e) { /* private mode */ } },
 };
-
+function freshRun() { return { floor: 0, score: 0, perks: { glam: 0, regency: 0, mid: 0 }, styles: {} }; }
+const META = {
+  items: store.get('items', {}), favs: store.get('favs', {}), ach: store.get('ach', {}),
+  stars: store.get('stars', {}), stylesUsed: store.get('stylesUsed', {}), clothTotal: store.get('clothTotal', 0),
+  duelBest: store.get('duelBest', {}),
+};
+function saveMeta() { Object.keys(META).forEach((k) => store.set(k, META[k])); }
 const G = {
-  mode: 'classic', floor: 0, score: 0, muted: store.get('muted', false),
-  stats: { swaps: 0, invalid: 0, cascades: 0, maxCombo: 0, specialsMade: 0, specialsFired: 0, turbos: 0, floorsCleared: 0, shuffles: 0 },
+  mode: 'classic', run: freshRun(), muted: store.get('muted', false), duel: null,
+  stats: { swaps: 0, invalid: 0, cascades: 0, maxCombo: 0, specialsMade: 0, specialsFired: 0, turbos: 0, floorsCleared: 0, shuffles: 0, drops: 0, decorPicks: 0 },
+  t: {}, // first-time timestamps (ms since first game start)
 };
-window.JOE = { G, FLOORS, scene: null, ready: false };
+let T0 = null;
+function mark(k) { if (T0 === null) return; if (G.t[k] === undefined) G.t[k] = Math.round(performance.now() - T0); }
+window.JOE = { G, META, FLOORS, scene: null, ready: false, GW, OX };
+
+function itemCount() { return Object.keys(META.items).length; }
+function starTotal() { return Object.values(META.stars).reduce((a, b) => a + b, 0); }
 
 // ---------- drawing helpers
 function rr(ctx, x, y, w, h, r) {
@@ -68,6 +122,14 @@ function buttonTex(scene, w, h, c1, c2) {
     ctx.fillStyle = g; rr(ctx, 3, 3, w - 6, h - 6, r - 3); ctx.fill();
     ctx.lineWidth = 4; ctx.strokeStyle = goldGrad(ctx, 0, h); rr(ctx, 4, 4, w - 8, h - 8, r - 4); ctx.stroke();
     ctx.fillStyle = 'rgba(255,255,255,0.42)'; rr(ctx, 18, 9, w - 36, h * 0.34, h * 0.17); ctx.fill();
+  });
+}
+function panelTex(scene, key, w, h, r, a) {
+  return canvasTex(scene, key, w, h, (ctx) => {
+    ctx.fillStyle = 'rgba(140,50,100,0.16)'; rr(ctx, 4, 10, w - 8, h - 10, r); ctx.fill();
+    const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, `rgba(255,250,245,${a})`); g.addColorStop(1, `rgba(255,228,240,${a})`);
+    ctx.fillStyle = g; rr(ctx, 2, 2, w - 4, h - 10, r); ctx.fill();
+    ctx.lineWidth = 4; ctx.strokeStyle = goldGrad(ctx, 0, h); rr(ctx, 3, 3, w - 6, h - 12, r - 1); ctx.stroke();
   });
 }
 function goldText(t) {
@@ -116,17 +178,27 @@ function tweenP(scene, cfg) {
     scene.tweens.add(Object.assign({}, cfg, { duration: D(cfg.duration || 200), delay: D(cfg.delay || 0), onComplete: () => res() }));
   });
 }
+function mulberry32(a) { return function () { a |= 0; a = (a + 0x6D2B79F5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+let RNG = Math.random;
 
-// ---------- shared textures
+function roomTex(i, style) {
+  const f = FLOORS[i];
+  if (f.secret) return 'dome_glam';
+  if (f.styleFiles) return f.styleFiles[style || 'glam'];
+  return f.key + '_' + (style || 'glam');
+}
+function styleName(i, s) { const f = FLOORS[i]; return (f.styleNames && f.styleNames[s]) || PERKS[s].name; }
+
+// ---------- shared textures + scene setup
 function makeSharedTextures(scene) {
-  canvasTex(scene, 'bg', W, H, (ctx) => {
-    const g = ctx.createLinearGradient(0, 0, W * 0.4, H);
+  canvasTex(scene, 'bg', GW, H, (ctx) => {
+    const g = ctx.createLinearGradient(0, 0, GW * 0.4, H);
     g.addColorStop(0, '#ffe6f0'); g.addColorStop(0.45, '#ffdcca'); g.addColorStop(1, '#e8d5ff');
-    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, GW, H);
     ctx.globalAlpha = 0.18;
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 7 + (WIDE ? 6 : 0); i++) {
       ctx.fillStyle = i % 2 ? '#ffffff' : '#ffe9b0';
-      ctx.beginPath(); ctx.moveTo(W * 0.5, -60); ctx.lineTo(-200 + i * 190, H); ctx.lineTo(-120 + i * 190, H); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(GW * 0.5, -60); ctx.lineTo(-200 + i * 190, H); ctx.lineTo(-120 + i * 190, H); ctx.closePath(); ctx.fill();
     }
     ctx.globalAlpha = 1;
   });
@@ -138,6 +210,202 @@ function makeSharedTextures(scene) {
   });
   canvasTex(scene, 'confetti', 14, 8, (ctx) => { ctx.fillStyle = '#fff'; rr(ctx, 0, 0, 14, 8, 3); ctx.fill(); });
   canvasTex(scene, 'dot', 16, 16, (ctx) => { ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(8, 8, 8, 0, Math.PI * 2); ctx.fill(); });
+  canvasTex(scene, 'cloth', 84, 84, (ctx, w, h) => {
+    const g = ctx.createLinearGradient(0, 0, w, h); g.addColorStop(0, 'rgba(250,240,226,0.92)'); g.addColorStop(1, 'rgba(226,210,190,0.92)');
+    ctx.fillStyle = g; rr(ctx, 3, 3, w - 6, h - 6, 14); ctx.fill();
+    ctx.strokeStyle = 'rgba(170,140,110,0.55)'; ctx.lineWidth = 3;
+    for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.moveTo(10 + i * 18, 6); ctx.quadraticCurveTo(20 + i * 18, 42, 8 + i * 18, h - 6); ctx.stroke(); }
+    ctx.fillStyle = 'rgba(255,255,255,0.35)'; rr(ctx, 8, 6, w - 16, 12, 6); ctx.fill();
+    ctx.strokeStyle = 'rgba(200,150,120,0.8)'; ctx.lineWidth = 2; rr(ctx, 3, 3, w - 6, h - 6, 14); ctx.stroke();
+  });
+  if (!scene.anims.exists('discospin') && scene.textures.exists('disco_spin')) {
+    scene.anims.create({ key: 'discospin', frames: scene.anims.generateFrameNumbers('disco_spin', { start: 0, end: 15 }), frameRate: 12, repeat: -1 });
+  }
+}
+function setupScene(scene) {
+  scene.cameras.main.setScroll(-OX, 0);
+  scene.add.image(W / 2, H / 2, 'bg');
+}
+
+// ---------- meta: achievements, items, toasts
+function toast(scene, title, sub, icon) {
+  const c = scene.add.container(W / 2, -80).setDepth(95);
+  const key = panelTex(scene, 'toastbg', 600, 104, 40, 0.97);
+  c.add(scene.add.image(0, 0, key));
+  if (icon) c.add(scene.add.image(-240, -4, icon).setDisplaySize(70, 70));
+  c.add(txt(scene, icon ? 30 : 0, -22, title, 26, { color: '#c4417f' }));
+  c.add(txt(scene, icon ? 30 : 0, 14, sub, 22, { color: '#5a2a55', weight: '600', wrap: 460 }));
+  const q = scene.toastQ || (scene.toastQ = []);
+  q.push(c); c.setVisible(false);
+  const run = () => {
+    const item = q[0]; if (!item || item.running) return; item.running = true; item.setVisible(true);
+    scene.tweens.add({ targets: item, y: scene.scene.key === 'Game' ? 160 : 70, duration: D(320), ease: 'Back.easeOut', onComplete: () => {
+      scene.time.delayedCall(D(1700), () => scene.tweens.add({ targets: item, y: -90, duration: D(260), onComplete: () => { item.destroy(); q.shift(); run(); } }));
+    } });
+  };
+  run();
+}
+function unlock(scene, id) {
+  if (META.ach[id]) return;
+  META.ach[id] = Date.now(); saveMeta();
+  const a = ACH.find((x) => x.id === id);
+  sfx(scene, 'chime2', { volume: 0.6, rate: 1.5 });
+  toast(scene, 'Achievement: ' + a.name, a.desc, null);
+  if (scene.refreshSide) scene.refreshSide();
+}
+function checkMetaAch(scene) {
+  const n = itemCount();
+  if (n >= 6) unlock(scene, 'collector');
+  if (n >= 12) unlock(scene, 'fullshelf');
+  if (starTotal() >= 20) unlock(scene, 'stars20');
+  if (META.clothTotal >= 20) unlock(scene, 'cloth');
+  if (STYLE_IDS.every((s) => META.stylesUsed[s])) unlock(scene, 'designer');
+}
+function rollItem() {
+  const unowned = ITEMS.filter((it) => !META.items[it.id]);
+  if (unowned.length && RNG() < 0.85) return unowned[Math.floor(RNG() * unowned.length)];
+  return ITEMS[Math.floor(RNG() * ITEMS.length)];
+}
+
+// ---------- shelf (Joe's Collection) used as overlay and side panel
+function drawShelf(scene, x, y, w, onPick) {
+  const cols = 3, rows = 4, cw = w / cols, chh = cw * 0.92;
+  const c = scene.add.container(x, y);
+  const key = canvasTex(scene, 'shelf_' + Math.round(w), Math.round(w), Math.round(rows * chh + 20), (ctx, ww, hh) => {
+    const g = ctx.createLinearGradient(0, 0, 0, hh); g.addColorStop(0, '#5b2f55'); g.addColorStop(1, '#3d1f3e');
+    ctx.fillStyle = g; rr(ctx, 0, 0, ww, hh, 24); ctx.fill();
+    for (let r = 0; r < rows; r++) for (let k = 0; k < cols; k++) {
+      const nx = k * cw + 8, ny = r * chh + 10, nw = cw - 16, nh = chh - 14;
+      const lg = ctx.createRadialGradient(nx + nw / 2, ny + 10, 4, nx + nw / 2, ny + nh / 2, nw * 0.8);
+      lg.addColorStop(0, 'rgba(255,236,190,0.95)'); lg.addColorStop(1, 'rgba(255,190,220,0.35)');
+      ctx.fillStyle = lg; rr(ctx, nx, ny, nw, nh, 16); ctx.fill();
+      ctx.fillStyle = goldGrad(ctx, ny + nh - 10, ny + nh); ctx.fillRect(nx, ny + nh - 8, nw, 8);
+    }
+    ctx.lineWidth = 4; ctx.strokeStyle = goldGrad(ctx, 0, hh); rr(ctx, 2, 2, ww - 4, hh - 4, 22); ctx.stroke();
+  });
+  c.add(scene.add.image(0, 0, key).setOrigin(0, 0));
+  ITEMS.forEach((it, i) => {
+    const k = i % cols, r = Math.floor(i / cols);
+    const cx = k * cw + cw / 2, cy = r * chh + 10 + (chh - 14) / 2 - 4;
+    const owned = !!META.items[it.id];
+    const im = scene.add.image(cx, cy, 'it_' + it.id).setDisplaySize(cw * 0.62, cw * 0.62);
+    if (!owned) im.setTint(0x3a1f3a).setAlpha(0.55);
+    c.add(im);
+    if (owned && META.favs[it.id]) c.add(txt(scene, cx + cw * 0.3, cy - chh * 0.3, '♥', Math.round(cw * 0.2), { color: '#ff4f93' }));
+    if (onPick) { im.setInteractive({ useHandCursor: true }); im.on('pointerdown', () => onPick(it, owned)); }
+  });
+  c.h = rows * chh + 20;
+  return c;
+}
+
+function openShelf(scene) {
+  if (scene.overlay) return;
+  scene.overlay = scene.add.container(0, 0).setDepth(85);
+  const dim = scene.add.rectangle(W / 2, H / 2, GW, H, 0x2e1230, 0.6).setInteractive();
+  scene.overlay.add(dim);
+  const key = panelTex(scene, 'shelfpanel', 660, 1180, 40, 0.98);
+  scene.overlay.add(scene.add.image(W / 2, H / 2, key));
+  const t = txt(scene, W / 2, 110, "Joe's Collection", 54, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t);
+  scene.overlay.add(t);
+  const favN = Object.keys(META.favs).filter((k) => META.favs[k] && META.items[k]).length;
+  scene.overlay.add(txt(scene, W / 2, 168, `${itemCount()} of 12 treasures   ♥ ${favN} favorites   tap one to see it`, 22, { color: '#8a3f78', weight: '600' }));
+  const detail = scene.add.container(0, 0); scene.overlay.add(detail);
+  const show = (it, owned) => {
+    detail.removeAll(true);
+    detail.add(scene.add.image(W / 2 - 200, 1020, owned ? 'it_' + it.id : 'it_' + it.id).setDisplaySize(130, 130).setTint(owned ? 0xffffff : 0x3a1f3a));
+    detail.add(txt(scene, W / 2 - 110, 975, owned ? it.name : 'Not found yet', 30, { ox: 0 }));
+    detail.add(txt(scene, W / 2 - 110, 1015, owned ? `${it.cat}  •  ${it.story}` : 'Fire specials and chain cascades to find it.', 20, { ox: 0, color: '#8a3f78', weight: '600', wrap: 380, align: 'left' }));
+    if (owned) {
+      const fav = txt(scene, W / 2 - 110, 1070, META.favs[it.id] ? '♥ Favorite' : '♡ Make favorite', 24, { ox: 0, color: '#ff4f93' }).setInteractive({ useHandCursor: true });
+      fav.on('pointerdown', () => { META.favs[it.id] = !META.favs[it.id]; saveMeta(); fav.setText(META.favs[it.id] ? '♥ Favorite' : '♡ Make favorite'); });
+      detail.add(fav);
+    }
+  };
+  const shelf = drawShelf(scene, W / 2 - 290, 200, 580, show);
+  scene.overlay.add(shelf);
+  const first = ITEMS.find((it) => META.items[it.id]);
+  if (first) show(first, true); else show(ITEMS[0], false);
+  scene.overlay.add(makeButton(scene, W / 2, 1160, 300, 70, 'Close', { fs: 28, c1: '#c9b2ff', c2: '#9b6dff' }, () => { scene.overlay.destroy(); scene.overlay = null; if (scene.afterShelf) scene.afterShelf(); }));
+  window.JOE.card = 'Collection';
+}
+
+// ---------- share card (Socializer)
+function shareCard(scene) {
+  try {
+    const cw = 1080, chh = 1350, cv = document.createElement('canvas'); cv.width = cw; cv.height = chh;
+    const ctx = cv.getContext('2d');
+    const g = ctx.createLinearGradient(0, 0, cw * 0.4, chh); g.addColorStop(0, '#ffe6f0'); g.addColorStop(0.5, '#ffdcca'); g.addColorStop(1, '#e8d5ff');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, cw, chh);
+    const src = (k) => scene.textures.exists(k) ? scene.textures.get(k).getSourceImage() : null;
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#c4417f'; ctx.font = '400 110px Pacifico'; ctx.fillText("Joe's Tower", cw / 2, 150);
+    const run = G.run; const built = Math.min(MAIN_FLOORS, Math.max(run.floor, store.get('bestFloor', 0)));
+    const tw = 330, th = 917, tx = 60, ty = 230;
+    [src('t_base')].concat([...Array(built)].map((_, i) => src('t_floor' + i))).forEach((im) => { if (im) ctx.drawImage(im, tx, ty, tw, th); });
+    if (built >= MAIN_FLOORS && src('t_crown8')) ctx.drawImage(src('t_crown8'), tx, ty, tw, th);
+    ctx.textAlign = 'left'; ctx.fillStyle = '#5a2a55'; ctx.font = '700 54px Fredoka';
+    ctx.fillText(`${built} of 8 floors`, 430, 300);
+    ctx.fillStyle = '#e0952f'; ctx.fillText(`★ ${starTotal()} stars`, 430, 380);
+    ctx.fillStyle = '#5a2a55'; ctx.fillText(`${itemCount()} of 12 treasures`, 430, 460);
+    // favorite room: best-starred, latest
+    let fav = 0, best = -1;
+    FLOORS.forEach((f, i) => { const s = META.stars[f.key] || 0; if (s >= best && s > 0) { best = s; fav = i; } });
+    const favStyle = run.styles[FLOORS[fav].key] || 'glam';
+    const rim = src(roomTex(fav, favStyle));
+    ctx.font = '600 36px Fredoka'; ctx.fillStyle = '#8a3f78'; ctx.fillText('Favorite room: ' + FLOORS[fav].name, 430, 540);
+    if (rim) { ctx.save(); rr(ctx, 430, 570, 600, 403, 30); ctx.clip(); ctx.drawImage(rim, 430, 570, 600, 403); ctx.restore(); ctx.lineWidth = 8; ctx.strokeStyle = '#e9b94a'; rr(ctx, 430, 570, 600, 403, 30); ctx.stroke(); }
+    const favItems = ITEMS.filter((it) => META.items[it.id]).sort((a, b) => (META.favs[b.id] ? 1 : 0) - (META.favs[a.id] ? 1 : 0)).slice(0, 5);
+    favItems.forEach((it, i) => { const im = src('it_' + it.id); if (im) ctx.drawImage(im, 430 + i * 120, 1010, 110, 110); });
+    ctx.textAlign = 'center'; ctx.fillStyle = '#c4417f'; ctx.font = '400 64px Pacifico'; ctx.fillText('H+B', cw / 2, 1260);
+    ctx.font = '600 28px Fredoka'; ctx.fillStyle = '#8a3f78'; ctx.fillText('since 1998', cw / 2, 1305);
+    window.JOE.lastShareCanvas = cv;
+    cv.toBlob(async (blob) => {
+      if (!blob) return;
+      window.JOE.lastShare = { w: cw, h: chh, bytes: blob.size };
+      const file = new File([blob], 'joes-tower.png', { type: 'image/png' });
+      try {
+        if (navigator.canShare && navigator.canShare({ files: [file] }) && !PARAMS.get('noshare')) { await navigator.share({ files: [file], title: "Joe's Tower" }); return; }
+      } catch (e) { /* cancelled */ }
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'joes-tower.png';
+      if (!PARAMS.get('noshare')) a.click();
+      toast(scene, 'Share card ready', 'Saved as joes-tower.png', null);
+    }, 'image/png');
+  } catch (e) { console.warn('share failed', e); }
+}
+
+// ---------- desktop side panels
+function buildSidePanels(scene) {
+  if (!WIDE) return;
+  const lx = -OX + 30, lw = OX - 60, rx = W + 30, rw = OX - 60;
+  const left = scene.add.container(0, 0).setDepth(5), right = scene.add.container(0, 0).setDepth(5);
+  scene.side = { left, right };
+  const build = () => {
+    left.removeAll(true); right.removeAll(true);
+    left.add(scene.add.image(lx + lw / 2, H / 2, panelTex(scene, 'sidep', Math.round(lw), H - 60, 40, 0.75)));
+    const ht = txt(scene, lx + lw / 2, 90, 'The Tower', 54, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(ht); left.add(ht);
+    const built = scene.towerBuilt !== undefined ? scene.towerBuilt : Math.min(MAIN_FLOORS + 1, G.run.floor);
+    const sc = Math.min(lw / 360, 1000 / 1000) * 0.98, tyC = 690;
+    left.add(scene.add.image(lx + lw / 2, tyC, 't_base').setScale(sc));
+    for (let i = built + 1; i < MAIN_FLOORS; i++) left.add(scene.add.image(lx + lw / 2, tyC, 't_floor' + i).setScale(sc).setTintFill(0x9a5a8c).setAlpha(0.12));
+    for (let i = 0; i < built && i < 9; i++) left.add(scene.add.image(lx + lw / 2, tyC, 't_floor' + i).setScale(sc));
+    if (built < 9) { const gh = scene.add.image(lx + lw / 2, tyC, 't_floor' + Math.min(8, built)).setScale(sc).setTintFill(0x9a5a8c).setAlpha(0.3); left.add(gh); if (!RM) scene.tweens.add({ targets: gh, alpha: 0.12, duration: 700, yoyo: true, repeat: -1 }); }
+    if (built >= MAIN_FLOORS) left.add(scene.add.image(lx + lw / 2, tyC, built >= 9 ? 't_crown9' : 't_crown8').setScale(sc));
+    left.add(txt(scene, lx + lw / 2, 150, `★ ${starTotal()} stars   ${Object.keys(META.ach).length}/${ACH.length} achievements`, 26, { color: '#8a3f78', weight: '600' }));
+    scene.sideTowerGeom = { x: lx + lw / 2, y: tyC, sc };
+
+    right.add(scene.add.image(rx + rw / 2, H / 2, 'sidep'));
+    const rt = txt(scene, rx + rw / 2, 90, "Joe's Collection", 50, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(rt); right.add(rt);
+    right.add(txt(scene, rx + rw / 2, 150, `${itemCount()} of 12 treasures`, 26, { color: '#8a3f78', weight: '600' }));
+    const sh = drawShelf(scene, rx + 30, 180, rw - 60, () => openShelf(scene)); right.add(sh);
+    const p = G.run.perks;
+    const lines = [];
+    if (p.glam) lines.push(`TURBO +${p.glam * 30}%`); if (p.regency) lines.push(`+${p.regency * 2} moves`); if (p.mid) lines.push(`${Math.min(3, p.mid)} starting drill${p.mid > 1 ? 's' : ''}`);
+    right.add(txt(scene, rx + rw / 2, 180 + sh.h + 40, 'Decor perks', 28, { color: '#c4417f' }));
+    right.add(txt(scene, rx + rw / 2, 180 + sh.h + 80, lines.length ? lines.join('   ') : 'Pick a decor style after a floor to earn one', 22, { color: '#5a2a55', weight: '600', wrap: rw - 40 }));
+    right.add(makeButton(scene, rx + rw / 2, H - 130, 320, 76, 'Share Card', { fs: 30, c1: '#ffd38f', c2: '#f3a64a' }, () => shareCard(scene)));
+  };
+  build();
+  scene.refreshSide = build;
 }
 
 // =====================================================================
@@ -148,8 +416,16 @@ class Boot extends Phaser.Scene {
     this.load.on('progress', (p) => { if (msg) msg.textContent = 'Polishing the chrome... ' + Math.round(p * 100) + '%'; });
     this.load.on('loaderror', (f) => console.warn('asset failed', f && f.key));
     TYPES.concat(['disco', 'wreck', 'drill']).forEach((k) => this.load.image(k, 'assets/tiles/' + k + '.webp'));
-    for (let i = 0; i < 8; i++) { this.load.image('before' + i, 'assets/img/before' + i + '.jpg'); this.load.image('after' + i, 'assets/img/after' + i + '.jpg'); }
-    this.load.image('title', 'assets/img/title.jpg');
+    this.load.spritesheet('disco_spin', 'assets/tiles/disco_spin.webp', { frameWidth: 144, frameHeight: 144 });
+    ITEMS.forEach((it) => this.load.image('it_' + it.id, 'assets/items/' + it.id + '.webp'));
+    ['base', 'crown8', 'crown9'].concat([...Array(9)].map((_, i) => 'floor' + i)).forEach((k) => this.load.image('t_' + k, 'assets/tower/' + k + '.webp'));
+    FLOORS.forEach((f) => {
+      this.load.image(f.key + '_before', 'assets/img/' + f.key + '_before.jpg');
+      if (f.secret) this.load.image('dome_glam', 'assets/img/dome_glam.jpg');
+      else STYLE_IDS.forEach((s) => { const k = roomTex(FLOORS.indexOf(f), s); this.load.image(k, 'assets/img/' + k + '.jpg'); });
+    });
+    this.load.image('title', 'assets/img/title2.jpg');
+    this.load.image('nye', 'assets/img/penthouse_nye.jpg');
     ['chime', 'chime2', 'swap', 'bonk', 'drill', 'wreck', 'turbo', 'cheer', 'fanfare', 'finale'].forEach((k) => this.load.audio(k, 'assets/audio/' + k + '.mp3'));
     this.load.audio('music', 'assets/audio/music.mp3');
   }
@@ -157,7 +433,7 @@ class Boot extends Phaser.Scene {
     makeSharedTextures(this);
     const l = document.getElementById('loading'); if (l) l.remove();
     const start = PARAMS.get('start');
-    if (start === 'finale') { this.scene.start('Finale'); return; }
+    if (start === 'finale') { G.run = store.get('run_classic', null) || store.get('run_relaxed', null) || freshRun(); this.scene.start('Finale'); return; }
     this.scene.start('Title');
   }
 }
@@ -166,19 +442,17 @@ class Boot extends Phaser.Scene {
 class Title extends Phaser.Scene {
   constructor() { super('Title'); }
   create() {
-    window.JOE.scene = this; window.JOE.sceneName = 'Title';
-    this.add.image(W / 2, H / 2, 'bg');
+    window.JOE.scene = this; window.JOE.sceneName = 'Title'; window.JOE.card = null;
+    setupScene(this);
     const art = this.add.image(W / 2, H, 'title').setOrigin(0.5, 1);
     art.setScale(Math.max(W / art.width, H / art.height));
-    // soft veil at top and bottom for legibility
     canvasTex(this, 'veil', W, H, (ctx) => {
       let g = ctx.createLinearGradient(0, 0, 0, 420); g.addColorStop(0, 'rgba(255,240,248,0.92)'); g.addColorStop(1, 'rgba(255,240,248,0)');
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, 420);
-      g = ctx.createLinearGradient(0, H - 470, 0, H); g.addColorStop(0, 'rgba(255,236,246,0)'); g.addColorStop(0.45, 'rgba(255,236,246,0.85)'); g.addColorStop(1, 'rgba(255,236,246,0.97)');
-      ctx.fillStyle = g; ctx.fillRect(0, H - 470, W, 470);
+      g = ctx.createLinearGradient(0, H - 520, 0, H); g.addColorStop(0, 'rgba(255,236,246,0)'); g.addColorStop(0.4, 'rgba(255,236,246,0.85)'); g.addColorStop(1, 'rgba(255,236,246,0.97)');
+      ctx.fillStyle = g; ctx.fillRect(0, H - 520, W, 520);
     });
     this.add.image(W / 2, H / 2, 'veil');
-
     const hb = txt(this, W / 2, 70, 'Here\'s to you, Joe!', 30, { color: '#c4417f', weight: '600' });
     const t1 = txt(this, W / 2, 170, "Joe's Tower", 104, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 10, shadow: 'rgba(160,40,110,0.45)' });
     goldText(t1);
@@ -189,26 +463,55 @@ class Title extends Phaser.Scene {
     }
     hb.setAlpha(0); this.tweens.add({ targets: hb, alpha: 1, y: 76, duration: 700 });
 
-    const saved = store.get('progress', { classic: 0, relaxed: 0 });
-    let y = H - 330;
-    const go = (mode, floor) => {
-      G.mode = mode; G.floor = floor; G.score = floor === 0 ? 0 : store.get('score_' + mode, 0);
+    const runs = { classic: store.get('run_classic', null), relaxed: store.get('run_relaxed', null) };
+    const go = (mode, fresh) => {
+      G.mode = mode; G.duel = null; RNG = Math.random;
+      G.run = (!fresh && runs[mode]) ? runs[mode] : freshRun();
+      if (T0 === null) T0 = performance.now();
       startMusic(this);
-      this.cameras.main.fadeOut(D(350), 255, 230, 240);
+      this.cameras.main.fadeOut(D(250), 255, 230, 240);
       this.cameras.main.once('camerafadeoutcomplete', () => this.scene.start('Game'));
     };
-    this.btnPlay = makeButton(this, W / 2, y, 440, 96, saved.classic > 0 ? `Continue: Floor ${saved.classic + 1}` : 'Build It', { fs: 40 }, () => go('classic', saved.classic || 0));
-    txt(this, W / 2, y + 66, 'Classic: goals with a move budget', 22, { color: '#7a3c72', weight: '500' });
-    y += 140;
-    this.btnRelax = makeButton(this, W / 2, y, 440, 86, saved.relaxed > 0 ? `Relaxed: Floor ${saved.relaxed + 1}` : 'Relaxed Mode', { fs: 34, c1: '#c9b2ff', c2: '#9b6dff' }, () => go('relaxed', saved.relaxed || 0));
-    txt(this, W / 2, y + 62, 'No move limit. The penthouse is always reachable.', 22, { color: '#7a3c72', weight: '500' });
-    if (saved.classic > 0 || saved.relaxed > 0) {
-      const r = txt(this, W / 2, H - 40, 'Start over from the lobby', 22, { color: '#a24c86', weight: '600' }).setInteractive({ useHandCursor: true });
-      r.on('pointerdown', () => { store.set('progress', { classic: 0, relaxed: 0 }); this.scene.restart(); });
+    let y = H - 400;
+    const cont = runs.classic && runs.classic.floor > 0;
+    this.btnPlay = makeButton(this, W / 2, y, 460, 104, cont ? `Continue: Floor ${runs.classic.floor + 1}` : 'Play', { fs: 46 }, () => go('classic', false));
+    y += 118;
+    this.btnRelax = makeButton(this, W / 2, y, 460, 82, runs.relaxed && runs.relaxed.floor > 0 ? `Relaxed: Floor ${runs.relaxed.floor + 1}` : 'Relaxed Mode', { fs: 32, c1: '#c9b2ff', c2: '#9b6dff' }, () => go('relaxed', false));
+    txt(this, W / 2, y + 56, 'No move limit. The penthouse is always reachable.', 20, { color: '#7a3c72', weight: '500' });
+    y += 112;
+    this.btnShelf = makeButton(this, W / 2 - 118, y, 220, 70, `Shelf ${itemCount()}/12`, { fs: 26, c1: '#ffd38f', c2: '#f3a64a' }, () => openShelf(this));
+    this.btnDuel = makeButton(this, W / 2 + 118, y, 220, 70, 'Duel', { fs: 26, c1: '#a8ecd0', c2: '#3fc59a' }, () => this.duelSetup());
+    txt(this, W / 2, H - 34, `★ ${starTotal()} stars   ${Object.keys(META.ach).length}/${ACH.length} achievements`, 22, { color: '#a24c86', weight: '600' });
+    if (cont) {
+      const r = txt(this, W / 2, y - 175, 'or start over from the lobby', 20, { color: '#a24c86', weight: '600' }).setInteractive({ useHandCursor: true });
+      r.setY(H - 400 + 66);
+      r.on('pointerdown', () => go('classic', true));
     }
     this.soundBtn = makeSoundToggle(this, W - 64, 92);
     this.input.once('pointerdown', () => startMusic(this));
+    buildSidePanels(this);
     window.JOE.ready = true;
+  }
+  duelSetup() {
+    if (this.overlay) return;
+    this.overlay = this.add.container(0, 0).setDepth(85);
+    const dim = this.add.rectangle(W / 2, H / 2, GW, H, 0x2e1230, 0.55).setInteractive();
+    const p = this.add.image(W / 2, H / 2, panelTex(this, 'duelp', 620, 620, 40, 0.98));
+    const t = txt(this, W / 2, H / 2 - 230, 'Pass the Phone', 54, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t);
+    const best = META.duelBest;
+    const l1 = txt(this, W / 2, H / 2 - 140, 'Same starting board, 12 moves each.\nHighest score wins.', 26, { weight: '600' });
+    const l2 = txt(this, W / 2, H / 2 - 60, `Best so far: Gordon ${best.Gordon || 0}   Joe ${best.Joe || 0}`, 22, { color: '#8a3f78', weight: '600' });
+    const start = (first) => {
+      const seed = Math.floor(Math.random() * 1e9);
+      G.mode = 'duel'; G.duel = { order: first === 'Gordon' ? ['Gordon', 'Joe'] : ['Joe', 'Gordon'], turn: 0, scores: [0, 0], seed };
+      G.run = freshRun(); if (T0 === null) T0 = performance.now(); startMusic(this);
+      this.scene.start('Game');
+    };
+    const b1 = makeButton(this, W / 2, H / 2 + 60, 420, 84, 'Gordon goes first', { fs: 30 }, () => start('Gordon'));
+    const b2 = makeButton(this, W / 2, H / 2 + 160, 420, 84, 'Joe goes first', { fs: 30, c1: '#c9b2ff', c2: '#9b6dff' }, () => start('Joe'));
+    const cl = txt(this, W / 2, H / 2 + 250, 'Not now', 24, { color: '#a24c86' }).setInteractive({ useHandCursor: true });
+    cl.on('pointerdown', () => { this.overlay.destroy(); this.overlay = null; });
+    this.overlay.add([dim, p, t, l1, l2, b1, b2, cl]);
   }
 }
 
@@ -220,9 +523,9 @@ function makeSoundToggle(scene, x, y) {
   });
   const img = scene.add.image(0, 0, key);
   const t = txt(scene, 0, 0, G.muted ? 'OFF' : 'ON', 22, { color: '#b23f7c' });
-  const lab = txt(scene, 0, 0, '', 1);
-  const c = scene.add.container(x, y, [img, t, lab]).setSize(84, 84).setInteractive({ useHandCursor: true });
-  const note = txt(scene, 0, -54, 'sound', 18, { color: '#8a3f78', weight: '600' }); c.add(note);
+  const note = txt(scene, 0, -54, 'sound', 18, { color: '#8a3f78', weight: '600' });
+  const c = scene.add.container(x, y, [img, t, note]).setSize(84, 84).setInteractive({ useHandCursor: true });
+  c.note = note;
   c.on('pointerdown', () => {
     G.muted = !G.muted; store.set('muted', G.muted); scene.sound.mute = G.muted;
     if (!G.muted) startMusic(scene);
@@ -236,29 +539,25 @@ class Game extends Phaser.Scene {
   constructor() { super('Game'); }
 
   create() {
-    window.JOE.scene = this; window.JOE.sceneName = 'Game';
-    this.busy = true; this.g = []; this.sel = null; this.down = null;
-    this.turbo = 0; this.turboMeter = 0; this.reveal = 0; this.revealShown = 0;
-    this.cameras.main.fadeIn(D(350), 255, 230, 240);
-    this.add.image(W / 2, H / 2, 'bg');
-    if (!RM) this.add.particles(0, 0, 'spark', { x: { min: 0, max: W }, y: { min: 0, max: H }, lifespan: 2400, scale: { start: 0.5, end: 0 }, alpha: { start: 0.8, end: 0 }, frequency: 400, tint: [0xffffff, 0xffe28a] }).setDepth(0);
+    window.JOE.scene = this; window.JOE.sceneName = 'Game'; window.JOE.card = null;
+    this.busy = true; this.g = []; this.sel = null; this.down = null; this.cloth = null;
+    this.turbo = 0; this.turboMeter = 0; this.reveal = 0; this.revealShown = 0; this.timeLeft = null;
+    this.cameras.main.fadeIn(D(300), 255, 230, 240);
+    setupScene(this);
+    if (!RM) this.add.particles(0, 0, 'spark', { x: { min: -OX, max: W + OX }, y: { min: 0, max: H }, lifespan: 2400, scale: { start: 0.5, end: 0 }, alpha: { start: 0.8, end: 0 }, frequency: 400, tint: [0xffffff, 0xffe28a] }).setDepth(0);
 
-    this.buildHud();
-    this.buildRoomPanel();
-    this.buildTurboBar();
-    this.buildBoard();
-    this.buildFooter();
-
+    this.buildHud(); this.buildRoomPanel(); this.buildTurboBar(); this.buildBoard(); this.buildFooter();
     this.burst = this.add.particles(0, 0, 'spark', { lifespan: D(600), speed: { min: 80, max: 320 }, scale: { start: 0.9, end: 0 }, alpha: { start: 1, end: 0 }, emitting: false, blendMode: 'ADD' }).setDepth(40);
     this.confetti = this.add.particles(0, 0, 'confetti', { lifespan: 2600, speedX: { min: -260, max: 260 }, speedY: { min: -700, max: -250 }, gravityY: 700, rotate: { min: 0, max: 360 }, scale: { min: 0.8, max: 1.4 }, emitting: false, tint: [0xff7eb6, 0xffd36b, 0x7fe0c0, 0xb49bff, 0x8fd0ff, 0xffffff] }).setDepth(60);
-    this.flash = this.add.rectangle(W / 2, H / 2, W, H, 0xffffff, 0).setDepth(70);
+    this.flash = this.add.rectangle(W / 2, H / 2, GW, H, 0xffffff, 0).setDepth(70);
 
     this.input.on('pointerdown', (p) => this.onDown(p));
     this.input.on('pointermove', (p) => this.onMove(p));
     this.input.on('pointerup', (p) => this.onUp(p));
     this.time.addEvent({ delay: 500, loop: true, callback: () => this.hintTick() });
+    buildSidePanels(this);
 
-    this.loadFloor(G.floor, true);
+    if (G.mode === 'duel') this.loadDuel(); else this.loadFloor(G.run.floor, true);
     window.JOE.ready = true;
   }
 
@@ -272,7 +571,7 @@ class Game extends Phaser.Scene {
     this.floorLabel = txt(this, 24, 26, '', 22, { ox: 0, color: '#b0447f', weight: '600' });
     this.roomLabel = txt(this, 24, 60, '', 38, { ox: 0, color: '#5a2a55' });
     this.add.image(W - 118, 46, 'hudpill');
-    txt(this, W - 118, 26, 'MOVES', 18, { color: '#b0447f', weight: '600' });
+    this.movesCap = txt(this, W - 118, 26, 'MOVES', 18, { color: '#b0447f', weight: '600' });
     this.movesText = txt(this, W - 118, 56, '', 36, { color: '#5a2a55' });
     this.scoreText = txt(this, W - 236, 46, '', 22, { ox: 1, color: '#8a3f78', weight: '600' });
   }
@@ -285,26 +584,25 @@ class Game extends Phaser.Scene {
       ctx.lineWidth = 5; ctx.strokeStyle = goldGrad(ctx, 0, ph); rr(ctx, 3, 3, pw - 6, ph - 6, 27); ctx.stroke();
     });
     this.add.image(px + pw / 2, py + ph / 2, 'panel');
-    // tower sky
     this.tw = { x: px + 10, y: py + 10, w: 138, h: ph - 20 };
     canvasTex(this, 'sky', this.tw.w, this.tw.h, (ctx, w, h) => {
       const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#c9b6ff'); g.addColorStop(0.6, '#ffc9de'); g.addColorStop(1, '#ffe2c4');
       ctx.fillStyle = g; rr(ctx, 0, 0, w, h, 20); ctx.fill();
       ctx.fillStyle = 'rgba(255,255,255,0.8)';
       for (let i = 0; i < 26; i++) { const x = (i * 53) % w, y = (i * 97) % (h * 0.6); ctx.beginPath(); ctx.arc(x, y, (i % 3) + 1, 0, 7); ctx.fill(); }
-      ctx.fillStyle = '#e7a8c4'; rr(ctx, 0, h - 16, w, 16, 8); ctx.fill();
     });
     this.add.image(this.tw.x + this.tw.w / 2, this.tw.y + this.tw.h / 2, 'sky');
     this.towerLayer = this.add.container(0, 0);
-    this.floorH = (this.tw.h - 16 - 34) / 8;
+    // tower renders are 360x1000; fit into the column
+    this.tsc = this.tw.h / 1000; this.tcx = this.tw.x + this.tw.w / 2; this.tcy = this.tw.y + this.tw.h / 2;
 
-    // room image area
     const rx = this.tw.x + this.tw.w + 10, ry = py + 10, rw = px + pw - 10 - rx, rh = ph - 20;
     this.room = { x: rx, y: ry, w: rw, h: rh };
-    this.beforeImg = this.add.image(rx, ry, 'before0').setOrigin(0, 0).setDisplaySize(rw, rh);
-    this.afterImg = this.add.image(rx, ry, 'after0').setOrigin(0, 0).setDisplaySize(rw, rh);
+    this.beforeImg = this.add.image(rx, ry, 'lobby_before').setOrigin(0, 0).setDisplaySize(rw, rh);
+    this.afterImg = this.add.image(rx, ry, 'lobby_glam').setOrigin(0, 0).setDisplaySize(rw, rh);
     const mg = this.make.graphics({ x: 0, y: 0, add: false });
     this.revealMaskG = mg; this.afterImg.setMask(mg.createGeometryMask());
+    this.styleImg = this.add.image(rx, ry, 'lobby_glam').setOrigin(0, 0).setDisplaySize(rw, rh).setAlpha(0);
     canvasTex(this, 'roomframe', rw + 8, rh + 8, (ctx, w, h) => {
       ctx.fillStyle = '#fff6f0'; ctx.fillRect(0, 0, w, h);
       ctx.globalCompositeOperation = 'destination-out'; rr(ctx, 4, 4, w - 8, h - 8, 20); ctx.fill();
@@ -335,8 +633,7 @@ class Game extends Phaser.Scene {
     this.add.image(W / 2, y, 'turboframe');
     this.turboLabel = txt(this, 90, y, 'TURBO', 30, { color: '#ff3f88', stroke: '#ffffff', strokeW: 5 });
     this.turboLabel.setFontStyle('italic 700');
-    this.turboFill = this.add.tileSprite(this.tb.x, y, 1, this.tb.h - 4, 'stripes').setOrigin(0, 0.5);
-    this.turboFill.setVisible(false);
+    this.turboFill = this.add.tileSprite(this.tb.x, y, 1, this.tb.h - 4, 'stripes').setOrigin(0, 0.5).setVisible(false);
     this.turboHint = txt(this, this.tb.x + this.tb.w / 2, y, 'Chain cascades to charge', 18, { color: '#ffd9ec', weight: '600' });
   }
 
@@ -359,78 +656,108 @@ class Game extends Phaser.Scene {
     this.layer = this.add.container(0, 0).setDepth(10);
     const mg = this.make.graphics({ add: false }); mg.fillStyle(0xffffff); mg.fillRect(BX - 10, BY - 4, N * CELL + 20, N * CELL + 14);
     this.layer.setMask(mg.createGeometryMask());
+    this.clothLayer = this.add.container(0, 0).setDepth(12);
     this.selImg = this.add.image(0, 0, 'sel').setDepth(20).setVisible(false);
     if (!RM) this.tweens.add({ targets: this.selImg, scale: 1.08, duration: 380, yoyo: true, repeat: -1 });
-    // racing stripes for TURBO
     this.raceStripes = this.add.container(0, 0).setDepth(25).setAlpha(0);
     [BY - 14, BY + N * CELL + 6].forEach((yy) => {
       this.raceStripes.add(this.add.rectangle(W / 2, yy, N * CELL + 20, 6, 0xff4f93));
       this.raceStripes.add(this.add.rectangle(W / 2, yy + 9, N * CELL + 20, 6, 0xffd36b));
     });
     this.speedLines = this.add.container(0, 0).setDepth(26);
+    // onboarding prompt + pointer
+    this.prompt = txt(this, W / 2, BY - 2, '', 26, { color: '#ffffff', stroke: '#c4417f', strokeW: 7 }).setDepth(30);
+    this.pointer = this.add.container(0, 0).setDepth(31).setVisible(false);
+    const ring = this.add.circle(0, 0, 34).setStrokeStyle(6, 0xffffff, 1);
+    const dot = this.add.circle(0, 0, 14, 0xff4f93, 1).setStrokeStyle(4, 0xffffff);
+    this.pointer.add([ring, dot]); this.pointer.ring = ring; this.pointer.dot = dot;
   }
 
   buildFooter() {
     const y = 1246;
-    this.menuBtn = makeButton(this, 108, y, 180, 60, 'Menu', { fs: 26, c1: '#ffd38f', c2: '#f3a64a' }, () => this.toMenu());
-    this.hintBtn = makeButton(this, W / 2, y, 180, 60, 'Hint', { fs: 26, c1: '#a8ecd0', c2: '#3fc59a' }, () => this.showHint(true));
-    this.soundBtn = makeSoundToggle(this, W - 70, y - 4); this.soundBtn.setScale(0.75);
-    this.soundBtn.list[3].setVisible(false);
+    this.menuBtn = makeButton(this, 92, y, 150, 60, 'Menu', { fs: 24, c1: '#ffd38f', c2: '#f3a64a' }, () => this.toMenu());
+    this.shelfBtn = makeButton(this, 256, y, 160, 60, 'Shelf', { fs: 24, c1: '#c9b2ff', c2: '#9b6dff' }, () => openShelf(this));
+    this.hintBtn = makeButton(this, 426, y, 160, 60, 'Hint', { fs: 24, c1: '#a8ecd0', c2: '#3fc59a' }, () => this.showHint(true));
+    this.soundBtn = makeSoundToggle(this, W - 70, y - 4); this.soundBtn.setScale(0.75); this.soundBtn.note.setVisible(false);
   }
 
-  toMenu() {
-    if (this.overlay) return;
-    this.scene.start('Title');
-  }
+  toMenu() { if (this.overlay) return; this.saveRun(); this.scene.start('Title'); }
+  saveRun() { if (G.mode === 'duel') return; store.set('run_' + G.mode, G.run); }
 
   // ---------------------------------------------------------- floors
   loadFloor(i, first) {
-    G.floor = i; const f = FLOORS[i];
+    G.run.floor = i; const f = FLOORS[i]; this.fi = i;
     this.collected = {}; Object.keys(f.goals).forEach((k) => (this.collected[k] = 0));
-    this.moves = f.moves; this.turbo = 0; this.turboMeter = 0; this.reveal = 0; this.revealShown = 0;
-    this.floorLabel.setText(`FLOOR ${i + 1} OF 8  ${G.mode === 'relaxed' ? 'RELAXED' : ''}`);
+    const p = G.run.perks;
+    this.timed = !!f.time;
+    this.moves = (f.moves || 0) + (this.timed ? 0 : p.regency * 2);
+    this.timeLeft = this.timed ? f.time + p.regency * 8 : null;
+    this.floorSwaps = 0; this.floorMaxCombo = 0;
+    this.turbo = 0; this.turboMeter = 0; this.reveal = 0; this.revealShown = 0;
+    this.floorLabel.setText(`FLOOR ${i + 1}${f.secret ? ' (SECRET)' : ' OF 8'}  ${G.mode === 'relaxed' ? 'RELAXED' : ''}${f.boss ? '  INSPECTION DAY' : ''}`);
     this.roomLabel.setText(f.name);
-    this.beforeImg.setTexture('before' + i).setDisplaySize(this.room.w, this.room.h);
-    this.afterImg.setTexture('after' + i).setDisplaySize(this.room.w, this.room.h);
+    this.beforeImg.setTexture(f.key + '_before').setDisplaySize(this.room.w, this.room.h);
+    this.afterImg.setTexture(roomTex(i, 'glam')).setDisplaySize(this.room.w, this.room.h);
+    this.styleImg.setAlpha(0);
+    this.movesCap.setText(this.timed ? 'TIME' : 'MOVES');
     this.updateMoves(); this.updateScore(); this.updateTurbo(); this.buildGoalChips(); this.drawReveal(0);
-    this.drawTower(i, false);
-    this.fillBoard(first);
-    this.floorIntro();
+    this.drawTower(i);
+    this.fillBoard(i);
+    this.saveRun();
+    if (i === 0 && G.mode !== 'duel') { this.onboard = 1; this.busy = false; this.lastInput = this.time.now; this.showFirstHint(); }
+    else { this.onboard = 0; this.floorIntro(); }
+  }
+
+  loadDuel() {
+    const d = G.duel; const who = d.order[d.turn];
+    RNG = mulberry32(d.seed);
+    this.fi = 7; const f = FLOORS[7];
+    this.collected = {}; this.timed = false; this.timeLeft = null; this.moves = 12; this.duelScore = 0;
+    this.turbo = 0; this.turboMeter = 0; this.onboard = 0; this.floorMaxCombo = 0; this.floorSwaps = 0;
+    this.floorLabel.setText('DUEL  PASS THE PHONE'); this.roomLabel.setText(who + "'s turn");
+    this.beforeImg.setTexture('nye').setDisplaySize(this.room.w, this.room.h); this.afterImg.setTexture('nye'); this.drawReveal(0); this.pctText.setText('');
+    this.movesCap.setText('MOVES'); this.updateMoves(); this.updateTurbo();
+    this.goalChips.removeAll(true); this.chips = {};
+    const sc = txt(this, this.room.x + this.room.w / 2, this.room.y + this.room.h - 40, '', 40, { color: '#ffffff', stroke: '#c4417f', strokeW: 8 });
+    this.goalChips.add(sc); this.duelText = sc;
+    this.drawTower(MAIN_FLOORS);
+    this.fillBoard(-1);
+    this.busy = true;
+    this.card(who + ', you are up!', [{ t: '12 moves. Make the biggest cascades you can.', s: 26 }, { t: d.turn === 0 ? 'Then pass the phone.' : `Score to beat: ${d.scores[0].toLocaleString('en-US')}`, s: 26, c: '#b0447f' }], [{ label: 'Go!', fn: () => { this.busy = false; } }], { h: 420 });
+    G.statsDuelStart = G.run.score;
   }
 
   buildGoalChips() {
     this.goalChips.removeAll(true);
-    const keys = Object.keys(FLOORS[G.floor].goals);
-    const cw = 132, gap = 8, total = keys.length * cw + (keys.length - 1) * gap;
+    const keys = Object.keys(FLOORS[this.fi].goals);
+    const cw = keys.length > 3 ? 112 : 132, gap = 6, total = keys.length * cw + (keys.length - 1) * gap;
     let x = this.room.x + this.room.w / 2 - total / 2;
     const y = this.room.y + this.room.h - 34;
-    canvasTex(this, 'chip', cw, 54, (ctx, w, h) => {
+    canvasTex(this, 'chip' + cw, cw, 54, (ctx, w, h) => {
       ctx.fillStyle = 'rgba(70,25,70,0.62)'; rr(ctx, 1, 1, w - 2, h - 2, 26); ctx.fill();
       ctx.lineWidth = 2.5; ctx.strokeStyle = goldGrad(ctx, 0, h); rr(ctx, 2, 2, w - 4, h - 4, 25); ctx.stroke();
     });
-    canvasTex(this, 'chipdone', cw, 54, (ctx, w, h) => {
-      ctx.fillStyle = goldGrad(ctx, 0, h); rr(ctx, 1, 1, w - 2, h - 2, 26); ctx.fill();
-    });
+    canvasTex(this, 'chipdone' + cw, cw, 54, (ctx, w, h) => { ctx.fillStyle = goldGrad(ctx, 0, h); rr(ctx, 1, 1, w - 2, h - 2, 26); ctx.fill(); });
     this.chips = {};
     keys.forEach((k) => {
-      const bg = this.add.image(0, 0, 'chip');
-      const icon = this.add.image(-cw / 2 + 28, 0, k).setDisplaySize(46, 46);
-      const t = txt(this, 18, 0, '', 24, { color: '#ffffff' });
+      const bg = this.add.image(0, 0, 'chip' + cw);
+      const icon = this.add.image(-cw / 2 + 26, 0, k).setDisplaySize(42, 42);
+      const t = txt(this, 16, 0, '', 23, { color: '#ffffff' });
       const c = this.add.container(x + cw / 2, y, [bg, icon, t]);
-      this.goalChips.add(c); this.chips[k] = { c, t, bg }; x += cw + gap;
+      this.goalChips.add(c); this.chips[k] = { c, t, bg, cw }; x += cw + gap;
     });
     this.updateGoals();
   }
 
   updateGoals() {
-    const f = FLOORS[G.floor]; let have = 0, need = 0;
+    const f = FLOORS[this.fi]; let have = 0, need = 0;
     Object.keys(f.goals).forEach((k) => {
       const n = Math.min(this.collected[k], f.goals[k]); have += n; need += f.goals[k];
       const ch = this.chips[k]; if (!ch) return;
       const done = this.collected[k] >= f.goals[k];
-      ch.t.setText(done ? '\u2713' : `${n}/${f.goals[k]}`); ch.t.setFontSize(done ? 34 : 24);
+      ch.t.setText(done ? '✓' : `${n}/${f.goals[k]}`); ch.t.setFontSize(done ? 34 : 23);
       ch.t.setColor(done ? '#7a3c00' : '#ffffff');
-      ch.bg.setTexture(done ? 'chipdone' : 'chip');
+      ch.bg.setTexture((done ? 'chipdone' : 'chip') + ch.cw);
     });
     this.reveal = need ? have / need : 0;
     this.tweens.add({ targets: this, revealShown: this.reveal, duration: D(450), ease: 'Cubic.easeOut', onUpdate: () => this.drawReveal(this.revealShown) });
@@ -442,65 +769,47 @@ class Game extends Phaser.Scene {
     g.fillRect(r.x, r.y, r.w * p, r.h);
     this.edge.setX(x).setVisible(p > 0.001 && p < 0.999);
     this.edgeGlow.setX(x); this.edgeGlow.emitting = p > 0.001 && p < 0.999 && !RM;
-    this.pctText.setText(p >= 0.999 ? 'REMODELED' : `REMODEL ${Math.round(p * 100)}%`);
+    if (G.mode !== 'duel') this.pctText.setText(p >= 0.999 ? 'REMODELED' : `REMODEL ${Math.round(p * 100)}%`);
   }
 
-  goalsMet() { const f = FLOORS[G.floor]; return Object.keys(f.goals).every((k) => this.collected[k] >= f.goals[k]); }
-
-  updateMoves() { this.movesText.setText(G.mode === 'relaxed' ? '∞' : String(this.moves)); this.movesText.setColor(G.mode !== 'relaxed' && this.moves <= 5 ? '#e0306f' : '#5a2a55'); }
-  updateScore() { this.scoreText.setText(G.score.toLocaleString('en-US') + ' pts'); }
-
-  // ---------------------------------------------------------- tower
-  floorRect(i) {
-    const fh = this.floorH, base = this.tw.y + this.tw.h - 16;
-    const w = this.tw.w - 18 - i * 5; const x = this.tw.x + (this.tw.w - w) / 2;
-    return { x, y: base - (i + 1) * fh, w, h: fh - 2 };
-  }
-  makeFloorGfx(i, built) {
-    const r = this.floorRect(i); const g = this.add.graphics();
-    if (built) {
-      g.fillStyle(0x8a3f78, 0.25); g.fillRoundedRect(r.x + 3, r.y + 4, r.w, r.h, 8);
-      g.fillStyle(FLOOR_COLORS[i], 1); g.fillRoundedRect(r.x, r.y, r.w, r.h, 8);
-      g.lineStyle(2, 0x7a3a6e, 0.85); g.strokeRoundedRect(r.x, r.y, r.w, r.h, 8);
-      g.fillStyle(0xffffff, 0.45); g.fillRoundedRect(r.x + 4, r.y + 3, r.w - 8, 6, 3);
-      g.fillStyle(0xf3c766, 1); g.fillRect(r.x, r.y + r.h - 4, r.w, 4);
-      const nWin = 4, ww = (r.w - 16) / nWin;
-      for (let k = 0; k < nWin; k++) {
-        g.fillStyle(0xdedbe8, 1); g.fillRoundedRect(r.x + 8 + k * ww + 2, r.y + 11, ww - 6, r.h - 19, 4);
-        g.fillStyle(0xfff1a8, 1); g.fillRoundedRect(r.x + 8 + k * ww + 4, r.y + 13, ww - 10, r.h - 23, 3);
-      }
-    } else {
-      g.lineStyle(2, 0xb06d9c, 0.9); g.strokeRoundedRect(r.x, r.y, r.w, r.h, 8);
-      g.fillStyle(0xffffff, 0.35); g.fillRoundedRect(r.x, r.y, r.w, r.h, 8);
-      g.lineStyle(2, 0xb06d9c, 0.6);
-      for (let k = 0; k < r.w; k += 18) g.lineBetween(r.x + k, r.y + r.h, Math.min(r.x + k + 14, r.x + r.w), r.y);
+  goalsMet() { const f = FLOORS[this.fi]; return Object.keys(f.goals).every((k) => this.collected[k] >= f.goals[k]); }
+  updateMoves() {
+    if (this.timed) {
+      const s = Math.max(0, Math.ceil(this.timeLeft)); this.movesText.setText(`${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`);
+      this.movesText.setColor(s <= 15 ? '#e0306f' : '#5a2a55'); return;
     }
-    return g;
+    this.movesText.setText(G.mode === 'relaxed' ? '∞' : String(this.moves));
+    this.movesText.setColor(G.mode !== 'relaxed' && this.moves <= 5 ? '#e0306f' : '#5a2a55');
   }
-  drawTower(current, animateNew) {
+  updateScore() { this.scoreText.setText((G.mode === 'duel' ? this.duelScore || 0 : G.run.score).toLocaleString('en-US') + ' pts'); if (this.duelText) this.duelText.setText((this.duelScore || 0).toLocaleString('en-US') + ' pts'); }
+
+  // ---------------------------------------------------------- tower (Blender renders)
+  drawTower(current) {
     this.towerLayer.removeAll(true);
-    for (let i = 0; i < current; i++) this.towerLayer.add(this.makeFloorGfx(i, true));
-    if (current < 8) {
-      const sc = this.makeFloorGfx(current, false); this.towerLayer.add(sc);
-      if (!RM) this.tweens.add({ targets: sc, alpha: 0.45, duration: 700, yoyo: true, repeat: -1 });
-      const r = this.floorRect(current);
-      const arrow = txt(this, r.x + r.w / 2, r.y - 14, 'you are here', 13, { color: '#8a3f78', weight: '600' });
-      this.towerLayer.add(arrow);
-    } else {
-      const r = this.floorRect(7);
-      const ball = this.add.image(r.x + r.w / 2, r.y - 18, 'disco').setDisplaySize(40, 40);
-      this.towerLayer.add(ball);
-      if (!RM) this.tweens.add({ targets: ball, angle: 360, duration: 4000, repeat: -1 });
+    this.towerBuilt = current;
+    const add = (k) => { const im = this.add.image(this.tcx, this.tcy, k).setScale(this.tsc); this.towerLayer.add(im); return im; };
+    add('t_base');
+    if (G.mode !== 'duel') for (let i = current + 1; i < MAIN_FLOORS; i++) add('t_floor' + i).setTintFill(0x9a5a8c).setAlpha(0.13);
+    for (let i = 0; i < current && i < 9; i++) add('t_floor' + i);
+    if (current < 9 && G.mode !== 'duel') {
+      const gh = add('t_floor' + current).setTintFill(0x9a5a8c).setAlpha(0.35);
+      if (!RM) this.tweens.add({ targets: gh, alpha: 0.15, duration: 700, yoyo: true, repeat: -1 });
     }
+    if (current >= MAIN_FLOORS) add(current >= 9 ? 't_crown9' : 't_crown8');
     window.JOE.towerFloors = current;
+    if (this.refreshSide) this.refreshSide();
   }
   async growTower(i) {
-    const g = this.makeFloorGfx(i, true); this.towerLayer.add(g);
-    g.y = -260; g.alpha = 1;
-    await tweenP(this, { targets: g, y: 0, duration: RM ? 200 : 700, ease: RM ? 'Linear' : 'Bounce.easeOut' });
-    const r = this.floorRect(i);
-    this.burst.setParticleTint(0xffe28a); this.burst.explode(RM ? 6 : 24, r.x + r.w / 2, r.y + r.h / 2);
-    this.drawTower(i + 1, false);
+    const im = this.add.image(this.tcx, this.tcy - 300, 't_floor' + i).setScale(this.tsc).setDepth(3);
+    let big = null;
+    if (WIDE && this.sideTowerGeom) { const s = this.sideTowerGeom; big = this.add.image(s.x, s.y - 500, 't_floor' + i).setScale(s.sc).setDepth(6); }
+    const tw = [tweenP(this, { targets: im, y: this.tcy, duration: RM ? 200 : 700, ease: RM ? 'Linear' : 'Bounce.easeOut' })];
+    if (big) tw.push(tweenP(this, { targets: big, y: this.sideTowerGeom.y, duration: RM ? 200 : 800, ease: RM ? 'Linear' : 'Bounce.easeOut' }));
+    await Promise.all(tw);
+    this.burst.setParticleTint(0xffe28a); this.burst.explode(RM ? 6 : 24, this.tcx, this.tcy);
+    im.destroy(); if (big) big.destroy();
+    this.drawTower(i + 1);
+    mark('firstTowerGrow');
   }
 
   // ---------------------------------------------------------- board model
@@ -508,11 +817,11 @@ class Game extends Phaser.Scene {
   rc(k) { return [Math.floor(k / N), k % N]; }
   cx(c) { return BX + c * CELL + CELL / 2; }
   cy(r) { return BY + r * CELL + CELL / 2; }
-  randType() { return TYPES[Math.floor(Math.random() * TYPES.length)]; }
+  randType() { return TYPES[Math.floor(RNG() * TYPES.length)]; }
 
   makePiece(type, r, c, special) {
     const p = { type, special: null, c: null, img: null };
-    const img = this.add.image(0, 0, type || 'disco').setDisplaySize(74, 74);
+    const img = this.add.sprite(0, 0, type || 'disco').setDisplaySize(74, 74);
     p.img = img; p.c = this.add.container(this.cx(c), this.cy(r), [img]);
     this.layer.add(p.c);
     if (special) this.setSpecial(p, special, true);
@@ -521,15 +830,17 @@ class Game extends Phaser.Scene {
 
   setSpecial(p, special, silent) {
     p.special = special;
-    if (p.deco) { p.deco.forEach((d) => d.destroy()); }
+    if (p.deco) p.deco.forEach((d) => d.destroy());
     p.deco = [];
     if (special === 'disco') {
-      p.type = null; p.img.setTexture('disco').setDisplaySize(76, 76);
+      p.type = null; p.img.setTexture('disco_spin', 0).setDisplaySize(80, 80);
+      if (!RM && this.anims.exists('discospin')) p.img.play('discospin');
       const ring = this.add.graphics();
       const cols = [0xff7eb6, 0xffd36b, 0x7fe0c0, 0x8fd0ff, 0xb49bff, 0xff9f7f];
-      cols.forEach((col, i) => { ring.lineStyle(5, col, 1); ring.beginPath(); ring.arc(0, 0, 38, (i / 6) * Math.PI * 2, ((i + 1) / 6) * Math.PI * 2); ring.strokePath(); });
+      cols.forEach((col, i) => { ring.lineStyle(5, col, 1); ring.beginPath(); ring.arc(0, 0, 39, (i / 6) * Math.PI * 2, ((i + 1) / 6) * Math.PI * 2); ring.strokePath(); });
       p.c.addAt(ring, 0); p.deco.push(ring);
       if (!RM) this.tweens.add({ targets: ring, angle: 360, duration: 2200, repeat: -1 });
+      if (!silent) unlock(this, 'mirror');
     } else if (special === 'drillH' || special === 'drillV') {
       const glow = this.add.rectangle(0, 0, special === 'drillH' ? 82 : 20, special === 'drillH' ? 20 : 82, 0xffffff, 0.8);
       p.c.addAt(glow, 0); p.deco.push(glow);
@@ -544,7 +855,7 @@ class Game extends Phaser.Scene {
       if (!RM) this.tweens.add({ targets: glow, scale: 1.15, alpha: 0.25, duration: 520, yoyo: true, repeat: -1 });
     }
     if (!silent) {
-      G.stats.specialsMade++;
+      G.stats.specialsMade++; mark('firstSpecial');
       p.c.setScale(0.3);
       this.tweens.add({ targets: p.c, scale: 1, duration: D(380), ease: 'Back.easeOut' });
       this.burst.setParticleTint(0xffffff); this.burst.explode(RM ? 4 : 14, p.c.x, p.c.y);
@@ -552,20 +863,59 @@ class Game extends Phaser.Scene {
     }
   }
 
-  fillBoard(first) {
-    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const p = this.g[r] && this.g[r][c]; if (p) p.c.destroy(); }
-    let types;
-    for (let tries = 0; tries < 200; tries++) {
-      types = [];
+  // planted opening board for floor 1: a 4-match (Power Drill) and an L (Wrecking Ball), both in Tile
+  openingTypes() {
+    const plant = { '6,0': 'tile', '6,1': 'tile', '6,3': 'tile', '5,2': 'tile', '6,2': 'glass',
+      '2,5': 'tile', '2,6': 'tile', '3,7': 'tile', '4,7': 'tile', '1,7': 'tile', '2,7': 'velvet' };
+    for (let tries = 0; tries < 400; tries++) {
+      const t = [];
       for (let r = 0; r < N; r++) {
-        types.push([]);
+        t.push([]);
         for (let c = 0; c < N; c++) {
-          let t, guard = 0;
-          do { t = this.randType(); guard++; } while (guard < 20 && ((c >= 2 && types[r][c - 1] === t && types[r][c - 2] === t) || (r >= 2 && types[r - 1][c] === t && types[r - 2][c] === t)));
-          types[r].push(t);
+          const pl = plant[r + ',' + c]; if (pl) { t[r].push(pl); continue; }
+          let ty, guard = 0;
+          do { ty = TYPES[Math.floor(RNG() * TYPES.length)]; guard++; } while (guard < 30 && ((c >= 2 && t[r][c - 1] === ty && t[r][c - 2] === ty) || (r >= 2 && t[r - 1][c] === ty && t[r - 2][c] === ty) || (ty === 'tile' && r >= 4)));
+          t[r].push(ty);
         }
       }
-      if (this.findMovesOnTypes(types).length >= 3) break;
+      if (!this.hasRun(t)) return t;
+    }
+    return null;
+  }
+  hasRun(t) {
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
+      const ty = t[r][c]; if (!ty) continue;
+      if (c >= 2 && t[r][c - 1] === ty && t[r][c - 2] === ty) return true;
+      if (r >= 2 && t[r - 1][c] === ty && t[r - 2][c] === ty) return true;
+    }
+    return false;
+  }
+
+  fillBoard(i) {
+    for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) { const p = this.g[r] && this.g[r][c]; if (p) p.c.destroy(); }
+    this.clothLayer.removeAll(true);
+    let types = i === 0 ? this.openingTypes() : null;
+    for (let tries = 0; !types && tries < 200; tries++) {
+      const t = [];
+      for (let r = 0; r < N; r++) {
+        t.push([]);
+        for (let c = 0; c < N; c++) {
+          let ty, guard = 0;
+          do { ty = this.randType(); guard++; } while (guard < 20 && ((c >= 2 && t[r][c - 1] === ty && t[r][c - 2] === ty) || (r >= 2 && t[r - 1][c] === ty && t[r - 2][c] === ty)));
+          t[r].push(ty);
+        }
+      }
+      if (this.findMovesOnTypes(t).length >= 3) types = t;
+    }
+    // drop cloths
+    this.cloth = [...Array(N)].map(() => Array(N).fill(null));
+    const nCloth = i >= 0 ? (FLOORS[i].cloths || 0) : 0;
+    let placed = 0;
+    while (placed < nCloth) {
+      const r = 2 + Math.floor(RNG() * (N - 2)), c = Math.floor(RNG() * N);
+      if (this.cloth[r][c]) continue;
+      const im = this.add.image(this.cx(c), this.cy(r), 'cloth').setDisplaySize(CELL - 4, CELL - 4);
+      this.clothLayer.add(im); this.cloth[r][c] = im; placed++;
     }
     this.g = [];
     for (let r = 0; r < N; r++) {
@@ -573,12 +923,19 @@ class Game extends Phaser.Scene {
       for (let c = 0; c < N; c++) {
         const p = this.makePiece(types[r][c], r, c);
         this.g[r].push(p);
-        if (!RM) { p.c.y = this.cy(r) - 700; this.tweens.add({ targets: p.c, y: this.cy(r), duration: D(500 + r * 40), delay: D((N - r) * 30 + c * 15), ease: 'Bounce.easeOut' }); }
+        if (!RM) { p.c.y = this.cy(r) - 700; this.tweens.add({ targets: p.c, y: this.cy(r), duration: D(450 + r * 30), delay: D((N - r) * 20 + c * 10), ease: 'Bounce.easeOut' }); }
       }
+    }
+    // Mid-Century perk: starting drills
+    const drills = i > 0 ? Math.min(3, G.run.perks.mid) : 0;
+    for (let k = 0; k < drills; k++) {
+      const r = 1 + Math.floor(RNG() * 6), c = Math.floor(RNG() * N); const p = this.g[r][c];
+      if (p && !p.special) this.setSpecial(p, RNG() < 0.5 ? 'drillH' : 'drillV', true);
     }
   }
 
   typesGrid() { return this.g.map((row) => row.map((p) => (p ? p.type : null))); }
+  covered(r, c) { return !!(this.cloth && this.cloth[r] && this.cloth[r][c]); }
 
   findMovesOnTypes(t) {
     const moves = [];
@@ -592,6 +949,7 @@ class Game extends Phaser.Scene {
     for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
       for (const [dr, dc] of [[0, 1], [1, 0]]) {
         const r2 = r + dr, c2 = c + dc; if (r2 >= N || c2 >= N) continue;
+        if (this.covered(r, c) || this.covered(r2, c2)) continue;
         const a = t[r][c], b = t[r2][c2];
         t[r][c] = b; t[r2][c2] = a;
         const ok = has3(t, r, c) || has3(t, r2, c2);
@@ -605,9 +963,9 @@ class Game extends Phaser.Scene {
   findMoves() {
     const moves = this.findMovesOnTypes(this.typesGrid());
     for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) {
-      const p = this.g[r][c]; if (!p || !p.special) continue;
+      const p = this.g[r][c]; if (!p || !p.special || this.covered(r, c)) continue;
       for (const [dr, dc] of [[0, 1], [1, 0], [0, -1], [-1, 0]]) {
-        const r2 = r + dr, c2 = c + dc; if (r2 < 0 || c2 < 0 || r2 >= N || c2 >= N) continue;
+        const r2 = r + dr, c2 = c + dc; if (r2 < 0 || c2 < 0 || r2 >= N || c2 >= N || this.covered(r2, c2)) continue;
         const q = this.g[r2][c2];
         if (p.special === 'disco' || (q && q.special)) moves.push([[r, c], [r2, c2]]);
       }
@@ -641,18 +999,18 @@ class Game extends Phaser.Scene {
 
   // ---------------------------------------------------------- input
   cellAt(p) {
-    const c = Math.floor((p.x - BX) / CELL), r = Math.floor((p.y - BY) / CELL);
+    const c = Math.floor((p.worldX - BX) / CELL), r = Math.floor((p.worldY - BY) / CELL);
     if (r < 0 || c < 0 || r >= N || c >= N) return null; return [r, c];
   }
   onDown(p) {
     this.lastInput = this.time.now; this.clearHint();
     if (this.busy || this.overlay) return;
     const cell = this.cellAt(p); if (!cell) { this.select(null); return; }
-    this.down = { cell, x: p.x, y: p.y, moved: false };
+    this.down = { cell, x: p.worldX, y: p.worldY };
   }
   onMove(p) {
     if (!this.down || this.busy || !p.isDown) return;
-    const dx = p.x - this.down.x, dy = p.y - this.down.y;
+    const dx = p.worldX - this.down.x, dy = p.worldY - this.down.y;
     if (Math.max(Math.abs(dx), Math.abs(dy)) < CELL * 0.33) return;
     const [r, c] = this.down.cell;
     const t = Math.abs(dx) > Math.abs(dy) ? [r, c + Math.sign(dx)] : [r + Math.sign(dy), c];
@@ -660,7 +1018,7 @@ class Game extends Phaser.Scene {
     if (t[0] < 0 || t[1] < 0 || t[0] >= N || t[1] >= N) return;
     this.trySwap([r, c], t);
   }
-  onUp(p) {
+  onUp() {
     if (!this.down || this.busy) { this.down = null; return; }
     const cell = this.down.cell; this.down = null;
     if (this.sel) {
@@ -677,15 +1035,34 @@ class Game extends Phaser.Scene {
     this.selImg.setPosition(this.cx(cell[1]), this.cy(cell[0])).setVisible(true);
   }
 
-  // ---------------------------------------------------------- hints
+  // ---------------------------------------------------------- onboarding + hints
+  setPrompt(s) {
+    this.prompt.setText(s); this.prompt.setVisible(!!s);
+    if (s && !RM) { this.prompt.setScale(0.6); this.tweens.add({ targets: this.prompt, scale: 1, duration: D(260), ease: 'Back.easeOut' }); }
+  }
+  pointAt(a, b) {
+    this.tweens.killTweensOf(this.pointer);
+    const x1 = this.cx(a[1]), y1 = this.cy(a[0]), x2 = this.cx(b[1]), y2 = this.cy(b[0]);
+    this.pointer.setPosition(x1, y1).setVisible(true).setAlpha(1);
+    if (RM) return;
+    this.tweens.add({ targets: this.pointer, x: x2, y: y2, duration: 700, delay: 250, ease: 'Sine.easeInOut', repeat: -1, repeatDelay: 450 });
+  }
+  hidePointer() { this.tweens.killTweensOf(this.pointer); this.pointer.setVisible(false); }
+  showFirstHint() {
+    this.setPrompt('Swipe the tile down to match 4!');
+    this.pointAt([5, 2], [6, 2]);
+  }
   hintTick() {
     if (this.busy || this.overlay || this.hinting) return;
-    if (this.time.now - (this.lastInput || 0) > 6000) this.showHint(false);
+    const idle = this.onboard ? 3500 : 6000;
+    if (this.time.now - (this.lastInput || 0) > idle) this.showHint(false);
   }
   showHint(force) {
     if (this.busy || this.overlay) return;
     this.lastInput = this.time.now;
-    const moves = this.findMoves(); if (!moves.length) return;
+    let moves = this.findMoves(); if (!moves.length) return;
+    // during onboarding prefer special moves, then goal moves
+    if (this.onboard) { const sp = moves.filter(([a, b]) => this.g[a[0]][a[1]].special || this.g[b[0]][b[1]].special); if (sp.length) moves = sp; }
     const m = moves[Math.floor(Math.random() * moves.length)];
     this.clearHint(); this.hinting = [];
     m.forEach(([r, c]) => {
@@ -693,20 +1070,29 @@ class Game extends Phaser.Scene {
       const tw = this.tweens.add({ targets: p.c, scale: 1.14, duration: 260, yoyo: true, repeat: force ? 3 : 2, onComplete: () => p.c.setScale(1) });
       this.hinting.push({ tw, p });
     });
+    if (this.onboard || force) this.pointAt(m[0], m[1]);
     this.time.delayedCall(2200, () => this.clearHint());
   }
-  clearHint() { if (!this.hinting) return; this.hinting.forEach(({ tw, p }) => { tw.stop(); if (p.c && p.c.active) p.c.setScale(1); }); this.hinting = null; }
+  clearHint() { if (!this.hinting) return; this.hinting.forEach(({ tw, p }) => { tw.stop(); if (p.c && p.c.active) p.c.setScale(1); }); this.hinting = null; if (this.onboard !== 1) this.hidePointer(); }
 
   // ---------------------------------------------------------- moves
   async trySwap(a, b) {
     if (this.busy || this.overlay) return;
     const pa = this.g[a[0]][a[1]], pb = this.g[b[0]][b[1]]; if (!pa || !pb) return;
     this.busy = true; this.clearHint(); this.lastInput = this.time.now;
+    if (this.covered(a[0], a[1]) || this.covered(b[0], b[1])) {
+      G.stats.invalid++; sfx(this, 'bonk', { volume: 0.6 });
+      const cl = this.cloth[a[0]][a[1]] || this.cloth[b[0]][b[1]];
+      this.tweens.add({ targets: cl, angle: 8, duration: 60, yoyo: true, repeat: 2 });
+      this.setPrompt('Covered! Match next to it to lift the cloth.');
+      this.time.delayedCall(1600, () => { if (!this.onboard) this.setPrompt(''); });
+      this.busy = false; return;
+    }
     sfx(this, 'swap', { volume: 0.55 });
     const fast = this.turbo ? 0.6 : 1;
     await Promise.all([
-      tweenP(this, { targets: pa.c, x: this.cx(b[1]), y: this.cy(b[0]), duration: 160 * fast, ease: 'Quad.easeInOut' }),
-      tweenP(this, { targets: pb.c, x: this.cx(a[1]), y: this.cy(a[0]), duration: 160 * fast, ease: 'Quad.easeInOut' }),
+      tweenP(this, { targets: pa.c, x: this.cx(b[1]), y: this.cy(b[0]), duration: 150 * fast, ease: 'Quad.easeInOut' }),
+      tweenP(this, { targets: pb.c, x: this.cx(a[1]), y: this.cy(a[0]), duration: 150 * fast, ease: 'Quad.easeInOut' }),
     ]);
     this.g[a[0]][a[1]] = pb; this.g[b[0]][b[1]] = pa;
     const ka = this.key(...a), kb = this.key(...b);
@@ -720,24 +1106,28 @@ class Game extends Phaser.Scene {
       G.stats.invalid++;
       sfx(this, 'bonk', { volume: 0.6 });
       await Promise.all([
-        tweenP(this, { targets: pa.c, x: this.cx(a[1]), y: this.cy(a[0]), duration: 180, ease: 'Back.easeOut' }),
-        tweenP(this, { targets: pb.c, x: this.cx(b[1]), y: this.cy(b[0]), duration: 180, ease: 'Back.easeOut' }),
+        tweenP(this, { targets: pa.c, x: this.cx(a[1]), y: this.cy(a[0]), duration: 170, ease: 'Back.easeOut' }),
+        tweenP(this, { targets: pb.c, x: this.cx(b[1]), y: this.cy(b[0]), duration: 170, ease: 'Back.easeOut' }),
       ]);
       this.g[a[0]][a[1]] = pa; this.g[b[0]][b[1]] = pb;
       if (!RM) this.cameras.main.shake(D(120), 0.003);
       this.busy = false; return;
     }
 
-    G.stats.swaps++;
-    if (G.mode !== 'relaxed') this.moves--;
+    G.stats.swaps++; this.floorSwaps++; mark('firstSwap');
+    if (this.onboard === 1) { this.onboard = 2; this.hidePointer(); this.setPrompt(''); }
+    if (!this.timed && (G.mode !== 'relaxed' || G.mode === 'duel')) this.moves--;
+    if (G.mode === 'duel') this.moves = Math.max(0, this.moves);
     this.updateMoves();
     let combo = 0;
     if (path === 'disco') {
       const disco = pa.special === 'disco' ? pa : pb, other = disco === pa ? pb : pa;
       const dk = disco === pa ? kb : ka, ok = disco === pa ? ka : kb;
       const init = new Set([dk]);
-      if (other.special === 'disco') { disco.discoAll = true; init.add(ok); other.triggered = true; }
-      else { disco.discoColor = other.type; init.add(ok); }
+      if (other.special === 'disco') { disco.discoAll = true; other.triggered = true; }
+      else disco.discoColor = other.type;
+      init.add(ok);
+      if (other.special) unlock(this, 'mega');
       combo = 1; await this.blast(init, 1, new Set());
       await this.gravity();
     } else if (path === 'combo') {
@@ -749,16 +1139,16 @@ class Game extends Phaser.Scene {
   }
 
   async comboSwap(pa, pb, kb) {
-    const [r, c] = this.rc(kb); const set = new Set([this.key(...this.rc(kb))]);
+    unlock(this, 'mega');
+    const [r, c] = this.rc(kb); const set = new Set([kb]);
     const sp = [pa.special, pb.special].sort().join('+');
     pa.triggered = true; pb.triggered = true;
-    const add = (rr2, cc) => { if (rr2 >= 0 && cc >= 0 && rr2 < N && cc < N) set.add(this.key(rr2, cc)); };
+    const add = (r2, c2) => { if (r2 >= 0 && c2 >= 0 && r2 < N && c2 < N) set.add(this.key(r2, c2)); };
     const fx = [];
     if (sp.indexOf('wreck') < 0) { for (let k = 0; k < N; k++) { add(r, k); add(k, c); } fx.push({ kind: 'drillH', r, c }, { kind: 'drillV', r, c }); }
     else if (sp === 'wreck+wreck') { for (let i = -2; i <= 2; i++) for (let j = -2; j <= 2; j++) add(r + i, c + j); fx.push({ kind: 'wreck', r, c, big: true }); }
     else { for (let i = -1; i <= 1; i++) for (let k = 0; k < N; k++) { add(r + i, k); add(k, c + i); } fx.push({ kind: 'drillH', r, c, wide: true }, { kind: 'drillV', r, c, wide: true }); }
-    // include the other special's cell
-    for (let rr2 = 0; rr2 < N; rr2++) for (let cc = 0; cc < N; cc++) { const p = this.g[rr2][cc]; if (p === pa || p === pb) set.add(this.key(rr2, cc)); }
+    for (let r2 = 0; r2 < N; r2++) for (let c2 = 0; c2 < N; c2++) { const p = this.g[r2][c2]; if (p === pa || p === pb) set.add(this.key(r2, c2)); }
     this.showPraise('Mega Combo!', true);
     await this.blast(set, 2, new Set(), fx);
   }
@@ -781,33 +1171,45 @@ class Game extends Phaser.Scene {
         if (createKeys.has(k0)) return;
         creates.push({ k: k0, special: g.special }); createKeys.add(k0);
       });
-      createKeys.forEach((k) => clear.delete(k));
-      if (combo >= 2) { G.stats.cascades++; this.bumpTurbo(13); }
-      G.stats.maxCombo = Math.max(G.stats.maxCombo, combo);
+      createKeys.forEach((k) => { clear.delete(k); this.liftCloth(k); });
+      if (combo >= 2) { G.stats.cascades++; this.bumpTurbo(13); mark('firstCascade'); }
+      if (combo >= 4) unlock(this, 'chain');
+      G.stats.maxCombo = Math.max(G.stats.maxCombo, combo); this.floorMaxCombo = Math.max(this.floorMaxCombo, combo);
       this.playChime(combo);
       if (combo >= 2) this.showPraise(PRAISE[Math.min(combo - 2, PRAISE.length - 1)]);
       await this.blast(clear, combo, createKeys);
       creates.forEach(({ k, special }) => { const [r, c] = this.rc(k); const p = this.g[r][c]; if (p) this.setSpecial(p, special); });
-      if (creates.length) sfx(this, 'chime2', { volume: 0.6, rate: 1.25 });
+      if (creates.length) {
+        sfx(this, 'chime2', { volume: 0.6, rate: 1.25 });
+        if (this.onboard === 2 && creates.some((x) => x.special !== 'disco')) { this.onboard = 3; this.setPrompt('You built a special! Match it to fire it.'); this.time.delayedCall(3200, () => { if (this.onboard === 3) this.setPrompt(''); }); }
+      }
+      if (combo >= 3 && RNG() < 0.2) this.dropTreasure(BX + N * CELL / 2, BY + N * CELL / 2);
       swapKeys = null;
       await this.gravity();
     }
     return combo;
   }
 
-  playChime(combo) {
-    const rate = Math.min(2.0, 1 + (combo - 1) * 0.12);
-    sfx(this, combo % 2 ? 'chime' : 'chime2', { volume: 0.6, rate });
+  playChime(combo) { sfx(this, combo % 2 ? 'chime' : 'chime2', { volume: 0.6, rate: Math.min(2.0, 1 + (combo - 1) * 0.12) }); }
+
+  liftCloth(k) {
+    const [r, c] = this.rc(k); const cl = this.cloth && this.cloth[r][c]; if (!cl) return false;
+    this.cloth[r][c] = null;
+    this.tweens.add({ targets: cl, y: cl.y - 60, alpha: 0, angle: 20, duration: D(400), onComplete: () => cl.destroy() });
+    META.clothTotal++;
+    if (this.collected.cloth !== undefined) this.collected.cloth++;
+    return true;
   }
 
   async blast(initial, combo, createKeys, fxPre) {
     const final = new Set(); const queue = []; const fx = fxPre ? fxPre.slice() : [];
     initial.forEach((k) => { if (!createKeys.has(k)) { final.add(k); queue.push(k); } });
     const add = (k) => { if (!final.has(k) && !createKeys.has(k)) { final.add(k); queue.push(k); } };
+    let fired = 0;
     while (queue.length) {
       const k = queue.shift(); const [r, c] = this.rc(k); const p = this.g[r][c];
       if (!p || !p.special || p.triggered) continue;
-      p.triggered = true; G.stats.specialsFired++; this.bumpTurbo(4);
+      p.triggered = true; G.stats.specialsFired++; fired++; this.bumpTurbo(4);
       if (p.special === 'drillH') { for (let i = 0; i < N; i++) add(this.key(r, i)); fx.push({ kind: 'drillH', r, c }); }
       else if (p.special === 'drillV') { for (let i = 0; i < N; i++) add(this.key(i, c)); fx.push({ kind: 'drillV', r, c }); }
       else if (p.special === 'wreck') { const rad = this.turbo ? 2 : 1; for (let i = -rad; i <= rad; i++) for (let j = -rad; j <= rad; j++) if (r + i >= 0 && r + i < N && c + j >= 0 && c + j < N) add(this.key(r + i, c + j)); fx.push({ kind: 'wreck', r, c, big: rad > 1 }); }
@@ -815,48 +1217,72 @@ class Game extends Phaser.Scene {
         const targets = [];
         let color = p.discoColor;
         if (!color) { const cnt = {}; this.g.forEach((row) => row.forEach((q) => { if (q && q.type) cnt[q.type] = (cnt[q.type] || 0) + 1; })); color = Object.keys(cnt).sort((x, y) => cnt[y] - cnt[x])[0]; }
-        for (let rr2 = 0; rr2 < N; rr2++) for (let cc = 0; cc < N; cc++) { const q = this.g[rr2][cc]; if (q && (p.discoAll || q.type === color)) { add(this.key(rr2, cc)); targets.push([rr2, cc]); } }
+        for (let r2 = 0; r2 < N; r2++) for (let c2 = 0; c2 < N; c2++) { const q = this.g[r2][c2]; if (q && (p.discoAll || q.type === color)) { add(this.key(r2, c2)); targets.push([r2, c2]); } }
         fx.push({ kind: 'disco', r, c, targets });
       }
     }
-    // effects
     let fxDelay = 0;
     for (const f of fx) fxDelay = Math.max(fxDelay, this.playFx(f));
-    // count + animate clears
     const mult = this.turbo ? 2 : 1;
     let gained = 0; const flyers = [];
-    const goals = FLOORS[G.floor].goals;
+    const goals = FLOORS[this.fi].goals;
     const anims = [];
     final.forEach((k) => {
       const [r, c] = this.rc(k); const p = this.g[r][c]; if (!p) return;
       this.g[r][c] = null;
       gained += 10 * combo * mult;
-      if (p.type && goals[p.type] !== undefined) {
+      if (this.liftCloth(k) && flyers.length < 8) flyers.push({ type: 'cloth', x: p.c.x, y: p.c.y });
+      if (p.type && goals[p.type] !== undefined && G.mode !== 'duel') {
         const before = this.collected[p.type];
         this.collected[p.type] += mult;
         if (before < goals[p.type] && flyers.length < 6) flyers.push({ type: p.type, x: p.c.x, y: p.c.y });
       }
       const col = p.type ? MAT[p.type].color : 0xffffff;
       const d = fx.length ? Math.min(260, 14 * (Math.abs(r - (fx[0].r ?? r)) + Math.abs(c - (fx[0].c ?? c)))) : 0;
-      anims.push(tweenP(this, { targets: p.c, scale: 1.3, alpha: 0, angle: RM ? 0 : Phaser.Math.Between(-25, 25), duration: 230, delay: d + fxDelay * 0.4, ease: 'Back.easeIn' }).then(() => {
+      anims.push(tweenP(this, { targets: p.c, scale: 1.3, alpha: 0, angle: RM ? 0 : Phaser.Math.Between(-25, 25), duration: 220, delay: d + fxDelay * 0.4, ease: 'Back.easeIn' }).then(() => {
         this.burst.setParticleTint(col); this.burst.explode(RM ? 2 : 7, p.c.x, p.c.y);
         p.c.destroy();
       }));
     });
-    G.score += gained; this.updateScore();
+    if (G.mode === 'duel') this.duelScore = (this.duelScore || 0) + gained; else G.run.score += gained;
+    this.updateScore();
     if (combo >= 3 && !RM) this.cameras.main.shake(D(140), 0.004);
     await Promise.all(anims);
     flyers.forEach((f, i) => this.flyToChip(f, i));
-    this.updateGoals();
+    if (G.mode !== 'duel') this.updateGoals();
+    if (fired && G.mode !== 'duel') {
+      const chance = itemCount() === 0 ? 1 : 0.2;
+      if (RNG() < chance) this.dropTreasure(this.cx(fx[0] ? fx[0].c : 3), this.cy(fx[0] ? fx[0].r : 3));
+    }
+  }
+
+  dropTreasure(x, y, label) {
+    if (G.mode === 'duel' || this.dropping) return;
+    this.dropping = true;
+    const it = rollItem(); const isNew = !META.items[it.id];
+    G.stats.drops++; mark('firstCollectible');
+    if (isNew) META.items[it.id] = Date.now(); else { G.run.score += 500; this.updateScore(); }
+    saveMeta();
+    const im = this.add.image(x, y, 'it_' + it.id).setDisplaySize(30, 30).setDepth(90);
+    const glow = this.add.circle(x, y, 60, 0xffe28a, 0.6).setDepth(89).setBlendMode('ADD');
+    sfx(this, 'chime', { volume: 0.7, rate: 1.8 });
+    this.tweens.add({ targets: im, displayWidth: 150, displayHeight: 150, y: y - 80, duration: D(420), ease: 'Back.easeOut' });
+    this.tweens.add({ targets: glow, scale: 2, alpha: 0, duration: D(700) });
+    toast(this, label || (isNew ? 'Treasure found!' : 'Already on the shelf'), isNew ? `${it.name}: ${it.story}` : `${it.name} again: +500 points`, 'it_' + it.id);
+    this.time.delayedCall(D(1100), () => {
+      this.tweens.add({ targets: im, x: this.shelfBtn.x, y: this.shelfBtn.y, displayWidth: 40, displayHeight: 40, duration: D(520), ease: 'Cubic.easeIn', onComplete: () => {
+        im.destroy(); glow.destroy(); this.dropping = false;
+        this.tweens.add({ targets: this.shelfBtn, scale: 1.15, duration: D(100), yoyo: true });
+        checkMetaAch(this); if (this.refreshSide) this.refreshSide();
+      } });
+    });
   }
 
   flyToChip(f, i) {
     const ch = this.chips[f.type]; if (!ch) return;
     const im = this.add.image(f.x, f.y, f.type).setDisplaySize(52, 52).setDepth(45);
-    const tx = ch.c.x - 40, ty = ch.c.y;
-    this.tweens.add({ targets: im, x: tx, y: ty, scale: im.scale * 0.6, duration: D(520), delay: D(i * 50), ease: 'Cubic.easeIn', onComplete: () => {
-      im.destroy();
-      this.tweens.add({ targets: ch.c, scale: 1.15, duration: D(90), yoyo: true });
+    this.tweens.add({ targets: im, x: ch.c.x - 40, y: ch.c.y, scale: im.scale * 0.6, duration: D(520), delay: D(i * 50), ease: 'Cubic.easeIn', onComplete: () => {
+      im.destroy(); this.tweens.add({ targets: ch.c, scale: 1.15, duration: D(90), yoyo: true });
     } });
   }
 
@@ -864,15 +1290,13 @@ class Game extends Phaser.Scene {
     const x = this.cx(f.c), y = this.cy(f.r);
     if (f.kind === 'drillH' || f.kind === 'drillV') {
       sfx(this, 'drill', { volume: 0.6 });
-      const h = f.kind === 'drillH';
-      const thick = f.wide ? CELL * 3 : CELL * 0.7;
+      const h = f.kind === 'drillH'; const thick = f.wide ? CELL * 3 : CELL * 0.7;
       const beam = this.add.rectangle(h ? W / 2 : x, h ? y : BY + (N * CELL) / 2, h ? N * CELL : thick, h ? thick : N * CELL, 0xfff3c4, 0.9).setDepth(35).setBlendMode('ADD');
       beam.setScale(h ? 0.05 : 1, h ? 1 : 0.05);
       this.tweens.add({ targets: beam, scaleX: 1, scaleY: 1, duration: D(140), onComplete: () => this.tweens.add({ targets: beam, alpha: 0, duration: D(240), onComplete: () => beam.destroy() }) });
       const drill = this.add.image(h ? BX : x, h ? y : BY, 'drill').setDisplaySize(64, 64).setDepth(36).setAngle(h ? 0 : 90);
       this.tweens.add({ targets: drill, x: h ? BX + N * CELL : x, y: h ? y : BY + N * CELL, duration: D(300), onComplete: () => drill.destroy() });
-      this.doFlash(0.25);
-      return 140;
+      this.doFlash(0.25); return 140;
     }
     if (f.kind === 'wreck') {
       sfx(this, 'wreck', { volume: 0.7 });
@@ -893,8 +1317,7 @@ class Game extends Phaser.Scene {
       f.targets.forEach(([r2, c2], i) => { g.lineStyle(5, cols[i % cols.length], 0.95); g.lineBetween(x, y, this.cx(c2), this.cy(r2)); });
       this.tweens.add({ targets: g, alpha: 0, duration: D(520), delay: D(120), onComplete: () => g.destroy() });
       this.burst.setParticleTint(0xffffff); this.burst.explode(RM ? 8 : 40, x, y);
-      this.doFlash(0.45);
-      return 240;
+      this.doFlash(0.45); return 240;
     }
     return 0;
   }
@@ -930,37 +1353,35 @@ class Game extends Phaser.Scene {
 
   // ---------------------------------------------------------- turbo
   bumpTurbo(n) {
-    if (this.turbo) return;
-    this.turboMeter = Math.min(100, this.turboMeter + n); this.updateTurbo();
+    if (this.turbo || G.mode === 'duel' && false) return;
+    const rate = (FLOORS[this.fi] && FLOORS[this.fi].turboRate || 1) * (1 + 0.3 * G.run.perks.glam);
+    this.turboMeter = Math.min(100, this.turboMeter + n * rate); this.updateTurbo();
   }
   updateTurbo() {
     const pct = this.turbo ? this.turbo / 3 : this.turboMeter / 100;
-    const w = Math.max(1, (this.tb.w - 4) * pct);
-    this.turboFill.setVisible(pct > 0.001); this.turboFill.width = w; this.turboFill.x = this.tb.x + 2;
+    this.turboFill.setVisible(pct > 0.001); this.turboFill.width = Math.max(1, (this.tb.w - 4) * pct); this.turboFill.x = this.tb.x + 2;
     this.turboHint.setVisible(!this.turbo && pct < 0.35);
-    if (this.turbo) this.turboHint.setVisible(false);
-    if (!this.turbo && this.turboMeter >= 100 && !this.readyPulse && !RM) {
-      this.readyPulse = this.tweens.add({ targets: this.turboLabel, scale: 1.18, duration: 260, yoyo: true, repeat: -1 });
-    }
+    if (!this.turbo && this.turboMeter >= 100 && !this.readyPulse && !RM) this.readyPulse = this.tweens.add({ targets: this.turboLabel, scale: 1.18, duration: 260, yoyo: true, repeat: -1 });
   }
   update(time, delta) {
     if (this.turboFill && this.turboFill.visible) this.turboFill.tilePositionX -= (this.turbo ? 0.9 : 0.15) * delta;
+    if (this.timed && this.timeLeft > 0 && !this.overlay && !this.floorDone) {
+      this.timeLeft -= (delta / 1000) * SPEED; this.updateMoves();
+      if (this.timeLeft <= 0) { this.timeLeft = 0; this.timeUp = true; if (!this.busy) this.outOfMoves(); }
+    }
   }
   async startTurbo() {
-    G.stats.turbos++;
+    G.stats.turbos++; mark('firstTurbo'); unlock(this, 'throttle');
     this.turbo = 3; this.turboMeter = 0;
     if (this.readyPulse) { this.readyPulse.stop(); this.readyPulse = null; this.turboLabel.setScale(1); }
     this.updateTurbo();
-    sfx(this, 'turbo', { volume: 0.8 });
-    this.doFlash(0.5);
+    sfx(this, 'turbo', { volume: 0.8 }); this.doFlash(0.5);
     const banner = txt(this, W / 2, BY + (N * CELL) / 2, 'TURBO!', 120, { stroke: '#ff3f88', strokeW: 12, shadow: 'rgba(90,20,70,0.6)' }).setDepth(55);
-    banner.setFontStyle('italic 700'); goldText(banner);
-    banner.x = -300;
-    await tweenP(this, { targets: banner, x: W / 2, duration: 260, ease: 'Cubic.easeOut' });
-    txt(this, W / 2, BY + (N * CELL) / 2 + 90, '3 moves of double materials', 28, { color: '#ffffff', stroke: '#c4417f', strokeW: 6 }).setDepth(55).setName('turboSub');
-    await wait(this, 650);
-    const sub = this.children.getByName('turboSub');
-    this.tweens.add({ targets: [banner, sub], x: W + 400, duration: D(260), ease: 'Cubic.easeIn', onComplete: () => { banner.destroy(); if (sub) sub.destroy(); } });
+    banner.setFontStyle('italic 700'); goldText(banner); banner.x = -300;
+    await tweenP(this, { targets: banner, x: W / 2, duration: 240, ease: 'Cubic.easeOut' });
+    const sub = txt(this, W / 2, BY + (N * CELL) / 2 + 90, '3 moves of double materials', 28, { color: '#ffffff', stroke: '#c4417f', strokeW: 6 }).setDepth(55);
+    await wait(this, 600);
+    this.tweens.add({ targets: [banner, sub], x: W + 400, duration: D(240), ease: 'Cubic.easeIn', onComplete: () => { banner.destroy(); sub.destroy(); } });
     this.raceStripes.setAlpha(1);
     if (!RM) {
       this.stripeTween = this.tweens.add({ targets: this.raceStripes, alpha: 0.4, duration: 180, yoyo: true, repeat: -1 });
@@ -983,9 +1404,11 @@ class Game extends Phaser.Scene {
   // ---------------------------------------------------------- after move
   async afterMove() {
     if (this.turbo) { this.turbo--; this.updateTurbo(); if (!this.turbo) this.endTurbo(); }
+    if (G.mode === 'duel') { if (this.moves <= 0) { this.duelTurnEnd(); return; } if (!this.findMoves().length) await this.shuffle(); this.busy = false; return; }
     if (this.goalsMet()) { await this.floorComplete(); return; }
     if (!this.turbo && this.turboMeter >= 100) await this.startTurbo();
-    if (G.mode !== 'relaxed' && this.moves <= 0) { this.outOfMoves(); return; }
+    if (this.timed && this.timeUp) { this.outOfMoves(); return; }
+    if (!this.timed && G.mode !== 'relaxed' && this.moves <= 0) { this.outOfMoves(); return; }
     if (!this.findMoves().length) await this.shuffle();
     this.busy = false;
   }
@@ -998,7 +1421,7 @@ class Game extends Phaser.Scene {
       Phaser.Utils.Array.Shuffle(pieces);
       for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) this.g[r][c] = pieces[r * N + c];
       if (!this.findGroups().length && this.findMoves().length) break;
-      if (tries > 60) { pieces.forEach((p) => { if (!p.special) { p.type = this.randType(); p.img.setTexture(p.type).setDisplaySize(74, 74); } }); }
+      if (tries > 60) pieces.forEach((p) => { if (!p.special) { p.type = this.randType(); p.img.setTexture(p.type).setDisplaySize(74, 74); } });
     }
     const anims = [];
     for (let r = 0; r < N; r++) for (let c = 0; c < N; c++) anims.push(tweenP(this, { targets: this.g[r][c].c, x: this.cx(c), y: this.cy(r), duration: 420, ease: 'Cubic.easeInOut' }));
@@ -1008,7 +1431,7 @@ class Game extends Phaser.Scene {
   // ---------------------------------------------------------- overlays
   card(title, lines, buttons, opts = {}) {
     this.overlay = this.add.container(0, 0).setDepth(80);
-    const dim = this.add.rectangle(W / 2, H / 2, W, H, 0x4a1d47, opts.dim ?? 0.45).setInteractive();
+    const dim = this.add.rectangle(W / 2, H / 2, GW, H, 0x4a1d47, opts.dim ?? 0.45).setInteractive();
     const ch = opts.h || 520, cw = 620;
     const key = canvasTex(this, 'card_' + ch, cw, ch, (ctx, w, h) => {
       ctx.fillStyle = 'rgba(90,20,70,0.25)'; rr(ctx, 8, 14, w - 16, h - 16, 40); ctx.fill();
@@ -1020,179 +1443,294 @@ class Game extends Phaser.Scene {
     const panel = this.add.image(W / 2, cy0, key);
     const items = [dim, panel];
     const top = cy0 - ch / 2;
-    const tt = txt(this, W / 2, top + 70, title, opts.titleSize || 54, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 });
+    const tt = txt(this, W / 2, top + 66, title, opts.titleSize || 50, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 });
     goldText(tt); items.push(tt);
-    let y = top + 140;
+    let y = top + 132;
     lines.forEach((l) => {
       if (l.icons) {
-        const n = l.icons.length; let x = W / 2 - ((n - 1) * 150) / 2;
-        l.icons.forEach((ic) => { items.push(this.add.image(x - 34, y + 10, ic.k).setDisplaySize(58, 58)); items.push(txt(this, x + 20, y + 10, ic.t, 30, { color: '#5a2a55' })); x += 150; });
-        y += 80; return;
+        const n = l.icons.length; let x = W / 2 - ((n - 1) * 140) / 2;
+        l.icons.forEach((ic) => { items.push(this.add.image(x - 30, y + 10, ic.k).setDisplaySize(54, 54)); items.push(txt(this, x + 22, y + 10, ic.t, 28, { color: '#5a2a55' })); x += 140; });
+        y += 74; return;
       }
-      const t = txt(this, W / 2, y, l.t, l.s || 28, { color: l.c || '#5a2a55', weight: l.w || '600', wrap: 540 });
-      items.push(t); y += t.height + 12;
+      const t = txt(this, W / 2, y, l.t, l.s || 28, { color: l.c || '#5a2a55', weight: l.w || '600', wrap: 560 });
+      items.push(t); y += t.height + 8;
     });
-    let by = top + ch - 70 - (buttons.length - 1) * 96;
-    buttons.forEach((b) => { items.push(makeButton(this, W / 2, by, 420, 84, b.label, { fs: 32, c1: b.c1, c2: b.c2 }, () => { this.closeCard(); b.fn(); })); by += 96; });
+    let by = top + ch - 66 - (buttons.length - 1) * 92;
+    window.JOE.cardButtons = [];
+    buttons.forEach((b) => { window.JOE.cardButtons.push({ label: b.label, x: W / 2, y: by }); items.push(makeButton(this, W / 2, by, 420, 80, b.label, { fs: 30, c1: b.c1, c2: b.c2 }, () => { this.closeCard(); b.fn(); })); by += 92; });
     this.overlay.add(items);
     this.overlay.setAlpha(0); panel.setScale(0.85);
-    this.tweens.add({ targets: this.overlay, alpha: 1, duration: D(200) });
-    this.tweens.add({ targets: panel, scale: 1, duration: D(320), ease: 'Back.easeOut' });
+    this.tweens.add({ targets: this.overlay, alpha: 1, duration: D(180) });
+    this.tweens.add({ targets: panel, scale: 1, duration: D(300), ease: 'Back.easeOut' });
     window.JOE.card = title;
   }
   closeCard() { if (this.overlay) { this.overlay.destroy(); this.overlay = null; window.JOE.card = null; } }
 
   floorIntro() {
     this.busy = true;
-    const f = FLOORS[G.floor];
+    const f = FLOORS[this.fi];
     const icons = Object.keys(f.goals).map((k) => ({ k, t: String(f.goals[k]) }));
+    const p = G.run.perks; const perk = [];
+    if (p.glam) perk.push(`TURBO +${p.glam * 30}%`); if (p.regency) perk.push(this.timed ? `+${p.regency * 8}s` : `+${p.regency * 2} moves`); if (p.mid && this.fi > 0) perk.push(`${Math.min(3, p.mid)} drill${p.mid > 1 ? 's' : ''} placed`);
     const lines = [
-      { t: `Floor ${G.floor + 1}: ${f.name}`, s: 34, w: '700' },
-      { t: 'Collect to remodel:', s: 24, c: '#8a3f78' },
+      { t: `Floor ${this.fi + 1}: ${f.name}`, s: 32, w: '700' },
       { icons },
-      { t: G.mode === 'relaxed' ? 'Relaxed mode: take all the moves you like.' : `in ${f.moves} moves`, s: 24, c: '#8a3f78' },
-      { t: f.tip, s: 24, c: '#b0447f' },
+      { t: this.timed ? `${Math.round(this.timeLeft)} seconds on the clock` : (G.mode === 'relaxed' ? 'Relaxed: all the moves you like' : `in ${this.moves} moves`), s: 24, c: '#8a3f78' },
+      { t: f.tip, s: 24, c: f.boss ? '#e0306f' : '#b0447f' },
     ];
-    this.card(G.floor === 0 ? 'Welcome, Joe!' : 'Next floor up!', lines, [{ label: "Let's Remodel", fn: () => { this.busy = false; this.lastInput = this.time.now; } }], { h: 580 });
+    if (perk.length) lines.push({ t: 'Your decor perks: ' + perk.join(', '), s: 22, c: '#3f8f6f' });
+    this.card(f.boss ? 'Inspection Day!' : (f.secret ? 'A secret floor!' : 'Next floor up!'), lines, [{ label: f.boss ? 'Beat the clock' : "Let's Remodel", fn: () => { this.busy = false; this.lastInput = this.time.now; } }], { h: perk.length ? 600 : 560 });
+  }
+
+  computeStars() {
+    const f = FLOORS[this.fi]; const why = ['★ Remodeled']; let s = 1;
+    let spare;
+    if (this.timed) spare = this.timeLeft >= f.time * 0.2;
+    else if (G.mode === 'relaxed') spare = this.floorSwaps <= f.moves * 0.8;
+    else spare = this.moves >= Math.ceil((f.moves + G.run.perks.regency * 2) * 0.2);
+    if (spare) { s++; why.push(this.timed ? '★ Time to spare' : '★ Moves to spare'); } else why.push('☆ Moves to spare');
+    if (this.floorMaxCombo >= 4) { s++; why.push('★ Cascade x4'); } else why.push(`☆ Cascade x4 (best x${this.floorMaxCombo})`);
+    return { s, why };
   }
 
   async floorComplete() {
-    this.busy = true; G.stats.floorsCleared++;
+    this.busy = true; this.floorDone = true; G.stats.floorsCleared++;
     if (this.turbo) this.endTurbo();
+    this.hidePointer(); this.setPrompt(''); this.onboard = 0;
+    mark('firstRoomComplete');
+    const f = FLOORS[this.fi]; const done = this.fi;
     let bonus = 0;
-    if (G.mode !== 'relaxed' && this.moves > 0) { bonus = this.moves * 100; G.score += bonus; this.updateScore(); }
-    await wait(this, 200);
+    if (!this.timed && G.mode !== 'relaxed' && this.moves > 0) bonus = this.moves * 100;
+    if (this.timed) bonus = Math.round(this.timeLeft) * 20;
+    G.run.score += bonus; this.updateScore();
+    await wait(this, 150);
     sfx(this, 'fanfare', { volume: 0.8 }); sfx(this, 'cheer', { volume: 0.7 });
-    this.reveal = 1; this.tweens.killTweensOf(this); this.revealShown = Math.max(this.revealShown, 0.0);
+    this.tweens.killTweensOf(this);
     await tweenP(this, { targets: this, revealShown: 1, duration: 600, ease: 'Cubic.easeOut', onUpdate: () => this.drawReveal(this.revealShown) });
-    this.drawReveal(1);
-    this.doFlash(0.6);
+    this.drawReveal(1); this.doFlash(0.6);
     const stamp = txt(this, this.room.x + this.room.w / 2, this.room.y + this.room.h / 2, 'Remodeled!', 64, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 10, shadow: 'rgba(90,20,70,0.6)' }).setDepth(50);
     goldText(stamp); stamp.setScale(2.4).setAlpha(0).setAngle(-8);
     this.tweens.add({ targets: stamp, scale: 1, alpha: 1, duration: D(300), ease: 'Back.easeOut' });
     this.confetti.explode(RM ? 20 : 120, this.room.x + this.room.w / 2, this.room.y + this.room.h);
     if (!RM) this.time.delayedCall(D(300), () => this.confetti.explode(80, W / 2, BY + 200));
-    await this.growTower(G.floor);
-    await wait(this, 900);
+    await this.growTower(done);
+    if (done === 0) unlock(this, 'opening');
+    if (f.boss) unlock(this, 'inspect');
+    if (f.secret) unlock(this, 'starlight');
+    if (done === 0 && itemCount() === 0) this.dropTreasure(this.room.x + this.room.w / 2, this.room.y + this.room.h / 2, 'A housewarming treasure!');
+    await wait(this, this.dropping ? 1800 : 900);
     stamp.destroy();
-    const done = G.floor;
-    const saved = store.get('progress', { classic: 0, relaxed: 0 });
-    saved[G.mode] = Math.min(7, Math.max(saved[G.mode] || 0, done + 1));
-    if (done === 7) saved[G.mode] = 0;
-    store.set('progress', saved); store.set('score_' + G.mode, G.score);
-    let stars = 3;
-    if (G.mode !== 'relaxed') { const r = this.moves / FLOORS[done].moves; stars = r >= 0.3 ? 3 : r >= 0.12 ? 2 : 1; }
+    const st = this.computeStars();
+    META.stars[f.key] = Math.max(META.stars[f.key] || 0, st.s); saveMeta(); checkMetaAch(this);
+    store.set('bestFloor', Math.max(store.get('bestFloor', 0), done + 1));
+    const afterChoice = () => this.starsCard(done, st, bonus);
+    if (done >= 1 && !f.secret) this.decorChoice(done, afterChoice); else afterChoice();
+  }
+
+  decorChoice(i, next) {
+    mark('firstDecorChoice');
+    this.overlay = this.add.container(0, 0).setDepth(80);
+    const dim = this.add.rectangle(W / 2, H / 2, GW, H, 0x4a1d47, 0.5).setInteractive();
+    const key = panelTex(this, 'decorp', 660, 900, 40, 0.98);
+    const items = [dim, this.add.image(W / 2, 760, key)];
+    const t = txt(this, W / 2, 360, 'Pick the look', 52, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8 }); goldText(t); items.push(t);
+    items.push(txt(this, W / 2, 418, 'Each style gives a perk for the floors above.', 22, { color: '#8a3f78', weight: '600' }));
+    STYLE_IDS.forEach((s, k) => {
+      const y = 540 + k * 240;
+      const thumb = this.add.image(W / 2 - 150, y, roomTex(i, s)).setDisplaySize(270, 181);
+      const frame = this.add.rectangle(W / 2 - 150, y, 276, 187).setStrokeStyle(5, 0xe9b94a);
+      const name = txt(this, W / 2 + 20, y - 46, styleName(i, s), 28, { ox: 0, color: '#5a2a55' });
+      const perk = txt(this, W / 2 + 20, y + 6, PERKS[s].perk, 20, { ox: 0, color: '#3f8f6f', weight: '600', wrap: 280, align: 'left' });
+      const hit = this.add.rectangle(W / 2, y, 600, 220, 0xffffff, 0.001).setInteractive({ useHandCursor: true });
+      hit.on('pointerdown', () => this.pickStyle(i, s, next));
+      items.push(thumb, frame, name, perk, hit);
+    });
+    this.overlay.add(items);
+    window.JOE.card = 'Pick the look'; window.JOE.cardButtons = STYLE_IDS.map((s2, k) => ({ label: s2, x: W / 2, y: 540 + k * 240 }));
+  }
+  pickStyle(i, s, next) {
+    this.closeCard();
+    G.stats.decorPicks++;
+    G.run.perks[s]++; G.run.styles[FLOORS[i].key] = s; META.stylesUsed[s] = true; saveMeta(); checkMetaAch(this);
+    this.styleImg.setTexture(roomTex(i, s)).setDisplaySize(this.room.w, this.room.h).setAlpha(0);
+    this.tweens.add({ targets: this.styleImg, alpha: 1, duration: D(500) });
+    this.burst.setParticleTint(0xffe28a); this.burst.explode(RM ? 6 : 30, this.room.x + this.room.w / 2, this.room.y + this.room.h / 2);
+    sfx(this, 'chime2', { volume: 0.7, rate: 1.4 });
+    toast(this, styleName(i, s) + ' it is!', PERKS[s].perk, null);
+    if (this.refreshSide) this.refreshSide();
+    this.time.delayedCall(D(700), next);
+  }
+  starsCard(done, st, bonus) {
+    const f = FLOORS[done];
     const lines = [
-      { t: `${FLOORS[done].name} is done.`, s: 34, w: '700' },
-      { t: G.mode === 'relaxed' ? 'Gorgeous work.' : `${'★'.repeat(stars)}${'☆'.repeat(3 - stars)}`, s: 54, c: '#e8a33a', w: '700' },
-      { t: bonus ? `Moves bonus: +${bonus.toLocaleString('en-US')}` : `Max cascade this game: ${G.stats.maxCombo}`, s: 26, c: '#8a3f78' },
-      { t: `Score: ${G.score.toLocaleString('en-US')}`, s: 28 },
+      { t: `${f.name} is done.`, s: 32, w: '700' },
+      { t: '★'.repeat(st.s) + '☆'.repeat(3 - st.s), s: 54, c: '#e8a33a', w: '700' },
+      { t: st.why.join('    '), s: 20, c: '#8a3f78' },
+      { t: (bonus ? `Bonus +${bonus.toLocaleString('en-US')}   ` : '') + `Score ${G.run.score.toLocaleString('en-US')}`, s: 24 },
     ];
-    if (done === 7) {
-      this.card('Penthouse!', lines, [{ label: 'Open the Penthouse', fn: () => this.toFinale() }], { h: 500, y: 880, dim: 0.15 });
-    } else {
-      this.card('Floor Complete!', lines, [{ label: 'Up to the next floor', fn: () => this.nextFloor() }], { h: 500, y: 880, dim: 0.15 });
-    }
+    const nextF = done + 1;
+    G.run.floor = Math.min(nextF, FLOORS.length - 1); this.saveRun();
+    if (f.secret) { this.card('Starlight!', lines, [{ label: 'Back to the roof', fn: () => this.toFinale() }], { h: 520, y: 880, dim: 0.15 }); return; }
+    if (done === MAIN_FLOORS - 1) { this.card('Penthouse!', lines, [{ label: 'Go up to the roof', fn: () => this.toFinale() }], { h: 520, y: 880, dim: 0.15 }); return; }
+    this.card('Floor Complete!', lines, [{ label: 'Up to the next floor', fn: () => this.nextFloor() }], { h: 520, y: 880, dim: 0.15 });
   }
-  nextFloor() {
-    this.endTurbo();
-    this.select(null);
-    this.loadFloor(G.floor + 1, false);
-  }
+  nextFloor() { this.endTurbo(); this.select(null); this.floorDone = false; this.timeUp = false; this.loadFloor(this.fi + 1, false); }
   toFinale() {
-    this.cameras.main.fadeOut(D(500), 255, 240, 250);
-    this.cameras.main.once('camerafadeoutcomplete', () => this.scene.start('Finale'));
+    if (this.fi === MAIN_FLOORS - 1) { G.run.floor = MAIN_FLOORS; this.saveRun(); }
+    if (FLOORS[this.fi].secret) { G.run.floor = 0; store.set('run_' + G.mode, null); window.JOE.secretDone = true; }
+    this.cameras.main.fadeOut(D(500), 20, 10, 40);
+    this.cameras.main.once('camerafadeoutcomplete', () => this.scene.start('Finale', { after: FLOORS[this.fi].secret ? 'dome' : 'penthouse' }));
   }
   outOfMoves() {
     this.busy = true;
-    const f = FLOORS[G.floor];
+    const f = FLOORS[this.fi];
     const left = Object.keys(f.goals).filter((k) => this.collected[k] < f.goals[k]).map((k) => ({ k, t: String(f.goals[k] - this.collected[k]) }));
-    this.card('So close!', [{ t: 'Still needed:', s: 26, c: '#8a3f78' }, { icons: left }, { t: 'Birthday rules: take 5 more moves, on the house.', s: 24, c: '#b0447f' }], [
-      { label: '+5 Moves', fn: () => { this.moves += 5; this.updateMoves(); this.busy = false; } },
-      { label: 'Restart Floor', c1: '#c9b2ff', c2: '#9b6dff', fn: () => this.loadFloor(G.floor, false) },
+    const timed = this.timed;
+    this.card(timed ? 'Time!' : 'So close!', [{ t: 'Still needed:', s: 26, c: '#8a3f78' }, { icons: left }, { t: timed ? 'House rules: 30 more seconds, on the house.' : 'House rules: 5 more moves, on the house.', s: 24, c: '#b0447f' }], [
+      { label: timed ? '+30 Seconds' : '+5 Moves', fn: () => { if (timed) { this.timeLeft += 30; this.timeUp = false; } else this.moves += 5; this.updateMoves(); this.busy = false; } },
+      { label: 'Restart Floor', c1: '#c9b2ff', c2: '#9b6dff', fn: () => { this.timeUp = false; this.loadFloor(this.fi, false); } },
     ], { h: 600 });
+  }
+  duelTurnEnd() {
+    const d = G.duel; d.scores[d.turn] = this.duelScore || 0;
+    const who = d.order[d.turn];
+    META.duelBest[who] = Math.max(META.duelBest[who] || 0, d.scores[d.turn]); saveMeta();
+    if (d.turn === 0) {
+      d.turn = 1;
+      this.card('Pass the phone!', [{ t: `${who} scored ${d.scores[0].toLocaleString('en-US')}.`, s: 30 }, { t: `${d.order[1]}, your turn on the same starting board.`, s: 24, c: '#8a3f78' }], [{ label: `${d.order[1]} is ready`, fn: () => this.scene.restart() }], { h: 440 });
+    } else {
+      unlock(this, 'duel');
+      const [a, b] = d.scores; const win = a === b ? 'A tie!' : (a > b ? d.order[0] : d.order[1]) + ' wins!';
+      this.card(win, [{ t: `${d.order[0]}: ${a.toLocaleString('en-US')}`, s: 30 }, { t: `${d.order[1]}: ${b.toLocaleString('en-US')}`, s: 30 }], [
+        { label: 'Rematch', fn: () => { d.turn = 0; d.scores = [0, 0]; d.seed = Math.floor(Math.random() * 1e9); this.scene.restart(); } },
+        { label: 'Menu', c1: '#c9b2ff', c2: '#9b6dff', fn: () => { G.mode = 'classic'; RNG = Math.random; this.scene.start('Title'); } },
+      ], { h: 520 });
+    }
   }
 }
 
 // =====================================================================
 class Finale extends Phaser.Scene {
   constructor() { super('Finale'); }
+  init(data) { this.after = (data && data.after) || 'penthouse'; }
   create() {
-    window.JOE.scene = this; window.JOE.sceneName = 'Finale';
-    this.cameras.main.fadeIn(D(600), 255, 240, 250);
-    this.add.image(W / 2, H / 2, 'bg');
-    const art = this.add.image(W / 2, H + 60, 'title').setOrigin(0.5, 1);
-    art.setScale(Math.max(W / art.width, H / art.height) * 1.02);
-    canvasTex(this, 'veil2', W, H, (ctx) => {
-      const g = ctx.createLinearGradient(0, 0, 0, 520); g.addColorStop(0, 'rgba(255,240,248,0.95)'); g.addColorStop(1, 'rgba(255,240,248,0)');
-      ctx.fillStyle = g; ctx.fillRect(0, 0, W, 520);
-      const g2 = ctx.createLinearGradient(0, H - 380, 0, H); g2.addColorStop(0, 'rgba(255,236,246,0)'); g2.addColorStop(0.5, 'rgba(255,236,246,0.9)'); g2.addColorStop(1, 'rgba(255,236,246,1)');
-      ctx.fillStyle = g2; ctx.fillRect(0, H - 380, W, 380);
+    window.JOE.scene = this; window.JOE.sceneName = 'Finale'; window.JOE.card = null; window.JOE.finale = false;
+    mark('finale');
+    this.cameras.main.fadeIn(D(500), 20, 10, 40);
+    this.cameras.main.setScroll(-OX, 0);
+    this.add.rectangle(W / 2, H / 2, GW, H, 0x1d1036);
+    const art = this.add.image(W / 2, 0, 'nye').setOrigin(0.5, 0);
+    art.setScale(Math.max(W / art.width, 760 / art.height) * (WIDE ? 1.6 : 1));
+    canvasTex(this, 'nyeveil', GW, H, (ctx) => {
+      const g = ctx.createLinearGradient(0, 380, 0, H); g.addColorStop(0, 'rgba(29,16,54,0)'); g.addColorStop(0.35, 'rgba(29,16,54,0.85)'); g.addColorStop(1, 'rgba(29,16,54,1)');
+      ctx.fillStyle = g; ctx.fillRect(0, 380, GW, H - 380);
     });
-    this.add.image(W / 2, H / 2, 'veil2');
-    G.muted || startMusic(this);
-    sfx(this, 'finale', { volume: 0.85 });
+    this.add.image(W / 2, H / 2, 'nyeveil');
+    startMusic(this);
+    this.fw = this.add.particles(0, 0, 'spark', { lifespan: 1300, speed: { min: 120, max: 420 }, gravityY: 160, scale: { start: 0.9, end: 0 }, alpha: { start: 1, end: 0 }, emitting: false, blendMode: 'ADD' }).setDepth(20);
+    const skip = PARAMS.get('nocount');
+    const big = txt(this, W / 2, 760, '', 280, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 14, shadow: 'rgba(255,120,200,0.6)' }).setDepth(30);
+    const cap = txt(this, W / 2, 560, this.after === 'dome' ? 'One more for the stars' : 'Midnight on the roof', 40, { color: '#ffe3f2', weight: '600' }).setDepth(30);
+    let n = skip ? 0 : 10;
+    window.JOE.countdown = n;
+    const tick = () => {
+      if (n <= 0) { cap.destroy(); big.destroy(); this.midnight(); return; }
+      big.setText(String(n)); goldText(big); big.setScale(1.5).setAlpha(1);
+      this.tweens.add({ targets: big, scale: 1, duration: D(300), ease: 'Back.easeOut' });
+      this.tweens.add({ targets: big, alpha: 0.4, duration: D(450), delay: D(500) });
+      sfx(this, 'chime', { volume: 0.5, rate: 0.8 + (10 - n) * 0.09 });
+      n--; window.JOE.countdown = n;
+      this.time.delayedCall(D(1000), tick);
+    };
+    tick();
+  }
+  firework(x, y) {
+    const cols = [0xff7eb6, 0xffd36b, 0x7fe0c0, 0x8fd0ff, 0xb49bff, 0xffffff];
+    this.fw.setParticleTint(Phaser.Math.RND.pick(cols)); this.fw.explode(RM ? 12 : 60, x, y);
+  }
+  midnight() {
+    unlock(this, 'midnight');
+    sfx(this, 'finale', { volume: 0.85 }); sfx(this, 'cheer', { volume: 0.6 });
+    const flash = this.add.rectangle(W / 2, H / 2, GW, H, 0xffffff, RM ? 0.3 : 0.9).setDepth(40);
+    this.tweens.add({ targets: flash, alpha: 0, duration: D(600) });
+    const burst = () => this.firework(Phaser.Math.Between(60 - (WIDE ? 400 : 0), W - 60 + (WIDE ? 400 : 0)), Phaser.Math.Between(80, 420));
+    for (let i = 0; i < 6; i++) this.time.delayedCall(D(i * 180), burst);
+    this.time.addEvent({ delay: RM ? 1500 : 450, loop: true, callback: burst });
+    this.add.particles(0, 0, 'confetti', { x: { min: -OX, max: W + OX }, y: -20, lifespan: 5000, speedY: { min: 120, max: 260 }, speedX: { min: -60, max: 60 }, rotate: { min: 0, max: 360 }, scale: { min: 0.8, max: 1.6 }, frequency: RM ? 400 : 40, tint: [0xff7eb6, 0xffd36b, 0x7fe0c0, 0xb49bff, 0x8fd0ff, 0xffffff] }).setDepth(25);
 
-    // H+B monogram medallion
-    canvasTex(this, 'medal', 220, 220, (ctx) => {
-      ctx.fillStyle = goldGrad(ctx, 0, 220); ctx.beginPath(); ctx.arc(110, 110, 104, 0, Math.PI * 2); ctx.fill();
-      const g = ctx.createLinearGradient(0, 0, 0, 220); g.addColorStop(0, '#fff3f8'); g.addColorStop(1, '#ffd0e4');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(110, 110, 90, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = 'rgba(201,138,44,0.7)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(110, 110, 80, 0, Math.PI * 2); ctx.stroke();
-    });
-    const medal = this.add.container(W / 2, 360);
-    medal.add(this.add.image(0, 0, 'medal'));
-    const mono = txt(this, 0, 4, 'H+B', 64, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 6 }); goldText(mono); medal.add(mono);
-    medal.setScale(0);
-    this.tweens.add({ targets: medal, scale: 1, duration: D(700), delay: D(500), ease: 'Back.easeOut' });
-
-    const t1 = txt(this, W / 2, 100, 'Here\'s to you,', 58, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8, shadow: 'rgba(160,40,110,0.4)' });
-    const t2 = txt(this, W / 2, 190, 'Joe!', 110, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 10, shadow: 'rgba(160,40,110,0.4)' });
+    const t1 = txt(this, W / 2, 90, "Here's to you,", 58, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 8, shadow: 'rgba(160,40,110,0.4)' }).setDepth(30);
+    const t2 = txt(this, W / 2, 180, 'Joe!', 110, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 10, shadow: 'rgba(160,40,110,0.4)' }).setDepth(30);
     goldText(t1); goldText(t2);
-    [t1, t2].forEach((t, i) => { t.setAlpha(0).setY(t.y - 40); this.tweens.add({ targets: t, alpha: 1, y: t.y + 40, duration: D(600), delay: D(200 + i * 200), ease: 'Back.easeOut' }); });
-    const pill = this.add.graphics(); pill.fillStyle(0xfff4f8, 0.88); pill.fillRoundedRect(W / 2 - 300, 470, 600, 104, 30); pill.lineStyle(3, 0xe9b94a, 1); pill.strokeRoundedRect(W / 2 - 300, 470, 600, 104, 30);
-    pill.fillStyle(0xfff4f8, 0.88); pill.fillRoundedRect(W / 2 - 220, H - 318, 440, 56, 28);
-    pill.setAlpha(0); this.tweens.add({ targets: pill, alpha: 1, duration: D(800), delay: D(1100) });
-    const lines = txt(this, W / 2, 522, 'The penthouse is open.\n29 years and every floor, together.', 30, { color: '#6b3466', weight: '600' });
-    lines.setAlpha(0); this.tweens.add({ targets: lines, alpha: 1, duration: D(800), delay: D(1200) });
-    txt(this, W / 2, H - 290, `Final score: ${G.score.toLocaleString('en-US')}`, 30, { color: '#8a3f78', weight: '600' });
+    [t1, t2].forEach((t, i) => { t.setAlpha(0); this.tweens.add({ targets: t, alpha: 1, duration: D(600), delay: D(200 + i * 200) }); });
 
-    const conf = this.add.particles(0, 0, 'confetti', { x: { min: 0, max: W }, y: -20, lifespan: 5000, speedY: { min: 120, max: 260 }, speedX: { min: -60, max: 60 }, rotate: { min: 0, max: 360 }, scale: { min: 0.8, max: 1.6 }, frequency: RM ? 400 : 40, tint: [0xff7eb6, 0xffd36b, 0x7fe0c0, 0xb49bff, 0x8fd0ff, 0xffffff] });
-    if (!RM) this.add.particles(0, 0, 'spark', { x: { min: 80, max: W - 80 }, y: { min: 250, max: 1000 }, lifespan: 1200, scale: { start: 1, end: 0 }, frequency: 90, blendMode: 'ADD', tint: [0xffffff, 0xffe28a, 0xffb3d9] });
-    this.time.delayedCall(D(400), () => sfx(this, 'cheer', { volume: 0.6 }));
+    // gold H+B doormat
+    canvasTex(this, 'doormat', 360, 170, (ctx, w, h) => {
+      ctx.fillStyle = goldGrad(ctx, 0, h); rr(ctx, 0, 0, w, h, 26); ctx.fill();
+      const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#fff3f8'); g.addColorStop(1, '#ffd0e4');
+      ctx.fillStyle = g; rr(ctx, 12, 12, w - 24, h - 24, 18); ctx.fill();
+      ctx.strokeStyle = 'rgba(201,138,44,0.7)'; ctx.lineWidth = 2; rr(ctx, 22, 22, w - 44, h - 44, 14); ctx.stroke();
+    });
+    const mat = this.add.container(W / 2, 470).setDepth(30);
+    mat.add(this.add.image(0, 0, 'doormat'));
+    const mono = txt(this, 0, -8, 'H+B', 68, { font: 'Pacifico', weight: '400', stroke: '#c4417f', strokeW: 6 }); goldText(mono); mat.add(mono);
+    mat.add(txt(this, 0, 52, 'since 1998', 22, { color: '#8a3f78', weight: '600' }));
+    mat.setScale(0); this.tweens.add({ targets: mat, scale: 1, duration: D(700), delay: D(500), ease: 'Back.easeOut' });
 
-    makeButton(this, W / 2, H - 200, 440, 90, 'Play Again', { fs: 36 }, () => { G.score = 0; G.floor = 0; this.scene.start('Title'); });
-    makeButton(this, W / 2, H - 92, 440, 80, 'Relaxed Mode', { fs: 30, c1: '#c9b2ff', c2: '#9b6dff' }, () => { G.mode = 'relaxed'; G.floor = 0; G.score = 0; this.scene.start('Game'); });
+    let y = 620;
+    const lines = txt(this, W / 2, y, 'The penthouse is open.\n29 years and every floor, together.', 30, { color: '#ffe9f4', weight: '600' }).setDepth(30);
+    lines.setAlpha(0); this.tweens.add({ targets: lines, alpha: 1, duration: D(800), delay: D(1000) });
+    y += 90;
+    if (PENTHOUSE_NOTE) {
+      const note = txt(this, W / 2, y + 16, PENTHOUSE_NOTE, 26, { font: 'Pacifico', weight: '400', color: '#7a2f62', wrap: 560 }).setDepth(31);
+      const sig = txt(this, W / 2 + 150, y + 16 + note.height / 2 + 26, 'Gordon', 28, { font: 'Pacifico', weight: '400', color: '#c4417f' }).setDepth(31);
+      const ch = note.height + 90;
+      const card = this.add.graphics().setDepth(30);
+      card.fillStyle(0xfff6ea, 0.97); card.fillRoundedRect(W / 2 - 310, y - note.height / 2 - 10, 620, ch, 22);
+      card.lineStyle(3, 0xe9b94a, 1); card.strokeRoundedRect(W / 2 - 310, y - note.height / 2 - 10, 620, ch, 22);
+      card.setAngle(0); [card, note, sig].forEach((o) => { o.setAlpha(0); this.tweens.add({ targets: o, alpha: 1, duration: D(900), delay: D(1600) }); });
+      y += ch - 10;
+    }
+    txt(this, W / 2, y + 10, `Score ${G.run.score.toLocaleString('en-US')}   ★ ${starTotal()}   ${itemCount()}/12 treasures`, 24, { color: '#ffd9ec', weight: '600' }).setDepth(30);
+
+    const by = H - 330;
+    const unlocked = itemCount() >= SECRET_NEED;
+    if (this.after !== 'dome') {
+      if (unlocked) {
+        const b = makeButton(this, W / 2, by, 500, 86, 'A secret door is glowing...', { fs: 28, c1: '#9fd8ff', c2: '#6f7dff' }, () => { G.mode = G.mode === 'duel' ? 'classic' : G.mode; G.run.floor = 8; this.scene.start('Game'); }); b.setDepth(30);
+        if (!RM) this.tweens.add({ targets: b, scale: 1.05, duration: 600, yoyo: true, repeat: -1 });
+      } else {
+        txt(this, W / 2, by, `A door on the roof is locked.\nShelve ${SECRET_NEED} treasures to open it (${itemCount()}/${SECRET_NEED}).`, 22, { color: '#d9c9ff', weight: '600' }).setDepth(30);
+      }
+    }
+    makeButton(this, W / 2 - 125, by + 110, 230, 76, 'Share', { fs: 28, c1: '#ffd38f', c2: '#f3a64a' }, () => shareCard(this)).setDepth(30);
+    makeButton(this, W / 2 + 125, by + 110, 230, 76, 'Shelf', { fs: 28, c1: '#c9b2ff', c2: '#9b6dff' }, () => openShelf(this)).setDepth(30);
+    makeButton(this, W / 2, by + 210, 480, 80, 'Back to the lobby', { fs: 28 }, () => { if (this.after !== 'dome') store.set('run_' + G.mode, null); this.scene.start('Title'); }).setDepth(30);
     window.JOE.ready = true; window.JOE.finale = true;
   }
 }
 
 window.JOE.state = () => {
   const s = window.JOE.scene, name = window.JOE.sceneName;
-  if (!s || name !== 'Game' || !s.g || !s.g.length) return { scene: name, finale: !!window.JOE.finale };
-  return {
-    scene: name, floor: G.floor, mode: G.mode, busy: !!s.busy, overlay: !!s.overlay, card: window.JOE.card || null,
-    moves: s.moves, collected: Object.assign({}, s.collected), goals: FLOORS[G.floor].goals, reveal: s.reveal,
+  const base = { scene: name, finale: !!window.JOE.finale, card: window.JOE.card || null, t: Object.assign({}, G.t), items: itemCount(), ach: Object.keys(META.ach), stars: starTotal(), countdown: window.JOE.countdown, overlay: !!(s && s.overlay) };
+  if (!s || name !== 'Game' || !s.g || !s.g.length) return base;
+  return Object.assign(base, {
+    floor: s.fi, mode: G.mode, busy: !!s.busy, moves: s.moves, timeLeft: s.timeLeft, collected: Object.assign({}, s.collected), goals: FLOORS[s.fi].goals, reveal: s.reveal,
     grid: s.g.map((row) => row.map((p) => (p ? (p.special ? p.special + ':' + p.type : p.type) : null))),
-    tower: window.JOE.towerFloors, turbo: s.turbo, turboMeter: s.turboMeter, score: G.score, stats: Object.assign({}, G.stats),
-    board: { BX, BY, CELL, N, W, H },
-  };
+    cloth: s.cloth ? s.cloth.map((row) => row.map((c) => !!c)) : null,
+    tower: window.JOE.towerFloors, turbo: s.turbo, turboMeter: s.turboMeter, score: G.run.score, perks: Object.assign({}, G.run.perks), styles: Object.assign({}, G.run.styles), stats: Object.assign({}, G.stats),
+    board: { BX, BY, CELL, N, W, H, OX, GW },
+  });
 };
 window.JOE.moves = () => { const s = window.JOE.scene; return s && s.findMoves ? s.findMoves() : []; };
 
 // =====================================================================
 function boot() {
-  const config = {
-    type: Phaser.AUTO,
-    parent: 'game',
-    width: W, height: H,
-    backgroundColor: '#ffe4ef',
+  window.JOE.game = new Phaser.Game({
+    type: Phaser.AUTO, parent: 'game', width: GW, height: H, backgroundColor: '#ffe4ef',
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     render: { antialias: true, roundPixels: false },
-    audio: { disableWebAudio: false },
     scene: [Boot, Title, Game, Finale],
-  };
-  window.JOE.game = new Phaser.Game(config);
+  });
 }
 const fontsReady = (document.fonts && document.fonts.load)
   ? Promise.race([Promise.all([document.fonts.load('700 40px Fredoka'), document.fonts.load('600 40px Fredoka'), document.fonts.load('400 40px Pacifico')]), new Promise((r) => setTimeout(r, 2500))])
