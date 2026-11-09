@@ -19,7 +19,7 @@
       var t0=performance.now(),dur=1400;(function f(t){var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e).toLocaleString()+suf;if(k<1)requestAnimationFrame(f)})(t0)},{threshold:.6});
     cio.observe(el)});
   // hero parallax and fade
-  var hero=document.querySelector('.hero .media'); if(hero&&!reduce){var tick=false;
+  var hero=document.querySelector('.hero .media'); if(hero&&!reduce&&window.matchMedia('(min-width: 900px)').matches){var tick=false;
     addEventListener('scroll',function(){if(tick)return;tick=true;requestAnimationFrame(function(){var y=scrollY;hero.style.transform='translate3d(0,'+(y*.35)+'px,0) scale(1.04)';tick=false})},{passive:true})}
 })();
 /* interaction layer: wish, door finder, reply cards */
