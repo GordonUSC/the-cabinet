@@ -155,6 +155,20 @@ details p{font-size:16px;margin:10px 0 0}
  .hero-in{margin-top:-96px;padding-bottom:28px}
  .date{color:var(--gold)}
 }
+.nav a{min-height:56px;background:rgba(20,10,36,.72)}
+.nav a small{font-size:13px;opacity:1}
+.hero-in > .wish{background:transparent;color:var(--gold);border:1.5px solid var(--gold);box-shadow:none;animation:none}
+.js .hero-in > .wish{opacity:0;animation:up .8s cubic-bezier(.16,1,.3,1) .5s forwards}
+.js .door > :not(.art),.js .menu li{opacity:1!important;transform:none!important;transition:none!important}
+@media (max-width:600px){.art{aspect-ratio:16/9}}
+:where(a,button,input,summary,label):focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+.door:focus{outline:none}.door:target{outline:2px solid var(--gold);outline-offset:3px}
+.nl{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:14px;margin-bottom:10px}
+.nl .nm{margin:6px 0 0}
+.hint{font-family:"Bricolage Grotesque",sans-serif;font-size:13.5px;opacity:.8;margin:8px 0 0}
+.copy{background:none;border:0;color:var(--gold);font:800 15px "Bricolage Grotesque",sans-serif;text-decoration:underline;cursor:pointer;padding:8px 0;min-height:40px}
+.pause{position:fixed;right:12px;bottom:12px;z-index:40;font:800 13px "Bricolage Grotesque",sans-serif;color:var(--paper);background:rgba(20,10,36,.82);border:1px solid rgba(255,247,238,.4);border-radius:999px;padding:9px 14px;min-height:40px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .hero-in > *,.js .door > :not(.art),.js .menu li{opacity:1!important;transform:none!important}.pl,#confetti{display:none!important}}
 </style>
 </head>
 <body>
@@ -162,8 +176,8 @@ details p{font-size:16px;margin:10px 0 0}
   <div class="media"><video data-loop autoplay muted loop playsinline preload="auto" poster="hero.jpg" aria-label="A desert pool party at sunset: palm trees, mountains, a disco ball and a birthday cake with candles."><source src="hero.mp4" type="video/mp4"></video></div>
   <div class="hero-in">
     <div class="date">Gordon Bellamy · 56 today · Nov 9</div>
-    <h1>Find your<br>way <span class="n">in.</span></h1>
-    <p class="lede">It's my birthday, and the gift I'd love is <em>time with you</em> this year. Here are five ways in, from a meal to a partnership. Tap the one that sounds like you.</p>
+    <h1>Find your <br>way <span class="n">in.</span></h1>
+    <p class="lede">It's my birthday!! 🎂 Life is flying by, and you really are only as good as the people you share your life with. So the gift I'd love is <em>time with you</em> this year. Five ways in, from a meal to a partnership. Tap the one that sounds like you! No gift required.</p>
     <nav class="nav" aria-label="Five ways in">
       <a href="#reconnect"><i>1</i><span>Catch up with me<small>a call, a meal, a show</small></span></a>
       <a href="#ai"><i>2</i><span>Build good AI<small>learn and teach together</small></span></a>
@@ -177,11 +191,11 @@ details p{font-size:16px;margin:10px 0 0}
 </header>
 
 <main>
-  <section class="door d0" id="reconnect">
+  <section class="door d0" id="reconnect" tabindex="-1">
     <figure class="art"><video data-loop autoplay muted loop playsinline preload="metadata" poster="door3.jpg" aria-label="An illustrated dinner table for two beside a glowing concert stage."><source src="door3.mp4" type="video/mp4"></video><span class="pl l" aria-hidden="true"><b>1</b></span><span class="pl r" aria-hidden="true"></span></figure>
     <div class="k">Door one · Reconnect</div>
     <h2>Pull up a chair.</h2>
-    <p>No ask, no agenda. If it has been too long, this is your sign. The best part of 56 years has been the people next to me at a show and across the table.</p>
+    <p>No ask, no agenda. If it has been too long, this is your sign!! The best part of 56 years has been the people next to me at a show and across the table. For meals and shows we each cover our own, so pick something that works for both of us.</p>
     <ul>
       <li><strong>A call.</strong> Twenty minutes to catch up. Pick a time that works for you.</li>
       <li><strong>A meal or a meeting.</strong> Name your city and your favorite table. I will bring the stories.</li>
@@ -190,8 +204,9 @@ details p{font-size:16px;margin:10px 0 0}
     <form class="reply" data-door="1 Reconnect" hidden>
       <div class="rt">I'm in for</div>
       <div class="chips"><label><input type="checkbox" name="pick" value="A call"><span>A call</span></label><label><input type="checkbox" name="pick" value="A meal"><span>A meal</span></label><label><input type="checkbox" name="pick" value="A meeting"><span>A meeting</span></label><label><input type="checkbox" name="pick" value="A show"><span>A show</span></label></div>
-      <input class="nm" name="name" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <button type="submit" class="btn">Send to Gordon's team</button>
+      <label class="nl">Your name<input class="nm" name="name" autocomplete="name"></label>
+      <button type="submit" class="btn">Open my email to Gordon's team</button>
+      <p class="hint">Nothing is sent until you press Send in your email app.</p>
       <p class="ok" role="status"></p>
     </form>
     <div class="btns">
@@ -200,7 +215,7 @@ details p{font-size:16px;margin:10px 0 0}
     </div>
   </section>
 
-  <section class="door d5" id="ai">
+  <section class="door d5" id="ai" tabindex="-1">
     <figure class="art"><video data-loop autoplay muted loop playsinline preload="metadata" poster="door5.jpg" aria-label="An illustrated night workshop: a round table of laptops and sketchbooks with small glowing lights passing threads between the notes."><source src="door5.mp4" type="video/mp4"></video><span class="pl l" aria-hidden="true"><b>2</b></span><span class="pl r" aria-hidden="true"></span></figure>
     <div class="k">Door two · Agentic AI for good</div>
     <h2>Build the good future with me.</h2>
@@ -213,8 +228,9 @@ details p{font-size:16px;margin:10px 0 0}
     <form class="reply" data-door="2 Agentic AI" hidden>
       <div class="rt">I'm in for</div>
       <div class="chips"><label><input type="checkbox" name="pick" value="Trade notes"><span>Trade notes</span></label><label><input type="checkbox" name="pick" value="Teach a session"><span>Teach a session</span></label><label><input type="checkbox" name="pick" value="The spring gathering"><span>The spring gathering</span></label></div>
-      <input class="nm" name="name" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <button type="submit" class="btn">Send to Gordon's team</button>
+      <label class="nl">Your name<input class="nm" name="name" autocomplete="name"></label>
+      <button type="submit" class="btn">Open my email to Gordon's team</button>
+      <p class="hint">Nothing is sent until you press Send in your email app.</p>
       <p class="ok" role="status"></p>
     </form>
     <div class="btns">
@@ -222,7 +238,7 @@ details p{font-size:16px;margin:10px 0 0}
     </div>
   </section>
 
-  <section class="door d1" id="ggp">
+  <section class="door d1" id="ggp" tabindex="-1">
     <figure class="art"><video data-loop autoplay muted loop playsinline preload="metadata" poster="door1.jpg" aria-label="An illustrated board game night table with games, mocktails, string lights and empty chairs pulled out in welcome."><source src="door1.mp4" type="video/mp4"></video><span class="pl l" aria-hidden="true"><b>3</b></span><span class="pl r" aria-hidden="true"></span></figure>
     <div class="k">Door three · Gay Gaming Professionals</div>
     <h2>Make room at the table.</h2>
@@ -236,8 +252,9 @@ details p{font-size:16px;margin:10px 0 0}
     <form class="reply" data-door="3 GGP" hidden>
       <div class="rt">I'm in for</div>
       <div class="chips"><label><input type="checkbox" name="pick" value="Give a gift"><span>Give a gift</span></label><label><input type="checkbox" name="pick" value="Come in March"><span>Come in March</span></label><label><input type="checkbox" name="pick" value="Host a table"><span>Host a table</span></label><label><input type="checkbox" name="pick" value="Make an intro"><span>Make an intro</span></label></div>
-      <input class="nm" name="name" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <button type="submit" class="btn">Send to Gordon's team</button>
+      <label class="nl">Your name<input class="nm" name="name" autocomplete="name"></label>
+      <button type="submit" class="btn">Open my email to Gordon's team</button>
+      <p class="hint">Nothing is sent until you press Send in your email app.</p>
       <p class="ok" role="status"></p>
     </form>
     <div class="btns">
@@ -245,7 +262,7 @@ details p{font-size:16px;margin:10px 0 0}
     </div>
   </section>
 
-  <section class="door d2" id="usc">
+  <section class="door d2" id="usc" tabindex="-1">
     <figure class="art"><video data-loop autoplay muted loop playsinline preload="metadata" poster="door2.jpg" aria-label="An illustrated game design classroom at golden hour with two guest armchairs at the front."><source src="door2.mp4" type="video/mp4"></video><span class="pl l" aria-hidden="true"><b>4</b></span><span class="pl r" aria-hidden="true"></span></figure>
     <div class="k">Door four · USC School of Cinematic Arts</div>
     <h2>Come to class.</h2>
@@ -258,14 +275,15 @@ details p{font-size:16px;margin:10px 0 0}
     <form class="reply" data-door="4 USC" hidden>
       <div class="rt">I'm in for</div>
       <div class="chips"><label><input type="checkbox" name="pick" value="Be a guest"><span>Be a guest</span></label><label><input type="checkbox" name="pick" value="Mentor a team"><span>Mentor a team</span></label><label><input type="checkbox" name="pick" value="Share an AI story"><span>Share an AI story</span></label></div>
-      <input class="nm" name="name" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <button type="submit" class="btn">Send to Gordon's team</button>
+      <label class="nl">Your name<input class="nm" name="name" autocomplete="name"></label>
+      <button type="submit" class="btn">Open my email to Gordon's team</button>
+      <p class="hint">Nothing is sent until you press Send in your email app.</p>
       <p class="ok" role="status"></p>
     </form>
     
   </section>
 
-  <section class="door d3" id="partner">
+  <section class="door d3" id="partner" tabindex="-1">
     <figure class="art"><video data-loop autoplay muted loop playsinline preload="metadata" poster="door4.jpg" aria-label="An illustrated boardroom at dusk with a December calendar, a fountain pen and a gift box with a rainbow ribbon."><source src="door4.mp4" type="video/mp4"></video><span class="pl l" aria-hidden="true"><b>5</b></span><span class="pl r" aria-hidden="true"></span></figure>
     <div class="k">Door five · Companies and family foundations</div>
     <h2>Partner before December 31.</h2>
@@ -296,8 +314,9 @@ details p{font-size:16px;margin:10px 0 0}
     <form class="reply" data-door="5 Partner" hidden>
       <div class="rt">I'm in for</div>
       <div class="chips"><label><input type="checkbox" name="pick" value="AI Studio"><span>AI Studio</span></label><label><input type="checkbox" name="pick" value="Scholars grants"><span>Scholars grants</span></label><label><input type="checkbox" name="pick" value="A GDC night"><span>A GDC night</span></label><label><input type="checkbox" name="pick" value="Legend"><span>Legend</span></label><label><input type="checkbox" name="pick" value="In kind"><span>In kind</span></label><label><input type="checkbox" name="pick" value="Advising or a talk"><span>Advising or a talk</span></label></div>
-      <input class="nm" name="name" autocomplete="name" placeholder="Your name" aria-label="Your name">
-      <button type="submit" class="btn">Send to Gordon's team</button>
+      <label class="nl">Your name<input class="nm" name="name" autocomplete="name"></label>
+      <button type="submit" class="btn">Open my email to Gordon's team</button>
+      <p class="hint">Nothing is sent until you press Send in your email app.</p>
       <p class="ok" role="status"></p>
     </form>
     <div class="btns">
@@ -307,13 +326,14 @@ details p{font-size:16px;margin:10px 0 0}
   </section>
 
   <div class="close">
-    <p>Whichever door you pick, thank you for walking through it with me.</p>
+    <p>Whichever door you pick, I am so grateful for you. Thank you for walking through it with me!!</p>
     <div class="sig">LYMI, Gordon</div>
     <p style="font-size:15px;color:var(--muted);margin-top:14px">Or write to Gordon's team any time: <a href="mailto:gbellamyai@gmail.com?subject=Birthday%20door">gbellamyai@gmail.com</a></p>
   </div>
 </main>
 <footer class="foot">Gordon Bellamy · Co-founder, Gay Gaming Professionals · Director of Ethics, USC School of Cinematic Arts<br>November 9, 2026</footer>
 <canvas id="confetti" aria-hidden="true"></canvas>
+<button class="pause" type="button" hidden aria-pressed="false">Pause motion</button>
 <script src="motion.js" defer></script>
 </body>
 </html>
