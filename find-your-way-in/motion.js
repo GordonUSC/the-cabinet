@@ -37,7 +37,7 @@
     var C=['#ff3d8b','#ff8a3d','#ffd166','#7ee0b5','#1fb6d6','#b9a6ff','#fff7ee'],P=[];
     for(var i=0;i<180;i++)P.push({x:W/2,y:H*.62,vx:(Math.random()-.5)*26*devicePixelRatio,vy:-(Math.random()*24+10)*devicePixelRatio,r:(Math.random()*6+4)*devicePixelRatio,c:C[i%C.length],a:Math.random()*6,s:(Math.random()-.5)*.4});
     var t0=performance.now();(function f(t){var k=(t-t0)/2600;cx.clearRect(0,0,W,H);P.forEach(function(p){p.vy+=.7*devicePixelRatio;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.a+=p.s;cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.globalAlpha=Math.max(0,1-k);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);cx.restore()});if(k<1)requestAnimationFrame(f);else cx.clearRect(0,0,W,H)})(t0)}
-  var w=document.querySelector('.wish'); if(w){w.hidden=false;w.addEventListener('click',function(){burst();w.classList.add('done');w.textContent='✨ 56 candles out. Now pick your door.';var f=document.querySelector('.finder');setTimeout(function(){f&&f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})},reduce?0:1400)})}
+  var w=document.querySelector('.wish'); if(w){w.hidden=false;w.addEventListener('click',function(){burst();w.classList.add('done');w.textContent='✨ 56 candles out. Now tap your way in above.';var f=document.querySelector('.nav');setTimeout(function(){f&&f.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'})},reduce?0:1400)})}
   // reply cards
   [].forEach.call(document.querySelectorAll('form.reply'),function(f){f.hidden=false;
     f.addEventListener('submit',function(e){e.preventDefault();
