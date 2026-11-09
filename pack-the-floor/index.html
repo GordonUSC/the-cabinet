@@ -473,7 +473,7 @@ function card(k,on,click){const b=document.createElement('button');b.className='
 function hub(){
   ['start','end','post'].forEach(i=>$(i).hidden=true);$('pause').hidden=true;
   if(S.night>=7)return finale();
-  if(!S.plays){const keys=Object.keys(PLAYS);S.plays=pick(keys,3);save()}
+  if(!S.plays||S.plays.includes('intro')){const keys=Object.keys(PLAYS).filter(k=>k!=='intro');S.plays=pick(keys,3);save()}
   if(!sel.play||!S.plays.includes(sel.play))sel.play=S.plays[0];
   setBg(S.night);
   $('hTag').textContent='Night '+(S.night+1)+' of 7'+(BOSS[S.night]?' · boss':'');$('hTitle').textContent=TITLE[S.night];
