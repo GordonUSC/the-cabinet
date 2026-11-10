@@ -1,0 +1,664 @@
+<!-- STYLE: Gallery Tower, hand-painted gold leaf and jade over midnight indigo, cardinal accents, Gloock display with Figtree | WHY: she is Tech Picasso, a painter, so every floor of her tower is a painted gallery room with a court in it | ALT: Art Deco gala poster in cardinal and gold -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Dr. iAsia's Tower of Excellence</title>
+<meta name="description" content="A painted basketball tower game for Dr. iAsia Brown: every shot you make opens a door, and every door you open lets someone climb with you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;600;800&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --ink:#0b0d24; --ink2:#14183a; --gold:#f2b632; --gold2:#ffd66b; --jade:#2e8b6e; --jade2:#7fe0c0;
+  --cardinal:#9e1b32; --paper:#f6ebd3; --muted:#c9bfa8; --line:rgba(242,182,50,.55);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --ink:#0b0d24; } }
+:root[data-theme="dark"]{ --ink:#0b0d24; }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--paper);font-family:Figtree,system-ui,sans-serif;overflow-x:hidden}
+body{background:var(--ink) url(assets/canvas.jpg) repeat;background-size:360px}
+html.js body{min-height:100dvh;display:flex;flex-direction:column;justify-content:center}
+a{color:var(--gold2)}
+button{font-family:inherit}
+/* ---------- the stage ---------- */
+#stage{position:relative;margin:0 auto;width:min(100vw, calc(100dvh * 9 / 16));aspect-ratio:9/16;max-height:100dvh;container-type:inline-size;overflow:hidden;background:#000}
+html:not(.js) #stage{display:none}
+#game,#game canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block;touch-action:none}
+#hud{position:absolute;left:0;right:0;top:0;padding:2.4cqw 3cqw;display:none;gap:2cqw;align-items:flex-start;justify-content:space-between;pointer-events:none;z-index:3}
+#hud.on{display:flex}
+.chip{pointer-events:auto;background:rgba(11,13,36,.78);border:1px solid var(--line);border-radius:999px;padding:1.4cqw 3cqw;font-size:3.3cqw;font-weight:600;line-height:1.2;color:var(--paper);white-space:nowrap}
+.chip b{color:var(--gold2)}
+.hudcol{display:flex;flex-direction:column;gap:1.4cqw;align-items:flex-start}
+.hudcol.r{align-items:flex-end}
+.hudbtns{display:flex;gap:1.4cqw}
+.hbtn{white-space:nowrap;pointer-events:auto;cursor:pointer;background:rgba(11,13,36,.78);border:1px solid var(--line);color:var(--paper);border-radius:999px;font-size:3.1cqw;padding:1.4cqw 2.6cqw;font-weight:600}
+.plays{display:flex;flex-wrap:wrap;gap:1cqw;max-width:60cqw}
+.plays span{font-size:2.6cqw;background:rgba(46,139,110,.85);border-radius:999px;padding:.6cqw 2cqw;color:#fff}
+#hint{position:absolute;left:0;right:0;bottom:13cqw;text-align:center;font-weight:800;font-size:4.6cqw;color:var(--paper);text-shadow:0 2px 8px #000,0 0 2px #000;pointer-events:none;z-index:3;opacity:0;transition:opacity .4s}
+#hint.on{opacity:1}
+#toast{position:absolute;left:50%;top:40cqw;transform:translateX(-50%);background:rgba(158,27,50,.92);border:1px solid var(--gold);padding:2cqw 4cqw;border-radius:3cqw;font-weight:800;font-size:4cqw;opacity:0;transition:opacity .3s;z-index:4;pointer-events:none;text-align:center;max-width:86cqw}
+#toast.on{opacity:1}
+/* ---------- overlay cards ---------- */
+#ov{position:absolute;inset:0;z-index:5;display:none;overflow-y:auto;overscroll-behavior:contain}
+#ov.on{display:block}
+.shade{min-height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:6cqw 5cqw 7cqw;background:linear-gradient(180deg,rgba(11,13,36,.05) 0%,rgba(11,13,36,.55) 38%,rgba(11,13,36,.94) 70%)}
+.shade.center{justify-content:center}
+.kicker{font-size:3.2cqw;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);font-weight:800;margin:0 0 1.5cqw}
+h1,h2{font-family:Gloock,Georgia,serif;font-weight:400;margin:0 0 2.4cqw;line-height:1.02;color:#fff;text-shadow:0 3px 14px rgba(0,0,0,.6)}
+h1{font-size:11.5cqw}
+h2{font-size:8.6cqw}
+.lede{font-size:4.2cqw;line-height:1.38;margin:0 0 3cqw;color:var(--paper)}
+.fact{font-size:3.9cqw;line-height:1.42;margin:0 0 2.2cqw}
+.quote{font-family:Gloock,Georgia,serif;font-size:5cqw;line-height:1.2;margin:1cqw 0 2.4cqw;color:var(--gold2);padding-left:3cqw;border-left:2px solid var(--gold)}
+.quote small{display:block;font-family:Figtree,sans-serif;font-size:2.9cqw;color:var(--muted);margin-top:1cqw}
+.src{font-size:2.9cqw;color:var(--muted);margin:0 0 3cqw;line-height:1.5;word-break:break-word}
+.src a{color:var(--muted)}
+.twist{display:inline-block;font-size:3.3cqw;font-weight:800;background:var(--jade);color:#fff;border-radius:2cqw;padding:1.2cqw 2.6cqw;margin:0 0 3cqw}
+.how{font-size:4.6cqw;font-weight:800;color:#fff;background:rgba(158,27,50,.85);border:1px solid var(--gold);border-radius:3cqw;padding:2.4cqw 3.4cqw;margin:0 0 3.4cqw}
+.btns{display:flex;flex-direction:column;gap:2.4cqw}
+.btn{cursor:pointer;border:0;border-radius:3.2cqw;padding:3.6cqw 4cqw;font-size:4.6cqw;font-weight:800;background:var(--gold);color:#1a1206;box-shadow:0 .8cqw 0 #8a5d10, 0 2cqw 5cqw rgba(0,0,0,.45);text-align:center}
+.btn:active{transform:translateY(.6cqw);box-shadow:0 .2cqw 0 #8a5d10}
+.btn.alt{background:rgba(11,13,36,.7);color:var(--paper);border:1px solid var(--line);box-shadow:none;font-weight:600}
+.btn.small{font-size:3.6cqw;padding:2.6cqw 3cqw}
+.row{display:flex;gap:2.4cqw}.row>*{flex:1}
+.toggle{display:flex;align-items:center;gap:2.4cqw;font-size:3.6cqw;margin:0 0 3cqw;cursor:pointer}
+.toggle input{width:5cqw;height:5cqw;accent-color:var(--jade)}
+.artcard{display:flex;gap:3cqw;align-items:center;background:rgba(11,13,36,.72);border:1px solid var(--line);border-radius:3cqw;padding:2.4cqw;margin:0 0 3cqw}
+.artcard img{width:24cqw;height:30cqw;object-fit:cover;border-radius:1.6cqw;box-shadow:0 1cqw 3cqw rgba(0,0,0,.5)}
+.artcard p{margin:0;font-size:3.5cqw;line-height:1.35}
+.artcard b{display:block;font-family:Gloock,serif;font-weight:400;font-size:5cqw;color:#fff}
+.tally{font-size:5.4cqw;font-weight:800;margin:0 0 3cqw;line-height:1.5}
+.tally span{opacity:0;transition:opacity .25s;display:inline-block}
+.tally span.on{opacity:1}
+.tally .g{color:var(--gold2)}.tally .j{color:var(--jade2)}
+.choices{display:flex;flex-direction:column;gap:2.4cqw}
+.choice{cursor:pointer;text-align:left;border:1px solid var(--line);background:rgba(20,24,58,.9);color:var(--paper);border-radius:3cqw;padding:3cqw 3.4cqw;font-size:3.6cqw;line-height:1.35}
+.choice b{display:block;font-family:Gloock,serif;font-weight:400;font-size:5.2cqw;color:var(--gold2);margin-bottom:.6cqw}
+.choice:hover,.choice:focus{border-color:var(--gold2);outline:none}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:2.6cqw;margin:0 0 4cqw}
+.gallery figure{margin:0;background:rgba(11,13,36,.75);border:1px solid var(--line);border-radius:2.4cqw;overflow:hidden}
+.gallery img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.gallery figcaption{padding:1.6cqw 2cqw;font-size:2.9cqw;line-height:1.3}
+.gallery figcaption b{display:block;font-family:Gloock,serif;font-weight:400;font-size:3.8cqw;color:#fff}
+.gallery .locked img{filter:grayscale(1) brightness(.25) blur(2px)}
+.credit{font-size:3cqw;color:var(--muted);margin:3cqw 0 0;line-height:1.45}
+/* ---------- just read it (works with JS off) ---------- */
+#read{max-width:760px;margin:0 auto;padding:28px 16px 48px;background:rgba(11,13,36,.92)}
+html.js #read{display:none}
+html.js #read.open{display:block;position:fixed;inset:0;z-index:20;overflow-y:auto;max-width:none}
+#read .inner{max-width:720px;margin:0 auto}
+#read h1{font-size:clamp(34px,8vw,56px)}
+#read h2{font-size:clamp(24px,5vw,34px);margin-top:28px}
+#read p{font-size:17px;line-height:1.55}
+#read .floor{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:start;border-top:1px solid var(--line);padding-top:16px;margin-top:16px}
+#read .floor img{width:120px;height:150px;object-fit:cover;border-radius:8px}
+#read .floor h3{font-family:Gloock,serif;font-weight:400;font-size:24px;margin:0 0 6px;color:#fff}
+#read .floor p{margin:0 0 8px;font-size:16px}
+#read small{color:var(--muted);word-break:break-word}
+#read .close{position:sticky;top:0;float:right;cursor:pointer}
+@media (max-width:380px){#read .floor{grid-template-columns:84px 1fr}#read .floor img{width:84px;height:105px}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div id="stage" aria-label="Dr. iAsia's Tower of Excellence, a basketball tower game">
+  <div id="game"></div>
+  <div id="hud" aria-live="polite">
+    <div class="hudcol">
+      <div class="chip" id="hFloor">Floor 1</div>
+      <div class="chip" id="hScore">Points <b>0</b> &times; Lift <b>1</b></div>
+      <div class="plays" id="hPlays"></div>
+    </div>
+    <div class="hudcol r">
+      <div class="chip" id="hBalls">Balls <b>&infin;</b></div>
+      <div class="hudbtns">
+        <button class="hbtn" id="bSound" aria-label="Toggle sound">Sound on</button>
+        <button class="hbtn" id="bGallery" aria-label="Open the gallery">Gallery</button>
+      </div>
+    </div>
+  </div>
+  <div id="hint">Pull back, aim the arc, let go.</div>
+  <div id="toast"></div>
+  <div id="ov" role="dialog" aria-modal="true"></div>
+</div>
+
+<section id="read" aria-label="Just read it">
+<div class="inner">
+<button class="btn alt small close" id="readClose" type="button">Back to the game</button>
+<p class="kicker">Just read it</p>
+<h1>Dr. iAsia's Tower of Excellence</h1>
+<p>A painted tower of ten floors. On each floor you shoot a basketball through the hoop over a door. Every door you open stays open, and someone climbs up behind you. Each floor is a real chapter of Dr. iAsia Brown's work, with its source, and each one unlocks a one of a kind piece of art for her gallery. Here is every floor, no shots required.</p>
+
+<div class="floor"><img src="assets/art00.jpg" alt="Art quilt of binary patterns in indigo, gold and brick red" loading="lazy"><div><h3>1. The Foundation</h3><p>Bachelor of Science in Computer Science, University of Maryland.</p><small>Source: iasiabrown.com/introduction</small></div></div>
+<div class="floor"><img src="assets/art01.jpg" alt="Linocut print of a compass rose over ocean and desert" loading="lazy"><div><h3>2. Sixteen Years of Service</h3><p>Four years in the U.S. Air Force and twelve in the Marine Corps. She rose to senior operational advisor to a Commanding General, across 1.3 million square miles and 1,000+ personnel.</p><small>Sources: today.usc.edu (USC News, 2023); lagamecon-edu.com/iasia-brown</small></div></div>
+<div class="floor"><img src="assets/art02.jpg" alt="Stained glass of glowing cubes crossing clouds" loading="lazy"><div><h3>3. 126 Million Players</h3><p>At Microsoft she led the move of Minecraft Realms, 126M+ monthly players in 130+ countries, from AWS to Azure, saving $1.8M+ a year.</p><small>Source: iasiabrown.com/introduction</small></div></div>
+<div class="floor"><img src="assets/art03.jpg" alt="Green and black risograph print of game pieces orbiting a globe of open doors" loading="lazy"><div><h3>4. Senior Producer</h3><p>At Xbox Game Studios Publishing she led portfolio strategy and readiness across localization and accessibility, with inclusive design as an operational standard.</p><small>Sources: iasiabrown.com/introduction; today.usc.edu (USC News, 2023)</small></div></div>
+<div class="floor"><img src="assets/art04.jpg" alt="Cubist painting of a paintbrush, palette, basketball and keyboard" loading="lazy"><div><h3>5. Tech Picasso</h3><p>She picked up a brush in her mid 30s and paints mixed media portraits of people who used their power to uplift others. Colleagues call her Tech Picasso.</p><small>Source: today.usc.edu (USC News, 2023)</small></div></div>
+<div class="floor"><img src="assets/art05.jpg" alt="Paper cut collage of a staircase of open doors" loading="lazy"><div><h3>6. Leave the Door Open</h3><p>In 2023 she launched the iAsia Brown Endowed Scholarship Fund at the USC School of Cinematic Arts for students in game development and interactive design. In her words: "Funding shouldn't be a barrier."</p><small>Sources: her LinkedIn announcement, May 2023; lasentinel.net (2025)</small></div></div>
+<div class="floor"><img src="assets/art06.jpg" alt="Mosaic of a glowing hub connected to many small lamps" loading="lazy"><div><h3>7. The Power Strip</h3><p>Board member of Women in Technology Hollywood, where she co-chaired its DEI committee, and of Creating Coding Careers. In her words: "I'm not the plug. I'm the power strip."</p><small>Sources: withollywood.org; her LinkedIn post, October 2026</small></div></div>
+<div class="floor"><img src="assets/art07.jpg" alt="Art Deco poster of a golden staircase rising to a sunburst" loading="lazy"><div><h3>8. Outstanding Alumni</h3><p>Honored by the USC Black Alumni Association as its 2025 Outstanding Alumni Honoree.</p><small>Source: blackfilmwire.com (March 2025)</small></div></div>
+<div class="floor"><img src="assets/art08.jpg" alt="Watercolor of an open book blooming into a court of light" loading="lazy"><div><h3>9. Doctor of Education</h3><p>Doctor of Education in Organizational Change and Leadership, USC Rossier, 2026. Her research: how game designers build social and emotional experiences into games.</p><small>Sources: iasiabrown.com/introduction; her LinkedIn posts, April and May 2026</small></div></div>
+<div class="floor"><img src="assets/art09.jpg" alt="Afrofuturist mural of a golden doorway held open at the top of a tower" loading="lazy"><div><h3>10. Hold the Door</h3><p>Founder of TechPicasso LLC, investing in early stage game studios; strategic advisor to Kiro'o Games; on the committee for the USC Black Alumni Association's 50th Anniversary.</p><small>Sources: iasiabrown.com/introduction; alumni.usc.edu/baa/50th-anniversary</small></div></div>
+<p class="credit">Made for Dr. iAsia Brown on November 9, 2026, with love from Gordon. All art is original and generated for this game; no portraits, logos or team marks. Facts link to public sources listed above.</p>
+</div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.90.0/phaser.min.js"></script>
+<script>
+(function(){
+'use strict';
+var W=720,H=1280,G=1800,BR=22,FLOORY=1168,VK=7,VMAX=2050,DRAGMAX=300;
+var REDUCED=false; try{REDUCED=window.matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+
+/* ---------- store (try/catch only) ---------- */
+var store={get:function(k,d){try{var v=localStorage.getItem('iasiaTower.'+k);return v===null?d:JSON.parse(v);}catch(e){return d;}},
+  set:function(k,v){try{localStorage.setItem('iasiaTower.'+k,JSON.stringify(v));}catch(e){}}};
+
+/* ---------- the chapters (every line sourced) ---------- */
+var FLOORS=[
+ {title:'The Foundation',kicker:'Floor 1',bg:'bg01',
+  facts:['Bachelor of Science in Computer Science, University of Maryland. Every tower starts with a floor.'],
+  src:[['iasiabrown.com/introduction','https://iasiabrown.com/introduction']],
+  art:{i:0,title:'Binary Quilt',medium:'Art quilt'},
+  spot:[360,1080],balls:0,hoops:[{x:360,y:520,ch:1,side:1}]},
+ {title:'Sixteen Years of Service',kicker:'Floor 2',bg:'bg02',
+  facts:['Four years in the U.S. Air Force and twelve in the Marine Corps. She rose to senior operational advisor to a Commanding General, across 1.3 million square miles and 1,000+ personnel.'],
+  src:[['USC News, 2023','https://today.usc.edu/usc-student-veteran-transforming-pain-through-paintings/'],['LA Game Con Edu','https://www.lagamecon-edu.com/iasia-brown']],
+  twist:'New: a second door. Gold ring = the chapter. Jade ring = lift someone.',
+  art:{i:1,title:'Compass Rose',medium:'Linocut print'},
+  spot:[300,1080],balls:0,hoops:[{x:470,y:470,ch:1,side:1},{x:170,y:610,ch:0,side:-1}]},
+ {title:'126 Million Players',kicker:'Floor 3',bg:'bg03',
+  facts:['At Microsoft she led the move of Minecraft Realms, 126M+ monthly players in 130+ countries, from AWS to Azure, saving $1.8M+ a year.'],
+  src:[['iasiabrown.com/introduction','https://iasiabrown.com/introduction']],
+  twist:'New: this hoop migrates across the clouds. Lead it.',
+  art:{i:2,title:'Cloud Crossing',medium:'Stained glass'},
+  spot:[360,1080],balls:6,hoops:[{x:360,y:470,ch:1,side:1,move:{ax:'x',amp:170,sp:0.9}},{x:590,y:700,ch:0,side:1}]},
+ {title:'Senior Producer',kicker:'Floor 4',bg:'bg04',
+  facts:['At Xbox Game Studios Publishing she led portfolio strategy and readiness across localization and accessibility, with inclusive design as an operational standard.'],
+  src:[['iasiabrown.com/introduction','https://iasiabrown.com/introduction'],['USC News, 2023','https://today.usc.edu/usc-student-veteran-transforming-pain-through-paintings/']],
+  twist:'Three doors. A global release ships to everyone.',
+  art:{i:3,title:'Open World',medium:'Risograph print'},
+  spot:[360,1080],balls:6,hoops:[{x:360,y:360,ch:1,side:1},{x:140,y:590,ch:0,side:-1},{x:580,y:590,ch:0,side:1}]},
+ {title:'Tech Picasso',kicker:'Floor 5',bg:'bg05',
+  facts:['She picked up a brush in her mid 30s and paints mixed media portraits of people who used their power to uplift others. Colleagues call her Tech Picasso.'],
+  src:[['USC News, 2023','https://today.usc.edu/usc-student-veteran-transforming-pain-through-paintings/']],
+  twist:'New: an easel stands in the lane. Paint a higher arc.',
+  art:{i:4,title:'Brush, Ball, Keys',medium:'Cubist oil painting'},
+  spot:[170,1080],balls:6,wall:{x:380,y1:640,y2:930},hoops:[{x:560,y:520,ch:1,side:1},{x:140,y:430,ch:0,side:-1}]},
+ {title:'Leave the Door Open',kicker:'Floor 6',bg:'bg06',
+  facts:['In 2023 she launched the iAsia Brown Endowed Scholarship Fund at the USC School of Cinematic Arts for students in game development and interactive design.'],
+  quote:['Funding shouldn\'t be a barrier.','iAsia Brown, Los Angeles Sentinel, 2025'],
+  src:[['her LinkedIn announcement, May 2023','https://www.linkedin.com/posts/iasia-brown_scholarship-education-gamedevelopment-activity-7067183541624713216-dinu'],['Los Angeles Sentinel','https://lasentinel.net/iasia-brown-aims-to-power-future-of-gaming-by-opening-doors-for-young-creators.html']],
+  twist:'Four doors. Every student you lift adds to your Lift.',
+  art:{i:5,title:'Every Door Open',medium:'Paper cut collage'},
+  spot:[360,1080],balls:7,hoops:[{x:520,y:370,ch:1,side:1},{x:190,y:370,ch:0,side:-1},{x:130,y:660,ch:0,side:-1},{x:590,y:680,ch:0,side:1}]},
+ {title:'The Power Strip',kicker:'Floor 7',bg:'bg07',
+  facts:['Board member of Women in Technology Hollywood, where she co-chaired its DEI committee, and of Creating Coding Careers, which teaches coding to young people.'],
+  quote:['I\'m not the plug. I\'m the power strip.','iAsia Brown, LinkedIn, October 2026'],
+  src:[['withollywood.org','https://www.withollywood.org/bio-watt-emily/'],['her LinkedIn post','https://www.linkedin.com/in/iasia-brown']],
+  twist:'One hub hoop powers four doors at once. It rises and falls.',
+  art:{i:6,title:'Power Strip',medium:'Glass mosaic'},
+  spot:[360,1080],balls:5,hub:true,hoops:[{x:360,y:470,ch:1,side:1,move:{ax:'y',amp:90,sp:0.8}}],
+  lamps:[[110,360],[610,360],[110,700],[610,700]]},
+ {title:'Outstanding Alumni',kicker:'Floor 8',bg:'bg08',
+  facts:['Honored by the USC Black Alumni Association as its 2025 Outstanding Alumni Honoree at the 49th Annual Scholarship Benefit.'],
+  src:[['Black Film Wire, March 2025','https://www.blackfilmwire.com/post/usc-black-alumni-s-49th-annual-scholarship-benefit-celebrates-excellence-honoring-dean-jason-king']],
+  twist:'Two hoops on the move, crossing like a gala dance floor.',
+  art:{i:7,title:'Rise',medium:'Art Deco poster'},
+  spot:[360,1080],balls:6,hoops:[{x:360,y:400,ch:1,side:1,move:{ax:'x',amp:180,sp:0.75}},{x:360,y:660,ch:0,side:-1,move:{ax:'x',amp:180,sp:0.75,ph:Math.PI}}]},
+ {title:'Doctor of Education',kicker:'Floor 9',bg:'bg09',
+  facts:['Doctor of Education in Organizational Change and Leadership, USC Rossier, 2026. Her research asks how game designers build social and emotional experiences into games.'],
+  src:[['iasiabrown.com/introduction','https://iasiabrown.com/introduction'],['her LinkedIn post, April 2026','https://www.linkedin.com/posts/iasia-brown_gamedesign-gamedev-dissertationresearch-activity-7450669774344437760-snsM']],
+  twist:'New: you move after every shot. Learning never stands still.',
+  art:{i:8,title:'Open Book Court',medium:'Watercolor'},
+  spots:[[360,1080],[160,1060],[560,1060]],balls:7,hoops:[{x:360,y:320,ch:1,side:1},{x:150,y:560,ch:0,side:-1},{x:570,y:560,ch:0,side:1}]},
+ {title:'Hold the Door',kicker:'The Summit',bg:'bg10',final:true,
+  facts:['Founder of TechPicasso LLC, investing in early stage game studios. Strategic advisor to Kiro\'o Games. On the committee for the USC Black Alumni Association\'s 50th Anniversary.'],
+  src:[['iasiabrown.com/introduction','https://iasiabrown.com/introduction'],['USC Alumni, BAA 50th','https://alumni.usc.edu/baa/50th-anniversary/']],
+  twist:'Make shots to hold the great door open while everyone you lifted climbs through.',
+  art:{i:9,title:'Held Open',medium:'Afrofuturist mural'},
+  spot:[360,1080],balls:0,hoops:[{x:360,y:470,ch:1,side:1,big:1}]}
+];
+var PLAYS=[
+ {id:'soft',name:'Soft Touch',txt:'Every rim is 15% wider from now on.'},
+ {id:'fast',name:'Fast Break',txt:'+2 balls on every floor.'},
+ {id:'sight',name:'Long Sight',txt:'Your aim line shows twice as far.'},
+ {id:'strip',name:'Power Strip',txt:'Every make also opens one more closed door on the floor.'},
+ {id:'open',name:'Leave It Open',txt:'Each person you lift adds +0.75 Lift instead of +0.5.'},
+ {id:'glass',name:'Glass Work',txt:'Bank shots off the board score double.'},
+ {id:'net',name:'Nothing but Net',txt:'Swishes score +3 instead of +1.'}
+];
+
+/* ---------- state ---------- */
+var S={mode:'relaxed',pickup:false,floor:0,total:0,team:0,plays:[],gallery:store.get('gallery',[]),best:store.get('best',0),
+  floorPts:0,balls:0,player:0,pm:[0,0],stats:{shots:0,makes:0,swish:0},firstShotAt:null,startedAt:null};
+function has(id){return S.plays.indexOf(id)>=0;}
+function liftVal(){return 1+S.team*(has('open')?0.75:0.5);}
+function fmt(n){return (Math.round(n*100)/100).toString();}
+
+/* ---------- DOM ---------- */
+var $=function(id){return document.getElementById(id);};
+var ov=$('ov'),hud=$('hud'),hint=$('hint'),toastEl=$('toast');
+var toastT=null;
+function toast(msg,ms){toastEl.textContent=msg;toastEl.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){toastEl.classList.remove('on');},ms||1600);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function srcHtml(f){return '<p class="src">Source: '+f.src.map(function(s){return '<a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a>';}).join(' &middot; ')+'</p>';}
+function show(html,bg){ov.innerHTML=html;ov.classList.add('on');ov.scrollTop=0;ov.style.background=bg?'center/cover no-repeat url(assets/'+bg+'.jpg)':'transparent';
+  var b=ov.querySelector('.btn,.choice');if(b){try{b.focus({preventScroll:true});}catch(e){}}}
+function hide(){ov.classList.remove('on');ov.innerHTML='';}
+function updHud(){
+  var f=FLOORS[S.floor];
+  $('hFloor').innerHTML=(f.final?'Summit':'Floor '+(S.floor+1)+' of 10')+' &middot; <b>'+esc(f.title)+'</b>';
+  $('hScore').innerHTML='Points <b>'+S.floorPts+'</b> &times; Lift <b>'+fmt(liftVal())+'</b>'+(S.pickup?' &middot; P1 <b>'+S.pm[0]+'</b> P2 <b>'+S.pm[1]+'</b>':'');
+  var unlimited=(S.mode==='relaxed'||!f.balls);
+  $('hBalls').innerHTML=(S.pickup?'<b>'+(S.player?'P2':'P1')+'</b> up &middot; ':'')+'Balls <b>'+(unlimited?'&infin;':S.balls)+'</b>'+(f.final&&scene&&scene.need?' &middot; Held <b>'+scene.held+'/'+scene.need+'</b>':'');
+  $('hPlays').innerHTML=S.plays.map(function(id){var p=PLAYS.filter(function(x){return x.id===id;})[0];return '<span>'+esc(p.name)+'</span>';}).join('');
+}
+function setSoundLabel(){ $('bSound').textContent=(game&&game.sound.mute)?'Sound off':'Sound on'; }
+$('bSound').addEventListener('click',function(){ if(!game)return; game.sound.mute=!game.sound.mute; store.set('mute',game.sound.mute); setSoundLabel(); });
+$('bGallery').addEventListener('click',function(){ showGallery(true); });
+$('readClose').addEventListener('click',function(){ $('read').classList.remove('open'); });
+
+function titleScreen(){
+  hud.classList.remove('on'); hint.classList.remove('on');
+  show('<div class="shade">'+
+    '<p class="kicker">A painted tower in ten floors</p>'+
+    '<h1>Dr. iAsia\'s Tower of Excellence</h1>'+
+    '<p class="lede">Shoot through the hoop over each door. Every door you open stays open, and someone climbs up behind you.</p>'+
+    '<label class="toggle"><input type="checkbox" id="tPick"'+(S.pickup?' checked':'')+'> Pickup game: two players, pass the phone</label>'+
+    '<div class="btns">'+
+      '<button class="btn" data-act="relaxed">Play Relaxed</button>'+
+      '<div class="row"><button class="btn alt small" data-act="standard">Standard (shot clock)</button><button class="btn alt small" data-act="gallery">Gallery</button></div>'+
+      '<button class="btn alt small" data-act="read">Just read it</button>'+
+    '</div>'+
+    (S.best?'<p class="credit">Best tower: '+S.best+'</p>':'')+
+    '<p class="credit">Relaxed has unlimited balls and a full aim line. Standard gives each floor a shot clock of balls.</p>'+
+  '</div>','bg00');
+}
+function floorCard(i){
+  var f=FLOORS[i];
+  hint.classList.remove('on');
+  var how=i===0?'<div class="how">Pull back, aim the arc, let go.</div>':'';
+  var q=f.quote?'<p class="quote">"'+esc(f.quote[0])+'"<small>'+esc(f.quote[1])+'</small></p>':'';
+  show('<div class="shade">'+
+    '<p class="kicker">'+esc(f.kicker)+'</p><h2>'+esc(f.title)+'</h2>'+
+    f.facts.map(function(t){return '<p class="fact">'+esc(t)+'</p>';}).join('')+q+srcHtml(f)+
+    (f.twist?'<div class="twist">'+esc(f.twist)+'</div>':'')+how+
+    '<div class="btns"><button class="btn" data-act="court">'+(f.final?'Climb to the summit':'Step on the court')+'</button></div>'+
+  '</div>',f.bg);
+}
+function clearCard(i,pts,lift,add){
+  var f=FLOORS[i];
+  var html='<div class="shade">'+
+    '<p class="kicker">'+esc(f.kicker)+' cleared</p><h2>The door is open.</h2>'+
+    '<div class="artcard"><img src="assets/art0'+f.art.i+'.jpg" alt="'+esc(f.art.title)+', '+esc(f.art.medium)+'"><p><span class="kicker">New in her gallery</span><b>'+esc(f.art.title)+'</b>'+esc(f.art.medium)+', one of a kind</p></div>'+
+    '<p class="tally"><span class="g">'+pts+' points</span> <span>&times;</span> <span class="j">'+fmt(lift)+' Lift</span> <span>=</span> <span class="g">'+add+'</span></p>'+
+    '<p class="fact">You have lifted <b>'+S.team+'</b> '+(S.team===1?'person':'people')+' so far. Tower total: <b>'+S.total+'</b>.</p>'+
+    '<div id="next"></div></div>';
+  show(html,f.bg);
+  var spans=ov.querySelectorAll('.tally span');
+  spans.forEach(function(s,k){ if(REDUCED){s.classList.add('on');return;} setTimeout(function(){s.classList.add('on'); sfx('click',{rate:1+k*0.18,volume:.6});},250+k*320); });
+  var nxt=ov.querySelector('#next');
+  setTimeout(function(){
+    if(i>=1 && i<FLOORS.length-2){ // offer a play
+      var pool=PLAYS.filter(function(p){return !has(p.id);}); var pick=[];
+      while(pick.length<3&&pool.length){pick.push(pool.splice(Math.floor(Math.random()*pool.length),1)[0]);}
+      nxt.innerHTML='<p class="kicker">Call a play for the next floor</p><div class="choices">'+pick.map(function(p){return '<button class="choice" data-play="'+p.id+'"><b>'+esc(p.name)+'</b>'+esc(p.txt)+'</button>';}).join('')+'</div>';
+    } else {
+      nxt.innerHTML='<div class="btns"><button class="btn" data-act="nextfloor">'+(i+1<FLOORS.length-1?'Climb to floor '+(i+2):'Climb to the summit')+'</button></div>';
+    }
+  },REDUCED?0:250+spans.length*320);
+}
+function showGallery(fromGame){
+  var figs=FLOORS.map(function(f){var got=S.gallery.indexOf(f.art.i)>=0||S.mode==='read';
+    return '<figure class="'+(got?'':'locked')+'"><img src="assets/art0'+f.art.i+'.jpg" alt="'+(got?esc(f.art.title+', '+f.art.medium):'Locked piece')+'"><figcaption><b>'+(got?esc(f.art.title):'Not yet painted')+'</b>'+(got?esc(f.art.medium)+' &middot; '+esc(f.title):'Clear '+esc(f.kicker.toLowerCase())+' to unlock')+'</figcaption></figure>';}).join('');
+  ov.dataset.back=fromGame?'game':'title';
+  show('<div class="shade center"><p class="kicker">Her gallery</p><h2>One of a kind, floor by floor</h2>'+
+    '<p class="fact">'+S.gallery.length+' of 10 pieces collected. Each is an original made only for this tower, in a different medium.</p>'+
+    '<div class="gallery">'+figs+'</div><div class="btns"><button class="btn" data-act="back">Back</button><button class="btn alt small" data-act="read">Just read every floor</button></div></div>',null);
+  ov.style.background='rgba(11,13,36,.96)';
+  if(scene) scene.uiOpen=true;
+}
+function finaleCard(){
+  hud.classList.remove('on'); hint.classList.remove('on');
+  var best=Math.max(S.best,S.total); S.best=best; store.set('best',best);
+  show('<div class="shade">'+
+    '<p class="kicker">The summit</p><h2>The door stays open.</h2>'+
+    '<p class="lede">You climbed ten floors of Dr. iAsia Brown\'s work and lifted <b>'+S.team+'</b> people on the way up. They are through the door now, and so is the next generation.</p>'+
+    '<p class="tally"><span class="on g">Tower total '+S.total+'</span></p>'+
+    (S.pickup?'<p class="fact">Pickup game: P1 made '+S.pm[0]+', P2 made '+S.pm[1]+'. Both of you held the door.</p>':'')+
+    '<p class="fact">'+S.stats.makes+' scoring shots of '+S.stats.shots+', '+S.stats.swish+' swishes. Best tower on this device: '+best+'.</p>'+
+    '<p class="credit">For Dr. iAsia: hoops, one of a kind art and open doors, all in one tower. Happy climbing.</p>'+
+    '<div class="btns"><button class="btn" data-act="gallery">See her gallery (10 of 10)</button><div class="row"><button class="btn alt small" data-act="again">Climb again</button><button class="btn alt small" data-act="read">Just read it</button></div></div>'+
+  '</div>','bg10');
+}
+
+ov.addEventListener('click',function(e){
+  var t=e.target.closest('[data-act],[data-play]'); if(!t) return;
+  var a=t.getAttribute('data-act'), p=t.getAttribute('data-play');
+  sfx('click',{volume:.5});
+  if(p){ S.plays.push(p); toast(PLAYS.filter(function(x){return x.id===p;})[0].name+' is in your playbook'); nextFloor(); return; }
+  if(a==='relaxed'||a==='standard'){ var tp=$('tPick'); S.pickup=!!(tp&&tp.checked); startRun(a); }
+  else if(a==='court'){ hide(); hud.classList.add('on'); scene.beginFloor(); }
+  else if(a==='nextfloor'){ nextFloor(); }
+  else if(a==='gallery'){ showGallery(false); }
+  else if(a==='back'){ if(ov.dataset.back==='game'&&scene&&scene.phase!=='title'){ hide(); scene.uiOpen=false; } else if(S.floor>=FLOORS.length-1&&scene&&scene.phase==='done'){ finaleCard(); } else titleScreen(); }
+  else if(a==='read'){ $('read').classList.add('open'); $('read').scrollTop=0; }
+  else if(a==='again'){ titleScreen(); }
+});
+
+function startRun(mode){
+  S.mode=mode; S.floor=0; S.total=0; S.team=0; S.plays=[]; S.pm=[0,0]; S.player=0; S.stats={shots:0,makes:0,swish:0};
+  S.startedAt=performance.now(); S.firstShotAt=null;
+  startMusic();
+  scene.resetTeam();
+  scene.loadFloor(0); floorCard(0);
+}
+function nextFloor(){ S.floor++; scene.loadFloor(S.floor); floorCard(S.floor); }
+
+/* ---------- audio ---------- */
+var music=null;
+function sfx(k,o){ try{ if(game&&game.cache.audio.exists(k)) game.sound.play(k,o||{}); }catch(e){} }
+function startMusic(){ try{ if(!music&&game.cache.audio.exists('music')){ music=game.sound.add('music',{loop:true,volume:.42}); music.play(); } }catch(e){} }
+
+/* ---------- people (generic, diverse, drawn) ---------- */
+var SKIN=[0x3b2219,0x5a3825,0x7a4b2f,0x8d5a3b,0xa8724b,0xc68e62,0xe0b48a];
+var CLOTH=[0x9e1b32,0xf2b632,0x2e8b6e,0x5b3fa8,0x1f6fb5,0xe0607e,0xf6ebd3];
+var HAIR=[0x120a06,0x2a1608,0x4a2a12,0x0d0d0d,0x6b4a2a];
+
+/* ---------- the scene ---------- */
+var scene=null, game=null;
+var Court=new Phaser.Class({Extends:Phaser.Scene,initialize:function(){Phaser.Scene.call(this,{key:'court'});},
+preload:function(){
+  var L=this.load;
+  for(var i=0;i<=10;i++) L.image('bg'+(i<10?'0':'')+i,'assets/bg'+(i<10?'0':'')+i+'.jpg');
+  L.image('ball','assets/ball.png'); L.image('doorC','assets/door_closed.png'); L.image('doorO','assets/door_open.png');
+  ['swish','rim','bounce','door','fanfare','power','click'].forEach(function(k){L.audio(k,'assets/'+k+'.mp3');});
+  L.audio('music','assets/music.mp3');
+  L.on('loaderror',function(f){ console.warn('asset failed',f&&f.key); });
+},
+create:function(){
+  scene=this; this.phase='title'; this.uiOpen=false; this.t=0; this.hitstop=0;
+  this.bg=this.add.image(W/2,H/2,'bg00').setDepth(0);
+  this.veil=this.add.graphics().setDepth(1);
+  this.veil.fillGradientStyle(0x0b0d24,0x0b0d24,0x0b0d24,0x0b0d24,0.15,0.15,0.55,0.55); this.veil.fillRect(0,0,W,H);
+  // court floor
+  var c=this.add.graphics().setDepth(2);
+  c.fillGradientStyle(0x7a4a22,0x7a4a22,0x3b2010,0x3b2010,1,1,1,1); c.fillRect(0,FLOORY,W,H-FLOORY);
+  for(var x=0;x<W;x+=48){ c.lineStyle(1,0x2a160a,0.5); c.lineBetween(x,FLOORY,x+(x%96?10:-10),H); }
+  c.lineStyle(5,0xf2b632,0.9); c.lineBetween(0,FLOORY+2,W,FLOORY+2);
+  c.lineStyle(4,0x9e1b32,0.9); c.strokeEllipse(W/2,FLOORY+70,300,90);
+  this.mkTextures();
+  this.layer=this.add.container(0,0).setDepth(3);
+  this.aimG=this.add.graphics().setDepth(9);
+  this.ball=this.add.image(360,1080,'ball').setDepth(10).setDisplaySize(BR*2,BR*2);
+  this.ball.setVisible(false);
+  this.front=this.add.container(0,0).setDepth(11);
+  this.fx=this.add.particles(0,0,'spark',{speed:{min:160,max:460},angle:{min:200,max:340},lifespan:950,gravityY:900,scale:{start:1,end:0},tint:[0xf2b632,0xffd66b,0x7fe0c0,0xe0607e,0xffffff],emitting:false}).setDepth(12);
+  this.teamC=this.add.container(0,0).setDepth(8);
+  this.ghost=this.add.graphics().setDepth(13);
+  this.input.on('pointerdown',this.onDown,this);
+  var me=this, cv=this.game.canvas;
+  function toWorld(e){ var r=cv.getBoundingClientRect(); return {x:(e.clientX-r.left)*W/r.width, y:(e.clientY-r.top)*H/r.height}; }
+  window.addEventListener('pointermove',function(e){ if(!me.drag) return; var q=toWorld(e); me.drag.cx=q.x; me.drag.cy=q.y; });
+  window.addEventListener('pointerup',function(){ me.onUp(); });
+  window.addEventListener('pointercancel',function(){ me.drag=null; me.aimG.clear(); });
+  try{ this.sound.mute=!!store.get('mute',false); }catch(e){}
+  setSoundLabel();
+  this.team=[];
+  titleScreen();
+  window.__tower.ready=true;
+},
+mkTextures:function(){
+  var g=this.make.graphics({x:0,y:0,add:false});
+  g.fillStyle(0xffffff,1); g.fillCircle(6,6,6); g.generateTexture('spark',12,12); g.clear();
+  // people variants
+  for(var v=0;v<24;v++){
+    g.clear();
+    var skin=SKIN[v%SKIN.length], cloth=CLOTH[(v*3+1)%CLOTH.length], hair=HAIR[(v*2)%HAIR.length], st=v%5;
+    // hair back
+    g.fillStyle(hair,1);
+    if(st===0) g.fillCircle(20,13,15);          // afro
+    if(st===1){ g.fillCircle(20,12,11); g.fillCircle(20,0,7); } // puff bun
+    if(st===2){ g.fillCircle(20,12,11); for(var k=0;k<6;k++) g.fillRect(9+k*4,12,3,22); } // locs
+    if(st===3) g.fillCircle(20,11,11);           // short
+    if(st===4){ g.fillCircle(20,12,11); g.fillRect(9,12,22,14); } // long
+    g.fillStyle(skin,1); g.fillCircle(20,15,9);
+    g.fillStyle(cloth,1); g.fillRoundedRect(9,26,22,32,7);
+    g.fillStyle(skin,1); g.fillRoundedRect(4,30,6,22,3); g.fillRoundedRect(30,30,6,22,3);
+    g.fillStyle(0x1b1530,1); g.fillRoundedRect(11,56,8,22,3); g.fillRoundedRect(21,56,8,22,3);
+    g.fillStyle(0xffffff,0.9); g.fillRect(10,74,10,4); g.fillRect(20,74,10,4);
+    g.generateTexture('p'+v,40,80);
+  }
+  g.destroy();
+},
+resetTeam:function(){ this.team.forEach(function(p){p.destroy();}); this.team=[]; },
+teamSlot:function(n){ var per=12, row=Math.floor(n/per)%3, col=n%per; return {x:36+col*59+(row%2)*29, y:FLOORY+40+row*30}; },
+addPerson:function(x,y,walk){
+  var n=this.team.length, slot=this.teamSlot(n), p=this.add.image(x,y,'p'+(n%24)).setScale(0.72);
+  this.teamC.add(p); this.team.push(p); S.team=this.team.length;
+  if(REDUCED||!walk){ p.setPosition(slot.x,slot.y); }
+  else this.tweens.add({targets:p,x:slot.x,y:slot.y,duration:900,ease:'Sine.easeInOut'});
+  updHud();
+},
+loadFloor:function(i){
+  var f=FLOORS[i];
+  this.phase='card'; this.floorIdx=i;
+  this.bg.setTexture(f.bg); var sc=Math.max(W/this.bg.width,H/this.bg.height); this.bg.setScale(sc);
+  this.layer.removeAll(true); this.front.removeAll(true); this.aimG.clear(); this.ghost.clear();
+  this.hoops=[]; this.lamps=[];
+  var relaxed=S.mode==='relaxed';
+  for(var k=0;k<f.hoops.length;k++){
+    var hc=f.hoops[k], R=(hc.big?72:56)*(relaxed?1.2:1)*(has('soft')?1.15:1);
+    var h={cfg:hc,x:hc.x,y:hc.y,bx:hc.x,by:hc.y,R:R,side:hc.side,ch:!!hc.ch,made:false};
+    h.door=this.add.image(hc.x,hc.y+92,'doorC').setScale(hc.big?1.3:0.95);
+    h.ring=this.add.graphics(); h.back=this.add.graphics(); h.net=this.add.graphics();
+    this.layer.add([h.ring,h.door,h.back]); this.front.add(h.net);
+    h.tag=this.add.text(hc.x,hc.y-118,h.ch?(f.final?'THE GREAT DOOR':'CHAPTER'):'LIFT +1',{fontFamily:'Figtree',fontSize:'28px',fontStyle:'800',color:h.ch?'#ffd66b':'#7fe0c0',stroke:'#0b0d24',strokeThickness:7}).setOrigin(0.5);
+    this.layer.add(h.tag);
+    this.drawHoop(h); this.hoops.push(h);
+  }
+  if(f.lamps){ for(var m=0;m<f.lamps.length;m++){ var L=f.lamps[m]; var d=this.add.image(L[0],L[1],'doorC').setScale(0.62); this.layer.add(d); this.lamps.push({door:d,open:false}); } }
+  this.wallG=null;
+  if(f.wall){ var w=this.add.graphics(); w.fillStyle(0x3b2010,1); w.fillRoundedRect(f.wall.x-9,f.wall.y1,18,f.wall.y2-f.wall.y1,6);
+    w.fillStyle(0xf6ebd3,1); w.fillRect(f.wall.x-70,f.wall.y1-10,140,100); w.lineStyle(6,0x7a4a22,1); w.strokeRect(f.wall.x-70,f.wall.y1-10,140,100);
+    w.fillStyle(0x2e8b6e,1); w.fillCircle(f.wall.x-30,f.wall.y1+30,22); w.fillStyle(0xf2b632,1); w.fillCircle(f.wall.x+20,f.wall.y1+45,26); w.fillStyle(0x9e1b32,1); w.fillTriangle(f.wall.x-50,f.wall.y1+80,f.wall.x+50,f.wall.y1+80,f.wall.x,f.wall.y1+20);
+    this.layer.add(w); }
+  this.spotIdx=0; this.spot=(f.spots?f.spots[0]:f.spot);
+  S.floorPts=0; S.balls=(f.balls?f.balls+(has('fast')?2:0):0); this.assistUsed=false; this.teamAtStart=this.team.length;
+  this.held=0; this.need=f.final?(S.mode==='relaxed'?2:3):0; this.chapterDone=false;
+  this.ball.setVisible(false); updHud();
+},
+drawHoop:function(h){
+  var R=h.R, ch=h.ch;
+  h.ring.clear(); h.ring.fillStyle(ch?0xf2b632:0x2e8b6e,0.22); h.ring.fillEllipse(0,92+70,150,40); h.ring.lineStyle(4,ch?0xf2b632:0x7fe0c0,0.85); h.ring.strokeEllipse(0,92+70,150,40);
+  h.ring.fillStyle(0x0b0d24,0.45); h.ring.fillCircle(0,60,R+70);
+  var b=h.back; b.clear();
+  var bx=h.side*(R+8);
+  b.fillStyle(0xffffff,0.16); b.fillRect(bx-6,-100,12,118); b.lineStyle(3,0xf2b632,1); b.strokeRect(bx-6,-100,12,118);
+  b.lineStyle(4,0xf2b632,1); b.lineBetween(bx,-10,h.side*(R+2),-2);
+  var n=h.net; n.clear();
+  n.lineStyle(3,0xffffff,0.9);
+  for(var s=0;s<=6;s++){ var x0=-R+6+s*(2*R-12)/6; n.lineBetween(x0,2,x0*0.55,52); }
+  for(var r=1;r<=3;r++){ var y=2+r*16, f=1-r*0.15; n.lineBetween(-R*f+4,y,R*f-4,y); }
+  n.lineStyle(10,0x9e1b32,1); n.lineBetween(-R,4,R,4);
+  n.lineStyle(8,0xffb43a,1); n.lineBetween(-R,0,R,0);
+  n.fillStyle(0xffd66b,1); n.fillCircle(-R,0,7); n.fillCircle(R,0,7);
+  this.placeHoop(h);
+},
+placeHoop:function(h){ h.ring.setPosition(h.x,h.y); h.back.setPosition(h.x,h.y); h.net.setPosition(h.x,h.y); h.door.setPosition(h.x,h.y+(h.cfg.big?120:92)); h.tag.setPosition(h.x,h.y-120); },
+hoopAt:function(h,t){ var m=h.cfg.move; if(!m) return {x:h.bx,y:h.by}; var k=(S.mode==='relaxed'?0.55:1); var a=Math.sin(t*m.sp*k+(m.ph||0))*m.amp; return m.ax==='x'?{x:h.bx+a,y:h.by}:{x:h.bx,y:h.by+a}; },
+beginFloor:function(){
+  this.phase='aim'; this.uiOpen=false; this.readyBall();
+  if(this.floorIdx===0){ hint.classList.add('on'); this.ghostOn=true; this.ghostT=0; }
+  if(FLOORS[this.floorIdx].final){ toast('Make '+this.need+' to hold the great door',2200); }
+},
+readyBall:function(){
+  var f=FLOORS[this.floorIdx];
+  if(f.spots){ this.spot=f.spots[this.spotIdx%f.spots.length]; }
+  this.b={x:this.spot[0],y:this.spot[1],vx:0,vy:0,touchRim:false,touchBoard:false,bounces:0,t:0,made:[]};
+  this.ball.setPosition(this.b.x,this.b.y).setVisible(true).setAngle(0).setAlpha(1);
+  this.ball.setTint(S.pickup&&S.player?0x7fe0c0:0xffffff);
+  this.phase='aim'; this.drag=null; updHud();
+},
+onDown:function(p){
+  if(this.phase!=='aim'||this.uiOpen) return;
+  this.drag={sx:p.worldX,sy:p.worldY,cx:p.worldX,cy:p.worldY};
+  if(this.ghostOn){ this.ghostOn=false; this.ghost.clear(); }
+},
+onMove:function(p){ if(!this.drag) return; this.drag.cx=p.worldX; this.drag.cy=p.worldY; },
+onUp:function(){
+  if(!this.drag||this.phase!=='aim') {this.drag=null;return;}
+  var v=this.dragVel(); this.drag=null; this.aimG.clear();
+  if(Math.hypot(v.x,v.y)<260){ return; }
+  this.shoot(v.x,v.y);
+},
+dragVel:function(){ var dx=this.drag.sx-this.drag.cx, dy=this.drag.sy-this.drag.cy; var L=Math.hypot(dx,dy); if(L>DRAGMAX){dx*=DRAGMAX/L;dy*=DRAGMAX/L;} var vx=dx*VK, vy=dy*VK; var s=Math.hypot(vx,vy); if(s>VMAX){vx*=VMAX/s;vy*=VMAX/s;} return {x:vx,y:vy}; },
+shoot:function(vx,vy){
+  var f=FLOORS[this.floorIdx];
+  if(S.firstShotAt===null){ S.firstShotAt=performance.now(); window.__tower.firstShotMs=S.firstShotAt-S.startedAt; }
+  hint.classList.remove('on');
+  this.b.vx=vx; this.b.vy=vy; this.phase='flight'; this.b.t=0; S.stats.shots++;
+  if(S.mode!=='relaxed'&&f.balls){ S.balls--; }
+  this.shooter=S.player;
+  sfx('bounce',{volume:.35,rate:1.3});
+  updHud();
+},
+update:function(time,delta){
+  var dt=Math.min(delta,40)/1000; this.t+=dt;
+  if(this.hoops){ for(var i=0;i<this.hoops.length;i++){ var h=this.hoops[i]; if(h.cfg.move){ var q=this.hoopAt(h,this.t); h.x=q.x; h.y=q.y; this.placeHoop(h);} } }
+  if(this.team&&!REDUCED){ for(var j=0;j<this.team.length;j++){ var p=this.team[j]; p.y+= Math.sin(this.t*4+j)*0.12; } }
+  if(this.ghostOn) this.drawGhost(dt);
+  if(this.phase==='aim'&&this.drag) this.drawAim();
+  if(this.phase!=='flight') return;
+  if(this.hitstop>0){ this.hitstop-=dt; return; }
+  var steps=5; for(var s=0;s<steps;s++){ this.step(dt/steps); if(this.phase!=='flight') break; }
+  this.ball.setPosition(this.b.x,this.b.y); this.ball.angle+=this.b.vx*dt*0.25;
+},
+drawAim:function(){
+  var v=this.dragVel(), g=this.aimG; g.clear();
+  var relaxed=S.mode==='relaxed', n=relaxed?30:10; if(has('sight')) n*=2; if(this.floorIdx<2) n=Math.max(n,30);
+  var x=this.b.x,y=this.b.y,vx=v.x,vy=v.y,dt=0.035;
+  for(var i=0;i<n;i++){ vy+=G*dt; x+=vx*dt; y+=vy*dt; if(y>FLOORY) break; g.fillStyle(0xffd66b,Math.max(0.15,1-i/n)); g.fillCircle(x,y,i%3===0?7:5); }
+  g.lineStyle(4,0xffffff,0.5); g.lineBetween(this.b.x,this.b.y,this.b.x-v.x/VK*0.5,this.b.y-v.y/VK*0.5);
+},
+drawGhost:function(dt){
+  this.ghostT=(this.ghostT+dt)%2.2; var g=this.ghost; g.clear();
+  var k=Math.min(1,this.ghostT/1.2), bx=this.b?this.b.x:360, by=this.b?this.b.y:1080;
+  var px=bx, py=by+40+k*150; if(this.ghostT>1.6) return;
+  g.lineStyle(3,0xffffff,0.6); g.lineBetween(bx,by,px,py);
+  g.fillStyle(0xffffff,0.85); g.fillCircle(px,py,22); g.lineStyle(4,0x9e1b32,0.9); g.strokeCircle(px,py,28);
+  // preview arc of the ghost shot
+  var vx=0,vy=-(k*150+40)*VK,x=bx,y=by; for(var i=0;i<22*k;i++){ vy+=G*0.035; y+=vy*0.035; g.fillStyle(0xffd66b,0.6); g.fillCircle(x,y,5); }
+},
+step:function(dt){
+  var b=this.b, f=FLOORS[this.floorIdx]; var py=b.y;
+  b.vy+=G*dt; b.x+=b.vx*dt; b.y+=b.vy*dt; b.t+=dt;
+  if(b.x<BR){b.x=BR;b.vx=Math.abs(b.vx)*0.6;} if(b.x>W-BR){b.x=W-BR;b.vx=-Math.abs(b.vx)*0.6;}
+  if(f.wall){ if(this.hitSeg(f.wall.x,f.wall.y1-10,f.wall.y2,70)) {b.touchBoard=b.touchBoard;} }
+  for(var i=0;i<this.hoops.length;i++){
+    var h=this.hoops[i];
+    var down=b.vy>0||b.y<h.y-BR; // rims are one-way: a rising ball passes up through the net
+    if(down&&(this.circ(h.x-h.R,h.y,6,0.5)||this.circ(h.x+h.R,h.y,6,0.5))){ if(!b.touchRim){ sfx('rim',{volume:.5}); } b.touchRim=true; }
+    var bx=h.x+h.side*(h.R+8);
+    if(down&&this.hitSeg(bx,h.y-100,h.y+18,6)){ if(!b.touchBoard) sfx('bounce',{volume:.4,rate:1.6}); b.touchBoard=true; }
+    if(b.made.indexOf(i)<0 && b.vy>0 && py<h.y && b.y>=h.y && b.x>h.x-h.R+6 && b.x<h.x+h.R-6){ b.made.push(i); this.onMake(h,i); }
+  }
+  if(b.y>FLOORY-BR){ b.y=FLOORY-BR; if(b.vy>260) sfx('bounce',{volume:Math.min(.7,b.vy/1600)}); b.vy=-b.vy*0.45; b.vx*=0.8; b.bounces++; }
+  if(b.bounces>=3||b.t>4.2||b.y>H+60) this.endShot();
+},
+circ:function(px,py,pr,e){ var b=this.b,dx=b.x-px,dy=b.y-py,d=Math.hypot(dx,dy),m=BR+pr; if(d<m&&d>1e-4){ var nx=dx/d,ny=dy/d; b.x=px+nx*m; b.y=py+ny*m; var vn=b.vx*nx+b.vy*ny; if(vn<0){ b.vx-=(1+e)*vn*nx; b.vy-=(1+e)*vn*ny; } return true;} return false; },
+hitSeg:function(x,y1,y2,hw){ var cy=Math.max(y1,Math.min(y2,this.b.y)); return this.circ(x,cy,hw,0.55); },
+onMake:function(h,i){
+  var b=this.b, f=FLOORS[this.floorIdx];
+  var swish=!b.touchRim&&!b.touchBoard, bank=b.touchBoard&&!b.touchRim;
+  var dist=Math.hypot(h.x-this.spot[0],h.y-this.spot[1]);
+  var pts=2, label='+2';
+  if(swish){ pts+=has('net')?3:1; label='SWISH +'+pts; S.stats.swish++; }
+  if(bank){ pts+=1; if(has('glass')) pts*=2; label='BANK +'+pts; }
+  if(dist>720){ pts+=1; label+=' DEEP'; }
+  S.floorPts+=pts; if(b.made.length===1){ S.stats.makes++; if(S.pickup) S.pm[this.shooter]++; }
+  sfx('swish',{volume:.8});
+  this.floatText(h.x,h.y-40,label,swish?'#ffd66b':'#ffffff');
+  this.fx.explode(REDUCED?10:34,h.x,h.y+20);
+  if(!REDUCED){ this.hitstop=0.07; this.cameras.main.shake(140,0.005); }
+  if(f.final){ this.held++; if(!h.made){ this.openDoor(h,false); } updHud();
+    if(this.held>=this.need && !this.chapterDone){ this.chapterDone=true; this.finale(); }
+    return; }
+  if(!h.made){ this.openDoor(h,true);
+    if(f.hub&&h.ch){ var me=this; this.lamps.forEach(function(L,k){ if(!L.open){ L.open=true; me.time.delayedCall(250+k*220,function(){ L.door.setTexture('doorO'); sfx('power',{volume:.6,rate:1+k*0.1}); me.fx.explode(REDUCED?6:18,L.door.x,L.door.y); me.addPerson(L.door.x,L.door.y,true); }); } }); toast('Power strip: four doors at once',1800); }
+    if(has('strip')){ var other=this.hoops.filter(function(o){return !o.made&&!o.ch;})[0]; if(other){ var me2=this; this.time.delayedCall(450,function(){ me2.openDoor(other,true); me2.floatText(other.x,other.y-40,'POWER STRIP','#7fe0c0'); }); } }
+  }
+  updHud();
+  if(h.ch && !this.chapterDone){ this.chapterDone=true; var me3=this; this.time.delayedCall(1300,function(){ me3.clearFloor(); }); }
+},
+openDoor:function(h,person){
+  h.made=true; h.door.setTexture('doorO'); sfx('door',{volume:.55});
+  var glow=this.add.graphics(); glow.fillStyle(0xffd66b,0.35); glow.fillEllipse(h.door.x,h.door.y,160,240); this.layer.add(glow);
+  if(!REDUCED) this.tweens.add({targets:glow,alpha:{from:0.9,to:0.25},duration:900});
+  if(person) this.addPerson(h.door.x,h.door.y+40,true);
+},
+floatText:function(x,y,s,col){ var t=this.add.text(x,y,s,{fontFamily:'Figtree',fontSize:'34px',fontStyle:'800',color:col,stroke:'#2a0a12',strokeThickness:7}).setOrigin(0.5).setDepth(14);
+  this.tweens.add({targets:t,y:y-(REDUCED?20:90),alpha:0,duration:1100,ease:'Cubic.easeOut',onComplete:function(){t.destroy();}}); },
+endShot:function(){
+  var f=FLOORS[this.floorIdx];
+  this.ball.setVisible(false); this.phase='between';
+  if(S.pickup) S.player=1-S.player;
+  if(f.spots) this.spotIdx++;
+  if(this.chapterDone){ return; }
+  if(S.mode!=='relaxed' && f.balls && S.balls<=0){
+    if(!this.assistUsed && this.team.length>0){ this.assistUsed=true; S.balls+=2; toast('Your team has your back: +2 balls',1800); }
+    else { toast('Run it back. Same floor, fresh balls.',1800); var me=this; this.time.delayedCall(900,function(){ me.retryFloor(); }); return; }
+  }
+  var me2=this; this.time.delayedCall(220,function(){ if(me2.phase==='between') me2.readyBall(); });
+},
+retryFloor:function(){ while(this.team.length>this.teamAtStart){ this.team.pop().destroy(); } S.team=this.team.length; this.loadFloor(this.floorIdx); this.beginFloor(); },
+clearFloor:function(){
+  var f=FLOORS[this.floorIdx];
+  this.phase='cleared'; this.ball.setVisible(false); this.aimG.clear();
+  var leftover=(S.mode!=='relaxed'&&f.balls)?Math.max(0,S.balls):0;
+  var pts=S.floorPts+leftover*2, lift=liftVal(), add=Math.round(pts*lift);
+  S.total+=add; if(S.gallery.indexOf(f.art.i)<0){ S.gallery.push(f.art.i); store.set('gallery',S.gallery); }
+  sfx('fanfare',{volume:.7});
+  if(leftover) toast(leftover+' unused balls pay out +'+(leftover*2),1600);
+  var i=this.floorIdx; this.time.delayedCall(leftover?700:300,function(){ hud.classList.remove('on'); clearCard(i,pts,lift,add); });
+},
+finale:function(){
+  var f=FLOORS[this.floorIdx], h=this.hoops[0], me=this;
+  this.phase='cleared'; this.ball.setVisible(false);
+  var pts=S.floorPts, lift=liftVal(), add=Math.round(pts*lift); S.total+=add;
+  if(S.gallery.indexOf(f.art.i)<0){ S.gallery.push(f.art.i); store.set('gallery',S.gallery); }
+  sfx('fanfare',{volume:.8}); toast('The great door is held open',2000);
+  var door=h.door, people=this.team.slice();
+  // everyone you lifted climbs through, then the next generation
+  people.forEach(function(p,k){ me.time.delayedCall(REDUCED?0:k*110,function(){ me.tweens.add({targets:p,x:door.x+(k%5-2)*8,y:door.y+30,scale:0.4,alpha:0.2,duration:REDUCED?10:1100,ease:'Sine.easeIn'}); }); });
+  var next=[]; for(var n=0;n<8;n++){ var q=me.add.image(80+n*80,FLOORY+40,'p'+((n*5+3)%24)).setScale(0.75).setDepth(8); next.push(q); }
+  next.forEach(function(q,k){ me.time.delayedCall(REDUCED?0:people.length*110+400+k*160,function(){ me.tweens.add({targets:q,x:door.x,y:door.y+30,scale:0.35,alpha:0.15,duration:REDUCED?10:1200,ease:'Sine.easeIn'}); if(!REDUCED) me.fx.explode(12,door.x,door.y); }); });
+  var wait=REDUCED?600:people.length*110+400+8*160+1500;
+  this.time.delayedCall(wait,function(){ me.phase='done'; finaleCard(); });
+}
+});
+
+window.__tower={ready:false,firstShotMs:null,sc:function(){return scene;},S:S,
+  state:function(){ if(!scene) return null; return {phase:scene.phase,floor:S.floor,mode:S.mode,team:S.team,total:S.total,balls:S.balls,held:scene.held,need:scene.need,uiOpen:scene.uiOpen,
+    ball:scene.b?{x:scene.b.x,y:scene.b.y}:null,hoops:(scene.hoops||[]).map(function(h){return {x:h.x,y:h.y,ch:h.ch,made:h.made,R:h.R};})}; },
+  // aim helper for automated playtests: returns the drag (world px) a player would pull for hoop k
+  solve:function(k){ var h=scene.hoops[k], b=scene.b, f=FLOORS[scene.floorIdx]; var apex=Math.min(b.y,h.y)-(f.wall?330:300);
+    var vy=-Math.sqrt(2*G*(b.y-apex)), ta=-vy/G, td=Math.sqrt(2*(h.y-apex)/G), T=ta+td, tgt=scene.hoopAt(h,scene.t+T+0.05);
+    for(var it=0;it<3;it++){ tgt=scene.hoopAt(h,scene.t+T+0.05); }
+    var vx=(tgt.x-b.x)/T; return {dx:-vx/VK,dy:-vy/VK}; }
+};
+
+game=new Phaser.Game({type:Phaser.AUTO,parent:'game',width:W,height:H,backgroundColor:'#0b0d24',
+  scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH},
+  audio:{disableWebAudio:false},scene:[Court],render:{antialias:true}});
+})();
+</script>
+</body>
+</html>
