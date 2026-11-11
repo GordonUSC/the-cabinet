@@ -65,6 +65,24 @@ canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 #reveal .tot{font-size:clamp(54px,14vw,120px);color:var(--gold);line-height:1}
 #reveal .lab{font-family:'Barlow Condensed';font-weight:700;font-size:16px;letter-spacing:.22em;color:var(--dim)}
 #result{background:rgba(5,7,13,.55)}
+#calls{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(780px,calc(100% - 24px));z-index:6;text-align:center}
+#rivalCall{display:inline-block;margin-bottom:8px;padding:6px 14px;border-radius:999px;background:rgba(5,7,13,.8);border:1px solid rgba(255,255,255,.2);font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+#rivalCall b{font-family:'Anton';font-weight:400;letter-spacing:.03em}
+#rivalCall span{color:var(--gold);margin-left:6px}
+#pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pc{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:12px 6px 10px;border-radius:12px;border:2px solid rgba(255,255,255,.35);background:linear-gradient(180deg,rgba(14,22,44,.95),rgba(5,8,18,.95));color:var(--ink);font:inherit;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.pc b{font-family:'Anton';font-weight:400;font-size:clamp(22px,6vw,34px);text-transform:uppercase;line-height:1}
+.pc span{font-size:clamp(13px,3.4vw,16px);letter-spacing:.03em;color:#dfe4ee;line-height:1.15}
+.pc .pay{color:var(--gold);font-weight:700}
+.pc .risk{color:#aab3c5;font-size:clamp(12px,3.1vw,14px)}
+.pc i{position:absolute;top:6px;left:9px;font-style:normal;font-weight:700;font-size:13px;color:#aab3c5}
+.pc-showboat{border-color:#ffd25a}
+.pc-signature{border-color:var(--home);box-shadow:0 0 24px rgba(80,140,255,.45),0 10px 30px rgba(0,0,0,.45)}
+.pc.on{transform:scale(1.06);background:var(--gold);color:#05070d}
+.pc.on span,.pc.on .risk,.pc.on .pay,.pc.on i{color:#05070d}
+.clock{margin-top:8px;height:6px;border-radius:3px;background:rgba(255,255,255,.18);overflow:hidden}
+.clock i{display:block;height:100%;width:100%;background:var(--gold)}
+@media (prefers-reduced-motion:reduce){.pc.on{transform:none}}
 #result .stat{margin-top:6px;font-size:22px;letter-spacing:.08em}
 @media (prefers-reduced-motion:reduce){.start{animation:none}}
 noscript p{margin-top:16px;color:var(--dim)}
@@ -100,6 +118,7 @@ noscript p{margin-top:16px;color:var(--dim)}
 <div id="game" class="hidden"><canvas id="cv"></canvas></div>
 <div id="card" class="hidden"><div class="big" id="cardBig"></div><div class="small" id="cardSmall"></div></div>
 <div id="reveal" class="hidden"></div>
+<div id="calls" class="hidden"><div id="rivalCall"></div><div id="pcards"></div><div class="clock"><i id="clockBar"></i></div></div>
 
 <section id="result" class="screen hidden">
   <h2 id="resTitle">You took it</h2>
@@ -113,7 +132,7 @@ noscript p{margin-top:16px;color:var(--dim)}
 <script>
 'use strict';
 /* ---------- data ---------- */
-const P = 0.6;               // seconds per beat, 100 BPM
+let P = 0.6;                 // seconds per beat (100 BPM; the finale runs a 220 cadence on a 110 grid)
 const SCHOOLS = {
   hampton:{name:'Hampton University',band:'Marching Force',c1:'#0033A0',c2:'#FFFFFF',img:'band_hampton',
     sec:{drum:'Sticky Situation',brass:'High Brass + Low Brass',dance:'Ebony Fire',finale:'The Force'},motto:'More Than a Band. A Force.',play:true},
@@ -129,25 +148,35 @@ const DEFAULT_SEC = {drum:'Drumline',brass:'Brass',dance:'Dance Line',finale:'Fu
 const ROUNDS = [
   {key:'strut', word:'TAP', title:'Drum Major', sub:'Strut', call:null, bed:['strut'], leads:{bed_drums:[0]}, lanes:[0], one:true,
    shots:['bass'], target:0},
-  {key:'drum', word:'ANSWER', callBeats:8, title:'Drumline', call:'call_drum', bed:['lead_basses'], leads:{lead_snare:[1],lead_tenors:[2]}, lanes:[1,2],
+  {key:'drum', word:'ANSWER', callBeats:8, callable:true, title:'Drumline', call:'call_drum', bed:['lead_basses'], leads:{lead_snare:[1],lead_tenors:[2]}, lanes:[1,2],
    map:{0:1,1:1,2:2,3:2}, shots:['snare','snare','bass','bass'], target:.9},
-  {key:'brass', word:'ANSWER', callBeats:8, title:'Brass', call:'call_brass', bed:['bed_drums'], leads:{lead_brass:[0,1],lead_tuba:[2,3]}, lanes:[0,1,2,3],
+  {key:'brass', word:'ANSWER', callBeats:8, callable:true, title:'Brass', call:'call_brass', bed:['bed_drums'], leads:{lead_brass:[0,1],lead_tuba:[2,3]}, lanes:[0,1,2,3],
    shots:['brass','brass','bass','bass'], target:1.25},
-  {key:'dance', word:'BREAKDOWN', callBeats:8, title:'Dance Line', sub:'Breakdown', call:'call_dance', bed:['bed_drums','chant'], leads:{lead_break:[0,1,2,3]}, lanes:[0,1,2,3],
+  {key:'dance', word:'BREAKDOWN', callBeats:8, callable:true, title:'Dance Line', sub:'Breakdown', call:'call_dance', bed:['bed_drums','chant'], leads:{lead_break:[0,1,2,3]}, lanes:[0,1,2,3],
    shots:['clap','clap','clap','clap'], target:1.5},
-  {key:'finale', word:'FORCE', title:'Full Band', sub:'Finale', call:'call_finale', bed:['bed_drums','lead_basses'], leads:{lead_brass:[0],lead_winds:[1],lead_tuba:[2],lead_snare:[3]}, lanes:[0,1,2,3],
-   shots:['brass','snare','bass','cymbal'], target:1.9},
+  {key:'finale', word:'FORCE', title:'Full Band', sub:'Finale', bpm:110, label:'220', callBeats:12, callable:true, call:'f220_call', bed:['f220_drums'], leads:{f220_brass:[0,1],f220_tuba:[2],f220_snare:[3]}, lanes:[0,1,2,3],
+   shots:['brass','brass','bass','snare'], target:1.9},
 ];
 const LANE_KEYS = ['KeyD','KeyF','KeyJ','KeyK'];
 const LANE_LABEL = ['D','F','J','K'];
 const AUDIO = ['strut','bed_drums','lead_basses','lead_snare','lead_tenors','lead_brass','lead_tuba','lead_winds','lead_break',
   'call_drum','call_brass','call_dance','call_finale','victory','chant','crowd','roar','ooh','whistle','rolloff',
-  'snare','bass','brass','clap','cymbal','tick'];
+  'snare','bass','brass','clap','cymbal','tick','f220_drums','f220_brass','f220_tuba','f220_snare','f220_call'];
+/* play calls: known costs and payout are shown on the card before commit */
+const PLAYS = {
+  safe:{name:'Safe', mult:1, missGain:.35},
+  showboat:{name:'Showboat', mult:1.5, missGain:0},
+  signature:{name:'Signature', mult:2, failMult:.8, missGain:.35},
+};
+const RIVAL_MULT = {safe:1, showboat:1.3, signature:1.6};
+const SIG = {hampton:{drum:'Sticky Situation roll',brass:'High Brass stab',dance:'Ebony Fire kick line',finale:'The Force at 220'}};
+const SIG_DEFAULT = {drum:'Drumline roll',brass:'Brass stab',dance:'Kick line',finale:'Full band hit'};
+function sigName(sk,key){ return (SIG[sk]&&SIG[sk][key])||SIG_DEFAULT[key]; }
 const SPRITE_SCHOOLS = ['hampton','jsu','famu','southern','norfolk','morgan','tsu'];
 const FIG = {drum:'drummer',brass:'brass',dance:'dancer',finale:'brass',strut:'drummajor'};
 
 /* ---------- state ---------- */
-const S = {home:'hampton', away:'norfolk', relaxed:false, ri:0, phase:'title', meter:0, total:0, log:[], firstInput:null, firstPayoff:null, t_start:null, roundStats:[]};
+const S = {home:'hampton', away:'norfolk', relaxed:false, ri:0, phase:'title', meter:0, total:0, log:[], firstInput:null, firstPayoff:null, t_start:null, roundStats:[], calling:false, battles:0};
 const $ = id=>document.getElementById(id);
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -216,9 +245,10 @@ async function loadSprites(){
 /* ---------- charts ---------- */
 let CHARTS=null;
 async function loadCharts(){ CHARTS = await (await fetch('assets/audio/charts.json')).json(); }
-function chartFor(r){
+function chartFor(r,play='safe'){
   if(r.key==='strut'){ const out=[]; for(let b=4;b<16;b++) out.push({beat:b,lane:0,stem:b>=8?'bed_drums':null}); return out; }
-  return CHARTS[r.key].filter(n=>n.beat<15.6).map(n=>({beat:n.beat,lane:r.map?r.map[n.lane]:n.lane,stem:n.stem}));
+  const c=CHARTS[r.key]; const list = Array.isArray(c)?c:(c[play]||c.safe);
+  return list.filter(n=>n.beat<15.6).map(n=>({beat:n.beat,lane:r.map?r.map[n.lane]:n.lane,stem:n.stem,sig:!!n.sig}));
 }
 
 /* ---------- canvas ---------- */
@@ -232,12 +262,12 @@ const fx=[]; let shake=0, flash=0, lanePulse=[0,0,0,0], hitLabel=null;
 function windows(){ if(R.def.one) return {perfect:.07,good:.14,ok:.30}; const easy = S.relaxed || S.ri<=1; return easy?{perfect:.06,good:.12,ok:.24}:{perfect:.045,good:.09,ok:.15}; }
 
 function startRound(i){
-  const def=ROUNDS[i]; S.ri=i;
+  const def=ROUNDS[i]; S.ri=i; P = 60/(def.bpm||100);
   const t0 = ctx.currentTime + .35;
   const callBeats = def.callBeats||16; const callLen = def.call?callBeats*P:0;
   const ansStart = t0 + callLen + (def.one?0:0);
-  const notes = chartFor(def).map(n=>({...n,t:ansStart+n.beat*P,hit:false,missed:false}));
-  R = {def,t0,ansStart,notes,voices:{},leadVoices:{},combo:0,maxCombo:0,base:0,hype:1,judg:{perfect:0,good:0,ok:0,miss:0},dts:[],end:ansStart+16*P,done:false,payoff:false};
+  const notes = def.callable ? [] : chartFor(def).map(n=>({...n,t:ansStart+n.beat*P,hit:false,missed:false}));
+  R = {def,t0,ansStart,notes,play:null,rivalPlay:null,sigMiss:false,voices:{},leadVoices:{},combo:0,maxCombo:0,base:0,hype:1,judg:{perfect:0,good:0,ok:0,miss:0},dts:[],end:ansStart+16*P,done:false,payoff:false};
   const sch = school(S.home);
   // rival call
   if(def.call){
@@ -245,8 +275,8 @@ function startRound(i){
     setGain(R.callV,0,t0+callLen-.05,.25);
     play('ooh',{at:t0+callLen-2*P,gain:.5,bus:crowdBus});
     if(i===1) showVs(); else showCard(sectionName(S.away,def.key)||def.title, school(S.away).band+' calls', 1500);
-    setTimeout(()=>{ if(R&&R.def===def) showCard(sectionName(S.home,def.key)||def.title, school(S.home).band+' answers', 1300); }, Math.max(0,(ansStart-ctx.currentTime)*1000-P*3500));
-    setTimeout(()=>prompt('LISTEN'), 1700);
+    setTimeout(()=>{ if(R&&R.def===def) showCard(sectionName(S.home,def.key)||def.title, def.label?def.label+' BPM cadence':school(S.home).band+' answers', 1300); }, Math.max(0,(ansStart-ctx.currentTime)*1000-P*3500));
+    if(def.callable) openCalls(def,t0); else setTimeout(()=>prompt('LISTEN'), 1700);
   } else {
     play('whistle',{at:t0,gain:.9,bus:sfxBus});
   }
@@ -276,7 +306,7 @@ function judge(lane,e){
   R.judg[j]++; R.dts.push(Math.round(bd*1000)); S.log.push({round:R.def.key,lane,dt:Math.round(bd*1000),j});
   const pts = j==='perfect'?100:j==='good'?70:40;
   R.combo++; R.maxCombo=Math.max(R.maxCombo,R.combo);
-  R.base+=pts; R.hype = Math.min(4, 1 + Math.floor(R.combo/4)*.5);
+  R.base+=pts; R.hype = Math.min(4, R.hype + 3/(Math.max(6,R.notes.length)*.8));
   // sound: the section fills in, plus an ElevenLabs one-shot
   const shot = R.def.shots[lane]||'snare';
   play(shot,{at:ctx.currentTime,gain:j==='ok'?.5:.8,bus:sfxBus});
@@ -295,41 +325,47 @@ function missCheck(){
   const t=audioNow(); const w=windows();
   for(const n of R.notes){
     if(!n.hit && !n.missed && t-n.t>w.ok){
-      n.missed=true; R.judg.miss++; R.combo=0; R.hype=Math.max(1,R.hype-.5);
+      n.missed=true; R.judg.miss++; R.combo=0; R.hype=Math.max(1,R.hype-(R.play==='showboat'?1:.5)); if(n.sig) R.sigMiss=true;
       S.log.push({round:R.def.key,lane:n.lane,dt:null,j:'miss'});
       // the section drops out until the next hit
       const stem = n.stem || Object.keys(R.def.leads).find(s=>R.def.leads[s].includes(n.lane));
-      if(stem && R.leadVoices[stem] && !R.def.one) setGain(R.leadVoices[stem],.06,ctx.currentTime,.12);
+      if(stem && R.leadVoices[stem] && !R.def.one) setGain(R.leadVoices[stem],(PLAYS[R.play]||PLAYS.safe).missGain,ctx.currentTime,.12);
+      if(R.play==='showboat' && !R.def.one) for(const v of Object.values(R.leadVoices)) setGain(v,0,ctx.currentTime,.08);
     }
   }
 }
 function endRound(){
   R.done=true; S.phase='reveal';
   const n=R.notes.length, hits=n-R.judg.miss;
-  const rival = Math.round(n*100*.55*(R.def.target||1));
-  const score = Math.round(R.base*R.hype);
+  const prec = Math.round(R.base/(Math.max(1,n)*100)*1000);   // accuracy, 0 to 1000, independent of note count
+  const rm = R.rivalPlay ? RIVAL_MULT[R.rivalPlay] : 1;
+  const rival = Math.round(1000*.62*2.6*(R.def.target||1)*rm);
+  let pm = R.play ? PLAYS[R.play].mult : 1;
+  if(R.play==='signature' && R.sigMiss) pm = PLAYS.signature.failMult;
+  const score = Math.round(prec*R.hype*pm);
   const clear = hits/n;
-  S.roundStats.push({round:R.def.key,notes:n,hits,clear:+clear.toFixed(3),perfect:R.judg.perfect,good:R.judg.good,ok:R.judg.ok,miss:R.judg.miss,base:R.base,hype:R.hype,score,rival,dts:R.dts});
+  S.roundStats.push({round:R.def.key,play:R.play,rivalPlay:R.rivalPlay,sigClean:R.play==='signature'?!R.sigMiss:null,autoPicked:!!R.autoPicked,pickMs:R.pickMs??null,playMult:pm,notes:n,hits,clear:+clear.toFixed(3),perfect:R.judg.perfect,good:R.judg.good,ok:R.judg.ok,miss:R.judg.miss,base:prec,hype:+R.hype.toFixed(2),score,rival,dts:R.dts});
   S.total+=score;
   let swing = R.def.one ? .2 : Math.max(-.45,Math.min(.45,(score-rival)/Math.max(1,rival)*.6));
   if(S.relaxed) swing=Math.max(.1,swing);
-  revealScore(R.base,R.hype,score,rival,()=>{
+  revealScore(prec,R.hype,score,rival,R.play?{name:PLAYS[R.play].name+(R.play==='signature'?(R.sigMiss?' missed':' clean'):''),mult:pm}:null,()=>{
     S.meter=Math.max(-1,Math.min(1,S.meter+swing));
     if(swing>0){ play('roar',{at:ctx.currentTime,gain:.8,bus:crowdBus}); throwConfetti([school(S.home).c1,school(S.home).c2,'#ffd25a']); if(!R.def.one) rivalSlump=1; waveT=performance.now(); } else { play('ooh',{at:ctx.currentTime,gain:.7,bus:crowdBus}); }
     setTimeout(()=>{ if(S.ri+1<ROUNDS.length) startRound(S.ri+1); else finish(); }, 1500);
   });
 }
-function revealScore(base,hype,total,rival,cb){
+function revealScore(base,hype,total,rival,pc,cb){
   const el=$('reveal'); el.classList.remove('hidden');
   const steps=12; let k=0;
-  el.innerHTML=`<div class="lab">Precision</div><div class="line" id="rvB">0</div><div class="lab">Crowd hype</div><div class="line" id="rvH">x1</div><div class="tot" id="rvT"></div>`;
+  el.innerHTML=`<div class="lab">Precision</div><div class="line" id="rvB">0</div><div class="lab">Crowd hype</div><div class="line" id="rvH">x1</div>${pc?`<div class="lab">Play call</div><div class="line" id="rvP">&nbsp;</div>`:''}<div class="tot" id="rvT"></div><div class="lab" id="rvR">&nbsp;</div>`;
   const tick=()=>{
     k++; $('rvB').textContent=Math.round(base*k/steps);
     play('tick',{at:ctx.currentTime,gain:.6,bus:sfxBus,rate:1+k*.06});
     if(k<steps) setTimeout(tick,55); else setTimeout(()=>{
       $('rvH').textContent='x'+hype.toFixed(1); play('tick',{at:ctx.currentTime,gain:.8,bus:sfxBus,rate:2});
-      setTimeout(()=>{ $('rvT').textContent=total.toLocaleString(); play('cymbal',{at:ctx.currentTime,gain:.7,bus:sfxBus}); flash=.6;
-        setTimeout(()=>{el.classList.add('hidden'); cb();},1100); },380);
+      if(pc) setTimeout(()=>{ $('rvP').textContent=pc.name.toUpperCase()+' x'+pc.mult.toFixed(1); play('tick',{at:ctx.currentTime,gain:.9,bus:sfxBus,rate:2.4}); },190);
+      setTimeout(()=>{ $('rvT').textContent=total.toLocaleString(); if(rival&&!R.def.one) $('rvR').textContent=school(S.away).band.toUpperCase()+' '+rival.toLocaleString(); play('cymbal',{at:ctx.currentTime,gain:.7,bus:sfxBus}); flash=.6;
+        setTimeout(()=>{el.classList.add('hidden'); cb();},1300); },pc?560:380);
     },260);
   };
   tick();
@@ -343,6 +379,36 @@ function finish(){
   if(win){ throwConfetti([h.c1,h.c2,'#ffd25a']); voice('victory',{at:ctx.currentTime+.1,gain:1}); play('roar',{at:ctx.currentTime+.1,gain:1,bus:crowdBus}); }
   $('result').classList.remove('hidden');
   window.__result={win,total:S.total,meter:S.meter,rounds:S.roundStats,firstInput:S.firstInput,firstPayoff:S.firstPayoff};
+}
+
+/* ---------- play call ---------- */
+let callTimer=null, callStart=0, CALL_MS=2800;
+function rivalPick(i){ const r=[.45,.8,.3,.65,.15][(i+S.battles)%5]; return r<.45?'safe':r<.8?'showboat':'signature'; }
+function cardInfo(def,p){
+  const n=chartFor(def,p).length; const sigN=chartFor(def,'signature').filter(x=>x.sig).length;
+  if(p==='safe') return {t:'Safe',a:n+' notes',b:'x1.0 steady',c:'Miss: section dips'};
+  if(p==='showboat') return {t:'Showboat',a:n+' notes',b:'x1.5 hype',c:'Miss: section drops out'};
+  return {t:'Signature',a:sigName(S.home,def.key),b:'x2.0 if clean',c:sigN+'-note flourish, else x0.8'};
+}
+function openCalls(def,t0){
+  S.calling=true; R.rivalPlay=rivalPick(S.ri); const rp=R.rivalPlay;
+  $('rivalCall').innerHTML=`<b>${school(S.away).band}</b> calls <b>${PLAYS[rp].name}</b> <span>target x${RIVAL_MULT[rp].toFixed(1)}</span>`;
+  const cards=$('pcards'); cards.innerHTML='';
+  ['safe','showboat','signature'].forEach((p,k)=>{ const c=cardInfo(def,p); const b=document.createElement('button'); b.className='pc pc-'+p; b.dataset.p=p;
+    b.innerHTML=`<i>${k+1}</i><b>${c.t}</b><span>${c.a}</span><span class="pay">${c.b}</span><span class="risk">${c.c}</span>`;
+    b.addEventListener('pointerdown',e=>{e.preventDefault(); pickPlay(p,false);}); cards.appendChild(b); });
+  $('calls').classList.remove('hidden'); callStart=performance.now();
+  const bar=$('clockBar'); bar.style.transition='none'; bar.style.width='100%'; void bar.offsetWidth; bar.style.transition=`width ${CALL_MS}ms linear`; bar.style.width='0%';
+  clearTimeout(callTimer); callTimer=setTimeout(()=>pickPlay('safe',true),CALL_MS);
+}
+function pickPlay(p,auto){
+  if(!S.calling||!R||R.play) return;
+  S.calling=false; clearTimeout(callTimer); R.play=p; R.autoPicked=auto; R.pickMs=Math.round(performance.now()-callStart);
+  R.notes=chartFor(R.def,p).map(n=>({...n,t:R.ansStart+n.beat*P,hit:false,missed:false}));
+  document.querySelectorAll('#pcards .pc').forEach(b=>b.classList.toggle('on',b.dataset.p===p));
+  play(p==='safe'?'tick':p==='showboat'?'brass':'cymbal',{at:ctx.currentTime,gain:.55,bus:sfxBus});
+  if(p!=='safe') play('ooh',{at:ctx.currentTime+.1,gain:.45,bus:crowdBus});
+  setTimeout(()=>$('calls').classList.add('hidden'),380);
 }
 
 /* ---------- prompts ---------- */
@@ -515,6 +581,8 @@ function draw(){
   g2.textAlign='right'; g2.fillText(h.band.toUpperCase(),mx+mw,my+mh+6);
   g2.textAlign='center'; g2.font=`400 ${L.portrait?24:28}px Anton`; g2.fillStyle='#ffd25a'; g2.shadowColor='rgba(0,0,0,.8)'; g2.shadowBlur=8;
   g2.fillText((sectionName(inCall?S.away:S.home,R.def.key)||R.def.title).toUpperCase(),W/2,my+mh+26); g2.shadowBlur=0;
+  if(R.def.label){ const tx=W/2, ty=my+mh+(L.portrait?56:62); g2.font='400 18px Anton'; const tw=g2.measureText(R.def.label+' BPM').width+20; g2.fillStyle='#ffd25a'; rr(tx-tw/2,ty,tw,26,13); g2.fill(); g2.fillStyle='#05070d'; g2.textBaseline='middle'; g2.fillText(R.def.label+' BPM',tx,ty+13.5); g2.textBaseline='top'; }
+  if(R.play && !inCall){ g2.font='700 15px "Barlow Condensed"'; g2.fillStyle='rgba(255,255,255,.85)'; g2.textAlign='center'; g2.fillText(('PLAY: '+PLAYS[R.play].name+(R.play==='signature'?'  |  '+sigName(S.home,R.def.key):'')).toUpperCase(),W/2,L.topY+8); }
   // lane
   const lead=1.9;
   drawLane(L,h,beatF,lead);
@@ -525,8 +593,8 @@ function draw(){
   for(let i=fx.length-1;i>=0;i--){const p=fx[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=.22; p.life-=.03; if(p.life<=0){fx.splice(i,1);continue;}
     g2.save(); g2.globalAlpha=p.life; g2.strokeStyle=p.col; g2.lineWidth=p.big?3:2; g2.shadowColor=p.col; g2.shadowBlur=8;
     g2.beginPath(); g2.moveTo(p.x,p.y); g2.lineTo(p.x-p.vx*2.2,p.y-p.vy*2.2); g2.stroke(); g2.restore(); }
-  if(hitLabel && performance.now()-hitLabel.t<450){ const k=(performance.now()-hitLabel.t)/450; g2.save(); g2.globalAlpha=1-k; g2.font=`400 ${hitLabel.j==='perfect'?40:32}px Anton`; g2.fillStyle=hitLabel.j==='perfect'?'#ffd25a':'#fff'; g2.textAlign='center'; g2.textBaseline='alphabetic'; g2.shadowColor='rgba(0,0,0,.8)'; g2.shadowBlur=8; g2.fillText(hitLabel.j.toUpperCase(),L.laneX(hitLabel.lane),L.hitY-62-k*22); g2.restore(); }
-  if(R.combo>=4){ g2.save(); g2.font='400 28px Anton'; g2.fillStyle='#fff'; g2.textAlign='center'; g2.shadowColor=glowOf(h); g2.shadowBlur=12; g2.fillText('HYPE x'+R.hype.toFixed(1),W/2,L.topY+34); g2.restore(); }
+  if(hitLabel && performance.now()-hitLabel.t<450){ const k=(performance.now()-hitLabel.t)/450; g2.save(); g2.globalAlpha=1-k; g2.font=`400 ${hitLabel.j==='perfect'?40:32}px Anton`; g2.fillStyle=hitLabel.j==='perfect'?'#ffd25a':'#fff'; g2.textAlign='center'; g2.textBaseline='alphabetic'; g2.shadowColor='rgba(0,0,0,.8)'; g2.shadowBlur=8; g2.fillText(hitLabel.j.toUpperCase(),Math.max(70,Math.min(W-70,L.laneX(hitLabel.lane))),L.hitY-62-k*22); g2.restore(); }
+  if(R.hype>=1.5){ g2.save(); g2.font='400 28px Anton'; g2.fillStyle='#fff'; g2.textAlign='center'; g2.shadowColor=glowOf(h); g2.shadowBlur=12; g2.fillText('HYPE x'+R.hype.toFixed(1),W/2,L.topY+34); g2.restore(); }
   if(promptWord){ const k=(performance.now()-promptT)/1400; if(k<1){ g2.save(); g2.globalAlpha=k<.15?k/.15:1-(k-.15)/.85; const sz=Math.min(130,W*.2)*(reduceMotion?1:1+.15*(1-Math.min(1,k*5))); g2.font=`400 ${sz}px Anton`; g2.fillStyle='#fff'; g2.textBaseline='middle'; g2.textAlign='center'; g2.shadowColor=glowOf(h); g2.shadowBlur=30; g2.fillText(promptWord,W/2,(L.topY+L.hitY)/2); g2.restore();} else promptWord=null; }
   drawConfetti();
   g2.restore();
@@ -540,6 +608,7 @@ addEventListener('keydown',e=>{
   if(e.repeat) return;
   if(S.phase==='title' && (e.code==='Space'||e.code==='Enter')){ e.preventDefault(); begin(); return; }
   if(S.phase!=='play'||!R) return;
+  if(S.calling){ const k=['Digit1','Digit2','Digit3','Numpad1','Numpad2','Numpad3'].indexOf(e.code); if(k>=0){ pickPlay(['safe','showboat','signature'][k%3],false); return; } }
   let lane = LANE_KEYS.indexOf(e.code);
   if(e.code==='ArrowLeft') lane=0; if(e.code==='ArrowDown') lane=1; if(e.code==='ArrowUp') lane=2; if(e.code==='ArrowRight') lane=3;
   if(R.def.one){ judge(0,e); return; }
@@ -564,7 +633,7 @@ async function begin(){
   $('game').classList.remove('hidden'); resize();
   S.phase='loading';
   await loading; await loadSprites();
-  S.meter=0; S.total=0; S.roundStats=[];
+  S.meter=0; S.total=0; S.roundStats=[]; S.calling=false; S.battles++;
   play('crowd',{at:ctx.currentTime,gain:.6,bus:crowdBus,loop:true});
   startRound(0);
 }

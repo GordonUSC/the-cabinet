@@ -1,0 +1,42 @@
+{
+ "f220_drums": {
+  "src": "f_drums_a",
+  "bpm_in": 110.13,
+  "semitones": 0,
+  "start": 0.288,
+  "beats": 18,
+  "len": 9.818
+ },
+ "f220_snare": {
+  "src": "f_snare_a",
+  "bpm_in": 110.06,
+  "semitones": 0,
+  "start": 0.569,
+  "beats": 18,
+  "len": 9.818
+ },
+ "f220_brass": {
+  "src": "f_brass_a",
+  "bpm_in": 109.96,
+  "semitones": 0,
+  "start": 1.115,
+  "beats": 18,
+  "len": 9.818
+ },
+ "f220_tuba": {
+  "src": "f_tuba_a",
+  "bpm_in": 109.68,
+  "semitones": 0,
+  "start": 0.589,
+  "beats": 18,
+  "len": 9.818
+ },
+ "f220_call": {
+  "src": "f_call_b",
+  "bpm_in": 109.91,
+  "semitones": 0,
+  "start": 1.111,
+  "beats": 14,
+  "len": 7.636
+ }
+}
