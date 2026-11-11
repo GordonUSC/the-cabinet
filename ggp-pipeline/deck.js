@@ -5,6 +5,9 @@ const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fmt = n => '$' + n.toLocaleString('en-US');
+const CORNERS = ['tl', 'tr', 'bl', 'br'].map(k => `<svg class="c ${k}" aria-hidden="true"><use href="#o-corner"/></svg>`).join('');
+const STAR = '<svg aria-hidden="true"><use href="#o-star"/></svg>';
+const SEP = '<i class="sep" aria-hidden="true"></i>';
 
 // ---------- the cards ----------
 const ALL = [
@@ -102,8 +105,8 @@ function oracle(q, R, cards) {
     const L = R.labels.length ? R.labels.slice(0, 4).join(', ').replace(/, ([^,]*)$/, ' and $1') : 'what you wrote';
     html = `<p>You care about <b>${esc(L)}</b>. I drew <b>${cards.length}</b> cards: <b>${g}</b> GGP ${g === 1 ? 'program' : 'programs'} a gift to GGP funds, and <b>${pt}</b> partner ${pt === 1 ? 'program' : 'programs'} GGP maps but does not run.</p><p>Strongest match: <b>${esc(cards[0].name)}</b>.</p>`;
   }
-  setTimeout(() => { const g = o.querySelector('.go'); if (g) g.onclick = e => { e.preventDefault(); jump('#deal'); dealIn(); }; });
-  o.innerHTML = `<div class="bubble"><span class="eye" aria-hidden="true">✦</span><div><p class="tagline">THE DECK READS</p>${html}${cards.length ? '<a class="go" href="#deal">Deal the cards ↓</a>' : ''}</div></div>`;
+  setTimeout(() => { const g = o.querySelector('.go'); if (g) g.onclick = e => { e.preventDefault(); jump(innerWidth < 1080 ? '#stack' : '#deal'); stack.focus({ preventScroll: true }); dealIn(); }; });
+  o.innerHTML = `<div class="bubble">${CORNERS}<span class="eye" aria-hidden="true"><img src="art/seal-keep.webp" alt=""></span><div><p class="tagline">The deck reads</p>${html}${cards.length ? '<a class="go tok" href="#deal">Deal the cards <span aria-hidden="true">↓</span></a>' : ''}</div></div>`;
   $('#dealMeta').textContent = cards.length ? `${cards.length} cards dealt${q ? ' for "' + q + '"' : ''}. Keep the ones that move you.` : 'No cards yet.';
 }
 
@@ -111,29 +114,29 @@ function oracle(q, R, cards) {
 function proofHTML(p) {
   if (p.owned) {
     if (!p.proofs.length) return `<div class="noproof"><b>No numbers yet.</b> ${esc(p.ask || 'Ask GGP.')}</div>`;
-    return `<div class="proofs">${p.proofs.map(x => `<div class="proof${String(x.big).length > 8 ? ' long' : ''}"><div class="pk">${esc(PK[x.k] || x.k)}</div><div class="pb">${esc(x.big)}</div><div class="pl">${esc(x.label)}</div>${x.derived ? '<div class="dv">derived</div>' : ''}</div>`).join('')}</div>`;
+    return `<div class="proofs">${p.proofs.map(x => `<div class="proof${String(x.big).length > 7 ? ' long' : ''}"><div class="pb">${esc(x.big)}</div><div class="pk">${esc(PK[x.k] || x.k)}</div><div class="pl">${esc(x.label)}</div>${x.derived ? '<div class="dv">derived</div>' : ''}</div>`).join('')}</div>`;
   }
   if (p.proof) return `<div class="noproof"><b>Provider reports:</b> ${esc(p.proof.text)}</div>`;
   return `<div class="noproof"><b>No outcome numbers in the Directory yet.</b> Ask ${esc(p.provider)} directly.</div>`;
 }
 function lensHTML(p) {
   const l = lens(p);
-  return `<div class="lens" aria-label="Funder lens">${Object.keys(LENS).map(k => `<span class="pip${l[k] ? ' lit' : ''}" title="${l[k] ? 'Sourced' : 'No sourced number yet'}">${l[k] ? '✦ ' : ''}${LENSNAME[k]}</span>`).join('')}</div>`;
+  return `<div class="lens" aria-label="Funder lens">${Object.keys(LENS).map(k => `<span class="pip${l[k] ? ' lit' : ''}" title="${l[k] ? 'Sourced' : 'No sourced number yet'}">${l[k] ? STAR : ''}${LENSNAME[k]}</span>`).join('')}</div>`;
 }
 function backHTML(p) {
   if (p.owned) {
-    return `<p class="kicker">GGP runs this · ${esc(p.kind)}</p><h3>${esc(p.name)}</h3>
+    return `<p class="eyebrow">GGP runs this: ${esc(p.kind)}</p><h3>${esc(p.name)}</h3>
       <h4>What it does</h4><p>${esc(p.does)}</p>
       <h4>Who it serves</h4><p>${esc(p.level)}</p>
       ${p.proofs.length ? `<h4>Where the numbers come from</h4><ul>${p.proofs.map(x => `<li><b>${esc(x.big)}</b> ${esc(x.label)}. <span class="src">${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.src)} ↗</a>` : esc(x.src)}</span></li>`).join('')}</ul>` : `<h4>Numbers</h4><p>${esc(p.ask || 'Ask GGP.')}</p>`}
       ${(p.trust || []).length ? `<h4>Public receipts</h4><ul>${p.trust.map(([t, u]) => `<li><a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a></li>`).join('')}</ul>` : ''}
       ${p.video ? `<h4>Watch</h4><p><a href="https://www.youtube.com/watch?v=${esc(p.video)}" target="_blank" rel="noopener">GGP film on YouTube ↗</a></p>` : ''}`;
   }
-  return `<p class="kicker">Partner program · ${esc(p.catName)}</p><h3>${esc(p.name)}</h3>
+  return `<p class="eyebrow">Partner program: ${esc(p.catName)}</p><h3>${esc(p.name)}</h3>
     <p><b>Run by ${esc(p.provider)}.</b> GGP does not run this program; the GGP Directory maps it so people can find it.</p>
     <h4>What it is</h4><p>${esc(p.line)}</p>
     <h4>Who it serves</h4><p>${esc(p.eligibility)}</p>
-    <h4>Cost and status</h4><p>${esc(p.cost)} · ${esc(p.status)}</p>
+    <h4>Cost and status</h4><p>${esc(p.cost)}${SEP}${esc(p.status)}</p>
     ${p.proof ? `<h4>Provider-reported</h4><p>${esc(p.proof.text)} <a href="${esc(p.proof.url)}" target="_blank" rel="noopener">Source ↗</a></p>` : ''}
     <h4>Links</h4><ul><li><a href="${esc(p.url)}" target="_blank" rel="noopener">Official page ↗</a></li>${p.donation ? `<li><a href="${esc(p.donation.url)}" target="_blank" rel="noopener">Give to ${esc(p.donation.recipient)} ↗</a> <span class="src">${esc(p.donation.scope)}</span></li>` : ''}</ul>
     <p class="src">Directory review ${esc(p.checked)}</p>`;
@@ -145,19 +148,20 @@ function cardHTML(p, i) {
     <article class="face front" aria-label="${esc(p.name)}">
       <div class="art" style="background-image:url(${p.img})">
         <span class="numeral">${p.owned ? esc(p.arcana) : esc(p.catName)}</span>
-        <span class="who ${p.owned ? 'ggp' : 'partner'}">${p.owned ? 'GGP runs this' : 'Partner · GGP maps it'}</span>
+        <span class="who ${p.owned ? 'ggp' : 'partner'}">${p.owned ? 'GGP runs this' : 'Partner, GGP maps it'}</span>
         <span class="illus">illustration</span>
       </div>
       <div class="body">
-        ${why.length ? `<p class="matched">Matched: ${esc(why.slice(0, 3).join(' · '))}</p>` : ''}
+        ${why.length ? `<p class="matched">Matched: ${esc(why.slice(0, 3).join(', '))}</p>` : ''}
         <h3>${esc(p.name)}</h3>
         <p class="line">${esc(p.line)}</p>
         ${lensHTML(p)}
         ${proofHTML(p)}
       </div>
-      <span class="stamp keep" aria-hidden="true">Keep</span><span class="stamp pass" aria-hidden="true">Pass</span>
+      ${CORNERS}
+      <img class="stamp keep" src="art/seal-keep.webp" alt="" aria-hidden="true"><img class="stamp pass" src="art/seal-pass.webp" alt="" aria-hidden="true">
     </article>
-    <article class="face back">${backHTML(p)}</article>
+    <article class="face back">${CORNERS}${backHTML(p)}</article>
   </div>`;
 }
 
@@ -170,7 +174,8 @@ function renderStack() {
   $('#btnPass').disabled = $('#btnKeep').disabled = $('#btnFlip').disabled = left <= 0;
   if (left <= 0) {
     const n = kept.length;
-    stack.innerHTML = `<div class="done"><div><h3>That's the spread.</h3><p>${queue.length ? `You kept ${n} ${n === 1 ? 'card' : 'cards'}.` : ''}</p><a class="give-big" href="#hand">Open my hand</a><p><button type="button" class="talk" id="again">Ask the deck again</button></p></div></div>`;
+    $('#dealCount').textContent = queue.length ? `All ${queue.length} cards read` : '';
+    stack.innerHTML = `<div class="done">${CORNERS}<div><h3>That's the spread.</h3><p>${queue.length ? `You kept ${n} ${n === 1 ? 'card' : 'cards'}.` : ''}</p><a class="tok" href="#hand">Open my hand</a><button type="button" class="tok" id="again">Ask the deck again</button></div></div>`;
     $('#again').onclick = () => { $('#reading').scrollIntoView({ behavior: RM ? 'auto' : 'smooth' }); $('#askInput').focus({ preventScroll: true }); };
     return;
   }
@@ -187,10 +192,19 @@ function renderStack() {
     stack.append(el);
     if (!k) bindDrag(el);
   }
-  $('#dealMeta').dataset.n = `${pos + 1} of ${queue.length}`;
-  const meta = $('#dealMeta'); meta.textContent = meta.textContent.replace(/ · Card \d+ of \d+$/, '') + ` · Card ${pos + 1} of ${queue.length}`;
+  fitStack();
+  $('#dealCount').textContent = `Card ${pos + 1} of ${queue.length}`;
 }
 function top() { return stack.querySelector('.card.top'); }
+// grow the table to fit a card whose text runs long, so nothing is clipped at large type sizes
+function fitStack() {
+  stack.style.height = '';
+  const t = top(); if (!t) return;
+  const bd = t.querySelector('.body'); const extra = bd.scrollHeight - bd.clientHeight;
+  if (extra > 0) stack.style.height = (stack.offsetHeight + extra + 6) + 'px';
+}
+addEventListener('resize', () => fitStack());
+document.fonts && document.fonts.ready.then(() => fitStack());
 function bindDrag(el) {
   let sx = 0, sy = 0, dx = 0, dy = 0, t0 = 0, down = false, moved = false;
   const keepS = el.querySelector('.stamp.keep'), passS = el.querySelector('.stamp.pass');
@@ -221,11 +235,12 @@ function bindDrag(el) {
   el.addEventListener('pointerup', up);
   el.addEventListener('pointercancel', up);
 }
-function flip() { const el = top(); if (el) el.classList.toggle('turned'); }
+function flip() { const el = top(); if (el) { el.classList.toggle('turned'); press('#btnFlip'); } }
 let busy = false;
+function press(id) { const b = $(id); if (!b) return; b.classList.add('pressed'); setTimeout(() => b.classList.remove('pressed'), 180); }
 function decide(keep, dx = 0, dy = 0) {
   const el = top(); if (!el || busy) return;
-  busy = true;
+  busy = true; press(keep ? '#btnKeep' : '#btnPass');
   const id = el.dataset.id;
   if (keep) addKeep(id);
   const s = el.querySelector(keep ? '.stamp.keep' : '.stamp.pass'); if (s) s.style.opacity = 1;
@@ -263,12 +278,12 @@ function renderHand() {
   const fw = (fan.clientWidth || innerWidth - 32) - 190;
   fan.innerHTML = kept.slice(0, 9).map((id, i, a) => {
     const m = a.length, off = i - (m - 1) / 2, sp = m > 1 ? Math.min(52, fw / (m - 1)) : 0;
-    return `<div class="mini" style="left:calc(50% - 52px);background-image:url(${BY[id].img});transform:translateX(${off * sp}px) rotate(${off * 7}deg) translateY(${Math.abs(off) * 6}px)" title="${esc(BY[id].name)}"></div>`;
+    return `<div class="mini" style="left:calc(50% - 58px);background-image:url(${BY[id].img});transform:translateX(${off * sp}px) rotate(${off * 7}deg) translateY(${Math.abs(off) * 6}px)" title="${esc(BY[id].name)}"></div>`;
   }).join('');
   fan.style.display = n ? '' : 'none';
   if (!n) { list.innerHTML = '<p class="empty">Keep a card and it lands here. Your hand stays in this browser only.</p>'; renderPossible(); return; }
   const g = kept.filter(id => BY[id].owned).length;
-  list.innerHTML = `<p class="empty" style="grid-column:1/-1">${n} kept · ${g} GGP ${g === 1 ? 'program' : 'programs'} a gift to GGP funds${n - g ? ` · ${n - g} partner ${n - g === 1 ? 'program' : 'programs'} to support on their own pages` : ''}.</p>` +
+  list.innerHTML = `<p class="empty summary">${n} kept: ${g} GGP ${g === 1 ? 'program' : 'programs'} a gift to GGP funds${n - g ? `, and ${n - g} partner ${n - g === 1 ? 'program' : 'programs'} to support on their own pages` : ''}.</p>` +
     kept.map(id => { const p = BY[id]; return `<div class="held"><div class="t" style="background-image:url(${p.img})"></div><div><h4>${esc(p.name)}</h4><p>${p.owned ? 'GGP runs this' : 'Run by ' + esc(p.provider)}</p><div class="acts"><button type="button" data-open="${p.id}">Details</button>${p.owned ? '<a href="#give">Give</a>' : `<a href="${esc((p.donation || {}).url || p.url)}" target="_blank" rel="noopener">${p.donation ? 'Give to them ↗' : 'Their page ↗'}</a>`}<button type="button" data-drop="${p.id}">Remove</button></div></div></div>`; }).join('');
   list.querySelectorAll('[data-drop]').forEach(b => b.onclick = () => { kept = kept.filter(x => x !== b.dataset.drop); save(); renderHand(); });
   list.querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDetail(b.dataset.open));
@@ -297,7 +312,7 @@ function possibleLines(a) {
 function renderPossible() {
   document.querySelectorAll('.amt').forEach(b => b.classList.toggle('on', +b.dataset.amt === amount));
   const L = possibleLines(amount).slice(0, 4);
-  $('#possible').innerHTML = `<ul>${L.map(l => `<li>${esc(l.t)}<span class="src">${esc(l.s)}${kept.includes(l.id) ? ' · in your hand' : ''}</span></li>`).join('')}</ul>`;
+  $('#possible').innerHTML = `<ul>${L.map(l => `<li>${esc(l.t)}<span class="src">${esc(l.s)}${kept.includes(l.id) ? ', in your hand' : ''}</span></li>`).join('')}</ul>`;
 }
 document.querySelectorAll('.amt').forEach(b => b.onclick = () => { amount = +b.dataset.amt; renderPossible(); });
 document.querySelectorAll('[data-give]').forEach(a => a.addEventListener('click', () => {
@@ -330,12 +345,12 @@ function renderArchive() {
   else if (so === 'kind') L.sort((a, b) => (a.owned ? 'A' : a.catName).localeCompare(b.owned ? 'A' : b.catName) || a.name.localeCompare(b.name));
   else L.sort((a, b) => (lastScore[b.id] || 0) - (lastScore[a.id] || 0) || (b.owned - a.owned));
   $('#archiveCount').textContent = `${L.length} of ${ALL.length} programs shown. ${ALL.filter(p => p.owned).length} run by GGP; the rest are partner programs GGP maps but does not run.`;
-  $('#rows').innerHTML = L.map(p => `<button type="button" class="row" data-open="${p.id}"><span class="t" style="background-image:url(${p.img})"></span><span><h3>${esc(p.name)}</h3><p>${esc(p.line)}</p><span class="meta">${p.owned ? esc(p.kind) : esc(p.provider) + ' · ' + esc(p.catName)}${(p.proofs.length || p.proof) ? ' · <span class="proofmark">✦ sourced number</span>' : ''}</span></span><span class="tag ${p.owned ? 'ggp' : 'partner'}">${p.owned ? 'GGP' : 'Partner'}</span></button>`).join('') || '<p class="empty">Nothing matches. Clear a filter.</p>';
+  $('#rows').innerHTML = L.map(p => `<button type="button" class="row" data-open="${p.id}"><span class="t" style="background-image:url(${p.img})"></span><span><h3>${esc(p.name)}</h3><p>${esc(p.line)}</p><span class="meta">${p.owned ? esc(p.kind) : esc(p.provider) + SEP + esc(p.catName)}${(p.proofs.length || p.proof) ? SEP + '<span class="proofmark">Sourced number</span>' : ''}</span></span><span class="tag ${p.owned ? 'ggp' : 'partner'}">${p.owned ? 'GGP' : 'Partner'}</span></button>`).join('') || '<p class="empty">Nothing matches. Clear a filter.</p>';
   $('#rows').querySelectorAll('[data-open]').forEach(b => b.onclick = () => openDetail(b.dataset.open));
 }
 function openDetail(id) {
   const p = BY[id], d = $('#detail');
-  $('#detailBody').innerHTML = `<div class="dart" style="background-image:url(${p.img})" role="img" aria-label="Illustration"></div><div class="dbody">${lensHTML(p)}${p.owned ? proofHTML(p) : ''}${backHTML(p)}<p style="margin-top:14px"><button type="button" class="talk" id="keepFromDetail" style="background:var(--velvet);color:var(--gold-hi)">${kept.includes(id) ? 'In your hand' : 'Keep this card ✦'}</button></p></div>`;
+  $('#detailBody').innerHTML = `${CORNERS}<div class="dart" style="background-image:url(${p.img})" role="img" aria-label="Illustration"></div><div class="dbody">${lensHTML(p)}${p.owned ? proofHTML(p) : ''}${backHTML(p)}<button type="button" class="tok keepit" id="keepFromDetail">${kept.includes(id) ? 'In your hand' : 'Keep this card'}</button></div>`;
   $('#keepFromDetail').onclick = () => { addKeep(id); $('#keepFromDetail').textContent = 'In your hand'; toast('Kept: ' + p.name); };
   if (d.showModal) d.showModal(); else d.setAttribute('open', '');
   $('#detailBody').scrollTop = 0; $('#detailClose').focus({ preventScroll: true });
@@ -349,14 +364,15 @@ document.querySelectorAll('.chip').forEach(c => c.onclick = () => {
   document.querySelectorAll('.chip').forEach(x => x.classList.remove('on')); c.classList.add('on');
   $('#askInput').value = c.dataset.q; deal(c.dataset.q);
 });
-function jump(sel) { const h = document.documentElement; h.style.scrollBehavior = 'auto'; $(sel).scrollIntoView({ block: 'start' }); requestAnimationFrame(() => h.style.scrollBehavior = ''); }
+function jump(sel) { const h = document.documentElement; h.style.scrollBehavior = 'auto'; const el = $(sel); const y = el.getBoundingClientRect().top + scrollY - (sel === '#stack' ? $('.bar').offsetHeight + 18 : 0); scrollTo(0, Math.max(0, y)); requestAnimationFrame(() => h.style.scrollBehavior = ''); }
 function dealIn() { if (RM) return; stack.querySelectorAll('.card,.ghost').forEach((c, i, a) => { c.animate([{ transform: 'translate(-30px,-260px) rotate(-18deg) scale(.9)', opacity: 0 }, { opacity: 1, offset: .6 }, { transform: c.style.transform || 'none', opacity: 1 }], { duration: 700, delay: (a.length - 1 - i) * 110, easing: 'cubic-bezier(.2,1.3,.4,1)', fill: 'backwards' }); }); }
 let tt;
 function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 1600); }
 
+window.__deckQA = { ids: ALL.map(p => p.id), html: id => cardHTML(BY[id]) };
 // start with GGP's own eight in the deck, quietly
 queue = ALL.filter(p => p.owned).map(p => p.id); whyMap = {};
 lastScore = Object.fromEntries(ALL.map(p => [p.id, p.owned ? 1 : 0]));
 renderStack(); renderHand(); renderArchive();
-$('#dealMeta').textContent = `GGP's own eight are on the table. Ask the deck above to deal for what you care about. · Card 1 of ${queue.length}`;
+$('#dealMeta').textContent = `GGP's own eight are on the table. Ask the deck above to deal for what you care about.`;
 })();
