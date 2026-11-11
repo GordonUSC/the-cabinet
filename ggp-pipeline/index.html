@@ -1,0 +1,230 @@
+<!-- STYLE: The Patron's Deck, a collectible art nouveau tarot deck on oxblood velvet, gold-foil frames, verdigris and vermilion enamel, Fraunces italic display with Instrument Sans and DM Mono | WHY: Jack's memo asks for ChatGPT plus Tinder; a fortune-teller's reading is the oldest conversational card ritual, so asking the deck and keeping or passing cards feels native, collectible and premium instead of like a form | ALT: an editorial funder magazine with full-bleed illustration spreads, or a matchmaking arcade cabinet -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>The Patron's Deck · GGP Directory and Pipeline</title>
+<meta name="description" content="Find the GGP programs that match what you care about. Keep or pass, then give.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400;1,9..144,600&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="deck.css">
+</head>
+<body>
+<a class="skip" href="#archive">Skip to the full program archive</a>
+<header class="bar">
+  <a class="mark" href="#reading"><span class="mark-g">GGP</span><span class="mark-t">The Patron's Deck</span></a>
+  <nav aria-label="Sections">
+    <a href="#reading">Reading</a>
+    <a href="#deal">Deck</a>
+    <a href="#hand">Hand <b id="handCount">0</b></a>
+    <a href="#archive">Archive</a>
+  </nav>
+  <a class="give-mini" href="https://www.zeffy.com/donation-form/ggp-gay-gaming-professionals" target="_blank" rel="noopener" data-give>Give</a>
+</header>
+
+<main>
+<section id="reading" class="reading" aria-labelledby="readingTitle">
+  <div class="parlor" aria-hidden="true"></div>
+  <div class="reading-inner">
+    <p class="kicker">Gay Gaming Professionals · Directory and Pipeline · for funders</p>
+    <h1 id="readingTitle">Tell the deck<br><em>what moves you.</em></h1>
+    <p class="lede">82 programs lead people into games. You do not have to read them all. Say what you care about and the deck deals the ones that match, with the proof for each one.</p>
+    <form id="ask" class="ask" autocomplete="off">
+      <label for="askInput" class="sr">What do you care about?</label>
+      <div class="ask-row">
+        <input id="askInput" name="q" type="text" placeholder="I care about students, AI with judgment..." enterkeyhint="go">
+        <button type="submit" class="ask-go">Read<span aria-hidden="true"> ✦</span></button>
+      </div>
+      <div class="chips" role="group" aria-label="Example interests">
+        <button type="button" class="chip" data-q="students and scholarships">Students + scholarships</button>
+        <button type="button" class="chip" data-q="money that goes directly to people">Money direct to people</button>
+        <button type="button" class="chip" data-q="AI with judgment">AI with judgment</button>
+        <button type="button" class="chip" data-q="LGBTQ+ belonging">LGBTQ+ belonging</button>
+        <button type="button" class="chip" data-q="jobs, hiring and recruiting">Jobs + hiring</button>
+        <button type="button" class="chip" data-q="kids who make games">Kids who make games</button>
+        <button type="button" class="chip" data-q="GDC community nights">GDC nights</button>
+        <button type="button" class="chip" data-q="veterans and career changers">Career changers</button>
+        <button type="button" class="chip" data-q="">Deal me GGP's own</button>
+      </div>
+    </form>
+    <div id="oracle" class="oracle" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="deal" class="deal" aria-labelledby="dealTitle">
+  <div class="deal-head">
+    <h2 id="dealTitle"><span class="kicker">The deal</span> Keep or pass</h2>
+    <p id="dealMeta" class="deal-meta">Ask the deck above, or start with GGP's own eight.</p>
+  </div>
+  <div class="table">
+    <aside class="legend" aria-label="How to read a card">
+      <p class="kicker">How to read a card</p>
+      <p>Each card carries the three things funders ask first. A lit seal means a sourced number backs it.</p>
+      <ul>
+        <li><span class="pip lit">✦ Tangible impact</span> people reached, work made, growth</li>
+        <li><span class="pip lit">✦ Direct to people</span> money that lands with a person, or cost per person</li>
+        <li><span class="pip lit">✦ Track record</span> years running, public filings</li>
+      </ul>
+      <p>A dashed box means no sourced number yet. The deck says so instead of guessing.</p>
+      <p><span class="who-key ggp">GGP runs this</span> a gift to GGP funds it.<br><span class="who-key">Partner</span> run by another group; GGP maps it.</p>
+    </aside>
+    <div id="stack" class="stack" aria-live="polite"></div>
+    <div class="controls" role="group" aria-label="Card actions">
+      <button id="btnPass" class="ctl pass" type="button" aria-label="Pass this card (left arrow)"><span aria-hidden="true">✕</span><small>Pass</small></button>
+      <button id="btnFlip" class="ctl flip" type="button" aria-label="Turn the card over for details (space)"><span aria-hidden="true">↻</span><small>Turn</small></button>
+      <button id="btnKeep" class="ctl keep" type="button" aria-label="Keep this card (right arrow)"><span aria-hidden="true">✦</span><small>Keep</small></button>
+    </div>
+    <p class="hint">Drag right to keep, left to pass. Tap a card to turn it. Keys: ← → and space.</p>
+  </div>
+</section>
+
+<section id="hand" class="hand" aria-labelledby="handTitle">
+  <h2 id="handTitle"><span class="kicker">Your hand</span> What you kept</h2>
+  <div id="handFan" class="fan"></div>
+  <div id="handList" class="hand-list"><p class="empty">Keep a card and it lands here.</p></div>
+  <div class="give-panel" id="give">
+    <div class="give-copy">
+      <h3>Give to GGP</h3>
+      <p>Gifts go to GG Professionals Inc., a 501(c)(3) (EIN 83-2884652), through GGP's Zeffy form. Pick a size to see what gifts like it make possible across GGP's programs.</p>
+      <div class="amounts" role="group" aria-label="Gift size">
+        <button type="button" class="amt" data-amt="250">$250</button>
+        <button type="button" class="amt" data-amt="1000">$1,000</button>
+        <button type="button" class="amt" data-amt="1500">$1,500</button>
+        <button type="button" class="amt" data-amt="5000">$5,000</button>
+        <button type="button" class="amt" data-amt="25000">$25,000</button>
+      </div>
+      <div id="possible" class="possible" aria-live="polite"></div>
+    </div>
+    <div class="give-actions">
+      <a id="giveBtn" class="give-big" href="https://www.zeffy.com/donation-form/ggp-gay-gaming-professionals" target="_blank" rel="noopener" data-give>Give through Zeffy <span aria-hidden="true">↗</span></a>
+      <a class="talk" href="https://calendly.com/GGPCharity/20-minute-meeting" target="_blank" rel="noopener">Talk to GGP: 20 minutes <span aria-hidden="true">↗</span></a>
+      <button id="copyHand" class="talk" type="button">Copy my hand as a note</button>
+      <a class="talk" href="share/funder-match-card.pdf" download>Save the one-page card (PDF)</a>
+      <p class="fine">To point a gift at one program, say so on the call. Partner programs are run by their own organizations; give to them on their own pages.</p>
+    </div>
+  </div>
+</section>
+
+<section id="archive" class="archive" aria-labelledby="archiveTitle">
+  <h2 id="archiveTitle"><span class="kicker">The archive</span> Every card, for digging</h2>
+  <div class="filters" id="filters" hidden>
+    <label>Search<input id="fSearch" type="search" placeholder="Name, provider, idea"></label>
+    <label>Run by<select id="fRun"><option value="all">Everyone</option><option value="ggp">GGP runs it</option><option value="partner">Partner programs</option></select></label>
+    <label>Kind<select id="fCat"><option value="all">All kinds</option></select></label>
+    <label>Proof<select id="fProof"><option value="all">Any</option><option value="yes">Has a sourced number</option></select></label>
+    <label>Sort<select id="fSort"><option value="match">Best match</option><option value="name">A to Z</option><option value="kind">Kind</option></select></label>
+  </div>
+  <p id="archiveCount" class="archive-count">82 programs. 8 run by GGP, 74 partner programs GGP maps but does not run.</p>
+  <div class="rows" id="rows">
+    <article class="row"><span class="t" style="background-image:url(art/scholars.webp)"></span><span><h3>GGP Scholars</h3><p>An award, a community and a door into the games industry for undergraduate creators.</p><span class="meta">Scholarship + community · $1,000 award to each undergraduate Scholar · 8th year of the program · Us Five Forever a game two Scholars made together, now on Steam</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cystem.webp)"></span><span><h3>CYSTEM Scholars</h3><p>The graduate pathway: an award plus a community of working game professionals.</p><span class="meta">Scholarship + community · $1,500 award to each graduate Scholar · Year 5 of CYSTEM Scholars · 25 Year 1 Scholars answered the exit survey that shaped this year&#39;s plan</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/directory.webp)"></span><span><h3>The Directory and Pipeline</h3><p>A free map of programs into games, plus early-career Scholar profiles recruiters can find.</p><span class="meta">Free guide + talent pipeline · 76 programs mapped in the September 2026 review edition · Free for every student and educator who uses it · GDC 2027 first public look, at the Tuesday Mixer, after user testing this winter</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/aistudio.webp)"></span><span><h3>GGP AI Studio</h3><p>A four-week pilot in using AI with judgment, privacy and authorship, including the choice not to.</p><span class="meta">Proposed pilot · $1,250 per participant: $25,000 pilot for 20 people · 20 Scholars, alumni and professionals · 4 weeks proposed pilot, seeking funding this fall</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/zeroproof.webp)"></span><span><h3>Zero Proof Board Game Night</h3><p>The alcohol-free, all-ages board game night of GDC week.</p><span class="meta">GDC community night · 602 guests in 2026, up from 487 in 2025 · +24% year over year · $1,500 to $25,000 Friend to Champion for the night</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/breakfast.webp)"></span><span><h3>GDC Tuesday: Breakfast, Tea Party, Mixer</h3><p>One day where Scholars meet the industry: breakfast, tea, a mixer and the GGP party.</p><span class="meta">GDC signature day · ~150 guests planned for the Scholars Breakfast · $13,250 Breakfast goal, from $1,500 Breakfast Friend to $10,000 Presenting · 8th Annual Tea Party</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/kiki.webp)"></span><span><h3>The KiKi</h3><p>A new online gathering for Pride ERGs, and all ERGs, across games.</p><span class="meta">Online gathering</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/fund.webp)"></span><span><h3>The Continuing Fund</h3><p>Flexible money that lets GGP stay with people after the introduction.</p><span class="meta">Flexible, multi-year · $100,000 flexible, multi-year campaign · ~2006 co-founded by Gordon Bellamy and Brian Rubin-Sowers · 501(c)(3) GG Professionals Inc., EIN 83-2884652</span></span><span class="tag ggp">GGP</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Girls Make Games</h3><p>Explore game-making camps and a family resource portal with tutorials and college resources.</p><span class="meta">Girls Make Games · Youth game-making + grants · <a href="https://www.girlsmakegames.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>Unity Learn</h3><p>Free courses and tutorials for learning real-time 3D and building a first project.</p><span class="meta">Unity · Learning tools · <a href="https://learn.unity.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>Unreal Engine · Students &amp; Schools</h3><p>Education resources for students and educators using Unreal Engine.</p><span class="meta">Epic Games · Learning tools · <a href="https://www.unrealengine.com/students-and-schools">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-scholar.webp)"></span><span><h3>ESA Foundation · Game Creator Scholarships</h3><p>Scholarship support for undergraduates pursuing careers as video game creators.</p><span class="meta">ESA Foundation · Scholarships · <a href="https://www.theesa.com/foundation/scholarships/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Riot Games · Emerging Talent</h3><p>Paid internships with mentorship. The US summer program is remote with a Los Angeles visit.</p><span class="meta">Riot Games · AI learning + fellowships · <a href="https://www.riotgames.com/en/student-internships">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>Questline: Online</h3><p>Six-week virtual development program with mentorship and several career-stage cohorts.</p><span class="meta">IGDA Foundation · Mentorship + career help · <a href="https://www.igdafoundation.org/questline/online">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Urban Arts Game Academy</h3><p>Free game design and computer science learning with a pathway toward college.</p><span class="meta">Urban Arts · Youth game-making + grants · <a href="https://urbanarts.org/gameacademy/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Gameheads</h3><p>Game development and multimedia training for young people moving toward college and careers.</p><span class="meta">Gameheads · Youth game-making + grants · <a href="https://gameheadsoakland.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-scholar.webp)"></span><span><h3>Girls Make Games College Scholarship</h3><p>Need-based support for a games-related degree, with mentorship and career preparation.</p><span class="meta">Girls Make Games Scholarship Fund · Scholarships · <a href="https://www.gmgsf.org/college-scholarships">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-scholar.webp)"></span><span><h3>Point Flagship Scholarship</h3><p>Need-based higher-education support for LGBTQ+ and ally students, with leadership development.</p><span class="meta">Point Foundation · Scholarships · <a href="https://pointfoundation.org/scholarships/flagship">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-scholar.webp)"></span><span><h3>Point Community College Scholarship</h3><p>Financial and professional-development support for community-college students.</p><span class="meta">Point Foundation · Scholarships · <a href="https://pointfoundation.org/scholarships/community-college">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-scholar.webp)"></span><span><h3>ESA Foundation Esports Scholarship</h3><p>Scholarship pathway for collegiate esports participants pursuing a four-year academic degree.</p><span class="meta">ESA Foundation · Scholarships · <a href="https://www.theesa.com/foundation/scholarships/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>BroadcastHER Initiative</h3><p>Grants and professional experiences supporting women and fems in gaming, content creation and broadcasting.</p><span class="meta">1,000 Dreams Fund · Youth game-making + grants · <a href="https://1000dreamsfund.org/programs/broadcasther-initiative/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Epic MegaGrants</h3><p>Project funding for smaller teams and creators working with Unreal Engine, UEFN and related real-time 3D tools.</p><span class="meta">Epic Games · Youth game-making + grants · <a href="https://www.unrealengine.com/megagrants">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>NVIDIA Graduate Fellowship</h3><p>Research funding in accelerated computing and AI with an internship component.</p><span class="meta">NVIDIA · AI learning + fellowships · <a href="https://research.nvidia.com/graduate-fellowships">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Break Through Tech AI</h3><p>A virtual year of applied AI, machine-learning and career development for undergraduates.</p><span class="meta">Break Through Tech · AI learning + fellowships · <a href="https://www.breakthroughtech.org/programs/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Games for Change Student Challenge</h3><p>A student game-design competition focused on real-world issues.</p><span class="meta">Games for Change · Youth game-making + grants · <a href="https://learn.gamesforchange.org/student-challenge/competition">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>NASEF Scholastic Esports</h3><p>Curriculum and club resources connecting esports with learning and career exploration.</p><span class="meta">NASEF · Learning tools · <a href="https://www.nasef.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>Kode With Klossy Camps</h3><p>Introductory coding camps for young women and gender-expansive teens.</p><span class="meta">Kode With Klossy · Learning tools · <a href="https://www.kodewithklossy.com/camp">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Day of AI Curriculum</h3><p>Free classroom-ready AI literacy materials spanning early learning through high school.</p><span class="meta">Day of AI · AI learning + fellowships · <a href="https://dayofai.org/curriculum-resources">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>G4C Game Plan for Educators</h3><p>Professional development for bringing game design and play into learning settings.</p><span class="meta">Games for Change · Learning tools · <a href="https://learn.gamesforchange.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>PlayVS · School Esports</h3><p>Organized esports leagues that schools can use to build a team and a shared season.</p><span class="meta">PlayVS · Learning tools · <a href="https://playvs.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>URF Academy</h3><p>A game-design curriculum that helps educators guide students from an idea to a playable prototype.</p><span class="meta">Riot Games · Learning tools · <a href="https://www.riotgames.com/en/urf-academy">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>Power4+ HBCU Esports League</h3><p>A developing HBCU esports league with team competition and a route toward a national championship.</p><span class="meta">PlayVS College League · Learning tools · <a href="https://pcl.gg/pages/power4">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>USC Games · Undergraduate Degrees</h3><p>Undergraduate game-design and technical study across USC&#39;s cinematic arts and engineering schools.</p><span class="meta">University of Southern California · Degree programs · <a href="https://games.usc.edu/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>NYU Game Center · BFA</h3><p>An undergraduate game-design degree centered on making, studying and playing games.</p><span class="meta">New York University · Degree programs · <a href="https://gamecenter.nyu.edu/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>UCF Digital Media BA, Game Design</h3><p>A bachelor&#39;s path in digital media with a game-design track at UCF.</p><span class="meta">University of Central Florida · Degree programs · <a href="https://www.ucf.edu/degree/digital-media-ba/game-design-track/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>DigiPen Institute of Technology</h3><p>Undergraduate study in game design, programming, art and related disciplines.</p><span class="meta">DigiPen Institute of Technology · Degree programs · <a href="https://www.digipen.edu/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>RIT Game Design and Development BS</h3><p>A game-design and development bachelor&#39;s degree with cooperative work experience in its curriculum.</p><span class="meta">Rochester Institute of Technology · Degree programs · <a href="https://www.rit.edu/study/game-design-and-development-bs">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>Clark University Game Design BA</h3><p>Undergraduate interactive-media study focused on designing and developing games.</p><span class="meta">Clark University · Degree programs · <a href="https://www.clarku.edu/design-technology/academics/ba-interactive-media/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>CMU Entertainment Technology Center</h3><p>A project-based graduate program that brings creative and technical people together to build entertainment experiences.</p><span class="meta">Carnegie Mellon University · Degree programs · <a href="https://etc.cmu.edu/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>UCF FIEA (MS Interactive Entertainment)</h3><p>A graduate game-production program with a team-based studio curriculum.</p><span class="meta">University of Central Florida · Degree programs · <a href="https://fiea.ucf.edu/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>USC Games graduate degrees</h3><p>Graduate pathways in interactive media and game development across USC&#39;s schools.</p><span class="meta">University of Southern California · Degree programs · <a href="https://games.usc.edu/degrees">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-degree.webp)"></span><span><h3>NYU Game Center · MFA</h3><p>Graduate study in game design, with an emphasis on creating and critically examining games.</p><span class="meta">New York University · Degree programs · <a href="https://gamecenter.nyu.edu/academics/game-design-mfa/apply/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>Blizzard Internship Program</h3><p>Early-career work experience on Blizzard teams, with requirements defined by each opening.</p><span class="meta">Blizzard Entertainment · Internships + early careers · <a href="https://careers.blizzard.com/global/en/earlycareers">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>Activision&#39;s Internship Program</h3><p>Student internships and co-ops with hands-on roles in game development and publishing.</p><span class="meta">Activision · Internships + early careers · <a href="https://careers.activision.com/early-careers">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>EA Early Careers</h3><p>Internships and early-career opportunities across EA studios and business teams.</p><span class="meta">Electronic Arts · Internships + early careers · <a href="https://www.ea.com/careers/early-careers">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>aiEDU · Educator Resources</h3><p>AI-literacy teaching resources for educators and school communities.</p><span class="meta">aiEDU · Learning tools · <a href="https://www.aiedu.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Stanford AI4ALL</h3><p>An introduction to AI for ninth-grade students, with online and residential learning formats.</p><span class="meta">Stanford Pre-Collegiate Studies · AI learning + fellowships · <a href="https://spcs.stanford.edu/programs/stanford-ai4all">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Inspirit AI · AI Scholars</h3><p>Live small-group AI learning and projects for high-school students, with limited need-based assistance.</p><span class="meta">Inspirit AI · AI learning + fellowships · <a href="https://www.inspiritai.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>AI4ALL Ignite</h3><p>A no-cost AI career accelerator for eligible US college students, combining a portfolio project with career preparation.</p><span class="meta">AI4ALL · AI learning + fellowships · <a href="https://ai-4-all.org/ai4all-ignite/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>LatinX in AI Mentoring Program</h3><p>Mentoring for LatinX students and early-career researchers developing their work in AI.</p><span class="meta">LatinX in AI · Mentorship + career help · <a href="https://www.latinxinai.org/mentorship-program">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>LatinX in AI Supercomputer Network</h3><p>Access to AI computing infrastructure for eligible researchers, graduate students and organizations.</p><span class="meta">LatinX in AI · AI learning + fellowships · <a href="https://www.latinxinai.org/supercomputer-about">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Microsoft Elevate</h3><p>An umbrella for Microsoft&#39;s AI-skilling, educator and nonprofit initiatives, with routes to specific offers.</p><span class="meta">Microsoft · AI learning + fellowships · <a href="https://www.microsoft.com/en-us/elevate">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>AI Skills Navigator</h3><p>A self-directed starting point for finding AI learning paths that fit your experience and goals.</p><span class="meta">Microsoft · AI learning + fellowships · <a href="https://aiskillsnavigator.microsoft.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Google PhD Fellowship Program</h3><p>University-nominated support and research mentorship for doctoral researchers.</p><span class="meta">Google · AI learning + fellowships · <a href="https://research.google/programs-and-events/phd-fellowship/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Apple Scholars in AIML</h3><p>A university-nominated AI and machine-learning scholars program supporting doctoral research.</p><span class="meta">Apple · AI learning + fellowships · <a href="https://machinelearning.apple.com/updates/apple-scholars-aiml-2026">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Cohere Labs Scholars Program</h3><p>A remote-first research program for people developing publishable work in machine learning.</p><span class="meta">Cohere Labs · AI learning + fellowships · <a href="https://cohere.com/research/scholars-program">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Claude Campus Ambassador program</h3><p>A student-led campus program for exploring and sharing practical uses of Claude.</p><span class="meta">Anthropic · AI learning + fellowships · <a href="https://claude.com/programs/campus">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Claude Corps</h3><p>A year of applied AI work supporting nonprofits, for eligible people early in their careers.</p><span class="meta">Claude Corps · employed by CodePath · AI learning + fellowships · <a href="https://www.anthropic.com/claude-corps/fellow">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-ai.webp)"></span><span><h3>Anthropic Fellows Program</h3><p>Four months of empirical AI-safety research, with financial support and compute resources.</p><span class="meta">Anthropic · AI learning + fellowships · <a href="https://alignment.anthropic.com/2025/anthropic-fellows-program-2026/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>NVIDIA · Internships</h3><p>Technical and business internships with role-specific projects and requirements.</p><span class="meta">NVIDIA · Internships + early careers · <a href="https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>NVIDIA Ignite</h3><p>A summer pre-internship experience introducing first- and second-year college students to technical work.</p><span class="meta">NVIDIA · Internships + early careers · <a href="https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>NVIDIA · MBA Opportunities</h3><p>A recruiting route for MBA candidates interested in NVIDIA&#39;s business and technology work.</p><span class="meta">NVIDIA · Internships + early careers · <a href="https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>NVIDIA · PhD Opportunities</h3><p>Research-oriented recruiting opportunities for doctoral candidates and graduates.</p><span class="meta">NVIDIA · Internships + early careers · <a href="https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>NVIDIA · New College Graduates</h3><p>A route into full-time roles for recent college graduates.</p><span class="meta">NVIDIA · Internships + early careers · <a href="https://www.nvidia.com/en-us/about-nvidia/careers/university-recruiting/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>Scale AI University Program</h3><p>Student and graduate engineering opportunities at Scale AI.</p><span class="meta">Scale AI · Internships + early careers · <a href="https://scale.com/careers/university">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>Databricks Internships + Early Careers</h3><p>Internships and graduate roles across Databricks&#39; engineering and business teams.</p><span class="meta">Databricks · Internships + early careers · <a href="https://www.databricks.com/company/careers/university-recruiting">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-intern.webp)"></span><span><h3>2K Early Careers</h3><p>Graduate pathways into game publishing and engineering, with location-specific programs.</p><span class="meta">2K · Internships + early careers · <a href="https://2k.com/careers/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Congressional App Challenge (2026)</h3><p>A district-based competition for middle- and high-school students to build and submit an original app.</p><span class="meta">Congressional App Challenge · Youth game-making + grants · <a href="https://www.congressionalappchallenge.us/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-learn.webp)"></span><span><h3>ASGC Course Finder</h3><p>A community-curated course finder for exploring skills used in the games industry.</p><span class="meta">ASGC · Learning tools · <a href="https://courses.asgc.gg/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>ASGC Community Coaching</h3><p>A directory of community volunteers offering career guidance in games.</p><span class="meta">ASGC · Mentorship + career help · <a href="https://coaching.asgc.gg/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>LinkedIn Premium Trials for Gamers</h3><p>A community effort to share donated LinkedIn Premium trials with people in games.</p><span class="meta">ASGC community · Mentorship + career help · <a href="https://trials.asgc.gg/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>Career Game Loop</h3><p>Career-planning tools and resources for people finding their next step in games.</p><span class="meta">Career Game Loop · Mentorship + career help · <a href="https://careergameloop.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>IGDA Global Mentorship Program</h3><p>A structured mentoring program that connects eligible IGDA members with games-industry guidance.</p><span class="meta">International Game Developers Association · Mentorship + career help · <a href="https://igda.org/resourcelibrary/global-mentorship-program/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>Entry Level Skills Hub</h3><p>A guide to entry-level games roles and the skills used in each discipline.</p><span class="meta">Bird&#39;s Eye View · Into Games · Mentorship + career help · <a href="https://entrylevel.games/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-mentor.webp)"></span><span><h3>ENTRY LVL</h3><p>A games-career community with a resource masterlist and articles for people getting started.</p><span class="meta">ENTRY LVL · Mentorship + career help · <a href="https://entrylvl.ca/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-youth.webp)"></span><span><h3>Endless Studios</h3><p>A youth game-making learning community, with guided projects and educator resources.</p><span class="meta">Endless Studios · Endless / E-Line Media · Youth game-making + grants · <a href="https://www.endlessstudios.com/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>Code Platoon</h3><p>Military-connected software engineering and AI/cloud training. An adjacent technology pathway, not a game-development qualification.</p><span class="meta">Code Platoon · Career change + veterans · <a href="https://www.codeplatoon.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>NPower · Tech Fundamentals</h3><p>Technology training and career support for young adults and military-connected learners.</p><span class="meta">NPower · Career change + veterans · <a href="https://www.npower.org/apply/student-faq/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>Microsoft Software and Systems Academy</h3><p>Technical and career training for military transitions into cloud, development and related technology work.</p><span class="meta">Microsoft · Career change + veterans · <a href="https://military.microsoft.com/mssa/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>Per Scholas · Technology and AI courses</h3><p>Tuition-free technology and AI-related courses for people building or changing careers.</p><span class="meta">Per Scholas · Career change + veterans · <a href="https://perscholas.org/courses/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>Generation USA · Career training</h3><p>Adult career training and employment support. Explore current technology offerings rather than assuming every track is available.</p><span class="meta">Generation USA · Career change + veterans · <a href="https://usa.generation.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+    <article class="row"><span class="t" style="background-image:url(art/cat-transition.webp)"></span><span><h3>Stack Up · Gaming and veteran support</h3><p>Gaming-based veteran connection through equipment, events and local community programs. Community support, not career retraining or a scholarship.</p><span class="meta">Stack Up · Career change + veterans · <a href="https://www.stackup.org/">official page</a></span></span><span class="tag partner">Partner</span></article>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p><b>How to read this deck.</b> Numbers on GGP cards come from GGP's 2026-27 plan and event records; a number marked "derived" is simple arithmetic on two sourced numbers. Partner cards come from the Directory's 2026-09-11 review; GGP maps those programs and does not run them. Where there is no sourced number, the card says so instead of guessing.</p>
+  <p>Built from Jack Bogdan's idea: part conversation, part swipe, so funders find what moves them.</p>
+  <p>All card art is illustration made with Higgsfield for this deck; the one-page card was made in Canva. No figure shown is a real Scholar or participant.</p>
+  <p>GG Professionals Inc. · 501(c)(3) · EIN 83-2884652 · <a href="https://projects.propublica.org/nonprofits/organizations/832884652" target="_blank" rel="noopener">public filings</a> · Review edition, 2026-11-09</p>
+</footer>
+
+<div id="thanks" class="thanks" role="dialog" aria-modal="true" aria-labelledby="thanksTitle" hidden>
+  <div class="thanks-card">
+    <p class="kicker">The reading ends with you</p>
+    <h2 id="thanksTitle">Thank you.</h2>
+    <p>Zeffy opened in a new tab. While it loads, here is what gifts like yours make possible at GGP:</p>
+    <ul id="thanksList"></ul>
+    <p class="fine">These are program facts, not promises about one gift. GGP's 2026-27 plan includes a summer report back to every supporter.</p>
+    <button type="button" id="thanksClose" class="talk">Back to my hand</button>
+  </div>
+</div>
+
+<dialog id="detail" class="detail" aria-labelledby="detailTitle"><div id="detailBody"></div><button type="button" class="close" id="detailClose" aria-label="Close">✕</button></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="programs.js"></script>
+<script src="deck.js"></script>
+</body>
+</html>
