@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- STYLE: Stadium Broadcast Night (floodlit photo field, condensed scoreboard type, school-color glow on near-black) | WHY: a Fifth Quarter is a night event under the lights; broadcast scoreboard type reads at a glance on a phone and lets each school's colors carry the screen | ALT: Parade Poster (flat screenprint shapes, cream paper, two-color) -->
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Fifth Quarter</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%230033A0%22/%3E%3C/svg%3E">
+<meta name="description" content="Private prototype. An HBCU marching band battle rhythm game. From an idea by Delaina Martinez.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#f4f6fb; --dim:#aab3c5; --night:#05070d; --panel:rgba(6,10,20,.72);
+  --home:#0033A0; --home2:#ffffff; --away:#007A53; --away2:#F2A900;
+  --gold:#ffd25a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--night);color:var(--ink);font-family:'Barlow Condensed',system-ui,sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.bg{position:fixed;inset:0;background:#05070d url(assets/img/stadium_tall.webp) center/cover no-repeat}
+@media (min-aspect-ratio:1/1){.bg{background-image:url(assets/img/stadium_wide.webp)}}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,7,13,.25),rgba(5,7,13,.55) 55%,rgba(5,7,13,.92))}
+.screen{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));text-align:center;z-index:2}
+.hidden{display:none!important}
+.badge{position:fixed;top:max(10px,env(safe-area-inset-top));right:12px;z-index:9;font:700 12px/1 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;color:#05070d;background:var(--gold);padding:6px 9px;border-radius:3px}
+h1{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:clamp(64px,17vw,168px);line-height:.86;letter-spacing:.01em;text-transform:uppercase;text-shadow:0 0 40px rgba(80,140,255,.45),0 6px 0 rgba(0,0,0,.5)}
+h1 span{display:block;color:var(--gold)}
+.sub{margin-top:12px;font-size:clamp(20px,5vw,30px);font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.vs{margin-top:10px;font-size:clamp(17px,4.4vw,24px);color:var(--dim);letter-spacing:.06em}
+.vs b{color:var(--ink)}
+.start{margin-top:28px;font-family:'Anton',Impact,sans-serif;font-size:clamp(34px,9vw,52px);letter-spacing:.06em;color:#05070d;background:var(--gold);border:0;border-radius:999px;padding:14px 64px 12px;cursor:pointer;box-shadow:0 0 0 6px rgba(255,210,90,.25),0 0 60px rgba(255,210,90,.55);animation:pulse 1.2s ease-in-out infinite}
+.start:focus-visible{outline:3px solid #fff;outline-offset:4px}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.row{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chip{font:700 16px 'Barlow Condensed';letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--panel);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:#05070d}
+.credit{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;font-size:15px;color:var(--dim);letter-spacing:.06em;z-index:3}
+.keys{margin-top:14px;font-size:15px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase}
+.howto{margin-top:8px;font-size:15px;color:var(--dim)}
+#pick h2,#result h2{font-family:'Anton';font-weight:400;font-size:clamp(36px,9vw,64px);text-transform:uppercase;letter-spacing:.02em}
+.cards{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;width:min(920px,100%)}
+.card{position:relative;min-height:120px;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,.15);background:#0b1020 center/cover;cursor:pointer;text-align:left;color:var(--ink);padding:0;font:inherit}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 30%,rgba(0,0,0,.85))}
+.card .t{position:absolute;left:10px;right:10px;bottom:8px;z-index:1}
+.card .t b{display:block;font-family:'Anton';font-weight:400;font-size:22px;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+.card .t i{font-style:normal;font-size:14px;color:#dfe4ee;letter-spacing:.05em}
+.card .sw{position:absolute;top:8px;left:8px;z-index:1;display:flex;gap:4px}
+.card .sw u{width:16px;height:16px;border-radius:50%;border:1px solid rgba(255,255,255,.6)}
+.card[aria-pressed="true"]{border-color:var(--gold);box-shadow:0 0 24px rgba(255,210,90,.5)}
+.label{margin-top:16px;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+#game{position:fixed;inset:0;z-index:1}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+#card{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;z-index:4;text-align:center;padding:16px}
+#card .big{font-family:'Anton';font-size:clamp(48px,12vw,120px);line-height:.9;text-transform:uppercase;text-shadow:0 0 30px rgba(0,0,0,.7)}
+#card.sting .big{animation:sting .7s cubic-bezier(.2,1.4,.4,1) both}
+#card.sting .big::after{content:"";display:block;height:8px;margin:10px auto 0;background:var(--gold);box-shadow:0 0 24px var(--gold);animation:wipe .6s .15s ease-out both}
+@keyframes sting{0%{opacity:0;transform:translateX(-18%) skewX(-14deg) scale(1.25);letter-spacing:.2em}60%{opacity:1}100%{opacity:1;transform:none;letter-spacing:.01em}}
+@keyframes wipe{from{width:0}to{width:72%}}
+@media (prefers-reduced-motion:reduce){#card.sting .big,#card.sting .big::after{animation:none}}
+#card .small{margin-top:8px;font-size:clamp(18px,4.5vw,28px);letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+#reveal{position:fixed;left:50%;top:44%;transform:translate(-50%,-50%);z-index:5;pointer-events:none;text-align:center;font-family:'Anton';text-transform:uppercase}
+#reveal .line{font-size:clamp(28px,7vw,54px);letter-spacing:.03em;white-space:nowrap}
+#reveal .tot{font-size:clamp(54px,14vw,120px);color:var(--gold);line-height:1}
+#reveal .lab{font-family:'Barlow Condensed';font-weight:700;font-size:16px;letter-spacing:.22em;color:var(--dim)}
+#result{background:rgba(5,7,13,.55)}
+#result .stat{margin-top:6px;font-size:22px;letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){.start{animation:none}}
+noscript p{margin-top:16px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<div class="badge">Private prototype</div>
+
+<section id="title" class="screen">
+  <h1>Fifth<span>Quarter</span></h1>
+  <p class="sub">HBCU Band Battle</p>
+  <p class="vs" id="vsline"><b>Hampton University Marching Force</b> vs <b>Norfolk State Spartan Legion</b></p>
+  <button class="start hidden" id="startBtn" aria-label="Start">START</button>
+  <div class="row hidden" id="modeRow">
+    <button class="chip" id="relaxBtn" aria-pressed="false">Relaxed</button>
+    <button class="chip" id="pickBtn">Bands</button>
+    <a class="chip" href="playalong.html" style="text-decoration:none">Play along</a>
+  </div>
+  <p class="keys">Keys D F J K, or tap</p>
+  <p class="howto">They call. You answer. Win the crowd.</p>
+  <noscript><p>This prototype needs JavaScript to play. Four rounds: drum major strut, drumline, brass, breakdown, then the full band finale.</p></noscript>
+</section>
+
+<section id="pick" class="screen hidden">
+  <h2>Pick your band</h2>
+  <div class="cards" id="homeCards"></div>
+  <p class="label">Rival</p>
+  <div class="cards" id="awayCards"></div>
+  <button class="start" id="pickGo" style="margin-top:18px">GO</button>
+</section>
+
+<div id="game" class="hidden"><canvas id="cv"></canvas></div>
+<div id="card" class="hidden"><div class="big" id="cardBig"></div><div class="small" id="cardSmall"></div></div>
+<div id="reveal" class="hidden"></div>
+
+<section id="result" class="screen hidden">
+  <h2 id="resTitle">You took it</h2>
+  <p class="stat" id="resStat"></p>
+  <button class="start" id="againBtn">AGAIN</button>
+  <div class="row"><button class="chip" id="resPick">Bands</button></div>
+</section>
+
+<p class="credit" id="credit">From an idea by Delaina Martinez.</p>
+
+<script>
+'use strict';
+/* ---------- data ---------- */
+const P = 0.6;               // seconds per beat, 100 BPM
+const SCHOOLS = {
+  hampton:{name:'Hampton University',band:'Marching Force',c1:'#0033A0',c2:'#FFFFFF',img:'band_hampton',
+    sec:{drum:'Sticky Situation',brass:'High Brass + Low Brass',dance:'Ebony Fire',finale:'The Force'},motto:'More Than a Band. A Force.',play:true},
+  jsu:{name:'Jackson State University',band:'Sonic Boom of the South',c1:'#002147',c2:'#FFFFFF',img:'band_jsu',play:true},
+  famu:{name:'Florida A&M University',band:'Marching 100',c1:'#F47321',c2:'#006747',img:'band_famu',play:true},
+  southern:{name:'Southern University',band:'Human Jukebox',c1:'#5F8FCF',c2:'#FDB927',img:'band_southern',play:true},
+  norfolk:{name:'Norfolk State University',band:'Spartan Legion',c1:'#007A53',c2:'#F2A900',img:'band_norfolk'},
+  morgan:{name:'Morgan State University',band:'Magnificent Marching Machine',c1:'#002D72',c2:'#F47937',img:'band_morgan'},
+};
+const DEFAULT_SEC = {drum:'Drumline',brass:'Brass',dance:'Dance Line',finale:'Full Band'};
+
+/* rounds: lanes = active lane indexes; map = remap chart lanes */
+const ROUNDS = [
+  {key:'strut', word:'TAP', title:'Drum Major', sub:'Strut', call:null, bed:['strut'], leads:{bed_drums:[0]}, lanes:[0], one:true,
+   shots:['bass'], target:0},
+  {key:'drum', word:'ANSWER', callBeats:8, title:'Drumline', call:'call_drum', bed:['lead_basses'], leads:{lead_snare:[1],lead_tenors:[2]}, lanes:[1,2],
+   map:{0:1,1:1,2:2,3:2}, shots:['snare','snare','bass','bass'], target:.9},
+  {key:'brass', word:'ANSWER', callBeats:8, title:'Brass', call:'call_brass', bed:['bed_drums'], leads:{lead_brass:[0,1],lead_tuba:[2,3]}, lanes:[0,1,2,3],
+   shots:['brass','brass','bass','bass'], target:1.25},
+  {key:'dance', word:'BREAKDOWN', callBeats:8, title:'Dance Line', sub:'Breakdown', call:'call_dance', bed:['bed_drums','chant'], leads:{lead_break:[0,1,2,3]}, lanes:[0,1,2,3],
+   shots:['clap','clap','clap','clap'], target:1.5},
+  {key:'finale', word:'FORCE', title:'Full Band', sub:'Finale', call:'call_finale', bed:['bed_drums','lead_basses'], leads:{lead_brass:[0],lead_winds:[1],lead_tuba:[2],lead_snare:[3]}, lanes:[0,1,2,3],
+   shots:['brass','snare','bass','cymbal'], target:1.9},
+];
+const LANE_KEYS = ['KeyD','KeyF','KeyJ','KeyK'];
+const LANE_LABEL = ['D','F','J','K'];
+const AUDIO = ['strut','bed_drums','lead_basses','lead_snare','lead_tenors','lead_brass','lead_tuba','lead_winds','lead_break',
+  'call_drum','call_brass','call_dance','call_finale','victory','chant','crowd','roar','ooh','whistle','rolloff',
+  'snare','bass','brass','clap','cymbal','tick'];
+const SPRITE_SCHOOLS = ['hampton','jsu','famu','southern','norfolk','morgan','tsu'];
+const FIG = {drum:'drummer',brass:'brass',dance:'dancer',finale:'brass',strut:'drummajor'};
+
+/* ---------- state ---------- */
+const S = {home:'hampton', away:'norfolk', relaxed:false, ri:0, phase:'title', meter:0, total:0, log:[], firstInput:null, firstPayoff:null, t_start:null, roundStats:[]};
+const $ = id=>document.getElementById(id);
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- audio engine (ElevenLabs files; WebAudio only mixes) ---------- */
+let ctx=null, master, musicBus, sfxBus, crowdBus;
+const buf = {}; const alog = [];
+window.__audioLog = alog;
+function initAudio(){
+  if(ctx) return;
+  ctx = new (window.AudioContext||window.webkitAudioContext)({latencyHint:'interactive'});
+  master = ctx.createGain(); master.gain.value = .9;
+  const comp = ctx.createDynamicsCompressor(); comp.threshold.value=-10; comp.ratio.value=4; comp.attack.value=.003; comp.release.value=.2;
+  master.connect(comp); comp.connect(ctx.destination);
+  musicBus = ctx.createGain(); sfxBus = ctx.createGain(); crowdBus = ctx.createGain();
+  musicBus.connect(master); sfxBus.connect(master); crowdBus.connect(master);
+  sfxBus.gain.value = .55; crowdBus.gain.value = .7;
+  alog.push({t:ctx.currentTime, wall:performance.timeOrigin+performance.now(), type:'init'});
+}
+async function loadAll(onProg){
+  let done=0;
+  await Promise.all(AUDIO.map(async n=>{
+    const r = await fetch('assets/audio/'+n+'.mp3');
+    const ab = await r.arrayBuffer();
+    buf[n] = await new Promise((res,rej)=>ctx.decodeAudioData(ab,res,rej));
+    onProg && onProg(++done/AUDIO.length);
+  }));
+}
+function play(name,{at=0,gain=1,bus=musicBus,offset=0,dur,rate=1,loop=false}={}){
+  const b = buf[name]; if(!b) return null;
+  const src = ctx.createBufferSource(); src.buffer=b; src.loop=loop; src.playbackRate.value=rate;
+  const g = ctx.createGain(); g.gain.value=gain; src.connect(g); g.connect(bus);
+  const when = Math.max(at, ctx.currentTime);
+  src.start(when, offset, dur);
+  alog.push({t:when,type:'play',name,gain,bus:bus===musicBus?'music':bus===sfxBus?'sfx':'crowd',offset,dur,rate,loop});
+  return {src,g,name};
+}
+function setGain(v,val,at,ramp=.03){
+  if(!v) return; const g=v.g.gain; const t=Math.max(at,ctx.currentTime);
+  g.cancelScheduledValues(t); g.setValueAtTime(g.value,t); g.linearRampToValueAtTime(val,t+ramp);
+  alog.push({t:t,type:'gain',name:v.name,id:v.id,val,ramp});
+}
+let vid=0;
+function voice(name,opts){const v=play(name,opts); if(v){v.id=++vid; alog[alog.length-1].id=v.id;} return v;}
+function nowAudio(e){ // audio-clock time of an input event
+  if(e && ctx.getOutputTimestamp){
+    const ts = ctx.getOutputTimestamp();
+    if(ts.contextTime>0 && ts.performanceTime>0) return ts.contextTime + (e.timeStamp - ts.performanceTime)/1000;
+  }
+  return ctx.currentTime - (ctx.outputLatency||ctx.baseLatency||0);
+}
+function audioNow(){ // what the listener hears now
+  if(ctx.getOutputTimestamp){const ts=ctx.getOutputTimestamp(); if(ts.contextTime>0) return ts.contextTime + (performance.now()-ts.performanceTime)/1000;}
+  return ctx.currentTime - (ctx.outputLatency||ctx.baseLatency||0);
+}
+
+/* ---------- images ---------- */
+const img = {}; const spr = {};
+function loadImg(src){return new Promise(res=>{const i=new Image(); i.onload=()=>res(i); i.onerror=()=>res(null); i.src=src;});}
+async function loadSprites(){
+  const figs=['drummer','brass','dancer','drummajor'];
+  const want=[...new Set([S.home,S.away])].filter(k=>SPRITE_SCHOOLS.includes(k)&&!spr[k+'_brass']);
+  await Promise.all(want.flatMap(s=>figs.map(async f=>{const i=await loadImg('sprites/'+s+'_'+f+'.webp'); if(i) spr[s+'_'+f]=i;})));
+  await Promise.all(['sil_drummajor','sil_drumline','sil_brass','sil_dance','stadium_wide','stadium_tall'].map(async n=>{img[n]=await loadImg('assets/img/'+n+'.webp');}));
+}
+
+/* ---------- charts ---------- */
+let CHARTS=null;
+async function loadCharts(){ CHARTS = await (await fetch('assets/audio/charts.json')).json(); }
+function chartFor(r){
+  if(r.key==='strut'){ const out=[]; for(let b=4;b<16;b++) out.push({beat:b,lane:0,stem:b>=8?'bed_drums':null}); return out; }
+  return CHARTS[r.key].filter(n=>n.beat<15.6).map(n=>({beat:n.beat,lane:r.map?r.map[n.lane]:n.lane,stem:n.stem}));
+}
+
+/* ---------- canvas ---------- */
+const cv=$('cv'); const g2=cv.getContext('2d'); let W=0,H=0,DPR=1;
+function resize(){DPR=Math.min(3,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); g2.setTransform(DPR,0,0,DPR,0,0);}
+addEventListener('resize',resize);
+
+/* ---------- round runtime ---------- */
+let R=null; // current round runtime
+const fx=[]; let shake=0, flash=0, lanePulse=[0,0,0,0], hitLabel=null;
+function windows(){ if(R.def.one) return {perfect:.07,good:.14,ok:.30}; const easy = S.relaxed || S.ri<=1; return easy?{perfect:.06,good:.12,ok:.24}:{perfect:.045,good:.09,ok:.15}; }
+
+function startRound(i){
+  const def=ROUNDS[i]; S.ri=i;
+  const t0 = ctx.currentTime + .35;
+  const callBeats = def.callBeats||16; const callLen = def.call?callBeats*P:0;
+  const ansStart = t0 + callLen + (def.one?0:0);
+  const notes = chartFor(def).map(n=>({...n,t:ansStart+n.beat*P,hit:false,missed:false}));
+  R = {def,t0,ansStart,notes,voices:{},leadVoices:{},combo:0,maxCombo:0,base:0,hype:1,judg:{perfect:0,good:0,ok:0,miss:0},dts:[],end:ansStart+16*P,done:false,payoff:false};
+  const sch = school(S.home);
+  // rival call
+  if(def.call){
+    R.callV = voice(def.call,{at:t0,gain:1,dur:callLen+.3});
+    setGain(R.callV,0,t0+callLen-.05,.25);
+    play('ooh',{at:t0+callLen-2*P,gain:.5,bus:crowdBus});
+    if(i===1) showVs(); else showCard(sectionName(S.away,def.key)||def.title, school(S.away).band+' calls', 1500);
+    setTimeout(()=>{ if(R&&R.def===def) showCard(sectionName(S.home,def.key)||def.title, school(S.home).band+' answers', 1300); }, Math.max(0,(ansStart-ctx.currentTime)*1000-P*3500));
+    setTimeout(()=>prompt('LISTEN'), 1700);
+  } else {
+    play('whistle',{at:t0,gain:.9,bus:sfxBus});
+  }
+  // answer stems all start together on the grid
+  for(const b of def.bed){ R.voices[b]=voice(b,{at:ansStart,gain:b==='chant'?.45:(def.one?1:.85)}); }
+  for(const [stem] of Object.entries(def.leads)){ R.leadVoices[stem]=voice(stem,{at:ansStart,gain:def.one?0:.22}); }
+  const cueAt = (ansStart-ctx.currentTime)*1000;
+  setTimeout(()=>{ if(R&&R.def===def){ prompt(def.word); } }, def.one?1300:Math.max(0,cueAt-P*3000));
+  if(!def.one) play('rolloff',{at:ansStart-2.48,gain:.8,bus:sfxBus});
+  if(def.one) showCard('Drum Major', sch.band+' takes the field', 1250);
+  S.phase='play';
+}
+function sectionName(sk,key){const s=school(sk); return (s.sec&&s.sec[key])||DEFAULT_SEC[key]||'';}
+function school(k){return SCHOOLS[k];}
+
+function judge(lane,e){
+  if(!R||R.done) return;
+  const t = nowAudio(e);
+  if(S.firstInput===null){S.firstInput=performance.now()-S.t_start;}
+  lanePulse[lane]=1;
+  // nearest unhit note in this lane within ok window
+  const w=windows(); let best=null,bd=9;
+  for(const n of R.notes){ if(n.hit||n.missed||n.lane!==lane) continue; const d=t-n.t; if(Math.abs(d)<Math.abs(bd)){bd=d;best=n;} }
+  if(!best || Math.abs(bd)>w.ok){ return; } // stray tap: no penalty
+  best.hit=true; const ad=Math.abs(bd);
+  const j = ad<=w.perfect?'perfect':ad<=w.good?'good':'ok';
+  R.judg[j]++; R.dts.push(Math.round(bd*1000)); S.log.push({round:R.def.key,lane,dt:Math.round(bd*1000),j});
+  const pts = j==='perfect'?100:j==='good'?70:40;
+  R.combo++; R.maxCombo=Math.max(R.maxCombo,R.combo);
+  R.base+=pts; R.hype = Math.min(4, 1 + Math.floor(R.combo/4)*.5);
+  // sound: the section fills in, plus an ElevenLabs one-shot
+  const shot = R.def.shots[lane]||'snare';
+  play(shot,{at:ctx.currentTime,gain:j==='ok'?.5:.8,bus:sfxBus});
+  const stem = R.def.one ? best.stem : (best.stem || Object.keys(R.def.leads).find(s=>R.def.leads[s].includes(lane)));
+  if(stem && R.leadVoices[stem]){ setGain(R.leadVoices[stem],1,ctx.currentTime,.03); }
+  if(R.def.one && stem==='bed_drums' && !R.payoff){ payoff(); }
+  hitLabel={j,t:performance.now(),lane}; homePulse=1;
+  burst(lane,j);
+}
+function payoff(){
+  R.payoff=true; if(S.firstPayoff===null) S.firstPayoff=performance.now()-S.t_start;
+  play('roar',{at:ctx.currentTime,gain:.9,bus:crowdBus}); play('cymbal',{at:ctx.currentTime,gain:.8,bus:sfxBus});
+  flash=1; if(!reduceMotion) shake=14; S.meter=Math.min(1,S.meter+.12);
+}
+function missCheck(){
+  const t=audioNow(); const w=windows();
+  for(const n of R.notes){
+    if(!n.hit && !n.missed && t-n.t>w.ok){
+      n.missed=true; R.judg.miss++; R.combo=0; R.hype=Math.max(1,R.hype-.5);
+      S.log.push({round:R.def.key,lane:n.lane,dt:null,j:'miss'});
+      // the section drops out until the next hit
+      const stem = n.stem || Object.keys(R.def.leads).find(s=>R.def.leads[s].includes(n.lane));
+      if(stem && R.leadVoices[stem] && !R.def.one) setGain(R.leadVoices[stem],.06,ctx.currentTime,.12);
+    }
+  }
+}
+function endRound(){
+  R.done=true; S.phase='reveal';
+  const n=R.notes.length, hits=n-R.judg.miss;
+  const rival = Math.round(n*100*.55*(R.def.target||1));
+  const score = Math.round(R.base*R.hype);
+  const clear = hits/n;
+  S.roundStats.push({round:R.def.key,notes:n,hits,clear:+clear.toFixed(3),perfect:R.judg.perfect,good:R.judg.good,ok:R.judg.ok,miss:R.judg.miss,base:R.base,hype:R.hype,score,rival,dts:R.dts});
+  S.total+=score;
+  let swing = R.def.one ? .2 : Math.max(-.45,Math.min(.45,(score-rival)/Math.max(1,rival)*.6));
+  if(S.relaxed) swing=Math.max(.1,swing);
+  revealScore(R.base,R.hype,score,rival,()=>{
+    S.meter=Math.max(-1,Math.min(1,S.meter+swing));
+    if(swing>0){ play('roar',{at:ctx.currentTime,gain:.8,bus:crowdBus}); throwConfetti([school(S.home).c1,school(S.home).c2,'#ffd25a']); if(!R.def.one) rivalSlump=1; waveT=performance.now(); } else { play('ooh',{at:ctx.currentTime,gain:.7,bus:crowdBus}); }
+    setTimeout(()=>{ if(S.ri+1<ROUNDS.length) startRound(S.ri+1); else finish(); }, 1500);
+  });
+}
+function revealScore(base,hype,total,rival,cb){
+  const el=$('reveal'); el.classList.remove('hidden');
+  const steps=12; let k=0;
+  el.innerHTML=`<div class="lab">Precision</div><div class="line" id="rvB">0</div><div class="lab">Crowd hype</div><div class="line" id="rvH">x1</div><div class="tot" id="rvT"></div>`;
+  const tick=()=>{
+    k++; $('rvB').textContent=Math.round(base*k/steps);
+    play('tick',{at:ctx.currentTime,gain:.6,bus:sfxBus,rate:1+k*.06});
+    if(k<steps) setTimeout(tick,55); else setTimeout(()=>{
+      $('rvH').textContent='x'+hype.toFixed(1); play('tick',{at:ctx.currentTime,gain:.8,bus:sfxBus,rate:2});
+      setTimeout(()=>{ $('rvT').textContent=total.toLocaleString(); play('cymbal',{at:ctx.currentTime,gain:.7,bus:sfxBus}); flash=.6;
+        setTimeout(()=>{el.classList.add('hidden'); cb();},1100); },380);
+    },260);
+  };
+  tick();
+}
+function finish(){
+  S.phase='result';
+  const win = S.relaxed || S.meter>0;
+  const h=school(S.home);
+  $('resTitle').textContent = win ? 'You took the Fifth Quarter' : 'Run it back';
+  $('resStat').textContent = h.band+' '+S.total.toLocaleString()+(h.motto&&win?'  |  '+h.motto:'');
+  if(win){ throwConfetti([h.c1,h.c2,'#ffd25a']); voice('victory',{at:ctx.currentTime+.1,gain:1}); play('roar',{at:ctx.currentTime+.1,gain:1,bus:crowdBus}); }
+  $('result').classList.remove('hidden');
+  window.__result={win,total:S.total,meter:S.meter,rounds:S.roundStats,firstInput:S.firstInput,firstPayoff:S.firstPayoff};
+}
+
+/* ---------- prompts ---------- */
+let promptWord=null, promptT=0;
+function prompt(w){promptWord=w; promptT=performance.now();}
+function showVs(){ const h=school(S.home),a=school(S.away); const c=$('card');
+  c.style.background=`linear-gradient(90deg,rgba(5,7,13,.2),rgba(5,7,13,.65) 50%,rgba(5,7,13,.2)),url(assets/img/${a.img}.webp) left center/50% 100% no-repeat,url(assets/img/${h.img}.webp) right center/50% 100% no-repeat`;
+  showCard(a.band.replace('Magnificent Marching Machine','Marching Machine')+' vs '+h.band, sectionName(S.away,'drum')+' calls', 2000); setTimeout(()=>{c.style.background='';},2300); }
+function showCard(big,small,ms){ const c=$('card'); c.classList.remove('sting'); void c.offsetWidth; c.classList.add('sting'); $('cardBig').textContent=big; $('cardSmall').textContent=small; $('card').classList.remove('hidden'); clearTimeout(showCard.t); showCard.t=setTimeout(()=>$('card').classList.add('hidden'),ms); }
+
+/* ---------- fx ---------- */
+function burst(lane,j){
+  const L=layout(); const x=L.laneX(lane), y=L.hitY; const col = j==='perfect'?'#fff':school(S.home).c2==='#FFFFFF'?'#cfe0ff':school(S.home).c2;
+  const n = j==='perfect'?26:12;
+  for(let i=0;i<n;i++){const a=-Math.PI*Math.random(), s=(j==='perfect'?4:2.5)+Math.random()*6; fx.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-2,life:1,col:i%3===0?'#ffd25a':col,big:j==='perfect'});}
+  if(j==='perfect'&&!reduceMotion) shake=Math.max(shake,4);
+}
+
+/* ---------- layout ---------- */
+function layout(){
+  const portrait = H>W*1.05;
+  const lanes = R?R.def.lanes:[0,1,2,3];
+  const one = R&&R.def.one;
+  const hwW = portrait ? W-24 : Math.min(560,W*.42);
+  const hwX = (W-hwW)/2;
+  const hitY = H - Math.max(110, H*.17);
+  const topY = portrait ? H*.46 : H*.2;
+  const n = one?1:lanes.length;
+  const lw = hwW/n;
+  const laneX = l => { if(one) return hwX+hwW/2; const idx=lanes.indexOf(l); return hwX+lw*(idx+.5); };
+  return {portrait,hwW,hwX,hitY,topY,lw,laneX,n,lanes,one};
+}
+
+/* ---------- drawing ---------- */
+function cover(im,x,y,w,h,ax=.5,ay=.5){ if(!im) return null; const s=Math.max(w/im.width,h/im.height); const iw=im.width*s, ih=im.height*s; const ox=x+(w-iw)*ax, oy=y+(h-ih)*ay; g2.drawImage(im,ox,oy,iw,ih); return {ox,oy,iw,ih}; }
+let homePulse=0, rivalSlump=0, waveT=-9, lastCombo=0;
+const pops=[], confetti=[];
+function hexA(hex,a){ const n=parseInt(hex.slice(1),16); return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`; }
+function glowOf(s){ return s.c2==='#FFFFFF'||s.c2==='#ffffff' ? '#9fc0ff' : s.c2; }
+// one figure from a Blender sheet, feet at (x,y), height h
+function fig1(sheet,fr,x,y,h,flip,alpha=1,glowCol=null,glow=0){
+  const frames=8, fw=sheet.width/frames, fh=sheet.height, w=h*fw/fh;
+  // soft ground shadow
+  g2.save(); g2.globalAlpha=.45*alpha; g2.fillStyle='#000'; g2.beginPath(); g2.ellipse(x,y-h*.035,w*.32,h*.045,0,0,7); g2.fill(); g2.restore();
+  g2.save(); g2.translate(x,y+h*.045); if(flip) g2.scale(-1,1); g2.globalAlpha=alpha;
+  if(glow>.05&&glowCol){ g2.shadowColor=glowCol; g2.shadowBlur=26*glow; }
+  g2.drawImage(sheet,fr*fw,0,fw,fh,-w/2,-h,w,h); g2.restore();
+}
+// a formation: rows recede toward the horizon, scale by distance
+function formation(sk,figs,cx,baseY,depthY,baseH,cols,spread,beatF,flip,opts={}){
+  const s=school(sk); const rows=figs.length;
+  const items=[];
+  for(let r=0;r<rows;r++){
+    const d=r/(Math.max(1,rows-1));             // 0 = back, 1 = front
+    const sc=.5+.5*d; const y=baseY-(1-d)*depthY; const n=figs[r]==='drummajor'?1:cols;
+    for(let c=0;c<n;c++){
+      const off=(c-(n-1)/2)*spread*sc + (r%2?spread*sc*.5:0)*(n>1?1:0);
+      items.push({fig:figs[r],x:cx+off,y,h:baseH*sc,d,stag:(c+r)%2});
+    }
+  }
+  items.sort((a,b)=>a.y-b.y);
+  for(const it of items){
+    const sheet=spr[sk+'_'+it.fig]; if(!sheet) continue;
+    const speed=opts.idle?0:1; let bf=beatF*speed + (opts.idle?0:it.stag*0);
+    let fr=opts.idle?2:Math.floor((((bf%2)+2)%2)*4)%8;
+    const fade=.55+.45*it.d;
+    fig1(sheet,fr,it.x,it.y,it.h*(1+(opts.pulse||0)*.06*it.d),flip,fade*(opts.alpha??1),glowOf(s),(opts.pulse||0)*it.d);
+  }
+}
+function crowdFx(L,beatF){
+  // camera flash pops in the stands, more with hype
+  const rate=(R?(R.hype-1)*5+1.5:1.5)*(reduceMotion?.3:1);
+  if(Math.random()<rate/60){ pops.push({x:Math.random()*W,y:H*(L.portrait?.08:.12)+Math.random()*H*(L.portrait?.2:.28),life:1}); }
+  for(let i=pops.length-1;i>=0;i--){const p=pops[i]; p.life-=.07; if(p.life<=0){pops.splice(i,1);continue;}
+    g2.save(); g2.globalAlpha=p.life; const gr=g2.createRadialGradient(p.x,p.y,0,p.x,p.y,9); gr.addColorStop(0,'#fff'); gr.addColorStop(1,'rgba(255,255,255,0)'); g2.fillStyle=gr; g2.fillRect(p.x-9,p.y-9,18,18); g2.restore();}
+  // the wave on big combos
+  const wk=(performance.now()-waveT)/1400;
+  if(wk>=0&&wk<1&&!reduceMotion){ const x=-W*.2+wk*W*1.4; const y0=H*(L.portrait?.06:.1), hh=H*(L.portrait?.24:.32);
+    const rx=W*.13; g2.save(); g2.translate(x,y0+hh/2); g2.scale(1,(hh/2)/rx);
+    const gr=g2.createRadialGradient(0,0,0,0,0,rx); gr.addColorStop(0,'rgba(255,240,200,.30)'); gr.addColorStop(1,'rgba(255,240,200,0)');
+    g2.fillStyle=gr; g2.beginPath(); g2.arc(0,0,rx,0,7); g2.fill(); g2.restore(); }
+}
+function drawConfetti(){
+  for(let i=confetti.length-1;i>=0;i--){const c=confetti[i]; c.x+=c.vx+Math.sin(c.y*.02+c.ph)*.8; c.y+=c.vy; c.rot+=c.vr; c.life-=.006; if(c.y>H+20||c.life<=0){confetti.splice(i,1);continue;}
+    g2.save(); g2.translate(c.x,c.y); g2.rotate(c.rot); g2.globalAlpha=Math.min(1,c.life*2); g2.fillStyle=c.col; g2.fillRect(-5,-2.5*Math.abs(Math.cos(c.rot*2))-1,10,5*Math.abs(Math.cos(c.rot*2))+2); g2.restore();}
+}
+function throwConfetti(cols){ if(reduceMotion) return; for(let i=0;i<180;i++) confetti.push({x:Math.random()*W,y:-20-Math.random()*H*.4,vx:(Math.random()-.5)*1.5,vy:2+Math.random()*3,rot:Math.random()*6,vr:(Math.random()-.5)*.3,ph:Math.random()*6,life:1,col:cols[i%cols.length]}); }
+
+function drawLane(L,h,beatF,lead){
+  const top=L.topY, bot=H, x=L.hwX, w=L.hwW;
+  g2.save();
+  // painted turf lane, darker far, school color wash near the hit line
+  const gr=g2.createLinearGradient(0,top,0,bot);
+  gr.addColorStop(0,'rgba(6,20,14,0)'); gr.addColorStop(.25,'rgba(8,34,22,.72)'); gr.addColorStop(.85,hexA(h.c1,.55)); gr.addColorStop(1,'rgba(4,8,16,.9)');
+  g2.fillStyle=gr; rr(x,top,w,bot-top,18); g2.fill();
+  // mowing stripes
+  g2.globalAlpha=.06; for(let k=0;k<L.n;k++){ if(k%2) {g2.fillStyle='#fff'; g2.fillRect(x+L.lw*k,top,L.lw,bot-top);} } g2.globalAlpha=1;
+  // glowing side rails in school colors
+  g2.shadowColor=glowOf(h); g2.shadowBlur=18; g2.strokeStyle=hexA(glowOf(h)==='#9fc0ff'?'#9fc0ff':h.c2,.9); g2.lineWidth=3;
+  g2.beginPath(); g2.moveTo(x+1.5,top+30); g2.lineTo(x+1.5,bot); g2.moveTo(x+w-1.5,top+30); g2.lineTo(x+w-1.5,bot); g2.stroke(); g2.shadowBlur=0;
+  // yard lines on the bar, hash marks on the beat
+  for(let b=Math.ceil(beatF);b<beatF+lead/P;b++){ const y=L.hitY-(b-beatF)*P/lead*(L.hitY-top); if(y<top+6) continue; const fade=Math.min(1,(y-top)/80);
+    if(((b%4)+4)%4===0){ g2.fillStyle=`rgba(255,255,255,${.55*fade})`; g2.fillRect(x+4,y-1.5,w-8,3); }
+    else { g2.fillStyle=`rgba(255,255,255,${.35*fade})`; for(let k=1;k<L.n;k++){ g2.fillRect(x+L.lw*k-9,y-1,18,2);} g2.fillRect(x+6,y-1,14,2); g2.fillRect(x+w-20,y-1,14,2); } }
+  // lane dividers
+  g2.fillStyle='rgba(255,255,255,.10)'; for(let k=1;k<L.n;k++) g2.fillRect(x+L.lw*k-1,top+20,2,bot-top-20);
+  // lane press glow
+  for(let k=0;k<L.n;k++){ const ln=L.one?0:L.lanes[k]; const p=lanePulse[ln]; if(p>.02){ const lg=g2.createLinearGradient(0,L.hitY,0,top); lg.addColorStop(0,hexA(glowOf(h)==='#9fc0ff'?'#9fc0ff':h.c2,.45*p)); lg.addColorStop(1,'rgba(255,255,255,0)'); g2.fillStyle=lg; g2.fillRect(x+L.lw*k,top,L.lw,L.hitY-top); lanePulse[ln]*=.84; } }
+  // hit line with glow
+  g2.shadowColor=glowOf(h); g2.shadowBlur=24; g2.fillStyle='#fff'; g2.fillRect(x+6,L.hitY-2.5,w-12,5); g2.shadowBlur=0;
+  // drumhead targets
+  for(let k=0;k<L.n;k++){ const ln=L.one?0:L.lanes[k]; const cx=L.laneX(ln); const r=Math.min(L.lw*.33,L.one?46:36);
+    const p=lanePulse[ln]||0;
+    g2.fillStyle=`rgba(255,255,255,${.10+p*.35})`; g2.beginPath(); g2.arc(cx,L.hitY,r*(1+p*.12),0,7); g2.fill();
+    g2.lineWidth=4; g2.strokeStyle='rgba(255,255,255,.9)'; g2.stroke();
+    g2.lineWidth=2; g2.strokeStyle=hexA(h.c1,.9); g2.beginPath(); g2.arc(cx,L.hitY,r-6,0,7); g2.stroke();
+    g2.fillStyle='rgba(255,255,255,.85)'; g2.font='700 18px "Barlow Condensed"'; g2.textAlign='center'; g2.textBaseline='middle';
+    g2.fillText(L.one?'TAP':LANE_LABEL[ln],cx,L.hitY+r+18); }
+  g2.restore();
+}
+function drawNote(x,y,r,h,missed){
+  g2.save();
+  if(missed){ g2.globalAlpha=.35; }
+  g2.shadowColor=glowOf(h); g2.shadowBlur=missed?0:22;
+  const gr=g2.createRadialGradient(x-r*.3,y-r*.35,r*.1,x,y,r); gr.addColorStop(0,'#ffffff'); gr.addColorStop(.35,missed?'#8a93a6':h.c1); gr.addColorStop(1,missed?'#4a5160':h.c1);
+  g2.fillStyle=gr; g2.beginPath(); g2.arc(x,y,r,0,7); g2.fill(); g2.shadowBlur=0;
+  g2.lineWidth=Math.max(3,r*.14); g2.strokeStyle=missed?'#9aa3b5':(h.c2==='#FFFFFF'?'#ffffff':h.c2); g2.stroke();
+  g2.lineWidth=1.5; g2.strokeStyle='rgba(255,255,255,.55)'; g2.beginPath(); g2.arc(x,y,r*.62,0,7); g2.stroke();
+  g2.restore();
+}
+function draw(){
+  requestAnimationFrame(draw);
+  if(S.phase==='title'||S.phase==='pick'||!ctx) return;
+  const L=layout(); const t=audioNow(); const h=school(S.home), a=school(S.away);
+  g2.save();
+  if(shake>0){ g2.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake); shake*=.86; if(shake<.3) shake=0; }
+  cover(L.portrait?img.stadium_tall:img.stadium_wide,0,0,W,H,.5,L.portrait?.3:.45);
+  // night grade: darker top and edges so lights and bands pop
+  const vg=g2.createLinearGradient(0,0,0,H); vg.addColorStop(0,'rgba(3,5,12,.35)'); vg.addColorStop(.5,'rgba(3,5,12,.12)'); vg.addColorStop(1,'rgba(3,5,12,.55)'); g2.fillStyle=vg; g2.fillRect(0,0,W,H);
+  if(!R){g2.restore();return;}
+  const beatF=(t-R.ansStart)/P, callBeat=(t-R.t0)/P;
+  const inCall=R.def.call && t<R.ansStart;
+  crowdFx(L,beatF);
+  if(R.combo>0 && R.combo%8===0 && R.combo!==lastCombo){ lastCombo=R.combo; waveT=performance.now(); }
+  // formations in depth (Blender sprites), the active side high-steps on the beat
+  const key=R.def.key; const front={strut:'drummer',drum:'drummer',brass:'brass',dance:'dancer',finale:'brass'}[key];
+  const homeFigs = key==='strut' ? ['brass','drummer','drummajor'] : key==='dance' ? ['brass','drummer','dancer'] : key==='finale'?['drummer','brass','brass','dancer']:['brass','brass',front];
+  const awayFigs = key==='strut' ? ['brass','drummer'] : key==='dance' ? ['brass','dancer'] : ['brass',front];
+  const awayActive=inCall, homeActive=!inCall;
+  const slump=Math.max(rivalSlump, S.meter>.35?.5:0);
+  if(L.portrait){
+    formation(S.away,awayFigs,W*.5,H*.255,H*.05,H*.085,5,W*.17,awayActive?callBeat:callBeat*.5,false,{alpha:awayActive?1:.8-slump*.3,idle:slump>.6&&!awayActive});
+    formation(S.home,homeFigs,W*.5,H*.445,H*.09,H*.15,4,W*.22,homeActive?beatF:beatF*.5,false,{pulse:homePulse});
+  } else {
+    const bh=H*.30;
+    formation(S.away,awayFigs,W*.155,H*.80,H*.2,bh,4,W*.062,awayActive?callBeat:callBeat*.5,false,{alpha:awayActive?1:.85-slump*.3,idle:slump>.6&&!awayActive});
+    formation(S.home,homeFigs,W*.845,H*.84,H*.24,bh*1.08,4,W*.062,homeActive?beatF:beatF*.5,true,{pulse:homePulse});
+  }
+  homePulse*=.88; rivalSlump*=.995;
+  // meter
+  const mw=Math.min(W-32,620), mx=(W-mw)/2, my=L.portrait?Math.max(50,H*.065):26, mh=16;
+  const pos=(S.meter+1)/2;
+  g2.save(); g2.shadowColor='rgba(0,0,0,.6)'; g2.shadowBlur=10;
+  g2.fillStyle=a.c1; rr(mx,my,mw,mh,8); g2.fill(); g2.shadowBlur=0;
+  g2.fillStyle=h.c1; rr(mx+mw*(1-pos),my,mw*pos,mh,8); g2.fill();
+  g2.strokeStyle='rgba(255,255,255,.75)'; g2.lineWidth=1.5; rr(mx,my,mw,mh,8); g2.stroke();
+  g2.shadowColor=glowOf(h); g2.shadowBlur=14; g2.fillStyle='#fff'; g2.beginPath(); g2.arc(mx+mw*(1-pos),my+mh/2,11,0,7); g2.fill(); g2.restore();
+  g2.font='700 15px "Barlow Condensed"'; g2.textBaseline='top'; g2.fillStyle='#e8ecf4';
+  g2.textAlign='left'; g2.fillText(a.band.toUpperCase(),mx,my+mh+6);
+  g2.textAlign='right'; g2.fillText(h.band.toUpperCase(),mx+mw,my+mh+6);
+  g2.textAlign='center'; g2.font=`400 ${L.portrait?24:28}px Anton`; g2.fillStyle='#ffd25a'; g2.shadowColor='rgba(0,0,0,.8)'; g2.shadowBlur=8;
+  g2.fillText((sectionName(inCall?S.away:S.home,R.def.key)||R.def.title).toUpperCase(),W/2,my+mh+26); g2.shadowBlur=0;
+  // lane
+  const lead=1.9;
+  drawLane(L,h,beatF,lead);
+  for(const n of R.notes){ if(n.hit) continue; const dt=n.t-t; if(dt>lead||dt<-.3) continue;
+    const y=L.hitY-dt/lead*(L.hitY-L.topY); const r=Math.min(L.lw*.3,L.one?42:32);
+    drawNote(L.laneX(n.lane),y,r,h,n.missed); }
+  // sparks
+  for(let i=fx.length-1;i>=0;i--){const p=fx[i]; p.x+=p.vx; p.y+=p.vy; p.vy+=.22; p.life-=.03; if(p.life<=0){fx.splice(i,1);continue;}
+    g2.save(); g2.globalAlpha=p.life; g2.strokeStyle=p.col; g2.lineWidth=p.big?3:2; g2.shadowColor=p.col; g2.shadowBlur=8;
+    g2.beginPath(); g2.moveTo(p.x,p.y); g2.lineTo(p.x-p.vx*2.2,p.y-p.vy*2.2); g2.stroke(); g2.restore(); }
+  if(hitLabel && performance.now()-hitLabel.t<450){ const k=(performance.now()-hitLabel.t)/450; g2.save(); g2.globalAlpha=1-k; g2.font=`400 ${hitLabel.j==='perfect'?40:32}px Anton`; g2.fillStyle=hitLabel.j==='perfect'?'#ffd25a':'#fff'; g2.textAlign='center'; g2.textBaseline='alphabetic'; g2.shadowColor='rgba(0,0,0,.8)'; g2.shadowBlur=8; g2.fillText(hitLabel.j.toUpperCase(),L.laneX(hitLabel.lane),L.hitY-62-k*22); g2.restore(); }
+  if(R.combo>=4){ g2.save(); g2.font='400 28px Anton'; g2.fillStyle='#fff'; g2.textAlign='center'; g2.shadowColor=glowOf(h); g2.shadowBlur=12; g2.fillText('HYPE x'+R.hype.toFixed(1),W/2,L.topY+34); g2.restore(); }
+  if(promptWord){ const k=(performance.now()-promptT)/1400; if(k<1){ g2.save(); g2.globalAlpha=k<.15?k/.15:1-(k-.15)/.85; const sz=Math.min(130,W*.2)*(reduceMotion?1:1+.15*(1-Math.min(1,k*5))); g2.font=`400 ${sz}px Anton`; g2.fillStyle='#fff'; g2.textBaseline='middle'; g2.textAlign='center'; g2.shadowColor=glowOf(h); g2.shadowBlur=30; g2.fillText(promptWord,W/2,(L.topY+L.hitY)/2); g2.restore();} else promptWord=null; }
+  drawConfetti();
+  g2.restore();
+  if(flash>0){ g2.fillStyle=`rgba(255,255,255,${flash*.45})`; g2.fillRect(0,0,W,H); flash*=.8; if(flash<.02) flash=0; }
+  if(S.phase==='play'){ missCheck(); if(t>R.end+.2 && !R.done) endRound(); }
+}
+function rr(x,y,w,h,r){g2.beginPath(); g2.roundRect?g2.roundRect(x,y,w,h,r):g2.rect(x,y,w,h);}
+
+/* ---------- input ---------- */
+addEventListener('keydown',e=>{
+  if(e.repeat) return;
+  if(S.phase==='title' && (e.code==='Space'||e.code==='Enter')){ e.preventDefault(); begin(); return; }
+  if(S.phase!=='play'||!R) return;
+  let lane = LANE_KEYS.indexOf(e.code);
+  if(e.code==='ArrowLeft') lane=0; if(e.code==='ArrowDown') lane=1; if(e.code==='ArrowUp') lane=2; if(e.code==='ArrowRight') lane=3;
+  if(R.def.one){ judge(0,e); return; }
+  if(lane<0 || !R.def.lanes.includes(lane)) return;
+  judge(lane,e);
+});
+cv.addEventListener('pointerdown',e=>{
+  if(S.phase!=='play'||!R) return; e.preventDefault();
+  if(R.def.one){ judge(0,e); return; }
+  const L=layout(); let k=Math.floor((e.clientX-L.hwX)/L.lw); k=Math.max(0,Math.min(L.n-1,k));
+  judge(L.lanes[k],e);
+},{passive:false});
+
+/* ---------- flow ---------- */
+let loading=null;
+function setVs(){ $('vsline').innerHTML=`<b>${school(S.home).name} ${school(S.home).band}</b> vs <b>${school(S.away).name} ${school(S.away).band}</b>`; document.documentElement.style.setProperty('--home',school(S.home).c1); }
+async function begin(){
+  if(S.phase!=='title'&&S.phase!=='result') return;
+  S.t_start = S.t_start ?? performance.now();
+  initAudio(); await ctx.resume();
+  ['title','result','pick'].forEach(id=>$(id).classList.add('hidden')); $('credit').classList.add('hidden');
+  $('game').classList.remove('hidden'); resize();
+  S.phase='loading';
+  await loading; await loadSprites();
+  S.meter=0; S.total=0; S.roundStats=[];
+  play('crowd',{at:ctx.currentTime,gain:.6,bus:crowdBus,loop:true});
+  startRound(0);
+}
+function buildPick(){
+  const mk=(el,keys,sel,onp)=>{ el.innerHTML=''; keys.forEach(k=>{const s=school(k); const b=document.createElement('button'); b.className='card'; b.style.backgroundImage=`url(assets/img/${s.img}.webp)`; b.setAttribute('aria-pressed',k===sel());
+    b.innerHTML=`<span class="sw"><u style="background:${s.c1}"></u><u style="background:${s.c2}"></u></span><span class="t"><b>${s.name.replace(' University','')}</b><i>${s.band}</i></span>`;
+    b.onclick=()=>{onp(k); buildPick();}; el.appendChild(b);}); };
+  mk($('homeCards'),Object.keys(SCHOOLS).filter(k=>SCHOOLS[k].play),()=>S.home,k=>{S.home=k; if(S.away===k) S.away='norfolk';});
+  mk($('awayCards'),Object.keys(SCHOOLS).filter(k=>k!==S.home),()=>S.away,k=>{S.away=k;});
+}
+function openPick(){ ['title','result'].forEach(id=>$(id).classList.add('hidden')); $('game').classList.add('hidden'); buildPick(); $('pick').classList.remove('hidden'); S.phase='pick'; }
+$('startBtn').onclick=begin;
+$('againBtn').onclick=()=>{ $('result').classList.add('hidden'); S.phase='result'; begin(); };
+$('relaxBtn').onclick=e=>{S.relaxed=!S.relaxed; e.currentTarget.setAttribute('aria-pressed',S.relaxed);};
+$('pickBtn').onclick=openPick; $('resPick').onclick=openPick;
+$('pickGo').onclick=()=>{ setVs(); $('pick').classList.add('hidden'); S.phase='title'; begin(); };
+
+// boot: show START immediately; decode in the background
+$('startBtn').classList.remove('hidden'); $('modeRow').classList.remove('hidden');
+initAudio();
+loading = Promise.all([loadAll(), loadCharts()]).then(()=>{window.__ready=true;});
+resize(); requestAnimationFrame(draw);
+window.__game={S,get R(){return R;},get ctx(){return ctx;},audioNow:()=>audioNow(),ROUNDS};
+</script>
+</body>
+</html>

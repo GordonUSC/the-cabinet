@@ -1,0 +1,122 @@
+{
+ "bed_drums": {
+  "src": "s_drums_a",
+  "bpm_in": 100.0,
+  "semitones": 0,
+  "start": 0.924,
+  "beats": 18,
+  "len": 10.8
+ },
+ "bed_drums2": {
+  "src": "s_drums_b",
+  "bpm_in": 100.0,
+  "semitones": 0,
+  "start": 0.612,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_snare": {
+  "src": "s_snare_a",
+  "bpm_in": 100.0,
+  "semitones": 0,
+  "start": 1.216,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_tenors": {
+  "src": "s_tenors_b",
+  "bpm_in": 99.9,
+  "semitones": 0,
+  "start": 1.52,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_basses": {
+  "src": "s_basses_a",
+  "bpm_in": 100.04,
+  "semitones": 0,
+  "start": 1.212,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_brass": {
+  "src": "s_brass_b",
+  "bpm_in": 100.29,
+  "semitones": 0,
+  "start": 0.04,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_tuba": {
+  "src": "s_tuba_a",
+  "bpm_in": 99.95,
+  "semitones": -2,
+  "start": 0.028,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_winds": {
+  "src": "s_winds_a",
+  "bpm_in": 100.05,
+  "semitones": -2,
+  "start": 0.176,
+  "beats": 18,
+  "len": 10.8
+ },
+ "lead_break": {
+  "src": "s_break_b",
+  "bpm_in": 99.93,
+  "semitones": 1,
+  "start": 1.812,
+  "beats": 18,
+  "len": 10.8
+ },
+ "call_drum": {
+  "src": "drum_rival_a",
+  "bpm_in": 100.04,
+  "semitones": 0,
+  "start": 1.216,
+  "beats": 18,
+  "len": 10.784
+ },
+ "call_brass": {
+  "src": "brass_rival_a",
+  "bpm_in": 99.87,
+  "semitones": 0,
+  "start": 0.612,
+  "beats": 18,
+  "len": 10.8
+ },
+ "call_dance": {
+  "src": "dance_rival_b",
+  "bpm_in": 99.95,
+  "semitones": 0,
+  "start": 0.308,
+  "beats": 18,
+  "len": 10.8
+ },
+ "call_finale": {
+  "src": "finale_rival_a",
+  "bpm_in": 100.02,
+  "semitones": 0,
+  "start": 1.828,
+  "beats": 18,
+  "len": 10.172
+ },
+ "strut": {
+  "src": "strut_b",
+  "bpm_in": 99.99,
+  "semitones": 0,
+  "start": 1.22,
+  "beats": 18,
+  "len": 10.78
+ },
+ "victory": {
+  "src": "finale_home_b",
+  "bpm_in": 100.04,
+  "semitones": 0,
+  "start": 0.608,
+  "beats": 18,
+  "len": 10.8
+ }
+}

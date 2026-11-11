@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- STYLE: Stadium Broadcast Night, play-along variant (video up top, painted lane below) | WHY: same night-game identity as the main battle so the two modes feel like one product | ALT: Practice Field (daylight turf, chalk lines) -->
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Play Along</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%230033A0%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#f4f6fb;--dim:#aab3c5;--gold:#ffd25a;--home:#0033A0}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#05070d;color:var(--ink);font-family:'Barlow Condensed',system-ui,sans-serif;overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.badge{position:fixed;top:10px;right:12px;z-index:9;font:700 12px/1 'Barlow Condensed';letter-spacing:.14em;text-transform:uppercase;color:#05070d;background:var(--gold);padding:6px 9px;border-radius:3px}
+#setup{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;text-align:center;background:#05070d url(assets/img/stadium_tall.webp) center/cover}
+@media (min-aspect-ratio:1/1){#setup{background-image:url(assets/img/stadium_wide.webp)}}
+#setup::before{content:"";position:absolute;inset:0;background:rgba(5,7,13,.7)}
+#setup>*{position:relative}
+h1{font-family:'Anton';font-weight:400;font-size:clamp(48px,13vw,110px);text-transform:uppercase;line-height:.9}
+input{width:min(560px,92vw);font:600 18px 'Barlow Condensed';padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.chip{font:700 16px 'Barlow Condensed';letter-spacing:.1em;text-transform:uppercase;color:var(--ink);background:rgba(6,10,20,.75);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:#05070d}
+.go{font-family:'Anton';font-size:36px;color:#05070d;background:var(--gold);border:0;border-radius:999px;padding:10px 54px;cursor:pointer}
+.note{font-size:14px;color:var(--dim);max-width:560px}
+#stage{position:fixed;inset:0;display:none;flex-direction:column}
+#vidwrap{flex:0 0 auto;width:100%;aspect-ratio:16/9;max-height:46vh;background:#000}
+#vidwrap iframe,#player{width:100%;height:100%}
+#cv{flex:1 1 auto;width:100%;display:block}
+#hud{position:fixed;left:12px;bottom:10px;font:400 22px Anton;letter-spacing:.04em;z-index:3}
+#tapBtn{position:fixed;right:12px;bottom:10px;z-index:3}
+a{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="badge">Private prototype</div>
+<section id="setup">
+  <h1>Play Along</h1>
+  <input id="url" placeholder="Paste a YouTube link of a band performance" aria-label="YouTube link">
+  <div class="row" id="bpms">
+    <button class="chip" data-bpm="220" aria-pressed="true">220 Hampton cadence</button>
+    <button class="chip" data-bpm="140" aria-pressed="false">140</button>
+    <button class="chip" data-bpm="120" aria-pressed="false">120</button>
+    <button class="chip" data-bpm="100" aria-pressed="false">100</button>
+    <button class="chip" data-bpm="0" aria-pressed="false">Tap 8</button>
+  </div>
+  <button class="go" id="go">PLAY</button>
+  <p class="note">The video plays in the YouTube player and is never downloaded or analyzed. Notes follow the tempo you set; tap the lane on the beat. Private use only. <a href="index.html">Back to the battle</a></p>
+</section>
+<section id="stage"><div id="vidwrap"><div id="player"></div></div><canvas id="cv"></canvas></section>
+<div id="hud" hidden></div>
+<button class="chip" id="tapBtn" hidden>Tap beat</button>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+let bpm=220, tapMode=false, player=null, ytReady=false;
+const lanes=4, KEYS=['KeyD','KeyF','KeyJ','KeyK'];
+document.querySelectorAll('#bpms .chip').forEach(b=>b.onclick=()=>{document.querySelectorAll('#bpms .chip').forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true'); bpm=+b.dataset.bpm; tapMode=bpm===0;});
+function vidId(u){ const m=String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([A-Za-z0-9_-]{11})/); return m?m[1]:(/^[A-Za-z0-9_-]{11}$/.test(u)?u:null); }
+// audio: ElevenLabs one-shots only, mixed in WebAudio
+let ctx, buf={};
+async function initAudio(){ ctx=new (window.AudioContext||window.webkitAudioContext)(); await ctx.resume();
+  await Promise.all(['snare','bass','clap','cymbal'].map(async n=>{const r=await fetch('assets/audio/'+n+'.mp3'); buf[n]=await ctx.decodeAudioData(await r.arrayBuffer());})); }
+function shot(n,g=.7){ if(!buf[n]) return; const s=ctx.createBufferSource(); s.buffer=buf[n]; const gg=ctx.createGain(); gg.gain.value=g; s.connect(gg); gg.connect(ctx.destination); s.start(); }
+// video clock: anchor YouTube time to performance.now
+let anchor={vt:0,pt:performance.now(),playing:false};
+function vnow(){ return anchor.playing? anchor.vt+(performance.now()-anchor.pt)/1000 : anchor.vt; }
+function syncAnchor(){ if(!player||!player.getCurrentTime) return; const st=player.getPlayerState(); const vt=player.getCurrentTime();
+  const pred=vnow(); anchor.playing = st===1; if(Math.abs(pred-vt)>.06 || !anchor.playing){ anchor={vt,pt:performance.now(),playing:anchor.playing}; } }
+setInterval(syncAnchor,250);
+// beat grid
+let period=60/220, phase=0, taps=[], notes=[], score=0, combo=0, best=0;
+function buildNotes(){ notes=[]; const step = period<0.36?2:1; // dense tempos: every other beat
+  const pat=[0,1,2,3,3,2,1,0,0,2,1,3,1,1,2,2];
+  for(let k=0;k<4000;k++){ const t=phase+k*period*step; if(t<0) continue; if(t>7200) break; notes.push({t,lane:pat[k%pat.length],hit:false,miss:false}); } }
+function onTap(){ const vt=vnow(); taps.push(vt); shot('snare',.5); if(taps.length>=8){ const d=taps.slice(1).map((x,i)=>x-taps[i]).sort((a,b)=>a-b); period=d[Math.floor(d.length/2)]; phase=taps[taps.length-1]; buildNotes(); $('tapBtn').hidden=true; tapMode=false; } else $('tapBtn').textContent='Tap beat '+(8-taps.length); }
+// youtube
+window.onYouTubeIframeAPIReady=()=>{ytReady=true;};
+$('go').onclick=async()=>{
+  const id=vidId($('url').value.trim()); if(!id){ $('url').focus(); $('url').placeholder='Paste a YouTube link first'; return; }
+  await initAudio();
+  if(!ytReady){ const s=document.createElement('script'); s.src='https://www.youtube.com/iframe_api'; document.head.appendChild(s); await new Promise(r=>{const iv=setInterval(()=>{if(ytReady){clearInterval(iv);r();}},100);}); }
+  $('setup').style.display='none'; $('stage').style.display='flex'; $('hud').hidden=false; resize();
+  player=new YT.Player('player',{videoId:id,playerVars:{playsinline:1,rel:0},events:{onReady:e=>e.target.playVideo()}});
+  if(tapMode){ $('tapBtn').hidden=false; $('tapBtn').textContent='Tap beat 8'; } else { period=60/bpm; phase=1.0; buildNotes(); }
+};
+$('tapBtn').onclick=onTap;
+// play
+const cv=$('cv'), g=cv.getContext('2d'); let W=0,H=0,D=1;
+function resize(){ D=Math.min(3,devicePixelRatio||1); W=cv.clientWidth; H=cv.clientHeight; cv.width=W*D; cv.height=H*D; g.setTransform(D,0,0,D,0,0); }
+addEventListener('resize',resize);
+function judge(l){ if(tapMode){ onTap(); return; } const t=vnow(); let bn=null,bd=9; for(const n of notes){ if(n.hit||n.miss||n.lane!==l) continue; const d=t-n.t; if(Math.abs(d)<Math.abs(bd)){bd=d;bn=n;} if(n.t>t+1) break; }
+  if(bn&&Math.abs(bd)<.15){ bn.hit=true; combo++; best=Math.max(best,combo); score+=Math.abs(bd)<.05?100:60; shot(['snare','snare','bass','clap'][l],.75); if(combo%16===0) shot('cymbal',.6); } }
+addEventListener('keydown',e=>{ const l=KEYS.indexOf(e.code); if(l>=0&&!e.repeat) judge(l); if(e.code==='Space'&&tapMode){e.preventDefault(); onTap();} });
+cv.addEventListener('pointerdown',e=>{ const l=Math.max(0,Math.min(3,Math.floor((e.offsetX)/(W/lanes)))); judge(l); });
+function draw(){ requestAnimationFrame(draw); if(!W) return; const t=vnow(); g.clearRect(0,0,W,H);
+  const gr=g.createLinearGradient(0,0,0,H); gr.addColorStop(0,'#081a12'); gr.addColorStop(1,'#0033A0'); g.fillStyle=gr; g.fillRect(0,0,W,H);
+  const hitY=H-70, lead=1.6, lw=W/lanes;
+  for(let k=1;k<lanes;k++){ g.fillStyle='rgba(255,255,255,.12)'; g.fillRect(lw*k-1,0,2,H); }
+  g.shadowColor='#9fc0ff'; g.shadowBlur=20; g.fillStyle='#fff'; g.fillRect(8,hitY-2,W-16,4); g.shadowBlur=0;
+  for(const n of notes){ const dt=n.t-t; if(dt>lead) break; if(dt<-.2){ if(!n.hit&&!n.miss){n.miss=true; combo=0;} continue; } if(n.hit) continue;
+    const y=hitY-dt/lead*hitY; const x=lw*(n.lane+.5); g.fillStyle='#0033A0'; g.strokeStyle='#fff'; g.lineWidth=4; g.beginPath(); g.arc(x,y,Math.min(lw*.3,30),0,7); g.fill(); g.stroke(); }
+  g.fillStyle='rgba(255,255,255,.8)'; g.font='700 16px "Barlow Condensed"'; g.textAlign='center'; ['D','F','J','K'].forEach((k,i)=>g.fillText(k,lw*(i+.5),hitY+30));
+  $('hud').textContent=(tapMode?'TAP THE BEAT':'SCORE '+score+'   COMBO '+combo); }
+requestAnimationFrame(draw);
+window.__pa={vidId,buildNotes,get notes(){return notes;},setClock:(p,ph)=>{period=p;phase=ph;}};
+</script>
+</body>
+</html>
