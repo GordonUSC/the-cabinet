@@ -178,6 +178,30 @@
       "role": "experience"
     },
     {
+      "id": "pack-the-floor",
+      "title": "Pack the Floor",
+      "subtitle": "A seven-night rhythm game",
+      "purpose": "Tap on the beat to pull guests onto the dance floor across seven nights, each with its own venue and original track.",
+      "collection": "play",
+      "url": "https://gordonusc.github.io/the-cabinet/pack-the-floor/",
+      "aliases": [
+        "PACK THE FLOOR",
+        "rhythm",
+        "dance",
+        "nightclub",
+        "birthday",
+        "game"
+      ],
+      "legacyRooms": [
+        "arcade"
+      ],
+      "note": "Sound starts when you choose to play",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
+    },
+    {
       "id": "gridiron-16",
       "title": "Gridiron 16",
       "subtitle": "A 16-bit team and colour explorer",
@@ -220,6 +244,29 @@
       "family": null,
       "image": "shots/joe-kaminkow.jpg",
       "repo": "https://github.com/GordonUSC/joe-kaminkow",
+      "role": "experience"
+    },
+    {
+      "id": "dinner-machine",
+      "title": "World Tour Dinner Machine",
+      "subtitle": "A machine that pays out in dinners",
+      "purpose": "Pull the lever to land a city, a mood and a budget, then copy the result as a dinner plan.",
+      "collection": "play",
+      "url": "https://gordonusc.github.io/dinner-machine/",
+      "aliases": [
+        "DINNER MACHINE",
+        "slot machine",
+        "dinner",
+        "restaurants",
+        "travel"
+      ],
+      "legacyRooms": [
+        "arcade"
+      ],
+      "note": "Made as a gift for two friends",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/dinner-machine",
       "role": "experience"
     },
     {
@@ -627,6 +674,30 @@
       "role": "experience"
     },
     {
+      "id": "edc-26",
+      "title": "EDC Vegas ’26",
+      "subtitle": "Two days, ten years in",
+      "purpose": "Revisit a two-day festival guide made for seven friends on a ten-year anniversary.",
+      "collection": "music",
+      "url": "https://gordonusc.github.io/edc-26/",
+      "aliases": [
+        "EDC",
+        "EDC VEGAS",
+        "Electric Daisy Carnival",
+        "festival",
+        "Las Vegas",
+        "music"
+      ],
+      "legacyRooms": [
+        "afterdark"
+      ],
+      "note": "Archive, May 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/edc-26",
+      "role": "experience"
+    },
+    {
       "id": "weho-guide",
       "title": "The Boystown Field Guide",
       "subtitle": "West Hollywood guide, June 2026",
@@ -667,6 +738,29 @@
       "family": null,
       "image": "shots/gordon-pride-2026.jpg",
       "repo": "https://github.com/GordonUSC/gordon-pride-2026",
+      "role": "experience"
+    },
+    {
+      "id": "desert-joy-56",
+      "title": "Desert Joy 56",
+      "subtitle": "A Palm Springs Pride birthday, played as a game",
+      "purpose": "Light up eight stops across a Pride weekend in Palm Springs and a birthday on November 9.",
+      "collection": "music",
+      "url": "https://gordonusc.github.io/desert-joy-56-9c08a0/",
+      "aliases": [
+        "DESERT JOY",
+        "Palm Springs",
+        "Pride",
+        "birthday",
+        "56"
+      ],
+      "legacyRooms": [
+        "afterdark"
+      ],
+      "note": "Archive, November 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/desert-joy-56-9c08a0",
       "role": "experience"
     },
     {
@@ -760,6 +854,54 @@
       "family": null,
       "image": "shots/g4c-play-the-issue.jpg",
       "repo": "https://github.com/GordonUSC/g4c-play-the-issue",
+      "role": "experience"
+    },
+    {
+      "id": "kollab-your-next-level",
+      "title": "Your Next Level",
+      "subtitle": "A Kollab Youth adventure",
+      "purpose": "Make one small choice at a time through a short creative adventure about finding your place in games. No experience needed.",
+      "collection": "learn",
+      "url": "https://gordonusc.github.io/kollab-your-next-level-fbfee9/",
+      "aliases": [
+        "YOUR NEXT LEVEL",
+        "Kollab Youth",
+        "careers",
+        "students",
+        "youth",
+        "adventure"
+      ],
+      "legacyRooms": [
+        "mission"
+      ],
+      "note": "Kollab Youth Masterclass, November 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/kollab-your-next-level-fbfee9",
+      "role": "experience"
+    },
+    {
+      "id": "kollab-gaming-careers",
+      "title": "Your Game Career Map",
+      "subtitle": "The jobs behind every game",
+      "purpose": "See who is on a game team and circle the roles that sound like you, with a printable handout.",
+      "collection": "learn",
+      "url": "https://gordonusc.github.io/kollab-gaming-careers-2e7a9e/",
+      "aliases": [
+        "GAME CAREER MAP",
+        "Kollab Youth",
+        "careers",
+        "jobs",
+        "handout",
+        "students"
+      ],
+      "legacyRooms": [
+        "mission"
+      ],
+      "note": "Kollab Youth Masterclass, November 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/kollab-gaming-careers-2e7a9e",
       "role": "experience"
     },
     {
@@ -877,6 +1019,74 @@
       "role": "experience"
     },
     {
+      "id": "ctin-oct05",
+      "title": "October 5, 2026",
+      "subtitle": "Make Room",
+      "purpose": "Explore a studio day about showing a choice, noticing a strength, and forming new teams.",
+      "collection": "learn",
+      "url": "https://gordonusc.github.io/the-cabinet/ctin290-october-05/CLASSROOM/",
+      "aliases": [
+        "MAKE ROOM",
+        "CTIN 290",
+        "October 5",
+        "teams",
+        "studio"
+      ],
+      "legacyRooms": [
+        "classroom"
+      ],
+      "note": "Public lesson",
+      "family": "ctin",
+      "image": "",
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
+    },
+    {
+      "id": "ctin-oct14",
+      "title": "October 14, 2026",
+      "subtitle": "Show your progress",
+      "purpose": "Follow a studio day where each team shows unfinished work and names what is in the way.",
+      "collection": "learn",
+      "url": "https://gordonusc.github.io/the-cabinet/ctin290-october-14/",
+      "aliases": [
+        "SHOW YOUR PROGRESS",
+        "CTIN 290",
+        "October 14",
+        "prototype",
+        "studio"
+      ],
+      "legacyRooms": [
+        "classroom"
+      ],
+      "note": "Public lesson",
+      "family": "ctin",
+      "image": "",
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
+    },
+    {
+      "id": "ctin-nov02",
+      "title": "November 2, 2026",
+      "subtitle": "Final Storyboard Day",
+      "purpose": "See how a storyboard becomes a build list, one decided shot at a time.",
+      "collection": "learn",
+      "url": "https://gordonusc.github.io/the-cabinet/ctin290-november-02/",
+      "aliases": [
+        "FINAL STORYBOARD DAY",
+        "CTIN 290",
+        "November 2",
+        "storyboard"
+      ],
+      "legacyRooms": [
+        "classroom"
+      ],
+      "note": "Public lesson",
+      "family": "ctin",
+      "image": "",
+      "repo": "https://github.com/GordonUSC/the-cabinet",
+      "role": "experience"
+    },
+    {
       "id": "bellamy-family-tree",
       "title": "The Bellamy Family",
       "subtitle": "A living family tree",
@@ -899,6 +1109,30 @@
       "family": null,
       "image": "shots/bellamy-family-tree.jpg",
       "repo": "https://github.com/GordonUSC/bellamy-family-tree",
+      "role": "experience"
+    },
+    {
+      "id": "find-your-way-in",
+      "title": "Find Your Way In",
+      "subtitle": "Gordon at 56",
+      "purpose": "Five ways to spend time with Gordon this year, from a call or a show to supporting GGP and his spring classes.",
+      "collection": "people",
+      "url": "https://gordonusc.github.io/the-cabinet/find-your-way-in/",
+      "aliases": [
+        "FIND YOUR WAY IN",
+        "birthday",
+        "56",
+        "reconnect",
+        "GGP",
+        "USC"
+      ],
+      "legacyRooms": [
+        "record"
+      ],
+      "note": "November 2026",
+      "family": null,
+      "image": "",
+      "repo": "https://github.com/GordonUSC/the-cabinet",
       "role": "experience"
     },
     {
