@@ -305,6 +305,12 @@
     $('pass').addEventListener('click', function () { restart(true); });
     $('reveal').addEventListener('click', showAll);
     $('sound').addEventListener('click', function () { setSound(!soundOn); });
+    $('pocket').addEventListener('click', function (ev) { /* in the single-file build the companion game travels inside this file */
+      if (!window.BRAID_POCKET) return;
+      ev.preventDefault();
+      try { var bin = atob(window.BRAID_POCKET), arr = new Uint8Array(bin.length); for (var n = 0; n < bin.length; n++) arr[n] = bin.charCodeAt(n);
+        location.href = URL.createObjectURL(new Blob([arr], { type: 'text/html' })); } catch (e) {}
+    });
     document.addEventListener('visibilitychange', function () { if (document.hidden && soundOn) setSound(false); });
     ['bg-saturday', 'bg-sunday', 'bg-bigstage'].forEach(function (n) { var i = new Image(); i.src = A('assets/art/' + n + '.jpg'); });
     for (var k = 0; k < 8; k++) { var c = new Image(); c.src = A('assets/cart/c' + k + '.webp'); }

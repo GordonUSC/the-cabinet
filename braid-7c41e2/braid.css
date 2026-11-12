@@ -91,7 +91,15 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .came,.best{font-size:14.5px;font-weight:600;margin-top:8px}
 .proposal{font-family:var(--display);font-weight:600;font-size:14px;color:var(--rose);margin-top:10px}
 .again{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center}
-.credits{margin-top:8px;font-size:12.5px;color:#3d2a37}
+.astra{margin-top:14px;border-top:3px solid var(--ink);padding-top:10px}
+.astra h3{font-family:var(--display);font-weight:800;font-size:16px;line-height:1.15;color:var(--go)}
+.astra p{font-size:14px;margin-top:4px}
+.go.bonus{background:var(--go);text-decoration:none}
+.credits{margin-top:12px;font-size:13px;color:#3d2a37}
+.credits ul{list-style:none;border-top:1.5px solid var(--line)}
+.credits li{padding:5px 0;border-bottom:1.5px solid var(--line)}
+.credits li b{font-family:var(--display);font-weight:800;color:var(--ink);margin-right:.35em}
+.credits p{margin-top:6px}
 .credits summary{font-weight:700;cursor:pointer;padding:8px 0}
 .nojs{padding:16px;font-size:16px}
 
