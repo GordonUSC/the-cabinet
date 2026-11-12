@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- STYLE: Nontsikelelo Mutiti braid module as a playable system, set in Unbounded and Hanken Grotesk | WHY: the braid is the game's one verb, so three maker strands weaving into one cartridge carries the whole idea without a word of explanation | ALT: Paul Rand tabletop loom with three fixed sockets, if the weave does not read at phone size -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Braid</title>
+<link rel="stylesheet" href="braid.css">
+</head>
+<body>
+<main id="game" class="game" data-phase="pick" data-round="0">
+
+  <header class="hud">
+    <h1 class="mark">Braid</h1>
+    <p class="day" id="day">Saturday</p>
+    <dl class="tally" aria-live="polite">
+      <div><dt>Games shipped</dt><dd id="games">0</dd></div>
+      <div><dt>Trust</dt><dd id="trust">1</dd></div>
+    </dl>
+    <button type="button" class="quiet" id="sound" aria-pressed="false">Sound off</button>
+  </header>
+
+  <section class="stage" id="stage" aria-label="The room">
+    <div class="backdrop" id="backdrop"></div>
+    <p class="cue" id="cue">Your first game starts here.</p>
+    <svg class="weave" id="weave" viewBox="0 0 600 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+    <div class="team" id="team" aria-label="Your team"></div>
+    <img class="cart" id="cart" src="assets/cart/c0.webp" alt="" width="320" height="320" hidden>
+    <p class="say" id="say" role="status" aria-live="polite">Bring three makers together.</p>
+  </section>
+
+  <section class="side">
+    <div class="bench" id="bench" aria-label="Makers"></div>
+    <p class="hint">Tap three makers. Tap one again to change your mind.</p>
+
+    <div class="sheet" id="sheet" hidden>
+      <h2 id="sheet-title">How will your team make it?</h2>
+      <div class="ways" id="ways" role="radiogroup" aria-labelledby="sheet-title"></div>
+      <button type="button" class="go" id="commit" disabled>Choose your approach.</button>
+    </div>
+
+    <div class="result" id="result" hidden>
+      <p class="shipped" id="shipped">A game is out in the world.</p>
+      <ul class="earned" id="earned"></ul>
+      <p class="back" id="back"></p>
+      <button type="button" class="go" id="next">Next</button>
+    </div>
+
+    <div class="end" id="end" hidden>
+      <h2>Look what you made together.</h2>
+      <ol class="reveal" id="reveal">
+        <li><span>Games shipped</span><b id="e-games">0</b></li>
+        <li><span>Trust</span><b id="e-trust">0</b></li>
+        <li><span>Games × trust</span><b id="e-math">0</b></li>
+        <li class="total"><span>Your score</span><b id="e-score">0</b></li>
+      </ol>
+      <p class="came" id="e-came"></p>
+      <p class="best" id="e-best"></p>
+      <p class="proposal">A proposal you can play.</p>
+      <div class="again">
+        <button type="button" class="go" id="replay">Braid again</button>
+        <button type="button" class="quiet" id="pass">Pass it on</button>
+      </div>
+      <details class="credits">
+        <summary>Credits</summary>
+        <p>Designed with dot. Built by Darby with Claude. Art made with Higgsfield. Sound made with ElevenLabs. Cartridge modeled in Blender. The makers are original characters and no one here is a real person. The numbers are game rules, not measurements.</p>
+      </details>
+    </div>
+  </section>
+
+  <noscript><p class="nojs">Braid is a small game and needs JavaScript to play. In it, you bring three makers together, choose how the team works with AI, and ship a game each round.</p></noscript>
+</main>
+<script src="braid.js"></script>
+</body>
+</html>
