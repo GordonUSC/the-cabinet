@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Underway: CEE at 45</title></head><body>
+
+<!-- STYLE: Corita Kent serigraph joy, big warm color shapes and plain-spoken hand-set type | WHY: a love letter to a 45-year community should feel like a celebration banner, and the huge legible type serves a reader who is not a gamer | ALT: Kenya Hara quiet white (rejected: too cool for a thank-you) -->
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..900,100&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Layout: a celebration banner up top, then a single readable column with color "stamps" marking each part of the game, the way a serigraph layers shapes. */
+:root{
+  --paper:#fff8ee; --ink:#231a2e; --soft:#5e5068; --line:#ead9c6;
+  --pink:#e8336d; --orange:#f28b1d; --sun:#f6c445; --blue:#2c6fd6; --teal:#14998a; --plum:#7b3fb0;
+  --card:#ffffff;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1a1320; --ink:#fbf2e6; --soft:#c9b9cf; --line:#3a2c42; --card:#251b2d;
+  --pink:#ff5c8d; --orange:#ffa246; --sun:#ffd76a; --blue:#6aa0ff; --teal:#3fd0bd; --plum:#b98af0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#1a1320; --ink:#fbf2e6; --soft:#c9b9cf; --line:#3a2c42; --card:#251b2d;
+  --pink:#ff5c8d; --orange:#ffa246; --sun:#ffd76a; --blue:#6aa0ff; --teal:#3fd0bd; --plum:#b98af0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:18px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding-block:0 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,4.6vw,40px);font-weight:900;margin-top:56px}
+h3{font-size:24px;font-weight:800}
+p{margin:12px 0 0;max-width:62ch}
+.lbl{font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+.hero{position:relative;overflow:hidden;padding-block:56px 40px}
+.hero .shapes{position:absolute;inset:0;pointer-events:none}
+.hero .shapes i{position:absolute;border-radius:50%;mix-blend-mode:multiply;opacity:.85}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero .shapes i{mix-blend-mode:screen;opacity:.55}}
+:root[data-theme="dark"] .hero .shapes i{mix-blend-mode:screen;opacity:.55}
+.hero .in{position:relative}
+.hero h1{font-size:clamp(64px,15vw,150px);font-weight:900;letter-spacing:-.02em;color:var(--ink)}
+.hero .sub{font-family:var(--display);font-size:clamp(22px,3.4vw,30px);font-weight:700;margin-top:10px;max-width:24ch}
+.hero .by{margin-top:18px;font-size:17px;color:var(--soft);max-width:34ch}
+.minute{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:22px 24px;margin-top:8px;box-shadow:8px 8px 0 var(--sun)}
+.minute p{font-size:20px}
+.minute b{color:var(--pink)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:18px}
+.fact{border-top:6px solid var(--c);padding-top:10px;min-width:0}
+.fact b{font-family:var(--display);font-size:34px;font-weight:900;display:block;line-height:1;color:var(--c)}
+.fact span{font-size:15px;color:var(--soft)}
+.act{display:grid;grid-template-columns:96px 1fr;gap:18px;margin-top:22px;align-items:start}
+.stamp{width:96px;height:96px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:900;font-size:15px;line-height:1.05;padding:8px;transform:rotate(-6deg)}
+.act h3{color:var(--c)}
+.act .when{font-size:15px;font-weight:700;color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.act p{margin-top:8px}
+.act .feel{font-style:italic;color:var(--soft)}
+table{width:100%;border-collapse:collapse;font-size:16px}
+.tbl{overflow-x:auto;margin-top:14px}
+th{text-align:left;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);padding:8px 10px;border-bottom:2px solid var(--ink)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top}
+td b{color:var(--c,var(--ink))}
+.bartle{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px}
+.b{background:var(--card);border:2px solid var(--c);border-radius:14px;padding:14px 16px;min-width:0}
+.b h3{font-size:20px;color:var(--c)}
+.b p{font-size:16px;margin-top:6px}
+.road{list-style:none;padding:0;margin:16px 0 0;border-left:4px solid var(--ink)}
+.road li{position:relative;padding:0 0 18px 22px}
+.road li::before{content:"";position:absolute;left:-12px;top:6px;width:20px;height:20px;border-radius:50%;background:var(--c);border:3px solid var(--paper)}
+.road b{font-family:var(--display);font-size:20px}
+.see{margin-top:26px}.seegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:10px}
+.big{display:block;text-decoration:none;background:var(--pink);color:#fff;border:3px solid var(--ink);border-radius:18px;padding:18px 18px 16px;box-shadow:6px 6px 0 var(--ink)}
+.big b{display:block;font-family:var(--display);font-size:28px;line-height:1.1}.big span{display:block;font-size:17px;line-height:1.35;margin-top:6px}
+.big.alt{background:var(--blue)}.big.plain{background:var(--card);color:var(--ink)}
+@media (max-width:760px){.seegrid{grid-template-columns:1fr}}
+.ask{background:var(--pink);color:#fff;border-radius:18px;padding:22px 24px;margin-top:20px}
+.ask h3{color:#fff}
+.ask ol{margin:10px 0 0;padding-left:22px;font-size:18px}
+.styles{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.sty{border-radius:14px;padding:16px;min-width:0;border:2px solid var(--line);background:var(--card)}
+.sty .sw{display:flex;gap:6px;margin-bottom:8px}
+.sty .sw i{width:28px;height:28px;border-radius:6px;display:block}
+.pick{border-color:var(--teal);box-shadow:6px 6px 0 var(--teal)}
+.note{font-size:15px;color:var(--soft)}
+.card{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:14px}
+.src{font-size:14px;color:var(--soft)}
+.src a{color:var(--blue)}
+@media (max-width:640px){.bartle,.styles{grid-template-columns:1fr}.act{grid-template-columns:72px 1fr}.stamp{width:72px;height:72px;font-size:12px}}
+@media (prefers-reduced-motion:no-preference){.stamp{transition:transform .3s}.act:hover .stamp{transform:rotate(4deg) scale(1.05)}}
+</style>
+
+<div class="wrap">
+<header class="hero">
+  <div class="shapes" aria-hidden="true">
+    <i style="width:360px;height:360px;right:-90px;top:-60px;background:var(--pink)"></i>
+    <i style="width:240px;height:240px;right:150px;top:120px;background:var(--sun)"></i>
+    <i style="width:180px;height:180px;right:-20px;top:230px;background:var(--blue)"></i>
+  </div>
+  <div class="in">
+    <div class="lbl">A game for the 45th anniversary of the Center for Excellence in Education · 1983 to 2028</div>
+    <h1>Underway</h1>
+    <div class="sub">Every Rickoid's summer, played together. A thank-you to Mrs. D.</div>
+    <div class="by">A concept by Gordon Bellamy, RSI '87, with Theresa Loong's film · Draft for Mrs. D and the CEE team · November 2026</div>
+  </div>
+</header>
+
+<section class="minute" aria-labelledby="m-h">
+  <div class="lbl" id="m-h">In one minute</div>
+  <p><b>Underway</b> is a warm, easy game that lets anyone at the 45th Reunion live an RSI summer: a week of classes, five weeks in the lab with a mentor, and Presentation Day. It plays on the big screen at the reunion and on any phone, with <b>one button and no gaming experience needed</b>.</p>
+  <p>Every round adds a light to a map of 63 nations and all 50 states, one for every Rickoid. It ends at Mrs. D's holiday party, where alumni from every decade say thank you in their own voices.</p>
+</section>
+
+<section class="see" aria-labelledby="see-h">
+  <div class="lbl" id="see-h">You asked for a plan. Here it is, and here is the game.</div>
+  <div class="seegrid">
+    <a class="big" href="film.html"><b>Watch it</b><span>A 75-second film of the whole game. Nothing to do but watch.</span></a>
+    <a class="big alt" href="play/"><b>Play it</b><span>The first playable. One tap at a time, about four minutes, and you cannot lose.</span></a>
+    <a class="big plain" href="#road"><b>Read the plan</b><span>The road to 2028, and the four things we need from you.</span></a>
+  </div>
+</section>
+
+<h2>Built on what is true</h2>
+<p>Every story beat comes from CEE's own record. Real names appear only with permission.</p>
+<div class="facts">
+  <div class="fact" style="--c:var(--pink)"><b>$250</b><span>The lecture fee that seeded the Admiral Rickover Foundation, 1983</span></div>
+  <div class="fact" style="--c:var(--orange)"><b>6 weeks</b><span>Classes, five weeks of research, then Presentation Day</span></div>
+  <div class="fact" style="--c:var(--blue)"><b>~3,400</b><span>Rickoids from all 50 states and 63 nations</span></div>
+  <div class="fact" style="--c:var(--teal)"><b>MIT + Stanford</b><span>RSI adds Stanford in 2027, so 2028 has two campuses</span></div>
+  <div class="fact" style="--c:var(--plum)"><b>22</b><span>Double Rickoids: RSI plus the USA Biolympiad finals</span></div>
+</div>
+<p class="note">Note on dates: CEE turns 45 in 2028. RSI began in 1984, so its own 45th is 2029; the game says "CEE's 45th."</p>
+
+<h2>How it plays</h2>
+<p>The game follows the shape of an RSI summer, so every alum knows where they are, and every guest learns what that summer means.</p>
+
+<div class="act" style="--c:var(--pink)"><div class="stamp">The $250 Seed</div><div>
+  <h3>Prologue: The $250 Seed</h3><div class="when">2 minutes · anyone · one tap</div>
+  <p>A single coin. One tap plants it, and time-lapse carries it from 1983 to today: the first RSI class in 1984, the first international students, Bulgaria, Shanghai, Stanford. The tree grows a branch for every class year.</p>
+  <p class="feel">What it should feel like: "Look how far one good idea traveled."</p></div></div>
+
+<div class="act" style="--c:var(--orange)"><div class="stamp">Week One</div><div>
+  <h3>Act I: Week One, Classes</h3><div class="when">3 minutes · learn the one move</div>
+  <p>Quick, playful lessons with professors teach the game's one move: connect an idea to evidence. Every answer earns a notebook page, and nothing is ever failed.</p>
+  <p class="feel">"I can do this."</p></div></div>
+
+<div class="act" style="--c:var(--blue)"><div class="stamp">The Lab</div><div>
+  <h3>Act II: Five Weeks in the Lab</h3><div class="when">10 minutes · the heart of the game</div>
+  <p>Each week is a round. You pick a mentor card, run experiments, and grow two numbers: <b>Insight</b> and <b>Rigor</b>. They multiply only at the end of the week, so careful choices pay off big. Week four is the week the experiment fails, as it always does. You choose: start over, or find what the failure is telling you. Both paths can win.</p>
+  <p class="feel">"That surprise taught me something."</p></div></div>
+
+<div class="act" style="--c:var(--teal)"><div class="stamp">Presentation Day</div><div>
+  <h3>Act III: Presentation Day</h3><div class="when">3 minutes · the standing ovation</div>
+  <p>Present to a panel. Your notebook becomes a poster, the panel asks one good question, and the room applauds. Your poster joins a wall with every player's, and your light joins the map.</p>
+  <p class="feel">"I made something real, and it counts."</p></div></div>
+
+<div class="act" style="--c:var(--plum)"><div class="stamp">The Party</div><div>
+  <h3>The hub: Mrs. D's Holiday Party</h3><div class="when">Always open · stay as long as you like</div>
+  <p>The game's home is a warm living room at the holiday party Rickoids know. Guests from every decade share stories, and each story is an ornament on the tree. The finale is a wall of thank-you messages, recorded by alumni in their own voices, for Mrs. D and the CEE team.</p>
+  <p class="feel">"We are one family across 45 years."</p></div></div>
+
+<h2>Made so Mrs. D enjoys it</h2>
+<div class="card">
+  <p style="margin-top:0"><b>One button, big type, no rush.</b> Every screen works with a single tap, and text is large and high contrast.</p>
+  <p><b>A "Just watch" mode.</b> The whole story can be enjoyed like a film, with a guest playing for her or with her.</p>
+  <p><b>Nothing to lose.</b> No game over. Every path reaches Presentation Day and the party.</p>
+  <p><b>It is about her people.</b> The finale is the community saying thank you to her and her team.</p>
+</div>
+
+<h2>The design, for game makers</h2>
+<p>Built with MDA (mechanics, dynamics, aesthetics) and Bartle's four player types, so experts, newcomers, talkers and competitors all find their place.</p>
+<div class="tbl"><table>
+  <thead><tr><th>Aesthetic (the feeling)</th><th>Dynamic (what happens)</th><th>Mechanic (the rule)</th></tr></thead>
+  <tbody>
+    <tr style="--c:var(--plum)"><td><b>Fellowship</b></td><td>Strangers compare their summers and find each other</td><td>Pass-the-device play, class-year tags, story ornaments</td></tr>
+    <tr style="--c:var(--blue)"><td><b>Discovery</b></td><td>Every run uncovers another decade of CEE history</td><td>Map lights, unlockable class-year rooms, archive cards</td></tr>
+    <tr style="--c:var(--orange)"><td><b>Challenge</b></td><td>Careful choices beat lucky ones in the lab</td><td>Insight x Rigor, multiplied at week's end; the week-four failure</td></tr>
+    <tr style="--c:var(--teal)"><td><b>Expression</b></td><td>Every poster is personal</td><td>Choose a field, mentor and title; posters saved to the wall</td></tr>
+  </tbody>
+</table></div>
+
+<div class="bartle">
+  <div class="b" style="--c:var(--orange)"><h3>Achievers</h3><p>An Excellence score, a "Rickoid of the Year" badge for the best run of each night, and the Double Rickoid challenge (lab plus a biology bonus round).</p></div>
+  <div class="b" style="--c:var(--blue)"><h3>Explorers</h3><p>45 years to uncover: class-year rooms, the map of 63 nations, archive cards from CEE's history.</p></div>
+  <div class="b" style="--c:var(--plum)"><h3>Socializers</h3><p>The holiday party hub, story ornaments, pass the phone to a friend, and the thank-you wall.</p></div>
+  <div class="b" style="--c:var(--pink)"><h3>Competitors</h3><p>Friendly class-versus-class rallies on the big screen ("'87 vs '99"), with every point lighting the shared map. Rivalry that only adds light.</p></div>
+</div>
+
+<h2>Two looks to choose from</h2>
+<div class="styles">
+  <div class="sty pick">
+    <div class="sw"><i style="background:#f4ecd8"></i><i style="background:#2c6fd6"></i><i style="background:#e8336d"></i><i style="background:#231a2e"></i></div>
+    <h3>A. The Lab Notebook (recommended)</h3>
+    <p>Everything drawn on graph paper, in pencil and colored ink, like the notebook every Rickoid kept that summer. Warm, readable, and personal.</p>
+  </div>
+  <div class="sty">
+    <div class="sw"><i style="background:#0d1330"></i><i style="background:#f6c445"></i><i style="background:#6aa0ff"></i><i style="background:#ffffff"></i></div>
+    <h3>B. The Constellation</h3>
+    <p>A night sky over the campuses, every Rickoid a star. Majestic, and the natural finale for the map, even if A is the main look.</p>
+  </div>
+</div>
+
+<h2>How it gets made</h2>
+<div class="tbl"><table>
+  <thead><tr><th>Part</th><th>Tool</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>3D rooms: the classroom, the lab, the presentation hall, the holiday living room</td><td>Blender</td><td>Small, handcrafted dioramas; stylized, no logos</td></tr>
+    <tr><td>Characters and illustrations</td><td>Higgsfield</td><td>Archetypes from every decade; real people only with their consent</td></tr>
+    <tr><td>Music, sound and narrator</td><td>ElevenLabs</td><td>An original score and a designed narrator voice. Alumni tributes use their real recorded voices, never a copy of anyone's voice</td></tr>
+    <tr><td>The game itself</td><td>A web game (Three.js)</td><td>Runs on the reunion screen and any phone by QR code, nothing to install; an offline kiosk copy as backup</td></tr>
+    <tr><td>Opening and closing films</td><td>Theresa Loong</td><td>Tree's video becomes the opening and the finale, sharing one look with the game</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="road">The road to 2028</h2>
+<ul class="road">
+  <li style="--c:var(--pink)"><b>November 2026 · First playable (done)</b><br>The whole summer plays from the $250 seed to the holiday party. It is linked at the top of this page.</li>
+  <li style="--c:var(--plum)"><b>December 2026 · Holiday party</b><br>With your blessing, begin inviting alumni to share stories and thank-you recordings.</li>
+  <li style="--c:var(--orange)"><b>Winter to spring 2027 · Playtests</b><br>Small groups of alumni from different decades play it and tell us what is true and what is missing.</li>
+  <li style="--c:var(--teal)"><b>Summer 2027 · RSI at MIT and Stanford</b><br>Current students playtest it during the first summer with two campuses.</li>
+  <li style="--c:var(--blue)"><b>Fall 2027 · Boston Bash</b><br>Alumni preview and a story drive for every class year.</li>
+  <li style="--c:var(--sun)"><b>Spring 2028 · Content locked</b><br>Final art, music, voices and Tree's film in place.</li>
+  <li style="--c:var(--pink)"><b>2028 · The 45th Reunion</b><br>The launch on the big screen, then open to every Rickoid online.</li>
+</ul>
+
+<section class="ask">
+  <h3>What we need from Mrs. D and the CEE team</h3>
+  <ol>
+    <li>A yes to the concept and the name <i>Underway</i>.</li>
+    <li>Permission to invite alumni to share stories and recordings, and to show real names only with each person's consent.</li>
+    <li>The reunion date and venue, when known.</li>
+    <li>A budget conversation, side by side with Tree's plan for the film.</li>
+  </ol>
+</section>
+
+<h2>Design review, honestly</h2>
+<div class="card">
+  <p style="margin-top:0"><b>Status:</b> a first playable exists as of November 2026. It has been tested by script on a phone and a desktop in two browsers, and not yet with people, so how it feels is still unknown.</p>
+  <p><b>Biggest risk:</b> stories and consent. The game is only as warm as what alumni share, and every real name needs a yes.</p>
+  <p><b>First experiment:</b> five alumni from different decades play the first playable while we watch, to see whether the Lab is fun and whether the summer feels true.</p>
+  <p><b>Still to gather:</b> lines from Mrs. D's book <i>Rickover: Underway, My Way</i>, and RSI traditions only alumni know. Gordon's own RSI '87 memories come first.</p>
+</div>
+
+<p class="src" style="margin-top:40px">Sources: CEE 35th Anniversary Program (cee.org PDF); cee.org pages for RSI, alumni events, Double Rickoids, Rickoids of the Year, and the CEE President; Purdue College of Liberal Arts, Distinguished Alumni 2008; Congressional Record, Nov 15, 2023. CEE's numbers change yearly; confirm counts before 2028.</p>
+</div>
+
+</body></html>

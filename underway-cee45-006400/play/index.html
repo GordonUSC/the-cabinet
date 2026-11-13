@@ -1,0 +1,495 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex,nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}[hidden]{display:none!important}</style></head><body><title>Underway</title>
+<!-- STYLE: Lab Notebook (graph paper, pencil, colored ink) with a Constellation finale | WHY: every Rickoid kept a notebook that summer, and big handwritten type on paper is warm and readable for a guest who is not a gamer | ALT: all-Constellation night sky (kept only for the finale: too dark for long reading) -->
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/"}}</script>
+<style>
+/* Layout: the room or drawing on top (left on wide screens), the notebook page below with one big choice at a time. One committed look: paper. */
+:root{--paper:#f6eedb;--grid:#cfe0ea;--ink:#22304f;--pencil:#5b6377;--card:#fffaf0;--line:#d9ccb0;
+--c1:#e8336d;--c2:#f28b1d;--c3:#14998a;--c4:#2c6fd6;--c5:#7b3fb0;--gold:#e0a21a;
+--hand:"Kalam","Comic Sans MS","Segoe Print",cursive;--body:"Atkinson Hyperlegible",ui-sans-serif,system-ui,sans-serif}
+*{box-sizing:border-box}html,body{height:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:19px;line-height:1.5;
+background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:26px 26px}
+#app{min-height:100%;display:grid;grid-template-rows:minmax(220px,42vh) 1fr;max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 20px;gap:12px}
+#stage{position:relative;border-radius:18px;overflow:hidden;border:3px solid var(--ink);background:var(--card);min-width:0}
+#stage canvas,#stage img{position:absolute;inset:0;width:100%;height:100%;display:block}
+#art{object-fit:cover}#stars{pointer-events:none}
+#panel{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:18px 20px 22px;min-width:0;box-shadow:6px 6px 0 var(--line);border-left:10px double var(--c1)}
+#eyebrow{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pencil)}
+h1{font-family:var(--hand);font-size:clamp(34px,6vw,54px);line-height:1.05;margin:4px 0 6px;text-wrap:balance}
+p{margin:8px 0 0;max-width:60ch}.lead{font-size:22px}.small{font-size:16px;color:var(--pencil)}
+#choices{display:grid;gap:10px;margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.choice{font:inherit;text-align:left;min-height:64px;padding:12px 16px;border-radius:14px;border:3px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;display:grid;gap:2px;min-width:0}
+.choice b{font-family:var(--hand);font-size:24px;line-height:1.15}.choice span{font-size:16px;color:var(--pencil)}
+.choice.primary{background:var(--c4);color:#fff;border-color:var(--ink)}.choice.primary span{color:#e6eeff}
+.choice:hover:not(:disabled){transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.choice:focus-visible{outline:4px solid var(--gold);outline-offset:3px}
+.choice:disabled{opacity:.45;cursor:not-allowed}
+#hud{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:10px 0 2px;padding:10px 12px;border:2px dashed var(--pencil);border-radius:12px;font-variant-numeric:tabular-nums}
+.stat,.goal{display:grid}.stat span,.goal span,.reveal span{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pencil)}
+.stat b,.goal b{font-family:var(--hand);font-size:30px;line-height:1}.stat.i b{color:var(--c1)}.stat.r b{color:var(--c3)}.stat.s b{color:var(--c4)}.goal b{color:var(--gold)}
+.x{font-family:var(--hand);font-size:26px;color:var(--pencil)}.acts{margin-left:auto;color:var(--c2);font-size:22px;letter-spacing:4px}
+.stamps{color:var(--gold);letter-spacing:2px;white-space:nowrap}.stamps i{color:var(--line);font-style:normal}
+.reveal{display:flex;flex-wrap:wrap;align-items:end;gap:10px 16px;margin-top:8px;font-variant-numeric:tabular-nums}
+.reveal div{display:grid}.reveal b{font-family:var(--hand);font-size:44px;line-height:1}.reveal .big b{font-size:72px;color:var(--c4)}
+.rings{display:flex;gap:8px;margin-top:14px}.rings i{width:22px;height:22px;border-radius:50%;border:3px solid var(--ink);background:#fff}.rings i.on{background:var(--c3)}
+.poster{border:3px solid var(--ink);border-radius:8px;background:#fff;padding:14px 16px;max-width:460px;display:grid;gap:4px;transform:rotate(-1deg);box-shadow:5px 5px 0 var(--line)}
+.poster span{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c1)}.poster b{font-family:var(--hand);font-size:26px;line-height:1.1}.poster em{font-style:normal;color:var(--pencil)}
+.poster.sm{transform:none}.poster.sm b{font-size:20px}.wall,.arch{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px}
+.ac{border:2px dashed var(--pencil);border-radius:10px;padding:10px 12px;color:var(--pencil)}.ac.on{border:3px solid var(--ink);background:#fff;color:var(--ink)}.ac b{font-family:var(--hand);font-size:22px}.ac p{font-size:16px;margin:2px 0 0}
+.tbd{border:3px dashed var(--c2);border-radius:12px;padding:12px 14px;margin-top:12px;background:#fff7e8}.tbd b{color:#a85a00}
+.orn{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}.orn li{padding:10px 14px 10px 44px;border-radius:999px;border:3px solid var(--ink);background:#fff;position:relative;font-family:var(--hand);font-size:21px}
+.orn li::before{content:"";position:absolute;left:12px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;background:var(--c)}
+.rally{display:grid;gap:8px;margin-top:10px}.rally div{display:grid;grid-template-columns:90px 1fr 70px;gap:10px;align-items:center}.rally i{height:22px;border-radius:6px;background:var(--c5);border:2px solid var(--ink);display:block}.rally b{font-variant-numeric:tabular-nums;text-align:right}
+#watching{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:15px}
+@media (min-width:900px){#app{grid-template-rows:1fr;grid-template-columns:1.05fr 1fr;align-items:stretch;height:100%}#stage{min-height:420px}#panel{overflow:auto}}
+@media (prefers-reduced-motion:reduce){.choice:hover:not(:disabled){transform:none}}
+</style>
+<div id="app">
+  <div id="stage"><img id="art" src="assets/art_title.jpg" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><canvas id="room" role="img" hidden></canvas><canvas id="stars" hidden aria-hidden="true"></canvas></div>
+  <main id="panel">
+    <div id="eyebrow">For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028</div>
+    <h1 id="title">Underway</h1>
+    <div id="hud" hidden></div>
+    <div id="body"><p class="lead">Every Rickoid's summer, played together. One tap at a time. You cannot lose.</p>
+      <noscript><p><b>This game needs JavaScript to play.</b> The story: in 1983 a $250 lecture fee seeded the Center for Excellence in Education. Each summer since 1984, students spend a week in classes, five weeks in a lab with a mentor, and then present their research. About 3,400 Rickoids from all 50 states and 63 nations have made that journey. This game lets you live one summer, and ends with a thank-you to Mrs. D and the CEE team.</p></noscript>
+    </div>
+    <div id="choices"></div>
+  </main>
+</div>
+<div id="watching" hidden>Watching. Tap the picture to take over.</div>
+<script type="module">
+const L = (() => {
+// Underway: pure game logic (no DOM). Shared by the page and the balance simulator.
+const TARGETS = [38, 135, 300, 480, 820]; // week 1..5, visible to the player
+const ACTIONS_PER_WEEK = 3;
+
+const FIELDS = [
+  { id: 'math', name: 'Mathematics', mentor: 'math' },
+  { id: 'bio', name: 'Biology', mentor: 'bio' },
+  { id: 'cs', name: 'Computer Science', mentor: 'cs' },
+  { id: 'eng', name: 'Engineering', mentor: 'eng' },
+  { id: 'phys', name: 'Physics', mentor: 'math' },
+  { id: 'chem', name: 'Chemistry', mentor: 'bio' },
+];
+
+const MENTORS = {
+  math: { name: 'The Theorist', art: 'art_mentor_math.jpg', line: 'Prove it twice, then once more.', gain: { insight: 1, rigor: 2 } },
+  bio: { name: 'The Experimentalist', art: 'art_mentor_bio.jpg', line: 'Let the data surprise you.', gain: { insight: 3, rigor: 0 } },
+  cs: { name: 'The Builder', art: 'art_mentor_cs.jpg', line: 'Make it run, then make it right.', gain: { insight: 2, rigor: 1 } },
+  eng: { name: 'The Tinkerer', art: 'art_mentor_eng.jpg', line: 'Test it until it stops breaking.', gain: { insight: 1, rigor: 2 } },
+};
+
+const UPGRADES = [
+  { id: 'partner', name: 'Lab partner', text: '+1 Rigor at the start of every week.' },
+  { id: 'lounge', name: 'Late nights in the lounge', text: '+1 action every week. Lose 1 Rigor now.' },
+  { id: 'notebook', name: 'A careful notebook', text: 'Rigor counts 1.5 times at week\'s end.' },
+  { id: 'question', name: 'One good question', text: '+3 Insight right now.' },
+  { id: 'office', name: 'Office hours', text: 'Ask your mentor twice a week.' },
+  { id: 'wind', name: 'Second wind', text: 'Insight counts 1.5 times at week\'s end.' },
+  { id: 'care', name: 'Care package from home', text: '+2 Insight and +2 Rigor right now.' },
+];
+
+function newRun(fieldId, rng = Math.random) {
+  const f = FIELDS.find((x) => x.id === fieldId) || FIELDS[0];
+  return { field: f.id, mentor: f.mentor, insight: 2, rigor: 2, week: 1, actionsLeft: ACTIONS_PER_WEEK, mentorAsks: 0,
+    upgrades: [], weekScores: [], stamps: 0, total: 0, failChoice: null, log: [], rng };
+}
+
+const has = (s, id) => s.upgrades.includes(id);
+
+function startWeek(s) {
+  s.actionsLeft = ACTIONS_PER_WEEK + (has(s, 'lounge') ? 1 : 0);
+  s.mentorAsks = 0;
+  if (has(s, 'partner')) s.rigor += 1;
+  if (s.week === 4 && !s.failed) { s.failed = true; s.lostInsight = Math.floor(s.insight / 2); s.insight -= s.lostInsight; }
+  return s;
+}
+
+function availableActions(s) {
+  const maxAsk = has(s, 'office') ? 2 : 1;
+  const g = MENTORS[s.mentor].gain;
+  return [
+    { id: 'experiment', name: 'Run an experiment', text: '+3 Insight. Sometimes a surprise adds 2 more.', ok: true },
+    { id: 'check', name: 'Check your work', text: '+2 Rigor.', ok: true },
+    { id: 'mentor', name: 'Ask your mentor', text: `+${g.insight} Insight, +${g.rigor} Rigor. ${maxAsk === 2 ? 'Twice a week.' : 'Once a week.'}`, ok: s.mentorAsks < maxAsk },
+    { id: 'read', name: 'Read the literature', text: '+1 Insight, +1 Rigor.', ok: true },
+  ];
+}
+
+function act(s, id) {
+  if (s.actionsLeft <= 0) return null;
+  let out = { insight: 0, rigor: 0, surprise: false };
+  if (id === 'experiment') { out.insight = 3; if (s.rng() < 0.3) { out.insight += 2; out.surprise = true; } }
+  else if (id === 'check') out.rigor = 2;
+  else if (id === 'read') { out.insight = 1; out.rigor = 1; }
+  else if (id === 'mentor') {
+    const maxAsk = has(s, 'office') ? 2 : 1;
+    if (s.mentorAsks >= maxAsk) return null;
+    s.mentorAsks += 1; out = { ...out, ...MENTORS[s.mentor].gain };
+  } else return null;
+  s.insight += out.insight; s.rigor += out.rigor; s.actionsLeft -= 1;
+  return out;
+}
+
+function weekScore(s) {
+  const i = s.insight * (has(s, 'wind') ? 1.5 : 1);
+  const r = s.rigor * (has(s, 'notebook') ? 1.5 : 1);
+  return { i, r, score: Math.floor(i * r), target: TARGETS[s.week - 1] };
+}
+
+function endWeek(s) {
+  const w = weekScore(s);
+  const stamp = w.score >= w.target;
+  s.weekScores.push(w.score); s.total += w.score; if (stamp) s.stamps += 1;
+  s.week += 1;
+  return { ...w, stamp };
+}
+
+function offerUpgrades(s) {
+  const pool = UPGRADES.filter((u) => !has(s, u.id));
+  const pick = [];
+  while (pick.length < 3 && pool.length) pick.push(pool.splice(Math.floor(s.rng() * pool.length), 1)[0]);
+  return pick;
+}
+
+function takeUpgrade(s, id) {
+  s.upgrades.push(id);
+  if (id === 'lounge') s.rigor = Math.max(1, s.rigor - 1);
+  if (id === 'question') s.insight += 3;
+  if (id === 'care') { s.insight += 2; s.rigor += 2; }
+}
+
+// Week 4: the experiment failed. Both paths can still win.
+const FAIL_ODDS = 0.6;
+function resolveFailure(s, choice) {
+  s.failChoice = choice;
+  if (choice === 'restart') { s.rigor += 4; return { kind: 'restart', rigor: 4 }; }
+  if (s.rng() < FAIL_ODDS) { const back = s.lostInsight + 4; s.insight += back; return { kind: 'found', insight: back }; }
+  s.insight += 1; s.rigor += 1; return { kind: 'learned', insight: 1, rigor: 1 };
+}
+
+function greedyAction(s) {
+  // The move a careful player makes: keep Insight and Rigor balanced, mentor first.
+  const acts = availableActions(s);
+  if (acts.find((a) => a.id === 'mentor').ok) return 'mentor';
+  return s.insight <= s.rigor * 1.3 ? 'experiment' : 'check';
+}
+
+return {TARGETS, ACTIONS_PER_WEEK, FIELDS, MENTORS, UPGRADES, newRun, startWeek, availableActions, act, weekScore, endWeek, offerUpgrades, takeUpgrade, FAIL_ODDS, resolveFailure, greedyAction};
+})();
+// Underway: screens and flow. Logic lives in logic.js (inlined at build as L).
+const $ = (s) => document.querySelector(s);
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('underway.' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('underway.' + k, JSON.stringify(v)); } catch (e) { /* private window: play on */ } },
+};
+
+const ARCHIVE = [
+  { id: 'founded', t: '1983', b: 'Admiral H.G. Rickover and Joann P. DiGennaro found the Center for Excellence in Education. It is first called the Admiral Rickover Foundation.' },
+  { id: 'seed', t: 'The $250 seed', b: 'By CEE\'s own account, its funding began with the $250 Admiral Rickover was paid for a university lecture.' },
+  { id: 'rsi', t: '1984', b: 'The first summer of what becomes the Research Science Institute. It begins as the Rickover Science Institute.' },
+  { id: 'summer', t: 'Six weeks', b: 'A week of classes, a five-week research internship with a mentor, then written and oral presentations. About 100 students come to MIT each summer.' },
+  { id: 'stanford', t: '2027', b: 'RSI grows to a second campus, with about 50 young scholars at Stanford.' },
+  { id: 'rickoids', t: 'Rickoids', b: 'CEE\'s name for RSI alumni, after Admiral Rickover. About 3,400 of them, from all 50 states and 63 nations.' },
+  { id: 'double', t: 'Double Rickoids', b: 'Alumni of both RSI and the USA Biolympiad finals. Only 22 people hold the title.' },
+  { id: 'roty', t: 'Rickoids of the Year', b: 'CEE has named Rickoids of the Year for every class from 1984 to 2018.' },
+  { id: 'party', t: 'The holiday party', b: 'Mrs. D hosts a holiday party at her home each year, with alumni from every decade. Boston has its own Bash.' },
+  { id: 'broad', t: '35 and 40', b: 'The 35th and 40th anniversaries were weekends at the Broad Institute, with alumni talks and medals for excellence.' },
+];
+const TIMELINE = [
+  [1983, 'A $250 lecture fee seeds a new foundation.'], [1984, 'The first summer of research begins.'],
+  [2001, 'A sister institute opens in Bulgaria.'], [2018, 'The 35th: nearly 300 alumni gather at the Broad.'],
+  [2023, 'The 40th, celebrated on the Senate floor.'], [2027, 'Stanford joins MIT as a summer home.'], [2028, 'Forty-five years. Underway.'],
+];
+const QUIZ = [
+  { q: 'Your claim: "This plant grows faster in blue light." Which evidence fits?', a: ['Heights measured every day, in blue light and in white', 'A friend says blue is a nice color'], good: 0 },
+  { q: 'Your claim: "This sorting method is faster." Which evidence fits?', a: ['It feels faster when I watch it', 'Timings on the same data, run many times'], good: 1 },
+  { q: 'Your claim: "The bridge design holds more weight." Which evidence fits?', a: ['Load tests on three builds of each design', 'The drawing looks stronger'], good: 0 },
+];
+const TITLES = {
+  math: ['A Tighter Bound for Tiling Problems', 'Counting Paths on Curious Grids', 'Symmetry in Small Graphs'],
+  bio: ['How Light Color Shapes Seedling Growth', 'Mapping a Protein\'s Busy Day', 'Tiny Signals in Cell Repair'],
+  cs: ['Sorting Faster with Less Memory', 'Teaching a Model to Say "I\'m Not Sure"', 'Finding Bugs Before They Hatch'],
+  eng: ['A Lighter Bridge That Holds More', 'A Robot Hand That Learns Grip', 'Cooling Chips with Clever Fins'],
+  phys: ['Listening for Ripples in Noisy Data', 'Why This Pendulum Misbehaves', 'Light Through Twisted Layers'],
+  chem: ['A Cleaner Route to a Useful Catalyst', 'Colors That Report Acidity', 'Watching a Reaction Change Its Mind'],
+};
+
+let S = { mode: 'play', year: null, run: null, poster: null, watchTimer: null };
+window.__underway = { get state() { return document.body.dataset.scene; }, get S() { return S; } };
+
+const archive = new Set(store.get('archive', []));
+function unlock(...ids) { let n = 0; ids.forEach((i) => { if (!archive.has(i)) { archive.add(i); n++; } }); store.set('archive', [...archive]); return n; }
+
+// ---------- stage (3D room or illustration) ----------
+let three = null;
+async function initThree() {
+  try {
+    const THREE = await import('three');
+    const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
+    const canvas = $('#room');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    const scene = new THREE.Scene();
+    const cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xd9c8b0, 1.15));
+    const sun = new THREE.DirectionalLight(0xfff1dc, 1.6); sun.position.set(6, 10, 7); scene.add(sun);
+    const holder = new THREE.Group(); scene.add(holder);
+    const cache = {};
+    three = { THREE, renderer, scene, cam, holder, cache, loader: new GLTFLoader(), t: 0, current: null };
+    const fit = () => { const r = $('#stage').getBoundingClientRect(); if (!r.width) return; renderer.setSize(r.width, r.height, false); cam.aspect = r.width / r.height; cam.updateProjectionMatrix(); };
+    new ResizeObserver(fit).observe($('#stage')); fit();
+    const tick = (ms) => {
+      if (three.current && !$('#room').hidden) {
+        const a = REDUCED ? 0.78 : 0.78 + Math.sin(ms / 4200) * 0.28;
+        cam.position.set(Math.cos(a) * 12.5, 7.4, Math.sin(a) * 12.5); cam.lookAt(0, 1.1, 0);
+        renderer.render(scene, cam);
+      }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  } catch (e) { three = null; console.warn('3D unavailable, using illustrations', e); }
+}
+const ROOM_FALLBACK = { classroom: 'art_title.jpg', lab: 'art_title.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
+async function stage({ room, art, alt }) {
+  const img = $('#art'), cv = $('#room');
+  if (room && three) {
+    try {
+      if (!three.cache[room]) { const t = await (await fetch('assets/' + room + '.b64.txt')).text(); const bin = Uint8Array.from(atob(t.trim()), (c) => c.charCodeAt(0)); three.cache[room] = await new Promise((ok, no) => three.loader.parse(bin.buffer, '', (g) => ok(g.scene), no)); }
+      three.holder.clear(); three.holder.add(three.cache[room]); three.current = room;
+      cv.hidden = false; img.hidden = true; cv.setAttribute('aria-label', alt || room); return;
+    } catch (e) { console.warn('room failed', room, e); }
+  }
+  const src = art || ROOM_FALLBACK[room];
+  cv.hidden = true; img.hidden = false; img.src = 'assets/' + src; img.alt = alt || '';
+}
+
+// ---------- page (the notebook panel) ----------
+function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto }) {
+  clearTimeout(S.watchTimer);
+  document.body.dataset.scene = scene;
+  $('#eyebrow').textContent = eyebrow || '';
+  $('#title').textContent = title || '';
+  $('#body').innerHTML = html;
+  const box = $('#choices'); box.innerHTML = '';
+  choices.forEach((c, i) => {
+    const b = document.createElement('button');
+    b.className = 'choice' + (c.primary ? ' primary' : '') + (c.card ? ' card' : '');
+    b.disabled = c.ok === false; b.dataset.id = c.id || 'c' + i;
+    b.innerHTML = `<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
+    b.addEventListener('click', () => { clearTimeout(S.watchTimer); c.fn(); });
+    box.appendChild(b);
+  });
+  renderHud(hud);
+  $('#panel').scrollTop = 0;
+  const first = box.querySelector('button:not([disabled])'); if (first) first.focus({ preventScroll: true });
+  if (S.mode === 'watch') {
+    const pick = (auto !== undefined ? choices[auto] : choices.find((c) => c.primary && c.ok !== false)) || choices.find((c) => c.ok !== false);
+    if (pick) S.watchTimer = setTimeout(() => pick.fn(), REDUCED ? 2600 : 3400);
+  }
+  $('#watching').hidden = S.mode !== 'watch';
+}
+function renderHud(on) {
+  const h = $('#hud'); const r = S.run;
+  if (!on || !r) { h.hidden = true; return; }
+  h.hidden = false;
+  const w = L.weekScore(r);
+  h.innerHTML = `<div class="stat i"><span>Insight</span><b>${fmt(w.i)}</b></div><div class="x">×</div><div class="stat r"><span>Rigor</span><b>${fmt(w.r)}</b></div><div class="x">=</div><div class="stat s"><span>This week</span><b>${w.score}</b></div><div class="goal"><span>Goal</span><b>${w.target ?? ''}</b></div><div class="acts" aria-label="${r.actionsLeft} actions left">${'●'.repeat(Math.max(0, r.actionsLeft))}<i>${'●'.repeat(0)}</i></div>`;
+}
+const fmt = (n) => (Number.isInteger(n) ? n : n.toFixed(1));
+const stamps = (n, of = 5) => `<span class="stamps" aria-label="${n} of ${of} stamps">${'★'.repeat(n)}<i>${'★'.repeat(of - n)}</i></span>`;
+
+// ---------- scenes ----------
+function title() {
+  S.run = null; S.mode = 'play';
+  stage({ art: 'art_title.jpg', alt: 'An open lab notebook. A small tree grows from its page, its roots holding a single coin.' });
+  const best = store.get('best', null);
+  page({ scene: 'title', hud: false, eyebrow: 'For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028', title: 'Underway',
+    html: `<p class="lead">Every Rickoid's summer, played together. One tap at a time. You cannot lose.</p>${best ? `<p class="small">Best run on this device: <b>${best.total}</b> ${stamps(best.stamps)}</p>` : ''}`,
+    choices: [
+      { id: 'start', label: 'Begin the summer', sub: 'About 12 minutes', primary: true, fn: () => who() },
+      { id: 'watch', label: 'Just watch', sub: 'The story plays itself. Tap anytime to take over.', fn: () => { S.mode = 'watch'; who(); } },
+      { id: 'party', label: 'Go to the holiday party', sub: 'Stories, posters and the archive', fn: () => party() },
+    ] });
+}
+function who() {
+  const yrs = ['1980s', '1990s', '2000s', '2010s', '2020s'];
+  page({ scene: 'who', hud: false, eyebrow: 'Before we start', title: 'When was your summer?', html: '<p>Your points join your decade in the class rally. Guests are welcome too.</p>',
+    auto: 5,
+    choices: [...yrs.map((y) => ({ id: 'y' + y, label: y, card: true, fn: () => { S.year = y; seed(); } })), { id: 'guest', label: 'I\'m a friend of CEE', card: true, fn: () => { S.year = 'Friends'; seed(); } }] });
+}
+function seed() {
+  stage({ art: 'art_seed.jpg', alt: 'A single coin planted in soil, with a small green sprout.' });
+  page({ scene: 'seed', hud: false, eyebrow: 'Prologue', title: 'The $250 seed',
+    html: '<p>In 1983 an admiral was paid $250 for a lecture. He and Joann DiGennaro planted it.</p><p class="small">Tap to plant the coin.</p>',
+    choices: [{ id: 'plant', label: 'Plant it', primary: true, fn: () => grow(0) }] });
+}
+function grow(i) {
+  unlock('founded', 'seed', 'rsi');
+  const [yr, line] = TIMELINE[i];
+  const last = i === TIMELINE.length - 1;
+  if (i === 2) stage({ art: 'art_title.jpg', alt: 'The seed has become a tree growing from a notebook.' });
+  page({ scene: 'grow', hud: false, eyebrow: 'Prologue · ' + (i + 1) + ' of ' + TIMELINE.length, title: String(yr),
+    html: `<p class="lead">${line}</p><div class="rings" aria-hidden="true">${TIMELINE.map((t, k) => `<i class="${k <= i ? 'on' : ''}"></i>`).join('')}</div>`,
+    choices: [{ id: 'next', label: last ? 'Start Week One' : 'Keep growing', primary: true, fn: () => (last ? field() : grow(i + 1)) }] });
+}
+function field() {
+  stage({ room: 'classroom', alt: 'A small classroom with a chalkboard, six desks and a globe.' });
+  page({ scene: 'field', hud: false, eyebrow: 'Week One', title: 'Choose your field', html: '<p>What will you spend your summer on?</p>', auto: 1,
+    choices: L.FIELDS.map((f) => ({ id: 'f-' + f.id, label: f.name, card: true, fn: () => { S.run = L.newRun(f.id); quiz(0, 0); } })) });
+}
+function quiz(i, right) {
+  if (i >= QUIZ.length) { unlock('summer'); return mentor(right); }
+  const q = QUIZ[i];
+  page({ scene: 'quiz', hud: false, eyebrow: `Week One · Classes · ${i + 1} of ${QUIZ.length}`, title: 'Connect the idea to the evidence', html: `<p class="lead">${q.q}</p>`, auto: q.good,
+    choices: q.a.map((a, k) => ({ id: 'q' + k, label: a, card: true, fn: () => quizAnswer(i, right, k === q.good) })) });
+}
+function quizAnswer(i, right, ok) {
+  page({ scene: 'quiz-result', hud: false, eyebrow: 'Week One · Classes', title: ok ? 'That\'s evidence.' : 'A page for the notebook.',
+    html: ok ? '<p>You measured, compared and repeated. That is the whole move. <b>+1 Insight for the lab.</b></p>' : '<p>Opinions are a start. Evidence is something you can measure and repeat. You\'ll use that all summer.</p>',
+    choices: [{ id: 'next', label: 'Next', primary: true, fn: () => quiz(i + 1, right + (ok ? 1 : 0)) }] });
+}
+function mentor(right) {
+  const r = S.run; r.insight += right; const m = L.MENTORS[r.mentor];
+  stage({ art: m.art, alt: 'A hand-drawn portrait of your mentor, ' + m.name + ', a fictional character.' });
+  page({ scene: 'mentor', hud: false, eyebrow: 'The Lab · five weeks', title: 'Meet your mentor: ' + m.name,
+    html: `<p class="lead">"${m.line}"</p><p>Each week you get three actions. <b>Insight × Rigor</b> is multiplied at week's end. Beat the goal to earn a stamp. Miss it and the summer still goes on.</p><p class="small">Classes gave you +${right} Insight.</p>`,
+    choices: [{ id: 'go', label: 'Walk into the lab', primary: true, fn: () => week() }] });
+}
+function week() {
+  const r = S.run; L.startWeek(r);
+  if (r.week === 4 && r.failChoice === null) return failure();
+  stage({ room: 'lab', alt: 'A lab with a bench of colored flasks, a microscope and a work table.' });
+  turn();
+}
+function turn(note = '') {
+  const r = S.run;
+  if (r.actionsLeft <= 0) return weekEnd();
+  const acts = L.availableActions(r);
+  const g = L.greedyAction(r);
+  page({ scene: 'lab', eyebrow: `The Lab · Week ${r.week} of 5`, title: note || 'What will you do?', html: `<p class="small">${r.actionsLeft} action${r.actionsLeft === 1 ? '' : 's'} left this week. ${stamps(r.stamps)}</p>`,
+    auto: acts.findIndex((a) => a.id === g),
+    choices: acts.map((a) => ({ id: 'a-' + a.id, label: a.name, sub: a.text, card: true, ok: a.ok, fn: () => { const o = L.act(r, a.id); turn(o.surprise ? 'A surprise in the data! +' + o.insight + ' Insight' : gain(o)); } })) });
+}
+const gain = (o) => [o.insight ? '+' + o.insight + ' Insight' : '', o.rigor ? '+' + o.rigor + ' Rigor' : ''].filter(Boolean).join(', ');
+function weekEnd() {
+  const r = S.run; const wk = r.week; const res = L.endWeek(r);
+  page({ scene: 'week-end', hud: false, eyebrow: `The Lab · Week ${wk} of 5`, title: 'The week adds up',
+    html: `<div class="reveal" aria-live="polite"><div><span>Insight</span><b id="rv-i">${fmt(res.i)}</b></div><div class="x">×</div><div><span>Rigor</span><b id="rv-r">${fmt(res.r)}</b></div><div class="x">=</div><div class="big"><span>Week ${wk}</span><b id="rv-s">${REDUCED ? res.score : 0}</b></div></div><p id="rv-msg" class="lead" ${REDUCED ? '' : 'style="visibility:hidden"'}>${res.stamp ? `Goal ${res.target} cleared. A stamp for your notebook! ${stamps(r.stamps)}` : `Goal was ${res.target}. No stamp this week, and the work still counts. ${stamps(r.stamps)}`}</p>`,
+    choices: [{ id: 'next', label: wk === 5 ? 'Presentation Day' : 'Next', primary: true, fn: () => (wk === 5 ? present() : wk <= 3 ? upgrade() : week()) }] });
+  if (!REDUCED) countUp($('#rv-s'), res.score, 900, () => { const m = $('#rv-msg'); if (m) m.style.visibility = 'visible'; });
+  if (wk === 1) unlock('stanford');
+}
+function countUp(el, to, ms, done) { const t0 = performance.now(); const f = (t) => { const k = Math.min(1, (t - t0) / ms); if (!el.isConnected) return; el.textContent = Math.floor(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); else { el.textContent = to; done && done(); } }; requestAnimationFrame(f); }
+function upgrade() {
+  const r = S.run; const ups = L.offerUpgrades(r);
+  page({ scene: 'upgrade', hud: false, eyebrow: `Between weeks ${r.week - 1} and ${r.week}`, title: 'Something for your notebook', html: '<p>Pick one. It stays with you all summer.</p>',
+    choices: ups.map((u) => ({ id: 'u-' + u.id, label: u.name, sub: u.text, card: true, fn: () => { L.takeUpgrade(r, u.id); week(); } })) });
+}
+function failure() {
+  const r = S.run;
+  stage({ art: 'art_fail.jpg', alt: 'A tipped flask, a crossed-out chart, and a young scientist laughing as a small lightbulb glows.' });
+  page({ scene: 'failure', eyebrow: 'The Lab · Week 4 of 5', title: 'The experiment failed.',
+    html: `<p class="lead">It happens to everyone, every summer. You lost ${r.lostInsight} Insight.</p><p>What now?</p>`, auto: 0,
+    choices: [
+      { id: 'restart', label: 'Start over, carefully', sub: 'Safe: +4 Rigor.', card: true, fn: () => failResult(L.resolveFailure(r, 'restart')) },
+      { id: 'read', label: 'Find out what the failure is telling you', sub: `60 in 100: the failure is the finding. Get your ${r.lostInsight} Insight back, plus 4. Otherwise +1 Insight, +1 Rigor.`, card: true, fn: () => failResult(L.resolveFailure(r, 'read')) },
+    ] });
+}
+function failResult(o) {
+  const msg = { restart: ['A clean second start', `Slower, and solid. <b>+${o.rigor} Rigor.</b>`], found: ['The failure was the finding!', `What looked like a mistake was the real result. <b>+${o.insight} Insight.</b>`], learned: ['No breakthrough, and still wiser', `You know one more thing that is not true. <b>+${o.insight} Insight, +${o.rigor} Rigor.</b>`] }[o.kind];
+  page({ scene: 'fail-result', eyebrow: 'The Lab · Week 4 of 5', title: msg[0], html: `<p class="lead">${msg[1]}</p>`, choices: [{ id: 'next', label: 'Back to the bench', primary: true, fn: () => { stage({ room: 'lab', alt: 'The lab.' }); turn(); } }] });
+}
+function present() {
+  const r = S.run;
+  stage({ room: 'hall', alt: 'A presentation hall: a poster on an easel, a panel of three, and rows of chairs.' });
+  page({ scene: 'present', hud: false, eyebrow: 'Presentation Day', title: 'Name your paper', html: '<p>Five weeks of work, one poster. Which title is yours?</p>',
+    choices: TITLES[r.field].map((t, i) => ({ id: 't' + i, label: t, card: true, fn: () => panel(t) })) });
+}
+function panel(t) {
+  const r = S.run; const strong = r.insight >= r.rigor ? 'idea' : 'evidence';
+  page({ scene: 'panel', hud: false, eyebrow: 'Presentation Day', title: 'The panel has one question', html: `<p class="lead">"How do you know?"</p>`, auto: strong === 'idea' ? 0 : 1,
+    choices: [
+      { id: 'idea', label: 'Explain the idea', sub: 'Lead with your Insight.', card: true, fn: () => applause(t, 'idea', strong) },
+      { id: 'evidence', label: 'Show the evidence', sub: 'Lead with your Rigor.', card: true, fn: () => applause(t, 'evidence', strong) },
+    ] });
+}
+function applause(t, pick, strong) {
+  const r = S.run; const bonus = pick === strong ? Math.round(r.total * 0.1) : 0; r.total += bonus;
+  S.poster = { title: t, field: L.FIELDS.find((f) => f.id === r.field).name, total: r.total, stamps: r.stamps, year: S.year, when: new Date().toISOString().slice(0, 10) };
+  const wall = store.get('wall', []); wall.unshift(S.poster); store.set('wall', wall.slice(0, 24));
+  const rally = store.get('rally', {}); rally[S.year] = (rally[S.year] || 0) + r.total; store.set('rally', rally);
+  const best = store.get('best', null); if (!best || r.total > best.total) store.set('best', { total: r.total, stamps: r.stamps });
+  unlock('rickoids', 'party', 'broad'); if (r.stamps === 5) unlock('roty'); if (r.field === 'bio') unlock('double');
+  page({ scene: 'applause', hud: false, eyebrow: 'Presentation Day', title: 'The room applauds.',
+    html: `<div class="poster"><span>${S.poster.field}</span><b>${t}</b><em>Excellence ${r.total} ${stamps(r.stamps)}</em></div><p>${bonus ? `You answered from your strength. <b>+${bonus}</b> for a confident answer.` : 'A good answer. The panel nods.'} ${r.stamps === 5 ? 'Five stamps: tonight\'s Rickoid of the Year run!' : ''}</p>`,
+    choices: [{ id: 'sky', label: 'Step outside', primary: true, fn: () => sky() }] });
+}
+function sky() {
+  stage({ art: 'art_sky.jpg', alt: 'A night sky full of stars and constellation lines over two campuses.' });
+  page({ scene: 'sky', hud: false, eyebrow: 'One light among many', title: 'About 3,400 Rickoids',
+    html: '<p class="lead">All 50 states. 63 nations. Forty-five years of summers.</p><p>Tonight one more light joins them: yours.</p>',
+    choices: [{ id: 'party', label: 'Go to the holiday party', primary: true, fn: () => party(true) }] });
+  starfield();
+}
+function starfield() {
+  const c = $('#stars'); c.hidden = false; const r = $('#stage').getBoundingClientRect(); c.width = r.width * 2; c.height = r.height * 2;
+  const x = c.getContext('2d'); let seed = 45; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const pts = Array.from({ length: 3400 }, () => [rnd() * c.width, rnd() * c.height * 0.62, rnd()]);
+  let n = REDUCED ? 3400 : 0;
+  const draw = () => {
+    if (c.hidden) return; x.clearRect(0, 0, c.width, c.height);
+    for (let i = 0; i < n; i++) { const p = pts[i]; x.fillStyle = `rgba(255,${230 + p[2] * 25 | 0},${170 + p[2] * 80 | 0},${0.35 + p[2] * 0.6})`; x.fillRect(p[0], p[1], 1.5 + p[2] * 2, 1.5 + p[2] * 2); }
+    if (n >= 3400) { x.beginPath(); x.arc(c.width / 2, c.height * 0.3, 9, 0, 7); x.fillStyle = '#ffd76a'; x.fill(); x.beginPath(); x.arc(c.width / 2, c.height * 0.3, 22, 0, 7); x.strokeStyle = 'rgba(255,215,106,.7)'; x.lineWidth = 3; x.stroke(); return; }
+    n = Math.min(3400, n + 60); requestAnimationFrame(draw);
+  };
+  draw();
+}
+function party(fromRun) {
+  $('#stars').hidden = true; S.mode = 'play';
+  stage({ room: 'party', alt: 'A cozy living room at a holiday party: a decorated tree, a fireplace, armchairs and a table of cookies.' });
+  page({ scene: 'party', hud: false, eyebrow: 'The hub', title: 'Mrs. D\'s holiday party',
+    html: `<p class="lead">${fromRun ? 'You made it. Everyone is here, from every decade.' : 'Everyone is here, from every decade.'}</p>`,
+    choices: [
+      { id: 'thanks', label: 'The thank-you wall', sub: 'For Mrs. D and the CEE team', card: true, primary: !!fromRun, fn: () => thanks() },
+      { id: 'stories', label: 'Ornaments on the tree', sub: 'Stories from every decade', card: true, fn: () => stories() },
+      { id: 'wall', label: 'The poster wall', sub: `${store.get('wall', []).length} poster(s) on this device`, card: true, fn: () => wall() },
+      { id: 'rally', label: 'The class rally', sub: 'Decade against decade', card: true, fn: () => rally() },
+      { id: 'archive', label: 'The archive', sub: `${archive.size} of ${ARCHIVE.length} cards found`, card: true, fn: () => arch() },
+      { id: 'again', label: fromRun ? 'Pass to the next player' : 'Begin a summer', card: true, fn: () => title() },
+    ] });
+}
+const back = { id: 'back', label: 'Back to the party', primary: true, fn: () => party() };
+function thanks() {
+  page({ scene: 'thanks', hud: false, eyebrow: 'The thank-you wall', title: 'Thank you, Mrs. D.',
+    html: '<p class="lead">For forty-five years of believing that young people can do serious work, and for the team at CEE who make every summer happen.</p><div class="tbd"><b>Coming for 2028</b><p>Here, alumni from every decade will say thank you in their own recorded voices. Collecting begins with the community\'s blessing.</p></div>', choices: [back] });
+}
+function stories() {
+  const prompts = ['The night my experiment finally worked', 'What my mentor told me that I still use', 'The friend I met in week one', 'What I would tell this summer\'s class'];
+  page({ scene: 'stories', hud: false, eyebrow: 'Ornaments on the tree', title: 'Stories from every decade',
+    html: `<div class="tbd"><b>Coming for 2028</b><p>Each ornament will hold a real story from a Rickoid, shared with their permission. These are the questions we will ask:</p></div><ul class="orn">${prompts.map((p, i) => `<li style="--c:var(--c${i + 1})">${p}</li>`).join('')}</ul>`, choices: [back] });
+}
+function wall() {
+  const w = store.get('wall', []);
+  page({ scene: 'wall', hud: false, eyebrow: 'The poster wall', title: 'Presented on this device',
+    html: w.length ? `<div class="wall">${w.map((p) => `<div class="poster sm"><span>${p.field} · ${p.year}</span><b>${p.title}</b><em>${p.total} ${stamps(p.stamps)}</em></div>`).join('')}</div>` : '<p>No posters yet. Play a summer and yours will hang here.</p>', choices: [back] });
+}
+function rally() {
+  const r = store.get('rally', {}); const rows = Object.entries(r).sort((a, b) => b[1] - a[1]); const max = rows.length ? rows[0][1] : 1;
+  page({ scene: 'rally', hud: false, eyebrow: 'The class rally', title: 'Decade against decade',
+    html: (rows.length ? `<div class="rally">${rows.map(([y, v]) => `<div><span>${y}</span><i style="width:${Math.max(6, v / max * 100)}%"></i><b>${v}</b></div>`).join('')}</div>` : '<p>No points yet. The first summer played sets the pace.</p>') + '<p class="small">Totals are kept on this device. Every point adds light for everyone.</p>', choices: [back] });
+}
+function arch() {
+  page({ scene: 'archive', hud: false, eyebrow: 'The archive', title: `${archive.size} of ${ARCHIVE.length} cards found`,
+    html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p>`, choices: [back] });
+}
+
+document.addEventListener('pointerdown', (e) => { if (S.mode === 'watch' && !e.target.closest('button')) { S.mode = 'play'; clearTimeout(S.watchTimer); $('#watching').hidden = true; } });
+initThree().then(title);
+
+</script>
+</body></html>
