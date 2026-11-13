@@ -54,7 +54,7 @@ p{margin:8px 0 0;max-width:60ch}.lead{font-size:22px}.small{font-size:16px;color
     <h1 id="title">Underway</h1>
     <div id="hud" hidden></div>
     <div id="body"><p class="lead">Every Rickoid's summer, played together. One tap at a time. You cannot lose.</p>
-      <noscript><p><b>This game needs JavaScript to play.</b> The story: in 1983 a $250 lecture fee seeded the Center for Excellence in Education. Each summer since 1984, students spend a week in classes, five weeks in a lab with a mentor, and then present their research. About 3,400 Rickoids from all 50 states and 63 nations have made that journey. This game lets you live one summer, and ends with a thank-you to Mrs. D and the CEE team.</p></noscript>
+      <noscript><p><b>This game needs JavaScript to play.</b> The story: in 1983 a $250 lecture fee seeded the Center for Excellence in Education. Each summer since 1984, students spend a week in classes, five weeks in a lab with a mentor, and then present their research. About 3,400 Rickoids from all 50 states and 63 nations have made that journey. This game lets you live one summer, and ends with a thank-you to Ms. D and the CEE team.</p></noscript>
     </div>
     <div id="choices"></div>
   </main>
@@ -197,7 +197,7 @@ const ARCHIVE = [
   { id: 'rickoids', t: 'Rickoids', b: 'CEE\'s name for RSI alumni, after Admiral Rickover. About 3,400 of them, from all 50 states and 63 nations.' },
   { id: 'double', t: 'Double Rickoids', b: 'Alumni of both RSI and the USA Biolympiad finals. Only 22 people hold the title.' },
   { id: 'roty', t: 'Rickoids of the Year', b: 'CEE has named Rickoids of the Year for every class from 1984 to 2018.' },
-  { id: 'party', t: 'The holiday party', b: 'Mrs. D hosts a holiday party at her home each year, with alumni from every decade. Boston has its own Bash.' },
+  { id: 'party', t: 'The holiday party', b: 'Ms. D hosts a holiday party at her home each year, with alumni from every decade. Boston has its own Bash.' },
   { id: 'broad', t: '35 and 40', b: 'The 35th and 40th anniversaries were weekends at the Broad Institute, with alumni talks and medals for excellence.' },
 ];
 const TIMELINE = [
@@ -452,10 +452,10 @@ function starfield() {
 function party(fromRun) {
   $('#stars').hidden = true; S.mode = 'play';
   stage({ room: 'party', alt: 'A cozy living room at a holiday party: a decorated tree, a fireplace, armchairs and a table of cookies.' });
-  page({ scene: 'party', hud: false, eyebrow: 'The hub', title: 'Mrs. D\'s holiday party',
+  page({ scene: 'party', hud: false, eyebrow: 'The hub', title: 'Ms. D\'s holiday party',
     html: `<p class="lead">${fromRun ? 'You made it. Everyone is here, from every decade.' : 'Everyone is here, from every decade.'}</p>`,
     choices: [
-      { id: 'thanks', label: 'The thank-you wall', sub: 'For Mrs. D and the CEE team', card: true, primary: !!fromRun, fn: () => thanks() },
+      { id: 'thanks', label: 'The thank-you wall', sub: 'For Ms. D and the CEE team', card: true, primary: !!fromRun, fn: () => thanks() },
       { id: 'stories', label: 'Ornaments on the tree', sub: 'Stories from every decade', card: true, fn: () => stories() },
       { id: 'wall', label: 'The poster wall', sub: `${store.get('wall', []).length} poster(s) on this device`, card: true, fn: () => wall() },
       { id: 'rally', label: 'The class rally', sub: 'Decade against decade', card: true, fn: () => rally() },
@@ -465,7 +465,7 @@ function party(fromRun) {
 }
 const back = { id: 'back', label: 'Back to the party', primary: true, fn: () => party() };
 function thanks() {
-  page({ scene: 'thanks', hud: false, eyebrow: 'The thank-you wall', title: 'Thank you, Mrs. D.',
+  page({ scene: 'thanks', hud: false, eyebrow: 'The thank-you wall', title: 'Thank you, Ms. D.',
     html: '<p class="lead">For forty-five years of believing that young people can do serious work, and for the team at CEE who make every summer happen.</p><div class="tbd"><b>Coming for 2028</b><p>Here, alumni from every decade will say thank you in their own recorded voices. Collecting begins with the community\'s blessing.</p></div>', choices: [back] });
 }
 function stories() {
