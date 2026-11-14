@@ -1,0 +1,271 @@
+<!doctype html>
+<!-- STYLE: Engraved diploma and survey map in cardinal and gold ink, set with a typewriter ledger voice | WHY: a roadmap to a classroom should already look like the diploma on the wall, and the ledger type keeps every date and number honest for a CFO | ALT: Swiss railway timetable (rejected: precise, but cold for a page whose job is to say you belong at the front of the room) -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Professor Scott: a roadmap to teaching at USC</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--paper:#f6eedb;--paper2:#efe3c4;--ink:#231815;--mute:#6a5c55;--card:#8c1d18;--gold:#b98612;--teal:#177e89;--grn:#2f7d4f;
+--d:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;--m:"IBM Plex Mono","Menlo","Courier New",monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--m);font-size:16px;line-height:1.58;
+background-image:repeating-radial-gradient(circle at 100% 0,transparent 0 20px,rgba(140,29,24,.045) 20px 21px)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--card)}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--d);font-weight:800;line-height:1.03;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(46px,8.6vw,108px)}
+h2{font-size:clamp(30px,4.8vw,54px);margin-bottom:10px}
+h3{font-size:24px}
+.kick{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--card)}
+.band{height:12px;background:repeating-linear-gradient(90deg,var(--card) 0 40px,var(--gold) 40px 80px)}
+.dip{margin:22px auto 0;border:3px double var(--ink);padding:10px}
+.dip-in{border:1px solid var(--card);padding:clamp(18px,4vw,46px)}
+.dip img{border:1px solid var(--ink);margin-top:22px}
+.lede{font-size:18.5px;max-width:38em;margin:16px 0 0}
+.note{font-size:13px;color:var(--mute)}
+section{padding:58px 0 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.two>*{min-width:0}
+.proof{border:2px solid var(--ink);background:var(--paper2);padding:18px}
+.proof q{font:italic 600 21px/1.3 var(--d);display:block;quotes:none}
+.proof cite{display:block;font-style:normal;font-size:12.5px;color:var(--mute);margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.chips span{border:1.5px solid var(--ink);padding:5px 9px;font-size:13px;background:#fffaf0}
+
+/* clocks */
+.clocks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.clock{background:var(--ink);color:var(--paper);padding:16px}
+.clock b{font:900 clamp(38px,6vw,60px)/.95 var(--d);display:block;color:#f2c14e}
+.clock span{font-size:13px;display:block;margin-top:6px}
+
+/* the map */
+.progress{position:sticky;top:0;z-index:10;background:var(--paper);padding:10px 0;border-bottom:2px solid var(--ink)}
+.bar{height:14px;border:2px solid var(--ink);background:#fffaf0}
+.bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--card) 0 14px,var(--gold) 14px 28px);transition:width .3s}
+.pl{display:flex;justify-content:space-between;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;margin-top:5px}
+.phase{display:grid;grid-template-columns:120px 1fr;gap:20px;padding:26px 0;border-top:2px solid var(--ink);margin-top:26px}
+.phase .no{font:900 84px/.8 var(--d);color:var(--card)}
+.phase .when{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-top:10px}
+.steps{list-style:none;margin:14px 0 0;padding:0}
+.steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:10px 0;border-top:1px dashed var(--ink)}
+.steps input{width:22px;height:22px;accent-color:var(--card);margin-top:2px}
+.steps b{font-weight:600}
+.steps small{display:block;color:var(--mute);font-size:13.5px}
+.win{margin-top:12px;border-left:6px solid var(--gold);padding:2px 0 2px 12px;font-size:14.5px}
+
+/* course */
+.course{border:3px double var(--ink);padding:10px;background:#fffaf0}
+.course-in{border:1px solid var(--ink);padding:clamp(16px,3.5vw,34px)}
+details{border-top:1px dashed var(--ink);padding:9px 0}
+details summary{cursor:pointer;font-weight:600;list-style-position:outside}
+details p{margin:6px 0 2px;font-size:14.5px;color:#3d302b}
+.wk{display:inline-block;min-width:112px;margin-right:8px;color:var(--card)}
+table.led{width:100%;border-collapse:collapse;font-size:14.5px}
+table.led td{border-top:1px dashed var(--ink);padding:9px 4px;vertical-align:top}
+table.led td:last-child{text-align:right;font-weight:600}
+table.led tr:first-child td{border-top:2px solid var(--ink)}
+.risk{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.risk div{border:2px solid var(--ink);padding:14px;background:var(--paper2);font-size:14.5px}
+.risk b{font:800 20px/1.1 var(--d);display:block;margin-bottom:6px}
+.first{counter-reset:f;list-style:none;padding:0;margin:14px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.first li{counter-increment:f;background:var(--card);color:var(--paper);padding:18px}
+.first li::before{content:counter(f);font:900 54px/.8 var(--d);display:block;color:#f2c14e;margin-bottom:8px}
+.done{display:none;margin-top:18px;border:3px double var(--card);padding:16px;font:800 26px/1.15 var(--d);color:var(--card);text-align:center}
+.done.on{display:block}
+footer{margin-top:70px;background:var(--ink);color:var(--paper);padding:26px 0;font-size:13px}
+footer a{color:#f2c14e}
+@media (max-width:800px){.two,.clocks,.risk,.first{grid-template-columns:1fr}.phase{grid-template-columns:1fr;gap:6px}.phase .no{font-size:60px}}
+@media print{.progress{position:static}section{padding-top:30px;break-inside:avoid}details{break-inside:avoid}details>p{display:block}body{background:#fff;font-size:12px}.clocks .clock{break-inside:avoid}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="band"></div>
+<div class="wrap">
+  <header class="dip"><div class="dip-in">
+    <div class="kick">A roadmap, prepared for Anthony Scott</div>
+    <h1>Professor Scott</h1>
+    <p class="lede">You have run the books at banks and run the floor at studios. USC has a faculty title made for exactly that person, and a division that already puts studio operators in front of its students. This is the route from your desk to the front of a USC classroom, with real dates, real course numbers and nothing left vague.</p>
+    <p class="note" style="margin-top:14px">From Gordon Bellamy, built with his assistant Darby. November 13, 2026. Every fact below was checked against USC's own pages that day; anything we could not confirm is marked.</p>
+    <img src="art/prof.jpg" width="1344" height="752" alt="Engraved illustration in cardinal and gold: an instructor seen from behind at the front of a lecture room, pointing at diagrams of a controller, a chart and a team, while students lean forward">
+  </div></header>
+
+  <!-- 1 -->
+  <section id="why">
+    <div class="kick">Part 1</div>
+    <h2>You already qualify</h2>
+    <div class="two">
+      <div class="proof">
+        <q>Part-time appointments ... are appropriate for individuals who are asked to teach a course because of special expertise and who have another full-time position or career.</q>
+        <cite>USC Faculty Handbook, section 4-B(3)(b). The word USC uses for this is "adjunct."</cite>
+      </div>
+      <div class="proof">
+        <q>Teaching experience is welcomed but not required.</q>
+        <cite>From a School of Cinematic Arts adjunct posting dated October 14, 2026. Its floor: a bachelor's degree and 7 to 9 years in the industry. You have an MBA, a CPA and about 18 years.</cite>
+      </div>
+    </div>
+    <p style="margin-top:18px;max-width:46em">You would not be the first operator in the room. The USC Games faculty page lists Laird Malamed, founding COO and CFO of Oculus, as an Adjunct Professor, and Robert Nashak, a former studio COO, teaching the business of games. It also lists a working attorney from a game company who teaches video game law. That page is not a live roster, so read it as precedent. The path from the operating side of a studio to a USC classroom is an established one.</p>
+    <div class="chips"><span>Likely title: Adjunct Lecturer or Adjunct Assistant Professor</span><span>Usual load: one course a year</span><span>You keep your day job. That is the point of the title.</span></div>
+  </section>
+
+  <!-- 2 -->
+  <section id="clock">
+    <div class="kick">Part 2</div>
+    <h2>The clock</h2>
+    <p style="max-width:46em">Universities build a term six to seven months ahead. Spring 2027 is already scheduled, so spring is your term to be seen. Fall 2027 is the earliest you could be the instructor of record, and it is being built right now. Spring 2028 is the comfortable target.</p>
+    <div class="clocks">
+      <div class="clock"><b id="c1">Jan 5</b><span><span id="c1l">2027:</span> the Registrar restricts section input for Fall 2027. Start the conversation before this.</span></div>
+      <div class="clock"><b id="c2">Jan 11</b><span><span id="c2l">2027:</span> Spring classes begin. Your guest-lecture window opens and runs to April 30.</span></div>
+      <div class="clock"><b id="c3">Aug 23</b><span><span id="c3l">2027:</span> Fall 2027 classes begin. The first day you could walk in as the instructor.</span></div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="map">
+    <div class="kick">Part 3</div>
+    <h2>The map, in five phases</h2>
+    <p style="max-width:46em">Tick steps as you go. The page remembers on this device.</p>
+    <div class="progress" aria-hidden="true"><div class="bar"><i id="pb"></i></div><div class="pl"><span id="pt">0 of 17 steps</span><span>Desk to classroom</span></div></div>
+    <img src="art/path.jpg" width="1344" height="752" alt="Engraved survey map in cardinal and gold: a winding path from a city office tower, past five game-token milestones, up to a sunlit brick campus doorway" style="border:1px solid var(--ink);margin-top:18px">
+
+    <div class="phase"><div><div class="no">1</div><div class="when">Now to Dec 11, 2026</div></div><div>
+      <h3>Decide what you teach</h3>
+      <ul class="steps">
+        <li><input type="checkbox" id="s1"><label for="s1"><b>Pick your one subject.</b><small>Yours is the business of a studio: how games get funded, budgeted, staffed and sold. Part 4 has a first sketch.</small></label></li>
+        <li><input type="checkbox" id="s2"><label for="s2"><b>Write a one-page course idea.</b><small>Title, who it is for, five things a student can do by week 15. One page, no more.</small></label></li>
+        <li><input type="checkbox" id="s3"><label for="s3"><b>Send Gordon the page and a two-page CV.</b><small>An academic CV leads with what you can teach, then what you have run. Ask Gordon to mark it up.</small></label></li>
+        <li><input type="checkbox" id="s4"><label for="s4"><b>Tell Gordon which term you want.</b><small>Fall 2027 is possible but tight. Spring 2028 gives everyone room.</small></label></li>
+      </ul>
+      <div class="win">You will have: a subject, a page and a sponsor inside the division.</div>
+    </div></div>
+
+    <div class="phase"><div><div class="no">2</div><div class="when">Before Jan 5, 2027</div></div><div>
+      <h3>Meet the people who schedule courses</h3>
+      <ul class="steps">
+        <li><input type="checkbox" id="s5"><label for="s5"><b>Ask Gordon for an introduction to the division chair.</b><small>Danny Bilson chairs the Interactive Media and Games Division and directs USC Games. Hiring an adjunct starts with the chair's interest.</small></label></li>
+        <li><input type="checkbox" id="s6"><label for="s6"><b>Have a 30-minute conversation, not an interview.</b><small>Bring the one page. Ask what the business courses need most. Listen for where you fill a gap.</small></label></li>
+        <li><input type="checkbox" id="s7"><label for="s7"><b>Watch the job board.</b><small>USC posts adjunct openings course by course at usccareers.usc.edu. None was open in this division on November 13, 2026. A posting usually follows a chair's decision.</small></label></li>
+      </ul>
+      <div class="win">You will have: the chair knowing your name, your subject and your timing.</div>
+    </div></div>
+
+    <div class="phase"><div><div class="no">3</div><div class="when">Jan 11 to Apr 30, 2027</div></div><div>
+      <h3>Be seen teaching</h3>
+      <ul class="steps">
+        <li><input type="checkbox" id="s8"><label for="s8"><b>Guest in Gordon's CTIN 463, Anatomy of a Game.</b><small>A 4-unit course built on weekly industry guests. One evening, your subject, real students. A current Cinematic Arts posting counts university guest lecturing as relevant experience.</small></label></li>
+        <li><input type="checkbox" id="s9"><label for="s9"><b>Offer one session to CTIN 458, Business and Management of Games.</b><small>The catalogue describes it as business models, pitching and getting products funded. That is your career in one sentence.</small></label></li>
+        <li><input type="checkbox" id="s10"><label for="s10"><b>Meet an Advanced Game Project team.</b><small>CTIN 493L in spring: student teams run like small studios. They need exactly the planning and budgeting advice you give for a living.</small></label></li>
+        <li><input type="checkbox" id="s11"><label for="s11"><b>Come to the USC Games Expo in May.</b><small>The last two were May 13, 2025 and May 12, 2026. The 2027 date is not announced yet.</small></label></li>
+      </ul>
+      <div class="win">You will have: students who have learned from you, and faculty who have watched it happen.</div>
+    </div></div>
+
+    <div class="phase"><div><div class="no">4</div><div class="when">Feb to Jul 2027</div></div><div>
+      <h3>Make it official</h3>
+      <ul class="steps">
+        <li><input type="checkbox" id="s12"><label for="s12"><b>Choose the vehicle with the chair.</b><small>Fastest: a section of an existing course. Next: CTIN 499 Special Topics, 2 to 4 units, for a course of your own design. A brand-new permanent course takes a full review cycle.</small></label></li>
+        <li><input type="checkbox" id="s13"><label for="s13"><b>Apply when the posting appears.</b><small>A letter and a CV through usccareers.usc.edu. Every first appointment is approved by the dean.</small></label></li>
+        <li><input type="checkbox" id="s14"><label for="s14"><b>Write the syllabus on USC's template.</b><small>The Center for Excellence in Teaching hosts it, with the required elements and support statements. Ask Gordon for one of his as a model.</small></label></li>
+        <li><input type="checkbox" id="s15"><label for="s15"><b>Finish onboarding.</b><small>All faculty, part-time included, complete training on preventing harassment and abusive conduct. Plan weekly office hours.</small></label></li>
+      </ul>
+      <div class="win">You will have: an appointment letter, a course number and a room.</div>
+    </div></div>
+
+    <div class="phase"><div><div class="no">5</div><div class="when">Aug 23, 2027 or Jan 10, 2028</div></div><div>
+      <h3>Teach</h3>
+      <ul class="steps">
+        <li><input type="checkbox" id="s16"><label for="s16"><b>Walk in on day one.</b><small>Fall 2027 runs August 23 to December 3, finals December 8 to 15. Spring 2028 begins January 10.</small></label></li>
+        <li><input type="checkbox" id="s17"><label for="s17"><b>Bring one guest of your own.</b><small>You sat in someone's class in phase 3. Now you hold the door for the next operator.</small></label></li>
+      </ul>
+      <div class="win">You will have: a class of students who understand how a studio actually runs, because you told them.</div>
+      <div class="done" id="done">Seventeen of seventeen. Class is in session, Professor.</div>
+    </div></div>
+  </section>
+
+  <!-- 4 -->
+  <section id="course">
+    <div class="kick">Part 4</div>
+    <h2>Your course, sketched</h2>
+    <p style="max-width:46em">A starting point to argue with, not a finished syllabus. Two units means one evening a week, 100 minutes, for 15 weeks.</p>
+    <div class="course"><div class="course-in">
+      <div class="kick">Proposed, 2 units</div>
+      <h3 style="font-size:34px;margin:6px 0 4px">The Business of a Game Studio</h3>
+      <p style="margin:0 0 14px">How a studio is funded, budgeted, staffed and kept healthy, taught by someone who has sat on both sides of the deal.</p>
+      <details open><summary><span class="wk">Weeks 1 to 3</span>Where the money comes from</summary><p>Who pays for a game and why. Reading a studio's profit and loss. What a greenlight is, seen from the publisher's chair and the developer's.</p></details>
+      <details><summary><span class="wk">Weeks 4 to 6</span>Deals and budgets</summary><p>Publishing and platform terms in plain language. Building a budget from a headcount plan. Cash planning month by month.</p></details>
+      <details><summary><span class="wk">Week 7</span>Midterm: pitch a budget</summary><p>Each team defends a one-page budget for a small game to a panel playing the publisher.</p></details>
+      <details><summary><span class="wk">Weeks 8 to 10</span>Operations is a craft</summary><p>Production as an operating system. Co-development and outsourcing partners. Culture, autonomy and why people stay.</p></details>
+      <details><summary><span class="wk">Weeks 11 to 12</span>Hiring across borders</summary><p>How headcount gets approved. Recruiting, relocation and visas. Running a team in several countries.</p></details>
+      <details><summary><span class="wk">Weeks 13 to 14</span>How studios are valued</summary><p>What an acquirer looks at. Valuation basics for creative companies. Managing risk when plans change.</p></details>
+      <details><summary><span class="wk">Week 15</span>Final: your studio's first year</summary><p>A first-year operating plan: team, budget, milestones and one page on what could go wrong. USC requires a final summative experience in the scheduled finals slot.</p></details>
+    </div></div>
+  </section>
+
+  <!-- 5 -->
+  <section id="terms">
+    <div class="kick">Part 5</div>
+    <h2>What it takes, and what it pays</h2>
+    <div class="two">
+      <table class="led">
+        <tr><td>Class time, 2-unit course</td><td>100 minutes a week</td></tr>
+        <tr><td>Term</td><td>15 weeks plus finals</td></tr>
+        <tr><td>Also expected</td><td>syllabus, office hours, timely grading</td></tr>
+        <tr><td>Typical adjunct load</td><td>one course a year</td></tr>
+        <tr><td>First appointment approved by</td><td>the dean</td></tr>
+      </table>
+      <table class="led">
+        <tr><td>Cinematic Arts adjunct posting, Oct 2026</td><td>$30 to $45 an hour, quarter time</td></tr>
+        <tr><td>Marshall entrepreneurship adjunct posting, Nov 2026</td><td>$7,500 to $16,500 a course</td></tr>
+        <tr><td>Per-course rate in this division</td><td>not published; ask</td></tr>
+        <tr><td>Representation</td><td>Cinematic Arts adjuncts have a union</td></tr>
+      </table>
+    </div>
+    <p class="note" style="margin-top:12px">You will not do this for the money, and nobody at USC will think you are. A second door is open today: the Lloyd Greif Center for Entrepreneurial Studies at Marshall posted an Adjunct Professor of Entrepreneurship role on November 13, 2026 that prefers an MBA plus experience such as entrepreneurial finance.</p>
+  </section>
+
+  <!-- 6 -->
+  <section id="risks">
+    <div class="kick">Part 6</div>
+    <h2>What could slow you down</h2>
+    <div class="risk">
+      <div><b>No open posting yet</b>USC hires adjuncts course by course. If no section needs you this cycle, phase 3 still makes you the obvious call for the next one.</div>
+      <div><b>The calendar is early</b>Fall 2027 is built by early January. If that window closes, aim for Spring 2028 and use the extra months to guest twice.</div>
+      <div><b>It is the division's call</b>Gordon can open the door and vouch for you. The chair and the dean decide. That is how it should be, and your record makes their decision easy.</div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section id="first">
+    <div class="kick">Part 7</div>
+    <h2>Three moves this week</h2>
+    <ol class="first">
+      <li>Reply to Gordon with the term you want: Fall 2027 or Spring 2028.</li>
+      <li>Write five sentences: what a student can do after your course that they could not do before.</li>
+      <li>Hold one evening in spring for a guest session in CTIN 463.</li>
+    </ol>
+    <p style="margin-top:22px;font:italic 600 24px/1.3 var(--d);max-width:30em">Students remember the person who showed them how the real thing works. You have been that person in every studio you have run. This just gives you a room.</p>
+  </section>
+</div>
+
+<footer><div class="wrap">Private page made for Anthony Scott. Sources: USC Faculty Handbook, USC Faculty Portal titles page, USC Catalogue, USC Registrar scheduling and academic calendars, usccareers.usc.edu postings, and the USC Games faculty page, all read November 13, 2026. Dates and postings change; confirm before acting. Not confirmed: the Spring 2027 class schedule, this division's per-course pay, the Special Topics filing deadline, and the 2027 Expo date. <a href="index.html">Back to the GGP data room</a>.</div></footer>
+<script>
+(function(){
+  var boxes=[].slice.call(document.querySelectorAll('.steps input')),K='scott-roadmap-v1',saved={};
+  try{saved=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  function paint(){var n=boxes.filter(function(b){return b.checked}).length;
+    document.getElementById('pb').style.width=(100*n/boxes.length)+'%';
+    document.getElementById('pt').textContent=n+' of '+boxes.length+' steps';
+    document.getElementById('done').classList.toggle('on',n===boxes.length);}
+  boxes.forEach(function(b){if(saved[b.id])b.checked=true;b.addEventListener('change',function(){saved[b.id]=b.checked;try{localStorage.setItem(K,JSON.stringify(saved))}catch(e){}paint()})});
+  paint();
+  function days(y,m,d){return Math.ceil((new Date(y,m-1,d)-new Date())/864e5)}
+  [['c1',2027,1,5],['c2',2027,1,11],['c3',2027,8,23]].forEach(function(c){var n=days(c[1],c[2],c[3]);if(n>0){document.getElementById(c[0]).textContent=n+' days';var mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][c[2]-1];document.getElementById(c[0]+'l').textContent=mo+' '+c[3]+', '+c[1]+':'}});
+})();
+</script>
+</body>
+</html>
