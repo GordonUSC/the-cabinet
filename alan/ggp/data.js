@@ -3778,6 +3778,1482 @@ window.GGP={
           "https://www.stackup.org/"
         ]
       ]
+    },
+    {
+      "id": "aias-foundation-scholarship-fund",
+      "name": "AIAS Foundation Scholarship Fund",
+      "provider": "Academy of Interactive Arts & Sciences Foundation",
+      "kind": "Scholarship",
+      "summary": "Scholarships for aspiring student game makers and early-career game professionals who are pursuing careers in game development or the business of interactive entertainment.",
+      "eligibility": "Undergraduate or graduate students planning a career in game development or leadership, plus early professionals and recent graduates within their first four years in the industry.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://www.interactive.org/foundation/scholarships.asp",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Published cycle closed",
+      "color": "yellow",
+      "time": "CLOSED when checked: the page says scholarship applications are now closed and to sign up for the newsletter for updates. Next cycle dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "AIAS Foundation Scholarships",
+          "https://www.interactive.org/foundation/scholarships.asp"
+        ],
+        [
+          "AIAS Foundation overview",
+          "https://www.interactive.org/foundation/index.asp"
+        ]
+      ]
+    },
+    {
+      "id": "aias-womenin-scholarship-fund",
+      "name": "WomenIn Scholarship Fund",
+      "provider": "Academy of Interactive Arts & Sciences Foundation",
+      "kind": "Scholarship",
+      "summary": "Scholarships, supported by Intel, for women pursuing a technical career in game development. The wider WomenIn initiative also provides mentoring and education.",
+      "eligibility": "Applicants must identify as women and intend to pursue a career in the technical side of video games (including art, animation, programming and engineering); undergraduate or graduate students, or early professionals within their first four years in the industry.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://www.interactive.org/foundation/scholarships.asp",
+      "communityFocus": [
+        "Women"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Published cycle closed",
+      "color": "yellow",
+      "time": "CLOSED when checked: the page says scholarship applications are now closed. Next cycle dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "AIAS Foundation Scholarships",
+          "https://www.interactive.org/foundation/scholarships.asp"
+        ],
+        [
+          "AIAS Foundation overview",
+          "https://www.interactive.org/foundation/index.asp"
+        ]
+      ]
+    },
+    {
+      "id": "aias-girls-for-gaming-scholarship-fund",
+      "name": "Girls for Gaming Scholarship Fund",
+      "provider": "Academy of Interactive Arts & Sciences Foundation",
+      "kind": "Scholarship",
+      "summary": "A scholarship honoring people who help empower and educate girls and young women about roles in the gaming industry. It supports the recipient's education and includes a mentoring program.",
+      "eligibility": "Undergraduate or graduate student game makers and early professionals (within their first four years in the industry) pursuing the business of interactive entertainment, such as marketing, law, producing and product management.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://www.interactive.org/foundation/scholarships.asp",
+      "communityFocus": [
+        "Women"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Published cycle closed",
+      "color": "yellow",
+      "time": "CLOSED when checked: the page says scholarship applications are now closed. Next cycle dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "AIAS Foundation Scholarships",
+          "https://www.interactive.org/foundation/scholarships.asp"
+        ]
+      ]
+    },
+    {
+      "id": "glaad-queer-emerging-developers",
+      "name": "Queer Emerging Developers (QED) Program",
+      "provider": "GLAAD",
+      "kind": "Mentorship",
+      "summary": "A cohort program, supported by Logitech, that gives LGBTQ game developers dedicated mentorship from the GLAAD Gaming team and industry leaders, plus the chance to attend the 2027 Game Developers Conference.",
+      "eligibility": "Must identify as LGBTQ+, be an emerging game developer (early to mid-career), commit to virtual program activities, and be able to travel to San Francisco for GDC 2027. Open to all game development roles.",
+      "cost": "Confirm with provider",
+      "format": "Hybrid: virtual mentorship sessions plus in-person attendance at GDC in San Francisco",
+      "url": "https://glaad.org/qed",
+      "communityFocus": [
+        "LGBTQ+ and allies"
+      ],
+      "educationLevels": [
+        "Adult / career transition",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Published cycle closed",
+      "color": "lime",
+      "time": "CLOSED when checked: applications for the 2027 (second) cohort closed November 13, 2026. Next cohort: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Queer Emerging Developers (QED) Program",
+          "https://glaad.org/qed"
+        ]
+      ]
+    },
+    {
+      "id": "gdc-festival-of-gaming-2027-scholarship-program",
+      "name": "GDC Festival of Gaming 2027 Scholarship Program",
+      "provider": "Game Developers Conference (GDC)",
+      "kind": "Career development",
+      "summary": "GDC partners with a list of organizations that let qualified candidates apply for complimentary passes to GDC Festival of Gaming. Each partner runs its own application and sets its own criteria.",
+      "eligibility": "Set by each scholarship partner organization; see the partner list on the page.",
+      "cost": "Free: complimentary passes awarded through partners",
+      "format": "In person, San Francisco (Moscone Center)",
+      "url": "https://www.gdconf.com/scholarships",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "discover",
+        "prepare"
+      ],
+      "status": "Program checked",
+      "color": "lime",
+      "time": "For GDC Festival of Gaming, March 1 to 4, 2027. No single deadline: each partner sets its own. Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "GDC Scholarships",
+          "https://www.gdconf.com/scholarships"
+        ]
+      ]
+    },
+    {
+      "id": "game-devs-of-color-scholarship-gdc",
+      "name": "Game Devs of Color Scholarship @ GDC",
+      "provider": "Game Devs of Color Expo",
+      "kind": "Career development",
+      "summary": "Brings a cohort of game professionals to GDC in San Francisco with festival passes, travel arrangements and on-site activities, to improve access to in-person opportunities.",
+      "eligibility": "Confirm with provider",
+      "cost": "Free to recipients: the page says passes and travel arrangements are provided",
+      "format": "In person, San Francisco",
+      "url": "https://gamedevsofcolor.org/scholarship",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Published cycle closed",
+      "color": "lime",
+      "time": "CLOSED when checked. The page still shows the GDC 2026 cycle and says applications are open from December 1 to 22 (no year printed). Whether a GDC 2027 cycle will open in December 2026: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Game Devs of Color Scholarship",
+          "https://gamedevsofcolor.org/scholarship"
+        ],
+        [
+          "Game Devs of Color Expo home",
+          "https://gamedevsofcolor.org/"
+        ]
+      ]
+    },
+    {
+      "id": "xsolla-scholarship-program-gdc-2027",
+      "name": "Xsolla Scholarship Program at GDC 2027",
+      "provider": "Xsolla",
+      "kind": "Career development",
+      "summary": "Brings 75 game developers to GDC Festival of Gaming 2027 with a Festival Pass, a four-night San Francisco hotel stay, a networking luncheon and introductions to Xsolla teams.",
+      "eligibility": "Studios and independent developers worldwide working on an active game project. The application portal lists further conditions; Confirm with provider.",
+      "cost": "No fee stated; pass and hotel are covered for recipients. Other travel costs: Confirm with provider",
+      "format": "In person, San Francisco",
+      "url": "https://xsolla.com/blog/expanding-opportunities-for-video-game-developers-at-gdc-2027",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Adult / career transition",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Program checked",
+      "color": "lime",
+      "time": "Applications October 15 to November 30, 2026; recipients announced January 2027; GDC runs March 1 to 4, 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Xsolla blog: Expanding opportunities for video game developers at GDC 2027",
+          "https://xsolla.com/blog/expanding-opportunities-for-video-game-developers-at-gdc-2027"
+        ],
+        [
+          "Xsolla Scholarship Program at GDC 2027 application portal",
+          "https://events.xsolla.com/gdcscholarship2027/"
+        ]
+      ]
+    },
+    {
+      "id": "unity-fellowship",
+      "name": "Unity Fellowship",
+      "provider": "Unity",
+      "kind": "Project grant",
+      "summary": "Supports 10 indie teams making games in Unity that are about a year from launch, with $50K USD in cash, a dedicated Unity partner, expert office hours, showcases and marketing support. The page states no recoup, revenue share or IP claim.",
+      "eligibility": "Age 18 or older, making the game in Unity, with a playable build or demo and a launch expected about a year after the program begins in March 2027. Sanctioned regions are excluded, and Brazil, Italy and Quebec are excluded this cycle. Applications in English.",
+      "cost": "Free to apply (no fee stated); award is $50K USD in cash",
+      "format": "Confirm with provider",
+      "url": "https://unity.com/unity-fellowship",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Adult / career transition",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "work"
+      ],
+      "status": "Program checked",
+      "color": "pink",
+      "time": "Open when checked: applications close December 18, 2026 at 5:00 p.m. ET; notifications by end of February 2027; program begins March 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Unity Fellowship",
+          "https://unity.com/unity-fellowship"
+        ]
+      ]
+    },
+    {
+      "id": "unity-for-humanity-grant",
+      "name": "Unity for Humanity Grant",
+      "provider": "Unity",
+      "kind": "Project grant",
+      "summary": "An annual open call that funds impact-driven projects built with Unity and adds technical support, marketing and other resources.",
+      "eligibility": "Projects built with Unity, in any genre, that support the UN Sustainable Development Goals and have moved past concept to a prototype or demo. Projects must be charitable in nature and tied to a nonprofit or fiscal sponsor. Applicants from US-sanctioned countries are excluded. One application per person or entity, in English.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://unity.com/humanity",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "work"
+      ],
+      "status": "Published cycle closed",
+      "color": "pink",
+      "time": "CLOSED when checked. The page says applications will open again in 2027; dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Unity for Humanity: Grant Application and Program FAQs",
+          "https://unity.com/humanity"
+        ]
+      ]
+    },
+    {
+      "id": "igda-foundation-questline-gdc",
+      "name": "Questline: GDC (Next Gen Leaders and Velocity)",
+      "provider": "IGDA Foundation",
+      "kind": "Career development",
+      "summary": "Helps underrepresented game developers get to the Game Developers Conference to connect with mentors and industry leaders. Next Gen Leaders supports mid-career professionals moving toward leadership; Velocity is for professionals moving into games from a non-gaming career.",
+      "eligibility": "Underrepresented game developers. Next Gen Leaders: mid-career game industry professionals. Velocity: professionals transitioning into the game industry from another career or industry. Full criteria: Confirm with provider.",
+      "cost": "Confirm with provider",
+      "format": "In person, San Francisco (GDC)",
+      "url": "https://www.igdafoundation.org/gdc",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "The page still shows the 2026 cycle (GDC March 9 to 13, 2026) and its 2026 recipients. 2027 application dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Questline: GDC",
+          "https://www.igdafoundation.org/gdc"
+        ],
+        [
+          "Questline overview",
+          "https://www.igdafoundation.org/questline"
+        ]
+      ]
+    },
+    {
+      "id": "ubisoft-next",
+      "name": "Ubisoft NEXT",
+      "provider": "Ubisoft Toronto",
+      "kind": "Student competition",
+      "summary": "An annual competition showcasing Ontario video game development students across nine disciplines. Winners earn a paid summer apprenticeship at Ubisoft Toronto.",
+      "eligibility": "Legally entitled to work in Canada, residing in Ontario, enrolled in or graduated from an accredited Ontario college or university program (no earlier than Spring 2025), under two years of professional experience, and not a current or former Ubisoft studio employee.",
+      "cost": "Confirm with provider (no entry fee stated); prize is a paid apprenticeship",
+      "format": "Individual entries submitted online; apprenticeship in person, Toronto",
+      "url": "https://toronto.ubisoft.com/next/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Community college / transfer",
+        "Graduate"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Program checked",
+      "color": "pink",
+      "time": "Open when checked: submissions opened September 10, 2026; most disciplines close January 11, 2027. Level Design Phase 1 closed October 26, 2026 and Programming Phase 1 closed November 16, 2026.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Ubisoft Toronto NEXT",
+          "https://toronto.ubisoft.com/next/"
+        ]
+      ]
+    },
+    {
+      "id": "develop-at-ubisoft",
+      "name": "Develop at Ubisoft",
+      "provider": "Ubisoft",
+      "kind": "Mentorship",
+      "summary": "A mentorship program in which volunteer Ubisoft developers give one-on-one guidance on a project, with tracks this cycle in Game Design, Audio, Programming and Cybersecurity. The page says it is not tied to any hiring process.",
+      "eligibility": "Students and recent graduates with under two years of experience; the program supports people from genders historically underrepresented in gaming and STEM.",
+      "cost": "Confirm with provider",
+      "format": "Online: regular 1:1 calls and a virtual closing ceremony; timelines vary by location",
+      "url": "https://www.ubisoft.com/en-us/company/careers/interns-graduates/develop-at-ubisoft",
+      "communityFocus": [
+        "Women",
+        "Nonbinary / gender-expansive"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Applications run October 1 to 31 (year not printed); mentorship runs December 2026 to May 2027. The current cycle's application window appears to have passed. Next window: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Develop at Ubisoft",
+          "https://www.ubisoft.com/en-us/company/careers/interns-graduates/develop-at-ubisoft"
+        ],
+        [
+          "Ubisoft Interns and Graduates",
+          "https://www.ubisoft.com/en-us/company/careers/interns-graduates"
+        ]
+      ]
+    },
+    {
+      "id": "ubisoft-internships-graduate-programs",
+      "name": "Ubisoft Internships & Graduate Programs",
+      "provider": "Ubisoft",
+      "kind": "Internship",
+      "summary": "Ubisoft's hub for internships and graduate programs, where interns and graduates work alongside studio teams. The page also offers interview and application guidance.",
+      "eligibility": "Confirm with provider (varies by role and studio)",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider (varies by studio)",
+      "url": "https://www.ubisoft.com/en-us/company/careers/interns-graduates",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Confirm with provider (no dates on the hub page; roles are posted individually)",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Ubisoft Interns and Graduates",
+          "https://www.ubisoft.com/en-us/company/careers/interns-graduates"
+        ]
+      ]
+    },
+    {
+      "id": "insomniac-games-internships",
+      "name": "Insomniac Games Internships",
+      "provider": "Insomniac Games",
+      "kind": "Internship",
+      "summary": "Insomniac's careers page lists intern roles across disciplines such as animation, audio, character art, concept art, game design, gameplay and engine programming, lighting, story, tech art, VFX, user research and accessibility.",
+      "eligibility": "Listings are labeled by level: Undergraduate, Master's, or Master's or PhD, depending on the role. Other criteria: Confirm with provider.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider. The studio describes remote, hybrid and on-site work with an office in Burbank, California.",
+      "url": "https://insomniac.games/careers/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Doctoral"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Intern roles were posted when checked; no deadline is printed. Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Insomniac Games Careers",
+          "https://insomniac.games/careers/"
+        ]
+      ]
+    },
+    {
+      "id": "sie-playstation-internship-program",
+      "name": "Sony Interactive Entertainment Internship Program",
+      "provider": "Sony Interactive Entertainment (PlayStation)",
+      "kind": "Internship",
+      "summary": "A 12-week, US-based, paid internship with hands-on projects in areas such as game development, engineering and marketing, plus 1:1 mentorship.",
+      "eligibility": "Students currently enrolled in an accredited university pursuing a Bachelor's, Master's, Ph.D., JD or MBA degree and on track to graduate by December 2029. The page states that U.S. citizens are eligible to apply.",
+      "cost": "Paid internship",
+      "format": "Remote or in person at SIE offices and studios (San Mateo, Los Angeles, San Diego, Aliso Viejo and Burbank, CA; Madison, WI; Bellevue, WA)",
+      "url": "https://careers.playstation.com/early-careers",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Doctoral"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Program checked",
+      "color": "lime",
+      "time": "Applications open until November 20, 2026 (closing days after this check). Next cycle: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Emerging talent at Sony Interactive Entertainment",
+          "https://careers.playstation.com/early-careers"
+        ]
+      ]
+    },
+    {
+      "id": "sie-apprentice-pathway-program",
+      "name": "Apprentice Pathway Program",
+      "provider": "Sony Interactive Entertainment (PlayStation)",
+      "kind": "Early-career employment",
+      "summary": "A six-month, paid program that opens doors for people from nontraditional backgrounds. Apprentices join a real SIE delivery team and gain hands-on experience.",
+      "eligibility": "People from nontraditional backgrounds, including those reskilling, reentering the workforce or forging their own path. Detailed criteria: Confirm with provider.",
+      "cost": "Paid apprenticeship",
+      "format": "Confirm with provider",
+      "url": "https://careers.playstation.com/early-careers",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Confirm with provider",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Emerging talent at Sony Interactive Entertainment",
+          "https://careers.playstation.com/early-careers"
+        ]
+      ]
+    },
+    {
+      "id": "epic-games-internships",
+      "name": "Epic Internships",
+      "provider": "Epic Games",
+      "kind": "Internship",
+      "summary": "Interns are embedded with Epic's teams on real projects. Past internships have included game programming, online development, game design, 3D art and animation, production, finance and marketing. The page also hosts an Early Career Guide for students and educators.",
+      "eligibility": "Active students and recent graduates within 1 year of graduation.",
+      "cost": "Paid internship (the page says 'competitive pay')",
+      "format": "Remote or in office, depending on the role",
+      "url": "https://www.epicgames.com/site/earlycareers",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Year round: work terms of 3 to 4 months; roles are posted in advance and stay up until filled. No fixed deadline.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Epic Internships",
+          "https://www.epicgames.com/site/earlycareers"
+        ]
+      ]
+    },
+    {
+      "id": "roblox-early-careers",
+      "name": "Early Careers at Roblox",
+      "provider": "Roblox",
+      "kind": "Internship",
+      "summary": "Roblox's early career hub for internships, with structured mentorship. Applicants start with a set of Roblox assessments (problem solving, decision making and, for technical roles, coding), and the page offers practice games and interview support.",
+      "eligibility": "Confirm with provider",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://careers.roblox.com/early-career",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Doctoral",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Confirm with provider",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Early Careers at Roblox",
+          "https://careers.roblox.com/early-career"
+        ]
+      ]
+    },
+    {
+      "id": "zynga-catalyst-internship-program",
+      "name": "Catalyst Internship Program",
+      "provider": "Zynga",
+      "kind": "Internship",
+      "summary": "Zynga's university page describes the Catalyst Internship Program (UI/UX and Technical Art) and a Rotational Product Manager Program with two 6-month rotations across two game teams.",
+      "eligibility": "Aimed at game-loving students and recent grads. Detailed criteria: Confirm with provider.",
+      "cost": "Paid internship (the page says all internships are paid)",
+      "format": "Confirm with provider",
+      "url": "https://www.zynga.com/careers/university/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "No dates printed. The page says internships are typically posted 4 months to a year before the start date. Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Zynga University careers",
+          "https://www.zynga.com/careers/university/"
+        ]
+      ]
+    },
+    {
+      "id": "global-game-jam-2027",
+      "name": "Global Game Jam 2027",
+      "provider": "Global Game Jam",
+      "kind": "Game-making",
+      "summary": "A worldwide game jam held at local sites, where participants make games together over the jam period.",
+      "eligibility": "Confirm with provider",
+      "cost": "Confirm with provider",
+      "format": "Hybrid: local jam sites worldwide; check the site list",
+      "url": "https://globalgamejam.org/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Program checked",
+      "color": "pink",
+      "time": "Jam dates January 25 to 31, 2027. Site registration is open; jammer registration opens December 1, 2026.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Global Game Jam",
+          "https://globalgamejam.org/"
+        ]
+      ]
+    },
+    {
+      "id": "ggj-next",
+      "name": "GGJ Next",
+      "provider": "Global Game Jam",
+      "kind": "Game-making",
+      "summary": "An annual game jam run by Global Game Jam for middle and high school youth who want to learn to create video games. It partners with the G4C Student Challenge, and shorter jams fit school and afterschool schedules. Educator and facilitator training is offered.",
+      "eligibility": "Middle and high school youth, through schools and organizations that sign up as GGJ Next sites.",
+      "cost": "Confirm with provider. The page says a limited number of stipends are available to GGJ Next sites outside the United States.",
+      "format": "In person at local GGJ Next sites",
+      "url": "https://globalgamejam.org/ggj-next",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Middle school",
+        "High school",
+        "Educators"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "pink",
+      "time": "Sites may run during Global Game Jam in January or as shorter jams from February through March. The program page text still describes the 2025 edition; current dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Host a GGJ Next Jam",
+          "https://globalgamejam.org/ggj-next"
+        ],
+        [
+          "Global Game Jam home",
+          "https://globalgamejam.org/"
+        ]
+      ]
+    },
+    {
+      "id": "ludum-dare",
+      "name": "Ludum Dare",
+      "provider": "Ludum Dare",
+      "kind": "Game-making",
+      "summary": "A recurring online game jam held twice a year, in April and October, where participants make a game and then rate each other's entries.",
+      "eligibility": "Confirm with provider",
+      "cost": "Confirm with provider",
+      "format": "Online",
+      "url": "https://ldjam.com/about",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "pink",
+      "time": "Ludum Dare 60 began October 16, 2026 (rating period under way when checked). Next: Ludum Dare 61 in April 2027, then Ludum Dare 62 in October 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Ludum Dare: About",
+          "https://ldjam.com/about"
+        ]
+      ]
+    },
+    {
+      "id": "igf-independent-games-festival-student-entry",
+      "name": "Independent Games Festival (IGF) Competition",
+      "provider": "Independent Games Festival (GDC)",
+      "kind": "Student competition",
+      "summary": "The Independent Games Festival competition for independent game developers, held during GDC Festival of Gaming, with a reduced student entry fee.",
+      "eligibility": "Open to independent game developers. Student category rules: Confirm with provider.",
+      "cost": "Entry fee $75 regular, $25 student; a submission waiver application is offered",
+      "format": "Online submission; pavilion and ceremony in person, San Francisco",
+      "url": "https://igf.com/submission-info/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Published cycle closed",
+      "color": "pink",
+      "time": "CLOSED for IGF 2027: submissions ran August 10 to September 13, 2026. Finalists announced January 2027; IGF Pavilion March 2 to 4, 2027; awards March 3, 2027. Next submission window: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "IGF Game Submission Info and FAQ",
+          "https://igf.com/submission-info/"
+        ]
+      ]
+    },
+    {
+      "id": "rookie-awards",
+      "name": "Rookie Awards",
+      "provider": "The Rookies",
+      "kind": "Student competition",
+      "summary": "An annual global contest for emerging talent in creative industries, including a Game Development category. Entrants present a concise one-page portfolio and can opt in to career opportunities such as jobs and mentorships.",
+      "eligibility": "Students, self-taught artists, recent graduates and hobbyists. Detailed rules: Confirm with provider.",
+      "cost": "Confirm with provider",
+      "format": "Online",
+      "url": "https://www.therookies.co/contests/groups/rookie-awards-2026",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare"
+      ],
+      "status": "Published cycle closed",
+      "color": "pink",
+      "time": "CLOSED: Rookie Awards 2026 (the 16th annual) entries closed June 22, 2026. 2027 dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Rookie Awards 2026",
+          "https://www.therookies.co/contests/groups/rookie-awards-2026"
+        ]
+      ]
+    },
+    {
+      "id": "imagine-cup-2027",
+      "name": "Imagine Cup 2027",
+      "provider": "Microsoft",
+      "kind": "Student competition",
+      "summary": "A startup competition run with Microsoft for Startups that has seven industry categories and a Student startup category, ending in the Imagine Cup World Championship.",
+      "eligibility": "The student category is for student-founded ventures. General eligibility rules: Confirm with provider.",
+      "cost": "Confirm with provider. Prizes stated: Top Student Startup $25,000 cash and $250,000 in startup credits; Champion $250,000 USD cash and $1,000,000 in startup credits.",
+      "format": "Online application; World Championship format: Confirm with provider",
+      "url": "https://imaginecup.microsoft.com/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Program checked",
+      "color": "pink",
+      "time": "Open when checked: applications close February 28, 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Imagine Cup",
+          "https://imaginecup.microsoft.com/"
+        ]
+      ]
+    },
+    {
+      "id": "apple-swift-student-challenge",
+      "name": "Swift Student Challenge",
+      "provider": "Apple",
+      "kind": "Student competition",
+      "summary": "Apple's challenge for students to showcase creativity and app development skills by submitting an app. Winners receive a year of Apple Developer Program membership and a gift, and Distinguished Winners are invited to Apple in Cupertino.",
+      "eligibility": "Confirm with provider (see Apple's Eligibility page)",
+      "cost": "Confirm with provider",
+      "format": "Online submission",
+      "url": "https://developer.apple.com/swift-student-challenge/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Program checked",
+      "color": "pink",
+      "time": "Submissions open February 8 to 28, 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Swift Student Challenge",
+          "https://developer.apple.com/swift-student-challenge/"
+        ]
+      ]
+    },
+    {
+      "id": "vets-who-code-software-engineering-accelerator",
+      "name": "Software Engineering Accelerator",
+      "provider": "Vets Who Code",
+      "kind": "Learning / military career transition",
+      "summary": "A 17-week remote program in four phases (Foundations, Software Engineering, AI Engineering, Production Mastery) that trains veterans and military spouses for software work.",
+      "eligibility": "Veterans and military spouses.",
+      "cost": "Free (no tuition)",
+      "format": "Online",
+      "url": "https://vetswhocode.io/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Program checked",
+      "color": "blue",
+      "time": "Open when checked: applications for the 2027 cohort are open; new cohort starts April 5, 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Vets Who Code",
+          "https://vetswhocode.io/"
+        ]
+      ]
+    },
+    {
+      "id": "vetsintech",
+      "name": "VetsinTech (VIT Academy, Employer Meetups and Mentorship)",
+      "provider": "VetsinTech",
+      "kind": "Learning / military career transition",
+      "summary": "Supports military members, veterans and military spouses moving into technology through education (VIT Academy), employment programs, mentorship and employer meetups.",
+      "eligibility": "The Employer Meetup is open to military members, veterans and military spouses of all experience levels. VIT Academy criteria: Confirm with provider.",
+      "cost": "Employer Meetup is free. VIT Academy cost: Confirm with provider.",
+      "format": "Hybrid: virtual employer meetups plus in-person chapter events",
+      "url": "https://vetsintech.co/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Next listed event: virtual Employer Meetup on December 3, 2026, 2:00 to 3:30 PM PT. VIT Academy class dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "VetsinTech",
+          "https://vetsintech.co/"
+        ]
+      ]
+    },
+    {
+      "id": "hiring-our-heroes-fellowships",
+      "name": "Hiring Our Heroes Fellowships (Corporate Fellowships and Skills-Based Fellowships)",
+      "provider": "Hiring Our Heroes (U.S. Chamber of Commerce Foundation)",
+      "kind": "Learning / military career transition",
+      "summary": "Workforce programs that place transitioning service members, veterans, military spouses and other military-connected job seekers with host employers. The Corporate Fellowship is a 12-week program with four days a week at a host company and one day of professional development.",
+      "eligibility": "Corporate Fellowship: active-duty service members within 180 days of transition who meet education and leadership experience requirements and have command approval. Other tracks: Confirm with provider.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider (host-company placement, Monday through Friday)",
+      "url": "https://www.hiringourheroes.org/career-services/fellowships/",
+      "communityFocus": [
+        "Veterans / military-connected"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "prepare",
+        "work"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm with provider (no cohort dates printed; an Apply Now button was live)",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Hiring Our Heroes Fellowships",
+          "https://www.hiringourheroes.org/career-services/fellowships/"
+        ]
+      ]
+    },
+    {
+      "id": "codepath-courses",
+      "name": "CodePath Courses (Applied AI Engineering, Technical Interview Prep, Cybersecurity, Web Development)",
+      "provider": "CodePath",
+      "kind": "Software / AI career training",
+      "summary": "Free 10-week, virtual, instructor-led courses including Applied AI Engineering, Technical Interview Prep, Cybersecurity and Web Development, plus Android and iOS courses.",
+      "eligibility": "Confirm with provider (applications go through an online portal)",
+      "cost": "Free (the page states all courses are $0 cost)",
+      "format": "Online, instructor-led, 10 weeks, with one or two weekly evening sessions",
+      "url": "https://www.codepath.org/courses",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Community college / transfer",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Program checked",
+      "color": "blue",
+      "time": "Applications for Spring 2027 were open when checked; admissions are rolling.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "CodePath Courses",
+          "https://www.codepath.org/courses"
+        ]
+      ]
+    },
+    {
+      "id": "aws-restart",
+      "name": "AWS re/Start",
+      "provider": "Amazon Web Services",
+      "kind": "Learning / adult retraining",
+      "summary": "A cohort-based workforce training program that prepares people for entry to mid-level cloud roles through instructor-led coursework, hands-on labs, and resume and interview coaching.",
+      "eligibility": "Age 18 or older, unemployed or underemployed, able to attend scheduled sessions and motivated to pursue a cloud career. Requirements vary by location and partner organization.",
+      "cost": "Free (offered at no cost to learners)",
+      "format": "Confirm with provider (delivered through local partner organizations)",
+      "url": "https://aws.amazon.com/training/restart/",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Adult / career transition"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "blue",
+      "time": "Confirm with provider (cohorts vary by location and partner)",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "AWS re/Start",
+          "https://aws.amazon.com/training/restart/"
+        ]
+      ]
+    },
+    {
+      "id": "amazon-future-engineer-scholarship",
+      "name": "Amazon Future Engineer Scholarship",
+      "provider": "Amazon",
+      "kind": "Scholarship",
+      "summary": "A scholarship for U.S. high school seniors planning a computer science or engineering related bachelor's degree. Eligible scholars may also receive a 3-month paid Amazon internship, depending on available positions.",
+      "eligibility": "U.S. high school seniors with a qualifying computer science, engineering or robotics course (or who opt into an Amazon assessment), U.S. work authorization, demonstrated financial need, a minimum 2.3 GPA on a 4.0 scale, and a plan to earn a related bachelor's degree.",
+      "cost": "Award: up to $10,000 per year for four years (up to $40,000 total)",
+      "format": "Online application",
+      "url": "https://www.amazonfutureengineer.com/scholarships",
+      "communityFocus": [
+        "Financial need"
+      ],
+      "educationLevels": [
+        "High school",
+        "Undergraduate"
+      ],
+      "stages": [
+        "learn",
+        "prepare"
+      ],
+      "status": "Program checked",
+      "color": "yellow",
+      "time": "Open when checked: applications opened November 3, 2026; deadline January 5, 2027; winners notified mid-April 2027.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Amazon Future Engineer Scholarship and Internship",
+          "https://www.amazonfutureengineer.com/scholarships"
+        ]
+      ]
+    },
+    {
+      "id": "shpe-scholarshpe",
+      "name": "ScholarSHPE",
+      "provider": "Society of Hispanic Professional Engineers (SHPE)",
+      "kind": "Scholarship",
+      "summary": "SHPE's scholarship program for members pursuing STEM degrees. Some sponsor-funded scholarships have added requirements.",
+      "eligibility": "Active SHPE member, minimum 2.5 cumulative GPA, pursuing a STEM degree, and enrolled or planning to enroll at an accredited U.S. two-year or four-year college or university (including U.S. territories).",
+      "cost": "Confirm with provider (individual award amounts are not listed; SHPE membership is required)",
+      "format": "Online application",
+      "url": "https://shpe.org/engage/programs/scholarshpe/",
+      "communityFocus": [
+        "Latine"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Community college / transfer",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "learn"
+      ],
+      "status": "Published cycle closed",
+      "color": "yellow",
+      "time": "CLOSED: the page still describes the 2026-2027 academic year cycle, with applications February 2 to February 16, 2026. Next cycle dates: Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "ScholarSHPE",
+          "https://shpe.org/engage/programs/scholarshpe/"
+        ]
+      ]
+    },
+    {
+      "id": "aises-scholarships",
+      "name": "AISES Scholarships",
+      "provider": "Advancing Indigenous People in STEM (AISES)",
+      "kind": "Scholarship",
+      "summary": "A set of scholarships for students in STEM fields, including the A.T. Anderson Scholarship (any STEM field) and sponsor scholarships that cover computing-related fields such as computer engineering, information technology, and web design and development.",
+      "eligibility": "Varies by scholarship. Listed examples require undergraduate or graduate enrollment and a 3.0 or higher GPA; AISES members are welcome to apply for the A.T. Anderson Scholarship. Full criteria: Confirm with provider.",
+      "cost": "Listed awards include A.T. Anderson: $1,000 undergraduate or $2,000 graduate; ARDC Scholarship: $5,000; Polaris Academic Scholarship: $5,000. AISES membership requirements: Confirm with provider.",
+      "format": "Online application",
+      "url": "https://www.aises.org/scholarships",
+      "communityFocus": [
+        "Underestimated communities (broad focus)"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Graduate"
+      ],
+      "stages": [
+        "learn"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "yellow",
+      "time": "Listed scholarships say 'Apply by April 30' (year not printed). Confirm with provider.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "AISES Scholarships",
+          "https://www.aises.org/scholarships"
+        ]
+      ]
+    },
+    {
+      "id": "out-in-tech-u",
+      "name": "Out in Tech U",
+      "provider": "Out in Tech",
+      "kind": "Mentorship",
+      "summary": "A mentorship, leadership and belonging program (also promoted as Out in Tech U Launch Lab) that helps young adults build confidence, expand their networks and grow through mentorship, leadership development and community.",
+      "eligibility": "Ages 18 to 25. Other criteria: Confirm with provider.",
+      "cost": "Confirm with provider",
+      "format": "Confirm with provider",
+      "url": "https://outintech.com/u/",
+      "communityFocus": [
+        "LGBTQ+ and allies"
+      ],
+      "educationLevels": [
+        "Undergraduate",
+        "Adult / career transition",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "discover",
+        "prepare"
+      ],
+      "status": "Provider information found · intake to confirm",
+      "color": "lime",
+      "time": "Confirm with provider (no cohort or application dates printed)",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Out in Tech U",
+          "https://outintech.com/u/"
+        ]
+      ]
+    },
+    {
+      "id": "code-org-ai-curriculum",
+      "name": "Code.org AI Curriculum and Professional Learning",
+      "provider": "Code.org",
+      "kind": "Educator resource",
+      "summary": "AI teaching units for grades 3 to 12, such as How AI Makes Decisions, AI for Oceans, AI Discoveries (6 to 8), AI Foundations (9 to 12), Exploring Generative AI and Coding with AI, plus self-paced professional learning modules and AI 101 for K-12 teachers.",
+      "eligibility": "K-12 teachers and their students; grade bands vary by unit.",
+      "cost": "AI Discoveries, AI Foundations and AI 101 are described as free. Other units: Confirm with provider.",
+      "format": "Online",
+      "url": "https://code.org/en-US/artificial-intelligence",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Educators",
+        "Early childhood / elementary",
+        "Middle school",
+        "High school"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Learning resource",
+      "color": "lime",
+      "time": "Evergreen resource; no application cycle.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Code.org Artificial Intelligence",
+          "https://code.org/en-US/artificial-intelligence"
+        ]
+      ]
+    },
+    {
+      "id": "experience-ai",
+      "name": "Experience AI",
+      "provider": "Raspberry Pi Foundation and Google DeepMind",
+      "kind": "Educator resource",
+      "summary": "Free AI and machine learning lessons for secondary schools, with lesson plans, slide decks, worksheets and videos. A free three-week online course, Understanding AI for educators, and partner-led teacher training are also available.",
+      "eligibility": "Secondary school educators and their students.",
+      "cost": "Free",
+      "format": "Online",
+      "url": "https://experience-ai.org/",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Educators",
+        "Middle school",
+        "High school"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Learning resource",
+      "color": "lime",
+      "time": "Evergreen resource; no application cycle.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Experience AI",
+          "https://experience-ai.org/"
+        ]
+      ]
+    },
+    {
+      "id": "roblox-education",
+      "name": "Roblox Education (lesson plans and game creation curriculum)",
+      "provider": "Roblox",
+      "kind": "Educator resource",
+      "summary": "Free, standards-aligned game creation curriculum, tutorials and lesson plans that help educators guide students through building their own game. The page says parents and self-guided learners can use the lessons too.",
+      "eligibility": "Educators, parents and learners; not limited to teachers or program managers.",
+      "cost": "Free",
+      "format": "Online",
+      "url": "https://about.roblox.com/education",
+      "communityFocus": [
+        "No demographic focus verified"
+      ],
+      "educationLevels": [
+        "Educators",
+        "Multiple levels / check program"
+      ],
+      "stages": [
+        "discover",
+        "learn"
+      ],
+      "status": "Learning resource",
+      "color": "lime",
+      "time": "Evergreen resource. The page featured a current challenge (US Congressional App Challenge) with a Roblox game submission date of October 26, 2026, now passed.",
+      "date": null,
+      "checked": "2026-11-17",
+      "identityChecked": "Not separately checked",
+      "owned": false,
+      "action": "Open the official source and confirm eligibility, location, schedule and costs before making a plan.",
+      "note": "Research addition for prototype testing, read on the provider's own page on November 17, 2026. No confirmed GGP/Take-Two partnership, funding relationship, job placement or current intake is implied. Formal entity/filing and donation-route review remain separate.",
+      "sourceLabel": "Official provider information",
+      "sources": [
+        [
+          "Education and skill development on Roblox",
+          "https://about.roblox.com/education"
+        ]
+      ]
     }
   ],
   "queue": [
@@ -6080,15 +7556,15 @@ window.GGP={
     "Women"
   ],
   "release": {
-    "date": "2026-09-11",
-    "previousListed": 23,
-    "listed": 76,
-    "added": 53,
+    "date": "2026-11-17",
+    "previousListed": 76,
+    "listed": 114,
+    "added": 38,
     "inherited": 53,
     "heldCandidateOffers": 3,
     "programSourceReview": "2026-09-09",
     "identitySourceReview": "2026-09-07",
-    "notes": "Listing, intake availability, evidence of outcomes and donation eligibility are separate checks. Six veteran/adult-pathway provider entries added September 11; intake, outcomes, giving routes and legal identity are separate checks.",
-    "latestResearch": "2026-09-11"
+    "notes": "Listing, intake availability, evidence of outcomes and donation eligibility are separate checks. Six veteran/adult-pathway provider entries added September 11; intake, outcomes, giving routes and legal identity are separate checks. 38 research additions on November 17, 2026, each read on the provider's own page that day; intake, outcomes, giving routes and legal identity remain separate checks.",
+    "latestResearch": "2026-11-17"
   }
 };
