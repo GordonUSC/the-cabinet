@@ -1,0 +1,685 @@
+<!doctype html>
+<!-- STYLE: Corita Kent serigraph joy (flat saturated ink, risograph grain, hand-pulled color layers) on a board-game overworld map | WHY: Alex runs a year of real milestones and loves play and color coding, so a joyful game map with ticking stops makes his plan feel like progress, not paperwork | ALT: Swiss operations dashboard (Muller-Brockmann grid, one accent color), clearer for audits but colder, and the transit-map idiom was already used for the 11/10 Scholars groups -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#2a1446">
+<title>Scholars Season Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Hanken+Grotesk:ital,wght@0,400;0,600;0,800;1,400&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fff3e2; --paper2:#ffe9cc; --ink:#2a1446; --ink2:#4b3a66;
+  --pink:#ff3d8b; --orange:#ff7a1a; --yellow:#ffc93c; --teal:#10a39b; --violet:#6a3cc9;
+  --red:#e2363b; --amber:#f2b705; --green:#1f9d55; --grey:#b9aec9;
+  --h1:#ff3d8b; --h2:#ffc93c; --h3:#ff7a1a; --h4:#10a39b; --h5:#ffc93c; --h6:#10a39b; --h7:#ff3d8b; --h8:#6a3cc9;
+  --display:"Bagel Fat One", "Arial Rounded MT Bold", system-ui, sans-serif;
+  --body:"Hanken Grotesk", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono:"DM Mono", ui-monospace, Menlo, monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/1.5 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.16;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E")}
+a{color:inherit}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{font-family:var(--display);font-weight:400;letter-spacing:.005em;line-height:1.05;margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
+
+/* HERO */
+.hero{background:var(--ink);color:var(--paper);padding:22px 0 0;position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.eyebrow{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--yellow);margin:0 0 10px}
+.hero h1{font-size:clamp(40px,8.4vw,92px);color:var(--paper)}
+.hero h1 .p{color:var(--pink)} .hero h1 .y{color:var(--yellow)} .hero h1 .t{color:#3fd6cc}
+.lede{max-width:640px;font-size:clamp(17px,2.2vw,21px);margin:12px 0 18px;color:#f6e7ff}
+.lede b{color:var(--yellow)}
+.mapbox{position:relative;border-radius:22px 22px 0 0;overflow:hidden;box-shadow:0 -6px 0 var(--pink) inset;margin-top:8px}
+.mapbox img{width:100%;height:auto;aspect-ratio:1344/752}
+.pin{position:absolute;transform:translate(-50%,-50%);width:clamp(28px,4vw,48px);height:clamp(28px,4vw,48px);border-radius:50%;
+  background:var(--ink);color:var(--paper);display:grid;place-items:center;text-decoration:none;font:400 clamp(14px,2.2vw,24px)/1 var(--display);
+  border:3px solid var(--paper);box-shadow:3px 4px 0 rgba(42,20,70,.55);animation:bob 3.2s ease-in-out infinite;animation-delay:var(--d)}
+.pin:hover,.pin:focus-visible{background:var(--pink);outline:none}
+.pin.is-here{background:var(--pink)}
+.pin.is-here::after{content:"";position:absolute;inset:-10px;border-radius:50%;border:3px solid var(--pink);animation:ping 1.8s ease-out infinite}
+.pin.st-green{background:var(--green)} .pin.st-red{box-shadow:0 0 0 4px var(--red),3px 4px 0 rgba(42,20,70,.55)}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-64%)}}
+@keyframes ping{0%{transform:scale(.8);opacity:1}100%{transform:scale(1.6);opacity:0}}
+
+/* LEGEND + TAKES */
+.bar{background:var(--yellow);box-shadow:0 -4px 0 var(--ink) inset,0 4px 0 var(--ink)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;padding-top:12px;padding-bottom:12px;font-weight:600;font-size:15px}
+.lg{display:inline-flex;align-items:center;gap:8px}
+.lg i{width:16px;height:16px;border-radius:50%;display:inline-block;border:2px solid var(--ink)}
+.lg .r{background:var(--red)} .lg .a{background:var(--amber)} .lg .g{background:var(--green)}
+.sound{margin-left:auto;font:600 14px var(--body);border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
+.sound[hidden]{display:none}
+
+.intro2{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;padding:28px 0 8px}
+.card{background:#fff;border:3px solid var(--ink);border-radius:22px;padding:18px 20px;box-shadow:6px 6px 0 var(--ink)}
+.card h3{font-size:26px;margin-bottom:8px}
+.card p{margin:.3em 0}
+.takes{background:var(--teal);color:#fff}
+.takes h3{color:#fff}
+.takes ol{margin:8px 0 6px;padding-left:20px;font-size:15px;columns:1}
+.takes li{margin:3px 0}
+.takes a{color:var(--yellow);font-weight:800}
+.takes .big{font:400 54px/1 var(--display);color:var(--yellow);float:left;margin:0 12px 0 0}
+.how ol{padding-left:20px;margin:.4em 0}
+
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:250px 1fr;gap:28px;align-items:start;padding:22px 0 40px}
+.layout>*{min-width:0}
+.nav{position:sticky;top:12px}
+.stage{scroll-margin-top:16px}
+details.rub{margin-top:0;border:3px solid var(--ink);background:#fff}
+details.rub>summary{font:400 24px/1.1 var(--display);padding:12px 14px}
+details.rub>summary .v{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--hue);padding:3px 8px;border-radius:999px}
+details.rub>summary .tap{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);display:none}
+details.rub:not([open])>summary .tap{display:inline}
+details.rub>.rubric{padding:0 14px 14px}
+.nav ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.nav a{display:grid;grid-template-columns:40px 22px 1fr 14px;align-items:center;gap:8px;text-decoration:none;padding:6px 10px 6px 6px;border-radius:999px;border:2px solid transparent;font-weight:600;font-size:14px;line-height:1.2}
+.nav a:hover,.nav a.on{border-color:var(--ink);background:#fff}
+.nav .nn{font:400 18px var(--display)}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--grey);border:2px solid var(--ink)}
+.dot.st-red{background:var(--red)} .dot.st-amber{background:var(--amber)} .dot.st-green{background:var(--green)}
+
+/* STAGE */
+.stage{position:relative;border:3px solid var(--ink);border-radius:28px;background:#fff;margin:0 0 30px;overflow:hidden;box-shadow:8px 8px 0 var(--hue)}
+.stage-h{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;padding:20px 22px;background:color-mix(in srgb,var(--hue) 22%,#fff)}
+.badge{width:120px;height:120px;filter:drop-shadow(3px 4px 0 rgba(42,20,70,.35))}
+.reveal .badge{transform:scale(.6) rotate(-14deg);opacity:0;transition:transform .7s cubic-bezier(.2,1.6,.4,1),opacity .4s}
+.reveal.in .badge{transform:none;opacity:1}
+.kicker{font:500 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;margin:0 0 6px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.here{background:var(--pink);color:#fff;padding:3px 8px;border-radius:999px;letter-spacing:.06em}
+.later{background:var(--ink);color:var(--paper);padding:3px 8px;border-radius:999px;letter-spacing:.06em}
+.stage h2{font-size:clamp(30px,4.2vw,44px)}
+.great{margin:8px 0 6px;font-size:17px}
+.status{margin:0;font-weight:600;font-size:15px;min-height:1.5em}
+.pill{display:inline-block;padding:3px 12px;border-radius:999px;border:2px solid var(--ink);background:var(--paper);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+.pill.st-red{background:var(--red);color:#fff} .pill.st-amber{background:var(--amber)} .pill.st-green{background:var(--green);color:#fff} .pill.st-later{background:var(--ink);color:var(--paper)}
+.cols{display:grid;grid-template-columns:1fr 1.15fr;gap:0}
+.col-a{padding:18px 22px 22px;border-right:3px dashed color-mix(in srgb,var(--ink) 25%,transparent)}
+.col-b{padding:18px 22px 22px;min-width:0}
+.cols h3{font-size:24px;margin-bottom:10px}
+
+.items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.item{display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:start;padding:10px;border-radius:16px;border:2px solid color-mix(in srgb,var(--ink) 18%,transparent);transition:background .25s,border-color .25s}
+.tick{width:40px;height:40px;border-radius:12px;border:3px solid var(--ink);background:#fff;cursor:pointer;padding:0;display:grid;place-items:center}
+.box{width:20px;height:20px;border-radius:5px;display:block}
+.item.st1{background:#fff7d6;border-color:var(--amber)} .item.st1 .tick{background:var(--amber)}
+.item.st1 .box{width:16px;height:16px;border-radius:50%;background:var(--ink);box-shadow:0 0 0 3px var(--amber),0 0 0 5px var(--ink)}
+.item.st2{background:#e6f6ec;border-color:var(--green)} .item.st2 .tick{background:var(--green)}
+.item.st2 .box{width:12px;height:20px;border:solid #fff;border-width:0 4px 4px 0;border-radius:0;transform:rotate(45deg) translate(-2px,-2px)}
+.item.st2 .t{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:var(--green)}
+.item.st0[data-dec="1"]{border-color:var(--red);background:#fff0ef}
+.item.pop .tick{animation:pop .45s cubic-bezier(.2,1.8,.4,1)}
+@keyframes pop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+.itxt{display:flex;flex-direction:column;gap:5px;min-width:0}
+.t{font-weight:600;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px}
+.chip{font:500 12px/1 var(--mono);padding:4px 8px;border-radius:999px;border:2px solid var(--ink);background:#fff}
+.o-alex{background:var(--pink);color:#fff} .o-gordon{background:var(--violet);color:#fff} .o-darby{background:var(--teal);color:#fff}
+.o-eric{background:var(--orange);color:var(--ink)} .o-joe{background:var(--yellow)} .o-kristin{background:#fff}
+.flag{font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.f-dec{color:var(--red)} .f-take{color:var(--teal)}
+.note{color:var(--ink2);font-style:italic}
+.hand{font-size:13px;font-weight:800;color:var(--teal)}
+.ask{margin-top:16px;background:var(--ink);color:var(--paper);border-radius:18px;padding:14px 16px;position:relative}
+.ask p{margin:0}
+.ask-k{font:500 12px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--yellow);margin-bottom:6px!important}
+
+/* RUBRICS */
+.rubric h4{font-size:24px;margin-bottom:6px}
+.rubric h4 small{font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:var(--hue);color:var(--ink);padding:3px 8px;border-radius:999px;vertical-align:middle}
+.rubric h5{font:800 16px/1.25 var(--body);margin:0}
+.intro{margin:0 0 12px;color:var(--ink2)}
+.crits{display:flex;flex-direction:column;gap:12px}
+.crit{border:2px solid var(--ink);border-radius:16px;padding:10px 12px;background:var(--paper)}
+.crit-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.w{font:400 22px var(--display);color:var(--pink)}
+.w::after{content:" pts";font:500 11px var(--mono);color:var(--ink2)}
+.sub{margin:2px 0 6px;font-size:14px;color:var(--ink2)}
+.anchors{list-style:none;margin:6px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.anchors li{font-size:13px;line-height:1.3;background:#fff;border-radius:10px;padding:6px 7px;border:1.5px solid color-mix(in srgb,var(--ink) 20%,transparent)}
+.anchors li b{display:block;font:400 18px var(--display);color:var(--violet)}
+.anchors li:nth-child(4){background:color-mix(in srgb,var(--green) 14%,#fff)}
+.mt{margin-top:16px!important;margin-bottom:6px!important}
+.checks{margin:0;padding-left:18px;font-size:14px}
+.checks li{margin:3px 0}
+.mores{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.more{background:var(--paper2);border-radius:14px;padding:10px 12px;font-size:14px}
+.more p{margin:4px 0 0}
+.light .lrow{border-bottom:2px dotted color-mix(in srgb,var(--ink) 25%,transparent);padding:8px 0}
+.light .lrow p{margin:3px 0;font-size:14px;display:flex;gap:8px;align-items:baseline}
+.lv{font:400 15px var(--display);min-width:22px;height:22px;border-radius:50%;display:inline-grid;place-items:center;flex:none}
+.lv1{background:var(--paper2)} .lv4{background:var(--green);color:#fff}
+.tw{overflow-x:auto;border:2px solid var(--ink);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{text-align:left;padding:8px 10px;border-bottom:1.5px solid color-mix(in srgb,var(--ink) 15%,transparent);vertical-align:top}
+thead th{background:var(--ink);color:var(--paper);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+tbody th{font-weight:800}
+.target{font-weight:800;color:var(--violet);margin:10px 0 4px}
+.fine{font-size:13px;color:var(--ink2);margin:8px 0 0}
+
+.scorer{margin-top:14px;background:var(--ink);color:var(--paper);border-radius:16px;padding:12px 14px}
+.scorer h5{color:var(--yellow);margin-bottom:6px}
+.srow{display:grid;grid-template-columns:120px 1fr 26px;gap:8px;align-items:center;font-size:14px;margin:6px 0}
+.srow input{width:100%;accent-color:var(--pink)}
+.srow output{font:400 18px var(--display);color:var(--yellow);text-align:right}
+.total{margin:6px 0 0;font-weight:800}
+.total output{font:400 30px var(--display);color:var(--pink)}
+
+details{margin-top:14px;border:2px solid var(--ink);border-radius:16px;background:#fff}
+summary{cursor:pointer;padding:10px 14px;font-weight:800;list-style:none;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font:400 20px/1 var(--display);color:var(--pink);width:16px}
+details[open] summary::before{content:"\2212"}
+.critique{background:#fff0f6}
+.sim{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);background:#fff;border:1.5px solid var(--ink2);border-radius:999px;padding:3px 8px}
+.said-list{list-style:none;margin:0;padding:0 14px 12px;display:flex;flex-direction:column;gap:8px}
+.said-list li{display:grid;grid-template-columns:1fr 20px 1fr;gap:6px;font-size:14px;align-items:start}
+.said{font-weight:800;color:var(--ink)}
+.real{font:500 10px var(--mono);text-transform:uppercase;background:var(--yellow);padding:2px 6px;border-radius:999px;margin-left:4px;letter-spacing:.06em}
+.arrow{color:var(--pink);font-weight:800}
+.changed{color:var(--teal);font-weight:600}
+.blurb{background:var(--paper)}
+.btxt{white-space:pre-wrap;font:400 15px/1.5 var(--body);margin:0 14px;padding:12px 14px;background:#fff;border-radius:12px;border:1.5px dashed var(--ink2)}
+.blurb .fine{margin:8px 14px 12px}
+.copy{margin:10px 14px 0;font:800 14px var(--body);background:var(--pink);color:#fff;border:2px solid var(--ink);border-radius:999px;padding:8px 18px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.copy.ok{background:var(--green)}
+
+/* CHANGELOG + FOOT */
+.log{background:var(--violet);color:#fff;padding:36px 0;box-shadow:0 4px 0 var(--ink) inset}
+.log h2{font-size:clamp(32px,5vw,52px);color:var(--yellow)}
+.log .sub2{max-width:720px;margin:8px 0 18px;color:#efe6ff}
+.loglist{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.loglist li{background:rgba(255,255,255,.1);border:2px solid rgba(255,255,255,.35);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;font-size:15px}
+.loglist .where{font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--yellow)}
+.loglist .said{color:#fff}
+.loglist .changed{color:#9ff3ea}
+.logask{margin-top:20px;background:var(--yellow);color:var(--ink);border-radius:18px;padding:14px 18px;font-weight:600;border:3px solid var(--ink)}
+.foot{background:var(--ink);color:#d9cce9;padding:26px 0 40px;font-size:14px}
+.foot b{color:#fff}
+.foot p{margin:.4em 0;max-width:820px}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:60}
+
+@media (max-width:1000px){
+  .stage{scroll-margin-top:74px}
+  .layout{grid-template-columns:1fr}
+  .nav{position:sticky;top:0;z-index:20;background:var(--paper);margin:0 -16px;padding:8px 16px;border-bottom:3px solid var(--ink)}
+  .nav ol{flex-direction:row;overflow-x:auto;gap:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav ol::-webkit-scrollbar{display:none}
+  .nav a{grid-template-columns:30px 14px;padding:4px 8px 4px 4px;background:#fff;border-color:var(--ink)}
+  .nav a img{width:30px;height:30px}
+  .nav .nl{display:none}
+  .nav .dot{position:absolute;width:10px;height:10px;margin:-22px 0 0 26px;border-width:1.5px}
+  .nav li{position:relative}
+  .cols{grid-template-columns:1fr}
+  .col-a{border-right:0;border-bottom:3px dashed color-mix(in srgb,var(--ink) 25%,transparent)}
+  .intro2{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .stage{scroll-margin-top:74px}
+  body{font-size:16px}
+  .stage{border-radius:22px;box-shadow:5px 5px 0 var(--hue)}
+  .stage-h{grid-template-columns:72px 1fr;gap:12px;padding:16px 14px}
+  .badge{width:72px;height:72px}
+  .col-a,.col-b{padding:14px 14px 18px}
+  .anchors{grid-template-columns:1fr 1fr}
+  .mores{grid-template-columns:1fr}
+  .said-list li{grid-template-columns:1fr;gap:2px}
+  .said-list .arrow{display:none}
+  .loglist{grid-template-columns:1fr}
+  .srow{grid-template-columns:96px 1fr 22px}
+  .bar .wrap{font-size:14px;gap:8px 14px}
+  .sound{margin-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal .badge{transform:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">GGP Scholars + CYSTEM Scholars · 2026 to 27 season</p>
+    <h1>Alex’s <span class="p">Scholars</span> <span class="y">Season</span> <span class="t">Map</span></h1>
+    <p class="lede">Eight stops, one year. <b>You make the calls. Darby takes the busywork.</b> Tap a stop, tick what’s done, copy a note to send under your name.</p>
+    <div class="mapbox">
+      <img src="art/map.jpg" width="1344" height="752" alt="An illustrated board-game map of the Scholars year: a lighthouse, a mailbox, a lantern tower, a gift pavilion, a campfire garden, a bay city bridge, a radio stage, and a starry hilltop.">
+      <a class="pin" href="#s1" style="left:15%;top:20%;--d:0.12s" aria-label="Stop 1: Outreach and partners"><span>1</span></a><a class="pin" href="#s2" style="left:35%;top:22%;--d:0.24s" aria-label="Stop 2: Applications open"><span>2</span></a><a class="pin" href="#s3" style="left:64%;top:18%;--d:0.36s" aria-label="Stop 3: Review and selection"><span>3</span></a><a class="pin" href="#s4" style="left:86%;top:18%;--d:0.48s" aria-label="Stop 4: Award and welcome"><span>4</span></a><a class="pin" href="#s5" style="left:13%;top:70%;--d:0.60s" aria-label="Stop 5: Mentoring and the year"><span>5</span></a><a class="pin" href="#s6" style="left:43%;top:62%;--d:0.72s" aria-label="Stop 6: GDC week"><span>6</span></a><a class="pin" href="#s7" style="left:64%;top:68%;--d:0.84s" aria-label="Stop 7: Stories and supporter report"><span>7</span></a><a class="pin" href="#s8" style="left:88%;top:52%;--d:0.96s" aria-label="Stop 8: Alumni"><span>8</span></a>
+    </div>
+  </div>
+</header>
+
+<div class="bar">
+  <div class="wrap">
+    <span class="lg"><i class="r"></i> Red: your call</span>
+    <span class="lg"><i class="a"></i> Yellow: in progress</span>
+    <span class="lg"><i class="g"></i> Green: done</span>
+    <button class="sound" type="button" hidden aria-pressed="false">Sound: off</button>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="intro2">
+    <div class="card how">
+      <h3>How it works</h3>
+      <ol>
+        <li>Tap the box on any item: open, then yellow, then green.</li>
+        <li>Red items are decisions only you can make.</li>
+        <li>Every stop ends in one ask and one note you can forward.</li>
+        <li>Your ticks save on this phone. Nothing is sent anywhere.</li>
+      </ol>
+      <p><b>You are here:</b> <a href="#s4">Stop 4, Award and welcome</a>.</p>
+    </div>
+    <div class="card takes">
+      <span class="big">19</span>
+      <h3>things Darby can take off your plate</h3>
+      <p>Say the word and they’re gone. You approve, you send, you get the credit.</p>
+      <details style="background:transparent;border-color:#fff;color:#fff"><summary>See the list</summary><ol><li><a href="#s1">Stop 1</a> Build the reach list: last year’s schools and clubs plus new ones</li><li><a href="#s1">Stop 1</a> Partner share email (ESA Foundation, IGDA Foundation, Point)</li><li><a href="#s2">Stop 2</a> Application page answers the top questions before they’re asked</li><li><a href="#s2">Stop 2</a> Reminder at two weeks and at 48 hours</li><li><a href="#s2">Stop 2</a> Midway check: started vs finished</li><li><a href="#s3">Stop 3</a> Verification: close or act on the checks still open</li><li><a href="#s3">Stop 3</a> Whole-list check: schools, regions, disciplines, first-timers</li><li><a href="#s4">Stop 4</a> Welcome email: congrats, grant, first date, Discord</li><li><a href="#s4">Stop 4</a> Belonging and network card at the first call</li><li><a href="#s5">Stop 5</a> Monthly workshop calendar: portfolio, resume, interview</li><li><a href="#s5">Stop 5</a> Book portfolio and resume reviews; reviewer ticks “reviewed”</li><li><a href="#s5">Stop 5</a> Monthly open-internships post for the Discord</li><li><a href="#s5">Stop 5</a> The manager paragraph: mentoring = staff development</li><li><a href="#s6">Stop 6</a> Social post and GDC email that release the pass codes</li><li><a href="#s6">Stop 6</a> Breakfast mixer game (Tue Mar 2, Moscone)</li><li><a href="#s6">Stop 6</a> End-of-week scholar card with QR code</li><li><a href="#s7">Stop 7</a> Tally the cards: jobs, internships, belonging, network</li><li><a href="#s7">Stop 7</a> One page per supporter: their gift, one story, one number</li><li><a href="#s8">Stop 8</a> Summer check-in: three questions</li></ol></details>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="nav" aria-label="Stops">
+      <ol><li><a href="#s1" data-nav="1"><img src="art/s1.webp" width="40" height="40" alt=""><span class="nn">1</span><span class="nl">Outreach and partners</span><i class="dot"></i></a></li><li><a href="#s2" data-nav="2"><img src="art/s2.webp" width="40" height="40" alt=""><span class="nn">2</span><span class="nl">Applications open</span><i class="dot"></i></a></li><li><a href="#s3" data-nav="3"><img src="art/s3.webp" width="40" height="40" alt=""><span class="nn">3</span><span class="nl">Review and selection</span><i class="dot"></i></a></li><li><a href="#s4" data-nav="4"><img src="art/s4.webp" width="40" height="40" alt=""><span class="nn">4</span><span class="nl">Award and welcome</span><i class="dot"></i></a></li><li><a href="#s5" data-nav="5"><img src="art/s5.webp" width="40" height="40" alt=""><span class="nn">5</span><span class="nl">Mentoring and the year</span><i class="dot"></i></a></li><li><a href="#s6" data-nav="6"><img src="art/s6.webp" width="40" height="40" alt=""><span class="nn">6</span><span class="nl">GDC week</span><i class="dot"></i></a></li><li><a href="#s7" data-nav="7"><img src="art/s7.webp" width="40" height="40" alt=""><span class="nn">7</span><span class="nl">Stories and supporter report</span><i class="dot"></i></a></li><li><a href="#s8" data-nav="8"><img src="art/s8.webp" width="40" height="40" alt=""><span class="nn">8</span><span class="nl">Alumni</span><i class="dot"></i></a></li></ol>
+    </nav>
+    <div class="stages">
+      
+<section class="stage" id="s1" data-stage="1" data-later="1" style="--hue:var(--h1)">
+  <header class="stage-h">
+    <img class="badge" src="art/s1.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 1 · Aug to Sep <span class="later">Next fall’s playbook</span></p>
+      <h2>Outreach and partners</h2>
+      <p class="great"><b>Great looks like:</b> Every school we know, plus new ones, hears about the grants from someone they trust.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="outreach-0" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: Lock the call: who is eligible, grant amounts, deadline, video option"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Lock the call: who is eligible, grant amounts, deadline, video option</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li><li class="item" data-id="outreach-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Build the reach list: last year’s schools and clubs plus new ones"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Build the reach list: last year’s schools and clubs plus new ones</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Build%20the%20reach%20list:%20last%20year’s%20schools%20and%20clubs%20plus%20new%20ones">Hand it to Darby</a></div></li><li class="item" data-id="outreach-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Partner share email (ESA Foundation, IGDA Foundation, Point)"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Partner share email (ESA Foundation, IGDA Foundation, Point)</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts, Eric reviews, you send</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Partner%20share%20email%20(ESA%20Foundation,%20IGDA%20Foundation,%20Point)">Hand it to Darby</a></div></li><li class="item" data-id="outreach-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: CYSTEM faculty forward the call (nomination stays a fast track)"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">CYSTEM faculty forward the call (nomination stays a fast track)</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="outreach-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Alumni Discord post: “share this with one person”"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Alumni Discord post: “share this with one person”</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Three partner orgs:</b> “Will you share the Scholars call with your students this week? A ready post is attached.”</p></div>
+    </div>
+    <div class="col-b">
+      <div class="rubric light"><h4>Stage rubric <small>three criteria, 1 to 4</small></h4><div class="lrow"><h5>Reach</h5><p><b class="lv lv1">1</b>Same schools as last year only</p><p><b class="lv lv4">4</b>Every past school plus new schools that serve underestimated students</p></div><div class="lrow"><h5>Partner shares</h5><p><b class="lv lv1">1</b>No partner shares the call</p><p><b class="lv lv4">4</b>Three or more partners share it (ESA Foundation, IGDA Foundation, Point are in the plan)</p></div><div class="lrow"><h5>Clear invitation</h5><p><b class="lv lv1">1</b>Eligibility questions flood in</p><p><b class="lv lv4">4</b>The page answers them first: who, grant amount, deadline, video option</p></div></div>
+      <details class="blurb"><summary>Forward under your name: “Applications are open”</summary>
+        <pre class="btxt">Hi [name],
+
+Applications are open for GGP Scholars (undergraduate, $1,000 grants) and CYSTEM Scholars (graduate, $1,500 grants), and every student in a games path is welcome to apply. Video answers count the same as written ones.
+
+Would you share the call with your early career team or your ERG this week? Here is the link: [link]
+
+Thank you for helping us reach the next class.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s2" data-stage="2" data-later="1" style="--hue:var(--h2)">
+  <header class="stage-h">
+    <img class="badge" src="art/s2.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 2 · Sep to early Oct <span class="later">Next fall’s playbook</span></p>
+      <h2>Applications open</h2>
+      <p class="great"><b>Great looks like:</b> More of the students who start an application finish it.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="apply-0" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Application page answers the top questions before they’re asked"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Application page answers the top questions before they’re asked</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts the FAQ, you approve</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Application%20page%20answers%20the%20top%20questions%20before%20they’re%20asked">Hand it to Darby</a></div></li><li class="item" data-id="apply-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Video option announced in the call"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Video option announced in the call</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="apply-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Reminder at two weeks and at 48 hours"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Reminder at two weeks and at 48 hours</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts, you send from Kaleidoscope</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Reminder%20at%20two%20weeks%20and%20at%2048%20hours">Hand it to Darby</a></div></li><li class="item" data-id="apply-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Midway check: started vs finished"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Midway check: started vs finished</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Midway%20check:%20started%20vs%20finished">Hand it to Darby</a></div></li><li class="item" data-id="apply-4" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: Extend the deadline?"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Extend the deadline?</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Gordon:</b> “One LinkedIn post in the last week before the deadline? Reply 1 yes, 2 no.”</p></div>
+    </div>
+    <div class="col-b">
+      <div class="rubric light"><h4>Stage rubric <small>three criteria, 1 to 4</small></h4><div class="lrow"><h5>Completion</h5><p><b class="lv lv1">1</b>Fewer than one in three started applications get finished (last cycle was about one in three)</p><p><b class="lv lv4">4</b>One in two get finished</p></div><div class="lrow"><h5>Every format welcome</h5><p><b class="lv lv1">1</b>Video answers allowed but not mentioned</p><p><b class="lv lv4">4</b>Video answers announced in the call and scored the same</p></div><div class="lrow"><h5>Reminder rhythm</h5><p><b class="lv lv1">1</b>No reminders</p><p><b class="lv lv4">4</b>A nudge at two weeks and at 48 hours before the deadline</p></div></div>
+      <details class="blurb"><summary>Forward under your name: “Last week to apply”</summary>
+        <pre class="btxt">Hi [name],
+
+One week left for GGP Scholars and CYSTEM Scholars applications, closing [date]. Every application is read by our team.
+
+If you know a student who should be in this class, one forward from you can be the reason they apply: [link]
+
+Thank you,
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s3" data-stage="3" data-later="0" style="--hue:var(--h3)">
+  <header class="stage-h">
+    <img class="badge" src="art/s3.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 3 · Oct to Nov </p>
+      <h2>Review and selection</h2>
+      <p class="great"><b>Great looks like:</b> Picks you can defend in one sentence each, made the same way for everyone.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="select-0" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: Lock the final picks"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Lock the final picks</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li><li class="item" data-id="select-1" data-dec="0" data-preset="prog"><button class="tick" type="button" aria-label="Change status: Verification: close or act on the checks still open"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Verification: close or act on the checks still open</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Preset in progress: Darby sent results 10/30. You decide, Darby does the follow-ups</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Verification:%20close%20or%20act%20on%20the%20checks%20still%20open">Hand it to Darby</a></div></li><li class="item" data-id="select-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Whole-list check: schools, regions, disciplines, first-timers"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Whole-list check: schools, regions, disciplines, first-timers</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Whole-list%20check:%20schools,%20regions,%20disciplines,%20first-timers">Hand it to Darby</a></div></li><li class="item" data-id="select-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Next cycle: name the second reader (cutline band plus one in ten)"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Next cycle: name the second reader (cutline band plus one in ten)</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="select-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Next cycle: calibrate on three fictional sample files"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Next cycle: calibrate on three fictional sample files</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="select-5" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Next cycle: score with the five-criteria rubric"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Next cycle: score with the five-criteria rubric</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Joe:</b> “Final list attached. Does the total match what went to Kaleidoscope? Reply yes, or the gap.”</p></div>
+    </div>
+    <div class="col-b">
+      <details class="rub" open id="rubric-applicant"><summary><span class="rt">Applicant review rubric</span><small class="v">v2</small><span class="tap">tap to open</span></summary><div class="rubric big"><p class="intro">Five criteria, 1 to 4 each. Score = weight x level / 4, top is 100. The weights are a starting point; change them if they feel wrong.</p><div class="crits"><div class="crit"><div class="crit-h"><h5>Makes things</h5><span class="w" data-w="25">25</span></div><p class="sub">any medium: game, mod, level, art, code, writing, jam entry</p><ol class="anchors"><li><b>1</b>Wants to make things; nothing shown</li><li><b>2</b>Names one thing made; no link or detail</li><li><b>3</b>Shows one finished thing and says what they did</li><li><b>4</b>Several finished things, or one shipped with others, with their part named</li></ol></div><div class="crit"><div class="crit-h"><h5>Lifts others</h5><span class="w" data-w="25">25</span></div><p class="sub">GGP values in action: belonging, serving underestimated communities, collaboration</p><ol class="anchors"><li><b>1</b>No example of helping anyone</li><li><b>2</b>A one-off example</li><li><b>3</b>A repeated role: runs a club night, tutors, moderates</li><li><b>4</b>Started or grew something others rely on, and says who it helped</li></ol></div><div class="crit"><div class="crit-h"><h5>Growth story</h5><span class="w" data-w="20">20</span></div><p class="sub">where they are going and what this year unlocks</p><ol class="anchors"><li><b>1</b>Generic: “I love games”</li><li><b>2</b>A direction, no next step</li><li><b>3</b>A direction plus one concrete next step</li><li><b>4</b>Direction, next step, and how tours, reviews, GDC and peers get them there</li></ol></div><div class="crit"><div class="crit-h"><h5>Shows up</h5><span class="w" data-w="15">15</span></div><p class="sub">follow-through</p><ol class="anchors"><li><b>1</b>Missing required parts</li><li><b>2</b>Complete, thin answers</li><li><b>3</b>Complete, every prompt answered with specifics</li><li><b>4</b>Specific, plus proof of finishing things elsewhere</li></ol></div><div class="crit"><div class="crit-h"><h5>Will give back</h5><span class="w" data-w="15">15</span></div><p class="sub">mentor, host, help the next class</p><ol class="anchors"><li><b>1</b>Not mentioned</li><li><b>2</b>Says they would like to</li><li><b>3</b>Names how they would help</li><li><b>4</b>Already helps newer people and says so</li></ol></div></div><div class="scorer" hidden><h5>Try it: score a fictional applicant</h5><div class="sliders"></div><p class="total">Total <output>0</output> / 100</p></div><h5 class="mt">Bias checks</h5><ul class="checks"><li><b>Video equals essay.</b> Scored on the same anchors. Transcribe so it reads like text.</li><li><b>No AI detector decides.</b> Detectors flag plain and non-native writing far more often. If something reads off, have a 15 minute conversation.</li><li><b>No points for polish.</b> No credit for school name, vocabulary or fancy formatting. Score what they did.</li><li><b>Names hidden first read.</b> Where Kaleidoscope allows. Score the work.</li><li><b>Calibrate first.</b> Both readers score the same three fictional sample files. Talk through any 2 point gap.</li><li><b>Look at the whole list.</b> Schools, regions, disciplines, first-timers. If it skews, re-read the band just below the cutline.</li></ul><div class="mores"><div class="more"><h5>Second reader</h5><p>You read everything. A second reader reads only the band within 8 points of the cutline, plus one in ten at random. A 2 point gap on any criterion = a 10 minute talk, not an average.</p></div><div class="more"><h5>Tie-breakers</h5><p>1 Higher Makes things. 2 Higher Lifts others. 3 First GGP grant over a repeat (repeats are welcome when earned; this only breaks a tie). 4 Both in if the budget allows; if not, you decide and write one line why.</p></div><div class="more"><h5>Conflict of interest</h5><p>Disclose, don’t disappear. A friend, roommate, coworker or mentee: note it, skip scoring that one, the other reader’s score stands. Knowing someone from a GGP event or the Discord is not a conflict; note it and score normally.</p></div><div class="more"><h5>Your color code</h5><p>Green = verified and ready. Orange = can’t verify. Yellow = other issue. Nothing orange gets announced.</p></div></div><details class="critique"><summary><span class="sumtxt">Alex said / we changed (8)</span><span class="sim">Darby’s simulation, not his words</span></summary><ul class="said-list"><li><span class="said">“Give me five, not eight.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Cut 8 criteria to 5.</span></li><li><span class="said">“We don’t ask for money info. Don’t score what we didn’t ask.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Dropped “need”.</span></li><li><span class="said">“Career clarity punishes freshmen.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Now “Growth story”: a 19 year old can score 4.</span></li><li><span class="said">“Leadership, collaboration, values: same thing three times.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Merged into “Lifts others”.</span></li><li><span class="said">“Where’s ‘will they come back’?” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Added “Will give back”.</span></li><li><span class="said">“Two readers on all of them? Who? Be real.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Second reader only near the cutline, plus one in ten.</span></li><li><span class="said">“The deadline is the deadline.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Submission time is no longer a tie-breaker.</span></li><li><span class="said">“I know a lot of these people.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Conflict rule: disclose, skip that one.</span></li></ul></details></div></details>
+      <details class="blurb"><summary>Forward under your name: “Selection is done”</summary>
+        <pre class="btxt">Hi [name],
+
+Selection is done. Our team read every complete application and scored each one on five things: what they make, how they lift others, where they are going, how they show up, and how they will give back.
+
+We will introduce the new class soon. Thank you for making these grants possible.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s4" data-stage="4" data-later="0" style="--hue:var(--h4)">
+  <header class="stage-h">
+    <img class="badge" src="art/s4.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 4 · Nov to Dec <span class="here">You are here</span></p>
+      <h2>Award and welcome</h2>
+      <p class="great"><b>Great looks like:</b> Every scholar hears yes, gets paid on time, and knows their first date within a week.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="welcome-0" data-dec="0" data-preset="done"><button class="tick" type="button" aria-label="Change status: Funds to Kaleidoscope, about 60 days before grants go out"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Funds to Kaleidoscope, about 60 days before grants go out</span><span class="meta"><span class="chip o-joe">Joe</span><span class="note">Preset: Joe sent it by ACH 11/6 (GGP records). Tap if wrong.</span></span></div></li><li class="item" data-id="welcome-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Winners complete the Kaleidoscope acceptance form"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Winners complete the Kaleidoscope acceptance form</span><span class="meta"><span class="chip o-alex">Alex</span><span class="note">Darby drafts the reminder</span></span></div></li><li class="item" data-id="welcome-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Welcome email: congrats, grant, first date, Discord"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Welcome email: congrats, grant, first date, Discord</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts in your voice, you send</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Welcome%20email:%20congrats,%20grant,%20first%20date,%20Discord">Hand it to Darby</a></div></li><li class="item" data-id="welcome-3" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: Pick the virtual meet-the-scholars date"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Pick the virtual meet-the-scholars date</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li><li class="item" data-id="welcome-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Peer groups across schools"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Peer groups across schools</span><span class="meta"><span class="chip o-alex">Alex</span><span class="note">Darby can draft a first grouping</span></span></div></li><li class="item" data-id="welcome-5" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Belonging and network card at the first call"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Belonging and network card at the first call</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Belonging%20and%20network%20card%20at%20the%20first%20call">Hand it to Darby</a></div></li><li class="item" data-id="welcome-6" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: When do we announce the class publicly?"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">When do we announce the class publicly?</span><span class="meta"><span class="chip o-gordon">Gordon</span><span class="flag f-dec">Your call</span><span class="note">Gordon and you decide together</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Gordon:</b> “Meet-the-scholars call: reply 1 [day, time], 2 [day, time] or 3 [day, time].”</p></div>
+    </div>
+    <div class="col-b">
+      <div class="rubric light"><h4>Stage rubric <small>three criteria, 1 to 4</small></h4><div class="lrow"><h5>Speed</h5><p><b class="lv lv1">1</b>More than a month from decision to welcome</p><p><b class="lv lv4">4</b>Welcome within a week of the decision</p></div><div class="lrow"><h5>Money on time</h5><p><b class="lv lv1">1</b>Funds reach Kaleidoscope late</p><p><b class="lv lv4">4</b>Funds reach Kaleidoscope about 60 days before grants go out (your rule)</p></div><div class="lrow"><h5>First date</h5><p><b class="lv lv1">1</b>Scholars wait to hear what happens next</p><p><b class="lv lv4">4</b>Every scholar knows their first event date and their peer group</p></div></div>
+      <details class="blurb"><summary>Forward under your name: “Grants are on the way”</summary>
+        <pre class="btxt">Hi [name],
+
+Grants are on their way to this year’s GGP Scholars and CYSTEM Scholars. Within a week of saying yes, each scholar gets a first date and a peer group across schools, because meeting each other is what scholars ask for most.
+
+[One line on what your gift made possible.] Thank you for being part of it.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s5" data-stage="5" data-later="0" style="--hue:var(--h5)">
+  <header class="stage-h">
+    <img class="badge" src="art/s5.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 5 · Dec to Feb </p>
+      <h2>Mentoring and the year</h2>
+      <p class="great"><b>Great looks like:</b> Every scholar ends winter with one reviewed portfolio link and three people they can message.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="year-0" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: How many Extended Scholars (recent alumni) and Industry Mentors?"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">How many Extended Scholars (recent alumni) and Industry Mentors?</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li><li class="item" data-id="year-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Monthly workshop calendar: portfolio, resume, interview"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Monthly workshop calendar: portfolio, resume, interview</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts, you approve</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Monthly%20workshop%20calendar:%20portfolio,%20resume,%20interview">Hand it to Darby</a></div></li><li class="item" data-id="year-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Book portfolio and resume reviews; reviewer ticks “reviewed”"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Book portfolio and resume reviews; reviewer ticks “reviewed”</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Book%20portfolio%20and%20resume%20reviews;%20reviewer%20ticks%20“reviewed”">Hand it to Darby</a></div></li><li class="item" data-id="year-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Global Game Jam team-ups across schools (late January)"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Global Game Jam team-ups across schools (late January)</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="year-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Monthly open-internships post for the Discord"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Monthly open-internships post for the Discord</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Monthly%20open-internships%20post%20for%20the%20Discord">Hand it to Darby</a></div></li><li class="item" data-id="year-5" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: The manager paragraph: mentoring = staff development"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">The manager paragraph: mentoring = staff development</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20The%20manager%20paragraph:%20mentoring%20=%20staff%20development">Hand it to Darby</a></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Supporters with staff:</b> “Can two people on your team give one hour each in January for a portfolio review?”</p></div>
+    </div>
+    <div class="col-b">
+      <details class="rub" open id="rubric-impact"><summary><span class="rt">Program impact rubric</span><small class="v">v2</small><span class="tap">tap to open</span></summary><div class="rubric big"><p class="intro">Six outcomes. One measure each, collected where scholars already are. Darby does the counting.</p><div class="tw"><table><thead><tr><th>Outcome</th><th>The one measure</th><th>When</th></tr></thead><tbody><tr><th scope="row">Jobs</th><td>Share of alumni in a games or games-adjacent role, 12 months after their year</td><td>Summer check-in</td></tr><tr><th scope="row">Internships</th><td>Applied? Landed? (yes / no each)</td><td>Breakfast card, then June</td></tr><tr><th scope="row">Portfolio</th><td>One link reviewed by an industry pro this year (yes / no)</td><td>Reviewer ticks the box</td></tr><tr><th scope="row">Belonging</th><td>1 to 5: “I feel like one of them, not someone studying from the outside” (your line, 8/11)</td><td>Welcome call, then Breakfast</td></tr><tr><th scope="row">Network</th><td>Industry people you could message tomorrow: 0 / 1 to 2 / 3 to 5 / 6+</td><td>Welcome, then after GDC</td></tr><tr><th scope="row">Alumni stay</th><td>Share of the last three classes who did one GGP thing this year</td><td>Ongoing, from your list</td></tr></tbody></table></div><h5 class="mt">Score our evidence for each outcome</h5><ol class="anchors"><li><b>1</b>We don’t know</li><li><b>2</b>Anecdotes only</li><li><b>3</b>Measured for half the class or more</li><li><b>4</b>Measured for 80% or more, with consented stories</li></ol><p class="target">Target this season: every outcome at 3. Jobs and Belonging at 4.</p><p class="fine">Only scholars who opt in are named. Numbers are counts and shares. No automated LinkedIn scraping.</p><details class="critique"><summary><span class="sumtxt">Alex said / we changed (5)</span><span class="sim">Darby’s simulation, not his words</span></summary><ul class="said-list"><li><span class="said">“Nobody fills out a 25 question survey.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Three questions on one card.</span></li><li><span class="said">“Belonging is what they say most.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Belonging uses your own thesis line.</span></li><li><span class="said">“Don’t stalk them on LinkedIn.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">No scraping. Ask, and use what they share.</span></li><li><span class="said">“Not me at 2am after a shift.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Darby owns every count.</span></li><li><span class="said">“Jobs is what supporters care about.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Jobs is row one.</span></li></ul></details></div></details>
+      <details class="blurb"><summary>Forward under your name: “One hour, big difference”</summary>
+        <pre class="btxt">Hi [name],
+
+Our scholars are building portfolios this winter. Would two people on your team give one hour each in [month] for a portfolio or resume review? It counts as professional development for your staff, and I am happy to write the note for their manager.
+
+Reply with names and I will handle the rest.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s6" data-stage="6" data-later="0" style="--hue:var(--h6)">
+  <header class="stage-h">
+    <img class="badge" src="art/s6.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 6 · Mar 1 to 4, 2027 </p>
+      <h2>GDC week</h2>
+      <p class="great"><b>Great looks like:</b> Every scholar meets three pros by name, mixes across schools, and eats something other than pizza.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="gdc-0" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Social post and GDC email that release the pass codes"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Social post and GDC email that release the pass codes</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts, Eric reviews</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Social%20post%20and%20GDC%20email%20that%20release%20the%20pass%20codes">Hand it to Darby</a></div></li><li class="item" data-id="gdc-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Assign passes to scholars"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Assign passes to scholars</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="gdc-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Studio visit sign-ups"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Studio visit sign-ups</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="gdc-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Breakfast mixer game (Tue Mar 2, Moscone)"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Breakfast mixer game (Tue Mar 2, Moscone)</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby designs two, you pick one</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Breakfast%20mixer%20game%20(Tue%20Mar%202,%20Moscone)">Hand it to Darby</a></div></li><li class="item" data-id="gdc-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Menu check: a different meal each time"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Menu check: a different meal each time</span><span class="meta"><span class="chip o-joe">Joe</span></span></div></li><li class="item" data-id="gdc-5" data-dec="1" data-preset=""><button class="tick" type="button" aria-label="Change status: A rest block, and one scholar moment later in the week"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">A rest block, and one scholar moment later in the week</span><span class="meta"><span class="chip o-alex">Alex</span><span class="flag f-dec">Your call</span></span></div></li><li class="item" data-id="gdc-6" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: End-of-week scholar card with QR code"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">End-of-week scholar card with QR code</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20End-of-week%20scholar%20card%20with%20QR%20code">Hand it to Darby</a></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Joe:</b> “Different menu at every scholar meal, no pizza twice. Reply yes, or what blocks it.”</p></div>
+    </div>
+    <div class="col-b">
+      <details class="rub" open id="rubric-gdc"><summary><span class="rt">GDC week rubric</span><small class="v">v2</small><span class="tap">tap to open</span></summary><div class="rubric big"><p class="intro">Scored by scholars on one card at the end of the week. Every GGP event is alcohol-free.</p><div class="crits"><div class="crit"><div class="crit-h"><h5>Met real people</h5></div><ol class="anchors"><li><b>1</b>Met no pros by name</li><li><b>2</b>Met 1 or 2</li><li><b>3</b>Met 3 or more by name</li><li><b>4</b>3 or more, plus a follow-up planned</li></ol></div><div class="crit"><div class="crit-h"><h5>Mixed across schools</h5></div><ol class="anchors"><li><b>1</b>Stayed with their own school</li><li><b>2</b>Talked to one scholar from elsewhere</li><li><b>3</b>The breakfast mixer game sat them with new people</li><li><b>4</b>Made a friend at another school</li></ol></div><div class="crit"><div class="crit-h"><h5>Studio visit</h5></div><ol class="anchors"><li><b>1</b>No visit</li><li><b>2</b>Crowded or rushed</li><li><b>3</b>Time to ask questions</li><li><b>4</b>Plus a talk with someone in the role they want</li></ol></div><div class="crit"><div class="crit-h"><h5>Food</h5></div><ol class="anchors"><li><b>1</b>One kind of food all week</li><li><b>2</b>Some variety</li><li><b>3</b>A different meal each time</li><li><b>4</b>Variety, and every dietary need handled without asking twice</li></ol></div><div class="crit"><div class="crit-h"><h5>Pacing</h5></div><ol class="anchors"><li><b>1</b>Done by Tuesday</li><li><b>2</b>Busy, no breaks</li><li><b>3</b>One planned rest block</li><li><b>4</b>Rest block plus a scholar moment later in the week</li></ol></div><div class="crit"><div class="crit-h"><h5>Belonging</h5></div><ol class="anchors"><li><b>1</b>Card says 1 or 2</li><li><b>2</b>3</li><li><b>3</b>4</li><li><b>4</b>5</li></ol></div></div><p class="fine">Darby also counts: scholars at any GGP event, scholars on a studio visit, scholars who met 3 or more pros.</p><details class="critique"><summary><span class="sumtxt">Alex said / we changed (6)</span><span class="sim">Darby’s simulation, not his words</span></summary><ul class="said-list"><li><span class="said">“Less pizza. Every meal was pizza.” <b class="real">his real GDC note</b></span><span class="arrow" aria-hidden="true">→</span><span class="changed">Food row: a different meal each time.</span></li><li><span class="said">“Breakfast needs a mixing activity.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Mixer game is a criterion.</span></li><li><span class="said">“Tours are what they loved.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Studio visit row, protected.</span></li><li><span class="said">“Something later in the week, when it’s quieter.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Pacing row asks for it.</span></li><li><span class="said">“Scored by staff? Ask the scholars.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Scholars score it on one card.</span></li><li><span class="said">“Cost per scholar is Joe’s sheet.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Cut from this rubric.</span></li></ul></details></div></details>
+      <details class="blurb"><summary>Forward under your name: “Breakfast with the scholars”</summary>
+        <pre class="btxt">Hi [name],
+
+You are invited to the Scholars Breakfast at GDC on the morning of Tuesday, March 2, at Moscone Center. It is the best hour of the week to meet the students your support is lifting up. Every GGP event at GDC is alcohol-free.
+
+Reply and I will save you a seat.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s7" data-stage="7" data-later="0" style="--hue:var(--h7)">
+  <header class="stage-h">
+    <img class="badge" src="art/s7.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 7 · Mar to Jun </p>
+      <h2>Stories and supporter report</h2>
+      <p class="great"><b>Great looks like:</b> Every supporter can say what their gift did in one sentence.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="stories-0" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Ask five scholars: can we share your win?"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Ask five scholars: can we share your win?</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="stories-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Tally the cards: jobs, internships, belonging, network"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Tally the cards: jobs, internships, belonging, network</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Tally%20the%20cards:%20jobs,%20internships,%20belonging,%20network">Hand it to Darby</a></div></li><li class="item" data-id="stories-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: One page per supporter: their gift, one story, one number"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">One page per supporter: their gift, one story, one number</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby drafts, Eric reviews, you send</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20One%20page%20per%20supporter:%20their%20gift,%20one%20story,%20one%20number">Hand it to Darby</a></div></li><li class="item" data-id="stories-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Retell test on the next supporter call"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Retell test on the next supporter call</span><span class="meta"><span class="chip o-gordon">Gordon</span></span></div></li><li class="item" data-id="stories-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: LinkedIn thank-you to supporters and the team"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">LinkedIn thank-you to supporters and the team</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To One scholar:</b> “Can we share your story with our supporters? You see it first. Reply yes or no.”</p></div>
+    </div>
+    <div class="col-b">
+      <details class="rub" open id="rubric-supporter"><summary><span class="rt">Supporter understanding rubric</span><small class="v">v2</small><span class="tap">tap to open</span></summary><div class="rubric big"><p class="intro">The test: on the next call, ask “What would you tell your team about the Scholars?” Score what they say back.</p><div class="crits"><div class="crit"><div class="crit-h"><h5>One-sentence retell</h5></div><ol class="anchors"><li><b>1</b>Can’t say what it is</li><li><b>2</b>Names GGP, not the result</li><li><b>3</b>Names the program and one result</li><li><b>4</b>One sentence with a number and a person, close to our words</li></ol></div><div class="crit"><div class="crit-h"><h5>Story plus number</h5></div><ol class="anchors"><li><b>1</b>Neither</li><li><b>2</b>A number with no face, or a story with no number</li><li><b>3</b>One consented story and one number together</li><li><b>4</b>Same, and the number is what the story shows</li></ol></div><div class="crit"><div class="crit-h"><h5>Evidence quality</h5></div><ol class="anchors"><li><b>1</b>Estimates or “over” numbers</li><li><b>2</b>Self-reported only</li><li><b>3</b>Counted by us</li><li><b>4</b>Counted by us, the same way every year</li></ol></div><div class="crit"><div class="crit-h"><h5>Their gift, specifically</h5></div><ol class="anchors"><li><b>1</b>Generic thank-you</li><li><b>2</b>Names the program they funded</li><li><b>3</b>Says what their gift paid for</li><li><b>4</b>Says what it paid for and what happened because of it</li></ol></div></div><p class="fine">Format: one page or one email, under your name, after Eric’s review. Summer: report back to every supporter.</p><details class="critique"><summary><span class="sumtxt">Alex said / we changed (5)</span><span class="sim">Darby’s simulation, not his words</span></summary><ul class="said-list"><li><span class="said">“They read the first line and look at one photo.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">One page or one email.</span></li><li><span class="said">“No story without the scholar saying yes.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Consent first, every time.</span></li><li><span class="said">“One real number beats five fuzzy ones.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">No estimates in supporter copy.</span></li><li><span class="said">“Tell them what their own money did.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">“Their gift, specifically” is a criterion.</span></li><li><span class="said">“Twelve pages means a month of my life.” </span><span class="arrow" aria-hidden="true">→</span><span class="changed">Darby drafts, Eric reviews, you sign.</span></li></ul></details></div></details>
+      <details class="blurb"><summary>Forward under your name: “What your gift did”</summary>
+        <pre class="btxt">Hi [name],
+
+Here is what your gift did this year, in one line: [one sentence].
+
+[Scholar first name, with permission] [one sentence about their year]. [One number we counted ourselves.]
+
+Thank you for being part of it. I would love 15 minutes to hear what you would want next year.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+<section class="stage" id="s8" data-stage="8" data-later="0" style="--hue:var(--h8)">
+  <header class="stage-h">
+    <img class="badge" src="art/s8.webp" width="120" height="120" alt="" loading="lazy">
+    <div>
+      <p class="kicker">Stop 8 · Summer and always </p>
+      <h2>Alumni</h2>
+      <p class="great"><b>Great looks like:</b> Alumni come back as mentors, hosts and colleagues.</p>
+      <p class="status" aria-live="polite"><span class="pill">status</span> <span class="count"></span></p>
+    </div>
+  </header>
+  <div class="cols">
+    <div class="col-a">
+      <h3>Checklist</h3>
+      <ol class="items"><li class="item" data-id="alumni-0" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Summer check-in: three questions"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Summer check-in: three questions</span><span class="meta"><span class="chip o-darby">Darby</span><span class="flag f-take">Darby can take this</span><span class="note">Darby builds the form, you send</span></span><a class="hand" href="mailto:gbellamyai@gmail.com?subject=Darby,%20take%20it:%20Summer%20check-in:%20three%20questions">Hand it to Darby</a></div></li><li class="item" data-id="alumni-1" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Permanent emails in place of school emails"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Permanent emails in place of school emails</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="alumni-2" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Alumni meetup or brunch"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Alumni meetup or brunch</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="alumni-3" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Invite alumni to be next year’s Extended Scholars"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Invite alumni to be next year’s Extended Scholars</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li><li class="item" data-id="alumni-4" data-dec="0" data-preset=""><button class="tick" type="button" aria-label="Change status: Job-news channel in the Discord"><span class="box" aria-hidden="true"></span></button><div class="itxt"><span class="t">Job-news channel in the Discord</span><span class="meta"><span class="chip o-alex">Alex</span></span></div></li></ol>
+      <div class="ask"><p class="ask-k">The one ask</p><p><b>To Alumni:</b> “Reply with one thing: where are you working now?”</p></div>
+    </div>
+    <div class="col-b">
+      <div class="rubric light"><h4>Stage rubric <small>three criteria, 1 to 4</small></h4><div class="lrow"><h5>Stays in touch</h5><p><b class="lv lv1">1</b>We don&#x27;t know who is still around</p><p><b class="lv lv4">4</b>We can name who did one GGP thing this year, from the last three classes</p></div><div class="lrow"><h5>Gives back</h5><p><b class="lv lv1">1</b>No alumni mentoring</p><p><b class="lv lv4">4</b>Alumni fill the Extended Scholars mentor tier</p></div><div class="lrow"><h5>Permanent contact</h5><p><b class="lv lv1">1</b>School emails expiring</p><p><b class="lv lv4">4</b>Alumni have swapped in permanent emails (your July ask)</p></div></div>
+      <details class="blurb"><summary>Forward under your name: “Our alumni keep showing up”</summary>
+        <pre class="btxt">Hi [name],
+
+Our alumni keep showing up: as mentors for the next class, as hosts, and as colleagues at studios including Blizzard, Rockstar, Sony and Roblox.
+
+When you hire one of our scholars, tell me, and I will make sure the next class hears how they got there.
+
+Alex Rogers
+Gay Gaming Professionals</pre>
+        <button class="copy" type="button" hidden>Copy</button>
+        <p class="fine">Draft for you. Fill the [brackets]. Eric reviews external drafts before they go.</p>
+      </details>
+    </div>
+  </div>
+</section>
+    </div>
+  </div>
+</main>
+
+<section class="log" id="changelog">
+  <div class="wrap">
+    <h2>Alex said / we changed</h2>
+    <p class="sub2">Before you saw any of this, Darby critiqued every rubric the way you would, using your own notes (“Less pizza” is your real GDC 2026 note). Everything in quotes is Darby’s simulation of your view, not your words. Here is what changed.</p>
+    <ul class="loglist"><li><span class="where">Applicant</span><span class="said">“Give me five, not eight.”</span><span class="changed">Cut 8 criteria to 5.</span></li><li><span class="where">Applicant</span><span class="said">“We don’t ask for money info. Don’t score what we didn’t ask.”</span><span class="changed">Dropped “need”.</span></li><li><span class="where">Applicant</span><span class="said">“Career clarity punishes freshmen.”</span><span class="changed">Now “Growth story”: a 19 year old can score 4.</span></li><li><span class="where">Applicant</span><span class="said">“Leadership, collaboration, values: same thing three times.”</span><span class="changed">Merged into “Lifts others”.</span></li><li><span class="where">Applicant</span><span class="said">“Where’s ‘will they come back’?”</span><span class="changed">Added “Will give back”.</span></li><li><span class="where">Applicant</span><span class="said">“Two readers on all of them? Who? Be real.”</span><span class="changed">Second reader only near the cutline, plus one in ten.</span></li><li><span class="where">Applicant</span><span class="said">“The deadline is the deadline.”</span><span class="changed">Submission time is no longer a tie-breaker.</span></li><li><span class="where">Applicant</span><span class="said">“I know a lot of these people.”</span><span class="changed">Conflict rule: disclose, skip that one.</span></li><li><span class="where">Impact</span><span class="said">“Nobody fills out a 25 question survey.”</span><span class="changed">Three questions on one card.</span></li><li><span class="where">Impact</span><span class="said">“Belonging is what they say most.”</span><span class="changed">Belonging uses your own thesis line.</span></li><li><span class="where">Impact</span><span class="said">“Don’t stalk them on LinkedIn.”</span><span class="changed">No scraping. Ask, and use what they share.</span></li><li><span class="where">Impact</span><span class="said">“Not me at 2am after a shift.”</span><span class="changed">Darby owns every count.</span></li><li><span class="where">Impact</span><span class="said">“Jobs is what supporters care about.”</span><span class="changed">Jobs is row one.</span></li><li><span class="where">Supporter</span><span class="said">“They read the first line and look at one photo.”</span><span class="changed">One page or one email.</span></li><li><span class="where">Supporter</span><span class="said">“No story without the scholar saying yes.”</span><span class="changed">Consent first, every time.</span></li><li><span class="where">Supporter</span><span class="said">“One real number beats five fuzzy ones.”</span><span class="changed">No estimates in supporter copy.</span></li><li><span class="where">Supporter</span><span class="said">“Tell them what their own money did.”</span><span class="changed">“Their gift, specifically” is a criterion.</span></li><li><span class="where">Supporter</span><span class="said">“Twelve pages means a month of my life.”</span><span class="changed">Darby drafts, Eric reviews, you sign.</span></li><li><span class="where">GDC week</span><span class="said">“Less pizza. Every meal was pizza.”</span><span class="changed">Food row: a different meal each time.</span></li><li><span class="where">GDC week</span><span class="said">“Breakfast needs a mixing activity.”</span><span class="changed">Mixer game is a criterion.</span></li><li><span class="where">GDC week</span><span class="said">“Tours are what they loved.”</span><span class="changed">Studio visit row, protected.</span></li><li><span class="where">GDC week</span><span class="said">“Something later in the week, when it’s quieter.”</span><span class="changed">Pacing row asks for it.</span></li><li><span class="where">GDC week</span><span class="said">“Scored by staff? Ask the scholars.”</span><span class="changed">Scholars score it on one card.</span></li><li><span class="where">GDC week</span><span class="said">“Cost per scholar is Joe’s sheet.”</span><span class="changed">Cut from this rubric.</span></li><li><span class="where">Stage rubrics</span><span class="said">“Three. I said three.”</span><span class="changed">Each light rubric cut from five criteria to three.</span></li></ul>
+    <p class="logask">Your real vote: reply to Darby with <b>1</b> keep the rubrics, <b>2</b> change one thing (say which), or <b>3</b> start over.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><b>Made for Alex by Darby, at Gordon’s ask.</b> Built on what you already run: your color code, the alumni list, the Discord, the two mentor tiers, and the rule that funds reach Kaleidoscope about 60 days early.</p>
+    <p>Art: Higgsfield. Chime: ElevenLabs (off until you turn it on). Every example is fictional. No student names or scores are in this page.</p>
+    <p>Rubric details and the full critique are also in RUBRICS.md for Gordon and Eric.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY="alex-season-map-v1", state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||"{}")||{}; }catch(e){ state={}; }
+  function save(){ try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){} }
+  var reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* sound */
+  var soundOn=false, chime=null, sb=document.querySelector(".sound");
+  try{ soundOn=localStorage.getItem(KEY+"-sound")==="1"; }catch(e){}
+  if(sb){ sb.hidden=false; paintSound();
+    sb.addEventListener("click",function(){ soundOn=!soundOn; try{localStorage.setItem(KEY+"-sound",soundOn?"1":"0");}catch(e){} paintSound(); if(soundOn) play(); }); }
+  function paintSound(){ sb.textContent="Sound: "+(soundOn?"on":"off"); sb.setAttribute("aria-pressed",soundOn?"true":"false"); }
+  function play(){ if(!soundOn) return; try{ if(!chime){ chime=new Audio("art/chime.mp3"); chime.volume=.55; } chime.currentTime=0; var p=chime.play(); if(p&&p.catch) p.catch(function(){}); }catch(e){} }
+
+  /* confetti */
+  var cv=document.getElementById("confetti"), cx=cv.getContext&&cv.getContext("2d"), bits=[], raf=0;
+  var COL=["#ff3d8b","#ffc93c","#10a39b","#6a3cc9","#ff7a1a"];
+  function burst(x,y,n){ if(reduce||!cx) return; cv.width=innerWidth; cv.height=innerHeight;
+    for(var i=0;i<n;i++){ var a=Math.random()*Math.PI*2, s=4+Math.random()*7;
+      bits.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,r:4+Math.random()*6,c:COL[i%5],l:70+Math.random()*30,rot:Math.random()*6,sh:i%3}); }
+    if(!raf) raf=requestAnimationFrame(tick); }
+  function tick(){ cx.clearRect(0,0,cv.width,cv.height);
+    bits=bits.filter(function(b){ b.vy+=.32; b.vx*=.985; b.x+=b.vx; b.y+=b.vy; b.l--; b.rot+=.15;
+      cx.save(); cx.translate(b.x,b.y); cx.rotate(b.rot); cx.fillStyle=b.c; cx.globalAlpha=Math.min(1,b.l/30);
+      if(b.sh===0){cx.beginPath();cx.arc(0,0,b.r/2,0,7);cx.fill();} else if(b.sh===1){cx.fillRect(-b.r/2,-b.r/4,b.r,b.r/2);} else {cx.beginPath();cx.moveTo(0,-b.r/2);cx.lineTo(b.r/2,b.r/2);cx.lineTo(-b.r/2,b.r/2);cx.fill();}
+      cx.restore(); return b.l>0&&b.y<cv.height+40; });
+    raf=bits.length?requestAnimationFrame(tick):0; if(!raf) cx.clearRect(0,0,cv.width,cv.height); }
+
+  /* items */
+  var items=[].slice.call(document.querySelectorAll(".item"));
+  items.forEach(function(li){
+    var id=li.getAttribute("data-id");
+    if(!(id in state)){ var pr=li.getAttribute("data-preset"); state[id]= pr==="done"?2:(pr==="prog"?1:0); }
+    paintItem(li);
+    li.querySelector(".tick").addEventListener("click",function(ev){
+      state[id]=((state[id]||0)+1)%3; save(); paintItem(li);
+      li.classList.remove("pop"); void li.offsetWidth; li.classList.add("pop");
+      var r=ev.currentTarget.getBoundingClientRect();
+      if(state[id]===2){ play(); burst(r.left+r.width/2,r.top+r.height/2,18); }
+      var st=paintStage(li.closest(".stage"));
+      if(st==="green"&&state[id]===2) burst(innerWidth/2,innerHeight/3,90);
+    });
+  });
+  function paintItem(li){ var v=state[li.getAttribute("data-id")]||0; li.classList.remove("st0","st1","st2"); li.classList.add("st"+v);
+    var lab=["open","in progress","done"][v]; li.querySelector(".tick").setAttribute("aria-label","Status "+lab+". Tap to change: "+li.querySelector(".t").textContent); }
+
+  function paintStage(sec){
+    var n=sec.getAttribute("data-stage"), its=[].slice.call(sec.querySelectorAll(".item")), done=0, prog=0, dec=0;
+    its.forEach(function(li){ var v=state[li.getAttribute("data-id")]||0; if(v===2) done++; else { if(v===1) prog++; if(li.getAttribute("data-dec")==="1") dec++; } });
+    var later=sec.getAttribute("data-later")==="1"&&done===0&&prog===0;
+    var st= done===its.length?"green": later?"later": dec?"red":"amber";
+    var label= st==="green"?"Done": st==="later"?"Next fall": st==="red"?(dec+" call"+(dec>1?"s":"")+" for you"):"In progress";
+    var pill=sec.querySelector(".pill"); pill.className="pill st-"+st; pill.textContent=label;
+    sec.querySelector(".count").textContent=done+" of "+its.length+" done";
+    var dot=document.querySelector('[data-nav="'+n+'"] .dot'); if(dot) dot.className="dot st-"+st;
+    var pin=document.querySelector('.pin[href="#s'+n+'"]'); if(pin){ pin.classList.toggle("st-green",st==="green"); pin.classList.toggle("st-red",st==="red"); }
+    return st;
+  }
+  [].forEach.call(document.querySelectorAll(".stage"),paintStage);
+  var herePin=document.querySelector('.pin[href="#s4"]'); if(herePin) herePin.classList.add("is-here");
+  save();
+
+  /* phones: rubrics start folded so each stop stays short */
+  if(window.matchMedia&&matchMedia("(max-width:700px)").matches){ [].forEach.call(document.querySelectorAll("details.rub"),function(d){ d.removeAttribute("open"); }); }
+
+  /* copy */
+  [].forEach.call(document.querySelectorAll(".copy"),function(b){ b.hidden=false;
+    b.addEventListener("click",function(){ var t=b.parentNode.querySelector(".btxt").textContent;
+      function ok(){ b.textContent="Copied"; b.classList.add("ok"); setTimeout(function(){b.textContent="Copy";b.classList.remove("ok");},1600); }
+      if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(ok,fallback); } else fallback();
+      function fallback(){ var ta=document.createElement("textarea"); ta.value=t; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); ok();}catch(e){} document.body.removeChild(ta); }
+    }); });
+
+  /* scorer */
+  var sc=document.querySelector(".scorer");
+  if(sc){ var R=[["Makes things", 25], ["Lifts others", 25], ["Growth story", 20], ["Shows up", 15], ["Will give back", 15]], box=sc.querySelector(".sliders"), out=sc.querySelector(".total output"), vals=[3,2,3,4,2];
+    R.forEach(function(r,i){ var row=document.createElement("label"); row.className="srow";
+      row.innerHTML='<span>'+r[0]+'</span><input type="range" min="1" max="4" step="1" value="'+vals[i]+'"><output>'+vals[i]+'</output>';
+      var inp=row.querySelector("input"); inp.addEventListener("input",function(){ vals[i]=+inp.value; row.querySelector("output").textContent=inp.value; calc(); });
+      box.appendChild(row); });
+    function calc(){ var t=0; R.forEach(function(r,i){ t+=r[1]*vals[i]/4; }); out.textContent=Math.round(t); }
+    calc(); sc.hidden=false; }
+
+  /* reveal + nav highlight */
+  var secs=[].slice.call(document.querySelectorAll(".stage"));
+  if("IntersectionObserver" in window && !reduce){
+    secs.forEach(function(s){ s.classList.add("reveal"); });
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in");
+      [].forEach.call(document.querySelectorAll(".nav a"),function(a){ a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id); }); } }); },{threshold:.15});
+    secs.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
