@@ -3,7 +3,6 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.159.0/examples/jsm/"}}</script>
 <style>
 /* Layout: the room or drawing on top (left on wide screens), the notebook page below with one big choice at a time. One committed look: paper. */
 :root{--paper:#f6eedb;--grid:#cfe0ea;--ink:#22304f;--pencil:#5b6377;--card:#fffaf0;--line:#d9ccb0;
@@ -15,7 +14,13 @@ background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradien
 #app{min-height:100%;display:grid;grid-template-rows:minmax(220px,42vh) 1fr;max-width:1280px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:12px 20px;gap:12px}
 #stage{position:relative;border-radius:18px;overflow:hidden;border:3px solid var(--ink);background:var(--card);min-width:0}
 #stage canvas,#stage img{position:absolute;inset:0;width:100%;height:100%;display:block}
-#art{object-fit:cover}#stars{pointer-events:none}
+#art,#art2{object-fit:cover;transform-origin:50% 45%}#stars{pointer-events:none}
+#art{opacity:1}#art.in{animation:artIn .7s ease both,drift 26s ease-in-out .7s infinite alternate}
+@keyframes artIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:scale(1.04)}}
+@keyframes drift{from{transform:scale(1.04) translate(0,0)}to{transform:scale(1.1) translate(-1.6%,-1.2%)}}
+#mute{position:absolute;top:10px;right:10px;z-index:3;font:700 15px/1 var(--body);display:flex;align-items:center;gap:6px;padding:9px 12px;min-height:40px;border-radius:999px;border:2px solid var(--ink);background:rgba(255,250,240,.92);color:var(--ink);cursor:pointer}
+#mute:focus-visible{outline:4px solid var(--gold);outline-offset:2px}
+#mute svg{width:18px;height:18px}#mute[aria-pressed="true"] .on,#mute[aria-pressed="false"] .off{display:none}
 #panel{background:var(--card);border:3px solid var(--ink);border-radius:18px;padding:18px 20px 22px;min-width:0;box-shadow:6px 6px 0 var(--line);border-left:10px double var(--c1)}
 #eyebrow{font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--pencil)}
 h1{font-family:var(--hand);font-size:clamp(34px,6vw,54px);line-height:1.05;margin:4px 0 6px;text-wrap:balance}
@@ -45,10 +50,11 @@ p{margin:8px 0 0;max-width:60ch}.lead{font-size:22px}.small{font-size:16px;color
 .rally{display:grid;gap:8px;margin-top:10px}.rally div{display:grid;grid-template-columns:90px 1fr 70px;gap:10px;align-items:center}.rally i{height:22px;border-radius:6px;background:var(--c5);border:2px solid var(--ink);display:block}.rally b{font-variant-numeric:tabular-nums;text-align:right}
 #watching{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));background:var(--ink);color:#fff;padding:8px 14px;border-radius:999px;font-size:15px}
 @media (min-width:900px){#app{grid-template-rows:1fr;grid-template-columns:1.05fr 1fr;align-items:stretch;height:100%}#stage{min-height:420px}#panel{overflow:auto}}
-@media (prefers-reduced-motion:reduce){.choice:hover:not(:disabled){transform:none}}
+@media (prefers-reduced-motion:reduce){.choice:hover:not(:disabled){transform:none}#art.in{animation:artFade .4s ease both}@keyframes artFade{from{opacity:0}to{opacity:1}}}
 </style>
 <div id="app">
-  <div id="stage"><img id="art" src="assets/art_title.jpg" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><canvas id="room" role="img" hidden></canvas><canvas id="stars" hidden aria-hidden="true"></canvas></div>
+  <div id="stage"><img id="art2" alt="" aria-hidden="true" hidden><img id="art" class="in" src="assets/art_title.jpg?v=1120" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><canvas id="stars" hidden aria-hidden="true"></canvas>
+    <button id="mute" type="button" aria-pressed="false"><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg><span>Sound on</span></button></div>
   <main id="panel">
     <div id="eyebrow">For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028</div>
     <h1 id="title">Underway</h1>
@@ -225,52 +231,96 @@ window.__underway = { get state() { return document.body.dataset.scene; }, get S
 const archive = new Set(store.get('archive', []));
 function unlock(...ids) { let n = 0; ids.forEach((i) => { if (!archive.has(i)) { archive.add(i); n++; } }); store.set('archive', [...archive]); return n; }
 
-// ---------- stage (3D room or illustration) ----------
-let three = null;
-async function initThree() {
-  try {
-    const THREE = await import('three');
-    const { GLTFLoader } = await import('three/addons/loaders/GLTFLoader.js');
-    const canvas = $('#room');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    const scene = new THREE.Scene();
-    const cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xd9c8b0, 1.15));
-    const sun = new THREE.DirectionalLight(0xfff1dc, 1.6); sun.position.set(6, 10, 7); scene.add(sun);
-    const holder = new THREE.Group(); scene.add(holder);
-    const cache = {};
-    three = { THREE, renderer, scene, cam, holder, cache, loader: new GLTFLoader(), t: 0, current: null };
-    const fit = () => { const r = $('#stage').getBoundingClientRect(); if (!r.width) return; renderer.setSize(r.width, r.height, false); cam.aspect = r.width / r.height; cam.updateProjectionMatrix(); };
-    new ResizeObserver(fit).observe($('#stage')); fit();
-    const tick = (ms) => {
-      if (three.current && !$('#room').hidden) {
-        const a = REDUCED ? 0.78 : 0.78 + Math.sin(ms / 4200) * 0.28;
-        cam.position.set(Math.cos(a) * 12.5, 7.4, Math.sin(a) * 12.5); cam.lookAt(0, 1.1, 0);
-        renderer.render(scene, cam);
-      }
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  } catch (e) { three = null; console.warn('3D unavailable, using illustrations', e); }
+// ---------- stage (illustrations, crossfaded, with a slow drift) ----------
+const ROOM_ART = { classroom: 'art_classroom.jpg', lab: 'art_lab.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
+let artTok = 0;
+function stage({ room, art, alt }) {
+  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1120';
+  const img = $('#art'), under = $('#art2');
+  if (img.getAttribute('src') === src) { img.alt = alt || ''; return; }
+  const tok = ++artTok;
+  const pre = new Image();
+  pre.onload = pre.onerror = () => {
+    if (tok !== artTok) return;
+    under.src = img.getAttribute('src') || src; under.hidden = false;
+    img.classList.remove('in'); void img.offsetWidth;
+    img.src = src; img.alt = alt || '';
+    img.classList.add('in');
+    setTimeout(() => { if (tok === artTok) under.hidden = true; }, 700);
+  };
+  pre.src = src;
 }
-const ROOM_FALLBACK = { classroom: 'art_title.jpg', lab: 'art_title.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
-async function stage({ room, art, alt }) {
-  const img = $('#art'), cv = $('#room');
-  if (room && three) {
-    try {
-      if (!three.cache[room]) { const t = await (await fetch('assets/' + room + '.b64.txt')).text(); const bin = Uint8Array.from(atob(t.trim()), (c) => c.charCodeAt(0)); three.cache[room] = await new Promise((ok, no) => three.loader.parse(bin.buffer, '', (g) => ok(g.scene), no)); }
-      three.holder.clear(); three.holder.add(three.cache[room]); three.current = room;
-      cv.hidden = false; img.hidden = true; cv.setAttribute('aria-label', alt || room); return;
-    } catch (e) { console.warn('room failed', room, e); }
+
+// ---------- sound (ElevenLabs music, ambience and effects; starts on the first tap) ----------
+const SND = (() => {
+  const FILES = { tap: 'sfx_tap', page: 'sfx_page', stamp: 'sfx_stamp', miss: 'sfx_miss', applause: 'sfx_applause', fail: 'sfx_fail', plant: 'sfx_plant', spark: 'sfx_spark', count: 'sfx_count',
+    m_lab: 'music_lab', m_party: 'music_party', m_stars: 'music_stars', a_lab: 'amb_lab', a_party: 'amb_party' };
+  const VOL = { tap: 0.5, page: 0.45, stamp: 0.9, miss: 0.8, applause: 0.9, fail: 0.85, plant: 0.9, spark: 0.75, count: 0.6 };
+  let ctx = null, master = null, muted = store.get('muted', false);
+  const buf = {}, loading = {};
+  const beds = { music: { key: null, src: null, g: null }, amb: { key: null, src: null, g: null } };
+  let want = { music: null, amb: null };
+  function load(k) {
+    if (buf[k] || loading[k] || !ctx) return loading[k];
+    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1120').then((r) => r.arrayBuffer())
+      .then((a) => new Promise((ok, no) => ctx.decodeAudioData(a, ok, no))).then((b) => { buf[k] = b; return b; }).catch(() => null);
+    return loading[k];
   }
-  const src = art || ROOM_FALLBACK[room];
-  cv.hidden = true; img.hidden = false; img.src = 'assets/' + src; img.alt = alt || '';
+  function unlock() {
+    if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return; }
+    const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+    ctx = new AC(); master = ctx.createGain(); master.gain.value = muted ? 0 : 1; master.connect(ctx.destination);
+    const b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
+    ['tap', 'page', 'spark', 'stamp', 'miss', 'count'].forEach(load);
+    applyBeds();
+  }
+  function play(k) {
+    if (!ctx || muted) return;
+    const go = (b) => { if (!b) return; const s = ctx.createBufferSource(), g = ctx.createGain(); g.gain.value = VOL[k] ?? 0.8; s.buffer = b; s.connect(g).connect(master); s.start(); };
+    buf[k] ? go(buf[k]) : load(k).then(go);
+  }
+  function setBed(slot, key, vol, loop = true) {
+    want[slot] = key ? { key, vol, loop } : null;
+    if (ctx) applyBed(slot);
+  }
+  function applyBeds() { applyBed('music'); applyBed('amb'); }
+  function applyBed(slot) {
+    const w = want[slot], cur = beds[slot], now = ctx.currentTime;
+    if (w && cur.key === w.key) { cur.g.gain.setTargetAtTime(w.vol, now, 0.4); return; }
+    if (cur.src) { const old = cur; old.g.gain.cancelScheduledValues(now); old.g.gain.setTargetAtTime(0, now, 0.5); setTimeout(() => { try { old.src.stop(); } catch (e) {} }, 2500); }
+    beds[slot] = { key: null, src: null, g: null };
+    if (!w) return;
+    const k = w.key;
+    Promise.resolve(buf[k] || load(k)).then((b) => {
+      if (!b || !want[slot] || want[slot].key !== k || beds[slot].key === k) return;
+      const s = ctx.createBufferSource(), g = ctx.createGain(); s.buffer = b; s.loop = w.loop;
+      g.gain.value = 0; s.connect(g).connect(master); s.start(); g.gain.setTargetAtTime(w.vol, ctx.currentTime, 0.6);
+      beds[slot] = { key: k, src: s, g };
+    });
+  }
+  function setMuted(m) {
+    muted = m; store.set('muted', m);
+    if (master) master.gain.setTargetAtTime(m ? 0 : 1, ctx.currentTime, 0.05);
+    if (!m) unlock();
+  }
+  return { unlock, play, setBed, setMuted, get muted() { return muted; } };
+})();
+const SCORE = {
+  title: ['m_lab', 0.5, null], who: ['m_lab', 0.5, null], seed: ['m_lab', 0.35, null], grow: ['m_lab', 0.5, null],
+  field: ['m_lab', 0.45, null], quiz: ['m_lab', 0.4, null], 'quiz-result': ['m_lab', 0.4, null], mentor: ['m_lab', 0.45, 'a_lab'],
+  lab: ['m_lab', 0.32, 'a_lab'], 'week-end': ['m_lab', 0.3, 'a_lab'], upgrade: ['m_lab', 0.45, null], failure: ['m_lab', 0.2, 'a_lab'], 'fail-result': ['m_lab', 0.32, 'a_lab'],
+  present: ['m_lab', 0.35, null], panel: ['m_lab', 0.25, null], applause: ['m_lab', 0.4, null], sky: [null, 0, null],
+  party: ['m_party', 0.5, 'a_party'], thanks: ['m_party', 0.4, 'a_party'], stories: ['m_party', 0.45, 'a_party'], wall: ['m_party', 0.45, 'a_party'], rally: ['m_party', 0.45, 'a_party'], archive: ['m_party', 0.45, 'a_party'],
+};
+function score(scene) {
+  const [m, mv, a] = SCORE[scene] || [null, 0, null];
+  SND.setBed('music', m, mv); SND.setBed('amb', a, a === 'a_party' ? 0.55 : 0.7);
 }
 
 // ---------- page (the notebook panel) ----------
 function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto }) {
   clearTimeout(S.watchTimer);
+  if (document.body.dataset.scene !== scene) { score(scene); SND.play('page'); }
   document.body.dataset.scene = scene;
   $('#eyebrow').textContent = eyebrow || '';
   $('#title').textContent = title || '';
@@ -281,7 +331,7 @@ function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto
     b.className = 'choice' + (c.primary ? ' primary' : '') + (c.card ? ' card' : '');
     b.disabled = c.ok === false; b.dataset.id = c.id || 'c' + i;
     b.innerHTML = `<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
-    b.addEventListener('click', () => { clearTimeout(S.watchTimer); c.fn(); });
+    b.addEventListener('click', () => { clearTimeout(S.watchTimer); SND.unlock(); SND.play('tap'); c.fn(); });
     box.appendChild(b);
   });
   renderHud(hud);
@@ -323,10 +373,10 @@ function who() {
     choices: [...yrs.map((y) => ({ id: 'y' + y, label: y, card: true, fn: () => { S.year = y; seed(); } })), { id: 'guest', label: 'I\'m a friend of CEE', card: true, fn: () => { S.year = 'Friends'; seed(); } }] });
 }
 function seed() {
-  stage({ art: 'art_seed.jpg', alt: 'A single coin planted in soil, with a small green sprout.' });
+  stage({ art: 'art_seed.jpg', alt: 'A coin half buried in a small flowerpot on an open notebook, with one green sprout rising from it.' });
   page({ scene: 'seed', hud: false, eyebrow: 'Prologue', title: 'The $250 seed',
     html: '<p>In 1983 an admiral was paid $250 for a lecture. He and Joann DiGennaro planted it.</p><p class="small">Tap to plant the coin.</p>',
-    choices: [{ id: 'plant', label: 'Plant it', primary: true, fn: () => grow(0) }] });
+    choices: [{ id: 'plant', label: 'Plant it', primary: true, fn: () => { SND.play('plant'); grow(0); } }] });
 }
 function grow(i) {
   unlock('founded', 'seed', 'rsi');
@@ -338,17 +388,19 @@ function grow(i) {
     choices: [{ id: 'next', label: last ? 'Start Week One' : 'Keep growing', primary: true, fn: () => (last ? field() : grow(i + 1)) }] });
 }
 function field() {
-  stage({ room: 'classroom', alt: 'A small classroom with a chalkboard, six desks and a globe.' });
+  stage({ room: 'classroom', alt: 'A sunny summer classroom with a chalkboard of simple diagrams and students at their desks.' });
   page({ scene: 'field', hud: false, eyebrow: 'Week One', title: 'Choose your field', html: '<p>What will you spend your summer on?</p>', auto: 1,
     choices: L.FIELDS.map((f) => ({ id: 'f-' + f.id, label: f.name, card: true, fn: () => { S.run = L.newRun(f.id); quiz(0, 0); } })) });
 }
 function quiz(i, right) {
   if (i >= QUIZ.length) { unlock('summer'); return mentor(right); }
+  stage({ room: 'classroom', alt: 'A sunny summer classroom with a chalkboard of simple diagrams and students at their desks.' });
   const q = QUIZ[i];
   page({ scene: 'quiz', hud: false, eyebrow: `Week One · Classes · ${i + 1} of ${QUIZ.length}`, title: 'Connect the idea to the evidence', html: `<p class="lead">${q.q}</p>`, auto: q.good,
     choices: q.a.map((a, k) => ({ id: 'q' + k, label: a, card: true, fn: () => quizAnswer(i, right, k === q.good) })) });
 }
 function quizAnswer(i, right, ok) {
+  SND.play(ok ? 'spark' : 'miss');
   page({ scene: 'quiz-result', hud: false, eyebrow: 'Week One · Classes', title: ok ? 'That\'s evidence.' : 'A page for the notebook.',
     html: ok ? '<p>You measured, compared and repeated. That is the whole move. <b>+1 Insight for the lab.</b></p>' : '<p>Opinions are a start. Evidence is something you can measure and repeat. You\'ll use that all summer.</p>',
     choices: [{ id: 'next', label: 'Next', primary: true, fn: () => quiz(i + 1, right + (ok ? 1 : 0)) }] });
@@ -363,7 +415,7 @@ function mentor(right) {
 function week() {
   const r = S.run; L.startWeek(r);
   if (r.week === 4 && r.failChoice === null) return failure();
-  stage({ room: 'lab', alt: 'A lab with a bench of colored flasks, a microscope and a work table.' });
+  stage({ room: 'lab', alt: 'A bright summer lab: a bench of colored flasks, a microscope, a laptop with a chart, and a student at work.' });
   turn();
 }
 function turn(note = '') {
@@ -373,7 +425,7 @@ function turn(note = '') {
   const g = L.greedyAction(r);
   page({ scene: 'lab', eyebrow: `The Lab · Week ${r.week} of 5`, title: note || 'What will you do?', html: `<p class="small">${r.actionsLeft} action${r.actionsLeft === 1 ? '' : 's'} left this week. ${stamps(r.stamps)}</p>`,
     auto: acts.findIndex((a) => a.id === g),
-    choices: acts.map((a) => ({ id: 'a-' + a.id, label: a.name, sub: a.text, card: true, ok: a.ok, fn: () => { const o = L.act(r, a.id); turn(o.surprise ? 'A surprise in the data! +' + o.insight + ' Insight' : gain(o)); } })) });
+    choices: acts.map((a) => ({ id: 'a-' + a.id, label: a.name, sub: a.text, card: true, ok: a.ok, fn: () => { const o = L.act(r, a.id); if (o.surprise) SND.play('spark'); turn(o.surprise ? 'A surprise in the data! +' + o.insight + ' Insight' : gain(o)); } })) });
 }
 const gain = (o) => [o.insight ? '+' + o.insight + ' Insight' : '', o.rigor ? '+' + o.rigor + ' Rigor' : ''].filter(Boolean).join(', ');
 function weekEnd() {
@@ -381,17 +433,20 @@ function weekEnd() {
   page({ scene: 'week-end', hud: false, eyebrow: `The Lab · Week ${wk} of 5`, title: 'The week adds up',
     html: `<div class="reveal" aria-live="polite"><div><span>Insight</span><b id="rv-i">${fmt(res.i)}</b></div><div class="x">×</div><div><span>Rigor</span><b id="rv-r">${fmt(res.r)}</b></div><div class="x">=</div><div class="big"><span>Week ${wk}</span><b id="rv-s">${REDUCED ? res.score : 0}</b></div></div><p id="rv-msg" class="lead" ${REDUCED ? '' : 'style="visibility:hidden"'}>${res.stamp ? `Goal ${res.target} cleared. A stamp for your notebook! ${stamps(r.stamps)}` : `Goal was ${res.target}. No stamp this week, and the work still counts. ${stamps(r.stamps)}`}</p>`,
     choices: [{ id: 'next', label: wk === 5 ? 'Presentation Day' : 'Next', primary: true, fn: () => (wk === 5 ? present() : wk <= 3 ? upgrade() : week()) }] });
-  if (!REDUCED) countUp($('#rv-s'), res.score, 900, () => { const m = $('#rv-msg'); if (m) m.style.visibility = 'visible'; });
+  SND.play('count');
+  const ding = () => SND.play(res.stamp ? 'stamp' : 'miss');
+  if (!REDUCED) countUp($('#rv-s'), res.score, 900, () => { const m = $('#rv-msg'); if (m) m.style.visibility = 'visible'; ding(); }); else setTimeout(ding, 300);
   if (wk === 1) unlock('stanford');
 }
 function countUp(el, to, ms, done) { const t0 = performance.now(); const f = (t) => { const k = Math.min(1, (t - t0) / ms); if (!el.isConnected) return; el.textContent = Math.floor(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); else { el.textContent = to; done && done(); } }; requestAnimationFrame(f); }
 function upgrade() {
   const r = S.run; const ups = L.offerUpgrades(r);
+  stage({ art: 'art_upgrade.jpg', alt: 'A researcher\'s toolkit spread around an open notebook: a magnifying glass, ruler, colored pencils, a calculator and sticky tabs.' });
   page({ scene: 'upgrade', hud: false, eyebrow: `Between weeks ${r.week - 1} and ${r.week}`, title: 'Something for your notebook', html: '<p>Pick one. It stays with you all summer.</p>',
     choices: ups.map((u) => ({ id: 'u-' + u.id, label: u.name, sub: u.text, card: true, fn: () => { L.takeUpgrade(r, u.id); week(); } })) });
 }
 function failure() {
-  const r = S.run;
+  const r = S.run; SND.play('fail');
   stage({ art: 'art_fail.jpg', alt: 'A tipped flask, a crossed-out chart, and a young scientist laughing as a small lightbulb glows.' });
   page({ scene: 'failure', eyebrow: 'The Lab · Week 4 of 5', title: 'The experiment failed.',
     html: `<p class="lead">It happens to everyone, every summer. You lost ${r.lostInsight} Insight.</p><p>What now?</p>`, auto: 0,
@@ -401,12 +456,13 @@ function failure() {
     ] });
 }
 function failResult(o) {
+  SND.play(o.kind === 'found' ? 'spark' : 'miss');
   const msg = { restart: ['A clean second start', `Slower, and solid. <b>+${o.rigor} Rigor.</b>`], found: ['The failure was the finding!', `What looked like a mistake was the real result. <b>+${o.insight} Insight.</b>`], learned: ['No breakthrough, and still wiser', `You know one more thing that is not true. <b>+${o.insight} Insight, +${o.rigor} Rigor.</b>`] }[o.kind];
   page({ scene: 'fail-result', eyebrow: 'The Lab · Week 4 of 5', title: msg[0], html: `<p class="lead">${msg[1]}</p>`, choices: [{ id: 'next', label: 'Back to the bench', primary: true, fn: () => { stage({ room: 'lab', alt: 'The lab.' }); turn(); } }] });
 }
 function present() {
   const r = S.run;
-  stage({ room: 'hall', alt: 'A presentation hall: a poster on an easel, a panel of three, and rows of chairs.' });
+  stage({ room: 'hall', alt: 'A sunlit presentation hall: a poster on an easel, a panel of three, and rows of chairs.' });
   page({ scene: 'present', hud: false, eyebrow: 'Presentation Day', title: 'Name your paper', html: '<p>Five weeks of work, one poster. Which title is yours?</p>',
     choices: TITLES[r.field].map((t, i) => ({ id: 't' + i, label: t, card: true, fn: () => panel(t) })) });
 }
@@ -424,12 +480,15 @@ function applause(t, pick, strong) {
   const wall = store.get('wall', []); wall.unshift(S.poster); store.set('wall', wall.slice(0, 24));
   const rally = store.get('rally', {}); rally[S.year] = (rally[S.year] || 0) + r.total; store.set('rally', rally);
   const best = store.get('best', null); if (!best || r.total > best.total) store.set('best', { total: r.total, stamps: r.stamps });
+  stage({ art: 'art_applause.jpg', alt: 'Presentation day: a young presenter takes a small bow beside an easel while the audience claps.' });
+  SND.play('applause');
   unlock('rickoids', 'party', 'broad'); if (r.stamps === 5) unlock('roty'); if (r.field === 'bio') unlock('double');
   page({ scene: 'applause', hud: false, eyebrow: 'Presentation Day', title: 'The room applauds.',
     html: `<div class="poster"><span>${S.poster.field}</span><b>${t}</b><em>Excellence ${r.total} ${stamps(r.stamps)}</em></div><p>${bonus ? `You answered from your strength. <b>+${bonus}</b> for a confident answer.` : 'A good answer. The panel nods.'} ${r.stamps === 5 ? 'Five stamps: tonight\'s Rickoid of the Year run!' : ''}</p>`,
     choices: [{ id: 'sky', label: 'Step outside', primary: true, fn: () => sky() }] });
 }
 function sky() {
+  SND.play('m_stars');
   stage({ art: 'art_sky.jpg', alt: 'A night sky full of stars and constellation lines over two campuses.' });
   page({ scene: 'sky', hud: false, eyebrow: 'One light among many', title: 'About 3,400 Rickoids',
     html: '<p class="lead">All 50 states. 63 nations. Forty-five years of summers.</p><p>Tonight one more light joins them: yours.</p>',
@@ -488,8 +547,14 @@ function arch() {
     html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p>`, choices: [back] });
 }
 
+document.addEventListener('pointerdown', () => SND.unlock(), { capture: true });
+document.addEventListener('keydown', () => SND.unlock(), { capture: true });
 document.addEventListener('pointerdown', (e) => { if (S.mode === 'watch' && !e.target.closest('button')) { S.mode = 'play'; clearTimeout(S.watchTimer); $('#watching').hidden = true; } });
-initThree().then(title);
+const mute = $('#mute');
+const drawMute = () => { mute.setAttribute('aria-pressed', String(SND.muted)); mute.setAttribute('aria-label', SND.muted ? 'Sound is off. Turn sound on' : 'Sound is on. Turn sound off'); mute.querySelector('span').textContent = SND.muted ? 'Sound off' : 'Sound on'; };
+mute.addEventListener('click', (e) => { e.stopPropagation(); SND.setMuted(!SND.muted); drawMute(); });
+drawMute();
+title();
 
 </script>
 </body></html>
