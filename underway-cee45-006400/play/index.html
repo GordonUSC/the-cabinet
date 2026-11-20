@@ -261,7 +261,7 @@ function unlock(...ids) { let n = 0; ids.forEach((i) => { if (!archive.has(i)) {
 const ROOM_ART = { classroom: 'art_classroom.jpg', lab: 'art_lab.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
 let artTok = 0;
 function stage({ room, art, alt }) {
-  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1120';
+  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1120b';
   const img = $('#art'), under = $('#art2');
   if (img.getAttribute('src') === src) { img.alt = alt || ''; return; }
   const tok = ++artTok;
@@ -288,7 +288,7 @@ const SND = (() => {
   let want = { music: null, amb: null };
   function load(k) {
     if (buf[k] || loading[k] || !ctx) return loading[k];
-    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1120').then((r) => r.arrayBuffer())
+    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1120b').then((r) => r.arrayBuffer())
       .then((a) => new Promise((ok, no) => ctx.decodeAudioData(a, ok, no))).then((b) => { buf[k] = b; return b; }).catch(() => null);
     return loading[k];
   }
@@ -502,7 +502,7 @@ function failResult(o) {
 }
 function present() {
   const r = S.run;
-  stage({ room: 'hall', alt: 'A sunlit presentation hall: a poster on an easel, a panel of three, and rows of chairs.' });
+  stage({ room: 'hall', alt: 'A sunlit presentation hall: a student gives her research talk beside a lectern and a slide of charts, while a panel of three listens.' });
   page({ scene: 'present', hud: false, eyebrow: 'Presentation Day', title: 'Name your paper', html: '<p>Five weeks of work become a written paper and a talk. Which title is yours?</p>',
     choices: TITLES[r.field].map((t, i) => ({ id: 't' + i, label: t, card: true, fn: () => panel(t) })) });
 }
@@ -520,7 +520,7 @@ function applause(t, pick, strong) {
   const wall = store.get('wall', []); wall.unshift(S.poster); store.set('wall', wall.slice(0, 24));
   const rally = store.get('rally', {}); rally[S.year] = (rally[S.year] || 0) + r.total; store.set('rally', rally);
   const best = store.get('best', null); if (!best || r.total > best.total) store.set('best', { total: r.total, stamps: r.stamps });
-  stage({ art: 'art_applause.jpg', alt: 'Presentation day: a young presenter takes a small bow beside an easel while the audience claps.' });
+  stage({ art: 'art_applause.jpg', alt: 'Presentation day: a young presenter takes a small bow beside a lectern and her slide of charts while the audience claps.' });
   SND.play('applause');
   unlock('rickoids', 'party', 'broad'); if (r.stamps === 5) unlock('roty'); if (r.field === 'bio') unlock('double');
   page({ scene: 'applause', hud: false, eyebrow: 'Presentation Day', title: 'The room applauds.',
