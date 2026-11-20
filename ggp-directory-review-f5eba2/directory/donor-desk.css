@@ -1,0 +1,249 @@
+/* Donor-only editorial surface. Shared experience switcher remains intact. */
+body[data-donor-page] {
+  --atlas-paper: #f7f4ec;
+  --atlas-card: #fffdf8;
+  --atlas-ink: #162944;
+  --atlas-teal: #086b62;
+  --atlas-teal-paper: #e2f0e9;
+  --atlas-violet: #5e3e83;
+  --atlas-rule: #d7d2c7;
+  --atlas-muted: #516071;
+  color:var(--atlas-ink);
+  background:var(--atlas-paper);
+}
+[data-donor-route] :is(#legacy-donor-nav,.strip[aria-label="Prototype status"]) { display:none !important; }
+#donor-shell {
+  max-width:1500px;
+  margin:0 auto;
+  padding:clamp(18px,3.4vw,52px) clamp(16px,4vw,60px) 72px;
+  display:grid;
+  grid-template-columns:minmax(10.75rem,13rem) minmax(0,1fr);
+  gap:clamp(20px,4vw,62px);
+}
+#donor-shell main {
+  --ink:var(--atlas-ink);
+  --blue:var(--atlas-teal);
+  --lime:#cbece2;
+  --paper:var(--atlas-paper);
+  --line:var(--atlas-rule);
+  --muted:var(--atlas-muted);
+  max-width:none; margin:0; padding:0; width:100%; min-width:0;
+}
+#donor-shell :focus-visible {
+  outline:3px solid var(--atlas-teal);
+  outline-offset:3px;
+}
+#donor-sidebar {
+  align-self:start;
+  position:sticky;
+  top:18px;
+  border-top:3px solid var(--atlas-ink);
+  padding-top:18px;
+  min-width:0;
+}
+#donor-sidebar:empty, body:not([data-donor-route]) #donor-shell { display:none; }
+.desk-kicker {
+  color:var(--atlas-teal);
+  font-size:.75rem;
+  font-weight:850; letter-spacing:.11em;
+  margin:0 0 6px;
+}
+.desk-title {
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.1;
+  margin:0 0 1.12rem;
+  font-size:clamp(1.45rem,2.65vw,1.85rem);
+}
+.desk-nav, .desk-secondary nav { display:grid; gap:5px; }
+.desk-nav a, .desk-secondary nav a {
+  border-radius:7px; border:1px solid transparent;
+  display:grid; color:var(--atlas-ink); text-decoration:none;
+  min-height:46px; align-content:center; padding:9px 11px;
+}
+.desk-nav a span { font-weight:750; }
+.desk-nav a small { font-size:.8rem; color:var(--atlas-muted); }
+.desk-nav a[aria-current="page"], .desk-secondary a[aria-current="page"] {
+  background:var(--atlas-ink); color:#fff;
+}
+.desk-nav a[aria-current="page"] small { color:#d0e6e7; }
+.desk-nav a:hover:not([aria-current="page"]), .desk-secondary a:hover:not([aria-current="page"]) {
+  background:var(--atlas-teal-paper); border-color:#b8dcd4;
+}
+.desk-secondary {
+  margin:16px 0 12px;
+  padding:9px 0 0;
+  border-top:1px solid var(--atlas-rule);
+}
+.desk-secondary summary {
+  padding:8px 4px; min-height:44px;
+  color:var(--atlas-teal); font-weight:700;
+}
+.desk-secondary nav a { font-size:.88rem; }
+.desk-aside-note {
+  margin-top:18px; padding:12px 0;
+  color:var(--atlas-muted); border-top:1px solid var(--atlas-rule);
+  font-size:.88rem;
+}
+#donor-shell .desk-hero {
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(13rem,.58fr); align-items:stretch;
+  padding:clamp(22px,4.2vw,58px); gap:clamp(18px,3vw,40px);
+  background:var(--atlas-ink); color:#fff;
+  border-radius:15px; margin-bottom:24px;
+}
+#donor-shell .desk-hero h1,
+#donor-shell .desk-heading h1,
+#donor-shell #main > h1 {
+  font-family:Georgia,"Times New Roman",serif; font-weight:500;
+  font-size:clamp(2.45rem,5.25vw,5.1rem); line-height:1;
+  letter-spacing:-.045em; margin:0 0 17px;
+}
+#donor-shell .desk-hero .lead { color:#e1ebee; }
+#donor-shell .desk-hero > div:first-child { align-self:center; }
+#donor-shell .desk-hero .eyebrow { color:#a2d9cd; }
+#donor-shell .desk-hero .button { border:1px solid #93a3b6; color:#fff; background:none; }
+#donor-shell .desk-hero .button:hover { background:#2b425d; }
+#donor-shell .desk-hero .button.primary { background:#b8eadb; border-color:#b8eadb; color:#173a37; }
+#donor-shell .desk-hero .button.primary:hover { background:#d5f5eb; }
+#donor-shell .desk-hero :focus-visible { outline-color:#b8eadb; }
+.desk-figure {
+  min-height:219px; position:relative; overflow:hidden; display:grid; place-items:center;
+  border:1px solid #8facb2; border-radius:12px;
+  color:#dafff0; background:linear-gradient(135deg,#275366,#233b5e 53%,#432e5a);
+}
+.desk-figure-orbit {
+  position:absolute; border-radius:50%; border:1px solid #aacdd0;
+  width:106%; aspect-ratio:1; transform:rotate(24deg) scaleY(.62);
+}
+.desk-figure-orbit.two { transform:rotate(-28deg) scaleY(.65); }
+.desk-figure-line {
+  display:grid; place-items:center; z-index:1; min-height:6.6rem; min-width:7.9rem;
+  text-align:center; background:#203f55; padding:8px 13px; border:1px solid #8facb2; border-radius:50%;
+}
+.desk-figure-line b { line-height:1; font-size:2.2rem; font-weight:750; }
+.desk-figure-line small { color:#e4f5f0; line-height:1.12; font-size:.8rem; }
+.desk-figure-corner,.desk-figure-bottom {
+  z-index:1; position:absolute; font-weight:780; font-size:.75rem; letter-spacing:.05em;
+  background:#253f56; color:#e8f2f2; padding:3px 6px; border-radius:4px;
+}
+.desk-figure-corner { top:10px; left:10px; }
+.desk-figure-bottom { bottom:10px; margin:0 6px; text-align:center; }
+#donor-shell .desk-heading { padding:25px 0 26px; border-top:3px solid var(--atlas-ink); }
+#donor-shell :is(.desk-heading,#main) .eyebrow { color:var(--atlas-teal); }
+#donor-shell #main > .desk-hero .eyebrow { color:#a2d9cd; }
+#donor-shell .lead { color:var(--atlas-muted); max-width:47rem; }
+#donor-shell :is(.card,.panel) { background:var(--atlas-card); border-color:var(--atlas-rule); }
+#donor-shell .panel.dark { background:var(--atlas-ink); border-color:var(--atlas-ink); }
+#donor-shell .panel.dark .tag { background:var(--atlas-teal-paper); color:var(--atlas-ink); }
+#donor-shell .panel.dark .button { color:var(--atlas-ink); }
+#donor-shell .panel.dark :focus-visible { outline-color:#b8eadb; }
+#donor-shell .tag { color:var(--atlas-ink); background:#ece9e1; margin-right:4px; margin-bottom:3px; }
+#donor-shell .tag.good { color:#164b3b; background:var(--atlas-teal-paper); }
+#donor-shell .tag.warn { color:#67421a; background:#fff0ce; }
+#donor-shell .button.primary, #donor-shell button.primary { background:var(--atlas-teal); color:white; border-color:var(--atlas-teal); }
+#donor-shell .button.primary:hover,#donor-shell button.primary:hover { background:#05534d; }
+#donor-shell [data-donor-add][aria-pressed="true"] { background:var(--atlas-teal-paper); color:#174c44; border-color:#74a89d; }
+#donor-shell .desk-categories { padding:0; margin:14px 0 6px; border:0; display:flex; flex-wrap:wrap; gap:8px; }
+#donor-shell .desk-categories legend { margin:0 0 7px; padding:0; font-weight:770; }
+.desk-categories label { position:relative; cursor:pointer; max-width:100%; }
+.desk-categories input {
+  position:absolute; inline-size:1px; block-size:1px; padding:0; margin:-1px;
+  overflow:hidden; clip-path:inset(50%); white-space:nowrap;
+}
+.desk-categories label span {
+  display:flex; align-items:center; min-height:44px; padding:8px 12px;
+  border:1px solid #aeb6b6; border-radius:999px; background:var(--atlas-card); color:var(--atlas-ink);
+  font-size:.91rem; font-weight:720;
+}
+.desk-categories input:focus-visible + span { outline:3px solid var(--atlas-teal); outline-offset:3px; }
+.desk-categories input:checked + span { border-color:var(--atlas-ink); background:var(--atlas-ink); color:#fff; }
+#donor-shell .card[data-category] {
+  --desk-accent:#2b7169;
+  overflow-wrap:anywhere;
+}
+#donor-shell .card[data-category="funding"] { --desk-accent:#237669; }
+#donor-shell .card[data-category="learning"] { --desk-accent:#635083; }
+#donor-shell .card[data-category="career"] { --desk-accent:#356182; }
+#donor-shell .card[data-category="community"] { --desk-accent:#855127; }
+#donor-shell .card[data-category]::before { background:var(--desk-accent); }
+#donor-shell .tag.desk-category[data-kind="funding"] { background:var(--atlas-teal-paper); color:#135547; }
+#donor-shell .tag.desk-category[data-kind="learning"] { background:#efe5f8; color:#503269; }
+#donor-shell .tag.desk-category[data-kind="career"] { background:#e4edf5; color:#2d4f70; }
+#donor-shell .tag.desk-category[data-kind="community"] { background:#f5e7d9; color:#6c411f; }
+#donor-shell .toolbar { margin:13px 0 11px; gap:10px; }
+#donor-shell .toolbar label { min-width:0; }
+#donor-shell .toolbar input, #donor-shell .toolbar select { max-width:100%; }
+#donor-shell .cards { margin-top:17px; gap:14px; }
+#donor-shell .card[hidden], #donor-shell [hidden] { display:none !important; }
+#donor-shell .desk-update { border-left:5px solid var(--atlas-violet); }
+#donor-shell .desk-caveat { margin-top:18px; }
+#donor-shell #giving-portfolio, #donor-shell #funding-plan { margin-bottom:22px; }
+#donor-shell [id] { scroll-margin-top:18px; }
+body[data-donor-page] footer { background:var(--atlas-ink); }
+@media (max-width:1020px) {
+  #donor-shell .cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:800px) {
+  #donor-shell { grid-template-columns:minmax(0,1fr); gap:21px; }
+  #donor-sidebar { position:static; padding-top:12px; }
+  #donor-sidebar .desk-title { margin-bottom:10px; }
+  .desk-nav { grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
+  .desk-nav a { border:1px solid var(--atlas-rule); background:var(--atlas-card); }
+  .desk-secondary { margin:7px 0 0; padding:0; border:0; }
+  .desk-secondary nav { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .desk-aside-note { display:none; }
+}
+@media (max-width:600px) {
+  #donor-shell .desk-hero { grid-template-columns:minmax(0, 1fr); }
+  #donor-shell .desk-hero .desk-figure { min-height:167px; }
+  #donor-shell .cards, #donor-shell .split { grid-template-columns:minmax(0,1fr); }
+  .desk-nav { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .desk-figure-orbit { width:75%; }
+}
+@media print { #donor-sidebar { display:none; } #donor-shell { display:block; padding:0; } }
+
+/* Only the Donor Desk mounts these existing controls here. On wide layouts,
+   keep both at their original fixed offsets; on phones give them their own row. */
+#donor-preferences { position:absolute; width:0; height:0; }
+@media (max-width:800px) {
+  #donor-preferences:not([hidden]) {
+    position:static;
+    width:auto;
+    height:auto;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    border-block:1px solid var(--atlas-rule);
+    padding:8px 0;
+  }
+  #donor-preferences #ggp-audio-switch,
+  #donor-preferences .brand-control {
+    position:static;
+    inset:auto !important;
+    z-index:auto;
+    max-width:100%;
+  }
+  #donor-preferences #ggp-audio-switch,
+  #donor-preferences #ggp-brand-switch { min-height:44px; box-shadow:none; }
+  #donor-preferences > .brand-control { margin:0; }
+}
+@media print { #donor-preferences { display:none !important; } }
+
+/* Darby 9/10 pass: what support makes possible, on the card face */
+#donor-collection .card .possible{display:grid;gap:8px;margin:10px 0 12px;padding:12px;border-radius:10px;background:#f4f0f8;border-left:4px solid #a8175c}
+#donor-collection .card .possible div{display:grid;gap:2px;min-width:0}
+#donor-collection .card .possible dt{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:#6d1a46;margin:0}
+#donor-collection .card .possible dd{margin:0;font-size:14px;line-height:1.35;font-weight:600;color:#292039;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Darby 9/10 pass: wide screens dock Sound + Brand under the sidebar, never over cards */
+@media (min-width:801px){
+  #donor-preferences:not([hidden]){position:fixed;left:24px;bottom:20px;width:auto;height:auto;display:flex;flex-direction:column;align-items:flex-start;gap:8px;z-index:20}
+  #donor-preferences #ggp-audio-switch,#donor-preferences .brand-control{position:static;inset:auto!important;z-index:auto}
+  #donor-preferences #ggp-audio-switch,#donor-preferences #ggp-brand-switch{font-size:13px;padding:8px 14px;min-height:40px;box-shadow:0 2px 10px #0001}
+}
+/* Darby 9/10 pass: donor toolbar labels sit above their own field */
+#donor-shell .toolbar{display:grid;grid-template-columns:minmax(200px,2fr) repeat(3,minmax(0,1fr)) auto;align-items:end;gap:12px}
+#donor-shell .toolbar label{display:flex;flex-direction:column;gap:6px;flex:none}
+#donor-shell .toolbar input,#donor-shell .toolbar select{width:100%}
+@media (max-width:1100px){#donor-shell .toolbar{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){#donor-shell .toolbar{grid-template-columns:1fr}}
