@@ -1,0 +1,149 @@
+<!doctype html>
+<!-- STYLE: Late Night Talk Show, neon on garnet over a gouache set | WHY: Alex lives in WeHo nightlife and loves being the star, so a talk show where he is the guest says that without words | ALT: Game Show Buzzer Board, rejected because buzzers read as a test and he already feels tested by Darby -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>The Alex Rogers Show</title>
+<meta property="og:title" content="The Alex Rogers Show">
+<meta property="og:description" content="Tonight's guest: Alex Rogers. Ten quick questions, mostly one tap.">
+<meta property="og:image" content="set.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--garnet:#8c1d2e;--garnetDeep:#5a0f1c;--pink:#ff3d8b;--gold:#ffc23d;--teal:#18b7a6;--ink:#1b0d12;--cream:#fff6ea;--card:#fffaf2;--dim:#5e4650}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font:17px/1.5 "DM Sans",system-ui,sans-serif;color:var(--ink);background:var(--ink);min-height:100vh;overflow-x:hidden}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.stage{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 16px 40px}
+.set{position:fixed;inset:0;background:#2a0f18 url(set.jpg) center/cover no-repeat;filter:saturate(1.08);z-index:0}
+.set::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(27,13,18,.15),rgba(27,13,18,.78) 75%)}
+.beam{position:fixed;top:-20vh;width:38vw;height:140vh;background:linear-gradient(180deg,rgba(255,240,200,.32),rgba(255,240,200,0) 80%);filter:blur(6px);transform-origin:top center;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.beam.l{left:8vw;animation:sweepL 7s ease-in-out infinite alternate}
+.beam.r{right:8vw;animation:sweepR 8s ease-in-out infinite alternate}
+@keyframes sweepL{from{transform:rotate(-18deg)}to{transform:rotate(14deg)}}
+@keyframes sweepR{from{transform:rotate(16deg)}to{transform:rotate(-12deg)}}
+header,main,footer{position:relative;z-index:2;width:100%;max-width:640px}
+header{text-align:center;padding:28px 0 10px}
+.applause{display:inline-block;font:14px "Bungee";letter-spacing:.12em;color:var(--ink);background:var(--gold);border:3px solid #fff3c4;border-radius:8px;padding:4px 12px;box-shadow:0 0 18px var(--gold),0 0 40px rgba(255,194,61,.5);opacity:.35;transition:opacity .2s}
+.applause.on{opacity:1;animation:blink .35s steps(2) 6}
+@keyframes blink{50%{opacity:.4}}
+h1{font:clamp(34px,9vw,58px)/1.02 "Bungee";color:#fff;margin:14px 0 6px;text-shadow:0 0 6px var(--pink),0 0 22px var(--pink),0 0 48px rgba(255,61,139,.6);animation:flicker 5s infinite}
+@keyframes flicker{0%,93%,97%,100%{opacity:1}95%{opacity:.55}}
+.sub{color:#ffe8f1;margin:0;font-weight:600}
+.card{background:var(--card);border-radius:22px;padding:24px 22px 22px;box-shadow:0 16px 0 var(--garnetDeep),0 22px 50px rgba(0,0,0,.5);border:4px solid var(--garnet);margin-top:18px;animation:in .55s cubic-bezier(.2,1.4,.4,1)}
+@keyframes in{from{transform:translateY(40px) rotate(-2deg) scale(.94);opacity:0}to{transform:none;opacity:1}}
+.seg{font:13px "Bungee";letter-spacing:.08em;color:var(--garnet)}
+.q{font-size:clamp(21px,5.4vw,27px);line-height:1.25;font-weight:800;margin:8px 0 6px}
+.why{color:var(--dim);font-size:15px;margin:0 0 14px}
+.opts{display:grid;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;background:#fff;border:3px solid var(--ink);border-radius:14px;padding:12px 14px;box-shadow:4px 4px 0 var(--ink);transition:transform .12s,box-shadow .12s,background .12s;font-weight:600}
+.opt:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.opt b{flex:0 0 34px;height:34px;border-radius:50%;display:grid;place-items:center;font:15px "Bungee";color:#fff;background:var(--garnet)}
+.opt[aria-pressed=true]{background:#ffe1ec;border-color:var(--pink);box-shadow:4px 4px 0 var(--pink)}
+.opt[aria-pressed=true] b{background:var(--pink)}
+textarea{width:100%;min-height:84px;margin-top:12px;border:3px solid var(--ink);border-radius:14px;padding:10px 12px;font:inherit;background:#fff;resize:vertical}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;gap:10px}
+.btn{border:0;border-radius:999px;padding:12px 22px;font-weight:800;background:var(--garnet);color:#fff;box-shadow:0 5px 0 var(--garnetDeep)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--garnetDeep)}
+.btn.ghost{background:transparent;color:var(--garnet);box-shadow:none;text-decoration:underline;padding:12px 6px}
+.btn.gold{background:var(--gold);color:var(--ink);box-shadow:0 5px 0 #b88200}
+.meter{display:flex;gap:5px;justify-content:center;margin-top:16px}
+.meter i{width:22px;height:6px;border-radius:3px;background:#ecd3dc}
+.meter i.on{background:var(--pink);box-shadow:0 0 6px rgba(255,61,139,.6)}
+.host{display:flex;gap:12px;align-items:center;margin:14px 0 4px;color:var(--dim);font-size:15px}
+.host span{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--teal);color:#fff;font:16px "Bungee"}
+.recap{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
+.recap li{background:#fff;border:2px dashed #e6c9d3;border-radius:12px;padding:8px 12px;font-size:15px}
+.recap b{color:var(--garnet)}
+footer{text-align:center;color:#f3d9e3;font-size:13px;margin-top:22px;opacity:.85}
+.confetti{position:fixed;top:-12px;width:10px;height:14px;z-index:5;pointer-events:none;border-radius:2px;animation:fall 1.6s ease-in forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.2}}
+.nojs{background:var(--card);border-radius:18px;padding:18px;margin-top:18px}
+@media (prefers-reduced-motion:reduce){.beam,h1,.card,.applause.on{animation:none}.confetti{display:none}}
+</style>
+</head>
+<body>
+<div class="set" aria-hidden="true"></div>
+<div class="beam l" aria-hidden="true"></div><div class="beam r" aria-hidden="true"></div>
+<div class="stage">
+<header>
+  <div class="applause" id="applause" aria-hidden="true">APPLAUSE</div>
+  <h1>The Alex Rogers Show</h1>
+  <p class="sub">Tonight's guest: the one and only Alex Rogers</p>
+</header>
+<main id="show">
+  <noscript>
+    <div class="nojs">
+      <p><b>Ten quick questions from Gordon.</b> Text your answers back with the number and letter, like "1B, 2A".</p>
+      <ol>
+        <li>Your WeHo superpower: A) knowing every bar in order, B) finding Gordon in a crowd, C) the right drink before they ask, D) knowing who closed and who reopened</li>
+        <li>Diva takeover night at Gym Bar: A) Kylie, B) Bonnie McKee, C) Nelly Furtado, D) your wildcard</li>
+        <li>GGP game night is: A) Jackbox, B) Pokemon, C) a video game bar crawl, D) Civ until sunrise</li>
+        <li>Who wins dodgeball: A) Kickball Alex, B) 2am CrossFit Alex, C) Pride weekend bartender Alex</li>
+        <li>Piano: what song are you working toward?</li>
+        <li>The kid with the badge at GDC. What did you see that made you say "Changing lives"?</li>
+        <li>The part of CYSTEM you are proudest of: A) scholars who got jobs, B) studio tours, C) the mentors, D) alumni who keep showing up</li>
+        <li>CYSTEM Year 5 theme word: A) Agency, B) Access, C) Alumni, D) your own</li>
+        <li>Your ideal meeting with Gordon: A) 30 minutes, one decision, B) long lunch, three topics, C) walk and talk in WeHo, D) a text thread with numbered options</li>
+        <li>One "less pizza" honest note for Gordon: what would make working with him easier?</li>
+      </ol>
+    </div>
+  </noscript>
+</main>
+<footer>Hosted with love by Gordon. Built by Darby, Gordon's assistant. Your answers go only to Gordon.</footer>
+</div>
+<script>
+const Q=[
+ {seg:"Opening monologue",q:"Your WeHo superpower is:",why:"You once named every bar in order, from memory, on demand.",o:["Knowing every bar in order","Finding Gordon in any crowd","The right drink before they even ask","Knowing who closed and who reopened"]},
+ {seg:"Lightning round",q:"Diva takeover night at Gym Bar. Who headlines?",why:"Kylie Sportsbar and Grill is still the best idea of 2024.",o:["Kylie","Bonnie McKee","Nelly Furtado","My wildcard (tell us below)"]},
+ {seg:"Lightning round",q:"GGP throws a game night. It is:",why:"Jackbox host, Pokemon veteran, Portland game bar scout.",o:["Jackbox, and I am hosting","Pokemon, obviously","A video game bar crawl","Civ until sunrise"]},
+ {seg:"Celebrity matchup",q:"Dodgeball. Who wins?",why:"Three Alexes enter. One leaves with the ball.",o:["Kickball league Alex","2am CrossFit Alex","Pride weekend bartender Alex"]},
+ {seg:"The music segment",q:"Piano check in. What song are you working toward right now?",why:"Hum it, name it, or tell us the dream song.",o:[],open:true},
+ {seg:"The heart of the show",q:"The kid with the badge at GDC. What did you see in that moment that made you say \"Changing lives\"?",why:"Take your time. One sentence is plenty.",o:[],open:true},
+ {seg:"The heart of the show",q:"The part of CYSTEM you are proudest of:",why:"You built this. Brag a little.",o:["The scholars who got jobs","The studio tours","The mentors team","The alumni who keep showing up"]},
+ {seg:"Looking ahead",q:"CYSTEM Year 5 gets one theme word. It is:",why:"Your pick sets the tone.",o:["Agency","Access","Alumni","My own word (tell us below)"]},
+ {seg:"Behind the scenes",q:"Your ideal meeting with Gordon is:",why:"Honest answer helps us plan the year around you.",o:["30 minutes, one decision","A long lunch, three topics","A walk and talk in WeHo","A text thread with numbered options"]},
+ {seg:"The less pizza segment",q:"One honest note for Gordon: what would make working with him easier?",why:"You wrote \"less pizza, every meal was pizza.\" That energy, please.",o:[],open:true},
+ {seg:"Bonus round",q:"Plan your perfect May 21. Rogers Gras is:",why:"Gordon is taking notes.",o:["Palm Springs, pool, crown","A WeHo bar crawl with the crew","Somewhere new, plane required","Something I will describe below"]}
+];
+const A=Q.map(()=>({pick:null,note:""}));let i=-1;
+const show=document.getElementById('show');
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function meter(){return '<div class="meter" aria-hidden="true">'+Q.map((_,k)=>`<i class="${k<=i?'on':''}"></i>`).join('')+'</div>'}
+function cheer(n=36){const ap=document.getElementById('applause');ap.classList.remove('on');void ap.offsetWidth;ap.classList.add('on');
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const cs=['#ff3d8b','#ffc23d','#18b7a6','#8c1d2e','#fff'];
+ for(let k=0;k<n;k++){const d=document.createElement('div');d.className='confetti';d.style.left=Math.random()*100+'vw';d.style.background=cs[k%5];d.style.animationDelay=(Math.random()*.4)+'s';document.body.appendChild(d);setTimeout(()=>d.remove(),2300)}}
+function intro(){show.innerHTML=`<section class="card"><div class="seg">Tonight on the show</div>
+ <p class="q">Alex, you carry so much of GGP. Tonight the spotlight is on you.</p>
+ <p class="why">Eleven quick questions. Most are one tap. Skip anything you like. At the end, one button sends your answers to Gordon.</p>
+ <div class="host"><span>G</span>Your host: Gordon Bellamy</div>
+ <div class="row"><span></span><button class="btn gold" id="go">Roll the tape</button></div></section>`;
+ document.getElementById('go').onclick=()=>{cheer();i=0;draw()}}
+function top(){const r=show.getBoundingClientRect();if(r.top<0)window.scrollTo({top:window.scrollY+r.top-12,behavior:'smooth'})}
+function draw(){const s=Q[i],a=A[i];
+ show.innerHTML=`<section class="card" aria-live="polite"><div class="seg">${s.seg} · ${i+1} of ${Q.length}</div><p class="q">${esc(s.q)}</p><p class="why">${esc(s.why)}</p>
+ <div class="opts">${s.o.map((t,k)=>`<button class="opt" data-k="${k}" aria-pressed="${a.pick===k}"><b>${'ABCD'[k]}</b>${esc(t)}</button>`).join('')}</div>
+ <label class="why" for="note" style="display:block;margin:12px 0 0">${s.open?'Your answer':'Say more (optional)'}</label>
+ <textarea id="note" placeholder="${s.open?'Type here':'Anything to add?'}">${esc(a.note)}</textarea>
+ <div class="row"><button class="btn ghost" id="back">${i?'Back':'Start over'}</button><button class="btn" id="next">${i==Q.length-1?'That is a wrap':'Next'}</button></div>${meter()}</section>`;
+ show.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{a.pick=+b.dataset.k;show.querySelectorAll('.opt').forEach(x=>x.setAttribute('aria-pressed',x===b));cheer(18)});
+ document.getElementById('note').oninput=e=>a.note=e.target.value;
+ document.getElementById('back').onclick=()=>{if(i){i--;draw()}else intro()};
+ document.getElementById('next').onclick=()=>{if(i<Q.length-1){i++;draw()}else wrap()};top()}
+function summary(){return Q.map((s,k)=>{const a=A[k];const p=a.pick!=null?'ABCD'[a.pick]+') '+s.o[a.pick]:'';const n=a.note.trim();if(!p&&!n)return null;return `${k+1}. ${p}${p&&n?' · ':''}${n}`}).filter(Boolean)}
+function wrap(){cheer(80);const lines=summary();const body='The Alex Rogers Show, my answers:\n'+lines.join('\n');
+ show.innerHTML=`<section class="card"><div class="seg">That is a wrap</div><p class="q">Thank you, Alex. Truly.</p>
+ <p class="why">Here is what you said. Tap below to text it to Gordon's assistant, who hands it straight to Gordon.</p>
+ <ul class="recap">${lines.length?lines.map(l=>`<li>${esc(l)}</li>`).join(''):'<li>No answers yet. Go back and tap a few.</li>'}</ul>
+ <div class="row" style="flex-wrap:wrap"><button class="btn ghost" id="back">Back</button>
+ <span><a class="btn gold" style="text-decoration:none;display:inline-block" href="sms:gbellamyai@gmail.com&body=${encodeURIComponent(body)}">Text my answers</a></span></div>
+ <p class="why" style="margin-top:12px">Prefer email? <a href="mailto:gbellamyai@gmail.com?subject=${encodeURIComponent('The Alex Rogers Show')}&body=${encodeURIComponent(body)}">Send it by email instead</a>.</p>${meter()}</section>`;
+ document.getElementById('back').onclick=()=>{i=Q.length-1;draw()}}
+intro();
+</script>
+</body>
+</html>
