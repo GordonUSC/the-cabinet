@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunday Council</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1612;
+    font-family: 'EB Garamond', serif;
+  }
+  .card {
+    width: 380px;
+    background: #f4ebd9;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .header {
+    background: linear-gradient(135deg, #2d4a3e 0%, #1a3328 100%);
+    padding: 32px 28px 24px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 28px;
+    right: 28px;
+    height: 1px;
+    background: rgba(201, 161, 74, 0.4);
+  }
+  .lens {
+    font-family: 'EB Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(201, 161, 74, 0.7);
+    margin-bottom: 10px;
+  }
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.25;
+    color: #f4ebd9;
+  }
+  .body {
+    padding: 28px;
+  }
+  .body p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #2a2118;
+    margin-bottom: 16px;
+  }
+  .body p:last-child {
+    margin-bottom: 0;
+  }
+  .queue {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    background: rgba(45, 74, 62, 0.08);
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  .queue-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2d4a3e;
+    flex-shrink: 0;
+  }
+  .queue-text {
+    font-size: 14px;
+    color: #4a6a58;
+    line-height: 1.4;
+  }
+  .footer {
+    padding: 0 28px 24px;
+    font-size: 12px;
+    color: rgba(42, 33, 24, 0.4);
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div class="lens">Wellbeing / Sunday Nov 22</div>
+    <div class="title">Thanksgiving week. Slow is right.</div>
+  </div>
+  <div class="body">
+    <p>Six days since Colby Janet. Grief doesn't peak at the goodbye. It peaks the first ordinary morning when you reach down and she's not there.</p>
+    <p>Thanksgiving is Thursday. No classes this week. The Bo film is coming together. That's enough.</p>
+    <div class="queue">
+      <div class="queue-dot"></div>
+      <div class="queue-text">29 things in the queue. I'm triaging them this week. Only time-sensitive ones will reach you.</div>
+    </div>
+  </div>
+  <div class="footer">DARBY COUNCIL</div>
+</div>
+</body>
+</html>
