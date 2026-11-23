@@ -84,15 +84,49 @@ h1{text-shadow:2px 2px 0 rgba(242,139,29,.18)}
 .taped{position:relative;float:right;width:44%;max-width:220px;margin:4px 0 10px 14px;padding:7px 7px 4px;background:#fff;box-shadow:3px 5px 0 rgba(34,48,79,.15);transform:rotate(2.2deg)}
 .taped img{width:100%;display:block;filter:sepia(.25) saturate(.9)}.taped figcaption{font-family:var(--hand);font-size:15px;text-align:center;margin-top:3px}
 .taped::before{content:"";position:absolute;top:-9px;left:50%;width:64px;height:18px;margin-left:-32px;background:rgba(255,226,120,.7);transform:rotate(-3deg)}
-#hud::after{content:"";position:absolute;right:10px;top:-34px;width:64px;height:64px;background:url(assets/flask_sheet.png?v=1123a) 0 0/1536px 64px no-repeat;animation:flask 2.4s steps(24) infinite}
+#hud::after{content:"";position:absolute;right:10px;top:-34px;width:64px;height:64px;background:url(assets/flask_sheet.png?v=1123c) 0 0/1536px 64px no-repeat;animation:flask 2.4s steps(24) infinite}
 @keyframes flask{to{background-position:-1536px 0}}
 .credits{font-size:13px;color:var(--pencil);margin-top:14px;line-height:1.4}
 @media (prefers-reduced-motion:reduce){#hud::after{animation:none}}
 .choice.card:active:not(:disabled){border-color:var(--gold);box-shadow:5px 7px 0 rgba(34,48,79,.3)}
 @media (prefers-reduced-motion:reduce){.choice:hover:not(:disabled){transform:none}#art.in{animation:artFade .4s ease both}@keyframes artFade{from{opacity:0}to{opacity:1}}}
+/* ---- v5 "The Hunch" (2026-11-23): ink wash, picture cards, gold stars, the talk ---- */
+#ink{z-index:2;cursor:crosshair;touch-action:manipulation}
+body[data-scene=hunch] #art,body[data-scene=guess] #art,body[data-scene=found] #art,body[data-scene=twist] #art{animation:none;transform:none}
+#word{position:absolute;top:58px;right:14px;z-index:3;font:700 26px/1.1 var(--hand);color:var(--ink);background:#fff6b8;padding:10px 16px 8px;transform:rotate(3deg);box-shadow:3px 5px 0 rgba(34,48,79,.2);max-width:60%}
+#word::before{content:"The books say";display:block;font:700 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--pencil);margin-bottom:4px}
+.stars{display:inline-flex;gap:2px;font-size:30px;line-height:1}.stars i{font-style:normal;color:#d9ccb0}.stars i.on{color:var(--gold);text-shadow:0 1px 0 #8a5a00}
+.gold .stars{font-size:44px}
+#hud{gap:10px 22px}.hg{display:grid;gap:2px}.hg>.hl{font-size:14px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--pencil)}
+.choice.has-thumb{grid-template-columns:96px 1fr;grid-template-rows:auto auto;column-gap:14px;align-items:center;min-height:104px}
+.choice.has-thumb .thumb{grid-row:1/3;width:96px;height:96px;object-fit:cover;border-radius:6px;border:2px solid var(--line)}
+.choice.glow{border-color:var(--gold);box-shadow:0 0 0 4px rgba(224,162,26,.45),4px 6px 0 rgba(34,48,79,.2);animation:glow 1.4s ease-in-out infinite alternate}
+@keyframes glow{to{box-shadow:0 0 0 10px rgba(224,162,26,.15),4px 6px 0 rgba(34,48,79,.2)}}
+.bigstamp{display:flex;align-items:center;gap:14px;margin:12px 0 2px}.bigstamp .seal{width:84px;height:84px;animation:stampIn .6s cubic-bezier(.2,1.6,.4,1) both}.bigstamp b{font-family:var(--hand);font-size:40px;color:var(--goldText)}
+@keyframes stampIn{from{transform:scale(2.2) rotate(-20deg);opacity:0}to{transform:none;opacity:1}}
+.talk{margin:10px 0 0;padding-left:28px;font-family:var(--hand);font-size:22px}
+.poster.ovation-3{box-shadow:0 0 0 5px var(--gold),6px 8px 0 var(--line)}
+@media (prefers-reduced-motion:reduce){.choice.glow,.bigstamp .seal{animation:none}}
+#choices .choice{min-height:84px}
+/* ---- v5 readability + reunion pass (Ms. D and Tree critique, 2026-11-23) ---- */
+.small,.choice span,.ac p,.credits,.hint,#body p{font-size:18px}
+.choice b{font-family:var(--body);font-weight:700;font-size:21px;line-height:1.2}
+.choice.primary b{font-family:var(--hand);font-size:24px}
+#eyebrow{font-size:16px}.hg>.hl{font-size:16px}
+.tip{display:inline-block;margin-top:12px;padding:6px 12px;background:#fff6b8;border-radius:4px;font-weight:700}
+.narr{border-left:6px solid var(--c5);background:#f6f0fb;padding:10px 14px;border-radius:8px;font-size:19px;color:#2a2140}
+.narr span{display:block;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5b3a86;margin-bottom:2px}
+.qr{margin:14px 0 0;display:grid;justify-items:start;gap:6px}.qr img{background:#fff;padding:10px;border:3px solid var(--ink);border-radius:8px;width:220px;height:220px}.qr figcaption{font-size:16px;color:var(--pencil);word-break:break-all}
+.shelf{font-family:var(--hand);font-size:28px;margin:22px 0 0}.ac.voice{border-style:dashed;background:#f6f0fb;color:#2a2140}
+.give{margin-top:16px}.give a{font-weight:700;font-size:20px;color:#0b5a50;text-decoration-thickness:2px;text-underline-offset:4px}
+#screenqr{position:fixed;right:18px;bottom:18px;margin:0;background:#fff;border:3px solid var(--ink);border-radius:10px;padding:8px;text-align:center;z-index:9;box-shadow:4px 5px 0 rgba(34,48,79,.2)}
+#screenqr img{display:block;width:150px;height:150px}#screenqr figcaption{font:700 15px/1.2 var(--body);margin-top:4px}
+body.screen #app{grid-template-rows:1fr;grid-template-columns:1.25fr 1fr;height:100vh;max-height:100vh;aspect-ratio:16/9;max-width:min(100vw,177.78vh);align-items:stretch}
+body.screen #panel{overflow:hidden;zoom:1.45}
+.byyear{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px;font-size:18px}.byyear b{font-family:var(--hand);font-size:22px;margin-right:6px}body.screen #watching{display:none}body.screen #mute{display:none}
 </style>
 <div id="app">
-  <div id="stage"><img id="art2" alt="" aria-hidden="true" hidden><img id="art" class="in" src="assets/art_title.jpg?v=1123a" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><video id="loop" muted playsinline preload="none" aria-hidden="true"></video><video id="finale" src="assets/loops/finale_stars.mp4?v=1123a" muted playsinline preload="none" aria-hidden="true" hidden></video><canvas id="stars" hidden aria-hidden="true"></canvas>
+  <div id="stage"><img id="art2" alt="" aria-hidden="true" hidden><img id="art" class="in" src="assets/art_title.jpg?v=1123c" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><video id="loop" muted playsinline preload="none" aria-hidden="true"></video><video id="finale" src="assets/loops/finale_stars.mp4?v=1123c" muted playsinline preload="none" aria-hidden="true" hidden></video><canvas id="stars" hidden aria-hidden="true"></canvas><canvas id="ink" hidden aria-hidden="true"></canvas><div id="word" hidden aria-live="polite"></div>
     <button id="mute" type="button" aria-pressed="false"><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg><span>Sound on</span></button></div>
   <main id="panel">
     <div id="eyebrow">For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028</div>
@@ -105,155 +139,122 @@ h1{text-shadow:2px 2px 0 rgba(242,139,29,.18)}
   </main>
 </div>
 <div id="watching" hidden>Watching. Tap the picture to take over.</div>
+<figure id="screenqr" hidden><img src="qr_play.png?v=1123c" alt="QR code that opens Underway on a phone." width="150" height="150"><figcaption>Play on your phone</figcaption></figure>
 <script type="module">
 const L = (() => {
-// Underway: pure game logic (no DOM). Shared by the page and the balance simulator.
-const TARGETS = [38, 135, 300, 480, 820]; // week 1..5, visible to the player
-const ACTIONS_PER_WEEK = 3;
+// Underway v5, "The Hunch": pure game logic (no DOM). Shared by the page and the balance simulator.
+// One verb (look closer, with three tools), one decision (make your hunch). No arithmetic is ever shown:
+// the player sees stars, never a sum.
 
-const FIELDS = [
-  { id: 'math', name: 'Mathematics', mentor: 'math' },
-  { id: 'bio', name: 'Biology', mentor: 'bio' },
-  { id: 'cs', name: 'Computer Science', mentor: 'cs' },
-  { id: 'eng', name: 'Engineering', mentor: 'eng' },
-  { id: 'phys', name: 'Physics', mentor: 'math' },
-  { id: 'chem', name: 'Chemistry', mentor: 'bio' },
+// Each lab week is one hidden picture. Generic science subjects only (truth rule: no real alumni projects,
+// no invented results). Facts are standard textbook science. Coordinates are fractions of the picture.
+const WEEKS = [
+  { wk: 1, id: 'snow', art: 'hunch_snow', tools: ['look'], answer: 1,
+    choices: ['A spider web', 'A snowflake', 'A dandelion'], sheet: 'hunch_choices1', sheetOrder: [1, 0, 2],
+    mentor: null, word: null,
+    found: 'A snowflake!', fact: 'Snowflakes grow in six-sided shapes because water molecules freeze into a hexagon.' },
+  { wk: 2, id: 'feather', art: 'hunch_feather', tools: ['look', 'mentor', 'read'], answer: 2,
+    choices: ['A fern leaf', 'A fish skeleton', 'A feather'], sheet: 'hunch_choices2', sheetOrder: [0, 2, 1],
+    mentor: { x: 0.64, y: 0.62, r: 0.2, line: 'Look at the edge. See the tiny hooks?' }, word: 'Flight',
+    found: 'A feather!', fact: 'A feather\'s barbs zip together with tiny hooks, so it holds its shape in flight.' },
+  { wk: 3, id: 'pinecone', art: 'hunch_pinecone', tools: ['look', 'mentor', 'read'], answer: 0,
+    choices: ['A pinecone', 'A sunflower', 'A pineapple'], sheet: 'hunch_choices3', sheetOrder: [2, 0, 1],
+    // The word clue misleads on purpose: the label names a cousin with the same spirals. The evidence wins.
+    mentor: { x: 0.5, y: 0.5, r: 0.2, line: 'A label can fool you. Trust what you see.' }, word: 'Sunflower?', misleading: true,
+    found: 'A pinecone!', fact: 'A pinecone\'s scales grow in spirals, often 8 one way and 13 the other. Sunflowers use the same numbers, which is why the label fooled you.' },
+  { wk: 4, id: 'dish', art: 'hunch_dish', twist: 'hunch_dish_twist', tools: ['look', 'mentor', 'read'], answer: 0,
+    choices: ['Bacteria in a dish', 'Swiss cheese', 'A starry sky'], sheet: 'hunch_choices4', sheetOrder: [0, 1, 2],
+    mentor: { x: 0.43, y: 0.5, r: 0.22, line: 'Count the little dots. What grows like that?' }, word: 'Culture',
+    found: 'Bacteria in a dish!', fact: 'In 1928 a mold spoiled a dish of bacteria in Alexander Fleming\'s lab. The clear ring around it led him to penicillin.' },
 ];
 
-const MENTORS = {
-  math: { name: 'The Theorist', art: 'art_mentor_math.jpg', line: 'Prove it twice, then once more.', gain: { insight: 1, rigor: 2 } },
-  bio: { name: 'The Experimentalist', art: 'art_mentor_bio.jpg', line: 'Let the data surprise you.', gain: { insight: 3, rigor: 0 } },
-  cs: { name: 'The Builder', art: 'art_mentor_cs.jpg', line: 'Make it run, then make it right.', gain: { insight: 2, rigor: 1 } },
-  eng: { name: 'The Tinkerer', art: 'art_mentor_eng.jpg', line: 'Test it until it stops breaking.', gain: { insight: 1, rigor: 2 } },
-};
+const MENTOR_SURPRISE = 'That is not a mistake. That is a discovery.';
 
-const UPGRADES = [
-  { id: 'partner', name: 'Your counselor group', text: '+1 Rigor at the start of every week. Never be late to Bedcheck.' },
-  { id: 'lounge', name: 'Late nights in the computer lab', text: '+1 action every week. Lose 1 Rigor now.' },
-  { id: 'notebook', name: 'A careful notebook', text: 'Rigor counts 1.5 times at week\'s end.' },
-  { id: 'question', name: 'One good question', text: '+3 Insight right now.' },
-  { id: 'office', name: 'Office hours', text: 'Ask your mentor twice a week.' },
-  { id: 'wind', name: 'Second wind', text: 'Insight counts 1.5 times at week\'s end.' },
-  { id: 'care', name: 'Care package from home', text: '+2 Insight and +2 Rigor right now.' },
-];
+function newRun(rng = Math.random) {
+  return { week: 1, looks: 0, misses: 0, mentorUsed: false, readUsed: false, revealed: [], found: [], stars: [], stamps: 0, order: null, rng };
+}
+const weekDef = (s) => WEEKS[s.week - 1] || null;
 
-function newRun(fieldId, rng = Math.random) {
-  const f = FIELDS.find((x) => x.id === fieldId) || FIELDS[0];
-  return { field: f.id, mentor: f.mentor, insight: 2, rigor: 2, week: 1, actionsLeft: ACTIONS_PER_WEEK, mentorAsks: 0,
-    upgrades: [], weekScores: [], stamps: 0, total: 0, failChoice: null, log: [], rng };
+function startWeek(s) { s.looks = 0; s.misses = 0; s.mentorUsed = false; s.readUsed = false; s.revealed = []; return s; }
+
+// The three tools. Each look clears part of the ink; every look costs a little of the week's gold.
+function canUse(s, tool) {
+  const w = weekDef(s); if (!w || !w.tools.includes(tool)) return false;
+  if (tool === 'mentor') return !s.mentorUsed;
+  if (tool === 'read') return !s.readUsed;
+  return true;
+}
+function look(s, tool, x, y) {
+  if (!canUse(s, tool)) return null;
+  const w = weekDef(s); s.looks += 1;
+  let spot;
+  if (tool === 'mentor') { s.mentorUsed = true; spot = { x: w.mentor.x, y: w.mentor.y, r: w.mentor.r }; }
+  else if (tool === 'read') { s.readUsed = true; return { word: w.word, misleading: !!w.misleading }; }
+  else spot = { x: x ?? nextSpot(s).x, y: y ?? nextSpot(s).y, r: s.hard ? 0.1 : 0.15 };
+  s.revealed.push(spot);
+  return spot;
+}
+// For the "Look closer" button and Just Watch: the least-revealed point on a fixed tour of the picture.
+const TOUR = [[0.5, 0.48], [0.38, 0.34], [0.62, 0.62], [0.38, 0.66], [0.62, 0.34], [0.5, 0.8], [0.32, 0.5], [0.68, 0.5]];
+function nextSpot(s) {
+  let best = TOUR[0], bd = -1;
+  for (const [x, y] of TOUR) {
+    const d = s.revealed.reduce((m, r) => Math.min(m, Math.hypot(r.x - x, r.y - y) - r.r), 9);
+    if (d > bd) { bd = d; best = [x, y]; }
+  }
+  return { x: best[0], y: best[1] };
 }
 
-const has = (s, id) => s.upgrades.includes(id);
+// Stars, shown as stars only. Fewer looks, more gold. A wrong hunch costs a star, never the week.
+function starsFor(s) {
+  // Rickoid mode (alumni): stricter gold. Ms. D's default stays gentle.
+  const base = s.hard ? (s.looks <= 1 ? 3 : s.looks <= 2 ? 2 : 1) : (s.looks <= 2 ? 3 : s.looks <= 4 ? 2 : 1);
+  return Math.max(1, base - s.misses);
+}
+function hunch(s, k) {
+  const w = weekDef(s);
+  if (k === w.answer) {
+    const st = starsFor(s); s.stars.push(st); s.found.push(w.id); s.stamps += 1;
+    return { right: true, stars: st, twist: !!w.twist };
+  }
+  s.misses += 1;
+  if (!s.hard) s.revealed.push({ ...nextSpot(s), r: 0.17, free: true }); // the mentor clears one more spot, free (not in Rickoid mode)
+  return { right: false, glow: !s.hard && s.misses >= 2, free: !s.hard };
+}
+function endWeek(s) { s.week += 1; return s.week; }
 
-function startWeek(s) {
-  s.actionsLeft = ACTIONS_PER_WEEK + (has(s, 'lounge') ? 1 : 0);
-  s.mentorAsks = 0;
-  if (has(s, 'partner')) s.rigor += 1;
-  if (s.week === 4 && !s.failed) { s.failed = true; s.lostInsight = Math.floor(s.insight / 2); s.insight -= s.lostInsight; }
-  return s;
+// Presentation Day: order the four stamp cards. Any order is applauded. The loudest room is her own path,
+// week by week, ending on the surprise (a good talk ends on the surprise).
+function applauseFor(order) {
+  const own = order.join(',') === '1,2,3,4';
+  if (own) return 3;
+  if (order[order.length - 1] === 4) return 2;
+  return 1;
+}
+const totalStars = (s) => s.stars.reduce((a, b) => a + b, 0);
+
+// Just Watch and the balance simulator: look a couple of times (mentor first when there is one), then guess right.
+function watchMove(s) {
+  const w = weekDef(s);
+  if (canUse(s, 'mentor') && s.looks >= 1) return 'mentor';
+  if (s.looks < 2) return 'look';
+  return 'hunch';
 }
 
-function availableActions(s) {
-  const maxAsk = has(s, 'office') ? 2 : 1;
-  const g = MENTORS[s.mentor].gain;
-  return [
-    { id: 'experiment', name: 'Run an experiment', text: '+3 Insight. Sometimes a surprise adds 2 more.', ok: true },
-    { id: 'check', name: 'Check your work', text: '+2 Rigor.', ok: true },
-    { id: 'mentor', name: 'Ask your mentor', text: `+${g.insight} Insight, +${g.rigor} Rigor. ${maxAsk === 2 ? 'Twice a week.' : 'Once a week.'}`, ok: s.mentorAsks < maxAsk },
-    { id: 'read', name: 'Read the literature', text: '+1 Insight, +1 Rigor.', ok: true },
-  ];
-}
-
-function act(s, id) {
-  if (s.actionsLeft <= 0) return null;
-  let out = { insight: 0, rigor: 0, surprise: false };
-  if (id === 'experiment') { out.insight = 3; if (s.rng() < 0.3) { out.insight += 2; out.surprise = true; } }
-  else if (id === 'check') out.rigor = 2;
-  else if (id === 'read') { out.insight = 1; out.rigor = 1; }
-  else if (id === 'mentor') {
-    const maxAsk = has(s, 'office') ? 2 : 1;
-    if (s.mentorAsks >= maxAsk) return null;
-    s.mentorAsks += 1; out = { ...out, ...MENTORS[s.mentor].gain };
-  } else return null;
-  s.insight += out.insight; s.rigor += out.rigor; s.actionsLeft -= 1;
-  return out;
-}
-
-function weekScore(s) {
-  const i = s.insight * (has(s, 'wind') ? 1.5 : 1);
-  const r = s.rigor * (has(s, 'notebook') ? 1.5 : 1);
-  return { i, r, score: Math.floor(i * r), target: TARGETS[s.week - 1] };
-}
-
-function endWeek(s) {
-  const w = weekScore(s);
-  const stamp = w.score >= w.target;
-  s.weekScores.push(w.score); s.total += w.score; if (stamp) s.stamps += 1;
-  s.week += 1;
-  return { ...w, stamp };
-}
-
-function offerUpgrades(s) {
-  const pool = UPGRADES.filter((u) => !has(s, u.id));
-  const pick = [];
-  while (pick.length < 3 && pool.length) pick.push(pool.splice(Math.floor(s.rng() * pool.length), 1)[0]);
-  return pick;
-}
-
-function takeUpgrade(s, id) {
-  s.upgrades.push(id);
-  if (id === 'lounge') s.rigor = Math.max(1, s.rigor - 1);
-  if (id === 'question') s.insight += 3;
-  if (id === 'care') { s.insight += 2; s.rigor += 2; }
-}
-
-// Week 4: the experiment failed. Both paths win. Reading the failure is a deduction, not a dice roll:
-// the player reads one clue and picks the explanation that fits it. A wrong pick gives a hint and a retry.
-const FAIL_CLUES = {
-  math: { clue: 'Your bound holds for every case you tried, except one small one.', good: 0,
-    reads: ['That case breaks a hidden assumption. The theorem needs one more condition.', 'Small cases never matter. Ignore it.', 'The computer must have made an arithmetic slip.'],
-    hint: 'A single counterexample is information. What would make it fail only there?' },
-  bio: { clue: 'This week the seedlings under white light grew fast too.', good: 1,
-    reads: ['Blue light simply stopped working.', 'Something changed for every plant, like the room\'s temperature.', 'The ruler must have shrunk.'],
-    hint: 'When the comparison group moves too, look for what all the plants share.' },
-  cs: { clue: 'The new sort is slower, but only on data that is already sorted.', good: 2,
-    reads: ['The new method is just bad.', 'The timer is broken.', 'Sorted input is its worst case. That is a result worth reporting.'],
-    hint: 'It only fails on one kind of input. What is special about that input?' },
-  eng: { clue: 'The bridge cracked at a joint, not in the middle of a beam.', good: 0,
-    reads: ['The joints, not the beams, are the weak point to redesign.', 'Bridges always crack. Try again.', 'The weights were too heavy for any design.'],
-    hint: 'Where it broke tells you what to change.' },
-  phys: { clue: 'The pendulum drifts more on warm afternoons than in the morning.', good: 1,
-    reads: ['Pendulums are random.', 'Heat changes the string\'s length, and that changes the swing.', 'The clock in the room is wrong.'],
-    hint: 'The drift follows the time of day. What else changes over the day?' },
-  chem: { clue: 'The indicator changed color before you added any acid.', good: 2,
-    reads: ['The indicator is broken for good.', 'Color is not a real measurement.', 'Something in the water was already acidic. Check the control.'],
-    hint: 'If it changed before you did anything, the cause was already there.' },
-};
-function resolveFailure(s, choice) {
-  s.failChoice = choice;
-  if (choice === 'restart') { s.rigor += 4; return { kind: 'restart', rigor: 4 }; }
-  const back = s.lostInsight + 4; s.insight += back; return { kind: 'found', insight: back };
-}
-
-function greedyAction(s) {
-  // The move a careful player makes: keep Insight and Rigor balanced, mentor first.
-  const acts = availableActions(s);
-  if (acts.find((a) => a.id === 'mentor').ok) return 'mentor';
-  return s.insight <= s.rigor * 1.3 ? 'experiment' : 'check';
-}
-
-return {TARGETS, ACTIONS_PER_WEEK, FIELDS, MENTORS, UPGRADES, newRun, startWeek, availableActions, act, weekScore, endWeek, offerUpgrades, takeUpgrade, FAIL_CLUES, resolveFailure, greedyAction};
+return {WEEKS, MENTOR_SURPRISE, newRun, weekDef, startWeek, canUse, look, nextSpot, starsFor, hunch, endWeek, applauseFor, totalStars, watchMove};
 })();
 // Underway: screens and flow. Logic lives in logic.js (inlined at build as L).
 const $ = (s) => document.querySelector(s);
 const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Reunion screen mode (?screen=1): 16:9, plays itself on a loop, finale held long, QR in the corner.
+const SCREEN = new URLSearchParams(location.search).get('screen') === '1';
 const store = {
   get(k, d) { try { const v = localStorage.getItem('underway.' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem('underway.' + k, JSON.stringify(v)); } catch (e) { /* private window: play on */ } },
 };
 
 const ARCHIVE = [
-  { id: 'founded', t: '1983', b: 'Admiral H.G. Rickover and Joann P. DiGennaro found the Center for Excellence in Education. It is first called the Admiral Rickover Foundation.' },
+  { id: 'founded', t: '1983', b: 'Admiral H. G. Rickover and Joann P. DiGennaro found the Center for Excellence in Education. It is first called the Admiral Rickover Foundation.' },
   { id: 'seed', t: 'The $250 seed', b: 'By CEE\'s own account, its funding began with the $250 Admiral Rickover was paid for a university lecture.' },
   { id: 'rsi', t: '1984', b: 'The first summer of what becomes the Research Science Institute. It begins as the Rickover Science Institute.' },
   { id: 'summer', t: 'Six weeks', b: 'A week of classes, a five-week research internship with a mentor, then written and oral presentations. About 100 students come to MIT each summer.' },
@@ -263,14 +264,17 @@ const ARCHIVE = [
   { id: 'roty', t: 'Rickoids of the Year', b: 'Every summer since 1984, each class votes for its own Rickoid of the Year. CEE still names one every year.' },
   { id: 'leesburg', t: 'Leesburg, 1984', b: 'The very first summer was not at MIT. About 50 students met at a training center in Leesburg, Virginia.' },
   { id: 'mit', t: 'MIT, 1992', b: 'RSI\'s first summer at MIT, a trial year. The final talks were given in Room 6-120.' },
-  { id: 'bedcheck', t: 'Bedcheck', b: 'The nightly meeting with your counselor group. Rickoids across the decades agree: never be late to Bedcheck.' },
+  { id: 'bedcheck', t: 'Bedcheck', b: 'The nightly meeting with your counselor group: announcements, snacks and a recap of the day. Rickoids across the decades agree: never be late to Bedcheck.' },
+  { id: 'sacred', t: '"Bedcheck is sacred"', b: 'What one counselor group\'s summerbook called its late-night custom, 2008.' },
+  { id: 'cup', t: 'The Counselor Cup', b: 'A points race between counselor groups, with standings revealed at Bedcheck. No one knows what the final prize is.' },
+  { id: 'triangle', t: 'The red triangle', b: 'At MIT, around 2018: roam campus at any hour, but never off campus without staff.' },
   { id: 'hellweek', t: 'Hell Week', b: 'What Rickoids call the last week: the final paper and talk, and long nights in the computer lab.' },
   { id: 'party', t: 'The holiday party', b: 'Ms. D hosts a holiday party at her home each year, with alumni from every decade. Boston has its own Bash.' },
   { id: 'broad', t: '35 and 40', b: 'The 35th and 40th anniversaries were weekends at the Broad Institute, with alumni talks and medals for excellence.' },
 ];
 const TIMELINE = [
-  [1983, 'A $250 lecture fee seeds a new foundation.'], [1984, 'About 50 students, one summer in Leesburg, Virginia.'],
-  [1992, 'RSI\'s first summer at MIT.'], [2001, 'A sister institute opens in Bulgaria.'], [2018, 'The 35th: nearly 300 alumni gather at the Broad.'],
+  [1983, 'A $250 lecture fee seeds a new foundation.'], [1984, 'About 50 students, one summer at the Xerox training center in Leesburg, Virginia.'],
+  [1987, 'Rickoids live at George Mason University in Fairfax, Virginia, with labs that include the University of Maryland.'], [1992, 'RSI\'s first summer at MIT.'], [2001, 'A sister institute opens in Bulgaria.'], [2018, 'The 35th: nearly 300 alumni gather at the Broad.'],
   [2023, 'The 40th, celebrated on the Senate floor.'], [2027, 'Stanford joins MIT as a summer home.'], [2028, 'Forty-five years. Underway.'],
 ];
 const QUIZ = [
@@ -297,7 +301,7 @@ function unlock(...ids) { let n = 0; ids.forEach((i) => { if (!archive.has(i)) {
 const ROOM_ART = { classroom: 'art_classroom.jpg', lab: 'art_lab.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
 let artTok = 0;
 function stage({ room, art, alt }) {
-  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1123a';
+  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1123c';
   const img = $('#art'), under = $('#art2');
   if (img.getAttribute('src') === src) { img.alt = alt || ''; return; }
   const tok = ++artTok;
@@ -314,11 +318,11 @@ function stage({ room, art, alt }) {
   pre.src = src;
 }
 // Living panels (Higgsfield image-to-video, start frame = end frame, so the loop is seamless). Muted, decorative.
-const LOOPS = { 'art_title.jpg': 'loop_title', 'art_lab.jpg': 'loop_lab', 'art_applause.jpg': 'loop_applause', 'art_party.jpg': 'loop_party', 'art_sky.jpg': 'loop_sky' };
+const LOOPS = { 'art_title.jpg': 'loop_title', 'art_lab.jpg': 'loop_lab', 'art_applause.jpg': 'loop_applause', 'art_party.jpg': 'loop_party', 'art_sky.jpg': 'loop_sky', 'hunch_dish_twist.jpg': 'loop_hunch_dish_twist' };
 function setLoop(name, tok) {
   const v = $('#loop'); if (!v) return;
   if (!name || REDUCED || (navigator.connection && navigator.connection.saveData)) { v.classList.remove('on'); v.pause && v.pause(); return; }
-  const want = 'assets/loops/' + name + '.mp4?v=1123a';
+  const want = 'assets/loops/' + name + '.mp4?v=1123c';
   if (v.dataset.src === want) { v.classList.add('on'); v.play().catch(() => {}); return; }
   v.classList.remove('on'); v.dataset.src = want; v.loop = true; v.preload = 'auto'; v.src = want;
   v.play().then(() => { if (tok === artTok && v.dataset.src === want) v.classList.add('on'); }).catch(() => {});
@@ -329,14 +333,14 @@ const SND = (() => {
   const FILES = { tap: 'sfx_tap', page: 'sfx_page', stamp: 'sfx_stamp', miss: 'sfx_miss', applause: 'sfx_applause', fail: 'sfx_fail', plant: 'sfx_plant', spark: 'sfx_spark', count: 'sfx_count', win: 'sfx_win', pencil: 'sfx_pencil', star: 'sfx_star',
     m_pro: 'music_prologue', m_pre: 'music_present', a_hall: 'amb_hall', a_fire: 'amb_fire',
     m_lab: 'music_lab', m_party: 'music_party', m_stars: 'music_stars', a_lab: 'amb_lab', a_party: 'amb_party' };
-  const VOL = { tap: 0.5, page: 0.45, stamp: 0.9, miss: 0.8, applause: 0.9, fail: 0.85, plant: 0.9, spark: 0.75, count: 0.6, win: 0.8, pencil: 0.55, star: 0.85 };
+  const VOL = { tap: 0.5, page: 0.45, stamp: 0.9, miss: 0.8, applause: 0.9, fail: 0.85, plant: 0.9, spark: 0.75, count: 0.6, win: 0.8, pencil: 0.55, star: 1 };
   let ctx = null, master = null, muted = store.get('muted', false);
   const buf = {}, loading = {};
   const beds = { music: { key: null, src: null, g: null }, amb: { key: null, src: null, g: null } };
   let want = { music: null, amb: null };
   function load(k) {
     if (buf[k] || loading[k] || !ctx) return loading[k];
-    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1123a').then((r) => r.arrayBuffer())
+    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1123c').then((r) => r.arrayBuffer())
       .then((a) => new Promise((ok, no) => ctx.decodeAudioData(a, ok, no))).then((b) => { buf[k] = b; return b; }).catch(() => null);
     return loading[k];
   }
@@ -382,17 +386,18 @@ const SND = (() => {
 const SCORE = {
   title: ['m_pro', 0.5, null], who: ['m_pro', 0.5, null], seed: ['m_pro', 0.35, null], grow: ['m_pro', 0.5, null],
   field: ['m_pro', 0.45, null], quiz: ['m_pro', 0.4, null], 'quiz-result': ['m_pro', 0.4, null], mentor: ['m_lab', 0.45, 'a_lab'],
-  lab: ['m_lab', 0.32, 'a_lab'], 'week-end': ['m_lab', 0.3, 'a_lab'], upgrade: ['m_lab', 0.45, null], failure: ['m_lab', 0.2, 'a_lab'], clue: ['m_lab', 0.25, 'a_lab'], 'fail-result': ['m_lab', 0.32, 'a_lab'],
+  lab: ['m_lab', 0.32, 'a_lab'], hunch: ['m_lab', 0.32, 'a_lab'], guess: ['m_lab', 0.3, 'a_lab'], found: ['m_lab', 0.4, 'a_lab'], twist: ['m_lab', 0.3, 'a_lab'], discovery: ['m_lab', 0.42, 'a_lab'], 'week-end': ['m_lab', 0.3, 'a_lab'], upgrade: ['m_lab', 0.45, null], failure: ['m_lab', 0.2, 'a_lab'], clue: ['m_lab', 0.25, 'a_lab'], 'fail-result': ['m_lab', 0.32, 'a_lab'],
   present: ['m_pre', 0.38, 'a_hall'], panel: ['m_pre', 0.3, 'a_hall'], applause: ['m_pre', 0.45, 'a_hall'], sky: [null, 0, null],
   party: ['m_party', 0.5, 'a_fire'], thanks: ['m_party', 0.4, 'a_fire'], stories: ['m_party', 0.45, 'a_fire'], wall: ['m_party', 0.45, 'a_fire'], rally: ['m_party', 0.45, 'a_fire'], archive: ['m_party', 0.45, 'a_fire'],
 };
 function score(scene) {
   const [m, mv, a] = SCORE[scene] || [null, 0, null];
-  SND.setBed('music', m, mv); SND.setBed('amb', a, a === 'a_fire' ? 0.8 : a === 'a_hall' ? 0.75 : 0.7);
+  // 2026-11-23 levels: music files at -18 LUFS, ambience files at -24 (6 dB under), the star chime the loudest moment.
+  SND.setBed('music', m, Math.min(1, mv / 0.45)); SND.setBed('amb', a, 1);
 }
 
 // ---------- page (the notebook panel) ----------
-function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto }) {
+function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto, hold }) {
   clearTimeout(S.watchTimer);
   if (document.body.dataset.scene !== scene) { score(scene); SND.play('page'); }
   document.body.dataset.scene = scene;
@@ -402,9 +407,9 @@ function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto
   const box = $('#choices'); box.innerHTML = '';
   choices.forEach((c, i) => {
     const b = document.createElement('button');
-    b.className = 'choice' + (c.primary ? ' primary' : '') + (c.card ? ' card' : '') + (c.icon ? ' has-icon' : '');
+    b.className = 'choice' + (c.primary ? ' primary' : '') + (c.card ? ' card' : '') + (c.icon ? ' has-icon' : '') + (c.thumb ? ' has-thumb' : '') + (c.glow ? ' glow' : '');
     b.disabled = c.ok === false; b.dataset.id = c.id || 'c' + i;
-    b.innerHTML = `${c.icon ? `<img class="ico" src="assets/icon_${c.icon}.png?v=1123a" alt="" aria-hidden="true">` : ''}<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
+    b.innerHTML = `${c.icon ? `<img class="ico" src="assets/icon_${c.icon}.png?v=1123c" alt="" aria-hidden="true">` : ''}${c.thumb ? `<img class="thumb" src="assets/${c.thumb}?v=1123c" alt="" aria-hidden="true">` : ''}<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
     b.addEventListener('click', () => { clearTimeout(S.watchTimer); SND.unlock(); SND.play(c.card ? 'pencil' : 'tap'); c.fn(); });
     box.appendChild(b);
   });
@@ -415,40 +420,245 @@ function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto
     const pick = (auto !== undefined ? choices[auto] : choices.find((c) => c.primary && c.ok !== false)) || choices.find((c) => c.ok !== false);
     // Give each screen time to be read: about a quarter second per word, between 3 and 10 seconds.
     const words = ((title || '') + ' ' + $('#body').textContent + ' ' + (pick ? pick.label : '')).trim().split(/\s+/).length;
-    if (pick) S.watchTimer = setTimeout(() => pick.fn(), Math.min(10000, Math.max(3000, 1600 + words * 260)));
+    const ms = SCREEN && hold ? hold : Math.min(10000, Math.max(3000, 1600 + words * 260));
+    if (pick) S.watchTimer = setTimeout(() => pick.fn(), ms);
   }
   $('#watching').hidden = S.mode !== 'watch';
 }
+const seal = (on) => `<img class="seal${on ? '' : ' off'}" src="assets/stamp_gold.png?v=1123c" alt="">`;
+const stamps = (n, of = 5) => `<span class="stamps" role="img" aria-label="${n} of ${of} stamps">${seal(true).repeat(n)}${seal(false).repeat(Math.max(0, of - n))}</span>`;
+const starRow = (n, of = 3) => `<span class="stars" role="img" aria-label="${n} of ${of} gold stars">${'<i class="on">★</i>'.repeat(n)}${'<i>★</i>'.repeat(Math.max(0, of - n))}</span>`;
+// HUD: the week, the gold still on the table (stars dim as you look closer), and the stamps so far. No numbers.
 function renderHud(on) {
   const h = $('#hud'); const r = S.run;
-  if (!on || !r) { h.hidden = true; return; }
+  if (!on || !r || !L.weekDef(r)) { h.hidden = true; return; }
   h.hidden = false;
-  const w = L.weekScore(r);
-  h.innerHTML = `<div class="stat i"><span>Insight</span><b>${fmt(w.i)}</b></div><div class="x">×</div><div class="stat r"><span>Rigor</span><b>${fmt(w.r)}</b></div><div class="x">=</div><div class="stat s"><span>This week</span><b>${w.score}</b></div><div class="goal"><span>Goal</span><b>${w.target ?? ''}</b></div><div class="acts" aria-label="${r.actionsLeft} actions left">${'●'.repeat(Math.max(0, r.actionsLeft))}<i>${'●'.repeat(0)}</i></div>`;
+  h.innerHTML = `<div class="hg"><span class="hl">Gold for this picture</span>${starRow(L.starsFor(r))}</div><div class="hg"><span class="hl">Notebook</span>${stamps(r.stamps)}</div>`;
 }
-const fmt = (n) => (Number.isInteger(n) ? n : n.toFixed(1));
-const seal = (on) => `<img class="seal${on ? '' : ' off'}" src="assets/stamp_gold.png?v=1123a" alt="">`;
-const stamps = (n, of = 5) => `<span class="stamps" role="img" aria-label="${n} of ${of} stamps">${seal(true).repeat(n)}${seal(false).repeat(Math.max(0, of - n))}</span>`;
-// Each lab week has its own drawing, following RSI's paper pipeline toward Hell Week.
-const LAB_ART = { 1: ['art_lab.jpg', 'A bright summer lab: a student at the bench with flasks, a microscope and an open notebook.'],
-  2: ['art_lab2.jpg', 'Late afternoon: two students at a whiteboard of scatter plots, one circling a surprising data point.'],
-  3: ['art_lab3.jpg', 'A small seminar room: a student practices her talk for a mentor and classmates.'],
-  4: ['art_lab4.jpg', 'Evening: a student revises a printed draft covered in a mentor\'s red-pen notes, a lamp glowing.'],
-  5: ['art_lab5.jpg', 'Hell Week: a late-night computer lab of students finishing papers together, with sleeping bags on the floor.'] };
-const labStage = (wk) => { const [art, alt] = LAB_ART[wk] || LAB_ART[1]; stage({ art, alt }); };
-const ACT_ICON = { experiment: 'experiment', check: 'check', mentor: 'mentor', read: 'read' };
+
+// ---------- the ink wash (a canvas over the drawing; tapping clears it) ----------
+const INK = (() => {
+  const cv = () => $('#ink');
+  let spots = [], anim = null, full = 0, tex = null;
+  // Map picture fractions to the stage, matching the image's object-fit: cover.
+  function geom() {
+    const c = cv(), w = c.width, h = c.height, s = Math.max(w / 1280, h / 716);
+    const dw = 1280 * s, dh = 716 * s; return { w, h, dw, dh, ox: (w - dw) / 2, oy: (h - dh) / 2 };
+  }
+  function texture(w, h) {
+    // A deterministic indigo ink wash with paper grain, so every frame is a function of state alone.
+    const t = document.createElement('canvas'); t.width = w; t.height = h; const x = t.getContext('2d');
+    const g = x.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#26335a'); g.addColorStop(0.55, '#1d2a4c'); g.addColorStop(1, '#2b2350'); x.fillStyle = g; x.fillRect(0, 0, w, h);
+    let seed = 1983; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < 70; i++) { const rx = rnd() * w, ry = rnd() * h, rr = 40 + rnd() * Math.max(w, h) * 0.25; const b = x.createRadialGradient(rx, ry, 0, rx, ry, rr); b.addColorStop(0, `rgba(${60 + rnd() * 40 | 0},${70 + rnd() * 40 | 0},${120 + rnd() * 60 | 0},.18)`); b.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = b; x.fillRect(rx - rr, ry - rr, rr * 2, rr * 2); }
+    for (let i = 0; i < w * h / 90; i++) { x.fillStyle = `rgba(255,255,255,${rnd() * 0.05})`; x.fillRect(rnd() * w, rnd() * h, 1.4, 1.4); }
+    x.font = `${Math.round(h * 0.07)}px Kalam, cursive`; x.fillStyle = 'rgba(246,238,219,.5)'; x.textAlign = 'center'; x.fillText('?', w / 2, h / 2 + h * 0.025);
+    return t;
+  }
+  function size() {
+    const c = cv(); if (!c) return; const r = c.getBoundingClientRect(), d = Math.min(2, window.devicePixelRatio || 1);
+    const W = Math.round(r.width * d), H = Math.round(r.height * d);
+    if (c.width !== W || c.height !== H) { c.width = W; c.height = H; tex = texture(W, H); }
+    draw();
+  }
+  function draw() {
+    const c = cv(); if (!c || c.hidden) return; const x = c.getContext('2d'), g = geom();
+    x.globalCompositeOperation = 'source-over'; x.clearRect(0, 0, g.w, g.h);
+    if (full >= 1) return;
+    x.globalAlpha = 1 - full; x.drawImage(tex, 0, 0); x.globalAlpha = 1;
+    x.globalCompositeOperation = 'destination-out';
+    for (const s of spots) {
+      const cx = g.ox + s.x * g.dw, cy = g.oy + s.y * g.dh, R = s.r * g.dh * (s.k ?? 1) * (1 + full * 3);
+      if (R <= 1) continue;
+      const b = x.createRadialGradient(cx, cy, R * 0.55, cx, cy, R); b.addColorStop(0, 'rgba(0,0,0,1)'); b.addColorStop(1, 'rgba(0,0,0,0)');
+      x.fillStyle = b; x.beginPath(); x.arc(cx, cy, R, 0, 7); x.fill();
+    }
+    x.globalCompositeOperation = 'source-over';
+  }
+  function tick() {
+    let busy = false;
+    for (const s of spots) if ((s.k ?? 1) < 1) { s.k = Math.min(1, s.k + 0.09); busy = true; }
+    if (full > 0 && full < 1) { full = Math.min(1, full + 0.035); busy = true; }
+    draw(); anim = busy ? requestAnimationFrame(tick) : null;
+  }
+  const kick = () => { if (!anim) anim = requestAnimationFrame(tick); };
+  return {
+    reset(list = []) { const c = cv(); c.hidden = false; full = 0; spots = list.map((s) => ({ ...s, k: 1 })); size(); },
+    add(s) { spots.push({ ...s, k: REDUCED ? 1 : 0.15 }); REDUCED ? draw() : kick(); },
+    clear() { if (REDUCED) { full = 1; draw(); return; } full = 0.01; kick(); },
+    hide() { const c = cv(); if (c) c.hidden = true; spots = []; full = 0; },
+    // Convert a tap on the stage to picture fractions.
+    toPic(ev) { const c = cv(), r = c.getBoundingClientRect(), d = c.width / r.width, g = geom(); return { x: ((ev.clientX - r.left) * d - g.ox) / g.dw, y: ((ev.clientY - r.top) * d - g.oy) / g.dh }; },
+    size,
+  };
+})();
+addEventListener('resize', () => INK.size());
+
+// ---------- scenes: Week One classes, then the mentor ----------
+function quiz() {
+  stage({ room: 'classroom', alt: 'A sunny summer classroom with a chalkboard of simple diagrams and students at their desks.' });
+  const i = Math.floor(Math.random() * QUIZ.length), q = QUIZ[i];
+  page({ scene: 'quiz', hud: false, eyebrow: 'Week 1 · Tutorials', title: 'Connect the idea to the evidence', html: `${narr('Week 1 is tutorials: classes in the morning, new friends by lunch.')}<p class="lead">${q.q}</p>`, auto: q.good,
+    choices: q.a.map((a, k) => ({ id: 'q' + k, label: a, card: true, fn: () => quizAnswer(k === q.good) })) });
+}
+function quizAnswer(ok) {
+  SND.play(ok ? 'spark' : 'page');
+  unlock('summer');
+  page({ scene: 'quiz-result', hud: false, eyebrow: 'Week 1 · Tutorials', title: ok ? 'That\'s evidence.' : 'A page for the notebook.',
+    html: ok ? '<p>You measured, compared and repeated. That is the whole move, and you will use it all summer.</p>' : '<p>Opinions are a start. Evidence is something you can see, measure and repeat. You will use that all summer.</p>',
+    choices: [{ id: 'next', label: 'Meet your mentor', primary: true, fn: () => mentor() }] });
+}
+function mentor() {
+  S.run = L.newRun(); S.run.hard = !!store.get('rickoid', false);
+  stage({ art: 'art_mentor_bio.jpg', alt: 'A hand-drawn portrait of your mentor, a fictional character.' });
+  page({ scene: 'mentor', hud: false, eyebrow: 'Meet-Your-Mentor Night', title: 'Look closer. Then trust your hunch.',
+    html: narr('Tutorials are done. Tonight you meet the mentor you will work beside in the lab.') + '<p class="lead">"Each week, something is hiding in your notebook."</p><p>Tap the picture to clear the ink and look closer. When you think you know what it is, make your hunch. Fewer looks earn more gold. A wrong hunch just means look again.</p>',
+    choices: [{ id: 'go', label: 'Walk into the lab', primary: true, fn: () => week() }] });
+}
+
+// ---------- the Lab: one picture a week ----------
+const MILESTONE = { 1: 'Milestone 1: paper and talk', 2: 'Deep in the data', 3: 'Milestone 2: paper and talk', 4: 'The penultimate draft' };
+const LABWK = (n) => `The Lab · Week ${n + 1} of 6`; // lab pictures are RSI weeks 2 to 5
+const TOOL = { look: { label: 'Look closer', sub: 'Or tap anywhere on the picture.', icon: 'experiment' },
+  mentor: { label: 'Ask your mentor', sub: 'Once a week. She knows where to look.', icon: 'mentor' },
+  read: { label: 'Read the literature', sub: 'A word from the books.', icon: 'read' } };
+let wrong = new Set(), wordNote = null, mentorLine = null;
+function week() {
+  const r = S.run; L.startWeek(r); wrong = new Set(); wordNote = null; mentorLine = null;
+  const w = L.weekDef(r);
+  stage({ art: w.art + '.jpg', alt: 'A drawing hidden under a wash of ink. Tap to look closer.' });
+  setLoop(null, artTok); $('#word').hidden = true;
+  INK.reset();
+  lab();
+}
+function lab(note) {
+  const r = S.run, w = L.weekDef(r);
+  const intro = r.week === 1 && r.looks === 0 ? 'Tap the picture to look closer.' : r.week === 2 && r.looks === 0 ? 'Two new tools this week: your mentor and the literature.' : r.week === 3 && r.looks === 0 ? 'Every tool sees a little differently.' : '';
+  page({ scene: 'hunch', eyebrow: `${LABWK(r.week)} · ${MILESTONE[r.week]}`, title: note || 'What is hiding here?',
+    html: `${mentorLine ? `<p class="hint"><b>Your mentor:</b> "${mentorLine}"</p>` : ''}${intro ? `<p class="lead">${intro}</p>` : ''}`,
+    auto: autoIndex(),
+    choices: [
+      ...w.tools.map((t) => ({ id: 't-' + t, label: TOOL[t].label, sub: TOOL[t].sub, icon: TOOL[t].icon, card: true, ok: L.canUse(r, t), fn: () => useTool(t) })),
+      { id: 'hunch', label: 'Make your hunch', sub: r.looks ? 'Say what you think it is.' : 'Feeling bold? Guess now for the most gold.', primary: true, fn: () => guess() },
+    ] });
+}
+// Just Watch: look once or twice, ask the mentor when there is one, then make the right hunch.
+function autoIndex() {
+  const r = S.run, w = L.weekDef(r), m = L.watchMove(r);
+  if (m === 'hunch') return w.tools.length;
+  return Math.max(0, w.tools.indexOf(m));
+}
+function useTool(t, at) {
+  const r = S.run, w = L.weekDef(r);
+  const res = L.look(r, t, at && at.x, at && at.y); if (!res) return;
+  SND.play(t === 'read' ? 'page' : 'pencil');
+  if (t === 'read') { wordNote = res.word; const n = $('#word'); n.textContent = res.word; n.hidden = false; n.classList.toggle('odd', !!res.misleading); }
+  else INK.add(res);
+  if (t === 'mentor') mentorLine = w.mentor.line;
+  if (t !== 'read' && at && (at.y < 0.1 || at.y > 0.9) && unlock('triangle')) return lab('You wandered to the edge. A new archive card: the red triangle.');
+  if (L.canUse(r, 'mentor') === false && r.mentorUsed && r.readUsed && unlock('bedcheck')) return lab('Every tool tonight. An archive card: Bedcheck.');
+  lab(t === 'read' ? 'The books say: ' + res.word : null);
+}
+document.addEventListener('pointerup', (e) => {
+  if (document.body.dataset.scene !== 'hunch' || !e.target.closest('#stage') || e.target.closest('#mute')) return;
+  if (S.mode === 'watch') return;
+  const p = INK.toPic(e); if (p.x < 0 || p.x > 1 || p.y < 0 || p.y > 1) return;
+  SND.unlock(); useTool('look', p);
+});
+function guess() {
+  const r = S.run, w = L.weekDef(r);
+  page({ scene: 'guess', eyebrow: LABWK(r.week), title: 'What is your hunch?', html: '<p>Tap the one you think is hiding under the ink.</p>',
+    auto: w.answer,
+    choices: [...w.choices.map((c, k) => ({ id: 'g' + k, label: c, card: true, thumb: `hunch_c${r.week}_${w.sheetOrder[k]}.jpg`, ok: !wrong.has(k), glow: r.misses >= 2 && k === w.answer, fn: () => hunch(k) })),
+      { id: 'back', label: 'Look a little more', fn: () => lab() }] });
+}
+function hunch(k) {
+  const r = S.run, w = L.weekDef(r);
+  const res = L.hunch(r, k);
+  if (!res.right) {
+    SND.play('miss'); wrong.add(k); INK.add(r.revealed[r.revealed.length - 1]);
+    return lab(res.glow ? 'Not yet. Look: the answer is glowing for you.' : res.free ? 'Not yet. Your mentor cleared one more spot.' : 'Not yet. Look again.');
+  }
+  SND.play('spark'); INK.clear(); $('#word').hidden = true;
+  const tk = artTok; setTimeout(() => { if (tk === artTok) setLoop('loop_' + w.art, tk); }, REDUCED ? 0 : 900);
+  if (res.twist) return twist(res.stars);
+  found(res.stars);
+}
+function found(st) {
+  const r = S.run, w = L.weekDef(r), wk = r.week;
+  if (wk === 1) unlock('stanford'); if (wk === 3) unlock('leesburg'); if (st === 3) unlock('cup'); if (r.misses === 0 && r.mentorUsed) unlock('sacred');
+  if (st === 3) { const k = 'fewest.' + (r.hard ? 'r.' : '') + S.year; const b = store.get(k, null); if (b === null || r.looks < b) store.set(k, r.looks); }
+  page({ scene: 'found', hud: false, eyebrow: LABWK(wk), title: w.found,
+    html: `<p class="gold">${starRow(st)}</p><p class="lead">${w.fact}</p><p class="small">${stamps(r.stamps)} A stamp for your notebook.</p>`,
+    choices: [{ id: 'next', label: 'Next week', primary: true, fn: () => { L.endWeek(r); week(); } }] });
+  setTimeout(() => { SND.play('stamp'); setTimeout(() => SND.play('win'), 260); }, REDUCED ? 100 : 700);
+}
+// Week 4: the right hunch, and then the picture keeps changing.
+function twist(st) {
+  const r = S.run, w = L.weekDef(r);
+  page({ scene: 'twist', hud: false, eyebrow: LABWK(4), title: w.found,
+    html: `<p class="gold">${starRow(st)}</p><p class="lead">Right! You could stop here.</p><p>But wait. Something in the dish is changing.</p>`,
+    choices: [{ id: 'watch', label: 'Keep watching', primary: true, fn: () => discovery() }] });
+}
+function discovery() {
+  const r = S.run, w = L.weekDef(r);
+  SND.play('spark'); setTimeout(() => SND.play('star'), REDUCED ? 0 : 1200);
+  stage({ art: w.twist + '.jpg', alt: 'The same dish, but a blue-green mold has grown near the edge, with a clear ring around it where no bacteria grow.' });
+  r.stamps += 1; unlock('double');
+  page({ scene: 'discovery', hud: false, eyebrow: LABWK(4), title: 'The dish spoiled. Or did it?',
+    html: `<p class="lead">A mold grew in your dish, and around it the bacteria are gone.</p><p class="hint"><b>Your mentor:</b> "${L.MENTOR_SURPRISE}"</p><div class="bigstamp">${seal(true)}<b>Discovery</b></div><p>${w.fact}</p>`,
+    choices: [{ id: 'next', label: 'Presentation Day', primary: true, fn: () => { L.endWeek(r); present(); } }] });
+}
+
+// ---------- Presentation Day: lay out the four stamps in the order you will tell them ----------
+const CARD = { 1: ['A snowflake', 'hunch_c1_0.jpg'], 2: ['A feather', 'hunch_c2_1.jpg'], 3: ['A pinecone', 'hunch_c3_2.jpg'], 4: ['A surprise in the dish', 'hunch_c4_0.jpg'] };
+let order = [];
+function present() {
+  INK.hide(); $('#word').hidden = true; order = [];
+  stage({ room: 'hall', alt: 'A sunlit presentation hall: a student gives her research talk beside a lectern while a panel listens.' });
+  talk();
+}
+function talk() {
+  const left = [1, 2, 3, 4].filter((n) => !order.includes(n));
+  page({ scene: 'present', hud: false, eyebrow: 'Week 6 · Paper and Talk', title: order.length ? 'And then?' : 'Tell the room what you found',
+    html: `${order.length ? '' : narr('Five weeks ago you had never done research. Now the room is waiting to hear yours.')}<p>Tap your stamps in the order you want to tell them. Any order works.</p>${order.length ? `<ol class="talk">${order.map((n) => `<li>${CARD[n][0]}</li>`).join('')}</ol>` : ''}`,
+    auto: 0,
+    choices: left.map((n) => ({ id: 'p' + n, label: CARD[n][0], sub: 'Week ' + n, card: true, thumb: CARD[n][1], fn: () => { order.push(n); order.length === 4 ? applause() : talk(); } })) });
+}
+function applause() {
+  const r = S.run; r.order = order.slice(); const lvl = L.applauseFor(order), total = L.totalStars(r);
+  S.poster = { title: 'What I found this summer', field: order.map((n) => CARD[n][0]).join(', '), total, stamps: r.stamps, year: S.year, when: new Date().toISOString().slice(0, 10) };
+  const wall = store.get('wall', []); wall.unshift(S.poster); store.set('wall', wall.slice(0, 24));
+  const rally = store.get('rally', {}); rally[S.year] = (rally[S.year] || 0) + total; store.set('rally', rally);
+  const players = store.get('players', {}); players[S.year] = (players[S.year] || 0) + 1; store.set('players', players);
+  const best = store.get('best', null); if (!best || total > best.total) store.set('best', { total, stamps: r.stamps });
+  stage({ art: 'art_applause.jpg', alt: 'Presentation day: a young presenter takes a small bow beside a lectern while the audience claps.' });
+  SND.play('applause'); if (lvl >= 2) setTimeout(() => SND.play('applause'), 700); if (lvl === 3) setTimeout(() => SND.play('win'), 1300);
+  unlock('rickoids', 'party', 'broad', 'hellweek'); if (r.stars.every((s) => s === 3)) unlock('roty');
+  const say = { 3: ['A standing ovation!', 'You told it the way it happened, and you ended on the surprise. That is a great talk.'],
+    2: ['The room is on its feet.', 'Ending on the surprise brought the house down.'],
+    1: ['The room applauds.', 'A warm, generous room. Next time, try saving the surprise for last.'] }[lvl];
+  page({ scene: 'applause', hud: false, eyebrow: 'Presentation Day', title: say[0],
+    html: `<div class="poster ovation-${lvl}"><span>Your talk</span><b>${S.poster.title}</b><em>${order.map((n) => CARD[n][0]).join(' · ')}</em><em>${stamps(r.stamps)}</em></div><p>${say[1]}</p><div class="bigstamp">${seal(true)}<b>Best Paper</b></div><p class="small">RSI papers have won awards since the early years.</p>`,
+    choices: [{ id: 'sky', label: 'Step outside', primary: true, fn: () => sky() }] });
+}
 
 // ---------- scenes ----------
+// The narrator speaks to "you", the newest Rickoid, at the start of each chapter (Tree's through-line). No real names.
+const narr = (t) => `<p class="narr"><span>Your summer</span>${t}</p>`;
+const SHOW_GIVING = true; // Gordon approved 2026-11-23 ~03:50 PT. CEE's own Donate page, new tab, no amounts, no pressure.
+const PLAY_URL = 'https://gordonusc.github.io/the-cabinet/underway-cee45-006400/play/';
 function title() {
-  S.run = null; S.mode = 'play';
+  S.run = null; S.mode = SCREEN ? 'watch' : 'play';
   stage({ art: 'art_title.jpg', alt: 'An open lab notebook. A small tree grows from its page, its roots holding a single coin.' });
   const best = store.get('best', null);
   page({ scene: 'title', hud: false, eyebrow: 'For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028', title: 'Underway',
-    html: `<p class="lead">Every Rickoid's summer, played together. One tap at a time. You cannot lose.</p>${best ? `<p class="small">Best run on this device: <b>${best.total}</b> ${stamps(best.stamps)}</p>` : ''}`,
+    html: `<p class="lead">Every Rickoid's summer, played together. One tap at a time. You cannot lose.</p><p class="tip">Tap the page to look closer.</p>${best ? `<p class="small">Best run on this device: <b>${best.total} gold stars</b> ${stamps(best.stamps)}</p>` : ''}`,
     choices: [
       { id: 'start', label: 'Begin the summer', sub: 'One tap at a time', primary: true, fn: () => who() },
-      { id: 'watch', label: 'Just watch', sub: 'The story plays itself. Tap anytime to take over.', fn: () => { S.mode = 'watch'; who(); } },
+      { id: 'watch', label: 'Watch it for me', sub: 'The story plays itself. Tap anytime to take over.', fn: () => { S.mode = 'watch'; who(); } },
       { id: 'party', label: 'Go to the holiday party', sub: 'Stories, posters and the archive', fn: () => party() },
+      { id: 'rickoid', label: store.get('rickoid', false) ? 'Rickoid mode: on' : 'Rickoid mode: off', sub: 'For alumni: stricter gold, no free reveals.', fn: () => { store.set('rickoid', !store.get('rickoid', false)); title(); } },
     ] });
 }
 function who() {
@@ -460,7 +670,7 @@ function who() {
 function seed() {
   stage({ art: 'art_seed.jpg', alt: 'A coin half buried in a small flowerpot on an open notebook, with one green sprout rising from it.' });
   page({ scene: 'seed', hud: false, eyebrow: 'Prologue', title: 'The $250 seed',
-    html: '<p>In 1983 an admiral was paid $250 for a lecture. He and Joann DiGennaro planted it.</p><p class="small">Tap to plant the coin.</p>',
+    html: narr('You are the newest Rickoid. Before your summer starts, here is where it all began.') + '<p>Admiral H. G. Rickover and Joann P. DiGennaro founded the Center for Excellence in Education in 1983. By CEE\'s own account, it began with the $250 the Admiral was paid for a lecture. RSI began in 1984.</p><p class="small">Tap to plant the coin.</p>',
     choices: [{ id: 'plant', label: 'Plant it', primary: true, fn: () => { SND.play('plant'); grow(0); } }] });
 }
 // The prologue is one screen: the years grow in by themselves, and the player can move on at any time.
@@ -469,127 +679,16 @@ function grow() {
   unlock('founded', 'seed', 'rsi', 'leesburg', 'mit');
   stage({ art: 'art_title.jpg', alt: 'The seed has become a tree growing from a notebook.' });
   page({ scene: 'grow', hud: false, eyebrow: 'Prologue · forty-five years', title: 'Look how far it grew',
-    html: `<figure class="taped"><img src="assets/web/mit_dome_night.jpg?v=1123a" alt="The Great Dome at MIT at night, where RSI meets each summer."><figcaption>MIT, home of RSI each summer</figcaption></figure><ol class="tl">${TIMELINE.map(([y, t], k) => `<li data-k="${k}"${REDUCED ? ' class="on"' : ''}><b>${y}</b> ${t}</li>`).join('')}</ol>`,
-    choices: [{ id: 'next', label: 'Start Week One', primary: true, fn: () => { clearInterval(growTimer); field(); } }] });
+    html: `<figure class="taped"><img src="assets/web/mit_dome_night.jpg?v=1123c" alt="The Great Dome at MIT at night. RSI has met at MIT each summer since 1992."><figcaption>MIT, RSI's summer home since 1992</figcaption></figure><ol class="tl">${TIMELINE.map(([y, t], k) => `<li data-k="${k}"${REDUCED ? ' class="on"' : ''}><b>${y}</b> ${t}</li>`).join('')}</ol>`,
+    choices: [{ id: 'next', label: 'Start Week One', primary: true, fn: () => { clearInterval(growTimer); quiz(); } }] });
   if (!REDUCED) { let k = 0; clearInterval(growTimer); growTimer = setInterval(() => { const li = document.querySelector(`.tl li[data-k="${k}"]`); if (!li) { clearInterval(growTimer); return; } li.classList.add('on'); SND.play('tap'); k++; }, 650); }
-}
-function field() {
-  stage({ room: 'classroom', alt: 'A sunny summer classroom with a chalkboard of simple diagrams and students at their desks.' });
-  page({ scene: 'field', hud: false, eyebrow: 'Week One', title: 'Choose your field', html: '<p>What will you spend your summer on?</p>', auto: 1,
-    choices: L.FIELDS.map((f) => ({ id: 'f-' + f.id, label: f.name, card: true, fn: () => { S.run = L.newRun(f.id); quiz(); } })) });
-}
-// Week One classes: one question, chosen at random. A right answer is worth more, and no answer costs anything.
-function quiz() {
-  stage({ room: 'classroom', alt: 'A sunny summer classroom with a chalkboard of simple diagrams and students at their desks.' });
-  const i = Math.floor(Math.random() * QUIZ.length), q = QUIZ[i];
-  page({ scene: 'quiz', hud: false, eyebrow: 'Week One · Classes', title: 'Connect the idea to the evidence', html: `<p class="lead">${q.q}</p>`, auto: q.good,
-    choices: q.a.map((a, k) => ({ id: 'q' + k, label: a, card: true, fn: () => quizAnswer(k === q.good) })) });
-}
-function quizAnswer(ok) {
-  SND.play(ok ? 'spark' : 'page');
-  const gainI = ok ? 3 : 1;
-  unlock('summer');
-  page({ scene: 'quiz-result', hud: false, eyebrow: 'Week One · Classes', title: ok ? 'That\'s evidence.' : 'A page for the notebook.',
-    html: ok ? `<p>You measured, compared and repeated. That is the whole move. <b>+${gainI} Insight for the lab.</b></p>` : `<p>Opinions are a start. Evidence is something you can measure and repeat. You'll use that all summer. <b>+${gainI} Insight for the lab.</b></p>`,
-    choices: [{ id: 'next', label: 'Meet your mentor', primary: true, fn: () => mentor(gainI) }] });
-}
-function mentor(right) {
-  const r = S.run; r.insight += right; const m = L.MENTORS[r.mentor];
-  stage({ art: m.art, alt: 'A hand-drawn portrait of your mentor, ' + m.name + ', a fictional character.' });
-  page({ scene: 'mentor', hud: false, eyebrow: 'Meet-Your-Mentor Night', title: 'Meet your mentor: ' + m.name,
-    html: `<p class="lead">"${m.line}"</p><p>Each week you get three actions. <b>Insight × Rigor</b> is multiplied at week's end. Beat the goal to earn a stamp. Miss it and the summer still goes on.</p><p class="small">Classes gave you +${right} Insight.</p>`,
-    choices: [{ id: 'go', label: 'Walk into the lab', primary: true, fn: () => week() }] });
-}
-function week() {
-  const r = S.run; L.startWeek(r);
-  if (r.week === 4 && r.failChoice === null) return failure();
-  labStage(r.week);
-  turn();
-}
-function turn(note = '') {
-  const r = S.run;
-  if (r.actionsLeft <= 0) return weekEnd();
-  const acts = L.availableActions(r);
-  const g = L.greedyAction(r);
-  page({ scene: 'lab', eyebrow: `The Lab · Week ${r.week} of 5 · ${MILESTONE[r.week]}`, title: note || 'What will you do?', html: `<p class="small">${r.actionsLeft} action${r.actionsLeft === 1 ? '' : 's'} left this week. ${stamps(r.stamps)}</p>`,
-    auto: acts.findIndex((a) => a.id === g),
-    choices: acts.map((a) => ({ id: 'a-' + a.id, label: a.name, sub: a.text, card: true, ok: a.ok, icon: ACT_ICON[a.id], fn: () => { const o = L.act(r, a.id); if (o.surprise) SND.play('spark'); turn(o.surprise ? 'A surprise in the data! +' + o.insight + ' Insight' : gain(o)); } })) });
-}
-// The lab's five weeks follow RSI's own paper pipeline (RSI weeks 2 to 6).
-const MILESTONE = { 1: 'Milestone 1: paper and talk', 2: 'Deep in the data', 3: 'Milestone 2: paper and talk', 4: 'The penultimate draft', 5: 'Hell Week: the final paper' };
-const gain = (o) => [o.insight ? '+' + o.insight + ' Insight' : '', o.rigor ? '+' + o.rigor + ' Rigor' : ''].filter(Boolean).join(', ');
-function weekEnd() {
-  const r = S.run; const wk = r.week; const res = L.endWeek(r);
-  page({ scene: 'week-end', hud: false, eyebrow: `The Lab · Week ${wk} of 5`, title: 'The week adds up',
-    html: `<div class="reveal" aria-live="polite"><div><span>Insight</span><b id="rv-i">${fmt(res.i)}</b></div><div class="x">×</div><div><span>Rigor</span><b id="rv-r">${fmt(res.r)}</b></div><div class="x">=</div><div class="big"><span>Week ${wk}</span><b id="rv-s">${REDUCED ? res.score : 0}</b></div></div><p id="rv-msg" class="lead" ${REDUCED ? '' : 'style="visibility:hidden"'}>${res.stamp ? `Goal ${res.target} cleared. A stamp for your notebook! ${stamps(r.stamps)}` : `Goal was ${res.target}. No stamp this week, and the work still counts. ${stamps(r.stamps)}`}</p>`,
-    choices: [{ id: 'next', label: wk === 5 ? 'Presentation Day' : 'Next', primary: true, fn: () => (wk === 5 ? present() : wk <= 3 ? upgrade() : week()) }] });
-  SND.play('count');
-  const ding = () => { SND.play(res.stamp ? 'stamp' : 'page'); if (res.stamp) setTimeout(() => SND.play('win'), 260); };
-  if (!REDUCED) countUp($('#rv-s'), res.score, 900, () => { const m = $('#rv-msg'); if (m) m.style.visibility = 'visible'; ding(); }); else setTimeout(ding, 300);
-  if (wk === 1) unlock('stanford', 'bedcheck'); if (wk === 5) unlock('hellweek');
-}
-function countUp(el, to, ms, done) { const t0 = performance.now(); const f = (t) => { const k = Math.min(1, (t - t0) / ms); if (!el.isConnected) return; el.textContent = Math.floor(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(f); else { el.textContent = to; done && done(); } }; requestAnimationFrame(f); }
-function upgrade() {
-  const r = S.run; const ups = L.offerUpgrades(r);
-  stage({ art: 'art_upgrade.jpg', alt: 'A researcher\'s toolkit spread around an open notebook: a magnifying glass, ruler, colored pencils, a calculator and sticky tabs.' });
-  page({ scene: 'upgrade', hud: false, eyebrow: `Between weeks ${r.week - 1} and ${r.week}`, title: 'Something for your notebook', html: '<p>Pick one. It stays with you all summer.</p>',
-    choices: ups.map((u) => ({ id: 'u-' + u.id, label: u.name, sub: u.text, card: true, fn: () => { L.takeUpgrade(r, u.id); week(); } })) });
-}
-function failure() {
-  const r = S.run; SND.play('fail');
-  stage({ art: 'art_fail.jpg', alt: 'A tipped flask, a crossed-out chart, and a young scientist laughing as a small lightbulb glows.' });
-  page({ scene: 'failure', eyebrow: 'The Lab · Week 4 of 5', title: 'The experiment failed.',
-    html: `<p class="lead">It happens to everyone, every summer. You lost ${r.lostInsight} Insight.</p><p class="small">CEE's 35th anniversary program quotes Admiral Rickover: "Success teaches us nothing; only failure teaches."</p><p>What now?</p>`, auto: 1,
-    choices: [
-      { id: 'restart', label: 'Start over, carefully', sub: 'Safe and steady: +4 Rigor.', card: true, fn: () => failResult(L.resolveFailure(r, 'restart')) },
-      { id: 'read', label: 'Find out what the failure is telling you', sub: `Read one clue. Get your ${r.lostInsight} Insight back, plus 4.`, card: true, fn: () => clue() },
-    ] });
-}
-// Reading the failure: one clue, three explanations. A wrong pick earns a hint and another try, never a loss.
-function clue(hinted = false) {
-  const r = S.run, c = L.FAIL_CLUES[r.field] || L.FAIL_CLUES.bio;
-  page({ scene: 'clue', eyebrow: 'The Lab · Week 4 of 5', title: 'Look closely', auto: c.good,
-    html: `<p class="lead">${c.clue}</p>${hinted ? `<p class="hint"><b>Mentor's hint:</b> ${c.hint}</p>` : '<p>Which explanation fits the clue?</p>'}`,
-    choices: c.reads.map((t, k) => ({ id: 'r' + k, label: t, card: true, fn: () => (k === c.good ? failResult(L.resolveFailure(r, 'read')) : (SND.play('page'), clue(true))) })) });
-}
-function failResult(o) {
-  SND.play(o.kind === 'found' ? 'spark' : 'stamp');
-  const msg = { restart: ['A clean second start', `Slower, and solid. <b>+${o.rigor} Rigor.</b>`], found: ['The failure was the finding!', `What looked like a mistake was the real result. <b>+${o.insight} Insight.</b>`] }[o.kind];
-  page({ scene: 'fail-result', eyebrow: 'The Lab · Week 4 of 5', title: msg[0], html: `<p class="lead">${msg[1]}</p>`, choices: [{ id: 'next', label: 'Back to the bench', primary: true, fn: () => { labStage(S.run.week); turn(); } }] });
-}
-function present() {
-  const r = S.run;
-  stage({ room: 'hall', alt: 'A sunlit presentation hall: a student gives her research talk beside a lectern and a slide of charts, while a panel of three listens.' });
-  page({ scene: 'present', hud: false, eyebrow: 'Presentation Day', title: 'Name your paper', html: '<p>Five weeks of work become a written paper and a talk. Which title is yours?</p>',
-    choices: TITLES[r.field].map((t, i) => ({ id: 't' + i, label: t, card: true, fn: () => panel(t) })) });
-}
-function panel(t) {
-  const r = S.run; const strong = r.insight >= r.rigor ? 'idea' : 'evidence';
-  page({ scene: 'panel', hud: false, eyebrow: 'Presentation Day', title: 'The panel has one question', html: `<p class="lead">"How do you know?"</p>`, auto: strong === 'idea' ? 0 : 1,
-    choices: [
-      { id: 'idea', label: 'Explain the idea', sub: 'Lead with your Insight.', card: true, fn: () => applause(t, 'idea', strong) },
-      { id: 'evidence', label: 'Show the evidence', sub: 'Lead with your Rigor.', card: true, fn: () => applause(t, 'evidence', strong) },
-    ] });
-}
-function applause(t, pick, strong) {
-  const r = S.run; const bonus = pick === strong ? Math.round(r.total * 0.1) : 0; r.total += bonus;
-  S.poster = { title: t, field: L.FIELDS.find((f) => f.id === r.field).name, total: r.total, stamps: r.stamps, year: S.year, when: new Date().toISOString().slice(0, 10) };
-  const wall = store.get('wall', []); wall.unshift(S.poster); store.set('wall', wall.slice(0, 24));
-  const rally = store.get('rally', {}); rally[S.year] = (rally[S.year] || 0) + r.total; store.set('rally', rally);
-  const best = store.get('best', null); if (!best || r.total > best.total) store.set('best', { total: r.total, stamps: r.stamps });
-  stage({ art: 'art_applause.jpg', alt: 'Presentation day: a young presenter takes a small bow beside a lectern and her slide of charts while the audience claps.' });
-  SND.play('applause');
-  unlock('rickoids', 'party', 'broad'); if (r.stamps === 5) unlock('roty'); if (r.field === 'bio') unlock('double');
-  page({ scene: 'applause', hud: false, eyebrow: 'Presentation Day', title: 'The room applauds.',
-    html: `<div class="poster"><span>${S.poster.field}</span><b>${t}</b><em>Excellence ${r.total} ${stamps(r.stamps)}</em></div><p>${bonus ? `You answered from your strength. <b>+${bonus}</b> for a confident answer.` : 'A good answer. The panel nods.'} ${r.stamps === 5 ? 'Five stamps: tonight\'s Rickoid of the Year run!' : ''}</p>`,
-    choices: [{ id: 'sky', label: 'Step outside', primary: true, fn: () => sky() }] });
 }
 function sky() {
   SND.play('m_stars');
   stage({ art: 'art_sky.jpg', alt: 'A colored-pencil night sky with gold constellations, drawn on an open notebook above a riverside campus where friends look up.' });
   finale();
-  page({ scene: 'sky', hud: false, eyebrow: 'One light among many', title: 'About 3,400 Rickoids',
-    html: '<p class="lead">All 50 states. 63 nations. Forty-five years of summers.</p><p>Tonight one more light joins them: yours.</p>',
+  page({ scene: 'sky', hud: false, eyebrow: 'One light among many', title: 'About 3,400 Rickoids', hold: 24000,
+    html: narr('Six weeks ago you did not know a single person here. Look up.') + '<p class="lead">All 50 states. 63 nations. Forty-five years of summers.</p><p>Tonight one more light joins them: yours.</p>',
     choices: [{ id: 'party', label: 'Go to the holiday party', primary: true, fn: () => party(true) }] });
   if (REDUCED) starfield();
 }
@@ -619,22 +718,34 @@ function party(fromRun) {
   $('#stars').hidden = true; const fin = $('#finale'); if (fin) { fin.pause(); fin.hidden = true; }
   stage({ room: 'party', alt: 'A cozy living room at a holiday party: a decorated tree, a fireplace, armchairs and a table of cookies.' });
   page({ scene: 'party', hud: false, eyebrow: 'The hub', title: 'Ms. D\'s holiday party',
-    html: `<p class="lead">${fromRun ? 'You made it. Everyone is here, from every decade.' : 'Everyone is here, from every decade.'}</p>`, auto: 0,
+    html: `${narr('Every decade of Rickoids is in this room tonight, and now so are you.')}<p class="lead">${fromRun ? 'You made it. Everyone is here, from every decade.' : 'Everyone is here, from every decade.'}</p>`, auto: SCREEN && !S.rallied ? 3 : 0,
     choices: [
       { id: 'thanks', label: 'The thank-you wall', sub: 'For Ms. D and the CEE team', card: true, primary: !!fromRun, fn: () => thanks() },
       { id: 'stories', label: 'Ornaments on the tree', sub: 'Stories from every decade', card: true, fn: () => stories() },
       { id: 'wall', label: 'The proceedings', sub: `${store.get('wall', []).length} paper(s) presented on this device`, card: true, fn: () => wall() },
       { id: 'rally', label: 'Every decade, together', sub: 'One light, added up across the years', card: true, fn: () => rally() },
       { id: 'archive', label: 'The archive', sub: `${archive.size} of ${ARCHIVE.length} cards found`, card: true, fn: () => arch() },
+      { id: 'share', label: 'Share with Rickoids', sub: 'A link and a code to scan', card: true, fn: () => share() },
+      { id: 'credits', label: 'Who made this', sub: 'Credits and sources', card: true, fn: () => credits() },
       { id: 'again', label: fromRun ? 'Pass to the next player' : 'Begin a summer', card: true, fn: () => title() },
     ] });
 }
 const back = { id: 'back', label: 'Back to the party', primary: true, fn: () => party() };
+function share() {
+  page({ scene: 'share', hud: false, eyebrow: 'Share with Rickoids', title: 'Pass it to your RSI class',
+    html: `<p>Send this link to your RSI class, or let a friend scan the code with a phone camera.</p><figure class="qr"><img src="qr_play.png?v=1123c" alt="QR code that opens Underway on a phone." width="220" height="220"><figcaption>${PLAY_URL.replace('https://', '')}</figcaption></figure><p id="copied" class="small" aria-live="polite"></p>`,
+    choices: [{ id: 'copy', label: 'Copy the link', card: true, fn: () => { const done = (m) => { const e = $('#copied'); if (e) e.textContent = m; }; (navigator.clipboard ? navigator.clipboard.writeText(PLAY_URL) : Promise.reject()).then(() => done('Copied. Paste it anywhere.'), () => done('Copy this link: ' + PLAY_URL)); } }, back] });
+}
+function credits() {
+  page({ scene: 'credits', hud: false, eyebrow: 'Credits', title: 'Who made this',
+    html: '<p class="lead">Made by Gordon Bellamy, RSI \'87, for CEE\'s 45th. Built with AI tools, from CEE\'s own record.</p><p>Admiral H. G. Rickover and Joann P. DiGennaro founded the Center for Excellence in Education in 1983. The Research Science Institute began in 1984.</p><p class="small">The mentors and students in the drawings are fictional. Science facts are standard textbook science. Alumni stories and voices will be added only with each person\'s permission.</p>',
+    choices: [back] });
+}
 function thanks() {
   page({ scene: 'thanks', hud: false, eyebrow: 'The thank-you wall', title: 'Thank you, Ms. D.',
-    html: '<p class="lead">For forty-five years of believing that young people can do serious work, and for the team at CEE who make every summer happen.</p><div class="tbd"><b>Coming for 2028</b><p>Here, alumni from every decade will say thank you in their own recorded voices. Collecting begins with the community\'s blessing.</p></div>',
+    html: '<p class="lead">For forty-five years of believing that young people can do serious work, and for the team at CEE who make every summer happen.</p><div class="tbd"><b>Coming for 2028</b><p>Here, alumni from every decade will say thank you in their own recorded voices. Collecting begins with the community\'s blessing.</p></div>' + (SHOW_GIVING ? '<p class="give"><a href="https://www.cee.org/donate" target="_blank" rel="noopener">Keep the light going: support CEE</a></p>' : ''),
     // In Just Watch, the thank-you is the ending: the story then loops from the start as a demo.
-    choices: S.mode === 'watch' ? [{ id: 'loop', label: 'Watch again from the start', primary: true, fn: () => who() }, back] : [back] });
+    hold: 12000, choices: S.mode === 'watch' ? [{ id: 'loop', label: 'Watch again from the start', primary: true, fn: () => { S.rallied = false; who(); } }, back] : [back] });
 }
 function stories() {
   const prompts = ['The night my experiment finally worked', 'What my mentor told me that I still use', 'The friend I met in week one', 'What I would tell this summer\'s class'];
@@ -644,22 +755,33 @@ function stories() {
 function wall() {
   const w = store.get('wall', []);
   page({ scene: 'wall', hud: false, eyebrow: 'The proceedings', title: 'Papers presented on this device',
-    html: w.length ? `<div class="wall">${w.map((p) => `<div class="poster sm"><span>${p.field} · ${p.year}</span><b>${p.title}</b><em>${p.total} ${stamps(p.stamps)}</em></div>`).join('')}</div>` : '<p>No papers yet. Play a summer and yours will be added here.</p>', choices: [back] });
+    html: w.length ? `<div class="wall">${w.map((p) => `<div class="poster sm"><span>${p.field} · ${p.year}</span><b>${p.title}</b><em>${p.total} gold stars ${stamps(p.stamps)}</em></div>`).join('')}</div>` : '<p>No papers yet. Play a summer and yours will be added here.</p>', choices: [back] });
+}
+// Counts only, never names: how many played from each class year on this device, and the fewest looks to a 3-star hunch.
+function playersLine() {
+  const order = ['1980s', '1990s', '2000s', '2010s', '2020s', 'Friends'], p = store.get('players', {});
+  const rows = order.filter((y) => p[y]).map((y) => {
+    const f = store.get('fewest.r.' + y, null), g = store.get('fewest.' + y, null);
+    const best = f !== null ? ` · Rickoid mode: found it in ${f}` : g !== null ? ` · found it in ${g}` : '';
+    return `<li><b>${y}</b> ${p[y]} player${p[y] === 1 ? '' : 's'}${best}</li>`;
+  });
+  return rows.length ? `<h2 class="shelf">Who played, by class year</h2><ul class="byyear">${rows.join('')}</ul>` : '';
 }
 function rally() {
   const order = ['1980s', '1990s', '2000s', '2010s', '2020s', 'Friends'];
   const r = store.get('rally', {}); const rows = order.filter((y) => r[y]).map((y) => [y, r[y]]); const sum = rows.reduce((a, [, v]) => a + v, 0) || 1;
   page({ scene: 'rally', hud: false, eyebrow: 'Every decade, together', title: rows.length ? `${rows.reduce((a, [, v]) => a + v, 0)} points of light` : 'One light, added up',
-    html: (rows.length ? `<div class="together" role="img" aria-label="Each decade's share of the light">${rows.map(([y, v], k) => `<i style="flex:${v};--c:var(--c${(k % 5) + 1})" title="${y}"></i>`).join('')}</div><div class="rally">${rows.map(([y, v]) => `<div><span>${y}</span><i style="width:${Math.max(6, v / sum * 100)}%"></i><b>${v}</b></div>`).join('')}</div>` : '<p>No light yet. The first summer played starts it.</p>') + '<p class="small">Totals are kept on this device. Every decade adds to the same light.</p>', choices: [back] });
+    html: (rows.length ? `<div class="together" role="img" aria-label="Each decade's share of the light">${rows.map(([y, v], k) => `<i style="flex:${v};--c:var(--c${(k % 5) + 1})" title="${y}"></i>`).join('')}</div><div class="rally">${rows.map(([y, v]) => `<div><span>${y}</span><i style="width:${Math.max(6, v / sum * 100)}%"></i><b>${v}</b></div>`).join('')}</div>` : '<p>No light yet. The first summer played starts it.</p>') + playersLine() + '<p class="small">Totals are kept on this device. Every decade adds to the same light.</p>', hold: 20000, choices: SCREEN ? [{ id: 'next', label: 'The thank-you wall', primary: true, fn: () => { S.rallied = true; thanks(); } }, back] : [back] });
 }
 function arch() {
   page({ scene: 'archive', hud: false, eyebrow: 'The archive', title: `${archive.size} of ${ARCHIVE.length} cards found`,
-    html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p><p class="credits">Art: drawn with Higgsfield. Music and sound: ElevenLabs. Finale stars: Unity, over Sidney Hall's star atlas <i>Urania's Mirror</i> (1825, public domain, restoration by Adam Cuerden, via Wikimedia Commons). MIT Great Dome photo: Fcb981, edited by Thermos, CC BY-SA 3.0, via Wikimedia Commons.</p>`, choices: [back] });
+    html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><h2 class="shelf">Alumni voices</h2><div class="arch">${['A Rickoid from the 1980s', 'A Rickoid from the 2000s', 'A Rickoid from the 2020s'].map((t) => `<div class="ac voice"><b>${t}</b><p>Coming in CEE's 45th film.</p></div>`).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p><p class="credits">Art: drawn with Higgsfield. Music and sound: ElevenLabs. Finale stars: Unity, over Sidney Hall's star atlas <i>Urania's Mirror</i> (1825, public domain, restoration by Adam Cuerden, via Wikimedia Commons). MIT Great Dome photo: Fcb981, edited by Thermos, CC BY-SA 3.0, via Wikimedia Commons.</p>`, choices: [back] });
 }
 
+if (SCREEN) { document.body.classList.add('screen'); const q = $('#screenqr'); if (q) q.hidden = false; }
 document.addEventListener('pointerdown', () => SND.unlock(), { capture: true });
 document.addEventListener('keydown', () => SND.unlock(), { capture: true });
-document.addEventListener('pointerdown', (e) => { if (S.mode === 'watch' && !e.target.closest('button')) { S.mode = 'play'; clearTimeout(S.watchTimer); $('#watching').hidden = true; } });
+document.addEventListener('pointerdown', (e) => { if (S.mode === 'watch' && !SCREEN && !e.target.closest('button')) { S.mode = 'play'; clearTimeout(S.watchTimer); $('#watching').hidden = true; } });
 const mute = $('#mute');
 const drawMute = () => { mute.setAttribute('aria-pressed', String(SND.muted)); mute.setAttribute('aria-label', SND.muted ? 'Sound is off. Turn sound on' : 'Sound is on. Turn sound off'); mute.querySelector('span').textContent = SND.muted ? 'Sound off' : 'Sound on'; };
 mute.addEventListener('click', (e) => { e.stopPropagation(); SND.setMuted(!SND.muted); drawMute(); });
