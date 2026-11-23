@@ -78,10 +78,21 @@ p{margin:8px 0 0;max-width:60ch}.lead{font-size:22px}.small{font-size:16px;color
 .poster .seal{width:22px;height:22px}.reveal .seal{width:30px;height:30px}
 h1{text-shadow:2px 2px 0 rgba(242,139,29,.18)}
 @media (prefers-reduced-motion:reduce){.choice:nth-child(n){transform:none}}
+#stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+#loop{opacity:0;transition:opacity .9s ease;pointer-events:none}#loop.on{opacity:1}
+#finale{z-index:1;opacity:1;transition:opacity 1.2s ease}#finale.out{opacity:0}
+.taped{position:relative;float:right;width:44%;max-width:220px;margin:4px 0 10px 14px;padding:7px 7px 4px;background:#fff;box-shadow:3px 5px 0 rgba(34,48,79,.15);transform:rotate(2.2deg)}
+.taped img{width:100%;display:block;filter:sepia(.25) saturate(.9)}.taped figcaption{font-family:var(--hand);font-size:15px;text-align:center;margin-top:3px}
+.taped::before{content:"";position:absolute;top:-9px;left:50%;width:64px;height:18px;margin-left:-32px;background:rgba(255,226,120,.7);transform:rotate(-3deg)}
+#hud::after{content:"";position:absolute;right:10px;top:-34px;width:64px;height:64px;background:url(assets/flask_sheet.png?v=1123a) 0 0/1536px 64px no-repeat;animation:flask 2.4s steps(24) infinite}
+@keyframes flask{to{background-position:-1536px 0}}
+.credits{font-size:13px;color:var(--pencil);margin-top:14px;line-height:1.4}
+@media (prefers-reduced-motion:reduce){#hud::after{animation:none}}
+.choice.card:active:not(:disabled){border-color:var(--gold);box-shadow:5px 7px 0 rgba(34,48,79,.3)}
 @media (prefers-reduced-motion:reduce){.choice:hover:not(:disabled){transform:none}#art.in{animation:artFade .4s ease both}@keyframes artFade{from{opacity:0}to{opacity:1}}}
 </style>
 <div id="app">
-  <div id="stage"><img id="art2" alt="" aria-hidden="true" hidden><img id="art" class="in" src="assets/art_title.jpg?v=1120" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><canvas id="stars" hidden aria-hidden="true"></canvas>
+  <div id="stage"><img id="art2" alt="" aria-hidden="true" hidden><img id="art" class="in" src="assets/art_title.jpg?v=1123a" alt="An open lab notebook. A small tree grows from its page, its roots holding a single coin."><video id="loop" muted playsinline preload="none" aria-hidden="true"></video><video id="finale" src="assets/loops/finale_stars.mp4?v=1123a" muted playsinline preload="none" aria-hidden="true" hidden></video><canvas id="stars" hidden aria-hidden="true"></canvas>
     <button id="mute" type="button" aria-pressed="false"><svg class="on" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></svg><span>Sound on</span></button></div>
   <main id="panel">
     <div id="eyebrow">For the 45th anniversary of the Center for Excellence in Education · 1983 to 2028</div>
@@ -286,7 +297,7 @@ function unlock(...ids) { let n = 0; ids.forEach((i) => { if (!archive.has(i)) {
 const ROOM_ART = { classroom: 'art_classroom.jpg', lab: 'art_lab.jpg', hall: 'art_hall.jpg', party: 'art_party.jpg' };
 let artTok = 0;
 function stage({ room, art, alt }) {
-  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1120c';
+  const src = 'assets/' + (art || ROOM_ART[room]) + '?v=1123a';
   const img = $('#art'), under = $('#art2');
   if (img.getAttribute('src') === src) { img.alt = alt || ''; return; }
   const tok = ++artTok;
@@ -298,22 +309,34 @@ function stage({ room, art, alt }) {
     img.src = src; img.alt = alt || '';
     img.classList.add('in');
     setTimeout(() => { if (tok === artTok) under.hidden = true; }, 700);
+    setLoop(LOOPS[art || ROOM_ART[room]], tok);
   };
   pre.src = src;
+}
+// Living panels (Higgsfield image-to-video, start frame = end frame, so the loop is seamless). Muted, decorative.
+const LOOPS = { 'art_title.jpg': 'loop_title', 'art_lab.jpg': 'loop_lab', 'art_applause.jpg': 'loop_applause', 'art_party.jpg': 'loop_party', 'art_sky.jpg': 'loop_sky' };
+function setLoop(name, tok) {
+  const v = $('#loop'); if (!v) return;
+  if (!name || REDUCED || (navigator.connection && navigator.connection.saveData)) { v.classList.remove('on'); v.pause && v.pause(); return; }
+  const want = 'assets/loops/' + name + '.mp4?v=1123a';
+  if (v.dataset.src === want) { v.classList.add('on'); v.play().catch(() => {}); return; }
+  v.classList.remove('on'); v.dataset.src = want; v.loop = true; v.preload = 'auto'; v.src = want;
+  v.play().then(() => { if (tok === artTok && v.dataset.src === want) v.classList.add('on'); }).catch(() => {});
 }
 
 // ---------- sound (ElevenLabs music, ambience and effects; starts on the first tap) ----------
 const SND = (() => {
-  const FILES = { tap: 'sfx_tap', page: 'sfx_page', stamp: 'sfx_stamp', miss: 'sfx_miss', applause: 'sfx_applause', fail: 'sfx_fail', plant: 'sfx_plant', spark: 'sfx_spark', count: 'sfx_count',
+  const FILES = { tap: 'sfx_tap', page: 'sfx_page', stamp: 'sfx_stamp', miss: 'sfx_miss', applause: 'sfx_applause', fail: 'sfx_fail', plant: 'sfx_plant', spark: 'sfx_spark', count: 'sfx_count', win: 'sfx_win', pencil: 'sfx_pencil', star: 'sfx_star',
+    m_pro: 'music_prologue', m_pre: 'music_present', a_hall: 'amb_hall', a_fire: 'amb_fire',
     m_lab: 'music_lab', m_party: 'music_party', m_stars: 'music_stars', a_lab: 'amb_lab', a_party: 'amb_party' };
-  const VOL = { tap: 0.5, page: 0.45, stamp: 0.9, miss: 0.8, applause: 0.9, fail: 0.85, plant: 0.9, spark: 0.75, count: 0.6 };
+  const VOL = { tap: 0.5, page: 0.45, stamp: 0.9, miss: 0.8, applause: 0.9, fail: 0.85, plant: 0.9, spark: 0.75, count: 0.6, win: 0.8, pencil: 0.55, star: 0.85 };
   let ctx = null, master = null, muted = store.get('muted', false);
   const buf = {}, loading = {};
   const beds = { music: { key: null, src: null, g: null }, amb: { key: null, src: null, g: null } };
   let want = { music: null, amb: null };
   function load(k) {
     if (buf[k] || loading[k] || !ctx) return loading[k];
-    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1120c').then((r) => r.arrayBuffer())
+    loading[k] = fetch('assets/audio/' + FILES[k] + '.mp3?v=1123a').then((r) => r.arrayBuffer())
       .then((a) => new Promise((ok, no) => ctx.decodeAudioData(a, ok, no))).then((b) => { buf[k] = b; return b; }).catch(() => null);
     return loading[k];
   }
@@ -322,7 +345,7 @@ const SND = (() => {
     const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
     ctx = new AC(); master = ctx.createGain(); master.gain.value = muted ? 0 : 1; master.connect(ctx.destination);
     const b = ctx.createBuffer(1, 1, 22050), s = ctx.createBufferSource(); s.buffer = b; s.connect(ctx.destination); s.start(0);
-    ['tap', 'page', 'spark', 'stamp', 'miss', 'count'].forEach(load);
+    ['tap', 'page', 'spark', 'stamp', 'miss', 'count', 'pencil', 'win'].forEach(load);
     applyBeds();
   }
   function play(k) {
@@ -357,15 +380,15 @@ const SND = (() => {
   return { unlock, play, setBed, setMuted, get muted() { return muted; } };
 })();
 const SCORE = {
-  title: ['m_lab', 0.5, null], who: ['m_lab', 0.5, null], seed: ['m_lab', 0.35, null], grow: ['m_lab', 0.5, null],
-  field: ['m_lab', 0.45, null], quiz: ['m_lab', 0.4, null], 'quiz-result': ['m_lab', 0.4, null], mentor: ['m_lab', 0.45, 'a_lab'],
+  title: ['m_pro', 0.5, null], who: ['m_pro', 0.5, null], seed: ['m_pro', 0.35, null], grow: ['m_pro', 0.5, null],
+  field: ['m_pro', 0.45, null], quiz: ['m_pro', 0.4, null], 'quiz-result': ['m_pro', 0.4, null], mentor: ['m_lab', 0.45, 'a_lab'],
   lab: ['m_lab', 0.32, 'a_lab'], 'week-end': ['m_lab', 0.3, 'a_lab'], upgrade: ['m_lab', 0.45, null], failure: ['m_lab', 0.2, 'a_lab'], clue: ['m_lab', 0.25, 'a_lab'], 'fail-result': ['m_lab', 0.32, 'a_lab'],
-  present: ['m_lab', 0.35, null], panel: ['m_lab', 0.25, null], applause: ['m_lab', 0.4, null], sky: [null, 0, null],
-  party: ['m_party', 0.5, 'a_party'], thanks: ['m_party', 0.4, 'a_party'], stories: ['m_party', 0.45, 'a_party'], wall: ['m_party', 0.45, 'a_party'], rally: ['m_party', 0.45, 'a_party'], archive: ['m_party', 0.45, 'a_party'],
+  present: ['m_pre', 0.38, 'a_hall'], panel: ['m_pre', 0.3, 'a_hall'], applause: ['m_pre', 0.45, 'a_hall'], sky: [null, 0, null],
+  party: ['m_party', 0.5, 'a_fire'], thanks: ['m_party', 0.4, 'a_fire'], stories: ['m_party', 0.45, 'a_fire'], wall: ['m_party', 0.45, 'a_fire'], rally: ['m_party', 0.45, 'a_fire'], archive: ['m_party', 0.45, 'a_fire'],
 };
 function score(scene) {
   const [m, mv, a] = SCORE[scene] || [null, 0, null];
-  SND.setBed('music', m, mv); SND.setBed('amb', a, a === 'a_party' ? 0.55 : 0.7);
+  SND.setBed('music', m, mv); SND.setBed('amb', a, a === 'a_fire' ? 0.8 : a === 'a_hall' ? 0.75 : 0.7);
 }
 
 // ---------- page (the notebook panel) ----------
@@ -381,8 +404,8 @@ function page({ scene, eyebrow, title, html = '', choices = [], hud = true, auto
     const b = document.createElement('button');
     b.className = 'choice' + (c.primary ? ' primary' : '') + (c.card ? ' card' : '') + (c.icon ? ' has-icon' : '');
     b.disabled = c.ok === false; b.dataset.id = c.id || 'c' + i;
-    b.innerHTML = `${c.icon ? `<img class="ico" src="assets/icon_${c.icon}.png?v=1120c" alt="" aria-hidden="true">` : ''}<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
-    b.addEventListener('click', () => { clearTimeout(S.watchTimer); SND.unlock(); SND.play('tap'); c.fn(); });
+    b.innerHTML = `${c.icon ? `<img class="ico" src="assets/icon_${c.icon}.png?v=1123a" alt="" aria-hidden="true">` : ''}<b>${c.label}</b>${c.sub ? `<span>${c.sub}</span>` : ''}`;
+    b.addEventListener('click', () => { clearTimeout(S.watchTimer); SND.unlock(); SND.play(c.card ? 'pencil' : 'tap'); c.fn(); });
     box.appendChild(b);
   });
   renderHud(hud);
@@ -404,7 +427,7 @@ function renderHud(on) {
   h.innerHTML = `<div class="stat i"><span>Insight</span><b>${fmt(w.i)}</b></div><div class="x">×</div><div class="stat r"><span>Rigor</span><b>${fmt(w.r)}</b></div><div class="x">=</div><div class="stat s"><span>This week</span><b>${w.score}</b></div><div class="goal"><span>Goal</span><b>${w.target ?? ''}</b></div><div class="acts" aria-label="${r.actionsLeft} actions left">${'●'.repeat(Math.max(0, r.actionsLeft))}<i>${'●'.repeat(0)}</i></div>`;
 }
 const fmt = (n) => (Number.isInteger(n) ? n : n.toFixed(1));
-const seal = (on) => `<img class="seal${on ? '' : ' off'}" src="assets/stamp_gold.png?v=1120c" alt="">`;
+const seal = (on) => `<img class="seal${on ? '' : ' off'}" src="assets/stamp_gold.png?v=1123a" alt="">`;
 const stamps = (n, of = 5) => `<span class="stamps" role="img" aria-label="${n} of ${of} stamps">${seal(true).repeat(n)}${seal(false).repeat(Math.max(0, of - n))}</span>`;
 // Each lab week has its own drawing, following RSI's paper pipeline toward Hell Week.
 const LAB_ART = { 1: ['art_lab.jpg', 'A bright summer lab: a student at the bench with flasks, a microscope and an open notebook.'],
@@ -446,7 +469,7 @@ function grow() {
   unlock('founded', 'seed', 'rsi', 'leesburg', 'mit');
   stage({ art: 'art_title.jpg', alt: 'The seed has become a tree growing from a notebook.' });
   page({ scene: 'grow', hud: false, eyebrow: 'Prologue · forty-five years', title: 'Look how far it grew',
-    html: `<ol class="tl">${TIMELINE.map(([y, t], k) => `<li data-k="${k}"${REDUCED ? ' class="on"' : ''}><b>${y}</b> ${t}</li>`).join('')}</ol>`,
+    html: `<figure class="taped"><img src="assets/web/mit_dome_night.jpg?v=1123a" alt="The Great Dome at MIT at night, where RSI meets each summer."><figcaption>MIT, home of RSI each summer</figcaption></figure><ol class="tl">${TIMELINE.map(([y, t], k) => `<li data-k="${k}"${REDUCED ? ' class="on"' : ''}><b>${y}</b> ${t}</li>`).join('')}</ol>`,
     choices: [{ id: 'next', label: 'Start Week One', primary: true, fn: () => { clearInterval(growTimer); field(); } }] });
   if (!REDUCED) { let k = 0; clearInterval(growTimer); growTimer = setInterval(() => { const li = document.querySelector(`.tl li[data-k="${k}"]`); if (!li) { clearInterval(growTimer); return; } li.classList.add('on'); SND.play('tap'); k++; }, 650); }
 }
@@ -501,7 +524,7 @@ function weekEnd() {
     html: `<div class="reveal" aria-live="polite"><div><span>Insight</span><b id="rv-i">${fmt(res.i)}</b></div><div class="x">×</div><div><span>Rigor</span><b id="rv-r">${fmt(res.r)}</b></div><div class="x">=</div><div class="big"><span>Week ${wk}</span><b id="rv-s">${REDUCED ? res.score : 0}</b></div></div><p id="rv-msg" class="lead" ${REDUCED ? '' : 'style="visibility:hidden"'}>${res.stamp ? `Goal ${res.target} cleared. A stamp for your notebook! ${stamps(r.stamps)}` : `Goal was ${res.target}. No stamp this week, and the work still counts. ${stamps(r.stamps)}`}</p>`,
     choices: [{ id: 'next', label: wk === 5 ? 'Presentation Day' : 'Next', primary: true, fn: () => (wk === 5 ? present() : wk <= 3 ? upgrade() : week()) }] });
   SND.play('count');
-  const ding = () => SND.play(res.stamp ? 'stamp' : 'page');
+  const ding = () => { SND.play(res.stamp ? 'stamp' : 'page'); if (res.stamp) setTimeout(() => SND.play('win'), 260); };
   if (!REDUCED) countUp($('#rv-s'), res.score, 900, () => { const m = $('#rv-msg'); if (m) m.style.visibility = 'visible'; ding(); }); else setTimeout(ding, 300);
   if (wk === 1) unlock('stanford', 'bedcheck'); if (wk === 5) unlock('hellweek');
 }
@@ -564,10 +587,20 @@ function applause(t, pick, strong) {
 function sky() {
   SND.play('m_stars');
   stage({ art: 'art_sky.jpg', alt: 'A colored-pencil night sky with gold constellations, drawn on an open notebook above a riverside campus where friends look up.' });
+  finale();
   page({ scene: 'sky', hud: false, eyebrow: 'One light among many', title: 'About 3,400 Rickoids',
     html: '<p class="lead">All 50 states. 63 nations. Forty-five years of summers.</p><p>Tonight one more light joins them: yours.</p>',
     choices: [{ id: 'party', label: 'Go to the holiday party', primary: true, fn: () => party(true) }] });
-  starfield();
+  if (REDUCED) starfield();
+}
+// The finale: a real 3D starfield rendered in Unity over an 1825 star-atlas engraving. The Big Dipper draws in,
+// then one new light arcs in and joins it. Plays once, then the living sky panel takes over.
+function finale() {
+  const f = $('#finale'); if (!f || REDUCED) return;
+  f.hidden = false; f.currentTime = 0; let chimed = false;
+  f.ontimeupdate = () => { if (!chimed && f.currentTime > 8.1) { chimed = true; SND.play('star'); } };
+  f.onended = () => { f.classList.add('out'); setTimeout(() => { f.hidden = true; f.classList.remove('out'); }, 1200); };
+  f.play().catch(() => { f.hidden = true; starfield(); });
 }
 function starfield() {
   const c = $('#stars'); c.hidden = false; const r = $('#stage').getBoundingClientRect(); c.width = r.width * 2; c.height = r.height * 2;
@@ -583,7 +616,7 @@ function starfield() {
   draw();
 }
 function party(fromRun) {
-  $('#stars').hidden = true;
+  $('#stars').hidden = true; const fin = $('#finale'); if (fin) { fin.pause(); fin.hidden = true; }
   stage({ room: 'party', alt: 'A cozy living room at a holiday party: a decorated tree, a fireplace, armchairs and a table of cookies.' });
   page({ scene: 'party', hud: false, eyebrow: 'The hub', title: 'Ms. D\'s holiday party',
     html: `<p class="lead">${fromRun ? 'You made it. Everyone is here, from every decade.' : 'Everyone is here, from every decade.'}</p>`, auto: 0,
@@ -621,7 +654,7 @@ function rally() {
 }
 function arch() {
   page({ scene: 'archive', hud: false, eyebrow: 'The archive', title: `${archive.size} of ${ARCHIVE.length} cards found`,
-    html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p>`, choices: [back] });
+    html: `<div class="arch">${ARCHIVE.map((a) => (archive.has(a.id) ? `<div class="ac on"><b>${a.t}</b><p>${a.b}</p></div>` : '<div class="ac"><b>?</b><p>Keep playing to find this card.</p></div>')).join('')}</div><p class="small">From CEE's own record. Counts change each year.</p><p class="credits">Art: drawn with Higgsfield. Music and sound: ElevenLabs. Finale stars: Unity, over Sidney Hall's star atlas <i>Urania's Mirror</i> (1825, public domain, restoration by Adam Cuerden, via Wikimedia Commons). MIT Great Dome photo: Fcb981, edited by Thermos, CC BY-SA 3.0, via Wikimedia Commons.</p>`, choices: [back] });
 }
 
 document.addEventListener('pointerdown', () => SND.unlock(), { capture: true });
