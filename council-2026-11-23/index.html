@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monday Council · Relationship Ops</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: #0f1119;
+    font-family: 'Inter', sans-serif;
+  }
+  .card {
+    width: 100%;
+    max-width: 420px;
+    background: #fef8f0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 24px 72px rgba(0,0,0,0.55);
+    position: relative;
+  }
+  .ribbon {
+    height: 6px;
+    background: linear-gradient(90deg, #d97757 0%, #e8a56b 50%, #c66b4a 100%);
+  }
+  .header {
+    padding: 26px 26px 18px;
+    background: #fef8f0;
+  }
+  .meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .lens {
+    color: #c66b4a;
+    font-weight: 600;
+  }
+  .day {
+    color: rgba(60, 45, 35, 0.5);
+  }
+  .title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 1.25;
+    color: #2a1a12;
+    letter-spacing: -0.01em;
+  }
+  .why {
+    padding: 0 26px 20px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.55;
+    color: #5a4a3e;
+  }
+  .why strong {
+    color: #2a1a12;
+    font-weight: 600;
+  }
+  .draft {
+    margin: 0 26px 22px;
+    padding: 20px 20px 22px;
+    background: #fff;
+    border: 1px solid rgba(217, 119, 87, 0.22);
+    border-radius: 12px;
+    position: relative;
+  }
+  .draft-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(217, 119, 87, 0.9);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .draft-body {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #1f1510;
+  }
+  .draft-body p {
+    margin-bottom: 10px;
+  }
+  .draft-body p:last-child {
+    margin-bottom: 0;
+  }
+  .context {
+    padding: 0 26px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .ctx-row {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #5a4a3e;
+    align-items: baseline;
+  }
+  .ctx-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c66b4a;
+    font-weight: 600;
+    min-width: 62px;
+    flex-shrink: 0;
+  }
+  .footer {
+    padding: 14px 26px 20px;
+    border-top: 1px solid rgba(60, 45, 35, 0.08);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: rgba(60, 45, 35, 0.45);
+    letter-spacing: 0.08em;
+    display: flex;
+    justify-content: space-between;
+  }
+  .guard {
+    color: #7a6052;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="ribbon"></div>
+  <div class="header">
+    <div class="meta-row">
+      <div class="lens">Relationship Ops</div>
+      <div class="day">Mon · Nov 23</div>
+    </div>
+    <div class="title">A warm Thanksgiving-week note for Eric Hulsey.</div>
+  </div>
+  <div class="why">
+    Eric held through 2024 and then fell off iMessage in 2025 (266 msgs, from ~2,000). He has not gone quiet, he moved to Instagram. <strong>Thanksgiving week is the natural key.</strong> No ask. Just presence.
+  </div>
+  <div class="draft">
+    <div class="draft-label">Draft · for your approval</div>
+    <div class="draft-body">
+      <p>Thinking about you this week, Eric. The holidays always pull you up in my head.</p>
+      <p>Tell me one thing you're grateful for. I'll tell you mine.</p>
+    </div>
+  </div>
+  <div class="context">
+    <div class="ctx-row">
+      <div class="ctx-tag">Channel</div>
+      <div>IG DM. That is where he lives now (189 msgs in 2026 vs 102 iMessage).</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-tag">Live</div>
+      <div>World Cup fandom, Out at the Rodeo (he is president, 5th year), Ty Neely.</div>
+    </div>
+    <div class="ctx-row">
+      <div class="ctx-tag">Guard</div>
+      <div>No GGP ask, no event pitch. Just a hand across the week.</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div>DARBY COUNCIL</div>
+    <div class="guard">Draft only · you send</div>
+  </div>
+</div>
+</body>
+</html>
