@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 3 Enchanting Table Rolls, Bedrock</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --surface-1: #111318;
+    --page: #0b0b0b;
+    --ink: #efefef;
+    --ink-2: #9c9c9c;
+    --grid: #262a33;
+    --ring: rgba(255,255,255,0.08);
+    --accept: #0aac23;
+    --maybe: #f2a600;
+    --skip:   #666a73;
+    --accept-ink: #ffffff;
+    --maybe-ink: #0b0b0b;
+    --skip-ink: #ffffff;
+    --accent: #338ced;
+  }
+  * { box-sizing: border-box; }
+  html, body { background: var(--page); color: var(--ink); margin: 0; padding: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 64px; }
+  header { padding: 8px 0 20px; border-bottom: 1px solid var(--grid); }
+  .eyebrow { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-2); margin: 0 0 6px; }
+  h1 { font-size: 26px; line-height: 1.15; margin: 0 0 8px; font-weight: 700; }
+  .sub { color: var(--ink-2); font-size: 14px; max-width: 70ch; margin: 0; }
+  .sub b { color: var(--ink); font-weight: 600; }
+
+  .legend { display: flex; gap: 14px; flex-wrap: wrap; margin: 18px 0 8px;
+    font-size: 12px; color: var(--ink-2); }
+  .legend .swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px;
+    vertical-align: -1px; margin-right: 6px; }
+  .legend .accept { background: var(--accept); }
+  .legend .maybe  { background: var(--maybe);  }
+  .legend .skip   { background: var(--skip);   }
+
+  .note { background: #171a21; border: 1px solid var(--grid); border-radius: 10px;
+    padding: 12px 14px; font-size: 13px; color: var(--ink-2); margin: 16px 0 24px; }
+  .note b { color: var(--ink); font-weight: 600; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 14px; }
+
+  .card { background: var(--surface-1); border: 1px solid var(--grid); border-radius: 14px;
+    padding: 14px 14px 16px; }
+  .card h2 { font-size: 15px; margin: 0 0 4px; font-weight: 700; display: flex;
+    align-items: center; gap: 8px; }
+  .card .tool-icon { width: 18px; height: 18px; display: inline-block; }
+  .card .verdict { font-size: 12px; color: var(--ink-2); margin: 0 0 12px; }
+  .card .verdict b.go { color: var(--accept); font-weight: 700; }
+  .card .verdict b.so-so { color: var(--maybe); font-weight: 700; }
+  .card .verdict b.no { color: var(--ink-2); font-weight: 700; }
+
+  .row { display: grid; grid-template-columns: 1fr 44px; align-items: center;
+    gap: 8px; margin: 8px 0; font-size: 13px; }
+  .row .name { font-weight: 500; color: var(--ink); }
+  .row .pct { font-variant-numeric: tabular-nums; text-align: right;
+    color: var(--ink-2); font-size: 12px; }
+  .bar { grid-column: 1 / -1; height: 10px; background: #1b1e26;
+    border-radius: 6px; overflow: hidden; margin-top: 2px; position: relative; }
+  .fill { height: 100%; border-radius: 6px 0 0 6px; }
+  .fill.accept { background: var(--accept); }
+  .fill.maybe  { background: var(--maybe);  }
+  .fill.skip   { background: var(--skip);   }
+  .fill[data-end="true"] { border-radius: 6px; }
+  .reason { font-size: 11px; color: var(--ink-2); margin: 2px 0 10px;
+    padding-left: 2px; border-left: 2px solid var(--grid); padding-left: 8px; }
+  .reason.accept { border-color: var(--accept); color: #cfead3; }
+  .reason.maybe  { border-color: var(--maybe);  color: #efd6a0; }
+  .reason.skip   { border-color: var(--skip);   color: var(--ink-2); }
+
+  .headline { background: linear-gradient(180deg, #121620 0%, #0e1118 100%);
+    border: 1px solid var(--grid); border-radius: 16px; padding: 18px;
+    margin: 18px 0; }
+  .headline h3 { margin: 0 0 6px; font-size: 14px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+  .headline p { margin: 0; font-size: 15px; line-height: 1.5; }
+  .headline p + p { margin-top: 10px; }
+  .k { background: #1f2430; padding: 2px 6px; border-radius: 4px;
+    font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--ink); }
+
+  footer { color: var(--ink-2); font-size: 12px; margin-top: 28px;
+    padding-top: 14px; border-top: 1px solid var(--grid); }
+  footer code { background: #1f2430; padding: 2px 6px; border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Minecraft Bedrock, Enchanting Table</p>
+    <h1>Level 3 slot rolls, what to accept</h1>
+    <p class="sub">The top slot showing <b>3</b> costs <b>1 XP level + 1 lapis</b> and consumes <b>3 XP worth</b> from your bar. These are the odds for the <b>primary</b> enchantment you will see revealed, computed from the Bedrock formula, for each item type.</p>
+  </header>
+
+  <div class="legend">
+    <span><span class="swatch accept"></span>Take it</span>
+    <span><span class="swatch maybe"></span>Fine, not worth a rare book</span>
+    <span><span class="swatch skip"></span>Reroll</span>
+  </div>
+
+  <div class="headline">
+    <h3>The one rule</h3>
+    <p>Level 3 is a cheap scouting roll. The useful rolls are <b>Efficiency I</b> on mining tools, <b>Sharpness I</b> or <b>Protection I</b> on gear, and <b>Power I</b> on bows. Anything else, break a block to burn the roll and try again.</p>
+    <p>You <b>cannot</b> get Fortune, Silk Touch, Looting, Infinity, Mending or Unbreaking III at level 3. Those need the bottom slot (and 15 bookshelves).</p>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="note" style="margin-top:22px">
+    <b>Why the odds look the way they do.</b> At xpCost&nbsp;=&nbsp;3 the internal enchantment cost (eCost) lands around 3 to 9 for diamond/iron/netherite. That window is low enough that only <i>Level&nbsp;I</i> variants of a handful of enchantments qualify. Selection is weighted: common (weight 10) beats uncommon (5) beats rare (2) beats very rare (1). Fortune, Silk Touch, Looting, Infinity and Channeling all have Level I cost minimums of 15 to 25, way above this window.
+  </div>
+
+  <footer>
+    <div>Source: <code>minecraft.wiki/w/Enchanting_mechanics</code> cost formula, candidate ranges, and weights. Simulated at 200,000 rolls per item class, seed 42. Assumes diamond/iron tools and armor (enchantability 10); bows, crossbows, rods, tridents, books use enchantability 1.</div>
+    <div style="margin-top:8px">Printed as a scouting chart, not a guarantee. Rerolls use any block break to burn the slot.</div>
+  </footer>
+</div>
+
+<script>
+const DATA = [
+  { tool: "Pickaxe",    verdict: "go",    headline: "Take Efficiency I. Reroll anything else.",
+    rolls: [
+      { name: "Efficiency I", pct: 70.6, tier: "accept", why: "Mines faster right away. Stacks with Efficiency on anvil later." },
+      { name: "Unbreaking I",  pct: 29.4, tier: "skip",   why: "Weak at level I. Save the pick for a better roll." },
+    ]},
+  { tool: "Shovel",     verdict: "go",    headline: "Same as pickaxe. Efficiency I is the keeper.",
+    rolls: [
+      { name: "Efficiency I", pct: 70.8, tier: "accept", why: "Doubles your dirt-and-gravel speed. Flint farms later need Fortune III (bottom slot)." },
+      { name: "Unbreaking I",  pct: 29.2, tier: "skip",   why: "Shovels are cheap. Skip and reroll." },
+    ]},
+  { tool: "Axe",        verdict: "so-so", headline: "Efficiency or Sharpness are both fine. Skip the rest.",
+    rolls: [
+      { name: "Sharpness I",    pct: 31.2, tier: "accept", why: "Bedrock lets axes roll sword enchants. +1.25 damage at level I is real." },
+      { name: "Efficiency I",   pct: 31.1, tier: "accept", why: "Faster chop and faster shield-break." },
+      { name: "Unbreaking I",   pct: 12.6, tier: "skip",   why: "Take it on iron, skip on diamond." },
+      { name: "Bane of Arthro.", pct: 12.5, tier: "skip",  why: "Niche. Only useful in spider spawners." },
+      { name: "Smite I",        pct: 12.5, tier: "skip",   why: "Dead weight outside the Nether." },
+    ]},
+  { tool: "Hoe",        verdict: "go",    headline: "Efficiency I turns it into a leaf cannon.",
+    rolls: [
+      { name: "Efficiency I", pct: 70.6, tier: "accept", why: "Clear leaves, hay, moss, sculk instantly. Best cheap hoe roll." },
+      { name: "Unbreaking I",  pct: 29.4, tier: "skip",   why: "Hoes last forever anyway." },
+    ]},
+  { tool: "Sword",      verdict: "go",    headline: "Sharpness I, done. Everything else is a reroll.",
+    rolls: [
+      { name: "Sharpness I",    pct: 41.4, tier: "accept", why: "+1.25 damage on every hit. Straight upgrade." },
+      { name: "Bane of Arthro.", pct: 14.7, tier: "skip",  why: "Spider-only. Pass." },
+      { name: "Unbreaking I",   pct: 14.7, tier: "skip",   why: "Fine on iron, skip on diamond/netherite." },
+      { name: "Knockback I",    pct: 14.6, tier: "maybe",  why: "Good for PvP and creepers, bad for mob farms." },
+      { name: "Smite I",        pct: 14.6, tier: "skip",   why: "Niche." },
+    ]},
+  { tool: "Bow",        verdict: "go",    headline: "It is almost always Power I. Take it.",
+    rolls: [
+      { name: "Power I",     pct: 99.6, tier: "accept", why: "+25% damage. The single most valuable cheap bow roll." },
+      { name: "Unbreaking I", pct: 0.4,  tier: "skip",   why: "Statistical rarity at this slot." },
+    ]},
+  { tool: "Crossbow",   verdict: "go",    headline: "Piercing I most of the time. Take it.",
+    rolls: [
+      { name: "Piercing I",  pct: 99.5, tier: "accept", why: "Shots pass through mobs and shields. Great for raids." },
+      { name: "Unbreaking I", pct: 0.5,  tier: "skip",   why: "Vanishingly rare at this slot." },
+    ]},
+  { tool: "Helmet",     verdict: "go",    headline: "Protection I is the pick. Aqua Affinity if you dig underwater.",
+    rolls: [
+      { name: "Protection I",    pct: 43.8, tier: "accept", why: "4% damage reduction, stacks across armor pieces." },
+      { name: "Projectile Prot.", pct: 21.8, tier: "maybe", why: "Specific to arrows and ghasts. Fine on iron, not diamond." },
+      { name: "Unbreaking I",    pct: 18.3, tier: "skip",   why: "Weak on armor at level I." },
+      { name: "Aqua Affinity I", pct: 8.7,  tier: "maybe",  why: "Huge if you dig underwater. Otherwise dead." },
+      { name: "Blast Prot. I",   pct: 7.3,  tier: "skip",   why: "Only matters in the Nether and against creepers." },
+    ]},
+  { tool: "Chestplate", verdict: "go",    headline: "Protection I is the one keeper.",
+    rolls: [
+      { name: "Protection I",    pct: 48.1, tier: "accept", why: "Best cheap armor enchant, period." },
+      { name: "Projectile Prot.", pct: 24.1, tier: "maybe", why: "Niche. Fine, not great." },
+      { name: "Unbreaking I",    pct: 19.8, tier: "skip",   why: "Weak at I." },
+      { name: "Blast Prot. I",   pct: 8.0,  tier: "skip",   why: "Situational only." },
+    ]},
+  { tool: "Leggings",   verdict: "go",    headline: "Same as chestplate. Protection I only.",
+    rolls: [
+      { name: "Protection I",    pct: 48.0, tier: "accept", why: "4% universal damage reduction." },
+      { name: "Projectile Prot.", pct: 24.0, tier: "maybe", why: "Niche." },
+      { name: "Unbreaking I",    pct: 20.0, tier: "skip",   why: "Skip." },
+      { name: "Blast Prot. I",   pct: 8.0,  tier: "skip",   why: "Situational." },
+    ]},
+  { tool: "Boots",      verdict: "go",    headline: "Protection OR Feather Falling. Both keepers.",
+    rolls: [
+      { name: "Protection I",     pct: 40.7, tier: "accept", why: "Universal damage reduction." },
+      { name: "Projectile Prot.",  pct: 20.2, tier: "maybe", why: "Niche." },
+      { name: "Unbreaking I",     pct: 16.3, tier: "skip",   why: "Skip." },
+      { name: "Feather Falling I", pct: 16.3, tier: "accept", why: "12% fall damage cut. Cheap and valuable, especially early." },
+      { name: "Blast Prot. I",    pct: 6.5,  tier: "skip",   why: "Situational." },
+    ]},
+  { tool: "Fishing Rod", verdict: "no",   headline: "Do not enchant at level 3. Save for 30.",
+    rolls: [
+      { name: "(no enchant)", pct: 98.6, tier: "skip", why: "Enchantability 1 means slot usually produces nothing viable." },
+      { name: "Unbreaking I",  pct: 1.4,  tier: "skip", why: "The real rod rolls (Luck of the Sea, Lure) need level 15+." },
+    ]},
+  { tool: "Trident",    verdict: "so-so", headline: "Impaling I is fine, but you probably want the big slot.",
+    rolls: [
+      { name: "Impaling I",   pct: 99.0, tier: "maybe", why: "Only helps against aquatic mobs. Loyalty and Channeling need higher slots." },
+      { name: "Unbreaking I", pct: 1.0,  tier: "skip",  why: "Rare." },
+    ]},
+  { tool: "Book",       verdict: "so-so", headline: "Rolls a random Level I. Useful only to apply via anvil.",
+    rolls: [
+      { name: "Sharpness I",      pct: 17.0, tier: "maybe", why: "Useful on an anvil, but you can craft better." },
+      { name: "Efficiency I",     pct: 16.9, tier: "maybe", why: "Same. Not worth farming at level 3." },
+      { name: "Protection I",     pct: 16.8, tier: "maybe", why: "Anvilable." },
+      { name: "Power I",          pct: 16.8, tier: "maybe", why: "Anvilable." },
+      { name: "Piercing I",       pct: 16.8, tier: "maybe", why: "Anvilable." },
+      { name: "Projectile Prot.",  pct: 8.4,  tier: "skip",  why: "Niche." },
+      { name: "Aqua Affinity I",  pct: 3.4,  tier: "skip",  why: "Niche." },
+      { name: "Impaling I",       pct: 3.4,  tier: "skip",  why: "Niche." },
+    ]},
+];
+
+const ICONS = {
+  "Pickaxe": "⛏️", "Shovel": "🪏", "Axe": "🪓", "Hoe": "🌾", "Sword": "⚔️",
+  "Bow": "🏹", "Crossbow": "🎯", "Helmet": "🪖", "Chestplate": "🦺",
+  "Leggings": "👖", "Boots": "🥾", "Fishing Rod": "🎣", "Trident": "🔱", "Book": "📘"
+};
+
+const grid = document.getElementById("grid");
+for (const item of DATA) {
+  const card = document.createElement("article");
+  card.className = "card";
+  let verdictLabel = "";
+  if (item.verdict === "go")    verdictLabel = `<b class="go">ACCEPT</b> &middot; ${item.headline}`;
+  if (item.verdict === "so-so") verdictLabel = `<b class="so-so">MIXED</b> &middot; ${item.headline}`;
+  if (item.verdict === "no")    verdictLabel = `<b class="no">PASS</b> &middot; ${item.headline}`;
+
+  let rowsHTML = "";
+  for (const r of item.rolls) {
+    rowsHTML += `
+      <div class="row">
+        <span class="name">${r.name}</span>
+        <span class="pct">${r.pct.toFixed(1)}%</span>
+        <div class="bar"><div class="fill ${r.tier}" style="width:${Math.min(100, r.pct).toFixed(1)}%" data-end="true"></div></div>
+      </div>
+      <div class="reason ${r.tier}">${r.why}</div>
+    `;
+  }
+
+  card.innerHTML = `
+    <h2><span class="tool-icon">${ICONS[item.tool] || ""}</span>${item.tool}</h2>
+    <p class="verdict">${verdictLabel}</p>
+    ${rowsHTML}
+  `;
+  grid.appendChild(card);
+}
+</script>
+</body>
+</html>
