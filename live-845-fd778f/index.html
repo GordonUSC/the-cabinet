@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- STYLE: Trading-floor terminal | WHY: an investor show; rehearse in the room's language, amber on black, function keys, a ticker of receipts | ALT: Saul Bass title-card cutouts, more cinematic -->
+<title>Live at 8:45</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+/* Layout: phone-first terminal. One column, function-key tabs pinned at the bottom like a keyboard row, a ticker of verified receipts on top. */
+:root{
+  --bg:#0b0a08; --panel:#15130f; --line:#2c271d; --amber:#ffb000; --amber-soft:#c98d10; --ink:#f3ead7; --dim:#9c927d;
+  --go:#3ddc84; --stop:#ff4d4d; --warn:#ffcc33; --cyan:#59d8ff;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:17px/1.5 var(--sans);padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-family:var(--mono);letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.k{font:700 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--amber)}
+.dim{color:var(--dim)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* ticker */
+.ticker{position:sticky;top:0;z-index:5;background:#000;border-bottom:1px solid var(--amber-soft);overflow:hidden;white-space:nowrap;padding-top:env(safe-area-inset-top,0px)}
+.ticker .run{display:inline-block;padding:7px 0;font:600 13px var(--mono);color:var(--amber);animation:tk 70s linear infinite}
+.ticker .run span{margin-right:34px}.ticker .run b{color:var(--ink)}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker .run{animation:none;white-space:normal}}
+
+/* header */
+header{padding-block:22px 10px}
+header h1{font-size:clamp(38px,11vw,64px);color:var(--amber);line-height:.95}
+header h1 small{display:block;font-size:.38em;color:var(--ink);letter-spacing:.02em;margin-top:8px}
+.clock{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.clock div{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}
+.clock b{display:block;font:700 22px var(--mono);color:var(--ink);font-variant-numeric:tabular-nums}
+.clock span{font:600 11px var(--mono);color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+#count b{color:var(--go)}
+
+section{padding-block:26px;border-top:1px solid var(--line);scroll-margin-top:44px}
+section h2{font-size:24px;color:var(--amber);margin:6px 0 12px}
+.lead{color:var(--dim);margin-bottom:14px}
+
+/* run of show */
+.ros{display:grid;gap:0}
+.ros div{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.ros time{font:700 15px var(--mono);color:var(--amber)}
+.ros .live time{color:var(--stop)}
+.ros .live p b{color:var(--stop)}
+
+/* checklist */
+.check{display:grid;gap:8px}
+.check label{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:11px 12px}
+.check input{width:22px;height:22px;accent-color:var(--go);flex:0 0 22px;margin:1px 0 0}
+.check input:checked+span{color:var(--dim);text-decoration:line-through}
+
+/* three lines */
+.lines{display:grid;gap:12px}
+.line{background:var(--panel);border-left:4px solid var(--amber);border-radius:0 10px 10px 0;padding:14px 16px}
+.line q{display:block;font-size:20px;line-height:1.35;margin-top:6px;quotes:"\201C" "\201D"}
+.line.bridge{border-color:var(--cyan)}.line.bridge .k{color:var(--cyan)}
+.line.close{border-color:var(--go)}.line.close .k{color:var(--go)}
+
+/* drill */
+.drillhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.score{font:700 14px var(--mono);color:var(--dim)}
+.card{background:var(--panel);border:1px solid var(--amber-soft);border-radius:12px;padding:16px;display:grid;gap:12px}
+.who{display:flex;justify-content:space-between;align-items:center}
+.tag{font:700 12px var(--mono);padding:3px 8px;border-radius:4px;background:var(--amber);color:#000}
+.tag.v{background:var(--cyan)}
+.tag.trap{background:var(--stop);color:#fff}
+.q{font-size:21px;line-height:1.3;font-weight:650}
+.timer{height:8px;background:#000;border-radius:99px;overflow:hidden}
+.timer i{display:block;height:100%;width:0;background:var(--go)}
+.timer.late i{background:var(--stop)}
+.tnum{font:700 13px var(--mono);color:var(--dim)}
+.ans{border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:8px}
+.ans p.say{font-size:18px;line-height:1.5}
+.ans .why{font-size:14px;color:var(--dim)}
+.ans .why b{color:var(--amber)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--amber);background:transparent;color:var(--amber);border-radius:8px;padding:10px 14px;font:700 14px var(--mono)}
+.btn.pri{background:var(--amber);color:#000}
+.btn.go{border-color:var(--go);color:var(--go)}
+.btn.no{border-color:var(--stop);color:var(--stop)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.dots i{width:12px;height:12px;border-radius:3px;background:var(--line)}
+.dots i.got{background:var(--go)}.dots i.again{background:var(--stop)}.dots i.cur{outline:2px solid var(--amber)}
+.allq{margin-top:16px}
+.allq summary{cursor:pointer;font:700 14px var(--mono);color:var(--amber)}
+.allq ol{padding-left:20px}
+.allq li{margin:12px 0}
+.allq li b{display:block}
+
+/* receipts */
+.rc{display:grid;gap:10px}
+.r{display:grid;grid-template-columns:1fr;gap:4px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.r .n{font:800 26px var(--mono);color:var(--go);font-variant-numeric:tabular-nums}
+.r .src{font-size:13px;color:var(--dim)}
+.r .src a{color:var(--cyan)}
+.r.x .n{color:var(--stop);text-decoration:line-through}
+.r.x{border-color:#4a1d1d}
+
+/* traps */
+.traps{display:grid;gap:10px}
+.trap{background:var(--panel);border:1px solid #4a1d1d;border-radius:10px;padding:12px 14px;display:grid;gap:6px}
+.trap b{color:var(--stop);font-family:var(--mono);font-size:14px}
+
+/* goals */
+.goals{display:grid;gap:10px}
+.goal{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;background:var(--panel);border-radius:10px;padding:12px}
+.goal .g{font:800 13px var(--mono);color:#000;background:var(--go);border-radius:6px;text-align:center;padding:6px 0}
+.after{counter-reset:a;display:grid;gap:8px;margin-top:12px}
+
+/* fkeys */
+nav.fk{position:fixed;left:0;right:0;bottom:0;z-index:6;background:#000;border-top:1px solid var(--amber-soft);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav.fk .row{display:grid;grid-template-columns:repeat(6,1fr);max-width:720px;margin:0 auto;padding-left:max(6px,env(safe-area-inset-left,0px));padding-right:max(6px,env(safe-area-inset-right,0px))}
+nav.fk a{display:grid;justify-items:center;gap:2px;padding:9px 2px;text-decoration:none;color:var(--ink);font:600 11px var(--sans)}
+nav.fk a b{font:800 12px var(--mono);color:#000;background:var(--amber);border-radius:4px;padding:1px 6px}
+footer{padding-block:28px;color:var(--dim);font-size:13px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true"><div class="run" id="tick"><span><b>$3.79B</b> day-one retail sales, worldwide</span><span><b>32.5M</b> units sold before release</span><span><b>3x</b> the biggest global opening weekend any film has had</span><span><b>99</b> on Metacritic, 98 on OpenCritic</span><span><b>13 yrs</b> since GTA V (Sept 2013)</span><span><b>+99%</b> UK games retail in launch week, £142M</span><span><b>2.4x</b> US PS5 unit sales vs. a year ago, the week before launch</span><span><b>$3.35–3.50B</b> Take-Two's net bookings guide, Oct to Dec quarter</span><span><b>$3.79B</b> day-one retail sales, worldwide</span><span><b>32.5M</b> units sold before release</span><span><b>3x</b> the biggest global opening weekend any film has had</span><span><b>99</b> on Metacritic, 98 on OpenCritic</span><span><b>13 yrs</b> since GTA V (Sept 2013)</span><span><b>+99%</b> UK games retail in launch week, £142M</span><span><b>2.4x</b> US PS5 unit sales vs. a year ago, the week before launch</span><span><b>$3.35–3.50B</b> Take-Two's net bookings guide, Oct to Dec quarter</span></div></div>
+
+<div class="wrap">
+<header>
+  <p class="k">Friday 27 Nov · Bloomberg Markets · radio + TV</p>
+  <h1>LIVE AT 8:45<small>Paul Sweeney + Vonnie Quinn · GTA VI · via Zoom</small></h1>
+  <div class="clock">
+    <div><b>8:45</b><span>Pacific</span></div>
+    <div><b>11:45</b><span>Eastern</span></div>
+    <div id="count"><b>8h 56m</b><span>to air</span></div>
+  </div>
+</header>
+
+<section id="f1">
+  <p class="k">F1 · The hit</p>
+  <h2>Your morning, minute by minute.</h2>
+  <div class="ros">
+    <div><time>7:30</time><p>Water, then say your three lines out loud once (F2).</p></div>
+    <div><time>8:00</time><p>Set up. Laptop on books, camera at eyebrow height, light in front, wired internet, phone on silent.</p></div>
+    <div><time>8:15</time><p>Join the Zoom from the producer's invite. Tech check with the producer. Ask: <b>"How long do I have, and what's the first question?"</b></p></div>
+    <div><time>8:40</time><p>You're live from the moment you connect. Hide self-view. Eyes on the lens.</p></div>
+    <div class="live"><time>8:45</time><p><b>ON AIR.</b> About 4 to 7 minutes, 3 to 5 questions. Last segment before the top of the hour, so it can get cut short. Lead with your best line.</p></div>
+    <div><time>after</time><p>Hold your smile until the producer says you're clear. Then F6.</p></div>
+  </div>
+  <h3 style="font-size:16px;color:var(--amber);margin:20px 0 10px">Zoom check · tap as you go</h3>
+  <div class="check" id="check">
+    <label><input type="checkbox" id="c1"><span>Camera at eyebrow height, framed mid-chest up, a little headroom</span></label>
+    <label><input type="checkbox" id="c2"><span>Soft light in front of you, no window behind</span></label>
+    <label><input type="checkbox" id="c3"><span>Real background, a game shelf is perfect. No blur, no virtual background</span></label>
+    <label><input type="checkbox" id="c4"><span>Wired earbuds or USB mic. Never speakerphone</span></label>
+    <label><input type="checkbox" id="c5"><span>Ethernet, hotspot ready as backup. Ask the house to pause streaming</span></label>
+    <label><input type="checkbox" id="c6"><span>Notifications off on laptop and phone. Close every other app</span></label>
+    <label><input type="checkbox" id="c7"><span>Self-view hidden. Look at the lens, not their faces</span></label>
+    <label><input type="checkbox" id="c8"><span>Zoom name set to "Gordon Bellamy, USC"</span></label>
+  </div>
+</section>
+
+<section id="f2">
+  <p class="k">F2 · Three lines</p>
+  <h2>If you remember nothing else.</h2>
+  <p class="lead">Your first answer is the one they clip. Radio can't see you, so say it in words.</p>
+  <div class="lines">
+    <div class="line"><p class="k">Open with</p><q id="l-open">"A week in, GTA VI is the biggest entertainment launch ever reported, $3.79 billion on day one by Take-Two's own estimate. But the bigger story is that one game got the whole culture to show up on the same day. That almost never happens anymore."</q></div>
+    <div class="line bridge"><p class="k">Bridge with</p><q>"The stock is the analysts' call. What I can tell you is what players are doing."</q></div>
+    <div class="line close"><p class="k">Close with</p><q>"The line isn't AI or no AI. It's whose judgment is on screen. Rockstar put a person behind every corner of that world, and players can feel it."</q></div>
+  </div>
+</section>
+
+<section id="f3">
+  <p class="k">F3 · Drill</p>
+  <h2>Say it out loud. 25 seconds.</h2>
+  <p class="lead">Read the question, tap Start, answer out loud before you look. Then reveal and grade yourself honestly. Misses come back around.</p>
+  <div class="drillhead"><span class="score" id="score">0 of 11 landed</span><button class="btn" id="reset" type="button">Start over</button></div>
+  <div class="card" id="card"><div class="who"><span class="tag v ">Vonnie</span><span class="tnum" id="tn">25s</span></div>
+ <p class="q">GTA VI has been out a week. What's your verdict?</p>
+ <div class="timer" id="tb"><i></i></div>
+ <div class="btns"><button class="btn pri" id="go" type="button">Start · say it out loud</button><button class="btn" id="rv" type="button">Reveal</button></div>
+ <div class="ans" id="ans" hidden=""><p class="k">Model answer · about 25 seconds</p><p class="say">Biggest entertainment launch ever reported: $3.79 billion on day one, by Take-Two's own estimate. But the bigger story is cultural. One game got the whole world to show up on the same day. That almost never happens anymore, and Rockstar did it with patience: thirteen years and one world built with intent.</p><p class="why"><b>Why it works:</b> Number first for Paul, culture second for Vonnie, and it's the line they'll clip.</p>
+ <div class="btns"><button class="btn go" id="got" type="button">Landed it</button><button class="btn no" id="again" type="button">Again later</button></div></div></div>
+  <div class="dots" id="dots" aria-hidden="true"><i class=" cur"></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i><i class=" "></i></div>
+  <details class="allq"><summary>Show all questions and answers as a list</summary><ol id="allq"><li><b>Vonnie: GTA VI has been out a week. What's your verdict?</b>Biggest entertainment launch ever reported: $3.79 billion on day one, by Take-Two's own estimate. But the bigger story is cultural. One game got the whole world to show up on the same day. That almost never happens anymore, and Rockstar did it with patience: thirteen years and one world built with intent.</li><li><b>Paul: Help investors understand that $3.79 billion. How much of it is real money for Take-Two?</b>Good question, because it's consumer spend, not Take-Two revenue. Stores and platforms take a cut, and it likely includes pre-orders. The real tell is the next three years. GTA V kept selling for over a decade because people stayed in the world. For VI, watch month six, not day one, and watch when the online world arrives.</li><li><b>TRAP · Paul: Record launch, but the stock sold off. Why?</b>The stock is the analysts' call, and full disclosure, Take-Two supports scholarships at my nonprofit. What I see is that most of this business is what players spend after they buy the game, and GTA VI's online world hasn't launched yet. The launch proved the audience is there. The next chapter is whether they stay.</li><li><b>Vonnie: Thirteen years in development. Is that a model or a warning for the industry?</b>Both. It's a model for Rockstar and a warning for everyone else. Most studios can't wait thirteen years and shouldn't try. What they can copy is the discipline: make one place feel real before you make ten places look pretty.</li><li><b>Vonnie: What can smaller studios learn from Rockstar without matching its scale?</b>Three things travel at any budget. Make one place feel real before you make ten feel pretty. Write for what players do, not for the trailer. And trust that audiences can tell when a person made something. My students at USC ship games in weeks with four people. Same rules.</li><li><b>Paul: Rockstar built this without generative AI. Is that sustainable as AI gets better?</b>I'm Director of Ethics at USC's School of Cinematic Arts, so I live this question. Take-Two's CEO said gen AI had zero part in this game. The line isn't AI or no AI. It's whose judgment is on screen. AI can help people build faster. It can't decide what's worth building. Rockstar put a person behind every corner, and players feel it.</li><li><b>Vonnie: It's Black Friday. Does GTA VI suck the oxygen out of holiday spending?</b>It concentrates it. Families have a games budget, and this year a big piece of it has one name on it. It's selling consoles too: US PS5 sales ran more than double a year ago in the week before launch. So it lifts hardware and squeezes the mid-size games launching around it.</li><li><b>Paul: Eighty dollars. Is that the new industry standard?</b>For a world people will live in for years, players have decided it's worth it. Per hour, it's still the cheapest entertainment in the house. The risk is for games that charge eighty and deliver a weekend.</li><li><b>TRAP · Vonnie: There's a union vote at Rockstar this week. How do you see the labor side?</b>Thirteen years is a long time to ask of people. The best games come from teams that can sustain the work, so I'd want every studio, including this one, listening to its people. That's how you get the next masterpiece, not just this one.</li><li><b>Paul: You helped make Madden. How has the business changed since then?</b>When I worked on Madden '95, games were a teenage hobby. Now one game outsells Hollywood's biggest weekend in a single day. What hasn't changed is that people want to see themselves in the world. That's why I run Gay Gaming Professionals: our excellence is universal, and our lens helps the industry see who it still underestimates.</li><li><b>Vonnie: Last word. What are you watching next?</b>Three things. Whether players stay when the online world arrives. Whether thirteen years of patience changes how other studios plan. And the human-made bar Rockstar just set. Every game that ships with AI inside it will be measured against it.</li></ol></details>
+</section>
+
+<section id="f4">
+  <p class="k">F4 · Receipts</p>
+  <h2>Numbers you can say.</h2>
+  <p class="lead" id="rc-lead">Every green number is checked against a primary source. Red ones were in circulation, and in your note to Bloomberg. Don't say them.</p>
+  <div class="rc" id="rc"><div class="r "><span class="n">$3.79B</span><p><b>day-one retail sales, worldwide</b> Take-Two's own estimate, through end of day Nov 19. Consumer spend, not Take-Two revenue: stores and platforms take a cut.</p><p class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0000946581/000162828026075217/exhibit9918k.htm" target="_blank" rel="noopener">Take-Two SEC 8-K, Nov 20</a></p></div><div class="r "><span class="n">32.5M</span><p><b>units sold before release</b> Demand was locked in before anyone played it. Units, not players.</p><p class="src">Source: <a href="https://www.sec.gov/Archives/edgar/data/0000946581/000162828026075217/exhibit9918k.htm" target="_blank" rel="noopener">Take-Two SEC 8-K, Nov 20</a></p></div><div class="r "><span class="n">3x</span><p><b>the biggest global opening weekend any film has had</b> Endgame's record weekend was about $1.22B. GTA VI did over three times that in one day.</p><p class="src">Source: Box office record vs. 8-K; Darby's arithmetic</p></div><div class="r "><span class="n">99</span><p><b>on Metacritic, 98 on OpenCritic</b> Best-reviewed game ever, per Bloomberg's own Jason Schreier. A blockbuster rarely gets both size and acclaim.</p><p class="src">Source: <a href="https://www.bloomberg.com/news/articles/2026-11-18/-grand-theft-auto-vi-becomes-the-best-reviewed-video-game-ever" target="_blank" rel="noopener">Bloomberg, Nov 18</a></p></div><div class="r "><span class="n">13 yrs</span><p><b>since GTA V (Sept 2013)</b> Launched Thursday, Nov 19, 2026.</p><p class="src">Source: Release dates</p></div><div class="r "><span class="n">+99%</span><p><b>UK games retail in launch week, £142M</b> That's the whole market, hardware included. GTA VI itself was £32M.</p><p class="src">Source: <a href="https://nielseniq.com/global/en/news-center/2026/gta-vi-sends-uk-games-retail-sales-soaring-99-to-142m-in-launch-week/" target="_blank" rel="noopener">NielsenIQ, Nov 26</a></p></div><div class="r "><span class="n">2.4x</span><p><b>US PS5 unit sales vs. a year ago, the week before launch</b> People bought consoles to be ready, even at $650.</p><p class="src">Source: <a href="https://www.circana.com/post/so-how-impactful-was-the-launch-of-grand-theft-auto-vi" target="_blank" rel="noopener">Circana</a></p></div><div class="r "><span class="n">$3.35–3.50B</span><p><b>Take-Two's net bookings guide, Oct to Dec quarter</b> Where Wall Street sees how much of the launch lands on Take-Two's books.</p><p class="src">Source: Take-Two guidance</p></div><div class="r x"><span class="n">30M</span><p><b>"players on day one, per Rockstar"</b> Rockstar never said it. It's a press estimate.</p><p class="src">Don't say it: was in your Thursday note</p></div><div class="r x"><span class="n">4–5x</span><p><b>"any film's first day"</b> Wrong ratio. Use "over three times the biggest opening weekend."</p><p class="src">Don't say it: was in your Thursday note</p></div><div class="r x"><span class="n">Wed</span><p><b>"one Wednesday in November"</b> It launched Thursday, Nov 19.</p><p class="src">Don't say it: was in your Thursday note</p></div><div class="r x"><span class="n">"soulless"</span><p><b>"Rockstar said gen AI is off-putting and soulless"</b> A Tufts professor said that. Take-Two's CEO said gen AI has "zero part" in the game.</p><p class="src">Don't say it: was in your Thursday note</p></div><div class="r x"><span class="n">44.9M</span><p><b>copies, "$4B+" after the weekend</b> Third-party estimates (Alinea). Not official.</p><p class="src">Don't say it: unofficial</p></div></div>
+</section>
+
+<section id="f5">
+  <p class="k">F5 · Traps</p>
+  <h2>Where a great hit goes wrong.</h2>
+  <div class="traps" id="traps"><div class="trap"><b>"Is Take-Two a buy?"</b><p>Bloomberg's audience trades. A stock call from a guest whose nonprofit Take-Two funds is the one thing that could hurt you.</p><p class="dim">Say: “The stock's the analysts' call, and full disclosure, Take-Two supports scholarships at my nonprofit. What I can tell you is what players are doing.”</p></div><div class="trap"><b>Your Thursday note had four errors</b><p>The anchors may read from it. If they quote "30 million players per Rockstar" or "four to five times a film," correct gently and move on.</p><p class="dim">Say: “The official number is 32.5 million copies sold before launch. The 30 million is a press estimate.”</p></div><div class="trap"><b>The AI quote</b><p>"Off-putting and soulless" was a Tufts professor, not Rockstar. Take-Two's CEO said gen AI had "zero part."</p><p class="dim">Say: “Take-Two's CEO said generative AI had zero part in this game.”</p></div><div class="trap"><b>Bashing AI</b><p>You build with AI tools and work with AI companies. Praise the human judgment, not the absence of AI.</p><p class="dim">Say: “AI can help people build faster. It can't decide what's worth building.”</p></div><div class="trap"><b>"Did it cost a billion?"</b><p>No verified budget exists. Don't guess.</p><p class="dim">Say: “Rockstar hasn't said, and I'd rather not guess. What we know is it earned more on day one than any film ever has in a weekend.”</p></div><div class="trap"><b>PC version, online date</b><p>Neither is announced. Rumors aren't receipts.</p><p class="dim">Say: “Rockstar hasn't dated either yet. That's the next big moment to watch.”</p></div><div class="trap"><b>Talking over the delay</b><p>Zoom audio lags. Let them finish, pause a beat, then answer.</p><p class="dim">Say: “(One breath, then your number.)”</p></div></div>
+</section>
+
+<section id="f6">
+  <p class="k">F6 · Your goals</p>
+  <h2>What winning tomorrow looks like.</h2>
+  <div class="goals">
+    <div class="goal"><span class="g">G1</span><p><b>Your name on the AI-and-ethics door.</b> Say "Director of Ethics at USC's School of Cinematic Arts" once, early, and land the judgment line. This is your monthly AI-leadership moment, done on Bloomberg.</p></div>
+    <div class="goal"><span class="g">G2</span><p><b>Time and money.</b> A clean national TV clip is the proof that books paid talks. Ask the producer for the clip link before you hang up.</p></div>
+    <div class="goal"><span class="g">G3</span><p><b>GGP, once.</b> If Madden or the industry comes up: "That's why I run Gay Gaming Professionals." Universal excellence, particular lens. Don't stack it.</p></div>
+    <div class="goal"><span class="g">G4</span><p><b>Your people.</b> Tell your crew what time to tune in: 8:45 Pacific.</p></div>
+  </div>
+  <h3 style="font-size:16px;color:var(--amber);margin:20px 0 10px">Right after you're clear</h3>
+  <div class="check">
+    <label><input type="checkbox" id="a1"><span>Thank the producers, ask for the clip link</span></label>
+    <label><input type="checkbox" id="a2"><span>Post the clip on LinkedIn, where Bloomberg found you</span></label>
+    <label><input type="checkbox" id="a3"><span>Send the clip to your Take-Two contact</span></label>
+      </div>
+</section>
+
+<footer>Prepared for Gordon by Darby, Thursday night 26 Nov 2026. Facts checked against primary sources where listed; anything unconfirmed is marked. Not affiliated with Bloomberg, Take-Two or Rockstar.</footer>
+</div>
+
+<nav class="fk" aria-label="Sections"><div class="row">
+  <a href="#f1"><b>F1</b>Hit</a><a href="#f2"><b>F2</b>Lines</a><a href="#f3"><b>F3</b>Drill</a><a href="#f4"><b>F4</b>Numbers</a><a href="#f5"><b>F5</b>Traps</a><a href="#f6"><b>F6</b>Goals</a>
+</div></nav>
+
+<script id="data" type="application/json">{"open": "\"A week in, GTA VI is the biggest entertainment launch ever reported, $3.79 billion on day one by Take-Two's own estimate. But the bigger story is that one game got the whole culture to show up on the same day. That almost never happens anymore.\"", "rclead": "Every green number is checked against a primary source. Red ones were in circulation, and in your note to Bloomberg. Don't say them.", "receipts": [{"ok": true, "n": "$3.79B", "what": "day-one retail sales, worldwide", "mean": "Take-Two's own estimate, through end of day Nov 19. Consumer spend, not Take-Two revenue: stores and platforms take a cut.", "src": "Take-Two SEC 8-K, Nov 20", "url": "https://www.sec.gov/Archives/edgar/data/0000946581/000162828026075217/exhibit9918k.htm"}, {"ok": true, "n": "32.5M", "what": "units sold before release", "mean": "Demand was locked in before anyone played it. Units, not players.", "src": "Take-Two SEC 8-K, Nov 20", "url": "https://www.sec.gov/Archives/edgar/data/0000946581/000162828026075217/exhibit9918k.htm"}, {"ok": true, "n": "3x", "what": "the biggest global opening weekend any film has had", "mean": "Endgame's record weekend was about $1.22B. GTA VI did over three times that in one day.", "src": "Box office record vs. 8-K; Darby's arithmetic", "url": ""}, {"ok": true, "n": "99", "what": "on Metacritic, 98 on OpenCritic", "mean": "Best-reviewed game ever, per Bloomberg's own Jason Schreier. A blockbuster rarely gets both size and acclaim.", "src": "Bloomberg, Nov 18", "url": "https://www.bloomberg.com/news/articles/2026-11-18/-grand-theft-auto-vi-becomes-the-best-reviewed-video-game-ever"}, {"ok": true, "n": "13 yrs", "what": "since GTA V (Sept 2013)", "mean": "Launched Thursday, Nov 19, 2026.", "src": "Release dates", "url": ""}, {"ok": true, "n": "+99%", "what": "UK games retail in launch week, £142M", "mean": "That's the whole market, hardware included. GTA VI itself was £32M.", "src": "NielsenIQ, Nov 26", "url": "https://nielseniq.com/global/en/news-center/2026/gta-vi-sends-uk-games-retail-sales-soaring-99-to-142m-in-launch-week/"}, {"ok": true, "n": "2.4x", "what": "US PS5 unit sales vs. a year ago, the week before launch", "mean": "People bought consoles to be ready, even at $650.", "src": "Circana", "url": "https://www.circana.com/post/so-how-impactful-was-the-launch-of-grand-theft-auto-vi"}, {"ok": true, "n": "$3.35–3.50B", "what": "Take-Two's net bookings guide, Oct to Dec quarter", "mean": "Where Wall Street sees how much of the launch lands on Take-Two's books.", "src": "Take-Two guidance", "url": ""}, {"ok": false, "n": "30M", "what": "\"players on day one, per Rockstar\"", "mean": "Rockstar never said it. It's a press estimate.", "src": "was in your Thursday note", "url": ""}, {"ok": false, "n": "4–5x", "what": "\"any film's first day\"", "mean": "Wrong ratio. Use \"over three times the biggest opening weekend.\"", "src": "was in your Thursday note", "url": ""}, {"ok": false, "n": "Wed", "what": "\"one Wednesday in November\"", "mean": "It launched Thursday, Nov 19.", "src": "was in your Thursday note", "url": ""}, {"ok": false, "n": "\"soulless\"", "what": "\"Rockstar said gen AI is off-putting and soulless\"", "mean": "A Tufts professor said that. Take-Two's CEO said gen AI has \"zero part\" in the game.", "src": "was in your Thursday note", "url": ""}, {"ok": false, "n": "44.9M", "what": "copies, \"$4B+\" after the weekend", "mean": "Third-party estimates (Alinea). Not official.", "src": "unofficial", "url": ""}], "drill": [{"who": "Vonnie", "q": "GTA VI has been out a week. What's your verdict?", "a": "Biggest entertainment launch ever reported: $3.79 billion on day one, by Take-Two's own estimate. But the bigger story is cultural. One game got the whole world to show up on the same day. That almost never happens anymore, and Rockstar did it with patience: thirteen years and one world built with intent.", "why": "Number first for Paul, culture second for Vonnie, and it's the line they'll clip.", "secs": 25}, {"who": "Paul", "q": "Help investors understand that $3.79 billion. How much of it is real money for Take-Two?", "a": "Good question, because it's consumer spend, not Take-Two revenue. Stores and platforms take a cut, and it likely includes pre-orders. The real tell is the next three years. GTA V kept selling for over a decade because people stayed in the world. For VI, watch month six, not day one, and watch when the online world arrives.", "why": "Paul was a media analyst. Showing you know retail vs. revenue earns his respect instantly.", "secs": 25}, {"who": "Paul", "q": "Record launch, but the stock sold off. Why?", "a": "The stock is the analysts' call, and full disclosure, Take-Two supports scholarships at my nonprofit. What I see is that most of this business is what players spend after they buy the game, and GTA VI's online world hasn't launched yet. The launch proved the audience is there. The next chapter is whether they stay.", "why": "Disclosure plus bridge. You stay credible and never make a stock call.", "secs": 25, "trap": true}, {"who": "Vonnie", "q": "Thirteen years in development. Is that a model or a warning for the industry?", "a": "Both. It's a model for Rockstar and a warning for everyone else. Most studios can't wait thirteen years and shouldn't try. What they can copy is the discipline: make one place feel real before you make ten places look pretty.", "why": "Short, quotable, and it answers the question the producer said they want.", "secs": 20}, {"who": "Vonnie", "q": "What can smaller studios learn from Rockstar without matching its scale?", "a": "Three things travel at any budget. Make one place feel real before you make ten feel pretty. Write for what players do, not for the trailer. And trust that audiences can tell when a person made something. My students at USC ship games in weeks with four people. Same rules.", "why": "This is the angle the producer asked for. Three is the number people remember.", "secs": 25}, {"who": "Paul", "q": "Rockstar built this without generative AI. Is that sustainable as AI gets better?", "a": "I'm Director of Ethics at USC's School of Cinematic Arts, so I live this question. Take-Two's CEO said gen AI had zero part in this game. The line isn't AI or no AI. It's whose judgment is on screen. AI can help people build faster. It can't decide what's worth building. Rockstar put a person behind every corner, and players feel it.", "why": "Uses the verified Zelnick quote, says your title, and keeps you credible with the AI builders you work with.", "secs": 25}, {"who": "Vonnie", "q": "It's Black Friday. Does GTA VI suck the oxygen out of holiday spending?", "a": "It concentrates it. Families have a games budget, and this year a big piece of it has one name on it. It's selling consoles too: US PS5 sales ran more than double a year ago in the week before launch. So it lifts hardware and squeezes the mid-size games launching around it.", "why": "A consumer angle for a Black Friday show, with one verified number.", "secs": 20}, {"who": "Paul", "q": "Eighty dollars. Is that the new industry standard?", "a": "For a world people will live in for years, players have decided it's worth it. Per hour, it's still the cheapest entertainment in the house. The risk is for games that charge eighty and deliver a weekend.", "why": "Owns the price question without defending or attacking Take-Two.", "secs": 15}, {"who": "Vonnie", "q": "There's a union vote at Rockstar this week. How do you see the labor side?", "a": "Thirteen years is a long time to ask of people. The best games come from teams that can sustain the work, so I'd want every studio, including this one, listening to its people. That's how you get the next masterpiece, not just this one.", "why": "Respectful, values-led, no claims about an unresolved vote.", "secs": 20, "trap": true}, {"who": "Paul", "q": "You helped make Madden. How has the business changed since then?", "a": "When I worked on Madden '95, games were a teenage hobby. Now one game outsells Hollywood's biggest weekend in a single day. What hasn't changed is that people want to see themselves in the world. That's why I run Gay Gaming Professionals: our excellence is universal, and our lens helps the industry see who it still underestimates.", "why": "Your story, GGP once, in your words: universal excellence, particular lens, underestimated.", "secs": 25}, {"who": "Vonnie", "q": "Last word. What are you watching next?", "a": "Three things. Whether players stay when the online world arrives. Whether thirteen years of patience changes how other studios plan. And the human-made bar Rockstar just set. Every game that ships with AI inside it will be measured against it.", "why": "Your closer from Thursday's note, corrected and tightened. Ends on the future, not the stock.", "secs": 20}], "traps": [{"t": "\"Is Take-Two a buy?\"", "d": "Bloomberg's audience trades. A stock call from a guest whose nonprofit Take-Two funds is the one thing that could hurt you.", "say": "The stock's the analysts' call, and full disclosure, Take-Two supports scholarships at my nonprofit. What I can tell you is what players are doing."}, {"t": "Your Thursday note had four errors", "d": "The anchors may read from it. If they quote \"30 million players per Rockstar\" or \"four to five times a film,\" correct gently and move on.", "say": "The official number is 32.5 million copies sold before launch. The 30 million is a press estimate."}, {"t": "The AI quote", "d": "\"Off-putting and soulless\" was a Tufts professor, not Rockstar. Take-Two's CEO said gen AI had \"zero part.\"", "say": "Take-Two's CEO said generative AI had zero part in this game."}, {"t": "Bashing AI", "d": "You build with AI tools and work with AI companies. Praise the human judgment, not the absence of AI.", "say": "AI can help people build faster. It can't decide what's worth building."}, {"t": "\"Did it cost a billion?\"", "d": "No verified budget exists. Don't guess.", "say": "Rockstar hasn't said, and I'd rather not guess. What we know is it earned more on day one than any film ever has in a weekend."}, {"t": "PC version, online date", "d": "Neither is announced. Rumors aren't receipts.", "say": "Rockstar hasn't dated either yet. That's the next big moment to watch."}, {"t": "Talking over the delay", "d": "Zoom audio lags. Let them finish, pause a beat, then answer.", "say": "(One breath, then your number.)"}]}</script>
+<script>
+const D=JSON.parse(document.getElementById('data').textContent);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+// ticker
+const t=D.receipts.filter(r=>r.ok).map(r=>`<span><b>${esc(r.n)}</b> ${esc(r.what)}</span>`).join("");
+$("#tick").innerHTML=t+t;
+
+$("#l-open").textContent=D.open;
+
+// countdown
+function tickClock(){const air=Date.parse("2026-11-27T16:45:00Z"),now=Date.now(),d=air-now,el=$("#count b");
+ if(d>0){const h=Math.floor(d/3.6e6),m=Math.floor(d%3.6e6/6e4);el.textContent=h?`${h}h ${m}m`:`${m}m`}else if(d>-6*6e4){el.textContent="LIVE";el.style.color="var(--stop)"}else{el.textContent="done";el.style.color="var(--dim)"}}
+tickClock();setInterval(tickClock,30000);
+
+// checklists persist
+document.querySelectorAll('.check input').forEach(cb=>{const s=store.get('bb-ck',{});cb.checked=!!s[cb.id];cb.addEventListener('change',()=>{const s=store.get('bb-ck',{});s[cb.id]=cb.checked;store.set('bb-ck',s)})});
+
+// drill
+const Q=D.drill;
+let st=store.get('bb-drill',null)||{queue:Q.map((_,i)=>i),res:{},cur:null};
+let timer=null,t0=0,revealed=false;
+function save(){store.set('bb-drill',st)}
+function drawDots(){$("#dots").innerHTML=Q.map((_,i)=>`<i class="${st.res[i]||""} ${i===st.queue[0]?"cur":""}"></i>`).join("");
+ const got=Object.values(st.res).filter(v=>v==="got").length;$("#score").textContent=`${got} of ${Q.length} landed`}
+function drawCard(){
+ clearInterval(timer);revealed=false;
+ if(!st.queue.length){$("#card").innerHTML=`<p class="q">All ${Q.length} landed. You're ready.</p><p class="dim">Run your three lines once more at 7:30, then stop rehearsing. Fresh beats memorized.</p>`;drawDots();return}
+ const i=st.queue[0],q=Q[i];
+ $("#card").innerHTML=`<div class="who"><span class="tag ${q.who==="Vonnie"?"v":""} ${q.trap?"trap":""}">${q.trap?"TRAP · ":""}${esc(q.who)}</span><span class="tnum" id="tn">25s</span></div>
+ <p class="q">${esc(q.q)}</p>
+ <div class="timer" id="tb"><i></i></div>
+ <div class="btns"><button class="btn pri" id="go" type="button">Start · say it out loud</button><button class="btn" id="rv" type="button">Reveal</button></div>
+ <div class="ans" id="ans" hidden><p class="k">Model answer · about ${q.secs||25} seconds</p><p class="say">${esc(q.a)}</p><p class="why"><b>Why it works:</b> ${esc(q.why)}</p>
+ <div class="btns"><button class="btn go" id="got" type="button">Landed it</button><button class="btn no" id="again" type="button">Again later</button></div></div>`;
+ $("#go").onclick=()=>{t0=Date.now();clearInterval(timer);timer=setInterval(()=>{const s=(Date.now()-t0)/1000,p=Math.min(100,s/25*100);$("#tb i").style.width=p+"%";$("#tn").textContent=Math.max(0,25-Math.floor(s))+"s";if(s>=25){$("#tb").classList.add("late");$("#tn").textContent="time";clearInterval(timer)}},100)};
+ $("#rv").onclick=()=>{clearInterval(timer);$("#ans").hidden=false;$("#ans").scrollIntoView({block:"nearest",behavior:"smooth"})};
+ $("#got").onclick=()=>{st.res[i]="got";st.queue.shift();save();drawCard()};
+ $("#again").onclick=()=>{st.res[i]="again";st.queue.shift();st.queue.splice(Math.min(2,st.queue.length),0,i);save();drawCard()};
+ drawDots();
+}
+$("#reset").onclick=()=>{st={queue:Q.map((_,i)=>i),res:{},cur:null};save();drawCard()};
+$("#allq").innerHTML=Q.map(q=>`<li><b>${q.trap?"TRAP · ":""}${esc(q.who)}: ${esc(q.q)}</b>${esc(q.a)}</li>`).join("");
+drawCard();
+
+// receipts
+$("#rc-lead").textContent=D.rclead;
+$("#rc").innerHTML=D.receipts.map(r=>`<div class="r ${r.ok?"":"x"}"><span class="n">${esc(r.n)}</span><p><b>${esc(r.what)}</b> ${esc(r.mean||"")}</p><p class="src">${r.ok?"Source":"Don't say it"}: ${r.url?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.src)}</a>`:esc(r.src)}</p></div>`).join("");
+
+// traps
+$("#traps").innerHTML=D.traps.map(t=>`<div class="trap"><b>${esc(t.t)}</b><p>${esc(t.d)}</p><p class="dim">Say: “${esc(t.say)}”</p></div>`).join("");
+</script>
+
+
+</body></html>
