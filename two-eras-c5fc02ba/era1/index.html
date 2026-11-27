@@ -1,0 +1,1259 @@
+<!doctype html>
+<!-- STYLE: Emory Douglas genre screenprint poster (Bay Area Black-pride print tradition): flat spot color, heavy black contour, halftone, misregistration, hand-cut display type | WHY: his childhood password was "black is beautiful" and Era 1 ends in the Bay Area, so a dignified, joyful poster register fits the boy and the young man before the crossings of Era 2 | ALT: 16-bit Genesis-era sprite career mode (his commissioned taste, the hardware he shipped on) -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Create-a-Player: Gordon</title>
+<meta name="description" content="Era 1, 1970 to 2010. Build Gordon Bellamy one true moment at a time.">
+<meta name="color-scheme" content="light dark">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Archivo:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Permanent+Marker&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f1e4c3; --paper2:#e8d6ab; --ink:#17110d; --ink-soft:#3b2f26;
+  --ground:#f1e4c3; --text:#17110d; --panel:#fbf1d6; --line:#17110d;
+  --play:#ef7d1a; --mind:#1d5fc4; --voice:#f4c20d; --team:#23864a; --maker:#d8321f; --visible:#e04a8a; --enough:#c9971c;
+  --sun:#f6c018; --red:#d8321f; --blue:#1d5fc4; --pink:#e04a8a; --green:#23864a;
+  --shadow:6px 6px 0 var(--ink);
+  --display:'Bowlby One', 'Arial Black', Impact, sans-serif;
+  --body:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --hand:'Permanent Marker', 'Comic Sans MS', cursive;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#141009; --text:#f1e4c3; --panel:#221a12; --line:#f1e4c3; --ink-soft:#d9c9a3;
+    --shadow:6px 6px 0 #000;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#141009; --text:#f1e4c3; --panel:#221a12; --line:#f1e4c3; --ink-soft:#d9c9a3; --shadow:6px 6px 0 #000;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--ground); color:var(--text); font-family:var(--body); font-size:17px; line-height:1.45;
+  background-image:radial-gradient(rgba(23,17,13,.09) 1px, transparent 1.2px);
+  background-size:7px 7px; overflow-x:hidden;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body{background-image:radial-gradient(rgba(241,228,195,.06) 1px, transparent 1.2px)}}
+:root[data-theme="dark"] body{background-image:radial-gradient(rgba(241,228,195,.06) 1px, transparent 1.2px)}
+img{max-width:100%;height:auto;display:block}
+@media (max-width:999px){html.js body.ended .card{display:none}}
+a{color:inherit}
+button{font:inherit;color:inherit}
+
+/* ---------- top bar: the season strip ---------- */
+.bar{position:sticky;top:0;z-index:30;background:var(--ink);color:var(--paper);display:flex;align-items:center;gap:10px;padding:8px 16px;border-bottom:4px solid var(--sun)}
+.bar .mark{font-family:var(--display);font-size:15px;letter-spacing:.5px;white-space:nowrap}
+.season{display:flex;gap:4px;flex:1;min-width:0;overflow:hidden}
+.season a{flex:1;min-width:6px;height:14px;background:#4a3d31;border:2px solid var(--paper);text-decoration:none;transform:skewX(-12deg)}
+.season a.done{background:var(--sun)}
+.season a.here{background:var(--red)}
+.snd{background:var(--sun);color:var(--ink);border:3px solid var(--paper);font-family:var(--display);font-size:13px;padding:4px 8px;cursor:pointer;transform:rotate(-2deg)}
+.snd[aria-pressed="false"]{background:transparent;color:var(--paper)}
+html:not(.js) .snd, html:not(.js) .season{display:none}
+
+/* ---------- layout ---------- */
+.wrap>*,.stage>*,.title-grid>*{min-width:0}
+h1,h2,.when,.line{overflow-wrap:break-word}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px 140px;display:grid;grid-template-columns:1fr;gap:24px}
+@media (min-width:1000px){.wrap{grid-template-columns:minmax(0,1fr) 340px;padding-bottom:60px}}
+
+/* ---------- title screen ---------- */
+.title{position:relative;padding:22px 0 8px}
+.title-grid{display:grid;gap:18px;align-items:center}
+@media (min-width:760px){.title-grid{grid-template-columns:1.05fr .95fr}}
+.title h1{font-family:var(--display);font-weight:400;font-size:clamp(46px,11vw,104px);line-height:.86;margin:0;letter-spacing:-1px;text-transform:uppercase}
+.title h1 .l1{display:block;color:var(--red);text-shadow:4px 4px 0 var(--line)}
+.title h1 .l2{display:block;color:var(--text)}
+.title h1 .l3{display:inline-block;background:var(--sun);color:var(--ink);padding:0 10px;transform:rotate(-2deg);margin-top:6px;border:4px solid var(--ink)}
+.title .sub{font-size:19px;max-width:30ch;margin:14px 0 0}
+.title .poster img{border:5px solid var(--ink);box-shadow:var(--shadow);transform:rotate(1.2deg)}
+.idcard{margin-top:16px;border:4px solid var(--line);background:var(--panel);padding:12px 14px;box-shadow:var(--shadow);display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:15px}
+.idcard b{font-family:var(--display);font-weight:400;font-size:13px;color:var(--red);align-self:center}
+.start{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+.btn{font-family:var(--display);font-size:20px;text-transform:uppercase;background:var(--red);color:var(--paper);border:4px solid var(--ink);padding:12px 20px;box-shadow:var(--shadow);cursor:pointer;transform:rotate(-1deg);transition:transform .12s, box-shadow .12s}
+.btn:hover{transform:rotate(-1deg) translate(-2px,-2px);box-shadow:8px 8px 0 var(--ink)}
+.btn:active{transform:rotate(-1deg) translate(4px,4px);box-shadow:2px 2px 0 var(--ink)}
+.btn.alt{background:var(--panel);color:var(--text);font-size:15px;transform:rotate(1deg)}
+.btn.sun{background:var(--sun);color:var(--ink)}
+.btn.blue{background:var(--blue)}
+.btn.green{background:var(--green)}
+.btn.pink{background:var(--pink)}
+.btn[disabled]{opacity:.45;cursor:default}
+html:not(.js) .start{display:none}
+
+/* ---------- chapter ---------- */
+.ch{position:relative;padding:26px 0 30px;border-top:0}
+html:not(.js) .ch{border-width:8px 0 0;border-style:solid;border-color:var(--line);margin-top:24px}
+html.js .ch{display:none}
+html.js .ch.active{display:block}
+html.js .title.gone{display:none}
+.ch-head{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.when{font-family:var(--display);font-size:clamp(30px,8vw,58px);line-height:.9;color:var(--ch, var(--red));-webkit-text-stroke:2px var(--line);paint-order:stroke fill;text-shadow:3px 3px 0 var(--line)}
+.ch h2{font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,44px);line-height:.95;margin:0;text-transform:uppercase;flex-basis:100%}
+.ch h2 .w{display:inline-block}
+.stage{display:grid;gap:18px}
+@media (min-width:760px){.stage{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start}}
+.poster{margin:0;position:relative}
+.poster img{border:5px solid var(--ink);box-shadow:var(--shadow);background:var(--paper2);aspect-ratio:4/5;object-fit:cover;width:100%}
+@media (max-width:759px){html.js .stage>.poster img{aspect-ratio:16/9;object-position:50% 28%;max-height:26vh}.ch{padding-top:14px}.ch-head{margin-bottom:8px}}
+.tag{position:absolute;left:10px;bottom:10px;background:var(--ink);color:var(--paper);font-size:12px;font-weight:600;padding:3px 7px}
+.verb{font-family:var(--display);font-size:22px;line-height:1.05;margin:0 0 10px;background:var(--ch,var(--red));color:var(--paper);display:inline-block;padding:6px 12px;border:4px solid var(--ink);transform:rotate(-1.5deg);box-shadow:4px 4px 0 var(--ink)}
+.ch[data-c="voice"] .verb,.ch[data-c="enough"] .verb{color:var(--ink)}
+.toy{position:relative;border:4px solid var(--line);background:var(--panel);min-height:250px;box-shadow:var(--shadow);overflow:hidden;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+html:not(.js) .toy, html:not(.js) .verb, html:not(.js) .next, html:not(.js) .skip{display:none}
+.hint{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-weight:800;font-size:15px;pointer-events:none}
+.skip{background:none;border:0;text-decoration:underline;font-size:14px;cursor:pointer;margin-top:8px;color:var(--ink-soft)}
+
+/* reveal */
+.reveal{margin-top:18px}
+html.js .ch:not(.done) .reveal{display:none}
+.line{font-family:var(--display);font-weight:400;font-size:clamp(20px,4.4vw,30px);line-height:1.3;margin:0 0 14px}
+.line em{font-style:normal;background:var(--sun);color:var(--ink);padding:0 4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+blockquote{margin:0 0 12px;padding:12px 14px 12px 16px;border-left:8px solid var(--ch,var(--red));background:var(--panel);font-size:17px;font-style:italic}
+blockquote cite{display:block;font-style:normal;font-size:13px;margin-top:6px;color:var(--ink-soft)}
+.scrap{margin:0 0 12px;background:#fff;border:3px solid var(--ink);padding:8px;box-shadow:var(--shadow);transform:rotate(-1deg)}
+.scrap img{width:100%;height:auto}
+.scrap figcaption{font-size:13px;color:#3b2f26;margin-top:6px}
+.scrap.small{max-width:300px}
+.scrap.tilt{transform:rotate(1.5deg)}
+.earn{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0;padding:0;list-style:none}
+.earn li{font-family:var(--display);font-size:15px;border:3px solid var(--ink);padding:4px 9px;transform:rotate(-2deg);box-shadow:3px 3px 0 var(--ink)}
+.earn li.item{background:var(--paper);color:var(--ink);transform:rotate(1.5deg)}
+.s-play{background:var(--play);color:var(--ink)}.s-mind{background:var(--mind);color:var(--paper)}.s-voice{background:var(--voice);color:var(--ink)}
+.s-team{background:var(--team);color:var(--paper)}.s-maker{background:var(--maker);color:var(--paper)}.s-visible{background:var(--visible);color:var(--ink)}.s-enough{background:var(--enough);color:var(--ink)}
+.note{font-size:13px;color:var(--ink-soft);margin:8px 0 0}
+.next{margin-top:18px}
+.beat2{margin-top:16px}
+
+/* ---------- player card ---------- */
+.card{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--ink);color:var(--paper);border-width:5px 0 0;border-style:solid;border-color:var(--sun);padding:8px 16px 10px;transition:transform .3s}
+.card h3{font-family:var(--display);font-weight:400;font-size:14px;margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card .toggle{background:var(--sun);color:var(--ink);border:2px solid var(--paper);font-family:var(--display);font-size:12px;padding:2px 8px;cursor:pointer}
+.tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:6px}
+.tab{background:#2b2219;border:2px solid var(--paper);padding:3px 4px 4px;position:relative}
+.tab .nm{font-family:var(--display);font-size:10px;letter-spacing:.3px;display:block;white-space:nowrap;overflow:hidden}
+.pips{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin-top:3px}
+.pip{height:7px;background:#4a3d31}
+.tab[data-s="play"] .pip.on{background:var(--play)}.tab[data-s="mind"] .pip.on{background:var(--mind)}.tab[data-s="voice"] .pip.on{background:var(--voice)}
+.tab[data-s="team"] .pip.on{background:var(--team)}.tab[data-s="maker"] .pip.on{background:var(--maker)}.tab[data-s="visible"] .pip.on{background:var(--visible)}
+.tab.lock::after{content:"NOT OUT YET";position:absolute;inset:0;display:grid;place-items:center;background:repeating-linear-gradient(-45deg,#2b2219 0 6px,#3a2e23 6px 12px);font-family:var(--display);font-size:8px;color:var(--visible)}
+.tab.bump{animation:bump .5s}
+@keyframes bump{30%{transform:scale(1.18) rotate(-3deg)}100%{transform:none}}
+.enough{display:none;margin-top:6px;font-family:var(--display);font-size:12px;color:var(--enough)}
+.enough.on{display:block}
+.items{display:none;margin-top:8px;grid-template-columns:repeat(4,1fr);gap:5px}
+.card.open .items{display:grid}
+.items span{font-size:11px;line-height:1.1;border:2px solid var(--paper);padding:4px;min-height:34px;background:#2b2219}
+.items span.got{background:var(--paper);color:var(--ink);font-weight:700}
+.legend{display:none;font-size:11px;margin-top:6px;color:#d9c9a3}
+.card.open .legend{display:block}
+@media (max-width:999px){
+  html.js .card{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px;padding:6px 12px 8px}
+  html.js .card h3{font-size:12px;grid-column:1;flex-direction:column;align-items:flex-start;gap:3px}
+  html.js .card .tabs{grid-column:2;margin-top:0;gap:4px}
+  html.js .card .tab .nm{font-size:8.5px}
+  html.js .card .enough,html.js .card .items,html.js .card .legend{grid-column:1 / -1}
+}
+html:not(.js) .card{position:static;margin:30px 16px}
+html:not(.js) .card .items{display:grid}
+@media (min-width:1000px){
+  .card{position:sticky;top:60px;align-self:start;border:5px solid var(--ink);box-shadow:var(--shadow);padding:14px;margin-top:22px}
+  .card .toggle{display:none}
+  .card .items{display:grid}
+  .card .legend{display:block}
+  .tabs{grid-template-columns:repeat(2,1fr)}
+  .tab .nm{font-size:13px}
+  .pip{height:10px}
+  html:not(.js) .card{position:static}
+}
+
+/* flying stamp */
+.fly{position:fixed;z-index:60;font-family:var(--display);font-size:22px;border:4px solid var(--ink);padding:4px 10px;pointer-events:none;box-shadow:4px 4px 0 var(--ink)}
+.splat{position:absolute;z-index:5;pointer-events:none;font-family:var(--display);font-size:34px;color:var(--red);border:5px solid var(--red);padding:2px 10px;transform:rotate(-12deg);opacity:.92;mix-blend-mode:multiply;background:transparent}
+
+/* halftone wipe */
+.wipe{position:fixed;inset:0;z-index:50;pointer-events:none;background:radial-gradient(circle, var(--ink) 0 var(--r,0px), transparent calc(var(--r,0px) + .5px));background-size:22px 22px;opacity:0}
+
+/* ---------- toys ---------- */
+/* kick */
+.pitch{position:absolute;inset:0;background:linear-gradient(var(--green),#1b6a3a)}
+.pitch .stripe{position:absolute;left:0;right:0;height:18%;background:rgba(255,255,255,.07)}
+.goal{position:absolute;left:50%;top:18px;width:62%;height:44%;transform:translateX(-50%);border:6px solid #fff;border-bottom:0;background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 2px,transparent 2px 14px),repeating-linear-gradient(0deg,rgba(255,255,255,.35) 0 2px,transparent 2px 14px)}
+.goal.ripple{animation:ripple .5s}
+@keyframes ripple{40%{transform:translateX(-50%) scaleY(1.06)}}
+.ball{position:absolute;left:50%;bottom:52px;width:64px;height:64px;margin-left:-32px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 45%,#ddd 46%);border:4px solid var(--ink);cursor:pointer;animation:bob 1.2s ease-in-out infinite}
+.ball::before{content:"";position:absolute;inset:16px;background:var(--ink);clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%)}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.ball.shot{animation:shot .7s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes shot{0%{transform:scale(1)}100%{transform:translate(var(--dx,30px),-170px) scale(.45) rotate(540deg)}}
+.crowd{position:absolute;left:0;right:0;top:0;height:16px;background:repeating-linear-gradient(90deg,var(--sun) 0 10px,var(--red) 10px 20px,var(--blue) 20px 30px,var(--pink) 30px 40px)}
+.crowd.go{animation:crowd .25s steps(2) 8}
+@keyframes crowd{50%{transform:translateY(-4px)}}
+
+/* freeze */
+.room{position:absolute;inset:0;background:var(--sun)}
+.obj{position:absolute;width:74px;height:74px;cursor:pointer;animation:float 2.4s ease-in-out infinite}
+.obj svg{width:100%;height:100%}
+.obj:nth-child(2){animation-delay:-.8s}.obj:nth-child(3){animation-delay:-1.6s}
+@keyframes float{50%{transform:translateY(-14px) rotate(6deg)}}
+.obj.frost{animation:frost .9s}
+@keyframes frost{0%{filter:none}25%{filter:brightness(1.8) saturate(.2) drop-shadow(0 0 8px #9fe3ff)}60%{transform:rotate(-14deg) scale(1.1)}100%{filter:none;transform:none}}
+.powers{position:absolute;inset:auto 10px 10px 10px;display:none;gap:8px}
+.powers.on{display:grid;grid-template-columns:1fr 1fr}
+.powers button{border:4px solid var(--ink);background:var(--panel);padding:10px;font-weight:800;font-size:15px;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
+.powers button:nth-child(2){background:var(--pink)}
+
+/* electric football */
+.board{position:absolute;left:8%;right:8%;top:16%;bottom:28%;background:#2f8f4e;border:6px solid #8a5a2b;outline:4px solid var(--ink)}
+.board .yd{position:absolute;top:0;bottom:0;width:2px;background:rgba(255,255,255,.6)}
+.fig{position:absolute;width:12px;height:18px;border:2px solid var(--ink)}
+.fig.h{background:#c9d4e8}.fig.a{background:#fff}
+.board.buzz .fig{animation:jit .06s infinite}
+@keyframes jit{25%{transform:translate(1px,-1px)}75%{transform:translate(-1px,1px)}}
+.flake{position:absolute;width:5px;height:5px;background:#fff;border-radius:50%;opacity:.9}
+.windline{position:absolute;height:3px;background:#fff;opacity:.8;left:-30%;width:30%;animation:wind .7s linear infinite}
+@keyframes wind{to{left:110%}}
+.ctrls{position:absolute;left:8px;right:8px;bottom:8px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.ctrls button{font-family:var(--display);font-size:15px;border:3px solid var(--ink);background:var(--panel);padding:6px 12px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.ctrls button[aria-pressed="true"]{background:var(--sun);color:var(--ink)}
+
+/* seats / podium */
+.seats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:18px 14px 70px}
+.seat{aspect-ratio:3/4;border:4px dashed var(--line);display:grid;place-items:center;cursor:pointer;background:transparent;font-family:var(--display);font-size:28px}
+.seat.on{border-style:solid;background:var(--mind);color:var(--paper);animation:pop .35s}
+@keyframes pop{0%{transform:scale(.6)}70%{transform:scale(1.12)}100%{transform:none}}
+.hold{position:relative;overflow:hidden}
+.hold .fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--sun);mix-blend-mode:multiply}
+
+/* doors */
+.doors{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;padding:14px 12px 46px}
+.door{aspect-ratio:2/3;border:4px solid var(--ink);cursor:pointer;position:relative;font-family:var(--display);font-size:13px;display:flex;align-items:flex-end;justify-content:center;padding:4px;color:var(--ink);line-height:1}
+.door::after{content:"";position:absolute;right:6px;top:50%;width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.door.st{animation:pop .3s}
+.door.st::before{content:"";position:absolute;inset:18% 12%;border:4px solid var(--red);border-radius:50%;transform:rotate(-14deg)}
+.counter{position:absolute;right:10px;top:8px;font-family:var(--display);font-size:22px}
+
+/* stars */
+.sky{position:absolute;inset:0;background:#0f1d47}
+.sky svg{position:absolute;inset:0;width:100%;height:100%}
+.star{cursor:pointer}
+.star circle{fill:#f6e9b8;transition:r .2s}
+.star.lit circle{fill:var(--sun)}
+
+/* envelopes */
+.envs{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
+.env{aspect-ratio:4/3;border:4px solid var(--ink);cursor:pointer;font-family:var(--display);font-size:20px;color:var(--paper);display:grid;place-items:center;box-shadow:4px 4px 0 var(--ink);position:relative;overflow:hidden}
+.env::before{content:"";position:absolute;left:0;right:0;top:0;height:55%;background:rgba(0,0,0,.18);clip-path:polygon(0 0,100% 0,50% 100%)}
+.env.h{background:#a51c30}.env.s{background:#8c1515}
+.env.open{animation:pop .35s}
+.cart{margin:0 16px 16px;display:flex;align-items:center;gap:12px}
+.slot{width:110px;height:42px;background:#222;border:4px solid var(--ink);position:relative}
+.chip{width:90px;height:56px;background:#333;border:4px solid var(--ink);cursor:pointer;position:relative;color:#ccc;font-size:11px;display:grid;place-items:center;font-weight:800;transition:transform .25s}
+.chip.in{transform:translateX(-60px) translateY(10px) scale(.9)}
+
+/* credits */
+.credits{list-style:none;margin:0;padding:14px 14px 50px;font-family:'Archivo',sans-serif}
+.credits li{display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:2px dotted var(--line);cursor:pointer;position:relative;font-weight:600}
+.credits li span:last-child{font-family:var(--display);font-weight:400;font-size:14px}
+.credits li.hung span:last-child{color:var(--red)}
+.credits li.hung{opacity:.55;text-decoration:line-through}
+.credits li.answer{background:var(--sun);color:var(--ink)}
+.credits li.special{border-width:4px 0 0;border-style:solid;border-color:var(--line);margin-top:8px}
+
+/* legal pad */
+.pad{position:relative;margin:12px;background:#f9e46a;border:3px solid var(--ink);aspect-ratio:8.5/11;max-height:340px;background-image:repeating-linear-gradient(transparent 0 22px,#7fb2e0 22px 23px);overflow:hidden}
+.pad::before{content:"";position:absolute;left:34px;top:0;bottom:0;width:2px;background:#e05a5a}
+.pad svg{position:absolute;inset:0;width:100%;height:100%}
+.pad .draw path{stroke:var(--ink);stroke-width:3;fill:none;stroke-dasharray:600;stroke-dashoffset:600}
+.pad .draw.go path{animation:draw 1.1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pad .hw{position:absolute;left:44px;top:4px;font-family:var(--hand);font-size:22px;color:#1f3f8f}
+.plays{display:flex;gap:8px;flex-wrap:wrap;padding:0 12px 14px}
+.plays button{border:3px solid var(--ink);background:var(--panel);font-weight:800;padding:7px 10px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.sheet{position:absolute;width:60px;height:78px;background:#fff;border:2px solid var(--ink);right:20px;top:20px;animation:sheet .9s ease-in forwards}
+@keyframes sheet{to{transform:translate(-160px,140px) rotate(-30deg) scale(.4);opacity:0}}
+
+/* roster */
+.roster{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;padding:20px 10px 8px}
+.roster svg{width:100%;height:auto}
+.roster .skin{transition:fill .5s}
+.swatches{display:flex;gap:10px;justify-content:center;padding:6px 10px 14px;flex-wrap:wrap}
+.swatches button{width:44px;height:44px;border:4px solid var(--ink);cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.swatches button[aria-pressed="true"]{outline:4px solid var(--sun);outline-offset:2px}
+.lockin{display:flex;justify-content:center;padding-bottom:14px}
+
+/* catch */
+.field{position:absolute;inset:0;background:linear-gradient(#f6c018 0 60%, #ef7d1a 60%)}
+.troph{position:absolute;width:56px;height:84px;left:-70px;top:30%}
+.troph.arc{animation:arc 2.2s linear infinite}
+@keyframes arc{0%{left:-70px;top:60%}50%{left:45%;top:8%}100%{left:105%;top:60%}}
+.troph.caught{animation:none;left:calc(50% - 28px);top:28%;transform:scale(1.4)}
+.mitt{position:absolute;left:calc(50% - 50px);top:22%;width:100px;height:100px;border:5px dashed var(--ink);border-radius:50%}
+.catchbtn{position:absolute;left:50%;bottom:16px;transform:translateX(-50%)}
+.car{position:relative;height:60px;margin-top:10px;border-bottom:4px solid var(--line);overflow:hidden}
+.car span{position:absolute;bottom:4px;left:-120px;width:100px;height:34px;background:var(--blue);border:3px solid var(--ink)}
+.car span::before,.car span::after{content:"";position:absolute;bottom:-12px;width:18px;height:18px;border-radius:50%;background:var(--ink)}
+.car span::before{left:10px}.car span::after{right:10px}
+.car.go span{animation:drive 2.4s ease-in forwards}
+@keyframes drive{to{left:110%}}
+
+/* shelf */
+.shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:16px 12px 8px}
+.spine{aspect-ratio:1/2.4;border:4px solid var(--ink);display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font-family:var(--display);font-size:13px;cursor:pointer;transform:translateY(30px);opacity:.55;transition:transform .3s,opacity .3s;padding:4px;text-align:center}
+.spine.on{transform:none;opacity:1}
+.mondoor{display:flex;gap:12px;align-items:center;padding:0 12px 14px}
+.bigdoor{width:90px;height:130px;background:var(--visible);border:5px solid var(--ink);cursor:pointer;transform-origin:left;transition:transform .6s;position:relative}
+.bigdoor.open{transform:perspective(400px) rotateY(-70deg)}
+
+/* cafe */
+.floor{position:absolute;inset:0;background:var(--pink);overflow:hidden}
+.floor .ballm{position:absolute;left:50%;top:6px;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:repeating-conic-gradient(#ddd 0 15deg,#999 15deg 30deg);border:3px solid var(--ink);animation:spin 3s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pair{position:absolute;top:44%;width:44%;max-width:180px;border:4px solid var(--ink);background:var(--panel);color:var(--ink);padding:8px;font-weight:800;text-align:center;cursor:grab;transition:left .6s cubic-bezier(.3,1.4,.5,1),right .6s cubic-bezier(.3,1.4,.5,1);box-shadow:4px 4px 0 var(--ink);font-size:15px}
+.pair.L{left:4%}.pair.R{right:4%;background:var(--sun)}
+.floor.met .pair.L{left:calc(50% - 46%)}
+.floor.met .pair.R{right:calc(50% - 46%)}
+.spark{position:absolute;left:50%;top:40%;width:20px;height:20px;margin:-10px;background:var(--sun);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0}
+.floor.met .spark{animation:spark .8s ease-out forwards}
+@keyframes spark{0%{opacity:1;transform:scale(.2)}100%{opacity:1;transform:scale(5)}}
+.song{position:absolute;left:0;right:0;bottom:44px;text-align:center;font-family:var(--display);font-size:22px;color:var(--ink);opacity:0}
+.floor.met .song{opacity:1;transition:opacity .6s .5s}
+.count{font-family:var(--display);font-size:26px;color:var(--visible)}
+
+/* invite and edit */
+.twodoors{display:grid;gap:12px;padding:14px}
+@media (min-width:520px){.twodoors{grid-template-columns:1fr 1fr}}
+.inv{border:4px solid var(--ink);background:var(--panel);padding:12px;text-align:center}
+.inv h4{font-family:var(--display);font-weight:400;margin:0 0 6px;font-size:17px}
+.inv .slotline{font-family:var(--hand);font-size:24px;min-height:34px;border-bottom:3px solid var(--line);margin:8px 0}
+.inv.done{background:var(--visible);color:var(--ink)}
+
+/* patio */
+.patio{position:absolute;inset:0;background:#1d2a52}
+.patio .lights{position:absolute;left:0;right:0;top:10px;height:10px;background:radial-gradient(circle,var(--sun) 0 4px,transparent 5px);background-size:26px 10px}
+.backdoor{position:absolute;left:10px;bottom:20px;width:70px;height:120px;background:#5b3a22;border:4px solid var(--ink)}
+.guest{position:absolute;width:34px;height:70px;cursor:pointer;transition:left .7s, bottom .7s;z-index:3;padding:0}
+.guest.out{z-index:1}
+.guest i{position:absolute;left:7px;top:0;width:20px;height:20px;border-radius:50%;border:3px solid var(--ink)}
+.guest b{position:absolute;left:2px;top:20px;width:30px;height:48px;border:3px solid var(--ink);border-radius:9px 9px 0 0}
+.bubble{position:absolute;right:10px;top:34px;max-width:60%;background:var(--panel);color:var(--ink);border:3px solid var(--ink);padding:6px 9px;font-weight:800;font-size:14px;opacity:0;transition:opacity .2s}
+.bubble.on{opacity:1}
+
+/* ladder */
+.ladder{display:grid;gap:10px;padding:16px}
+.rung{border:4px solid var(--ink);background:var(--panel);padding:10px 12px;display:flex;justify-content:space-between;gap:10px;align-items:center;cursor:pointer;font-weight:800;box-shadow:4px 4px 0 var(--ink)}
+.rung span:first-child{font-family:var(--display);font-weight:400}
+.rung.on{background:var(--team);color:var(--paper)}
+.rung[disabled]{opacity:.45;cursor:default}
+
+/* ---------- end ---------- */
+.end{padding:26px 0 40px}
+html.js .end{display:none}
+html.js .end.active{display:block}
+.final{border:6px solid var(--ink);background:var(--panel);box-shadow:10px 10px 0 var(--ink);padding:16px;display:grid;gap:16px}
+@media (min-width:760px){.final{grid-template-columns:260px 1fr}}
+.final h2{font-family:var(--display);font-weight:400;font-size:clamp(30px,7vw,52px);line-height:.9;margin:0;text-transform:uppercase}
+.bigtabs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media (min-width:520px){.bigtabs{grid-template-columns:repeat(3,1fr)}}
+.bigtab{border:4px solid var(--ink);padding:8px;color:var(--ink)}
+.bigtab.gift{background:var(--enough);grid-column:1 / -1}
+.final .face{max-width:170px}
+@media (min-width:760px){.final .face{max-width:100%}}
+.bigtab b{font-family:var(--display);font-weight:400;font-size:18px;display:block}
+.bigtab .bar2{height:12px;background:rgba(0,0,0,.18);margin-top:6px}
+.bigtab .bar2 i{display:block;height:100%;background:var(--ink)}
+.bigtab.play{background:var(--play)}.bigtab.mind{background:var(--mind);color:var(--paper)}.bigtab.voice{background:var(--voice)}
+.bigtab.team{background:var(--team);color:var(--paper)}.bigtab.maker{background:var(--maker);color:var(--paper)}.bigtab.visible{background:var(--visible)}
+.bigtab.mind .bar2 i,.bigtab.team .bar2 i,.bigtab.maker .bar2 i{background:var(--paper)}
+.bag{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;list-style:none;margin:0;padding:0}
+@media (min-width:520px){.bag{grid-template-columns:repeat(4,1fr)}}
+.bag li{border:3px solid var(--ink);background:var(--paper);color:var(--ink);padding:6px;font-size:13px;font-weight:700;line-height:1.15}
+.bag li small{display:block;font-weight:400;color:#3b2f26}
+.handoff{margin-top:24px;display:grid;gap:16px;align-items:center}
+@media (min-width:760px){.handoff{grid-template-columns:300px 1fr}}
+.handoff img{border:5px solid var(--ink);box-shadow:var(--shadow)}
+.handoff .go{font-family:var(--display);font-size:clamp(26px,6vw,40px);line-height:.95;text-decoration:none;display:inline-block;background:var(--blue);color:var(--paper);border:5px solid var(--ink);padding:12px 18px;box-shadow:var(--shadow);transform:rotate(-1.5deg)}
+.sig{font-family:var(--display);font-size:clamp(28px,7vw,54px);line-height:.95;margin:28px 0 6px;color:var(--red);text-shadow:3px 3px 0 var(--line)}
+details.record{margin-top:28px;border:4px solid var(--line);background:var(--panel);padding:10px 14px}
+details.record summary{font-family:var(--display);cursor:pointer;font-size:18px}
+details.record p,details.record li{font-size:14px}
+
+/* screenprint entrance */
+html.js .ch.active .poster img{animation:print .9s steps(6) both}
+@keyframes print{0%{clip-path:inset(0 100% 0 0);filter:saturate(0) contrast(2)}60%{filter:saturate(.6)}100%{clip-path:inset(0 0 0 0);filter:none}}
+html.js .ch.active .poster::after{content:"";position:absolute;inset:0;border:5px solid var(--red);transform:translate(6px,-5px);mix-blend-mode:multiply;animation:reg 1.1s ease-out both;pointer-events:none}
+@keyframes reg{0%{transform:translate(22px,-16px);opacity:1}100%{transform:translate(6px,-5px);opacity:.75}}
+html.js .ch.active h2 .w{animation:drop .5s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--i)*60ms)}
+@keyframes drop{0%{transform:translateY(-40px) rotate(-8deg);opacity:0}100%{transform:none;opacity:1}}
+html.js .ch.done .reveal{animation:rise .5s ease-out both}
+@keyframes rise{0%{transform:translateY(16px);opacity:0}100%{transform:none;opacity:1}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .troph.arc{animation:none;left:calc(50% - 28px);top:28%}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+:focus-visible{outline:4px solid var(--blue);outline-offset:3px}
+.egg{margin:12px 0;border:3px solid var(--ink);background:#17110d;color:#f1e4c3;padding:8px 12px;box-shadow:var(--shadow)}
+.egg summary{cursor:pointer;font-weight:700}
+.roster{display:grid;grid-template-columns:3ch 2ch 1fr 3ch;gap:10px;margin:10px 0;padding:10px 12px;background:#0b1a6b;color:#fff;font-family:"Courier New",monospace;font-weight:700;letter-spacing:1px;image-rendering:pixelated;border:4px solid #fff;outline:3px solid #0b1a6b}
+.egg[open] .roster{animation:rowpick 1.1s steps(2) 3}
+@keyframes rowpick{50%{outline-color:#f6b928;border-color:#f6b928}}
+.egg .note{color:#f1e4c3}
+@media (prefers-reduced-motion: reduce){.egg[open] .roster{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="bar" role="banner">
+  <span class="mark">ERA 1</span>
+  <nav class="season" aria-label="Chapters"></nav>
+  <button class="snd" id="snd" aria-pressed="false" type="button">SOUND OFF</button>
+</header>
+
+<div class="wrap">
+<main id="main">
+
+<!-- ================= TITLE ================= -->
+<section class="title" id="title">
+  <div class="title-grid">
+    <div>
+      <h1><span class="l1">Create</span><span class="l2">a player</span><span class="l3">Gordon</span></h1>
+      <p class="sub">Build him from 1970 to 2010. Sixteen true moments. Each one earns a rating or an item that he carries forward.</p>
+      <div class="idcard" aria-label="Player sheet">
+        <b>NAME</b><span>Gordon Patrick Bellamy</span>
+        <b>BORN</b><span>Washington, D.C., November 9, 1970</span>
+        <b>HOME</b><span>Reston, Virginia</span>
+        <b>RATINGS</b><span>Blank. You fill them in.</span>
+      </div>
+      <div class="start">
+        <button class="btn" id="go" type="button">Press start</button>
+        <button class="btn alt" id="goQuiet" type="button">Start without sound</button>
+      </div>
+    </div>
+    <figure class="poster" style="margin:0"><img src="assets/img/i00_title.webp" alt="Poster illustration: a Black boy in a number 4 soccer jersey, fist raised, one foot on a ball, sunburst behind him." width="800" height="1000"><span class="tag">Illustration</span></figure>
+  </div>
+</section>
+
+<!-- ================= 1 RFK ================= -->
+<section class="ch" id="c1" data-n="1" data-c="play" data-vo="n01" style="--ch:var(--play)">
+  <div class="ch-head"><span class="when">Age 6</span><h2>Pele at RFK</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i01_rfk.webp" alt="Illustration: a six-year-old Black boy cheering in a stadium; far below, a player in a green and white kit." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Tap the ball. Take the shot.</p>
+      <div class="toy" data-toy="kick" aria-label="Kick the ball into the goal"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Pele and the Cosmos at RFK Stadium. <em>Nothing has topped it.</em></p>
+        <blockquote>"nothing yet has topped the thrill of going to see Pele at RFK stadium when I was six years old... the Cosmos were magic"<cite>Gordon on BigSoccer, March 30, 2006</cite></blockquote>
+        <blockquote>"I kicked my first ball at age 4, wearing #4 on the Reston Rattlers"<cite>Gordon on Instagram, April 7, 2026</cite></blockquote>
+        <p class="note">His scrapbook holds a Rattlers "Champs '76" certificate, position: wing.</p>
+        <ul class="earn"><li class="s-play">+1 PLAY</li><li class="item">ITEM: #4, Reston Rattlers</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 2 MUTANT ================= -->
+<section class="ch" id="c2" data-n="2" data-c="team" data-vo="n02" style="--ch:var(--team)">
+  <div class="ch-head"><span class="when">Age 5</span><h2>The mutant</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i02_mutant.webp" alt="Illustration: a five-year-old boy pressing his temples, trying to freeze a floating glass of milk, a toy truck and a ball." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Freeze them with your mind.</p>
+      <div class="toy" data-toy="freeze" aria-label="Try to freeze the floating objects, then pick a power"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Freezing did not work. <em>He picked a different power.</em></p>
+        <blockquote>"at first I tried to freeze things with my mind we didn't work out like I thought"<cite>Gordon, award acceptance remarks, uploaded March 23, 2018</cite></blockquote>
+        <blockquote>He chose Rogue, "because dealing with me can be a little draining and I like to take on the best traits of my friends"<cite>Same remarks, 2018</cite></blockquote>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="item">ITEM: The best traits of my friends</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3 ELECTRIC FOOTBALL ================= -->
+<section class="ch" id="c3" data-n="3" data-c="maker" data-vo="n03" style="--ch:var(--maker)">
+  <div class="ch-head"><span class="when">The 1970s</span><h2>Snow on the gridiron</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i03_football.webp" alt="Illustration: a smiling boy at a toy electric football board dusted with snow while a desk fan blows across it." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Set the weather. Then hike.</p>
+      <div class="toy" data-toy="board" aria-label="Turn on snow and wind, then hike the electric football board"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">He was <em>designing the game</em>, not just playing it.</p>
+        <blockquote>"I had four sets of home and away cowboys... We'd play snow games where I put snow on my electric board, wind games where I turn the fan on"<cite>Gordon, Playmakers podcast ep. 12, July 14, 2017</cite></blockquote>
+        <ul class="earn"><li class="s-maker">+1 MAKER</li><li class="s-play">+1 PLAY</li><li class="item">ITEM: Four sets of Cowboys</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4 1984 ================= -->
+<section class="ch" id="c4" data-n="4" data-c="mind" data-vo="n04" style="--ch:var(--mind)">
+  <div class="ch-head"><span class="when">1984</span><h2>The team, then the podium</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i05_podium.webp" alt="Illustration: a fourteen-year-old Black boy in a green sweater speaking at a wooden lectern, government columns behind him." width="800" height="1000" loading="lazy"><span class="tag">Illustration, from his 1984 clipping as reference</span></figure>
+    <div>
+      <p class="verb">Fill the four seats.</p>
+      <div class="toy" data-toy="seats" aria-label="Fill four team seats, then hold to speak at the podium"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">May 1984: Virginia's four-person team wins the <em>first MATHCOUNTS national title.</em></p>
+        <figure class="scrap tilt"><img src="assets/img/scrap/mathcounts-national-1984.webp" alt="Fairfax County certificate: National Math Counts Competition, First Place Team, May 24, 1984." loading="lazy"><figcaption>From his scrapbook: "National Math Counts Competition, First Place Team," May 24, 1984.</figcaption></figure>
+        <figure class="scrap"><img src="assets/img/scrap/reston-times-1984.webp" alt="Newspaper clipping, The Reston Times, May 24, 1984, page A-7, headline National Champs! A posed photo of four people with trophies; the text names Matheletes Gordon Bellamy, Alex Barry and Eric Prestemon of Hughes Intermediate, Sarah Hung of Longfellow, and coach Joan Armistead." loading="lazy"><figcaption>The Reston Times, May 24, 1984, p. A-7: "National Champs!" Gordon shared it in 2012; dot brought it back.</figcaption></figure>
+        <figure class="scrap"><img src="assets/img/scrap/robb-1984.webp" alt="Letter from Governor Robb: your team won first place in the national team finals of Mathcounts." loading="lazy"><figcaption>Governor Charles S. Robb, June 5, 1984.</figcaption></figure>
+        <div class="beat2">
+          <p class="line">November 14, 1984. Five days after turning 14, <em>he speaks at the U.S. Department of Education.</em></p>
+          <figure class="scrap tilt"><img src="assets/img/scrap/connection-1984.webp" alt="Newspaper clipping, The Connection, November 14, 1984: Gordon at 14 in a Princeton sweatshirt; caption says he is speaking today at a U.S. Department of Education Forum luncheon." loading="lazy"><figcaption>From his scrapbook: The Connection, November 14, 1984.</figcaption></figure>
+          <blockquote>"I have the ability to think clearly, to create, to contribute, to encourage others"<cite>Gordon, age 14, his remarks at the Department of Education, November 14, 1984 (scan returned by dot)</cite></blockquote>
+          <blockquote>"It is so interesting to me to hear how I synthesized things back then and how I talk about the importance of trajectory now"<cite>Gordon on Instagram, April 17, 2019</cite></blockquote>
+        </div>
+        <ul class="earn"><li class="s-mind">+1 MIND</li><li class="s-voice">+1 VOICE</li><li class="item">ITEM: The Connection, Nov 14, 1984</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 5 TEN SCHOOLS ================= -->
+<section class="ch" id="c5" data-n="5" data-c="team" data-vo="n05" style="--ch:var(--team)">
+  <div class="ch-head"><span class="when">To 1988</span><h2>Ten schools</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i06_schools.webp" alt="Illustration: a teenager in a blazer with a duffel and a soccer ball walking past a corridor of colored doors in New England snow." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Stamp every door.</p>
+      <div class="toy" data-toy="doors" aria-label="Stamp ten school doors"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Ten schools. Three high schools. <em>The last one felt like his.</em></p>
+        <blockquote>"10 schools growing up. I went to three high schools. So shout out, Exeter and St. Paul's"<cite>Gordon, Valued Cultures, July 9, 2025</cite></blockquote>
+        <blockquote>"It was a meaningful time for me, to feel valued and celebrated for who I am. I had the freedom to follow my own path"<cite>Gordon, St. Paul's School alumni spotlight, Class of 1988</cite></blockquote>
+        <p class="note">Exeter, 1985: where he met Foster Birch, a friend he would later bring to EA.</p>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="item">ITEM: St. Paul's, Class of 1988</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6 RSI ================= -->
+<section class="ch" id="c6" data-n="6" data-c="enough" data-vo="n06" style="--ch:var(--enough)">
+  <div class="ch-head"><span class="when">Summer 1987</span><h2>The magical summer</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i07_rsi.webp" alt="Illustration: teenage science students of many backgrounds laughing together on the steps of a domed building under connected stars." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Connect the stars.</p>
+      <div class="toy" data-toy="stars" aria-label="Tap each star to connect the constellation"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">The Research Science Institute at MIT. A new stat appears. <em>Nobody earns it. Someone gives it.</em></p>
+        <blockquote>"just being enough as we were right and it was like the last sort of magical summer"<cite>Gordon, CEE STEM Lyceums talk, uploaded October 20, 2025</cite></blockquote>
+        <figure class="scrap tilt small"><img src="assets/img/scrap/rsi-1987.webp" alt="Certificate: Gordon Bellamy successfully completed the Fourth Annual Research Science Institute 1987." loading="lazy"><figcaption>From his scrapbook: Fourth Annual Research Science Institute, 1987.</figcaption></figure>
+        <ul class="earn"><li class="s-enough">ENOUGH UNLOCKED</li><li class="s-mind">+1 MIND</li><li class="item">ITEM: RSI certificate, 1987</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 7 HARVARD ================= -->
+<section class="ch" id="c7" data-n="7" data-c="mind" data-vo="n07" style="--ch:var(--mind)">
+  <div class="ch-head"><span class="when">Class of 1993</span><h2>Two yeses, a water plant, a borrowed Genesis</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i08_water.webp" alt="Illustration: a young Black man in a crimson sweatshirt at a water treatment plant, turning toward a glowing game controller." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Open an envelope.</p>
+      <div class="toy" data-toy="envs" aria-label="Pick an envelope, then plug in the cartridge"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Harvard and Stanford both said yes. <em>He chose Harvard.</em></p>
+        <figure class="scrap"><img src="assets/img/scrap/harvard-head.webp" alt="Harvard-Radcliffe admissions letterhead." loading="lazy"><img src="assets/img/scrap/harvard-sign.webp" alt="Signed by the Dean of Admissions with the handwritten note: Hope to see you here!" loading="lazy" style="max-width:420px"><figcaption>Harvard, December 16, 1987, in the Dean's hand: "Hope to see you here!"</figcaption></figure>
+        <figure class="scrap tilt"><img src="assets/img/scrap/stanford-head.webp" alt="Stanford Undergraduate Admissions letterhead, April 4, 1988." loading="lazy"><img src="assets/img/scrap/stanford-sign.webp" alt="Handwritten note: Gordon, Super!" loading="lazy" style="max-width:320px"><figcaption>Stanford, April 4, 1988: "Gordon, Super!"</figcaption></figure>
+        <p class="note">Admitted to the Class of 1992. He deferred one year and graduated with the Class of 1993.</p>
+        <div class="beat2">
+          <p class="line">Then an engineering field trip. <em>He knew it was not him.</em></p>
+          <blockquote>"i learned two very important things that day one that i hold these people in the highest regard who we trust with our drinking water ... the second was that i'm not one of those people"<cite>Gordon, XPRIZE Connect, uploaded November 5, 2020</cite></blockquote>
+          <blockquote>To a friend: "for letting me play your Sega Genesis... It turned into a career"<cite>Gordon, Facebook group post, April 29, 2013</cite></blockquote>
+        </div>
+        <ul class="earn"><li class="s-mind">+1 MIND</li><li class="s-play">+1 PLAY</li><li class="item">ITEM: The borrowed Genesis</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 8 CLICK ================= -->
+<section class="ch" id="c8" data-n="8" data-c="voice" data-vo="n08" style="--ch:var(--voice)">
+  <div class="ch-head"><span class="when">Spring 1993</span><h2>Click. Click. Click.</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i09_phone.webp" alt="Illustration: a young man in a dorm room on a corded phone, a game manual open on his knee." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Call everyone in the credits.</p>
+      <div class="toy" data-toy="credits" aria-label="Dial each line of the game credits"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">ESPN and EA passed. So he called <em>every name in the NHL Hockey credits.</em></p>
+        <blockquote>"Hi, I'm Gordon. Click. Hi, I'm an engineer from Harvard. Click. Hi, I really love your game. Click. Hi, please let me work with you. Click"<cite>Gordon, Playmakers ep. 12, July 14, 2017</cite></blockquote>
+        <blockquote>Down in the special thanks, "a guy named Jim Simmons... turned out to be the wrong Jim Simmons, but the right one for me"<cite>Gordon, GamesBeat, 2020</cite></blockquote>
+        <ul class="earn"><li class="s-voice">+1 VOICE</li><li class="item">ITEM: The right wrong Jim Simmons</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 9 LEGAL PAD ================= -->
+<section class="ch" id="c9" data-n="9" data-c="maker" data-vo="n09" style="--ch:var(--maker)">
+  <div class="ch-head"><span class="when">1993</span><h2>The tester test</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i10_legalpad.webp" alt="Illustration: a yellow legal pad with a basketball play drawn on it, a fax machine and a binder." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Call the play. Then fax the league.</p>
+      <div class="toy" data-toy="pad" aria-label="Pick a play to draw, then fax for rosters"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">One hour, one yellow pad, <em>Bulls vs. Blazers.</em> He started at EA in June 1993.</p>
+        <blockquote>"a yellow legal pad eight and a half by 14" ... "it all played out like you would imagine in a in a montage from a film"<cite>Gordon, Bakersfield College talks, 2021</cite></blockquote>
+        <p class="note">In 2017 he says "Bulls versus Blazers or sorry, Bulls versus Lakers" (Playmakers). Both are his words.</p>
+        <blockquote>"when i arrived at ea at day one for orientation i had my madden binder ready to go"<cite>Gordon, Bakersfield College, 2021. He had faxed every NFL team from his dorm for rosters.</cite></blockquote>
+        <figure class="poster" style="max-width:340px;margin:8px 0 12px"><img src="assets/img/i19_desk.webp" alt="Illustration: a young man asleep under an office desk, a football game glowing on the monitor above." loading="lazy" width="800" height="1000"><span class="tag">Illustration</span></figure>
+        <blockquote>He slept "under the desks" and sat "in the offices of people whose job I wanted to have in the future and visualize myself there"<cite>Gordon, Microsoft GDC fireside, 2018</cite></blockquote>
+        <ul class="earn"><li class="s-maker">+1 MAKER</li><li class="s-team">+1 TEAM</li><li class="item">ITEM: The Madden binder</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10 DEFAULT ================= -->
+<section class="ch" id="c10" data-n="10" data-c="maker" data-vo="n10" style="--ch:var(--maker)">
+  <div class="ch-head"><span class="when">1994</span><h2>Set the default</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i11_default.webp" alt="Illustration: a monumental line of Black football players standing shoulder to shoulder under stadium rays." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">One skin tone for all. Choose.</p>
+      <div class="toy" data-toy="roster" aria-label="Choose one skin tone for the whole roster, then lock it in"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Madden NFL 95. Most NFL players were Black. <em>He made Black the default.</em></p>
+        <blockquote>"once I got in the room where it happens, I made the bold choice to make African American players default... for once I wasn't doing the mental gymnastics"<cite>Gordon, Lead With Your Brand, February 9, 2021</cite></blockquote>
+        <blockquote>"we also introduced create a player in that era because having representation is so important to people"<cite>Gordon, Black Game Pros Sessions, February 2026</cite></blockquote>
+        <figure class="scrap tilt"><img src="assets/img/scrap/madden-cybersports.webp" alt="Magazine photo: Gordon, left, and Michael Rubinelli talking with John Madden before a bluescreen shoot." loading="lazy"><figcaption>From his scrapbook, CyberSports magazine, 1994 or 1995: "Gordon Bellamy, left, and Michael Rubinelli, both producers at EA Sports," with John Madden.</figcaption></figure>
+        <blockquote>"back in 95 ... we put our actual personal emails in the manual"<cite>Gordon, CMX Summit, 2020</cite></blockquote>
+        <div class="beat2">
+          <p class="line">Launch day, November 18, 1994. The co-designer <em>asks the players.</em></p>
+          <blockquote>"now the game is out and I am eager to talk in depth"<cite>Gordon, rec.sport.football.pro, November 18, 1994</cite></blockquote>
+          <blockquote>"they emphasized the importance of passing lanes" ... "tapping the button increases your chances of throwing over a defender"<cite>Gordon answering a player, alt.sega.genesis, January 18, 1995</cite></blockquote>
+          <p class="note">Found by dot; checked at the original Usenet posts.</p>
+        </div>
+        <ul class="earn"><li class="s-maker">+2 MAKER</li><li class="item">ITEM: Create-a-player</li></ul>
+        <p class="note">You are using his item right now.</p>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 ROOKIE ================= -->
+<section class="ch" id="c11" data-n="11" data-c="play" data-vo="n11" style="--ch:var(--play)">
+  <div class="ch-head"><span class="when">1994</span><h2>Rookie of the Year</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i12_bat.webp" alt="Illustration: a gold baseball batter trophy on a wooden base, sunburst behind it." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Catch it.</p>
+      <div class="toy" data-toy="catch" aria-label="Tap catch when the trophy reaches the circle"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">EA's Rookie of the Year, 1994. <em>It is still on his desk.</em></p>
+        <figure class="scrap small"><img src="assets/img/scrap/rookie-trophy-1994.webp" alt="Photo of the trophy: a gold batter figure; plate reads Gordon Bellamy, Rookie of the Year, 1994, Electronic Arts." loading="lazy"><figcaption>The real one, photographed on his desk, November 26, 2026.</figcaption></figure>
+        <blockquote>"on my desk, I literally have my EA Rookie of the Year from 94"<cite>Gordon, Black Game Pros Sessions, February 2026</cite></blockquote>
+        <blockquote>"EA's Rookie of the Year for the world ... But not out"<cite>Gordon, Microsoft GDC fireside, 2018</cite></blockquote>
+        <p class="note">Look at the card: VISIBLE is still locked.</p>
+        <details class="egg"><summary>Check the Spain bench, FIFA International Soccer, 1993</summary>
+          <div class="roster" role="img" aria-label="Pixel roster row: 13, D, Gordio Belamini, skill 77"><span>13</span><span>D</span><span>GORDIO BELAMINI</span><span>77</span></div>
+          <p class="note">A cameo on the cartridge. He has told this story himself; dot found the row playing the Genesis game. #4 was his Reston number; #13 is the game's.</p>
+        </details>
+        <div class="beat2">
+          <p class="line">His first chance to <em>bring someone in.</em></p>
+          <button class="btn blue" type="button" data-foster>Send Foster the offer</button>
+          <div class="car" aria-hidden="true"><span></span></div>
+          <blockquote>"Next thing I knew I was driving to California to start my first job!"<cite>Foster Birch, text to Gordon, December 23, 2024</cite></blockquote>
+          <p class="note">Madden NFL '95 manual, p. 36: "Assistant Producer: Gordon Bellamy." "Player Stats: Foster Birch." Same page, same team.</p>
+        </div>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="s-play">+1 PLAY</li><li class="item">ITEM: THE BAT, 1994</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 Z-AXIS ================= -->
+<section class="ch" id="c12" data-n="12" data-c="visible" data-vo="n12" style="--ch:var(--visible)">
+  <div class="ch-head"><span class="when">Nov 1995</span><h2>Z-Axis, and a Monday</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i13_zaxis.webp" alt="Illustration: a young Black man sketching a skateboarder and a soccer player at a small Bay Area game studio, Victorian houses outside." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Stock the studio shelf.</p>
+      <div class="toy" data-toy="shelf" aria-label="Place four games on the shelf, then open the Monday door"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">He left EA for Z-Axis, a studio started by his St. Paul's friend <em>Dave Luntz.</em></p>
+        <blockquote>"I came over to Z-Axis in November of 1995."<cite>Gordon, PSExtreme #12, November 1999, pp. 46 to 47 (also in his scrapbook)</cite></blockquote>
+        <p class="line">Someone gave him his shot. <em>Here he gives one.</em></p>
+        <blockquote>"the design lead that hired me and gave me my first job"<cite>Alan Blaine on Gordon at Z-Axis, Out of Play Area ep. 28, March 2022, 1:46:46. Alan went on to design Thrasher.</cite></blockquote>
+        <blockquote>Next Generation fakes a jump shot in a two-player demo and "suckered the creative director into leaping too early"<cite>Next Generation #36, December 1997, p. 138</cite></blockquote>
+        <blockquote>"I was an original Z-Axis creative director"<cite>Gordon, text, February 27, 2019</cite></blockquote>
+        <figure class="scrap small"><img src="assets/img/scrap/zaxis-card.webp" alt="Business card: Gordon P. Bellamy, Creative Director, Z-Axis, Game Development and Internet Technology." loading="lazy"><figcaption>His Z-Axis business card (contact lines cropped off). Found in his old mail by dot.</figcaption></figure>
+        <figure class="scrap small tilt"><img src="assets/img/scrap/psextreme-zaxis.webp" alt="Magazine page: A Candid Conversation with Gordon Bellamy, Thrasher: Skate and Destroy." loading="lazy"><figcaption>From his scrapbook: PSExtreme, "A Candid Conversation with Gordon Bellamy."</figcaption></figure>
+        <div class="beat2">
+          <p class="line">Fall 1997, after a weekend in Los Angeles with his friend Ted: <em>"I came out at work that Monday."</em></p>
+          <p class="note">His words, Facebook, January 27, 2019. Coming out stage one: at work.</p>
+          <blockquote>"from just sort of I, as a achiever, to we as collaborator, team member, community member"<cite>Gordon on EA and San Francisco, Valued Cultures, July 9, 2025</cite></blockquote>
+        </div>
+        <ul class="earn"><li class="s-maker">+1 MAKER</li><li class="s-visible">VISIBLE UNLOCKED +1</li><li class="item">ITEM: Z-Axis, Nov 1995</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 CAFE ================= -->
+<section class="ch" id="c13" data-n="13" data-c="visible" data-vo="n13" style="--ch:var(--visible)">
+  <div class="ch-head"><span class="when">2.8.98</span><h2>Sunday Funday at The Café</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i14_cafe.webp" alt="Illustration: a sunny Castro bar party; two men in silhouette turn toward each other, a spark between them." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Bring them together.</p>
+      <div class="toy" data-toy="cafe" aria-label="Bring the two pairs of friends together on the dance floor"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">Sunday, February 8, 1998. Gordon was out with Ted. Joe Heally was out with Jeff. <em>Their song became "Together Again."</em></p>
+        <blockquote>"we met 2/8/1998 on a Sunday Funday"<cite>Gordon, November 26, 2026</cite></blockquote>
+        <p class="line">Together since then: <span class="count" id="since">28 years, 9 months</span></p>
+        <div class="beat2">
+          <blockquote>One month in: "we NEED to go to E3 Expo... in Atlanta... I also have a gay soccer tournament with the San Francisco Spikes Soccer Club that weekend in Atlanta"<cite>Gordon on Instagram, February 9, 2021, remembering 1998</cite></blockquote>
+          <p class="note">Game week and a queer soccer weekend in one trip. Years later he named that crossing PridE3.</p>
+        </div>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="item">ITEM: "Together Again"</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 TWO MORE DOORS ================= -->
+<section class="ch" id="c14" data-n="14" data-c="visible" data-vo="n14" style="--ch:var(--visible)">
+  <div class="ch-head"><span class="when">2001 to 2007</span><h2>Two more doors</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i15_plusone.webp" alt="Illustration: two men in suits walk hand in hand into a holiday party, a plus-one invitation above them." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Fill the plus-one. Then make the cut.</p>
+      <div class="toy" data-toy="doors2" aria-label="Write Joe on the plus-one, then press cut in the edit bay"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">THQ holiday party, about December 2001. <em>He brought Joe.</em></p>
+        <blockquote>"You have the plus one ... I did not want Joe to experience the feelings that were inside me. So I invited him. ... I felt accountable. So we did."<cite>Gordon, Microsoft GDC fireside, 2018</cite></blockquote>
+        <p class="note">The order matters in his telling: the Z-Axis sale "gave us some padding, to live our lives, to be a little more free."</p>
+        <div class="beat2">
+          <figure class="poster" style="max-width:340px;margin:0 0 12px"><img src="assets/img/i16_edit.webp" alt="Illustration: a hand presses a glowing button on a TV edit console; one monitor's picture is cut out." loading="lazy" width="800" height="1000"><span class="tag">Illustration</span></figure>
+          <p class="line">At Spike TV a designer, Jeb Havens, feared a segment misrepresented him. <em>Gordon pushed for the edit.</em></p>
+          <blockquote>"That was really the coming out because it was like 'Okay. Like our truth is more important than the money. Let's just see how it goes.'"<cite>Gordon, Microsoft GDC fireside, 2018</cite></blockquote>
+          <blockquote>"coming out is a lifelong process"<cite>Same fireside</cite></blockquote>
+        </div>
+        <ul class="earn"><li class="s-visible">+2 VISIBLE</li><li class="s-voice">+1 VOICE</li><li class="item">ITEM: The plus-one</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 15 LONE STAR ================= -->
+<section class="ch" id="c15" data-n="15" data-c="team" data-vo="n15" style="--ch:var(--team)">
+  <div class="ch-head"><span class="when">About 2007</span><h2>The back patio</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i17_patio.webp" alt="Illustration: queer game developers of many backgrounds greet each other on a lit bar patio at night; one holds a sign-up clipboard." width="800" height="1000" loading="lazy"><span class="tag">Illustration</span></figure>
+    <div>
+      <p class="verb">Bring someone in.</p>
+      <div class="toy" data-toy="patio" aria-label="Tap people at the door to bring them out to the patio"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">An anonymous mailing list became a night at the Lone Star. <em>That grew into GGP.</em></p>
+        <blockquote>"What if we met outside these closed doors." ... "people just tiptoeing back there like, 'Do you like games? I like games.'"<cite>Gordon, Microsoft GDC fireside, 2018</cite></blockquote>
+        <blockquote>"It's so that young, queer people won't ever know what it's like to not have a party"<cite>Same fireside</cite></blockquote>
+        <p class="note">Brian Rubin-Sowers passed a paper sign-up sheet around at GDC 2006 and later "passed the reins over to Gordon." GGP, co-founded about 2006 with Brian.</p>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="s-voice">+1 VOICE</li><li class="item">ITEM: The sign-up sheet</li></ul>
+        <button class="btn next" type="button">Next moment</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 16 IGDA ================= -->
+<section class="ch" id="c16" data-n="16" data-c="team" data-vo="n16" style="--ch:var(--team)">
+  <div class="ch-head"><span class="when">2010</span><h2>Join your local chapter</h2></div>
+  <div class="stage">
+    <figure class="poster"><img src="assets/img/i18_igda.webp" alt="Illustration of Gordon at 39 in a blue sport coat, arms open, in front of a crowd of game developers and an arcade cabinet." width="800" height="1000" loading="lazy"><span class="tag">Illustration of Gordon</span></figure>
+    <div>
+      <p class="verb">Climb the ladder.</p>
+      <div class="toy" data-toy="ladder" aria-label="Tap each rung in order"></div>
+      <button class="skip" type="button">Just show me</button>
+      <div class="reveal">
+        <p class="line">It started when he saw Eugene Jarvis, maker of Defender, <em>walk a conference hall unnoticed.</em></p>
+        <blockquote>"I'm going to join my local chapter of the International Game Developer Association"<cite>Gordon, Lead With Your Brand, February 9, 2021</cite></blockquote>
+        <blockquote>"We are 100 per cent aligned in the goal of helping developers help each other"<cite>Gordon, MCV, November 10, 2010</cite></blockquote>
+        <ul class="earn"><li class="s-team">+1 TEAM</li><li class="s-voice">+1 VOICE</li><li class="item">ITEM: IGDA, Aug 17, 2010</li></ul>
+        <button class="btn next" type="button">See the finished player</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= END ================= -->
+<section class="end" id="end" data-vo="n17">
+  <div class="final">
+    <div>
+      <img class="face" src="assets/img/i00_title.webp" alt="" style="border:4px solid var(--ink)" loading="lazy" width="800" height="1000">
+    </div>
+    <div>
+      <h2>Player created: Gordon, 1970 to 2010</h2>
+      <p>Born in Washington, D.C. Built in Reston, at ten schools, in Cambridge, at EA, in San Francisco and in Los Angeles.</p>
+      <div class="bigtabs" id="bigtabs">
+        <div class="bigtab play"><b>PLAY</b><span>4 of 8</span><div class="bar2"><i style="width:50%"></i></div></div>
+        <div class="bigtab mind"><b>MIND</b><span>3 of 8</span><div class="bar2"><i style="width:37.5%"></i></div></div>
+        <div class="bigtab voice"><b>VOICE</b><span>5 of 8</span><div class="bar2"><i style="width:62.5%"></i></div></div>
+        <div class="bigtab team"><b>TEAM</b><span>7 of 8</span><div class="bar2"><i style="width:87.5%"></i></div></div>
+        <div class="bigtab maker"><b>MAKER</b><span>5 of 8</span><div class="bar2"><i style="width:62.5%"></i></div></div>
+        <div class="bigtab visible"><b>VISIBLE</b><span>3 of 8</span><div class="bar2"><i style="width:37.5%"></i></div></div>
+        <div class="bigtab gift"><b>&#9733; ENOUGH</b><span>Not earned. Given, at RSI, 1987.</span></div>
+      </div>
+      <p class="note">The six ratings are Darby's design reading of the record, not scores he gave himself.</p>
+    </div>
+  </div>
+
+  <h3 class="sig" style="font-size:clamp(22px,5vw,34px);margin-top:28px">Sixteen items in the bag</h3>
+  <ul class="bag">
+    <li>#4, Reston Rattlers<small>Age 4</small></li>
+    <li>The best traits of my friends<small>Age 5</small></li>
+    <li>Four sets of Cowboys<small>1970s</small></li>
+    <li>The Connection<small>Nov 14, 1984</small></li>
+    <li>St. Paul's<small>Class of 1988</small></li>
+    <li>RSI certificate<small>1987</small></li>
+    <li>The borrowed Genesis<small>Harvard</small></li>
+    <li>The right wrong Jim Simmons<small>1993</small></li>
+    <li>The Madden binder<small>June 1993</small></li>
+    <li>Create-a-player<small>Madden era</small></li>
+    <li>THE BAT<small>1994</small></li>
+    <li>Z-Axis<small>Nov 1995</small></li>
+    <li>"Together Again"<small>2.8.98</small></li>
+    <li>The plus-one<small>About 2001</small></li>
+    <li>The sign-up sheet<small>About 2007</small></li>
+    <li>IGDA<small>Aug 17, 2010</small></li>
+  </ul>
+
+  <p class="line" style="margin-top:26px">Look at the tabs. <em>They never touch.</em></p>
+  <blockquote>"I would compartmentalize my identities, right? And I'd be music with music people, queer with queer people, black with black people, uh soccer with soccer people"<cite>Gordon, UConn Digital Media and Design, April 2025</cite></blockquote>
+
+  <p class="sig">"But what if you wanted to be you?"</p>
+  <p class="note">Gordon, on create-a-player, Gamereactor, October 31, 2025.</p>
+
+  <div class="handoff">
+    <img src="assets/img/i12_bat.webp" alt="Illustration of the 1994 Rookie of the Year trophy, a gold batter." loading="lazy" width="800" height="1000">
+    <div>
+      <p class="line">The bat leaves 2010 with him. <em>It still sits on his desk, beside the Vanguard Award he received at 50.</em></p>
+      <a class="go" href="../era2/index.html">Carry the bat into Era 2: 2011 to now</a>
+      <p class="note">In the next era, the tabs become lines, and the lines cross.</p>
+    </div>
+  </div>
+
+  <details class="record">
+    <summary>The record</summary>
+    <p>Every line here traces to a source; each beat's source and truth tag are kept in Gordon's research notes. Quotes are Gordon's on-record words with their dates. Poster images are illustrations made for this experience (Higgsfield), not photographs. Images marked "From his scrapbook" are his own archive, shown privately and cropped to keep addresses and other children out.</p>
+    <ul>
+      <li>Bulls vs. Blazers and Bulls vs. Lakers are both in his tellings; both are shown.</li>
+      <li>Z-Axis: Dave Luntz is the St. Paul's friend (Gordon, Nov 26, 2026). Who founded it, and when, is told differently by different sources; this page says only what he said.</li>
+      <li>GGP's first in-person night is dated "about 2007" from his own annual counts.</li>
+      <li>The narrator voice is an ElevenLabs narrator, not Gordon.</li>
+    </ul>
+  </details>
+</section>
+
+</main>
+
+<!-- ================= PLAYER CARD ================= -->
+<aside class="card" id="card" aria-label="Player card">
+  <h3><span>GORDON <span id="ovr">0</span> OVR</span><button class="toggle" id="cardToggle" type="button" aria-expanded="false">BAG</button></h3>
+  <div class="tabs">
+    <div class="tab" data-s="play"><span class="nm">PLAY</span><div class="pips"></div></div>
+    <div class="tab" data-s="mind"><span class="nm">MIND</span><div class="pips"></div></div>
+    <div class="tab" data-s="voice"><span class="nm">VOICE</span><div class="pips"></div></div>
+    <div class="tab" data-s="team"><span class="nm">TEAM</span><div class="pips"></div></div>
+    <div class="tab" data-s="maker"><span class="nm">MAKER</span><div class="pips"></div></div>
+    <div class="tab lock" data-s="visible"><span class="nm">VISIBLE</span><div class="pips"></div></div>
+  </div>
+  <div class="enough" id="enough">&#9733; ENOUGH, given at RSI 1987</div>
+  <div class="items" id="items"></div>
+  <p class="legend">Ratings are Darby's design reading of the record. Each tab is its own color and never touches the others, the way he describes living in compartments in this era.</p>
+</aside>
+</div>
+
+<div class="wipe" id="wipe" aria-hidden="true"></div>
+
+<script>
+(function(){
+'use strict';
+var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function(s,r){return (r||document).querySelector(s)}, $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function store(k,v){try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v);}catch(e){return null}}
+
+/* ---------------- sound: ElevenLabs files, WebAudio mixes only ---------------- */
+var AC=null, master=null, musicGain=null, voGain=null, buffers={}, soundOn=false, musicNode=null, voNode=null;
+var SFX=['stamp','squeegee','kick','whistle','buzz','fan','freeze','pencil','hangup','dial','fax','cartridge','catch','patio','edit','levelup','club','applause','envelope','chime'];
+function initAudio(){
+  if(AC) return;
+  try{ AC=new (window.AudioContext||window.webkitAudioContext)(); }catch(e){ return; }
+  master=AC.createGain(); master.gain.value=0.9; master.connect(AC.destination);
+  musicGain=AC.createGain(); musicGain.gain.value=0; musicGain.connect(master);
+  voGain=AC.createGain(); voGain.gain.value=1; voGain.connect(master);
+  SFX.forEach(function(n){load('sfx-'+n)});
+  load('music-gogo',function(){ if(soundOn) startMusic(); });
+}
+function load(name,cb){
+  if(buffers[name]){cb&&cb();return}
+  fetch('assets/audio/'+name+'.mp3').then(function(r){return r.arrayBuffer()}).then(function(a){
+    return new Promise(function(res,rej){AC.decodeAudioData(a,res,rej)})
+  }).then(function(b){buffers[name]=b; cb&&cb();}).catch(function(){});
+}
+function play(name,vol){
+  if(!soundOn||!AC) return;
+  var b=buffers['sfx-'+name]; if(!b) return;
+  var s=AC.createBufferSource(); s.buffer=b; var g=AC.createGain(); g.gain.value=vol==null?0.8:vol; s.connect(g); g.connect(master); s.start();
+}
+function startMusic(){
+  if(!AC||!buffers['music-gogo']||musicNode) return;
+  musicNode=AC.createBufferSource(); musicNode.buffer=buffers['music-gogo']; musicNode.loop=true; musicNode.connect(musicGain); musicNode.start();
+  musicGain.gain.cancelScheduledValues(AC.currentTime); musicGain.gain.setTargetAtTime(0.22,AC.currentTime,1.2);
+}
+function duck(on){ if(!AC||!musicGain) return; musicGain.gain.setTargetAtTime(on?0.07:0.22,AC.currentTime,0.25); }
+var queued=null, afterIntro=null;
+function say(id,after){
+  if(!soundOn||!AC||!id) return;
+  if(after&&voNode){ queued=id; return; }
+  queued=null; if(id!=='n00') afterIntro=null;
+  if(voNode){try{voNode.onended=null;voNode.stop()}catch(e){} voNode=null}
+  load('vo-'+id,function(){
+    if(!soundOn) return;
+    var s=AC.createBufferSource(); s.buffer=buffers['vo-'+id]; s.connect(voGain); duck(true);
+    s.onended=function(){duck(false); if(voNode===s) voNode=null; if(queued){var q=queued; queued=null; say(q);} else if(afterIntro){var q2=afterIntro; afterIntro=null; say(q2);} }; s.start(); voNode=s;
+  });
+}
+function setSound(on){
+  soundOn=on; var b=$('#snd'); b.setAttribute('aria-pressed',on?'true':'false'); b.textContent=on?'SOUND ON':'SOUND OFF';
+  if(on){ initAudio(); if(AC&&AC.state==='suspended') AC.resume(); startMusic(); if(musicGain) musicGain.gain.setTargetAtTime(0.22,AC.currentTime,.5);}
+  else if(AC){ musicGain.gain.setTargetAtTime(0,AC.currentTime,.2); if(voNode){try{voNode.stop()}catch(e){}} }
+  store('e1-sound',on?'1':'0');
+}
+$('#snd').addEventListener('click',function(){setSound(!soundOn)});
+
+/* ---------------- state and card ---------------- */
+var STATS=['play','mind','voice','team','maker','visible'];
+var REWARDS={
+ 1:{s:{play:1},item:'#4, Reston Rattlers'},
+ 2:{s:{team:1},item:'The best traits of my friends'},
+ 3:{s:{maker:1,play:1},item:'Four sets of Cowboys'},
+ 4:{s:{mind:1,voice:1},item:'The Connection, 1984'},
+ 5:{s:{team:1},item:"St. Paul's, 1988"},
+ 6:{s:{mind:1},item:'RSI, 1987',enough:true},
+ 7:{s:{mind:1,play:1},item:'The borrowed Genesis'},
+ 8:{s:{voice:1},item:'The right wrong Jim Simmons'},
+ 9:{s:{maker:1,team:1},item:'The Madden binder'},
+ 10:{s:{maker:2},item:'Create-a-player'},
+ 11:{s:{team:1,play:1},item:'THE BAT, 1994'},
+ 12:{s:{maker:1,visible:1},item:'Z-Axis, 1995',unlock:'visible'},
+ 13:{s:{team:1},item:'"Together Again"'},
+ 14:{s:{visible:2,voice:1},item:'The plus-one'},
+ 15:{s:{team:1,voice:1},item:'The sign-up sheet'},
+ 16:{s:{team:1,voice:1},item:'IGDA, 2010'}
+};
+var st={play:0,mind:0,voice:0,team:0,maker:0,visible:0}, got={}, enough=false;
+$$('.tab .pips').forEach(function(p){for(var i=0;i<8;i++){var d=document.createElement('i');d.className='pip';p.appendChild(d)}});
+var itemsEl=$('#items');
+for(var k=1;k<=16;k++){var sp=document.createElement('span');sp.id='it'+k;sp.textContent='?';itemsEl.appendChild(sp)}
+function renderCard(){
+  STATS.forEach(function(s){ $$('.tab[data-s="'+s+'"] .pip').forEach(function(p,i){p.classList.toggle('on',i<st[s])}); });
+  var tot=0; STATS.forEach(function(s){tot+=st[s]}); $('#ovr').textContent=String(40+tot*2);
+  for(var k=1;k<=16;k++){var e=$('#it'+k); if(got[k]){e.textContent=REWARDS[k].item;e.classList.add('got')}}
+  $('#enough').classList.toggle('on',enough);
+  if(got[12]) $('.tab[data-s="visible"]').classList.remove('lock');
+}
+$('#cardToggle').addEventListener('click',function(){var c=$('#card');c.classList.toggle('open');this.setAttribute('aria-expanded',c.classList.contains('open'))});
+
+function flyStamp(fromEl,stat,label){
+  var tab=$('.tab[data-s="'+stat+'"]'); if(!tab) return;
+  var a=fromEl.getBoundingClientRect(), b=tab.getBoundingClientRect();
+  var f=document.createElement('div'); f.className='fly s-'+stat; f.textContent=label; document.body.appendChild(f);
+  var x0=a.left+a.width/2-40, y0=a.top+a.height/2-20, x1=b.left+b.width/2-40, y1=b.top+b.height/2-20;
+  f.style.left=x0+'px'; f.style.top=y0+'px';
+  if(RM||!f.animate){ f.remove(); tab.classList.add('bump'); setTimeout(function(){tab.classList.remove('bump')},500); return;}
+  var an=f.animate([{transform:'translate(0,0) rotate(-14deg) scale(1.6)',opacity:0},{transform:'translate(0,0) rotate(-6deg) scale(1)',opacity:1,offset:.25},{transform:'translate('+(x1-x0)+'px,'+(y1-y0)+'px) rotate(4deg) scale(.5)',opacity:.9}],{duration:900,easing:'cubic-bezier(.5,0,.6,1)'});
+  an.onfinish=function(){f.remove(); tab.classList.remove('bump'); void tab.offsetWidth; tab.classList.add('bump'); play('stamp',.9)};
+}
+function award(n,fromEl){
+  if(got[n]) return; got[n]=true; var r=REWARDS[n]; var delay=0;
+  Object.keys(r.s).forEach(function(s){
+    (function(s,d){ setTimeout(function(){ st[s]+=r.s[s]; flyStamp(fromEl,s,'+'+r.s[s]+' '+s.toUpperCase()); renderCard(); },d)})(s,delay); delay+=260;
+  });
+  if(r.enough){ enough=true; play('chime',.9) }
+  setTimeout(function(){renderCard(); play('levelup',.7)},delay+500);
+  store('e1-got',JSON.stringify(got));
+}
+
+/* ---------------- chapter flow ---------------- */
+var chapters=$$('.ch'), cur=-1;
+var season=$('.season');
+chapters.forEach(function(c,i){var a=document.createElement('a');a.href='#'+c.id;a.setAttribute('aria-label','Chapter '+(i+1)+': '+$('h2',c).textContent);a.addEventListener('click',function(e){e.preventDefault();go(i)});season.appendChild(a)});
+chapters.forEach(function(c){ var h=$('h2',c); var words=h.textContent.split(' '); h.innerHTML=''; words.forEach(function(w,i){var s=document.createElement('span');s.className='w';s.style.setProperty('--i',i);s.textContent=w;h.appendChild(s);h.appendChild(document.createTextNode(' '))}); });
+function markSeason(){ $$('a',season).forEach(function(a,i){a.classList.toggle('here',i===cur);a.classList.toggle('done',!!got[i+1])}); }
+function wipe(cb){
+  var w=$('#wipe'); if(RM||!w.animate){cb();return}
+  w.style.opacity=1;
+  w.style.setProperty('--r','16px');
+  setTimeout(function(){ cb(); w.animate([{opacity:1},{opacity:0}],{duration:320,easing:'ease-out'}).onfinish=function(){w.style.opacity=0;w.style.setProperty('--r','0px')}; },260);
+  play('squeegee',.5);
+}
+function go(i){
+  wipe(function(){
+    $('#title').classList.add('gone'); $('#end').classList.remove('active'); document.body.classList.toggle('ended', i>=chapters.length);
+    chapters.forEach(function(c){c.classList.remove('active')});
+    if(i>=chapters.length){ $('#end').classList.add('active'); say('n17'); play('applause',.6); fillEnd(); window.scrollTo(0,0); cur=chapters.length; markSeason(); return; }
+    cur=i; var c=chapters[i]; c.classList.add('active'); buildToy(c); markSeason(); window.scrollTo(0,0);
+    if(!(i===0&&afterIntro)) say(c.getAttribute('data-vo'), i===0);
+    store('e1-cur',String(i));
+  });
+}
+function finish(c,fromEl){
+  if(c.classList.contains('done')) return;
+  c.classList.add('done'); var n=+c.getAttribute('data-n'); award(n,fromEl||$('.toy',c)); markSeason();
+  var rv=$('.reveal',c); setTimeout(function(){ rv.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}) },700);
+}
+chapters.forEach(function(c,i){
+  $('.next',c).addEventListener('click',function(){go(i+1)});
+  $('.skip',c).addEventListener('click',function(){finish(c)});
+});
+function start(withSound){ setSound(withSound); if(withSound){ afterIntro='n01'; load('vo-n00',function(){ if(afterIntro) say('n00'); }); } go(0); }
+$('#go').addEventListener('click',function(){start(true)});
+$('#goQuiet').addEventListener('click',function(){start(false)});
+function fillEnd(){
+  var map={play:'play',mind:'mind',voice:'voice',team:'team',maker:'maker',visible:'visible'};
+  $$('#bigtabs .bigtab:not(.gift)').forEach(function(b){var s=b.className.split(' ')[1]; var v=st[s]; $('span',b).textContent=v+' of 8'; $('i',b).style.width=(v/8*100)+'%';});
+}
+
+/* ---------------- since 2.8.98 ---------------- */
+(function(){ var a=new Date(1998,1,8), n=new Date(); var m=(n.getFullYear()-a.getFullYear())*12+(n.getMonth()-a.getMonth()); if(n.getDate()<a.getDate()) m--; var y=Math.floor(m/12), mo=m%12; var e=$('#since'); if(e&&y>0) e.textContent=y+' years, '+mo+' month'+(mo===1?'':'s'); })();
+
+/* ---------------- toys ---------------- */
+function el(tag,cls,html){var e=document.createElement(tag); if(cls) e.className=cls; if(html!=null) e.innerHTML=html; return e}
+function hint(t,txt){var h=$('.hint',t); if(!h){h=el('p','hint');t.appendChild(h)} h.textContent=txt; return h}
+function splat(t,txt,x,y){var s=el('div','splat',txt); s.style.left=x; s.style.top=y; t.appendChild(s); play('stamp'); if(!RM&&s.animate) s.animate([{transform:'rotate(-12deg) scale(2.2)',opacity:0},{transform:'rotate(-12deg) scale(1)',opacity:.92}],{duration:240,easing:'cubic-bezier(.3,1.5,.6,1)'}); return s}
+var TOYS={};
+
+TOYS.kick=function(t,c){
+  t.style.minHeight='300px';
+  t.innerHTML='<div class="pitch"><div class="stripe" style="top:20%"></div><div class="stripe" style="top:58%"></div></div><div class="crowd"></div><div class="goal"></div>';
+  var b=el('button','ball'); b.setAttribute('aria-label','Kick the ball'); t.appendChild(b); hint(t,'Tap the ball').style.color='#f1e4c3';
+  b.addEventListener('click',function(){ if(b.classList.contains('shot')) return; b.style.setProperty('--dx',(Math.random()*80-40)+'px'); b.classList.add('shot'); play('kick',.9);
+    setTimeout(function(){ $('.goal',t).classList.add('ripple'); $('.crowd',t).classList.add('go'); splat(t,'GOAL!','28%','34%'); hint(t,'The Cosmos were magic.'); finish(c,b); },650); });
+};
+TOYS.freeze=function(t,c){
+  t.style.minHeight='320px';
+  var r=el('div','room'); t.appendChild(r);
+  var svgs=['<svg viewBox="0 0 60 60"><path d="M18 8h24l-4 46H22z" fill="#fff" stroke="#17110d" stroke-width="4"/><path d="M20 24h20l-2 28H22z" fill="#f5f0e1"/></svg>',
+    '<svg viewBox="0 0 60 60"><rect x="4" y="22" width="34" height="20" fill="#d8321f" stroke="#17110d" stroke-width="4"/><rect x="38" y="28" width="16" height="14" fill="#1d5fc4" stroke="#17110d" stroke-width="4"/><circle cx="16" cy="46" r="6" fill="#17110d"/><circle cx="44" cy="46" r="6" fill="#17110d"/></svg>',
+    '<svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="24" fill="#e04a8a" stroke="#17110d" stroke-width="4"/><path d="M8 26c14 6 30 6 44 0" stroke="#fff" stroke-width="5" fill="none"/></svg>'];
+  var pos=[['12%','14%'],['42%','34%'],['70%','10%']], tries=0;
+  svgs.forEach(function(s,i){var o=el('button','obj',s); o.setAttribute('aria-label','Freeze it'); o.style.left=pos[i][0]; o.style.top=pos[i][1]; o.style.background='none'; o.style.border='0'; o.style.padding='0';
+    o.addEventListener('click',function(){ o.classList.remove('frost'); void o.offsetWidth; o.classList.add('frost'); play('freeze',.8); tries++;
+      hint(t, tries<2?'Nope. Still moving. Try another.':'Freezing is not his power.');
+      if(tries>=2) $('.powers',t).classList.add('on'); }); r.appendChild(o)});
+  var p=el('div','powers','<button type="button">Freeze things</button><button type="button">Take on the best traits of my friends</button>'); t.appendChild(p);
+  hint(t,'Tap a floating thing');
+  $$('button',p).forEach(function(b,i){ b.addEventListener('click',function(){ p.classList.remove('on'); hint(t, i===0?'He tried. It did not work. He chose the other one.':'That is the one he chose.'); splat(t,'ROGUE','30%','40%'); finish(c,b); }) });
+};
+TOYS.board=function(t,c){
+  t.style.minHeight='310px';
+  var bd=el('div','board'); for(var i=1;i<10;i++){var y=el('div','yd'); y.style.left=(i*10)+'%'; bd.appendChild(y)}
+  for(var j=0;j<11;j++){var f1=el('div','fig h'); f1.style.left=(38+Math.random()*8)+'%'; f1.style.top=(8+j*8)+'%'; bd.appendChild(f1); var f2=el('div','fig a'); f2.style.left=(50+Math.random()*8)+'%'; f2.style.top=(8+j*8)+'%'; bd.appendChild(f2);}
+  t.appendChild(bd);
+  var ct=el('div','ctrls','<button type="button" aria-pressed="false" data-w="snow">SNOW</button><button type="button" aria-pressed="false" data-w="wind">WIND</button><button type="button" data-w="hike">HIKE</button>'); t.appendChild(ct);
+  hint(t,''); var flakes=[], winds=[];
+  $$('button',ct).forEach(function(b){ b.addEventListener('click',function(){ var w=b.getAttribute('data-w');
+    if(w==='snow'){ var on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on); play('pencil',.25);
+      if(on){ for(var i=0;i<40;i++){var f=el('div','flake'); f.style.left=Math.random()*100+'%'; f.style.top=Math.random()*100+'%'; bd.appendChild(f); flakes.push(f)} } else { flakes.forEach(function(f){f.remove()}); flakes=[] } }
+    if(w==='wind'){ var on2=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on2); if(on2){ play('fan',.7); for(var k=0;k<5;k++){var wl=el('div','windline'); wl.style.top=(10+k*18)+'%'; wl.style.animationDelay=(k*.13)+'s'; bd.appendChild(wl); winds.push(wl)} } else { winds.forEach(function(x){x.remove()}); winds=[] } }
+    if(w==='hike'){ bd.classList.add('buzz'); play('buzz',.7); setTimeout(function(){ bd.classList.remove('buzz'); var wx=(flakes.length?'SNOW ':'')+(winds.length?'WIND ':''); splat(t,(wx||'CLEAR ')+'GAME','16%','30%'); finish(c,b); },1600) }
+  }) });
+};
+TOYS.seats=function(t,c){
+  t.style.minHeight='280px';
+  var s=el('div','seats'); var n=0; t.appendChild(s); hint(t,'Tap the four empty seats');
+  for(var i=0;i<4;i++){ (function(i){ var b=el('button','seat','?'); b.type='button'; b.setAttribute('aria-label','Seat '+(i+1)); s.appendChild(b);
+    b.addEventListener('click',function(){ if(b.classList.contains('on')) return; b.classList.add('on'); b.textContent=String(i+1); n++; play('stamp',.6);
+      if(n===4){ play('applause',.6); splat(t,'1ST PLACE','14%','30%'); hint(t,'Now step up. Hold the button.'); podium(); } }); })(i) }
+  function podium(){
+    var h=el('button','btn sun hold','<span class="fill"></span><span style="position:relative">Hold to speak</span>'); h.type='button'; h.style.position='absolute'; h.style.left='50%'; h.style.bottom='46px'; h.style.transform='translateX(-50%)'; t.appendChild(h);
+    var timer=null, t0=0;
+    function down(e){ e.preventDefault(); t0=Date.now(); play('applause',.25); timer=setInterval(function(){ var p=Math.min(1,(Date.now()-t0)/900); $('.fill',h).style.width=(p*100)+'%'; if(p>=1){ clearInterval(timer); timer=null; h.disabled=true; hint(t,'November 14, 1984. Age 14.'); finish(c,h);} },30); }
+    function up(){ if(timer){ clearInterval(timer); timer=null; $('.fill',h).style.width='0'; hint(t,'Keep holding.'); } }
+    h.addEventListener('pointerdown',down); h.addEventListener('pointerup',up); h.addEventListener('pointerleave',up);
+    h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ $('.fill',h).style.width='100%'; finish(c,h) } });
+  }
+};
+TOYS.doors=function(t,c){
+  t.style.minHeight='300px';
+  var cols=['#ef7d1a','#1d5fc4','#f4c20d','#23864a','#d8321f','#e04a8a','#c9971c','#f4c20d','#1d5fc4','#d8321f'];
+  var names=['','','','','','','','South Lakes','Exeter',"St. Paul's"];
+  var g=el('div','doors'), n=0, cnt=el('div','counter','0/10'); t.appendChild(cnt); t.appendChild(g); hint(t,'Tap each door');
+  cols.forEach(function(col,i){ var d=el('button','door',names[i]||String(i+1)); d.type='button'; d.style.background=col; if(i===1||i===4||i===8) d.style.color='#f1e4c3';
+    d.addEventListener('click',function(){ if(d.classList.contains('st')) return; d.classList.add('st'); n++; cnt.textContent=n+'/10'; play('stamp',.7); if(n===10){ splat(t,'TEN','30%','30%'); finish(c,d);} }); g.appendChild(d) });
+};
+TOYS.stars=function(t,c){
+  t.style.minHeight='300px';
+  var pts=[[12,70],[26,40],[42,58],[55,24],[70,46],[84,20],[90,66]];
+  var sky=el('div','sky'); t.appendChild(sky);
+  var ns='http://www.w3.org/2000/svg', svg=document.createElementNS(ns,'svg'); svg.setAttribute('viewBox','0 0 100 100'); svg.setAttribute('preserveAspectRatio','none'); sky.appendChild(svg);
+  var lit=[], lines=document.createElementNS(ns,'g'); svg.appendChild(lines);
+  hint(t,'Tap the stars'); $('.hint',t).style.color='#f6e9b8';
+  pts.forEach(function(p,i){ var g=document.createElementNS(ns,'g'); g.setAttribute('class','star'); g.setAttribute('tabindex','0'); g.setAttribute('role','button'); g.setAttribute('aria-label','Star '+(i+1));
+    var hit=document.createElementNS(ns,'circle'); hit.setAttribute('cx',p[0]); hit.setAttribute('cy',p[1]); hit.setAttribute('r',7); hit.setAttribute('fill','transparent');
+    var cc=document.createElementNS(ns,'circle'); cc.setAttribute('cx',p[0]); cc.setAttribute('cy',p[1]); cc.setAttribute('r',2.4);
+    g.appendChild(hit); g.appendChild(cc); svg.appendChild(g);
+    function tap(){ if(g.classList.contains('lit')) return; g.classList.add('lit'); cc.setAttribute('r',3.6); play('chime',.6);
+      if(lit.length){ var q=lit[lit.length-1]; var l=document.createElementNS(ns,'line'); l.setAttribute('x1',q[0]); l.setAttribute('y1',q[1]); l.setAttribute('x2',p[0]); l.setAttribute('y2',p[1]); l.setAttribute('stroke','#f6c018'); l.setAttribute('stroke-width','.9'); lines.appendChild(l); }
+      lit.push(p); if(lit.length===pts.length){ var e=el('p','hint','Enough, as they were.'); hint(t,'Enough, as they were.'); finish(c,t);} }
+    g.addEventListener('click',tap); g.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')tap()}); });
+};
+TOYS.envs=function(t,c){
+  t.style.minHeight='290px';
+  var w=el('div','envs','<button type="button" class="env h">HARVARD</button><button type="button" class="env s">STANFORD</button>'); t.appendChild(w);
+  hint(t,'Both are yeses. Pick one.');
+  var cart=el('div','cart','<div class="slot" aria-hidden="true"></div><button type="button" class="chip">BORROWED<br>GENESIS<br>CARTRIDGE</button>'); cart.style.display='none'; t.appendChild(cart);
+  $$('.env',w).forEach(function(b,i){ b.addEventListener('click',function(){ b.classList.add('open'); play('envelope',.8);
+    hint(t, i===0?'His pick too. Now plug in the borrowed Genesis.':'Stanford said "Super!" He picked Harvard. Now plug in the Genesis.');
+    $$('.env',w).forEach(function(x){x.disabled=true}); cart.style.display='flex'; }) });
+  $('.chip',cart).addEventListener('click',function(){ this.classList.add('in'); play('cartridge',.9); setTimeout(function(){ splat(t,'PLAYER 1','24%','20%'); hint(t,'It turned into a career.'); finish(c,cart); },350) });
+};
+TOYS.credits=function(t,c){
+  t.style.minHeight='330px';
+  var rows=[['Producer','dial'],['Lead Programmer','dial'],['Art Director','dial'],['Sound Designer','dial'],['Lead Tester','dial'],['Special Thanks: Jim Simmons','dial']];
+  var ul=el('ul','credits'); t.appendChild(ul); hint(t,'Tap a name to call'); var hung=0;
+  rows.forEach(function(r,i){ var li=el('li',i===5?'special':'','<span>'+r[0]+'</span><span>CALL</span>'); li.tabIndex=0; li.setAttribute('role','button'); ul.appendChild(li);
+    function call(){ if(li.classList.contains('hung')||li.classList.contains('answer')) return; play('dial',.5); $('span:last-child',li).textContent='...';
+      setTimeout(function(){
+        if(i===5){ li.classList.add('answer'); $('span:last-child',li).textContent='HELLO?'; play('whistle',.4); splat(t,'HIRED','20%','24%'); hint(t,'The wrong Jim Simmons. The right one.'); finish(c,li); }
+        else { li.classList.add('hung'); $('span:last-child',li).textContent='CLICK.'; play('hangup',.6); hung++; hint(t, hung<3?'Click. Keep dialing.':'Try the special thanks.'); }
+      },700); }
+    li.addEventListener('click',call); li.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();call()}}); });
+};
+TOYS.pad=function(t,c){
+  t.style.minHeight='420px';
+  var pad=el('div','pad'); pad.innerHTML='<span class="hw">Bulls vs. Blazers</span><svg viewBox="0 0 100 130"><g stroke="#17110d" stroke-width="1.2" fill="none"><rect x="14" y="20" width="76" height="100"/><path d="M14 70h76"/><circle cx="52" cy="70" r="10"/><path d="M38 20v22h28V20"/></g><g class="draw"><path d=""/><path d=""/></g><g class="xo" font-family="Permanent Marker" font-size="8" fill="#1f3f8f"></g></svg>';
+  t.appendChild(pad);
+  var plays={'Fast break':['M30 110 L52 75 L60 40','M75 112 L68 60 L50 34'],'Pick and roll':['M40 90 Q52 70 46 55 L52 36','M66 84 L50 60 L66 40'],'Post up':['M28 80 L36 46 L44 34','M78 90 Q60 70 58 40']};
+  var row=el('div','plays'); Object.keys(plays).forEach(function(k){ row.appendChild(el('button',null,k)) }); t.appendChild(row);
+  var xo=$('.xo',pad); [['X',30,112],['X',75,114],['O',52,84],['O',40,96],['O',66,88]].forEach(function(p){var tx=document.createElementNS('http://www.w3.org/2000/svg','text'); tx.setAttribute('x',p[1]); tx.setAttribute('y',p[2]); tx.textContent=p[0]; xo.appendChild(tx)});
+  hint(t,'Pick a play'); var drawn=false;
+  $$('button',row).forEach(function(b){ b.addEventListener('click',function(){ var ps=$$('.draw path',pad), d=plays[b.textContent]; ps[0].setAttribute('d',d[0]); ps[1].setAttribute('d',d[1]); var g=$('.draw',pad); g.classList.remove('go'); void g.getBoundingClientRect(); g.classList.add('go'); play('pencil',.8);
+    if(!drawn){ drawn=true; setTimeout(function(){ hint(t,'Passed. Now get the rosters.'); var f=el('button','btn sun','Fax every NFL team'); f.type='button'; f.style.margin='0 12px 40px'; t.appendChild(f);
+      f.addEventListener('click',function(){ f.disabled=true; play('fax',.6); for(var i=0;i<4;i++){(function(i){setTimeout(function(){var s=el('div','sheet');pad.appendChild(s);setTimeout(function(){s.remove()},950)},i*220)})(i)}
+        setTimeout(function(){ splat(t,'BINDER READY','10%','36%'); finish(c,f) },1100) }); },1100) } }) });
+};
+TOYS.roster=function(t,c){
+  t.style.minHeight='300px';
+  var tones=['#f3d3b5','#d9a77c','#a86b45','#6e4026','#3d2314'];
+  var r=el('div','roster'); var svgP='<svg viewBox="0 0 20 40"><circle class="skin" cx="10" cy="7" r="5.5" fill="#bdb5aa" stroke="#17110d" stroke-width="1.4"/><path d="M3 15h14l-1 13H4z" fill="#d8321f" stroke="#17110d" stroke-width="1.4"/><path class="skin" d="M0 16l3 0 1 9-3 0zM17 16l3 0-1 9-3 0z" fill="#bdb5aa" stroke="#17110d" stroke-width="1"/><path d="M5 28h4v11H5zM11 28h4v11h-4z" fill="#f1e4c3" stroke="#17110d" stroke-width="1.2"/></svg>';
+  for(var i=0;i<11;i++) r.insertAdjacentHTML('beforeend',svgP); t.appendChild(r);
+  var sw=el('div','swatches'); tones.forEach(function(tn,i){ var b=el('button'); b.type='button'; b.style.background=tn; b.setAttribute('aria-label','Skin tone '+(i+1)); b.setAttribute('aria-pressed','false'); sw.appendChild(b) }); t.appendChild(sw);
+  var lk=el('div','lockin','<button class="btn" type="button" disabled>Lock it in</button>'); t.appendChild(lk);
+  hint(t,''); var lb=$('button',lk);
+  $$('button',sw).forEach(function(b,i){ b.addEventListener('click',function(){ $$('button',sw).forEach(function(x){x.setAttribute('aria-pressed','false')}); b.setAttribute('aria-pressed','true'); $$('.skin',r).forEach(function(s){s.setAttribute('fill',tones[i])}); play('squeegee',.5); lb.disabled=false; }) });
+  lb.addEventListener('click',function(){ lb.disabled=true; $$('.skin',r).forEach(function(s,j){ setTimeout(function(){s.setAttribute('fill','#6e4026')}, j*40) });
+    setTimeout(function(){ splat(t,'DEFAULT','26%','10%'); finish(c,lb) },500) });
+};
+TOYS.catch=function(t,c){
+  t.style.minHeight='300px';
+  t.innerHTML='<div class="field"></div><div class="mitt" aria-hidden="true"></div>';
+  var tr=el('div','troph arc','<svg viewBox="0 0 56 84"><path d="M28 6c4 0 6 4 5 8l-2 6 8 10-4 3-6-6-2 14 4 18h-5l-3-14-3 14h-5l3-18-1-14-7 6-3-4 9-9-2-6c-1-4 1-8 5-8z" fill="#f6c018" stroke="#17110d" stroke-width="2.5"/><path d="M36 2l14 20" stroke="#8a5a2b" stroke-width="4"/><rect x="10" y="64" width="36" height="18" fill="#8a5a2b" stroke="#17110d" stroke-width="2.5"/><rect x="17" y="69" width="22" height="8" fill="#e8d6ab"/></svg>');
+  t.appendChild(tr); var b=el('button','btn catchbtn','CATCH'); b.type='button'; t.appendChild(b); hint(t,''); var misses=0;
+  b.addEventListener('click',function(){
+    var tb=tr.getBoundingClientRect(), mb=$('.mitt',t).getBoundingClientRect();
+    var dx=Math.abs((tb.left+tb.width/2)-(mb.left+mb.width/2));
+    if(RM||dx<mb.width*0.9||misses>=2){ tr.classList.remove('arc'); tr.classList.add('caught'); b.disabled=true; play('catch',.9); splat(t,'ROOKIE','8%','62%'); finish(c,b); }
+    else { misses++; b.textContent=misses===1?'ALMOST. AGAIN':'ONE MORE'; play('whistle',.3); }
+  });
+};
+TOYS.shelf=function(t,c){
+  t.style.minHeight='330px';
+  var games=[['Madden 96 graphics','#d8321f'],['Alexi Lalas Soccer','#23864a'],['College Hoops 99','#1d5fc4'],['Thrasher','#f4c20d']];
+  var s=el('div','shelf'); var n=0; t.appendChild(s); hint(t,'Tap each game onto the shelf');
+  games.forEach(function(g){ var b=el('button','spine',g[0]); b.type='button'; b.style.background=g[1]; b.style.color=(g[1]==='#f4c20d')?'#17110d':'#f1e4c3';
+    b.addEventListener('click',function(){ if(b.classList.contains('on')) return; b.classList.add('on'); play('cartridge',.6); n++; if(n===4){ hint(t,'Fall 1997. Monday morning. Open the door.'); md.style.display='flex'; } }); s.appendChild(b) });
+  var md=el('div','mondoor','<button type="button" class="bigdoor" aria-label="Open the Monday door"></button><strong style="font-family:var(--display)">MONDAY</strong>'); md.style.display='none'; t.appendChild(md);
+  $('.bigdoor',md).addEventListener('click',function(){ this.classList.add('open'); play('applause',.35); splat(t,'OUT AT WORK','6%','8%'); finish(c,this); });
+};
+TOYS.cafe=function(t,c){
+  t.style.minHeight='300px';
+  var f=el('div','floor','<div class="ballm"></div><div class="spark"></div><div class="song">"Together Again"</div>'); t.appendChild(f);
+  var L=el('button','pair L','Gordon + Ted'), R=el('button','pair R','Joe + Jeff'); f.appendChild(L); f.appendChild(R);
+  hint(t,'Tap either pair, or drag them together');
+  function meet(){ if(f.classList.contains('met')) return; f.classList.add('met'); play('club',.7); setTimeout(function(){ finish(c,f) },900); }
+  [L,R].forEach(function(p){ p.addEventListener('click',meet);
+    var sx=null; p.addEventListener('pointerdown',function(e){sx=e.clientX}); p.addEventListener('pointermove',function(e){ if(sx!=null&&Math.abs(e.clientX-sx)>30) meet() }); p.addEventListener('pointerup',function(){sx=null}); });
+};
+TOYS.doors2=function(t,c){
+  t.style.minHeight='300px';
+  var w=el('div','twodoors','<div class="inv"><h4>THQ HOLIDAY PARTY</h4><div>Guest of Gordon Bellamy:</div><div class="slotline" id="plus"></div><button class="btn pink" type="button">Write in: Joe</button></div><div class="inv"><h4>SPIKE TV EDIT BAY</h4><div>A segment misrepresents a designer.</div><div class="slotline"></div><button class="btn" type="button" disabled>CUT</button></div>');
+  t.appendChild(w); hint(t,''); var bs=$$('button',w);
+  bs[0].addEventListener('click',function(){ bs[0].disabled=true; $('.slotline',bs[0].parentNode).textContent='Joe'; bs[0].parentNode.classList.add('done'); play('envelope',.8); splat(t,'+1','8%','6%'); hint(t,'Door one open. Now the edit bay.'); bs[1].disabled=false; });
+  bs[1].addEventListener('click',function(){ bs[1].disabled=true; $('.slotline',bs[1].parentNode).textContent='Truth over money'; bs[1].parentNode.classList.add('done'); play('edit',.9); setTimeout(function(){ finish(c,bs[1]) },300); });
+};
+TOYS.patio=function(t,c){
+  t.style.minHeight='300px';
+  var p=el('div','patio','<div class="lights"></div><div class="backdoor"></div><div class="bubble">Do you like games? I like games.</div>'); t.appendChild(p);
+  var cols=['#ef7d1a','#1d5fc4','#f4c20d','#23864a','#e04a8a','#d8321f'], skins=['#6e4026','#d9a77c','#a86b45','#3d2314','#f3d3b5','#8a5a3b'], n=0;
+  hint(t,'Tap someone at the door'); $('.hint',t).style.color='#f1e4c3';
+  cols.forEach(function(col,i){ var g=el('button','guest','<i></i><b></b>'); g.type='button'; g.setAttribute('aria-label','Invite guest '+(i+1)); g.style.left=(14+(i%2)*14)+'px'; g.style.bottom=(24+i*3)+'px'; g.style.background='none'; g.style.border='0';
+    $('i',g).style.background=skins[i]; $('b',g).style.background=col; p.appendChild(g);
+    g.addEventListener('click',function(){ if(g.dataset.out) return; g.dataset.out=1; g.classList.add('out'); n++; g.style.left=(28+n*10)+'%'; g.style.bottom=(30+(n%2)*14)+'px'; play('patio',.35);
+      var bb=$('.bubble',p); bb.classList.add('on'); setTimeout(function(){bb.classList.remove('on')},1100);
+      if(n===6){ setTimeout(function(){ splat(t,'A PARTY','30%','16%'); finish(c,p) },700) } else hint(t,n+' out. Keep bringing people in.'); }) });
+};
+TOYS.ladder=function(t,c){
+  t.style.minHeight='260px';
+  var steps=[['Join the board','March 2009'],['Chair the board','March 2010'],['Acting executive director','Aug 17, 2010']];
+  var l=el('div','ladder'); t.appendChild(l); hint(t,''); var n=0;
+  steps.slice().reverse().forEach(function(s,ri){ var i=2-ri; var b=el('button','rung','<span>'+s[0]+'</span><span>'+s[1]+'</span>'); b.type='button'; if(i>0) b.disabled=true; b.dataset.i=i; l.appendChild(b);
+    b.addEventListener('click',function(){ if(+b.dataset.i!==n) return; b.classList.add('on'); b.disabled=true; play('stamp',.8); n++; var nx=$('.rung[data-i="'+n+'"]',l); if(nx) nx.disabled=false; if(n===3){ play('applause',.6); splat(t,'IGDA','40%','40%'); finish(c,b);} }) });
+};
+
+function buildToy(c){
+  var t=$('.toy',c); if(!t||t.dataset.built) return; t.dataset.built=1;
+  var fn=TOYS[t.getAttribute('data-toy')]; if(fn) fn(t,c);
+  var fb=$('[data-foster]',c); if(fb) fb.addEventListener('click',function(){ fb.disabled=true; $('.car',c).classList.add('go'); play('cartridge',.3); flyStamp(fb,'team','FOSTER IN'); });
+}
+renderCard();
+})();
+</script>
+</body>
+</html>

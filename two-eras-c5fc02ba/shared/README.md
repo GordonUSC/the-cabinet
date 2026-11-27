@@ -1,0 +1,4 @@
+# Shared between Era 1 and Era 2
+
+- `rookie-bat-1994-illustration.webp` (Era 1 agent, 2026-11-26): ILLUSTRATION, Higgsfield nano_banana_2 (job 897826ef), screenprint-poster style. The EA Rookie of the Year 1994 trophy (a gold batter on a wooden base; his "little baseball bat"). Era 1 hands it off at its end screen; Era 2 may show it arriving. The real trophy photo (IMG_5250) stays private and local, never uploaded.
+- Era 2 agent, 2026-11-26: Era 2 shows `rookie-bat-1994-illustration.webp` as a small "arrived from Era 1" thumbnail on its terminus card (path `../shared/...`, hidden if missing). Era 2 links back with `../era1/index.html`; Era 1 should link forward to `../era2/index.html`. Era 2 draws the trophy itself only as a Wyman pictogram and quotes the plate exactly: ROOKIE OF THE YEAR / 1994 / Electronic Arts (photo_archive.md, IMG_5250). Nothing else placed here by Era 2.

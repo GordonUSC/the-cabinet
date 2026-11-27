@@ -1,0 +1,1295 @@
+<!doctype html>
+<!-- STYLE: Lance Wyman transit and pictogram system (Mexico 68 metro idiom): color-coded lines, one pictogram per station, rounded geometric marks, multiline display type | WHY: Era 2 is a life whose roles cross, and a metro map is literally a picture of lines that cross and arrive somewhere; he chose roles for his own files and loves maps he can name and place | ALT: Massimo Vignelli 1972 subway diagram (stricter, colder, no pictograms) -->
+<!-- CONFIG: the seventh line is set by data-line7 on <html>: "play" (default) or "vault". Change that one attribute to swap. -->
+<!-- House tics this style forbids: no small uppercase mono kicker labels, no middle-dot separators, no 999px pill buttons, no hero-then-ruled-sections, no cream cards with a colored top rail. -->
+<html lang="en" data-line7="play">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>All Roads Lead Home</title>
+<meta name="description" content="Gordon Bellamy, 2011 to now, as a transit map of seven role lines that cross and arrive home. Era 2 of two.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;700;800&family=Monoton&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#15181e; --mute:#59616e; --rule:#d8dce2; --soft:#f1f3f6; --knock:#ffffff;
+  --l-play:#0e9f8e; --l-vault:#6b7684; --l-family:#7b35b0; --l-founder:#0089c9; --l-prof:#2440b8;
+  --l-story:#d0247a; --l-maker:#ee6a0b; --l-advisor:#97692c;
+  --top:92px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1217; --ink:#f1f2f4; --mute:#a7aebb; --rule:#2b313b; --soft:#191d24; --knock:#0f1217;
+    --l-play:#22c2ad; --l-vault:#9aa4b2; --l-family:#a86ae0; --l-founder:#33b2ec; --l-prof:#6b85f2;
+    --l-story:#f2559f; --l-maker:#ff8a3d; --l-advisor:#cf9a55; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1217; --ink:#f1f2f4; --mute:#a7aebb; --rule:#2b313b; --soft:#191d24; --knock:#0f1217;
+  --l-play:#22c2ad; --l-vault:#9aa4b2; --l-family:#a86ae0; --l-founder:#33b2ec; --l-prof:#6b85f2;
+  --l-story:#f2559f; --l-maker:#ff8a3d; --l-advisor:#cf9a55; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink)}
+body{font-family:"Lexend",system-ui,sans-serif;font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+svg use{color:inherit}
+
+/* ---------- header ---------- */
+.top{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;padding:10px 16px 8px;min-height:var(--top);border-bottom:3px solid var(--ink)}
+.brand{min-width:0}
+.era-mark{font-family:"Monoton",cursive;font-size:18px;letter-spacing:.06em;margin:0;line-height:1;color:var(--l-maker)}
+h1{font-family:"Monoton",cursive;font-weight:400;font-size:clamp(22px,5.4vw,46px);line-height:1.05;margin:2px 0 2px;letter-spacing:.01em}
+.sub{margin:0;font-size:13px;color:var(--mute)}
+.era-back{display:grid;place-items:center;width:46px;height:46px;border:3px solid var(--ink);border-radius:50%;font-weight:800;font-size:11px;text-decoration:none;line-height:1;text-align:center}
+.era-back:hover{background:var(--ink);color:var(--paper)}
+.tools{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.clock{font-weight:700;font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.snd{display:flex;align-items:center;gap:6px;border:2px solid var(--ink);background:var(--paper);border-radius:8px;padding:5px 9px;font-size:13px;font-weight:700}
+.snd svg{width:18px;height:18px}
+.snd[aria-pressed="false"] .w{opacity:.15}
+.snd[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+/* ---------- stage ---------- */
+.stage{position:relative;height:calc(100vh - var(--top));height:calc(100svh - var(--top));min-height:520px;overflow:hidden;background:var(--paper)}
+.mapwrap{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;scrollbar-width:thin;transition:bottom .45s cubic-bezier(.2,.8,.2,1)}
+.map{display:block;height:100%;width:auto;max-width:none;touch-action:pan-x}
+.static-map{display:block;height:100%;width:auto;max-width:none}
+.js .static-map{display:none}
+[data-line7="play"] .sm-vault,[data-line7="vault"] .sm-play{display:none}
+.ticket{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;gap:6px;align-items:center;padding:8px 12px 8px 16px;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:2px solid var(--rule);overflow-x:auto;scrollbar-width:none}
+.ticket::-webkit-scrollbar{display:none}
+.tk-l{display:flex;align-items:center;gap:4px;border:0;background:none;padding:2px;border-radius:7px;flex:0 0 auto}
+.tk-l .sq{width:24px;height:24px;border-radius:6px;background:var(--c);color:#fff;display:grid;place-items:center;transition:transform .2s}
+.tk-l .sq svg{width:17px;height:17px}
+.tk-l b{font-size:12px;font-variant-numeric:tabular-nums;font-weight:700}
+.tk-l.on .sq{transform:scale(1.18);box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--c)}
+.tk-sum{margin-left:auto;font-size:12px;font-weight:700;white-space:nowrap;padding-left:8px;display:flex;gap:10px;align-items:center}
+.tk-auto{border:2px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:7px;padding:3px 8px;font-size:12px;font-weight:700}
+.js .mapwrap{top:44px}
+
+/* map pieces */
+.m-line{fill:none;stroke-width:9;stroke-linejoin:round;stroke-linecap:round}
+.m-line.dim{opacity:.18}
+.m-line.hot{stroke-width:12}
+.m-st{cursor:pointer}
+.m-st .hit{fill:transparent}
+.m-dot{fill:var(--paper);stroke-width:5}
+.m-st.seen .m-dot{fill:var(--c)}
+.m-cap{fill:var(--paper);stroke:var(--ink);stroke-width:4.5}
+.m-st.seen .m-cap{fill:var(--rule)}
+.m-lab{font:700 15px "Lexend",sans-serif;fill:var(--ink)}
+.m-yr{font:500 11px "Lexend",sans-serif;fill:var(--mute)}
+.m-lead{stroke:var(--rule);stroke-width:1.5;stroke-dasharray:2 4}
+.m-ico{color:var(--c)}
+.m-st:hover .m-lab,.m-st:focus .m-lab{fill:var(--c)}
+.m-st:focus{outline:none}
+.m-st:focus-visible .m-dot,.m-st:focus-visible .m-cap{stroke-width:7}
+.m-ruler text{font-family:"Monoton",cursive;font-size:24px;fill:var(--ink)}
+.m-ruler line{stroke:var(--ink);stroke-width:3}
+.m-badge rect{rx:9}
+.m-home .ring{fill:none;stroke:var(--ink);stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center;animation:ring 2.6s ease-out infinite}
+@keyframes ring{0%{opacity:.6;transform:scale(.7)}100%{opacity:0;transform:scale(1.25)}}
+.m-home text{font-family:"Monoton",cursive;font-size:22px;fill:var(--ink)}
+.m-orig text{font:700 13px "Lexend",sans-serif;fill:var(--mute)}
+.ghost{fill:none;stroke:var(--mute);stroke-width:2;stroke-dasharray:4 4}
+.ghost-t{font:500 11px "Lexend",sans-serif;fill:var(--mute)}
+.pulse{fill:none;stroke-width:4;opacity:0}
+.train-body{stroke:var(--ink);stroke-width:3}
+.train-win{fill:var(--paper)}
+.train-n{font:800 11px "Lexend",sans-serif;fill:var(--ink)}
+
+/* ---------- departures board ---------- */
+.board{position:absolute;left:12px;right:12px;bottom:12px;z-index:6;background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:14px;box-shadow:0 10px 0 -4px var(--ink);transform:translateY(130%);transition:transform .55s cubic-bezier(.2,1.3,.3,1)}
+.board.up{transform:none}
+.board-q{margin:0 0 8px;font-weight:800;font-size:20px}
+.go{display:grid;grid-template-columns:56px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:center;width:100%;text-align:left;border:3px solid var(--ink);background:var(--l-play);color:#fff;border-radius:12px;padding:10px 12px;animation:breathe 2.4s ease-in-out infinite}
+.go-ico{grid-row:1/3;width:56px;height:56px}
+.go-t{font-size:19px;font-weight:700}
+.go-s{font-size:13px;opacity:.95}
+@keyframes breathe{50%{transform:scale(1.025)}}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.chip{display:flex;align-items:center;gap:7px;border:2px solid var(--rule);background:var(--paper);border-radius:10px;padding:6px 7px;text-align:left;font-size:13px;font-weight:700;line-height:1.15;transition:transform .15s,border-color .15s}
+.chip:hover,.chip:focus-visible{border-color:var(--c);transform:translateY(-2px)}
+.chip .sq{flex:0 0 30px;width:30px;height:30px;border-radius:7px;background:var(--c);color:#fff;display:grid;place-items:center}
+.chip .sq svg{width:22px;height:22px}
+.chip small{display:block;font-weight:500;color:var(--mute);font-size:11px}
+.modes{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
+.mode{border:3px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:10px;padding:8px 14px;font-weight:700}
+.or{font-size:13px;color:var(--mute)}
+
+/* ---------- station card ---------- */
+.card{position:absolute;left:0;right:0;bottom:0;z-index:7;max-height:66%;overflow-y:auto;overscroll-behavior:contain;background:var(--paper);border:4px solid var(--ink);border-bottom:0;border-radius:18px 18px 0 0;padding:0 16px 18px;box-shadow:0 -10px 30px rgba(0,0,0,.18);transform:translateY(105%);transition:transform .45s cubic-bezier(.2,1.1,.3,1)}
+.card.up{transform:none}
+.c-head{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:76px 1fr 40px;gap:12px;align-items:center;padding:14px 0 10px;background:var(--paper)}
+.c-art{width:76px;height:76px;border-radius:14px;background:var(--c);color:#fff;display:grid;place-items:center;--knock:var(--c);animation:pop .5s cubic-bezier(.2,1.6,.4,1) both}
+.c-art svg{width:58px;height:58px}
+@keyframes pop{0%{transform:scale(.2) rotate(-12deg)}100%{transform:none}}
+.c-when{margin:0;font-weight:700;font-size:13px;color:var(--c)}
+.c-name{margin:0;font-size:24px;line-height:1.1;font-weight:800}
+.c-lines{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.c-lines span{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#fff;background:var(--c);border-radius:5px;padding:2px 6px}
+.c-x{width:40px;height:40px;border:2px solid var(--ink);border-radius:50%;background:var(--paper);font-size:20px;line-height:1;font-weight:700}
+.c-text{font-size:17px;margin:2px 0 10px}
+.c-q{margin:0 0 12px;padding:0 0 0 14px;border-left:5px solid var(--c)}
+.c-q p{margin:0;font-size:17px;font-weight:500}
+.c-q cite{display:block;font-style:normal;font-size:12px;color:var(--mute);margin-top:3px}
+.c-src{font-size:12px;color:var(--mute);margin:12px 0 0}
+.c-link{font-size:14px;font-weight:700}
+.c-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{border:3px solid var(--ink);background:var(--paper);border-radius:10px;padding:9px 14px;font-weight:700;font-size:15px;transition:transform .12s}
+.btn:active{transform:scale(.96)}
+.btn.pri{background:var(--ink);color:var(--paper)}
+.btn.xf{background:var(--c);border-color:var(--c);color:#fff}
+.illus{font-size:11px;color:var(--mute);margin:4px 0 0}
+
+/* beats */
+.beat{border:3px solid var(--ink);border-radius:12px;padding:12px;background:var(--soft);position:relative;overflow:hidden}
+.b-verb{margin:0 0 8px;font-weight:800;font-size:15px;color:var(--c);display:flex;align-items:center;gap:8px}
+.b-verb svg{width:20px;height:20px}
+.b-q{margin:0 0 10px;font-weight:700;font-size:16px}
+.b-opts{display:flex;flex-wrap:wrap;gap:8px}
+.b-opt{border:3px solid var(--ink);background:var(--paper);border-radius:10px;padding:9px 12px;font-weight:700;font-size:15px}
+.b-opt.right{background:var(--c);border-color:var(--c);color:#fff}
+.b-opt.wrong{opacity:.45}
+.b-reveal{margin:10px 0 0;font-weight:700;font-size:16px;animation:rise .4s ease both}
+.b-quote{margin:8px 0 0;font-size:15px;font-style:normal}.b-quote cite{display:block;font-size:13px;opacity:.8;font-style:normal}
+.mx-row{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+.mx-sph{width:68px;height:68px;border-radius:50%;border:3px solid currentColor;background:transparent;color:inherit;display:grid;place-content:center;cursor:pointer;font:inherit;line-height:1}
+.mx-sph b{font-size:20px}.mx-sph span{font-size:11px}
+.mx-blue{color:#2a3fb0}.mx-green{color:#0e9f8e}.mx-purple{color:#7a3fb0}
+.mx-sph.on{background:currentColor}.mx-sph.on b,.mx-sph.on span{color:#fff}
+.mixroom{position:relative;height:90px;border:3px solid currentColor;border-radius:12px;overflow:hidden;display:grid;place-items:center;margin-top:6px}
+.mx-pulse{position:absolute;inset:0;background:radial-gradient(circle,#0e9f8e 0,transparent 70%);opacity:0}
+.mx-bpm{position:relative;font-weight:700}
+.mixroom.locked .mx-pulse{animation:mxbeat var(--beat,.43s) ease-out infinite}
+.mixroom.off{animation:mxwob .3s 2}
+@keyframes mxbeat{0%{opacity:.85;transform:scale(1.05)}100%{opacity:.1;transform:scale(.9)}}
+@keyframes mxwob{50%{transform:translateX(6px)}}
+@media (prefers-reduced-motion: reduce){.mixroom.locked .mx-pulse{animation:none;opacity:.5}.mixroom.off{animation:none}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.b-done{display:flex;align-items:center;gap:8px;margin-top:10px;font-weight:800;color:var(--c);animation:rise .4s ease both}
+.punch{width:22px;height:22px;border-radius:50%;background:var(--paper);border:3px dashed var(--c);animation:punch .45s cubic-bezier(.2,1.8,.4,1) both}
+@keyframes punch{0%{transform:scale(2.4);opacity:0}}
+.seats{display:flex;gap:10px;flex-wrap:wrap}
+.seat{width:86px;height:92px;border:3px dashed var(--c);border-radius:12px;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-weight:700;font-size:12px;color:var(--c)}
+.seat .plus{font-size:30px;line-height:1}
+.seat.in{border-style:solid;background:var(--c);color:#fff;animation:pop .45s cubic-bezier(.2,1.6,.4,1) both}
+.seat svg{width:40px;height:40px}
+.court{position:relative;height:150px;border-radius:10px;background:var(--paper);border:2px solid var(--rule);touch-action:manipulation;overflow:hidden}
+.court::after{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:3px dashed var(--rule)}
+.ball{position:absolute;top:50%;width:54px;height:54px;margin-top:-27px;border-radius:50%;background:var(--c);border:3px solid var(--ink);padding:0;z-index:2}
+.ball.fly-l{animation:flyL 1.6s linear forwards}
+.ball.fly-r{animation:flyR 1.6s linear forwards}
+@keyframes flyL{from{left:-60px;transform:translateY(-30px)}50%{transform:translateY(10px)}to{left:calc(100% + 10px);transform:translateY(-10px)}}
+@keyframes flyR{from{left:calc(100% + 10px);transform:translateY(-30px)}50%{transform:translateY(10px)}to{left:-60px;transform:translateY(-10px)}}
+.ball.caught{animation:none!important;transform:scale(1.35,.7)!important;transition:transform .09s}
+.call{position:absolute;top:8px;font-weight:800;font-size:22px;z-index:3;color:var(--ink)}
+.call.l{left:12px}.call.r{right:12px}
+.court-msg{position:absolute;left:0;right:0;bottom:8px;text-align:center;font-weight:800;font-size:20px;z-index:3;color:var(--c)}
+.court .spark{position:absolute;width:10px;height:10px;border-radius:2px;background:var(--c);z-index:1;animation:spark .6s ease-out forwards}
+@keyframes spark{to{transform:translate(var(--dx),var(--dy)) rotate(200deg);opacity:0}}
+.tapbtn{border:3px solid var(--ink);background:var(--c);color:#fff;border-radius:12px;padding:12px 18px;font-weight:800;font-size:18px;min-width:140px;transition:transform .08s}
+.tapbtn:active{transform:scale(.93)}
+.dots{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 4px}
+.dots i{width:18px;height:18px;border-radius:50%;border:3px solid var(--c);display:block;transition:background .15s,transform .2s}
+.dots i.f{background:var(--c);transform:scale(1.15)}
+.said{min-height:30px;font-weight:800;color:var(--c);transition:font-size .15s}
+.bignum{font-size:44px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1;color:var(--c)}
+.bar{height:12px;border-radius:6px;background:var(--rule);overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;width:0;background:var(--c)}
+.steps{min-height:58px;display:flex;align-items:center;font-size:22px;font-weight:800}
+.steps span{animation:rise .35s ease both}
+.ab{position:relative;height:70px}
+.ab .pt{position:absolute;top:18px;width:36px;height:36px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font-weight:800;background:var(--paper)}
+.ab .a{left:6px}.ab .b{right:6px}
+.ab .track{position:absolute;left:30px;right:30px;top:34px;border-top:4px dashed var(--c)}
+.ab .runner{position:absolute;left:10px;top:23px;width:26px;height:26px;border-radius:50%;background:var(--c);transition:left 1.4s cubic-bezier(.5,0,.3,1)}
+.lane{position:relative;height:74px;border-radius:10px;background:var(--paper);border:2px solid var(--rule);overflow:hidden}
+.lane .blk{position:absolute;top:12px;width:48px;height:48px;border-radius:8px;background:var(--mute);border:3px solid var(--ink);transition:transform .5s cubic-bezier(.3,1.4,.4,1)}
+.lane .blk.gone{transform:translateY(-90px) rotate(25deg)}
+.lane .walker{position:absolute;left:8px;top:22px;width:28px;height:28px;border-radius:50%;background:var(--c);transition:left 1.3s ease-in-out}
+.trophies{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.tro{aspect-ratio:1;border:2px solid var(--rule);border-radius:10px;background:var(--paper);display:grid;place-items:center;color:var(--mute);padding:4px}
+.tro svg{width:80%;height:80%}
+.tro.person.lit{background:var(--c);color:#fff;border-color:var(--c);animation:pop .4s both}
+.tro.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.tally{display:flex;gap:16px;margin-top:8px;font-weight:800}
+.plot{display:flex;align-items:center;gap:12px}
+.plot .lot{width:92px;height:92px;border:3px dashed var(--c);border-radius:10px;display:grid;place-items:center;font-weight:800;color:var(--c);background:var(--paper)}
+.plot .lot.built{border-style:solid;background:var(--c);color:#fff;animation:pop .5s both}
+.plot .lot svg{width:60px;height:60px}
+.roster{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.jn{width:58px;height:62px;border:3px solid var(--ink);border-radius:10px 10px 14px 14px;background:var(--paper);font-weight:800;font-size:24px}
+.cap{width:120px;height:72px;border:3px dashed var(--c);border-radius:12px;display:grid;place-items:center;font-weight:800;color:var(--c);text-align:center;font-size:13px}
+.cap.set{border-style:solid;background:var(--c);color:#fff;font-size:30px;animation:pop .45s both}
+.tabs{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;transition:gap .8s}
+.tabs span{padding:8px 10px;border-radius:8px;font-weight:800;color:#fff;transition:transform .8s cubic-bezier(.3,1.2,.4,1),border-radius .8s}
+.tabs.merged{gap:0;justify-content:center}
+.tabs.merged span{border-radius:0}
+.tabs.merged span:first-child{border-radius:8px 0 0 8px}
+.tabs.merged span:last-child{border-radius:0 8px 8px 0}
+
+/* home card */
+.desk{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end;padding:12px 6px 0;margin:6px 0 10px}
+.desk::after{content:"";grid-column:1/3;height:12px;background:var(--ink);border-radius:4px}
+.obj{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.obj svg{width:110px;height:110px;color:#b8892c;animation:pop .7s .2s both}
+.plate{font-size:11px;font-weight:700;letter-spacing:.04em;border:2px solid var(--ink);padding:4px 6px;border-radius:4px;background:var(--paper)}
+.label-card{border:3px solid var(--l-maker);border-radius:10px;padding:10px;font-weight:700;font-size:14px;background:var(--paper);animation:pop .7s .5s both}
+.label-card b{display:block;font-size:24px;color:var(--l-maker)}
+.merge{width:100%;height:110px;display:block;margin:4px 0}
+.riders{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.riders span{border:2px solid var(--ink);border-radius:8px;padding:3px 8px;font-weight:700;font-size:13px}
+
+/* ---------- timetable (also the JS-off story) ---------- */
+.timetable{max-width:880px;margin:0 auto;padding:34px 16px 20px}
+.timetable h2{font-family:"Monoton",cursive;font-weight:400;font-size:clamp(28px,6vw,44px);margin:0 0 6px}
+.tt-intro{margin:0 0 18px;color:var(--mute)}
+[data-line7="play"] .tt-line[data-line="vault"],[data-line7="vault"] .tt-line[data-line="play"]{display:none}
+[data-line7="play"] .tt-x [data-l="vault"],[data-line7="vault"] .tt-x [data-l="play"]{display:none}
+[data-line7="play"] .tt-x[data-only="vault"],[data-line7="vault"] .tt-x[data-only="play"]{display:none}
+.tt-line{margin:0 0 12px}
+.tt-line summary{display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;padding:8px;border:3px solid var(--ink);border-radius:12px;font-weight:800;font-size:18px}
+.tt-line summary::-webkit-details-marker{display:none}
+.tt-ico{width:38px;height:38px;border-radius:9px;background:var(--c);color:#fff;padding:5px;--knock:var(--c);flex:0 0 38px}
+.tt-count{margin-left:auto;font-weight:500;font-size:13px;color:var(--mute)}
+.tt-line ol{list-style:none;margin:10px 0 0;padding:0 0 0 8px}
+.tt-row{position:relative;padding:0 0 18px 36px;border-left:8px solid var(--c);margin-left:10px}
+.tt-row:last-child{border-left-color:transparent}
+.tt-row::before{content:"";position:absolute;left:-17px;top:0;width:18px;height:18px;border-radius:50%;background:var(--paper);border:5px solid var(--c)}
+.tt-row.seen::before{background:var(--c)}
+.tt-when{display:block;font-size:13px;font-weight:700;color:var(--c)}
+.tt-name{font-size:19px;font-weight:800;margin-right:8px}
+.tt-x{font-size:12px;font-weight:700;color:var(--mute)}
+.tt-x span{margin-left:4px}
+.tt-text{margin:4px 0 6px}
+.tt-row blockquote,.tt-home blockquote{margin:0 0 6px;padding-left:12px;border-left:4px solid var(--c)}
+.tt-home blockquote{border-left-color:var(--ink)}
+.tt-row blockquote p,.tt-home blockquote p{margin:0;font-weight:500}
+.tt-row cite,.tt-home cite{font-style:normal;font-size:12px;color:var(--mute)}
+.tt-src{font-size:12px;color:var(--mute);margin:0}
+.js .tt-row{cursor:pointer}
+.tt-home{border:3px solid var(--ink);border-radius:14px;padding:14px;margin-top:20px}
+.tt-home h3{font-family:"Monoton",cursive;font-weight:400;font-size:26px;margin:0 0 6px}
+.tt-end{font-weight:800;font-size:18px;margin:22px 0 0}
+.foot{max-width:880px;margin:0 auto;padding:10px 16px 40px;color:var(--mute);font-size:12px}
+
+@media (min-width:900px){
+  .board{left:24px;right:auto;width:440px;bottom:24px}
+  .card{left:auto;right:16px;top:58px;bottom:16px;width:410px;max-height:none;border:4px solid var(--ink);border-radius:18px;transform:translateX(120%)}
+  .card.up{transform:none}
+  .stage{min-height:600px}
+}
+@media (max-width:899px){
+  .stage.carded .mapwrap{bottom:var(--sheet,45%)}
+  .card{height:45%;max-height:none;transition:transform .45s cubic-bezier(.2,1.1,.3,1),height .32s cubic-bezier(.2,1,.3,1);padding-top:0}
+  .card.dragging{transition:transform .45s cubic-bezier(.2,1.1,.3,1)}
+  .grab{position:sticky;top:0;z-index:3;display:flex;justify-content:center;padding:8px 0 2px;margin:0 -16px;background:var(--paper);cursor:grab;touch-action:none}
+  .grab i{display:block;width:54px;height:6px;border-radius:3px;background:var(--ink);opacity:.35}
+  .c-head{top:16px;touch-action:none;padding-top:4px}
+  .card.peek .c-head{padding-bottom:4px}
+  .stage.boarded .mapwrap{bottom:300px}
+  .mapwrap{transition:bottom .32s cubic-bezier(.2,1,.3,1)}
+}
+@media (max-width:520px){
+  :root{--top:78px}
+  .top{padding:8px 12px 6px;gap:10px}
+  h1{font-size:25px}
+  .sub{font-size:12px}
+  .clock .d{display:none}
+  .snd span{display:none}
+  .snd{padding:6px}
+  .board{padding:10px;left:8px;right:8px;bottom:8px}
+  .board-q{font-size:16px;margin-bottom:6px}
+  .go{grid-template-columns:44px 1fr;padding:8px 10px}
+  .go-ico{width:44px;height:44px}
+  .go-t{font-size:17px}
+  .go-s{font-size:12px}
+  .chips{gap:6px;margin-top:8px}
+  .chip{font-size:12px;padding:5px;gap:5px}
+  .chip .sq{flex-basis:26px;width:26px;height:26px}
+  .chip small{display:none}
+  .modes{margin-top:8px}
+  .mode{padding:6px 12px;font-size:14px}
+  .era-back{width:40px;height:40px;font-size:10px}
+  .era-mark{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* JS off: the stage is a plain, scrollable poster above the timetable */
+html:not(.js) .stage{height:auto;min-height:0}
+html:not(.js) .mapwrap{position:relative;inset:auto;height:min(60vh,520px)}
+.handoff{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.handoff img{width:64px;height:80px;object-fit:cover;border:3px solid var(--ink);border-radius:6px}
+.handoff figcaption{font-size:12px;color:var(--mute)}
+.grab{display:none}
+@media (max-width:899px){.grab{display:flex}}
+.c-text.moving{color:var(--mute);font-size:14px}
+.boardtable{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px;border-radius:12px;background:var(--l-advisor)}
+.bseat{min-height:46px;border-radius:8px;border:3px dashed rgba(255,255,255,.75);display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;text-align:center;padding:4px;background:transparent}
+.bseat.in{border-style:solid;border-color:#fff;background:rgba(255,255,255,.22)}
+.bseat.mine{border-color:#fff;font-size:26px;animation:breathe 1.6s ease-in-out infinite}
+.bseat.mine.in{font-size:12px;animation:pop .45s both;background:#fff;color:var(--l-advisor)}
+.tt-beat{margin:0 0 6px;font-weight:700}
+.tt-steps{margin:0 0 6px;padding-left:18px}
+.grab,.c-head{-webkit-user-select:none;user-select:none}
+.card.dragging{-webkit-user-select:none;user-select:none}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="p-line_advisor" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path fill-rule="evenodd" d="M512 95a420 420 0 1 1 0 840 420 420 0 1 1 0-840Zm0 75a344 344 0 1 0 0 688 344 344 0 1 0 0-688Z" /> <path d="M487 202c4-14 13-23 25-23s21 9 25 23l55 201c5 18 9 24 27 30l200 56c14 4 22 12 22 24s-8 20-22 24l-200 56c-18 5-23 11-28 29l-55 202c-4 14-12 23-25 23s-21-9-25-23l-55-202c-5-18-10-24-28-29l-202-56c-15-4-24-12-24-24s9-20 24-24l202-56c18-5 23-11 28-29Z" /> </g> </symbol><symbol id="p-line_family" viewBox="0 0 1024 1024"> <g fill="currentColor"> <ellipse cx="280" cy="244" rx="80" ry="80" /> <ellipse cx="530.5" cy="197.5" rx="86" ry="89.5" /> <ellipse cx="756.5" cy="337" rx="69" ry="68.5" /> <path d="M218 316 C179 322 137 342 121 373 C109 395 111 419 128 435 C99 480 82 533 82 580 C80 612 93 631 117 631 C141 632 153 616 155 590 C158 546 170 503 191 473 L176 607 130 883 C125 913 141 932 166 932 H198 C221 932 235 917 237 891 L273 638 280 891 C280 917 294 932 317 932 H340 C364 932 377 917 377 892 L377 613 363 417 410 387 L400 605 395 891 C395 917 409 932 432 932 H452 C474 932 488 916 489 892 L512 616 541 892 C543 918 557 932 580 932 H603 C627 932 642 916 640 891 L624 606 614 416 666 462 L652 609 655 892 C655 918 668 932 690 932 H711 C733 932 746 917 746 893 L754 689 787 893 C790 919 803 932 825 932 H852 C877 932 893 915 888 887 L854 668 840 534 C857 567 866 605 869 642 C871 668 884 682 906 681 C930 680 943 663 942 635 C941 583 923 526 896 488 C916 477 919 455 907 435 C891 409 858 393 819 390 C803 409 782 419 757 419 C710 419 674 386 674 340 C674 333 674 327 676 320 C655 298 630 287 604 287 C576 286 558 301 530 301 C494 301 471 285 443 278 C415 270 386 275 363 288 C346 318 316 338 280 338 C256 338 236 330 218 316Z" /> </g> </symbol><symbol id="p-line_founder" viewBox="0 0 1024 1024"> <g fill="currentColor"> <g id="builder"> <circle cx="381.5" cy="241.5" r="77.5" /> <path d="M70 622 66 548Q64 495 98 457L223 315Q249 286 282 289 314 288 332 320L386 418Q389 425 400 433L475 489Q493 502 489 521 487 538 470 546 456 553 441 544L350 484Q337 476 328 462L291 413 211 512 209 583 253 838Q258 872 229 881 195 891 178 862L144 654 97 853Q89 887 55 882 20 878 21 843Z" /> </g> <g id="rear-chairs"> <path d="M448 459V449Q448 405 492 405H580Q624 405 624 449V493H490Q476 478 448 459Z" /> <path d="M489 513H660Q672 513 662 528 648 548 624 548H531Q506 548 490 528Z" /> <path d="M700 545V452Q700 405 747 405H835Q882 405 882 452V545Z" /> </g> <path id="table" d="M257 557H965A30 30 0 0 1 965 618H945V866Q945 886 926 886H908Q889 886 889 866V618H332V866Q332 886 313 886H296Q277 886 277 866V618H257A30.5 30.5 0 0 1 257 557Z" /> <g id="front-chairs"> <path d="M365 684Q365 634 415 634H534Q583 634 583 684V754Q583 776 563 776V870Q563 889 545 889 528 889 528 870V776H420V870Q420 889 403 889 385 889 385 870V776Q365 776 365 755Z" /> <path d="M636 684Q636 634 686 634H804Q854 634 854 684V754Q854 776 834 776V870Q834 889 816 889 799 889 799 870V776H691V870Q691 889 674 889 656 889 656 870V776Q636 776 636 755Z" /> </g> </g> </symbol><symbol id="p-line_gamemaker" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path d="M472 416V335C472 277 518 230 577 230H618C647 230 661 212 661 180V120Q661 98 683 98H709Q730 98 730 120V183C730 248 686 298 622 298H584C556 298 541 314 541 340V416Z" /> <path d="M426 483V433Q426 403 456 403H565Q596 403 596 433V483H648C661 483 674 470 704 460C786 431 871 463 925 527C968 578 989 635 983 695C977 766 937 835 881 877C837 910 785 924 737 910C695 899 672 870 651 834Q635 805 596 805H416Q380 805 363 833C341 872 317 898 275 910C222 925 169 907 127 873C72 829 37 760 37 690C33 623 60 564 108 516C168 456 239 434 309 460C336 469 357 483 371 483Z" /> </g> <g fill="var(--knock)"> <path d="M224 538H254C270 538 282 550 282 566V616H332C349 616 360 628 360 645V675C360 692 349 704 332 704H282V754C282 771 271 782 254 782H225C208 782 197 771 197 754V704H147C130 704 119 692 119 675V645C119 628 131 616 147 616H197V566C197 550 208 538 224 538Z" /> <rect x="412" y="652" width="84" height="42" rx="21" /> <rect x="525" y="652" width="83" height="42" rx="21" /> <circle cx="781.5" cy="570" r="45.5" /> <circle cx="694" cy="658" r="45.5" /> <circle cx="867.5" cy="658" r="45.5" /> <circle cx="781.5" cy="744.5" r="45.5" /> </g> </symbol><symbol id="p-line_play" viewBox="0 0 1024 1024"> <g fill="currentColor" transform="translate(51 46) scale(.9)"> <circle cx="423" cy="151" r="109" /> <path d="M404 532 475 499Q533 515 588 476Q612 483 634 478L605 580 749 610Q801 621 819 662Q838 697 818 747L769 868H827Q872 868 872 909Q872 951 827 951H681Q650 951 638 927Q627 907 639 872L695 721 560 697Q514 688 487 724L426 800 306 923H320Q361 923 361 959Q361 995 320 995H194Q147 995 147 951Q147 926 171 900L327 744Z" /> <path d="M425 276 349 280Q286 283 267 345L242 451Q228 498 259 529Q288 561 331 542L464 483Q496 468 494 438Q492 408 466 398Q449 390 430 399L314 448V429L367 405Q375 326 425 276Z" /> <path d="M526 237 567 216Q626 188 672 227L763 321Q795 354 786 394Q778 438 733 449L623 463Q590 469 574 443Q559 418 576 393Q585 378 610 373L710 359 708 344 650 351Q641 289 599 260Q566 239 526 237Z" /> <path d="M411 386Q400 333 438 290Q477 246 533 260Q610 271 629 350L605 353Q560 358 551 401Q543 438 569 464Q537 481 502 474Q520 438 505 408Q491 379 461 376Q437 373 411 386Z" /> </g> </symbol><symbol id="p-line_professor" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path d="M440 110H897Q958 110 958 171V502Q958 563 897 563H699V843H805A41 41 0 0 1 805 925H533A41 41 0 0 1 533 843H641V563H440Q379 563 379 502V453H396V416Q428 432 460 411L624 299Q660 275 641 239Q622 201 583 220L392 319H379V171Q379 110 440 110Z" /> <circle cx="262" cy="251" r="76" /> <path d="M197 342H342Q377 342 402 366L422 385Q436 397 452 386L610 280Q633 265 620 244Q607 225 585 237L390 338Q383 342 375 342H197ZM197 342H342Q367 342 367 373V562Q367 582 373 606L441 870Q453 920 412 929H359Q324 929 316 891L272 664L225 891Q218 930 178 930H151Q94 930 106 872L177 597Q153 603 135 585L67 513Q38 479 65 443L143 365Q164 342 197 342ZM187 436L146 470Q137 479 147 489L186 529Z" fill-rule="evenodd" /> </g> </symbol><symbol id="p-line_storyteller" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path d="M486 91H538C616 91 679 154 679 233V521C679 604 616 672 538 672H486C408 672 345 604 345 521V233C345 154 408 91 486 91ZM403 221C391 221 382 230 382 242S391 263 403 263H621C633 263 642 254 642 242S633 221 621 221ZM403 297C391 297 382 306 382 318S391 338 403 338H621C633 338 642 330 642 318S633 297 621 297ZM403 371C391 371 382 380 382 390S391 409 403 409H621C633 409 642 401 642 390S633 371 621 371ZM403 439C391 439 382 448 382 459S391 479 403 479H621C633 479 642 470 642 459S633 439 621 439ZM403 512C391 512 382 521 382 532S391 553 403 553H621C633 553 642 544 642 532S633 512 621 512Z" fill-rule="evenodd" /> <path d="M291 480H311C324 480 334 490 334 503V563C334 645 400 711 482 711H542C624 711 690 645 690 563V503C690 490 700 480 713 480H733C746 480 756 490 756 503V563C756 677 669 770 558 775V870H674C704 870 729 895 729 924S704 978 674 978H350C320 978 296 954 296 924S320 870 350 870H466V773C355 767 267 676 267 563V503C267 490 278 480 291 480Z" /> <path d="M151 122C162 108 181 106 195 117C209 127 211 147 201 161C115 272 109 395 184 505C194 520 191 540 176 550C161 561 141 557 131 542C38 406 47 257 151 122Z" /> <path d="M237 202C248 186 268 183 282 194C296 204 299 224 287 239C237 300 231 369 269 430C279 446 274 466 258 474C243 482 224 475 215 460C163 377 171 284 237 202Z" /> <path d="M873 122C862 108 843 106 829 117C815 127 813 147 823 161C909 272 915 395 840 505C830 520 833 540 848 550C863 561 883 557 893 542C986 406 977 257 873 122Z" /> <path d="M787 202C776 186 756 183 742 194C728 204 725 224 737 239C787 300 793 369 755 430C745 446 750 466 766 474C781 482 800 475 809 460C861 377 853 284 787 202Z" /> </g> </symbol><symbol id="p-line_vault" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path d="M102 448C86 445 76 435 72 418L63 374C55 334 81 297 120 284L726 109C760 98 793 116 804 149L817 196C826 224 813 247 789 255L668 294L780 387C788 394 793 400 796 405V487C705 458 613 491 550 560C455 658 450 801 557 905H173C134 905 102 873 102 834ZM130 442V444H754C759 444 761 442 761 437V413C761 406 759 404 751 404H647V302L139 439ZM325 499C305 499 289 515 289 535C289 555 305 571 325 571H486C506 571 522 555 522 535C522 515 506 499 486 499Z" fill-rule="evenodd" /> <path d="M947 725C947 850 847 952 723 952C599 952 498 850 498 725C498 600 599 499 723 499C847 499 947 600 947 725ZM723 538C701 538 676 543 665 557C651 573 657 601 664 622C675 651 698 667 723 667C750 667 771 647 782 620C789 600 796 574 784 557C773 542 746 538 723 538ZM539 721C539 743 543 770 558 782C574 795 602 787 623 779C650 768 668 747 668 722C668 696 649 673 622 662C601 653 574 648 558 660C543 672 539 699 539 721ZM907 721C907 699 903 673 888 660C872 647 845 654 823 662C796 673 779 695 779 721C779 748 798 769 824 780C845 788 872 794 888 782C903 770 907 743 907 721ZM723 775C697 775 675 795 664 822C656 842 651 869 664 886C676 901 701 905 723 905C746 905 772 901 784 886C797 869 789 842 782 822C771 795 749 775 723 775ZM755 721C755 703 741 689 723 689C705 689 691 703 691 721C691 739 705 754 723 754C741 754 755 739 755 721Z" fill-rule="evenodd" /> </g> </symbol><symbol id="p-st_chess" viewBox="0 0 1024 1024"> <g id="king" fill="currentColor"> <path d="M490 36H534Q548 36 548 50V95H604Q618 95 618 109V153Q618 168 604 168H548V226H629C664 226 687 258 673 291L622 400H402L351 291C337 258 360 226 395 226H476V168H420Q406 168 406 153V109Q406 95 420 95H476V50Q476 36 490 36Z" /> <rect x="361" y="416" width="302" height="69" rx="34.5" /> <path d="M425 502H599C594 611 618 717 672 807H352C406 717 430 611 425 502Z" /> <path d="M341 824H683C700 824 713 837 713 853C713 866 705 878 695 878H329C319 878 311 866 311 853C311 837 324 824 341 824Z" /> <rect x="276" y="894" width="472" height="94" rx="47" /> </g> </symbol><symbol id="p-st_dome" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path d="M464 185V141Q464 114 491 109V56C491 25 533 25 533 56V109Q561 114 561 141V185Z" /> <path d="M428 238V228C428 211 441 197 459 197H567C585 197 598 211 598 228V238Q513 234 428 238Z" /> <path d="M300 423C313 323 395 248 499 248H525C629 248 708 323 721 423C666 400 355 400 300 423Z" /> <path d="M273 535V482Q273 444 311 437C390 420 633 420 711 437Q749 444 749 482V535C659 518 363 518 273 535Z" /> <path d="M229 713V600Q229 563 270 555C352 537 671 537 753 555Q794 563 794 600V713Q830 716 830 750V774H929Q974 774 974 816V939C1008 947 1003 992 969 992H55C21 992 15 948 49 938V816Q49 774 94 774H193V750Q193 714 229 708Z" /> </g> <g fill="var(--knock)"> <path d="M314 517V477A16.5 16.5 0 0 1 347 477V515Z" /> <path d="M372 513V471A17 17 0 0 1 406 471V512Z" /> <path d="M432 511V467A17 17 0 0 1 466 467V510Z" /> <path d="M494 510V464A17.5 17.5 0 0 1 529 464V510Z" /> <path d="M557 511V467A17.5 17.5 0 0 1 592 467V512Z" /> <path d="M618 512V471A17 17 0 0 1 652 471V514Z" /> <path d="M677 515V477A16.5 16.5 0 0 1 710 477V517Z" /> <path d="M267 706V610A20 20 0 0 1 307 610V705Z" /> <path d="M337 704V603A21.5 21.5 0 0 1 380 603V703Z" /> <path d="M412 699V599A22 22 0 0 1 456 599V686Z" /> <path d="M488 677V598A23.5 23.5 0 0 1 535 598V677Z" /> <path d="M568 686V599A22 22 0 0 1 612 599V699Z" /> <path d="M644 703V603A21.5 21.5 0 0 1 687 603V705Z" /> <path d="M717 706V610A20 20 0 0 1 757 610V707Z" /> <path d="M93 918V853A19 19 0 0 1 131 853V918Z" /> <path d="M155 918V853A19 19 0 0 1 193 853V918Z" /> <path d="M217 918V853A19 19 0 0 1 255 853V918Z" /> <path d="M771 918V853A19 19 0 0 1 809 853V918Z" /> <path d="M833 918V853A19 19 0 0 1 871 853V918Z" /> <path d="M895 918V853A19 19 0 0 1 933 853V918Z" /> <path d="M287 945V808C253 797 249 761 284 747L483 674Q512 663 541 674L740 747C775 761 767 797 737 808V945H711V825A21 21 0 0 0 669 825V945H640V825A21 21 0 0 0 598 825V944H569V825A21 21 0 0 0 527 825V943H499V825A21 21 0 0 0 457 825V945H426V825A21 21 0 0 0 384 825V943H354V825A21 21 0 0 0 312 825V945Z" /> </g> <path fill="currentColor" d="M309 789C293 789 289 773 307 765L487 693Q512 682 537 693L717 765C735 773 729 789 715 789Z" /> </symbol><symbol id="p-st_ferris" viewBox="0 0 1024 1024"> <g fill="currentColor"> <g id="sky"> <path d="M161 76Q169 55 177 76L195 116 241 113Q259 113 247 126L211 161 225 206Q230 224 214 216L172 193 127 223Q110 234 115 213L130 167 88 138Q75 126 94 125L146 120Z" /> <path d="M732 50Q736 42 741 51L752 74 776 74Q787 74 777 83L758 99 764 119Q767 128 757 122L736 110 715 123Q703 129 705 118L712 97 692 84Q684 77 697 76L721 74Z" /> <path d="M928 304Q933 289 939 304L950 332 978 330Q991 330 982 341L959 363 967 389Q972 405 959 397L934 381 909 400Q895 410 900 393L908 365 883 348Q873 339 886 337L917 334Z" /> <path d="M376 34Q378 25 380 34C386 58 390 59 411 65Q419 68 410 70C389 76 384 80 381 99Q379 108 377 99C372 78 367 74 346 69Q339 67 347 65C369 60 372 54 376 34Z" /> <path d="M881 141Q884 129 887 141C892 167 900 173 924 180Q934 183 923 186C899 191 891 200 887 224Q884 237 881 224C877 200 868 191 844 186Q834 183 844 180C869 174 876 166 881 141Z" /> <path d="M106 330Q108 317 111 330C115 352 121 360 142 366Q153 370 141 373C120 378 115 386 111 407Q108 421 105 407C101 385 95 378 74 373Q63 370 75 367C96 361 101 353 106 330Z" /> </g> <g id="wheel"> <path fill-rule="evenodd" d="M512 133C665 133 788 256 788 409C788 497 746 576 678 626L650 605C715 560 757 490 757 409C757 274 647 164 512 164S267 274 267 409C267 489 307 560 373 605L345 624C277 574 236 497 236 409C236 256 359 133 512 133Z" /> <path d="M500 198H523V375H500ZM359 224 502 376 486 392 343 240ZM529 376 663 231 680 247 546 392ZM286 388H475V409H286ZM548 388H739V409H548ZM333 539 476 414 491 431 348 556ZM536 416 694 549 679 566 521 433Z" /> <path d="M488 425 398 599 448 588 512 456 575 588 625 601 536 425Z" /> <circle cx="511" cy="402" r="54" /> <path fill-rule="evenodd" d="M453 142C453 109 472 89 505 89H523C556 89 574 111 574 145V169C574 198 559 210 535 210H491C465 210 453 196 453 170ZM470 149H555V138C555 121 546 110 530 110H497C480 110 470 121 470 139Z" /> <path fill-rule="evenodd" d="M255 228C255 195 273 175 305 175H324C355 175 373 195 373 229V252C373 279 358 291 334 291H294C267 291 255 277 255 251ZM273 233H355V223C355 205 346 196 331 196H298C282 196 273 206 273 224Z" /> <path fill-rule="evenodd" d="M651 229C651 195 669 176 701 176H720C752 176 768 197 768 229V253C768 279 754 291 730 291H690C663 291 651 277 651 251ZM669 233H750V224C750 206 741 196 725 196H694C677 196 669 206 669 224Z" /> <path fill-rule="evenodd" d="M180 397C180 363 198 345 229 345H249C281 345 297 365 297 398V422C297 449 283 461 259 461H218C192 461 180 447 180 422ZM197 402H279V393C279 375 270 366 254 366H222C206 366 197 376 197 394Z" /> <path fill-rule="evenodd" d="M725 398C725 365 743 345 775 345H794C826 345 842 366 842 399V422C842 449 828 461 804 461H763C737 461 725 447 725 422ZM743 402H824V393C824 376 815 366 799 366H767C751 366 743 376 743 394Z" /> <path fill-rule="evenodd" d="M231 567C231 534 249 515 280 515H299C331 515 347 535 347 568V592C347 618 333 629 309 629H269C243 629 231 616 231 592ZM248 572H329V562C329 545 320 535 304 535H273C257 535 248 545 248 563Z" /> <path fill-rule="evenodd" d="M675 568C675 535 693 515 724 515H743C775 515 789 536 789 569V592C789 618 775 629 751 629H712C686 629 675 616 675 592ZM693 572H772V563C772 545 763 535 748 535H718C701 535 693 546 693 563Z" /> </g> <g id="festival"> <path d="M246 892V796C246 684 366 597 508 597C652 597 769 683 769 796V893L747 901 744 881Q741 855 716 855V797C716 732 644 667 585 667H431C372 667 298 735 298 797V855Q273 856 269 881L266 901Z" /> <path d="M283 925V879Q283 867 296 867H718Q731 867 731 879V925H706Q675 896 644 909L618 921Q617 888 591 880 565 872 549 913L527 899Q495 883 463 913L445 888Q425 870 405 884 391 894 393 920L374 913Q337 897 310 925Z" /> <path fill-rule="evenodd" d="M28 807Q28 802 36 799C78 774 112 743 134 702V641Q134 635 144 635C170 635 174 659 204 659Q215 659 208 670C190 690 166 673 153 677L145 681V702C165 739 200 769 237 791V892Q218 887 199 898C198 873 179 854 157 864C140 869 136 889 126 907C91 883 62 897 32 931Q28 934 28 929ZM45 812C44 836 56 852 76 852C94 852 102 840 107 824C112 842 119 852 137 852C154 852 163 840 167 824C172 841 179 852 195 852C212 852 222 835 223 812Z" /> <path fill-rule="evenodd" d="M778 799C821 771 851 740 870 702V641Q870 635 880 635C906 635 910 659 940 659Q952 659 945 670C927 689 903 674 890 677L881 681V703C906 746 947 778 989 800Q996 802 996 809V928Q996 935 989 930C959 898 932 884 896 906L878 877C859 851 815 859 811 898Q794 890 778 892ZM790 812C790 836 800 852 819 852C837 852 846 841 850 824C856 842 863 852 881 852C897 852 907 841 912 824C917 842 924 852 942 852C963 852 978 836 979 812Z" /> </g> <g id="performers"> <circle cx="362" cy="731" r="14" /> <path d="M349 750Q335 751 328 769L322 782Q320 793 336 812L320 844Q314 858 327 860Q335 862 341 850L355 825 380 843 386 855Q391 863 402 858 409 855 407 844L402 824Q400 814 376 796L363 811Q350 816 344 805 337 793 349 786L364 783 377 768Q370 746 349 750Z" /> <path d="M378 778 410 752Q418 746 424 752 431 760 420 766L385 789Q376 793 375 786Z" /> <circle cx="643" cy="735" r="14" /> <path d="M630 753Q617 754 611 772L606 786Q605 796 619 813L605 844Q600 857 612 859 620 862 626 851L640 826 657 842 663 854Q668 863 679 858 686 855 683 844L679 825Q677 815 655 798L643 810Q631 816 626 806 620 795 631 789L648 784 660 771Q653 749 630 753Z" /> <path d="M659 780 687 759Q694 754 699 760 706 768 696 774L666 792Q659 795 656 788Z" /> <circle cx="510" cy="736" r="15" /> <path d="M490 779V770L461 743Q457 737 462 733L466 708Q467 703 471 705 475 706 473 712L470 733 495 755H526L547 733 560 708Q563 702 567 706 571 708 567 714L556 737Q558 741 551 747L529 771V779Q509 772 490 779Z" /> <circle cx="509" cy="822" r="42" /> <ellipse cx="450" cy="781" rx="28" ry="11" /> <rect x="445" y="784" width="9" height="73" rx="4" /> <ellipse cx="567" cy="779" rx="28" ry="11" /> <rect x="562" y="784" width="10" height="74" rx="5" /> </g> <g id="audience"> <path d="M31 1024Q39 986 69 973C39 948 61 905 91 910C113 912 127 930 121 952L150 888Q158 868 175 875 191 882 182 902L148 973Q163 986 168 1006C177 981 196 967 220 963C181 955 185 910 216 905C252 898 274 936 252 960Q292 958 310 991C324 977 338 972 355 972C315 969 303 928 340 916C370 906 392 932 383 971Q430 967 447 1008L450 982 412 913Q401 896 417 891 429 886 438 901L475 957C457 927 488 896 516 906C539 913 546 934 533 956L572 900Q582 884 595 894 608 902 597 918L558 987 557 1024Z" /> <path d="M553 1024Q570 971 615 966L631 967C609 940 625 913 651 914C683 912 711 946 686 973Q710 978 730 1009C731 986 749 969 767 965C731 956 739 912 769 909C803 905 828 943 800 968C829 970 847 986 858 1009L864 982 831 912Q823 894 837 888 853 881 861 900L899 958C881 927 911 902 939 914C970 926 968 957 951 974Q983 987 992 1024Z" /> </g> </g> </symbol><symbol id="p-st_football" viewBox="0 0 1024 1024"> <g id="football" fill="currentColor"> <path d="M129 452C102 508 83 562 91 611C99 671 150 704 228 710C218 618 183 529 129 452Z" /> <path d="M609 145C674 142 736 165 759 205C788 253 763 340 731 397C720 308 674 216 609 145Z" /> <path d="M160 398C253 268 395 170 539 149C620 224 679 341 693 457L670 488H503C430 488 369 528 337 592L289 710H280C269 595 218 486 160 398Z" /> </g> <path id="laces" fill="var(--knock)" d="M259 447L287 432L271 404C257 379 294 360 308 383L323 413L362 392L346 362C332 336 368 316 383 339L400 371L439 350L423 317C410 291 447 272 461 295L477 329L516 309L500 278C486 253 522 235 537 259L553 290L573 279C599 266 617 302 593 316L572 327L587 357C601 383 564 401 551 377L535 346L495 366L509 397C522 423 486 440 472 416L457 385L418 406L434 436C447 462 411 480 397 457L381 427L342 448L359 478C373 503 336 522 322 498L306 468L280 483C255 497 236 461 259 447Z" /> <path id="controller" fill="currentColor" d="M503 510H767C827 508 874 546 894 605C916 670 945 759 945 808C945 878 908 924 841 925C791 926 773 906 747 863L727 830C714 809 696 799 672 799H540C513 799 497 808 481 828L440 882C414 916 373 929 341 918C292 902 277 851 288 800C300 746 331 670 358 609C386 545 434 510 503 510Z" /> <g id="controls" fill="var(--knock)"> <path d="M455 635V615C455 595 468 582 487 582C507 582 520 595 520 615V635H541C561 635 574 648 574 668C574 687 561 700 541 700H520V721C520 741 507 754 487 754C468 754 455 741 455 721V700H431C411 700 398 688 398 668C398 648 411 635 431 635Z" /> <circle cx="756.5" cy="601.5" r="32.5" /> <circle cx="694.5" cy="661.5" r="32.5" /> <circle cx="818" cy="661.5" r="32.5" /> <circle cx="756" cy="722" r="32.5" /> </g> </symbol><symbol id="p-st_hoodie" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path fill-rule="evenodd" d="M512 80C549 80 573 91 599 120C630 156 661 196 687 234C715 274 714 314 688 349C676 365 660 380 645 392H676C749 392 814 440 837 508L939 800C953 840 932 883 892 896C852 909 812 888 799 850L729 634V844C729 868 716 884 693 884H331C308 884 295 868 295 844V634L225 850C212 888 172 909 132 896C92 883 71 840 85 800L187 508C210 440 275 392 348 392H379C364 380 348 365 336 349C310 314 309 274 337 234C363 196 394 156 425 120C451 91 475 80 512 80ZM413 253C385 253 369 281 383 306C406 343 446 382 479 400C500 411 522 411 543 400C576 382 616 343 639 306C653 281 637 253 609 253ZM442 405V567C423 585 435 613 459 613C483 613 495 585 475 567V421ZM550 421V567C530 585 542 613 566 613C590 613 602 585 582 567V405ZM423 692C408 692 395 700 389 714L346 807C337 827 349 846 370 846H650C671 846 683 827 674 807L633 714C627 700 614 692 599 692Z" /> <rect x="302" y="901" width="420" height="59" rx="29.5" /> </g> </symbol><symbol id="p-st_jersey" viewBox="0 0 1024 1024"> <path fill="currentColor" d="M394 95C406 155 450 197 512 197C574 197 618 155 630 95C741 98 801 120 845 184L960 357C979 386 972 419 945 439L876 483C854 496 830 490 816 470L770 402C760 387 743 394 743 410V848C743 916 684 938 571 938H449C336 938 277 916 277 848V410C277 394 260 387 250 402L208 470C194 490 170 496 148 483L79 439C52 419 45 386 64 357L179 184C223 120 283 98 394 95Z" /> </symbol><symbol id="p-st_meeple" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path id="meeple" d="M279 371a138 138 0 1 1 206 0c45 9 87 19 126 32 42 14 64 43 64 81 0 48-33 97-83 91l-61-8 55 122h-90c-40 0-72 32-72 72v109c-10-5-17-15-21-28l-42-109c-5-13-20-13-25 0l-44 114c-8 22-24 35-48 35H138c-41 0-62-35-46-74l109-237-73 6c-45 4-75-24-80-68-5-39 18-78 51-94 45-20 109-34 180-44Z" /> <path id="glass" fill-rule="evenodd" d="M706 633 672 352c-2-16 6-24 24-28 75-15 180-13 248-2 22 3 34 10 32 28l-48 444c-2 18-13 26-31 26h-43V704c0-40-29-71-68-71Zm-1-277 9 74c47-23 174-22 220 0l9-74c-66-11-169-11-238 0Zm227 96c0-13-48-23-108-23s-108 10-108 23 48 23 108 23 108-10 108-23Z" /> <path id="rear-die" fill-rule="evenodd" d="M620 693c7-26 29-45 56-45h107c32 0 57 25 57 57v106c0 32-23 57-55 57H666V760c0-30-18-57-46-67Zm190 15a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Zm-44 49a21 21 0 1 0-42 0 21 21 0 0 0 42 0Zm-43 48a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Z" /> <path id="front-die" fill-rule="evenodd" d="M496 704h99c32 0 57 25 57 57v97c0 32-25 57-57 57h-99c-32 0-58-25-58-57v-97c0-32 26-57 58-57Zm19 52.5a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Zm101 0a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Zm-50 49a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Zm-51 50a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Zm101 0a20.5 20.5 0 1 0-41 0 20.5 20.5 0 0 0 41 0Z" /> </g> </symbol><symbol id="p-st_people" viewBox="0 0 1024 1024"> <g fill="currentColor" transform="translate(61 51) scale(.88)"> <circle cx="208" cy="337" r="60" /> <circle cx="396" cy="381" r="55" /> <circle cx="568" cy="444" r="48" /> <circle cx="827" cy="418" r="56" /> <path d="M127 466 C66 431 30 376 31 310 C31 280 39 252 55 240 C70 229 89 237 98 250 C108 264 99 280 96 297 C86 348 118 393 178 395 L231 398 C298 398 327 408 360 428 C371 435 388 435 404 436 C464 436 488 449 527 478 C539 488 552 491 578 494 C628 504 669 506 703 482 C720 470 734 476 740 490 C748 510 730 526 708 538 C677 554 646 556 610 554 C607 599 613 630 628 666 L669 762 C682 794 664 811 638 811 L621 811 C600 811 592 800 587 782 L564 687 C560 671 552 672 548 688 L532 779 C528 802 518 810 496 810 L449 810 C423 810 409 803 405 778 L382 650 C378 627 368 627 363 650 L342 775 C338 801 327 810 303 810 L249 810 C221 810 208 801 205 774 L190 625 C188 604 177 604 173 624 L142 774 C137 800 125 809 100 809 L81 809 C49 809 33 791 43 756 C77 648 107 543 127 466 Z M283 680 L325 486 C305 475 283 462 272 471 C265 477 267 502 265 523 C260 576 268 634 283 680 Z M475 711 L505 533 C487 520 458 496 443 503 C437 549 441 601 452 645 Z" fill-rule="evenodd" /> <path d="M817 469 C794 484 794 510 769 529 C748 545 726 552 701 555 C681 557 671 570 675 586 C678 601 690 606 706 605 C747 603 784 588 812 567 C812 603 801 624 782 653 L713 757 C698 783 710 807 737 811 L757 811 C775 811 784 806 792 789 L844 678 C851 663 855 663 858 681 C864 719 888 754 914 793 C930 816 955 815 975 799 L985 790 C1003 774 1004 756 989 736 L952 689 C932 659 915 594 902 546 C925 560 937 580 943 601 C948 619 960 627 976 624 C995 621 1002 606 998 585 C989 532 944 488 895 474 C871 467 844 467 817 469 Z" /> </g> </symbol><symbol id="p-st_plane" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path id="moon" d="M621 110C549 91 476 128 434 182C380 252 388 341 443 399C510 470 626 456 688 387C615 400 554 364 527 303C493 226 531 139 621 110Z" /> <path id="airplane" d="M595 574L268 513C240 508 215 516 200 532C187 546 189 561 205 573L372 678L251 739L157 646C149 638 141 633 130 634L73 638C58 639 50 650 56 666L114 792L73 793C55 793 41 806 41 823C41 840 54 854 73 854H178C188 854 195 852 205 848L352 798L305 882C293 904 300 919 325 919H351C371 919 386 914 401 901L653 691L920 577C951 564 972 545 980 518C996 467 948 443 891 448C858 450 834 460 807 473Z" /> </g> </symbol><symbol id="p-st_podium" viewBox="0 0 1024 1024"> <g fill="currentColor"> <ellipse cx="512" cy="190" rx="112" ry="117" /> <path d="M341 534V495Q341 457 320 434L94 198C70 173 70 134 92 110C117 82 158 88 178 117L190 140Q196 151 211 166L348 292Q380 323 414 323H610Q644 323 676 292L813 166Q828 151 834 140L846 117C866 88 907 82 932 110C954 134 954 173 930 198L704 434Q683 457 683 495V534Z" /> <path d="M268 543H756C787 543 811 566 811 598C811 629 790 653 760 653H706V924C706 950 687 969 661 969H363C337 969 318 950 318 924V653H264C234 653 213 629 213 598C213 566 237 543 268 543Z" /> </g> </symbol><symbol id="p-st_runner" viewBox="0 0 1024 1024"> <g fill="currentColor"> <ellipse cx="710.5" cy="170" rx="102.5" ry="104.5" /> <path d="M371 237H574Q613 237 641 266L760 385Q772 398 785 385L869 302C891 279 925 278 949 300C973 322 973 358 951 382L840 493Q810 521 765 517Q726 516 696 487L645 435L572 561L747 692Q765 706 777 725L887 881H937C968 881 992 905 992 936C992 967 968 990 937 990H804Q771 990 754 962L651 801Q644 790 633 782L471 657L369 808Q343 850 294 844L157 813Q153 811 151 815L130 852C115 878 85 887 59 873C34 860 25 833 36 804L65 724C76 693 107 674 137 684Q201 705 260 716Q271 718 277 704L338 567L462 355H362Q352 354 346 364L276 478C259 505 228 509 204 495C178 480 170 448 186 420L264 294Q301 238 371 237Z" /> </g> </symbol><symbol id="p-st_signpost" viewBox="0 0 1024 1024"> <g id="signpost" transform="translate(51.2 51.2) scale(0.9)" fill="currentColor"> <path d="M455 126V77C455 45 480 19 512 19S569 45 569 77V125H816C824 125 830 127 837 132L925 194C939 204 939 221 925 232L837 295C831 300 824 302 816 302H569V349C589 357 602 375 602 398V461C602 484 590 503 569 512V563H759C767 563 773 565 780 570L854 622C869 632 869 647 854 658L780 706C774 711 767 713 759 713H569V835H596C612 835 625 848 625 864V978C625 994 613 1006 597 1006H428C412 1006 400 994 400 978V865C400 848 413 835 430 835H455V519H215C206 519 199 517 192 512L101 448C87 438 87 422 101 412L192 349C199 345 206 343 215 343H455V302C422 302 395 277 395 245V184C395 153 422 128 455 126Z" /> </g> </symbol><symbol id="p-st_talk" viewBox="0 0 1024 1024"> <g fill="currentColor"> <g id="mentor"> <ellipse cx="411" cy="213" rx="94" ry="97" /> <path d="M261 433 191 563H345C410 563 456 607 456 673V842C456 853 481 860 494 876 511 897 502 918 477 918H367C339 918 324 902 324 874V725C324 705 312 694 291 694H163C95 694 46 645 46 574 46 538 58 508 76 474 110 410 150 345 194 302 222 275 253 264 286 270 334 278 359 307 368 352L385 439C388 456 393 463 409 459 440 452 466 428 489 403 506 385 526 373 541 381 554 388 548 397 534 408 524 416 529 423 541 423H602C623 423 628 435 617 453 605 472 585 482 559 482H532C510 482 501 489 481 501L418 539C390 555 365 554 338 548 303 541 288 520 279 491Z" /> <path d="M86 707H248C278 707 300 728 300 757V918H87C56 918 34 897 34 865V759C34 729 55 707 86 707Z" /> </g> <g id="young-person"> <ellipse cx="748" cy="306" rx="86" ry="88" /> <path d="M803 523 748 583C737 595 725 601 708 601H681C647 601 628 583 635 550L659 435C664 409 677 389 700 389 724 389 741 403 739 422 738 435 731 443 718 449 714 451 714 459 712 469L700 522C697 534 706 536 713 525L758 433C773 402 796 385 826 387 856 388 879 410 900 439 934 486 961 537 973 580 989 642 951 711 882 712H723C698 712 683 726 683 749V874C683 903 669 918 641 918H549C524 918 517 899 531 879 541 865 566 855 566 845V698C566 645 601 608 653 608H843Z" /> <path d="M756 726H938C969 726 991 747 991 778V865C991 897 969 918 938 918H704V779C704 748 726 726 756 726Z" /> </g> </g> </symbol><symbol id="p-st_trophy" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path id="helmet" d="M232 223C216 179 237 131 275 107C318 80 373 94 400 135C402 138 406 137 411 137L451 134C473 131 478 156 456 163Z" /> <path id="batter" d="M253 231L403 190C419 232 401 262 377 279L629 245C637 244 642 239 648 237C665 229 684 229 701 236L855 49C873 27 899 27 919 44C938 61 939 91 920 109L730 263C744 293 725 316 703 323C700 357 672 382 631 364C586 392 542 416 495 429C491 430 493 435 494 440L502 499C550 528 625 580 661 620C671 632 676 643 679 663L702 818C736 818 766 826 777 844C784 854 784 863 779 873H800C816 873 829 886 829 902V960C829 977 816 990 799 990H182C164 990 152 977 152 960V903C152 885 165 873 182 873H198C178 853 181 825 196 803C229 757 280 710 326 669C333 617 349 561 371 522C338 478 308 429 284 375C269 340 283 311 312 294C280 286 258 263 253 231ZM426 355C462 368 495 356 528 346L641 307C638 304 635 300 633 297ZM280 822C318 829 334 848 328 873H618C615 859 619 844 622 837L575 695C574 691 571 689 567 687L473 626C469 623 467 623 465 628C450 658 430 702 408 724C374 756 322 791 280 822Z" /> </g> </symbol><symbol id="p-st_voice" viewBox="0 0 1024 1024"> <g fill="currentColor"> <path id="head" d="M235 865C213 865 200 851 201 828L210 668C211 654 207 646 196 636C133 578 100 502 100 420C100 275 209 155 349 155C466 155 537 237 551 343C553 357 556 365 564 376L611 440C623 457 624 473 615 487C608 498 595 503 578 507C563 510 557 516 557 529L557 544C557 553 552 557 542 559L496 567C480 570 471 580 471 594C471 607 480 617 494 621L548 636C560 639 564 644 564 657C564 711 534 746 484 746L444 746C430 746 423 754 423 767L423 834C423 854 412 865 392 865Z" /> <g id="speaking-rays"> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(-54 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(-42 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(-30 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(-18 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(-6 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(6 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(18 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(30 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(42 515 560)" /> <rect x="660" y="546" width="215" height="28" rx="14" transform="rotate(54 515 560)" /> </g> </g> </symbol><symbol id="p-st_wedding" viewBox="0 0 1024 1024"> <g fill="currentColor"> <g id="celebration"> <rect x="480" y="14" width="66" height="152" rx="33" /> <path d="M350 69C365 58 385 61 396 76L447 145C458 160 454 180 439 191C424 203 404 200 393 185L342 115C331 100 335 80 350 69Z" /> <path d="M673 69C688 80 692 100 681 115L630 185C619 200 599 203 584 191C570 180 568 160 578 145L628 76C639 61 659 58 673 69Z" /> </g> <g id="interlocking-rings"> <path d="M497 252C466 234 431 223 392 223C273 223 176 319 176 438C176 558 273 656 392 656C513 656 611 558 611 438C611 398 598 358 575 328C551 341 533 359 520 382C528 399 532 418 532 438C532 514 469 576 392 576C315 576 252 514 252 438C252 361 315 299 392 299C409 299 425 302 440 309C457 288 476 269 497 252Z" /> <path d="M444 549C422 518 410 480 410 441C410 321 507 223 627 223C748 223 846 320 846 439C846 559 748 657 627 657C590 657 555 647 526 628C549 611 569 591 586 568C599 573 613 576 627 576C704 576 767 515 767 439C767 362 704 299 627 299C550 299 488 362 488 439C488 459 492 478 499 496C486 519 468 537 444 549Z" /> </g> <g id="golf-green"> <path d="M465 839C381 834 281 850 233 878C205 894 189 913 192 936C195 973 235 996 303 996C342 996 373 989 412 991C475 994 526 1012 599 1012C705 1012 801 995 822 961C842 928 807 900 754 892C716 886 688 889 649 879C611 869 574 852 531 846L531 895C551 899 564 907 564 918C564 933 535 945 499 945C462 945 432 933 432 918C432 908 445 899 465 895Z" /> <path d="M481 677C481 667 488 659 498 659C507 659 515 666 516 675L650 722C664 727 665 746 651 751L516 799L516 911C516 921 508 929 498 929C489 929 481 921 481 911Z" /> </g> </g> </symbol></defs></svg>
+<header class="top">
+  <a class="era-back" href="../era1/index.html" aria-label="Back to Era 1, 1970 to 2010">Era 1</a>
+  <div class="brand">
+    <p class="era-mark" aria-hidden="true">ERA 2</p>
+    <h1>All Roads Lead Home</h1>
+    <p class="sub">Gordon Bellamy, 2011 to now</p>
+  </div>
+  <div class="tools">
+    <time class="clock" id="clock" datetime="2026-11-26">Nov 26, 2026</time>
+    <button class="snd" id="snd" type="button" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path class="w" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Sound</span></button>
+  </div>
+</header>
+
+<main id="stage" class="stage">
+  <div class="ticket" id="ticket" hidden aria-live="polite"></div>
+  <div class="mapwrap" id="mapwrap">
+    <img loading="lazy" class="static-map sm-play" src="assets/map-play.webp" alt="Transit map of Gordon Bellamy's life from 2011 to 2026: seven colored role lines with their stations, crossing at transfer stations and meeting at All Roads Lead Home." width="1600" height="560">
+    <img loading="lazy" class="static-map sm-vault" src="assets/map-vault.webp" alt="Transit map of Gordon Bellamy's life from 2011 to 2026 with the Vault line: seven colored role lines meeting at All Roads Lead Home." width="1600" height="560">
+    <svg id="map" class="map" role="img" aria-label="Transit map. Tap a station to open it." hidden></svg>
+  </div>
+
+  <section class="board" id="board" hidden aria-label="Departures">
+    <p class="board-q">Where to?</p>
+    <button class="go" id="go" type="button"><svg class="go-ico" aria-hidden="true"><use href="#p-line_play"/></svg><span class="go-t">Board the <b id="goName">Play</b> line</span><span class="go-s">Start here. First stop has a play to call.</span></button>
+    <div class="chips" id="chips"></div>
+    <div class="modes"><button class="mode" id="rideAll" type="button">Ride all lines</button><span class="or">or tap any station on the map</span></div>
+  </section>
+
+  <aside class="card" id="card" hidden aria-live="polite"></aside>
+</main>
+
+<section class="timetable" id="timetable" aria-labelledby="tt-h">
+  <h2 id="tt-h">The Timetable</h2>
+  <p class="tt-intro">Every station, line by line, with his words and the source. Nothing on the map is locked behind a play.</p>
+  <details class="tt-line" data-line="play" style="--c:#0E9F8E" open><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_play"/></svg><span class="tt-lname">Play</span><span class="tt-count">11 stations</span></summary><ol><li class="tt-row" data-st="mdmg"><span class="tt-when">Oct 2011</span><span class="tt-name">Mind Game</span><span class="tt-x" data-only="story">Transfer:<span data-l="story">Storyteller</span></span><p class="tt-text">On ABC's Million Dollar Mind Game he captained the Video Game Geeks.</p><blockquote><p>“the chairman of the game developers association”</p><cite>his on-air introduction, aired Oct 30, 2011, Million Dollar Mind Game tape HJF-XEUXrLk, 0:00:54 (caption)</cite></blockquote><p class="tt-beat">To walk away with the pot, the whole team must vote yes. What happened? Not unanimous. They played on, and lost it all on "the king in chess."</p><p class="tt-src">Source: ABC, aired 2011-10-30 and 2011-11-06; tapes HJF-XEUXrLk, VmS9Qupe4_E. R Era 2; E2D section 1. LIKELY, PUBLIC.</p></li><li class="tt-row" data-st="weho"><span class="tt-when">July 2012</span><span class="tt-name">WeHo Tuesdays</span><p class="tt-text">By 2012 he was inviting people to Tuesday night dodgeball in West Hollywood.</p><blockquote><p>“weho on tuesday nights Dodgeball nights”</p><cite>July 16, 2012, his LinkedIn message</cite></blockquote><p class="tt-src">Source: LinkedIn message 2012-07-16; R Era 2. VERIFIED, PRIVATE.</p></li><li class="tt-row" data-st="gameshows"><span class="tt-when">2014 to 2015</span><span class="tt-name">The Chase</span><p class="tt-text">The game-show run kept going: The Chase in 2014, Celebrity Name Game in 2015.</p><blockquote><p>“#HarvardCalled”</p><cite>Aug 26, 2014, his post about The Chase</cite></blockquote><p class="tt-src">Source: R Era 2; CN Thread 11. LIKELY, PUBLIC.</p></li><li class="tt-row" data-st="coach"><span class="tt-when">Mar 8, 2016</span><span class="tt-name">Ball Right!</span><p class="tt-text">Before David Vermillion's first game, Gordon sent the playbook.</p><blockquote><p>“There are 7 balls... Catching Wins games... Oh and have fun.”</p><cite>Mar 8, 2016, his message to David</cite></blockquote><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="edc"><span class="tt-when">June 20, 2016</span><span class="tt-name">Electric Sky</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">His first EDC, with Mason, at 45.</p><blockquote><p>“We didn't know what we didn't know #edc #firsttimers”</p><cite>June 20, 2016, his post</cite></blockquote><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="sixmiles"><span class="tt-when">2016 to 2017</span><span class="tt-name">Six Miles</span><p class="tt-text">He lost 50 pounds and started running.</p><blockquote><p>“I can go one mile, I can go six miles or whatever it's going to be, but I'm going to go somewhere. And it's been transformative”</p><cite>July 14, 2017, Playmakers, 37:54</cite></blockquote><p class="tt-src">Source: Playmakers 2017-07-14; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="firsts"><span class="tt-when">2018</span><span class="tt-name">First Times</span><p class="tt-text">Now he hands first times out: Quinn's first EDM show, and David's first rave at Escape, 10.26.18.</p><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="doublecatch"><span class="tt-when">told Dec 2020</span><span class="tt-name">Vegas Catch</span><p class="tt-text">A Vegas tournament double catch, retold on stage in 2020.</p><blockquote><p>“the three on one i caught the two balls of course spike them... and it was just like chef's kiss”</p><cite>uploaded Dec 4, 2020, CMX Summit, 30:37</cite></blockquote><p class="tt-src">Source: YouTube LAhHQHkWDDA; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="ultra"><span class="tt-when">Spring 2022</span><span class="tt-name">Ultra</span><p class="tt-text">More first times, handed out: Foster at Ultra Miami, and Jeff Royle's first WrestleMania, 4.2.22.</p><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="zeroproof"><span class="tt-when">Mar 20, 2024</span><span class="tt-name">Zero Proof</span><span class="tt-x" data-only="founder">Transfer:<span data-l="founder">Founder</span></span><p class="tt-text">The first Zero Proof Board Game Night at GDC: Buzzworks, alcohol free. The party, so no one goes without one.</p><p class="tt-src">Source: SMS 2024-01-26 and LinkedIn event; counts from a private recap; E2D. date VERIFIED; counts LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="finalboss"><span class="tt-when">2026</span><span class="tt-name">Final Boss</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">Captain of AAAA Final Boss, coed, for Sin City Dodgeball, Jan 15 to 17, 2027. Nephew Werten on the roster; Nina Fiore coaching.</p><blockquote><p>“I still wear 4, it's my number”</p><cite>May 12, 2026, his text</cite></blockquote><p class="tt-src">Source: E2D section 4; jerseys arrived 10/22/2026 (E2). LIKELY, PRIVATE (teammates showable).</p></li></ol></details><details class="tt-line" data-line="vault" style="--c:#6B7684" open><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_vault"/></svg><span class="tt-lname">Vault and Archive</span><span class="tt-count">6 stations</span></summary><ol><li class="tt-row" data-st="sanramon"><span class="tt-when">Sat 5.3.14</span><span class="tt-name">San Ramon</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">He married Joe Heally at San Ramon Golf Club. The day was livestreamed.</p><blockquote><p>“we met 2/8/1998 on a Sunday Funday”</p><cite>Nov 26, 2026, Gordon, typed to Darby</cite></blockquote><p class="tt-src">Source: FB status (date PUBLIC), details PRIVATE; GA item 5; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="gdc2018"><span class="tt-when">Mar 22, 2018</span><span class="tt-name">#IamEnough</span><span class="tt-x">Transfer:<span data-l="maker">Game Maker</span><span data-l="story">Storyteller</span></span><p class="tt-text">At GDC, IGDA Black in Games gave him a lifetime honor, following Jerry Lawson (his account).</p><blockquote><p>“when it's all over I will not count trophies... the people who came here today... that is what I want to count”</p><cite>uploaded Mar 23, 2018, acceptance remarks, 3:54</cite></blockquote><p class="tt-src">Source: Acceptance remarks 2018-03-23; his March 2018 post; R Era 2. Plaque wording unread.. LIKELY (honor wording); quote VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="til"><span class="tt-when">2019</span><span class="tt-name">TIL, 1984</span><p class="tt-text">He reposts the pages of his 1984 talk to the U.S. Department of Education.</p><blockquote><p>“TIL, I presented to the US Department of Education. I had just turned 14”</p><cite>2019, his Instagram post</cite></blockquote><ul class="tt-steps"><li>Nov 14, 1984: at 14, he addresses the U.S. Department of Education</li><li>2019: he reposts the pages, "TIL"</li><li>Mar 5, 2026: Capitol Hill, the second time</li></ul><p class="tt-src">Source: CN Thread 5; PA item 8 (talk dated Nov 14, 1984). VERIFIED, PRIVATE.</p></li><li class="tt-row" data-st="rayburn"><span class="tt-when">Mar 5, 2026</span><span class="tt-name">Rayburn Foyer</span><span class="tt-x">Transfer:<span data-l="story">Storyteller</span><span data-l="prof">Professor</span><span data-l="founder">Founder</span></span><p class="tt-text">Keynote at CEE's Congressional reception. His second time addressing the federal government; the first was Nov 14, 1984, at 14.</p><blockquote><p>“i just spoke in congress”</p><cite>Mar 5, 2026, 6:45 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>12:38 PT "i'm speaking here in 90'minutes"</li><li>1:32 PT "i am walking the halls to congress to do my talk"</li><li>6:45 PT "i just spoke in congress"</li></ul><p class="tt-src">Source: His same-day texts, dossier and a CEE email; FB post 2026-03-09; PA item 8; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="siterestored"><span class="tt-when">July 10, 2026</span><span class="tt-name">Two Lifetimes</span><p class="tt-text">Their 2014 wedding site, "two lifetimes, in the making," is restored and continued.</p><ul class="tt-steps"><li>2014: their wedding site opens, "two lifetimes, in the making"</li><li>July 10, 2026: restored and continued</li></ul><p class="tt-src">Source: E2 section 4. VERIFIED, PRIVATE.</p></li><li class="tt-row" data-st="scrapbook"><span class="tt-when">Nov 26, 2026</span><span class="tt-name">The Scrapbook</span><p class="tt-text">He sends his scrapbook so this map could be built.</p><blockquote><p>“you and tasklet received a treasure trove of photos”</p><cite>Nov 26, 2026, his message</cite></blockquote><ul class="tt-steps"><li>Nov 26, 2026, 11:14 am to 1:54 pm PT: the photos arrive</li><li>"you and tasklet received a treasure trove of photos"</li><li>The 1994 trophy plate is in it: ROOKIE OF THE YEAR</li></ul><p class="tt-src">Source: PA header. VERIFIED, PRIVATE.</p></li></ol></details><details class="tt-line" data-line="family" style="--c:#7B35B0"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_family"/></svg><span class="tt-lname">Family and Chosen Family</span><span class="tt-count">9 stations</span></summary><ol><li class="tt-row" data-st="sanramon"><span class="tt-when">Sat 5.3.14</span><span class="tt-name">San Ramon</span><span class="tt-x" data-only="vault">Transfer:<span data-l="vault">Vault</span></span><p class="tt-text">He married Joe Heally at San Ramon Golf Club. The day was livestreamed.</p><blockquote><p>“we met 2/8/1998 on a Sunday Funday”</p><cite>Nov 26, 2026, Gordon, typed to Darby</cite></blockquote><p class="tt-src">Source: FB status (date PUBLIC), details PRIVATE; GA item 5; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="madison"><span class="tt-when">Sept 15, 2015</span><span class="tt-name">Madison</span><span class="tt-x" data-only="prof">Transfer:<span data-l="prof">Professor</span></span><p class="tt-text">Guest lecturing at UW-Madison, he met Brennan Murphy. They talked for about an hour and a half.</p><blockquote><p>“our son went to Madison”</p><cite>uploaded Dec 18, 2025, M+DEV interview, 1:17</cite></blockquote><p class="tt-src">Source: E2D section 2 (Brennan's 2019 video, LIKELY); M+DEV interview UzFTrHDBAZU. LIKELY; quote VERIFIED.</p></li><li class="tt-row" data-st="edc"><span class="tt-when">June 20, 2016</span><span class="tt-name">Electric Sky</span><span class="tt-x" data-only="play">Transfer:<span data-l="play">Play</span></span><p class="tt-text">His first EDC, with Mason, at 45.</p><blockquote><p>“We didn't know what we didn't know #edc #firsttimers”</p><cite>June 20, 2016, his post</cite></blockquote><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="fifty"><span class="tt-when">Nov 9, 2020</span><span class="tt-name">The 2:09 Film</span><p class="tt-text">He turned 50 on Zoom. Brennan cut a 2:09 film of friends' selfie videos. <a href="https://www.youtube.com/watch?v=mYrEv6EtTzM">Happy Birthday Gordon! (2:09)</a></p><p class="tt-src">Source: YouTube mYrEv6EtTzM (public since 2020-11-09); planning PRIVATE; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="son"><span class="tt-when">Feb 18, 2022</span><span class="tt-name">My Son</span><span class="tt-x" data-only="founder">Transfer:<span data-l="founder">Founder</span></span><p class="tt-text">The word changed in dated steps. Brennan said "son" first. Gordon answered it.</p><blockquote><p>“How does my son KNOW that i am still carrying my hoodie”</p><cite>Feb 18, 2022, 5:43 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>2017: "my mentee"</li><li>June 2019: "my 1st Father's Day"</li><li>2022: "my son"</li></ul><p class="tt-src">Source: E2D section 2. VERIFIED, PRIVATE.</p></li><li class="tt-row" data-st="bestman"><span class="tt-when">May 2024</span><span class="tt-name">Best Man</span><p class="tt-text">Best man for Quinn Hovey, his US Soccer brother.</p><p class="tt-beat">The best man toast was built on a joke about...? The American Outlaws, the US Soccer supporters' group they share.</p><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="gordtopia"><span class="tt-when">2026</span><span class="tt-name">Gordtopia</span><span class="tt-x" data-only="maker">Transfer:<span data-l="maker">Game Maker</span></span><p class="tt-text">A Minecraft world he builds weekly with Eric and Crystal Francksen's three sons: 58 landmarks, 19 regions.</p><p class="tt-src">Source: His Gordtopia.docx 2026-06-24; E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="wiscago"><span class="tt-when">June 26 to July 4, 2026</span><span class="tt-name">Wiscago</span><p class="tt-text">Chicago with the Francksens, Eric's first Pride parade, then Wisconsin. He is Uncle G.</p><p class="tt-src">Source: E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="finalboss"><span class="tt-when">2026</span><span class="tt-name">Final Boss</span><span class="tt-x" data-only="play">Transfer:<span data-l="play">Play</span></span><p class="tt-text">Captain of AAAA Final Boss, coed, for Sin City Dodgeball, Jan 15 to 17, 2027. Nephew Werten on the roster; Nina Fiore coaching.</p><blockquote><p>“I still wear 4, it's my number”</p><cite>May 12, 2026, his text</cite></blockquote><p class="tt-src">Source: E2D section 4; jerseys arrived 10/22/2026 (E2). LIKELY, PRIVATE (teammates showable).</p></li></ol></details><details class="tt-line" data-line="founder" style="--c:#0089C9"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_founder"/></svg><span class="tt-lname">Founder</span><span class="tt-count">9 stations</span></summary><ol><li class="tt-row" data-st="igdascholars"><span class="tt-when">Early 2012</span><span class="tt-name">IGDA Scholars</span><span class="tt-x" data-only="maker">Transfer:<span data-l="maker">Game Maker</span></span><p class="tt-text">He expanded IGDA Scholars. He calls it a direct ancestor of GGP Scholars.</p><blockquote><p>“the scholars program that we had at igda... where identity for the first time was additive”</p><cite>Apr 26, 2023, What is GGP, 3:29</cite></blockquote><p class="tt-src">Source: R Era 2 (FB section 2C); What is GGP 2023-04-26. LIKELY.</p></li><li class="tt-row" data-st="nonprofit"><span class="tt-when">Dec 2018</span><span class="tt-name">501(c)(3)</span><p class="tt-text">GGP becomes a nonprofit: tax ID in December 2018, IRS ruling in January 2020. Gordon CEO, Joe CFO.</p><ul class="tt-steps"><li>Dec 2018: GGP gets its tax ID</li><li>Jan 2020: the IRS ruling</li><li>On the public 990: Gordon CEO, Joe CFO</li></ul><p class="tt-src">Source: Public 990s; E2 section 2; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="scholars"><span class="tt-when">Since 2019</span><span class="tt-name">GGP Scholars</span><span class="tt-x" data-only="prof">Transfer:<span data-l="prof">Professor</span></span><p class="tt-text">GGP Scholars has run every year since 2019.</p><p class="tt-src">Source: E2 section 2; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="pridestream"><span class="tt-when">June 2020</span><span class="tt-name">Pride Stream</span><p class="tt-text">GGP's first Pride stream, June 2020, honored a game pioneer he once knew up close.</p><p class="tt-beat">Who did the stream honor? Dani Bunten Berry. He played M.U.L.E. on a Commodore 64 in 1983; in 1993 she was his housemate.</p><p class="tt-src">Source: E2 section 2; CN Thread 10; R Era 2. LIKELY, PUBLIC.</p></li><li class="tt-row" data-st="son"><span class="tt-when">Feb 18, 2022</span><span class="tt-name">My Son</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">The word changed in dated steps. Brennan said "son" first. Gordon answered it.</p><blockquote><p>“How does my son KNOW that i am still carrying my hoodie”</p><cite>Feb 18, 2022, 5:43 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>2017: "my mentee"</li><li>June 2019: "my 1st Father's Day"</li><li>2022: "my son"</li></ul><p class="tt-src">Source: E2D section 2. VERIFIED, PRIVATE.</p></li><li class="tt-row" data-st="cystem"><span class="tt-when">2022</span><span class="tt-name">CYSTEM</span><p class="tt-text">CYSTEM begins: GGP's graduate program with NYU, Carnegie Mellon and USC.</p><blockquote><p>“not just a culture fit but a culture add”</p><cite>Oct 26, 2022, GGP film, 2:18</cite></blockquote><p class="tt-beat">Culture fit, or culture add? Not just a culture fit. A culture add.</p><p class="tt-src">Source: His email and Q3 2022 records; GGP film BTHwzjd-_Xc; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="zeroproof"><span class="tt-when">Mar 20, 2024</span><span class="tt-name">Zero Proof</span><span class="tt-x" data-only="play">Transfer:<span data-l="play">Play</span></span><p class="tt-text">The first Zero Proof Board Game Night at GDC: Buzzworks, alcohol free. The party, so no one goes without one.</p><p class="tt-src">Source: SMS 2024-01-26 and LinkedIn event; counts from a private recap; E2D. date VERIFIED; counts LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="cgc"><span class="tt-when">2025</span><span class="tt-name">Collegiate Challenge</span><p class="tt-text">GGP launches the Collegiate Games Challenge.</p><p class="tt-src">Source: E2 section 2; R Era 2. LIKELY.</p></li><li class="tt-row" data-st="rayburn"><span class="tt-when">Mar 5, 2026</span><span class="tt-name">Rayburn Foyer</span><span class="tt-x">Transfer:<span data-l="story">Storyteller</span><span data-l="prof">Professor</span><span data-l="vault">Vault</span></span><p class="tt-text">Keynote at CEE's Congressional reception. His second time addressing the federal government; the first was Nov 14, 1984, at 14.</p><blockquote><p>“i just spoke in congress”</p><cite>Mar 5, 2026, 6:45 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>12:38 PT "i'm speaking here in 90'minutes"</li><li>1:32 PT "i am walking the halls to congress to do my talk"</li><li>6:45 PT "i just spoke in congress"</li></ul><p class="tt-src">Source: His same-day texts, dossier and a CEE email; FB post 2026-03-09; PA item 8; R Era 2. VERIFIED.</p></li></ol></details><details class="tt-line" data-line="prof" style="--c:#2440B8"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_professor"/></svg><span class="tt-lname">Professor</span><span class="tt-count">9 stations</span></summary><ol><li class="tt-row" data-st="usc"><span class="tt-when">2015</span><span class="tt-name">Visiting Scholar</span><p class="tt-text">He began teaching at USC's School of Cinematic Arts as a Visiting Scholar.</p><blockquote><p>“I had a lunch with Tracy Fullerton... no different than the NHL hockey call really”</p><cite>June 27, 2021, NZXT Clubcast #094, 1:11:21</cite></blockquote><p class="tt-beat">How did the door to USC open? A cold lunch with Tracy Fullerton. The same move as his 1993 cold call to EA.</p><p class="tt-src">Source: SCA In Motion, Winter 2025; NZXT Clubcast 2021-06-27; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="madison"><span class="tt-when">Sept 15, 2015</span><span class="tt-name">Madison</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">Guest lecturing at UW-Madison, he met Brennan Murphy. They talked for about an hour and a half.</p><blockquote><p>“our son went to Madison”</p><cite>uploaded Dec 18, 2025, M+DEV interview, 1:17</cite></blockquote><p class="tt-src">Source: E2D section 2 (Brennan's 2019 video, LIKELY); M+DEV interview UzFTrHDBAZU. LIKELY; quote VERIFIED.</p></li><li class="tt-row" data-st="bridge"><span class="tt-when">2015 to 2016</span><span class="tt-name">USC Bridge</span><p class="tt-text">From its launch in 2015, he and Samuel Roberts led USC Games Bridge. A student shadowed him at E3 until losing their voice.</p><p class="tt-src">Source: USC Cinematic Arts news 2016-08-31; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="furniture"><span class="tt-when">2017</span><span class="tt-name">The Furniture</span><p class="tt-text">How he describes the job of teaching.</p><blockquote><p>“to move the furniture of life out of the way for them to be successful”</p><cite>July 14, 2017, Playmakers, 20:33</cite></blockquote><p class="tt-src">Source: Playmakers 2017-07-14; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="scholars"><span class="tt-when">Since 2019</span><span class="tt-name">GGP Scholars</span><span class="tt-x" data-only="founder">Transfer:<span data-l="founder">Founder</span></span><p class="tt-text">GGP Scholars has run every year since 2019.</p><p class="tt-src">Source: E2 section 2; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="potp"><span class="tt-when">Jan 2021</span><span class="tt-name">Professor</span><p class="tt-text">Professor of the Practice of Cinematic Arts at USC.</p><blockquote><p>“Games are a shared experience that we can impact, which is different than a shared experience that we both view”</p><cite>Mar 16, 2021, USC Today</cite></blockquote><p class="tt-beat">Film is a shared experience we view. Games are one we...? Can impact.</p><blockquote><p>“Games are a shared experience that we can impact, which is different than a shared experience that we both view”</p><cite>Mar 16, 2021, USC Today</cite></blockquote><p class="tt-src">Source: USC Today 2021-03-16; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="ethics"><span class="tt-when">Nov 2024</span><span class="tt-name">Ethics</span><p class="tt-text">Named Director of Cinematic Ethics for USC's School of Cinematic Arts.</p><blockquote><p>“OH!! I am the new Director of Ethics for USC Cinema!”</p><cite>Nov 25, 2024, his text</cite></blockquote><blockquote><p>“How do we grow up a pie that we want to eat, that we are proud that we baked”</p><cite>July 9, 2025, Valued Cultures, 0:04:20</cite></blockquote><ul class="tt-steps"><li>Nov 25, 2024: "OH!! I am the new Director of Ethics for USC Cinema!"</li><li>Winter 2025: announced as Director of Cinematic Ethics</li><li>Aug 10, 2026: "I am director of Ethics for the entire School of Cinema"</li></ul><p class="tt-src">Source: Text 2024-11-25; SCA In Motion Winter 2025; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="rayburn"><span class="tt-when">Mar 5, 2026</span><span class="tt-name">Rayburn Foyer</span><span class="tt-x">Transfer:<span data-l="story">Storyteller</span><span data-l="founder">Founder</span><span data-l="vault">Vault</span></span><p class="tt-text">Keynote at CEE's Congressional reception. His second time addressing the federal government; the first was Nov 14, 1984, at 14.</p><blockquote><p>“i just spoke in congress”</p><cite>Mar 5, 2026, 6:45 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>12:38 PT "i'm speaking here in 90'minutes"</li><li>1:32 PT "i am walking the halls to congress to do my talk"</li><li>6:45 PT "i just spoke in congress"</li></ul><p class="tt-src">Source: His same-day texts, dossier and a CEE email; FB post 2026-03-09; PA item 8; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="default"><span class="tt-when">Fall 2026</span><span class="tt-name">The Default</span><span class="tt-x">Transfer:<span data-l="maker">Game Maker</span><span data-l="story">Storyteller</span></span><p class="tt-text">In CTIN 290, Madden 96 and Madden 27 run back to back.</p><blockquote><p>“so that other young people could see themselves as default when they're growing up”</p><cite>Feb 3, 2023, Daily Trojan</cite></blockquote><ul class="tt-steps"><li>Madden 96</li><li>Madden 27</li></ul><p class="tt-src">Source: Daily Trojan 2023-02-03; CN Thread 1; course notes PRIVATE. VERIFIED.</p></li></ol></details><details class="tt-line" data-line="story" style="--c:#D0247A"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_storyteller"/></svg><span class="tt-lname">Storyteller</span><span class="tt-count">11 stations</span></summary><ol><li class="tt-row" data-st="mdmg"><span class="tt-when">Oct 2011</span><span class="tt-name">Mind Game</span><span class="tt-x" data-only="play">Transfer:<span data-l="play">Play</span></span><p class="tt-text">On ABC's Million Dollar Mind Game he captained the Video Game Geeks.</p><blockquote><p>“the chairman of the game developers association”</p><cite>his on-air introduction, aired Oct 30, 2011, Million Dollar Mind Game tape HJF-XEUXrLk, 0:00:54 (caption)</cite></blockquote><p class="tt-beat">To walk away with the pot, the whole team must vote yes. What happened? Not unanimous. They played on, and lost it all on "the king in chess."</p><p class="tt-src">Source: ABC, aired 2011-10-30 and 2011-11-06; tapes HJF-XEUXrLk, VmS9Qupe4_E. R Era 2; E2D section 1. LIKELY, PUBLIC.</p></li><li class="tt-row" data-st="imagine"><span class="tt-when">July 2012</span><span class="tt-name">Imagine Cup</span><p class="tt-text">A judge at Imagine Cup 2012 in Sydney, controllers in hand.</p><blockquote><p>“games are meant to be played not talked about”</p><cite>uploaded July 8, 2012, Imagine Cup interview, 0:41</cite></blockquote><p class="tt-src">Source: YouTube b1u9lWxL3OQ; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="gdc2018"><span class="tt-when">Mar 22, 2018</span><span class="tt-name">#IamEnough</span><span class="tt-x">Transfer:<span data-l="maker">Game Maker</span><span data-l="vault">Vault</span></span><p class="tt-text">At GDC, IGDA Black in Games gave him a lifetime honor, following Jerry Lawson (his account).</p><blockquote><p>“when it's all over I will not count trophies... the people who came here today... that is what I want to count”</p><cite>uploaded Mar 23, 2018, acceptance remarks, 3:54</cite></blockquote><p class="tt-src">Source: Acceptance remarks 2018-03-23; his March 2018 post; R Era 2. Plaque wording unread.. LIKELY (honor wording); quote VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="tentimes"><span class="tt-when">Summer 2020</span><span class="tt-name">Ten Times</span><p class="tt-text">In his Games for Change keynote, he described an exercise from two days before.</p><blockquote><p>“to say the words black is beautiful right to actually say it 10 times... am i saying this too loud or too quiet”</p><cite>uploaded Aug 13, 2020, G4C "At the Table," 9:55</cite></blockquote><p class="tt-src">Source: YouTube c02C7pwDlwI; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="highscore"><span class="tt-when">Aug 19, 2020</span><span class="tt-name">High Score</span><p class="tt-text">Netflix's High Score told his Madden 95 story.</p><blockquote><p>“I am the first voice you hear”</p><cite>Feb 9, 2021, Lead With Your Brand, 0:23:30</cite></blockquote><p class="tt-beat">The High Score trailer. Whose voice do you hear first? His.</p><blockquote><p>“I am the first voice you hear”</p><cite>Feb 9, 2021, Lead With Your Brand, 0:23:30</cite></blockquote><p class="tt-src">Source: High Score ep 4; Lead With Your Brand 2021-02-09; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="rewind"><span class="tt-when">2023 to 2024</span><span class="tt-name">On Screen</span><p class="tt-text">On screen again: Rewind the '90s in 2023, and in 2024 the series It's in the Game.</p><p class="tt-beat">It's in the Game (2024) is about which game? Madden NFL: It's in the Game, two episodes. The game where he helped make Black players the default, in Madden 95.</p><p class="tt-src">Source: IMDb list; Nutopia 2023-05-19; E2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="uconn"><span class="tt-when">Apr 2025</span><span class="tt-name">It's Today</span><p class="tt-text">At UConn he named what changed: the compartments came down.</p><blockquote><p>“This is the dream. back when I was younger was my whole self. God, someday it's going to be awesome. It's today.”</p><cite>Apr 2025, UConn DMD, 1:24:44</cite></blockquote><p class="tt-src">Source: YouTube Lb8ZcOXPQ-I; R threads. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="mdev"><span class="tt-when">Nov 2025</span><span class="tt-name">M+DEV</span><p class="tt-text">Back in Madison to open M+DEV with the keynote.</p><blockquote><p>“the noise of people connecting. It's not the noise of technology. It's the noise of humans”</p><cite>uploaded Dec 18, 2025, M+DEV interview, 5:11</cite></blockquote><p class="tt-beat">He named the sound of the M+DEV hall. It was the noise of...? Humans.</p><blockquote><p>“the noise of people connecting. It's not the noise of technology. It's the noise of humans”</p><cite>uploaded Dec 18, 2025, M+DEV interview, 5:11</cite></blockquote><p class="tt-src">Source: YouTube UzFTrHDBAZU; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="bgp"><span class="tt-when">Feb 2026</span><span class="tt-name">Identity</span><p class="tt-text">His thesis, in one breath.</p><blockquote><p>“games were not a a choice or an occupation. They're an identity”</p><cite>uploaded Feb 19, 2026, Black Game Pros Sessions, 0:11:40</cite></blockquote><p class="tt-beat">"I'm the first this, first that." Single player, or multiplayer? "what if this was a multiplayer game because it's a multiplayer game" (0:49:03)</p><p class="tt-src">Source: YouTube 9LYYddhhi-8; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="rayburn"><span class="tt-when">Mar 5, 2026</span><span class="tt-name">Rayburn Foyer</span><span class="tt-x">Transfer:<span data-l="prof">Professor</span><span data-l="founder">Founder</span><span data-l="vault">Vault</span></span><p class="tt-text">Keynote at CEE's Congressional reception. His second time addressing the federal government; the first was Nov 14, 1984, at 14.</p><blockquote><p>“i just spoke in congress”</p><cite>Mar 5, 2026, 6:45 pm PT, his text</cite></blockquote><ul class="tt-steps"><li>12:38 PT "i'm speaking here in 90'minutes"</li><li>1:32 PT "i am walking the halls to congress to do my talk"</li><li>6:45 PT "i just spoke in congress"</li></ul><p class="tt-src">Source: His same-day texts, dossier and a CEE email; FB post 2026-03-09; PA item 8; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="default"><span class="tt-when">Fall 2026</span><span class="tt-name">The Default</span><span class="tt-x">Transfer:<span data-l="prof">Professor</span><span data-l="maker">Game Maker</span></span><p class="tt-text">In CTIN 290, Madden 96 and Madden 27 run back to back.</p><blockquote><p>“so that other young people could see themselves as default when they're growing up”</p><cite>Feb 3, 2023, Daily Trojan</cite></blockquote><ul class="tt-steps"><li>Madden 96</li><li>Madden 27</li></ul><p class="tt-src">Source: Daily Trojan 2023-02-03; CN Thread 1; course notes PRIVATE. VERIFIED.</p></li></ol></details><details class="tt-line" data-line="maker" style="--c:#EE6A0B"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_gamemaker"/></svg><span class="tt-lname">Game Maker</span><span class="tt-count">9 stations</span></summary><ol><li class="tt-row" data-st="igda"><span class="tt-when">2010 to July 2012</span><span class="tt-name">IGDA</span><p class="tt-text">Executive director of the IGDA, the global game developers association, until July 2012.</p><blockquote><p>“a great privilege to serve our global development community”</p><cite>July 30, 2012, GamesBeat, 2012-07-30</cite></blockquote><p class="tt-beat">July 2012. He leaves the IGDA for what? Tencent. GamesBeat, July 30, 2012: the IGDA chief joins Tencent.</p><p class="tt-src">Source: GamesBeat 2012-07-30; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="igdascholars"><span class="tt-when">Early 2012</span><span class="tt-name">IGDA Scholars</span><span class="tt-x" data-only="founder">Transfer:<span data-l="founder">Founder</span></span><p class="tt-text">He expanded IGDA Scholars. He calls it a direct ancestor of GGP Scholars.</p><blockquote><p>“the scholars program that we had at igda... where identity for the first time was additive”</p><cite>Apr 26, 2023, What is GGP, 3:29</cite></blockquote><p class="tt-src">Source: R Era 2 (FB section 2C); What is GGP 2023-04-26. LIKELY.</p></li><li class="tt-row" data-st="shenzhen"><span class="tt-when">July 2012 to Oct 2013</span><span class="tt-name">Shenzhen</span><p class="tt-text">Tencent: mobile business development for QQ Mobile and WeChat, with his eval team in Shenzhen.</p><blockquote><p>“I am at Narita Airport en route to shenzhen to my new gig!! Tencent!”</p><cite>July 29, 2012, his LinkedIn message</cite></blockquote><blockquote><p>“We had a company party in a soccer stadium”</p><cite>June 28, 2017, Spawn On Me 178, 0:41:35</cite></blockquote><p class="tt-beat">A Tencent company party. Where was it held? A soccer stadium.</p><blockquote><p>“It was like working for the New York Yankees... We had a company party in a soccer stadium”</p><cite>June 28, 2017, Spawn On Me 178, 0:41:35</cite></blockquote><p class="tt-src">Source: LinkedIn messages 2012-07-29, 2013-09-04; Spawn On Me 178; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="gdc2018"><span class="tt-when">Mar 22, 2018</span><span class="tt-name">#IamEnough</span><span class="tt-x">Transfer:<span data-l="story">Storyteller</span><span data-l="vault">Vault</span></span><p class="tt-text">At GDC, IGDA Black in Games gave him a lifetime honor, following Jerry Lawson (his account).</p><blockquote><p>“when it's all over I will not count trophies... the people who came here today... that is what I want to count”</p><cite>uploaded Mar 23, 2018, acceptance remarks, 3:54</cite></blockquote><p class="tt-src">Source: Acceptance remarks 2018-03-23; his March 2018 post; R Era 2. Plaque wording unread.. LIKELY (honor wording); quote VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="vanguard"><span class="tt-when">July 14, 2020</span><span class="tt-name">Vanguard</span><p class="tt-text">Games for Change gave him its Vanguard Award.</p><blockquote><p>“it's about what you do to help other people get from point A to point B”</p><cite>July 8, 2020, GamesBeat</cite></blockquote><p class="tt-src">Source: GamesBeat 2020-07-08; R Era 2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="wildgate"><span class="tt-when">2025</span><span class="tt-name">Wildgate</span><p class="tt-text">A credit on Wildgate, 2025.</p><p class="tt-beat">Which credit? Creative consultant (LIKELY, per his LinkedIn and an outlet).</p><p class="tt-src">Source: E2 (LinkedIn plus outlet). LIKELY.</p></li><li class="tt-row" data-st="ggj"><span class="tt-when">2025 to 2026</span><span class="tt-name">Game Jam</span><p class="tt-text">A Global Game Jam organizer, under the handle he has kept since AIM: gpbellamy.</p><p class="tt-src">Source: OI section 1; CN Part 2 item 16. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="gordtopia"><span class="tt-when">2026</span><span class="tt-name">Gordtopia</span><span class="tt-x" data-only="family">Transfer:<span data-l="family">Family</span></span><p class="tt-text">A Minecraft world he builds weekly with Eric and Crystal Francksen's three sons: 58 landmarks, 19 regions.</p><p class="tt-src">Source: His Gordtopia.docx 2026-06-24; E2D section 4. LIKELY, PRIVATE.</p></li><li class="tt-row" data-st="default"><span class="tt-when">Fall 2026</span><span class="tt-name">The Default</span><span class="tt-x">Transfer:<span data-l="prof">Professor</span><span data-l="story">Storyteller</span></span><p class="tt-text">In CTIN 290, Madden 96 and Madden 27 run back to back.</p><blockquote><p>“so that other young people could see themselves as default when they're growing up”</p><cite>Feb 3, 2023, Daily Trojan</cite></blockquote><ul class="tt-steps"><li>Madden 96</li><li>Madden 27</li></ul><p class="tt-src">Source: Daily Trojan 2023-02-03; CN Thread 1; course notes PRIVATE. VERIFIED.</p></li></ol></details><details class="tt-line" data-line="advisor" style="--c:#97692C"><summary><svg class="tt-ico" aria-hidden="true"><use href="#p-line_advisor"/></svg><span class="tt-lname">Advisor and Boards</span><span class="tt-count">6 stations</span></summary><ol><li class="tt-row" data-st="wave"><span class="tt-when">Aug 2016</span><span class="tt-name">Wave</span><p class="tt-text">He joined Wave in 2016. In 2017 he described the virtual concerts: tracks color coded by tempo, mixed live with friends in other cities.</p><p class="tt-src">Source: E2; R Era 2. VERIFIED.</p></li><li class="tt-row" data-st="queervox"><span class="tt-when">June 2023</span><span class="tt-name">Queer Vox</span><p class="tt-text">He lists a seat on the Queer Vox advisory board, June 2023.</p><p class="tt-beat">Queer Vox is a nonprofit for whom? LGBTQIA+ voice actors. One more seat at his table.</p><p class="tt-src">Source: LinkedIn positions (his own listing); E2. CLAIM (his listing).</p></li><li class="tt-row" data-st="scorespace"><span class="tt-when">July 2025</span><span class="tt-name">ScoreSpace</span><p class="tt-text">Strategic advisor to ScoreSpace.</p><p class="tt-src">Source: LinkedIn positions; E2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="bafta"><span class="tt-when">Nov 2025</span><span class="tt-name">BAFTA</span><p class="tt-text">BAFTA North America, November 2025.</p><p class="tt-beat">An award, or a vote? A voting member. Inclusion, not a trophy. Another seat at the table.</p><p class="tt-src">Source: His public LinkedIn post; E2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="qoral"><span class="tt-when">Mar 2026</span><span class="tt-name">qoral</span><p class="tt-text">Board member at qoral.</p><p class="tt-src">Source: LinkedIn; E2. VERIFIED, PUBLIC.</p></li><li class="tt-row" data-st="gamesbeat"><span class="tt-when">Sept 2026</span><span class="tt-name">GamesBeat</span><p class="tt-text">Named to the GamesBeat event advisory board.</p><p class="tt-src">Source: GamesBeat, published 2026-09-18; E2. VERIFIED, PUBLIC.</p></li></ol></details><section class="tt-home" id="tt-home"><h3>All Roads Lead Home</h3><p>On his desk: the Rookie of the Year trophy from 1994, beside the 2020 Vanguard Award.</p><blockquote><p>“on my desk, I literally have my EA Rookie of the Year from 94”</p><cite>uploaded Feb 19, 2026, Black Game Pros Sessions, 0:45:07</cite></blockquote><p class="tt-src">Source: VB section 3.5; trophy plate read from his photo (PA, IMG_5250): ROOKIE OF THE YEAR / 1994 / Electronic Arts; motto from Gordtopia (E2D section 4). VERIFIED.</p></section>
+  <p class="tt-end"><a href="../era1/index.html">Ride back to 1970: Era 1</a></p>
+</section>
+
+<footer class="foot">
+  <p>Line colors mark roles only. Station art is illustration, not a record. Quotes are his, on record, with dates. Private, made for Gordon and the people he shares it with.</p>
+</footer>
+
+<script id="era2-data" type="application/json">{"lines": {"play": {"name": "Play", "short": "Play", "color": "#0E9F8E", "picto": "line_play", "say": "the Play line"}, "vault": {"name": "Vault and Archive", "short": "Vault", "color": "#6B7684", "picto": "line_vault", "say": "the Vault line"}, "family": {"name": "Family and Chosen Family", "short": "Family", "color": "#7B35B0", "picto": "line_family", "say": "the Family and Chosen Family line"}, "founder": {"name": "Founder", "short": "Founder", "color": "#0089C9", "picto": "line_founder", "say": "the Founder line"}, "prof": {"name": "Professor", "short": "Professor", "color": "#2440B8", "picto": "line_professor", "say": "the Professor line"}, "story": {"name": "Storyteller", "short": "Storyteller", "color": "#D0247A", "picto": "line_storyteller", "say": "the Storyteller line"}, "maker": {"name": "Game Maker", "short": "Game Maker", "color": "#EE6A0B", "picto": "line_gamemaker", "say": "the Game Maker line"}, "advisor": {"name": "Advisor and Boards", "short": "Advisor", "color": "#97692C", "picto": "line_advisor", "say": "the Advisor and Boards line"}}, "lanes": ["seventh", "family", "founder", "prof", "story", "maker", "advisor"], "stations": [{"id": "igda", "sort": "2011-03-01", "when": "2010 to July 2012", "lines": ["maker"], "name": "IGDA", "say": "Next stop: I G D A, 2012.", "text": "Executive director of the IGDA, the global game developers association, until July 2012.", "quote": {"t": "a great privilege to serve our global development community", "d": "July 30, 2012", "src": "GamesBeat, 2012-07-30"}, "src": "GamesBeat 2012-07-30; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_gamemaker", "beat": {"type": "call", "verb": "Call the play", "q": "July 2012. He leaves the IGDA for what?", "opts": ["A studio job in LA", "Tencent, in Shenzhen"], "right": 1, "reveal": "Tencent. GamesBeat, July 30, 2012: the IGDA chief joins Tencent."}}, {"id": "mdmg", "sort": "2011-10-30", "when": "Oct 2011", "lines": ["play", "story"], "name": "Mind Game", "say": "Next stop: Mind Game, 2011.", "text": "On ABC's Million Dollar Mind Game he captained the Video Game Geeks.", "quote": {"t": "the chairman of the game developers association", "d": "his on-air introduction, aired Oct 30, 2011", "src": "Million Dollar Mind Game tape HJF-XEUXrLk, 0:00:54 (caption)"}, "src": "ABC, aired 2011-10-30 and 2011-11-06; tapes HJF-XEUXrLk, VmS9Qupe4_E. R Era 2; E2D section 1", "tag": "LIKELY, PUBLIC", "picto": "st_chess", "beat": {"type": "call", "verb": "Call the play", "q": "To walk away with the pot, the whole team must vote yes. What happened?", "opts": ["Everyone voted yes", "The vote split, so they played on"], "right": 1, "reveal": "Not unanimous. They played on, and lost it all on \"the king in chess.\""}}, {"id": "igdascholars", "sort": "2012-02-15", "when": "Early 2012", "lines": ["founder", "maker"], "name": "IGDA Scholars", "say": "Next stop: I G D A Scholars, 2012.", "text": "He expanded IGDA Scholars. He calls it a direct ancestor of GGP Scholars.", "quote": {"t": "the scholars program that we had at igda... where identity for the first time was additive", "d": "Apr 26, 2023", "src": "What is GGP, 3:29"}, "src": "R Era 2 (FB section 2C); What is GGP 2023-04-26", "tag": "LIKELY", "picto": "st_people", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["A scholar"], "after": "Identity, for the first time, was additive."}}, {"id": "imagine", "sort": "2012-07-08", "when": "July 2012", "lines": ["story"], "name": "Imagine Cup", "say": "Next stop: Imagine Cup, 2012.", "text": "A judge at Imagine Cup 2012 in Sydney, controllers in hand.", "quote": {"t": "games are meant to be played not talked about", "d": "uploaded July 8, 2012", "src": "Imagine Cup interview, 0:41"}, "src": "YouTube b1u9lWxL3OQ; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_gamemaker", "beat": {"type": "tap", "verb": "Play, don't talk", "n": 3, "label": "Press A", "after": "Played, not talked about."}}, {"id": "weho", "sort": "2012-07-16", "when": "July 2012", "lines": ["play"], "name": "WeHo Tuesdays", "say": "Next stop: West Hollywood Tuesdays, 2012.", "text": "By 2012 he was inviting people to Tuesday night dodgeball in West Hollywood.", "quote": {"t": "weho on tuesday nights Dodgeball nights", "d": "July 16, 2012", "src": "his LinkedIn message"}, "src": "LinkedIn message 2012-07-16; R Era 2", "tag": "VERIFIED, PRIVATE", "picto": "line_play", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["A new teammate"], "after": "Tuesday night. One more on the court."}}, {"id": "shenzhen", "sort": "2012-07-29", "when": "July 2012 to Oct 2013", "lines": ["maker"], "name": "Shenzhen", "say": "Next stop: Shenzhen, 2012.", "text": "Tencent: mobile business development for QQ Mobile and WeChat, with his eval team in Shenzhen.", "quote": {"t": "I am at Narita Airport en route to shenzhen to my new gig!! Tencent!", "d": "July 29, 2012", "src": "his LinkedIn message"}, "quote2": {"t": "We had a company party in a soccer stadium", "d": "June 28, 2017", "src": "Spawn On Me 178, 0:41:35"}, "src": "LinkedIn messages 2012-07-29, 2013-09-04; Spawn On Me 178; R Era 2", "tag": "VERIFIED", "picto": "st_plane", "beat": {"type": "call", "verb": "Call the play", "q": "A Tencent company party. Where was it held?", "opts": ["A hotel ballroom", "A soccer stadium"], "right": 1, "reveal": "A soccer stadium.", "cite": {"t": "It was like working for the New York Yankees... We had a company party in a soccer stadium", "d": "June 28, 2017", "src": "Spawn On Me 178, 0:41:35"}}, "hideQuote2": true}, {"id": "sanramon", "sort": "2014-05-03", "when": "Sat 5.3.14", "lines": ["family", "vault"], "name": "San Ramon", "say": "Next stop: San Ramon, May third, 2014.", "text": "He married Joe Heally at San Ramon Golf Club. The day was livestreamed.", "quote": {"t": "we met 2/8/1998 on a Sunday Funday", "d": "Nov 26, 2026", "src": "Gordon, typed to Darby"}, "src": "FB status (date PUBLIC), details PRIVATE; GA item 5; R Era 2", "tag": "VERIFIED", "picto": "st_wedding", "ghost": "The Café, 2.8.98", "beat": {"type": "days", "verb": "Count the days", "from": "1998-02-08", "after": "days since a Sunday Funday in the Castro, 2.8.98."}}, {"id": "gameshows", "sort": "2014-08-26", "when": "2014 to 2015", "lines": ["play"], "name": "The Chase", "say": "Next stop: The Chase, 2014.", "text": "The game-show run kept going: The Chase in 2014, Celebrity Name Game in 2015.", "quote": {"t": "#HarvardCalled", "d": "Aug 26, 2014", "src": "his post about The Chase"}, "src": "R Era 2; CN Thread 11", "tag": "LIKELY, PUBLIC", "picto": "st_podium", "beat": {"type": "tap", "verb": "Buzz in", "n": 1, "label": "BUZZ", "after": "Celebrity Name Game, he has said, was a wedding present for a friend."}}, {"id": "usc", "sort": "2015-03-28", "when": "2015", "lines": ["prof"], "name": "Visiting Scholar", "say": "Next stop: Visiting Scholar, U S C, 2015.", "text": "He began teaching at USC's School of Cinematic Arts as a Visiting Scholar.", "quote": {"t": "I had a lunch with Tracy Fullerton... no different than the NHL hockey call really", "d": "June 27, 2021", "src": "NZXT Clubcast #094, 1:11:21"}, "src": "SCA In Motion, Winter 2025; NZXT Clubcast 2021-06-27; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_professor", "beat": {"type": "call", "verb": "Call the play", "q": "How did the door to USC open?", "opts": ["A job posting", "A cold lunch"], "right": 1, "reveal": "A cold lunch with Tracy Fullerton. The same move as his 1993 cold call to EA."}}, {"id": "madison", "sort": "2015-09-15", "when": "Sept 15, 2015", "lines": ["family", "prof"], "name": "Madison", "say": "Next stop: Madison, 2015.", "text": "Guest lecturing at UW-Madison, he met Brennan Murphy. They talked for about an hour and a half.", "quote": {"t": "our son went to Madison", "d": "uploaded Dec 18, 2025", "src": "M+DEV interview, 1:17"}, "src": "E2D section 2 (Brennan's 2019 video, LIKELY); M+DEV interview UzFTrHDBAZU", "tag": "LIKELY; quote VERIFIED", "picto": "st_talk", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Brennan"], "after": "A ninety-minute talk. The start of a family."}}, {"id": "coach", "sort": "2016-03-08", "when": "Mar 8, 2016", "lines": ["play"], "name": "Ball Right!", "say": "Next stop: Ball Right, 2016.", "text": "Before David Vermillion's first game, Gordon sent the playbook.", "quote": {"t": "There are 7 balls... Catching Wins games... Oh and have fun.", "d": "Mar 8, 2016", "src": "his message to David"}, "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "line_play", "beat": {"type": "catch", "verb": "Catch", "n": 2, "calls": true, "after": "Catching wins games. Oh, and have fun."}}, {"id": "edc", "sort": "2016-06-20", "when": "June 20, 2016", "lines": ["play", "family"], "name": "Electric Sky", "say": "Next stop: Electric Sky, 2016.", "text": "His first EDC, with Mason, at 45.", "quote": {"t": "We didn't know what we didn't know #edc #firsttimers", "d": "June 20, 2016", "src": "his post"}, "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_ferris", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Mason"], "after": "First timers, together."}}, {"id": "wave", "sort": "2016-08-10", "when": "Aug 2016", "lines": ["advisor"], "name": "Wave", "say": "Next stop: Wave, 2016.", "text": "He joined Wave in 2016. In 2017 he described the virtual concerts: tracks color coded by tempo, mixed live with friends in other cities.", "src": "Playmakers ep. 12 (2017) ~23:41 to 26:32, transcribed; his LinkedIn (board, Aug 2016); found by dot", "tag": "VERIFIED, PUBLIC", "picto": "line_advisor", "beat": {"type": "mix", "verb": "Mix the room", "verbq": "His tracks glowed by tempo: 135, 140, 145. Match two.", "tracks": [{"bpm": 140, "c": "green"}, {"bpm": 135, "c": "blue"}, {"bpm": 145, "c": "purple"}, {"bpm": 140, "c": "green"}], "after": "Matched. The room moves with the music.", "quote": {"t": "you're not in the rave, the music is the rave", "src": "Gordon on Wave, Playmakers ep. 12, 2017"}}, "quote": {"t": "you're not in the rave, the music is the rave", "d": "July 2017", "src": "Gordon, Playmakers ep. 12"}}, {"id": "bridge", "sort": "2016-08-31", "when": "2015 to 2016", "lines": ["prof"], "name": "USC Bridge", "say": "Next stop: U S C Bridge, 2016.", "text": "From its launch in 2015, he and Samuel Roberts led USC Games Bridge. A student shadowed him at E3 until losing their voice.", "src": "USC Cinematic Arts news (article ids 16340, 16238); found by dot, checked", "tag": "VERIFIED, PUBLIC", "picto": "st_people", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Samuel Roberts", "A student team"], "after": "The hope, in USC's 2016 story: students who own their creativity and create jobs for others."}}, {"id": "sixmiles", "sort": "2017-07-13", "when": "2016 to 2017", "lines": ["play"], "name": "Six Miles", "say": "Next stop: Six Miles, 2017.", "text": "He lost 50 pounds and started running.", "quote": {"t": "I can go one mile, I can go six miles or whatever it's going to be, but I'm going to go somewhere. And it's been transformative", "d": "July 14, 2017", "src": "Playmakers, 37:54"}, "src": "Playmakers 2017-07-14; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "st_runner", "beat": {"type": "tap", "verb": "Run", "n": 6, "label": "Mile", "count": true, "after": "Six miles. Going somewhere."}}, {"id": "furniture", "sort": "2017-07-14", "when": "2017", "lines": ["prof"], "name": "The Furniture", "say": "Next stop: The Furniture, 2017.", "text": "How he describes the job of teaching.", "quote": {"t": "to move the furniture of life out of the way for them to be successful", "d": "July 14, 2017", "src": "Playmakers, 20:33"}, "src": "Playmakers 2017-07-14; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_professor", "beat": {"type": "clear", "verb": "Move the furniture", "n": 3, "after": "Path clear. His critique ritual: I like, I wish, what if."}}, {"id": "firsts", "sort": "2018-03-10", "when": "2018", "lines": ["play"], "name": "First Times", "say": "Next stop: First Times, 2018.", "text": "Now he hands first times out: Quinn's first EDM show, and David's first rave at Escape, 10.26.18.", "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_ferris", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Quinn", "David"], "after": "Somebody brought him in. Now he brings people in."}}, {"id": "gdc2018", "sort": "2018-03-22", "when": "Mar 22, 2018", "lines": ["maker", "story", "vault"], "name": "#IamEnough", "say": "Next stop: I Am Enough, G D C 2018.", "text": "At GDC, IGDA Black in Games gave him a lifetime honor, following Jerry Lawson (his account).", "quote": {"t": "when it's all over I will not count trophies... the people who came here today... that is what I want to count", "d": "uploaded Mar 23, 2018", "src": "acceptance remarks, 3:54"}, "src": "Acceptance remarks 2018-03-23; his March 2018 post; R Era 2. Plaque wording unread.", "tag": "LIKELY (honor wording); quote VERIFIED, PUBLIC", "picto": "st_podium", "beat": {"type": "trophy", "verb": "Count what matters", "after": "Trophies: not counted. People: counted."}}, {"id": "nonprofit", "sort": "2018-12-15", "when": "Dec 2018", "lines": ["founder"], "name": "501(c)(3)", "say": "Next stop: G G P Nonprofit, 2018.", "text": "GGP becomes a nonprofit: tax ID in December 2018, IRS ruling in January 2020. Gordon CEO, Joe CFO.", "src": "Public 990s; E2 section 2; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_founder", "beat": {"type": "steps", "verb": "Build the table", "steps": ["Dec 2018: GGP gets its tax ID", "Jan 2020: the IRS ruling", "On the public 990: Gordon CEO, Joe CFO"], "after": "A party since about 2006, now an institution."}}, {"id": "til", "sort": "2019-05-01", "when": "2019", "lines": ["vault"], "name": "TIL, 1984", "say": "Next stop: Today I Learned, 2019.", "text": "He reposts the pages of his 1984 talk to the U.S. Department of Education.", "quote": {"t": "TIL, I presented to the US Department of Education. I had just turned 14", "d": "2019", "src": "his Instagram post"}, "src": "CN Thread 5; PA item 8 (talk dated Nov 14, 1984)", "tag": "VERIFIED, PRIVATE", "picto": "line_vault", "beat": {"type": "steps", "verb": "Open the file", "steps": ["Nov 14, 1984: at 14, he addresses the U.S. Department of Education", "2019: he reposts the pages, \"TIL\"", "Mar 5, 2026: Capitol Hill, the second time"], "after": "The same podium thread, kept in the vault."}}, {"id": "scholars", "sort": "2019-09-01", "when": "Since 2019", "lines": ["founder", "prof"], "name": "GGP Scholars", "say": "Next stop: G G P Scholars, 2019.", "text": "GGP Scholars has run every year since 2019.", "src": "E2 section 2; R Era 2", "tag": "VERIFIED", "picto": "st_people", "beat": {"type": "bring", "verb": "Set the roster", "who": ["A scholar", "A scholar", "A scholar"], "after": "Personal doors, turned into a program."}}, {"id": "pridestream", "sort": "2020-06-15", "when": "June 2020", "lines": ["founder"], "name": "Pride Stream", "say": "Next stop: Pride Stream, 2020.", "text": "GGP's first Pride stream, June 2020, honored a game pioneer he once knew up close.", "src": "E2 section 2; CN Thread 10; R Era 2", "tag": "LIKELY, PUBLIC", "picto": "line_storyteller", "beat": {"type": "call", "verb": "Call the play", "q": "Who did the stream honor?", "opts": ["A pro esports champion", "Dani Bunten Berry, maker of M.U.L.E."], "right": 1, "reveal": "Dani Bunten Berry. He played M.U.L.E. on a Commodore 64 in 1983; in 1993 she was his housemate."}}, {"id": "vanguard", "sort": "2020-07-14", "when": "July 14, 2020", "lines": ["maker"], "name": "Vanguard", "say": "Next stop: Vanguard, 2020.", "text": "Games for Change gave him its Vanguard Award.", "quote": {"t": "it's about what you do to help other people get from point A to point B", "d": "July 8, 2020", "src": "GamesBeat"}, "src": "GamesBeat 2020-07-08; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "st_people", "beat": {"type": "ab", "verb": "Point A to point B", "after": "From A to B. That is the work."}}, {"id": "tentimes", "sort": "2020-08-13", "when": "Summer 2020", "lines": ["story"], "name": "Ten Times", "say": "Next stop: Ten Times, 2020.", "text": "In his Games for Change keynote, he described an exercise from two days before.", "quote": {"t": "to say the words black is beautiful right to actually say it 10 times... am i saying this too loud or too quiet", "d": "uploaded Aug 13, 2020", "src": "G4C \"At the Table,\" 9:55"}, "src": "YouTube c02C7pwDlwI; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "st_voice", "beat": {"type": "tap", "verb": "Say it ten times", "n": 10, "label": "black is beautiful", "ten": true, "after": "Ten times. Not too loud. Not too quiet."}}, {"id": "highscore", "sort": "2020-08-19", "when": "Aug 19, 2020", "lines": ["story"], "name": "High Score", "say": "Next stop: High Score, 2020.", "text": "Netflix's High Score told his Madden 95 story.", "quote": {"t": "I am the first voice you hear", "d": "Feb 9, 2021", "src": "Lead With Your Brand, 0:23:30"}, "src": "High Score ep 4; Lead With Your Brand 2021-02-09; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "st_football", "beat": {"type": "call", "verb": "Call the play", "q": "The High Score trailer. Whose voice do you hear first?", "opts": ["The narrator's", "Gordon's"], "right": 1, "reveal": "His.", "cite": {"t": "I am the first voice you hear", "d": "Feb 9, 2021", "src": "Lead With Your Brand, 0:23:30"}}, "hideQuote": true}, {"id": "fifty", "sort": "2020-11-09", "when": "Nov 9, 2020", "lines": ["family"], "name": "The 2:09 Film", "say": "Next stop: Fifty, 2020.", "text": "He turned 50 on Zoom. Brennan cut a 2:09 film of friends' selfie videos.", "src": "YouTube mYrEv6EtTzM (public since 2020-11-09); planning PRIVATE; R Era 2", "tag": "VERIFIED", "picto": "line_family", "link": {"href": "https://www.youtube.com/watch?v=mYrEv6EtTzM", "t": "Happy Birthday Gordon! (2:09)"}, "beat": {"type": "countdown", "verb": "Play the film", "seconds": 129, "after": "two minutes, nine seconds of friends."}}, {"id": "doublecatch", "sort": "2020-12-04", "when": "told Dec 2020", "lines": ["play"], "name": "Vegas Catch", "say": "Next stop: Vegas Catch, 2020.", "text": "A Vegas tournament double catch, retold on stage in 2020.", "quote": {"t": "the three on one i caught the two balls of course spike them... and it was just like chef's kiss", "d": "uploaded Dec 4, 2020", "src": "CMX Summit, 30:37"}, "src": "YouTube LAhHQHkWDDA; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_play", "beat": {"type": "catch", "verb": "Catch both", "n": 2, "after": "Chef's kiss."}}, {"id": "potp", "sort": "2021-01-15", "when": "Jan 2021", "lines": ["prof"], "name": "Professor", "say": "Next stop: Professor of the Practice, 2021.", "text": "Professor of the Practice of Cinematic Arts at USC.", "quote": {"t": "Games are a shared experience that we can impact, which is different than a shared experience that we both view", "d": "Mar 16, 2021", "src": "USC Today"}, "src": "USC Today 2021-03-16; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_professor", "beat": {"type": "call", "verb": "Call the play", "q": "Film is a shared experience we view. Games are one we...?", "opts": ["watch together", "can impact"], "right": 1, "reveal": "Can impact.", "cite": {"t": "Games are a shared experience that we can impact, which is different than a shared experience that we both view", "d": "Mar 16, 2021", "src": "USC Today"}}, "hideQuote": true}, {"id": "son", "sort": "2022-02-18", "when": "Feb 18, 2022", "lines": ["family", "founder"], "name": "My Son", "say": "Next stop: My Son, 2022.", "text": "The word changed in dated steps. Brennan said \"son\" first. Gordon answered it.", "quote": {"t": "How does my son KNOW that i am still carrying my hoodie", "d": "Feb 18, 2022, 5:43 pm PT", "src": "his text"}, "src": "E2D section 2", "tag": "VERIFIED, PRIVATE", "picto": "st_hoodie", "beat": {"type": "steps", "verb": "Watch the word change", "steps": ["2017: \"my mentee\"", "June 2019: \"my 1st Father's Day\"", "2022: \"my son\""], "after": "By 2026, Brennan is also GGP's informal Chief of Staff."}}, {"id": "ultra", "sort": "2022-03-27", "when": "Spring 2022", "lines": ["play"], "name": "Ultra", "say": "Next stop: Ultra and WrestleMania, 2022.", "text": "More first times, handed out: Foster at Ultra Miami, and Jeff Royle's first WrestleMania, 4.2.22.", "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_people", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Foster", "Jeff"], "after": "First times, handed out."}}, {"id": "cystem", "sort": "2022-10-26", "when": "2022", "lines": ["founder"], "name": "CYSTEM", "say": "Next stop: CYSTEM, 2022.", "text": "CYSTEM begins: GGP's graduate program with NYU, Carnegie Mellon and USC.", "quote": {"t": "not just a culture fit but a culture add", "d": "Oct 26, 2022", "src": "GGP film, 2:18"}, "src": "His email and Q3 2022 records; GGP film BTHwzjd-_Xc; R Era 2", "tag": "VERIFIED", "picto": "st_people", "beat": {"type": "call", "verb": "Call the play", "q": "Culture fit, or culture add?", "opts": ["Culture fit", "Culture add"], "right": 1, "reveal": "Not just a culture fit. A culture add."}}, {"id": "rewind", "sort": "2023-05-19", "when": "2023 to 2024", "lines": ["story"], "name": "On Screen", "say": "Next stop: On Screen, 2023.", "text": "On screen again: Rewind the '90s in 2023, and in 2024 the series It's in the Game.", "src": "IMDb list; Nutopia 2023-05-19; E2", "tag": "VERIFIED, PUBLIC", "picto": "st_football", "beat": {"type": "call", "verb": "Call the play", "q": "It's in the Game (2024) is about which game?", "opts": ["Madden NFL", "NBA Jam"], "right": 0, "reveal": "Madden NFL: It's in the Game, two episodes. The game where he helped make Black players the default, in Madden 95."}}, {"id": "queervox", "sort": "2023-06-10", "when": "June 2023", "lines": ["advisor"], "name": "Queer Vox", "say": "Next stop: Queer Vox, 2023.", "text": "He lists a seat on the Queer Vox advisory board, June 2023.", "src": "LinkedIn positions (his own listing); E2", "tag": "CLAIM (his listing)", "picto": "line_storyteller", "beat": {"type": "call", "verb": "Call the play", "q": "Queer Vox is a nonprofit for whom?", "opts": ["LGBTQIA+ voice actors", "Queer game streamers"], "right": 0, "reveal": "LGBTQIA+ voice actors. One more seat at his table."}}, {"id": "zeroproof", "sort": "2024-03-20", "when": "Mar 20, 2024", "lines": ["founder", "play"], "name": "Zero Proof", "say": "Next stop: Zero Proof, 2024.", "text": "The first Zero Proof Board Game Night at GDC: Buzzworks, alcohol free. The party, so no one goes without one.", "src": "SMS 2024-01-26 and LinkedIn event; counts from a private recap; E2D", "tag": "date VERIFIED; counts LIKELY, PRIVATE", "picto": "st_meeple", "beat": {"type": "count", "verb": "Read the odds", "q": "About 487 came in 2025. How many in 2026?", "opts": [350, 480, 602], "right": 2, "after": "guests in 2026, by GGP's own recap."}}, {"id": "bestman", "sort": "2024-05-15", "when": "May 2024", "lines": ["family"], "name": "Best Man", "say": "Next stop: Best Man, 2024.", "text": "Best man for Quinn Hovey, his US Soccer brother.", "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_wedding", "beat": {"type": "call", "verb": "Call the play", "q": "The best man toast was built on a joke about...?", "opts": ["the American Outlaws", "Quinn's cooking"], "right": 0, "reveal": "The American Outlaws, the US Soccer supporters' group they share."}}, {"id": "ethics", "sort": "2024-11-25", "when": "Nov 2024", "lines": ["prof"], "name": "Ethics", "say": "Next stop: Director of Cinematic Ethics, 2024.", "text": "Named Director of Cinematic Ethics for USC's School of Cinematic Arts.", "quote": {"t": "OH!! I am the new Director of Ethics for USC Cinema!", "d": "Nov 25, 2024", "src": "his text"}, "quote2": {"t": "How do we grow up a pie that we want to eat, that we are proud that we baked", "d": "July 9, 2025", "src": "Valued Cultures, 0:04:20"}, "src": "Text 2024-11-25; SCA In Motion Winter 2025; R Era 2", "tag": "VERIFIED", "picto": "line_professor", "beat": {"type": "steps", "verb": "Watch the title grow", "steps": ["Nov 25, 2024: \"OH!! I am the new Director of Ethics for USC Cinema!\"", "Winter 2025: announced as Director of Cinematic Ethics", "Aug 10, 2026: \"I am director of Ethics for the entire School of Cinema\""], "after": "Ethics in every stage of storytelling. Digital civics, in his word."}, "hideQuote": true}, {"id": "uconn", "sort": "2025-04-15", "when": "Apr 2025", "lines": ["story"], "name": "It's Today", "say": "Next stop: It's Today, 2025.", "text": "At UConn he named what changed: the compartments came down.", "quote": {"t": "This is the dream. back when I was younger was my whole self. God, someday it's going to be awesome. It's today.", "d": "Apr 2025", "src": "UConn DMD, 1:24:44"}, "src": "YouTube Lb8ZcOXPQ-I; R threads", "tag": "VERIFIED, PUBLIC", "picto": "st_voice", "beat": {"type": "merge", "verb": "Bring the tabs together", "tabs": ["music", "queer", "Black", "soccer"], "after": "One whole self. Fabulous."}}, {"id": "wildgate", "sort": "2025-05-20", "when": "2025", "lines": ["maker"], "name": "Wildgate", "say": "Next stop: Wildgate, 2025.", "text": "A credit on Wildgate, 2025.", "src": "E2 (LinkedIn plus outlet)", "tag": "LIKELY", "picto": "line_gamemaker", "beat": {"type": "call", "verb": "Call the play", "q": "Which credit?", "opts": ["Creative consultant", "Lead designer"], "right": 0, "reveal": "Creative consultant (LIKELY, per his LinkedIn and an outlet)."}}, {"id": "scorespace", "sort": "2025-07-10", "when": "July 2025", "lines": ["advisor"], "name": "ScoreSpace", "say": "Next stop: ScoreSpace, 2025.", "text": "Strategic advisor to ScoreSpace.", "src": "LinkedIn positions; E2", "tag": "VERIFIED, PUBLIC", "picto": "line_advisor", "beat": {"type": "table", "verb": "Take a seat at the table", "after": "ScoreSpace, strategic advisor, July 2025."}}, {"id": "cgc", "sort": "2025-08-15", "when": "2025", "lines": ["founder"], "name": "Collegiate Challenge", "say": "Next stop: Collegiate Games Challenge, 2025.", "text": "GGP launches the Collegiate Games Challenge.", "src": "E2 section 2; R Era 2", "tag": "LIKELY", "picto": "line_gamemaker", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["A college team", "A college team"], "after": "The Collegiate Games Challenge: GGP brings college teams in."}}, {"id": "ggj", "sort": "2025-10-01", "when": "2025 to 2026", "lines": ["maker"], "name": "Game Jam", "say": "Next stop: Global Game Jam, 2025.", "text": "A Global Game Jam organizer, under the handle he has kept since AIM: gpbellamy.", "src": "OI section 1; CN Part 2 item 16", "tag": "VERIFIED, PUBLIC", "picto": "line_gamemaker", "beat": {"type": "name", "verb": "Name and place", "plot": "login", "prompt": "Tap to sign in with his old handle.", "named": "gpbellamy", "icon": "line_gamemaker", "done": "Signed in.", "after": "The handle from AIM and BigSoccer days, now on his Global Game Jam organizer account."}}, {"id": "mdev", "sort": "2025-11-05", "when": "Nov 2025", "lines": ["story"], "name": "M+DEV", "say": "Next stop: M Dev, Madison, 2025.", "text": "Back in Madison to open M+DEV with the keynote.", "quote": {"t": "the noise of people connecting. It's not the noise of technology. It's the noise of humans", "d": "uploaded Dec 18, 2025", "src": "M+DEV interview, 5:11"}, "src": "YouTube UzFTrHDBAZU; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_storyteller", "beat": {"type": "call", "verb": "Call the play", "q": "He named the sound of the M+DEV hall. It was the noise of...?", "opts": ["technology", "humans"], "right": 1, "reveal": "Humans.", "cite": {"t": "the noise of people connecting. It's not the noise of technology. It's the noise of humans", "d": "uploaded Dec 18, 2025", "src": "M+DEV interview, 5:11"}}, "hideQuote": true}, {"id": "bafta", "sort": "2025-11-20", "when": "Nov 2025", "lines": ["advisor"], "name": "BAFTA", "say": "Next stop: BAFTA, 2025.", "text": "BAFTA North America, November 2025.", "src": "His public LinkedIn post; E2", "tag": "VERIFIED, PUBLIC", "picto": "line_advisor", "beat": {"type": "call", "verb": "Call the play", "q": "An award, or a vote?", "opts": ["An award", "A voting membership"], "right": 1, "reveal": "A voting member. Inclusion, not a trophy. Another seat at the table."}}, {"id": "bgp", "sort": "2026-02-19", "when": "Feb 2026", "lines": ["story"], "name": "Identity", "say": "Next stop: Identity, 2026.", "text": "His thesis, in one breath.", "quote": {"t": "games were not a a choice or an occupation. They're an identity", "d": "uploaded Feb 19, 2026", "src": "Black Game Pros Sessions, 0:11:40"}, "src": "YouTube 9LYYddhhi-8; R Era 2", "tag": "VERIFIED, PUBLIC", "picto": "line_gamemaker", "beat": {"type": "call", "verb": "Call the play", "q": "\"I'm the first this, first that.\" Single player, or multiplayer?", "opts": ["Single player", "Multiplayer"], "right": 1, "reveal": "\"what if this was a multiplayer game because it's a multiplayer game\" (0:49:03)"}}, {"id": "rayburn", "sort": "2026-03-05", "when": "Mar 5, 2026", "lines": ["story", "prof", "founder", "vault"], "name": "Rayburn Foyer", "say": "Next stop: Rayburn Foyer, Capitol Hill, 2026.", "text": "Keynote at CEE's Congressional reception. His second time addressing the federal government; the first was Nov 14, 1984, at 14.", "quote": {"t": "i just spoke in congress", "d": "Mar 5, 2026, 6:45 pm PT", "src": "his text"}, "src": "His same-day texts, dossier and a CEE email; FB post 2026-03-09; PA item 8; R Era 2", "tag": "VERIFIED", "picto": "st_dome", "beat": {"type": "steps", "verb": "Walk the halls", "steps": ["12:38 PT \"i'm speaking here in 90'minutes\"", "1:32 PT \"i am walking the halls to congress to do my talk\"", "6:45 PT \"i just spoke in congress\""], "after": "From Reston, not far away. The loop from 1984 closes."}}, {"id": "qoral", "sort": "2026-03-20", "when": "Mar 2026", "lines": ["advisor"], "name": "qoral", "say": "Next stop: Coral, 2026.", "text": "Board member at qoral.", "src": "LinkedIn; E2", "tag": "VERIFIED, PUBLIC", "picto": "line_advisor", "beat": {"type": "table", "verb": "Take a seat at the table", "after": "qoral board member, March 2026."}}, {"id": "gordtopia", "sort": "2026-06-24", "when": "2026", "lines": ["maker", "family"], "name": "Gordtopia", "say": "Next stop: Gordtopia, 2026.", "text": "A Minecraft world he builds weekly with Eric and Crystal Francksen's three sons: 58 landmarks, 19 regions.", "src": "His Gordtopia.docx 2026-06-24; E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_signpost", "beat": {"type": "name", "verb": "Name and place", "plot": "#45", "named": "The Lawson Boneyard", "after": "For Jerry Lawson. National motto: All Roads Lead Home."}}, {"id": "wiscago", "sort": "2026-06-28", "when": "June 26 to July 4, 2026", "lines": ["family"], "name": "Wiscago", "say": "Next stop: Wiscago, 2026.", "text": "Chicago with the Francksens, Eric's first Pride parade, then Wisconsin. He is Uncle G.", "src": "E2D section 4", "tag": "LIKELY, PRIVATE", "picto": "st_people", "beat": {"type": "bring", "verb": "Bring someone in", "who": ["Eric"], "after": "Eric's first Pride. Uncle G was there."}}, {"id": "siterestored", "sort": "2026-07-10", "when": "July 10, 2026", "lines": ["vault"], "name": "Two Lifetimes", "say": "Next stop: Two Lifetimes, 2026.", "text": "Their 2014 wedding site, \"two lifetimes, in the making,\" is restored and continued.", "src": "E2 section 4", "tag": "VERIFIED, PRIVATE", "picto": "line_vault", "beat": {"type": "steps", "verb": "Restore it", "steps": ["2014: their wedding site opens, \"two lifetimes, in the making\"", "July 10, 2026: restored and continued"], "after": "Kept, not lost."}}, {"id": "default", "sort": "2026-09-02", "when": "Fall 2026", "lines": ["prof", "maker", "story"], "name": "The Default", "say": "Next stop: The Default, 2026.", "text": "In CTIN 290, Madden 96 and Madden 27 run back to back.", "quote": {"t": "so that other young people could see themselves as default when they're growing up", "d": "Feb 3, 2023", "src": "Daily Trojan"}, "src": "Daily Trojan 2023-02-03; CN Thread 1; course notes PRIVATE", "tag": "VERIFIED", "picto": "st_football", "beat": {"type": "steps", "verb": "Flip the cartridge", "steps": ["Madden 96", "Madden 27"], "after": "Same game, thirty years apart. Adaptation and constraint."}}, {"id": "gamesbeat", "sort": "2026-09-18", "when": "Sept 2026", "lines": ["advisor"], "name": "GamesBeat", "say": "Next stop: GamesBeat, 2026.", "text": "Named to the GamesBeat event advisory board.", "src": "GamesBeat, published 2026-09-18; E2", "tag": "VERIFIED, PUBLIC", "picto": "line_advisor", "beat": {"type": "table", "verb": "Take a seat at the table", "after": "GamesBeat event advisory board, September 2026."}}, {"id": "finalboss", "sort": "2026-10-22", "when": "2026", "lines": ["play", "family"], "name": "Final Boss", "say": "Next stop: Final Boss, 2026.", "text": "Captain of AAAA Final Boss, coed, for Sin City Dodgeball, Jan 15 to 17, 2027. Nephew Werten on the roster; Nina Fiore coaching.", "quote": {"t": "I still wear 4, it's my number", "d": "May 12, 2026", "src": "his text"}, "src": "E2D section 4; jerseys arrived 10/22/2026 (E2)", "tag": "LIKELY, PRIVATE (teammates showable)", "picto": "st_jersey", "beat": {"type": "roster", "verb": "Set the roster", "nums": [7, 4, 12], "right": 4, "after": "Captain, number 4. Same number since he was four."}}, {"id": "scrapbook", "sort": "2026-11-26", "when": "Nov 26, 2026", "lines": ["vault"], "name": "The Scrapbook", "say": "Next stop: The Scrapbook, 2026.", "text": "He sends his scrapbook so this map could be built.", "quote": {"t": "you and tasklet received a treasure trove of photos", "d": "Nov 26, 2026", "src": "his message"}, "src": "PA header", "tag": "VERIFIED, PRIVATE", "picto": "line_vault", "beat": {"type": "steps", "verb": "Open the box", "steps": ["Nov 26, 2026, 11:14 am to 1:54 pm PT: the photos arrive", "\"you and tasklet received a treasure trove of photos\"", "The 1994 trophy plate is in it: ROOKIE OF THE YEAR"], "after": "Now part of the record behind this map."}, "hideQuote": true}], "home": {"id": "home", "sort": "2026-11-26", "when": "Now", "name": "All Roads Lead Home", "say": "Final stop: All Roads Lead Home. Welcome home.", "text": "On his desk: the Rookie of the Year trophy from 1994, beside the 2020 Vanguard Award.", "quote": {"t": "on my desk, I literally have my EA Rookie of the Year from 94", "d": "uploaded Feb 19, 2026", "src": "Black Game Pros Sessions, 0:45:07"}, "src": "VB section 3.5; trophy plate read from his photo (PA, IMG_5250): ROOKIE OF THE YEAR / 1994 / Electronic Arts; motto from Gordtopia (E2D section 4)", "tag": "VERIFIED"}}</script>
+<script>
+(function () {
+  'use strict';
+  var D = JSON.parse(document.getElementById('era2-data').textContent);
+  var root = document.documentElement;
+  root.classList.add('js');
+  var LINE7 = root.getAttribute('data-line7') === 'vault' ? 'vault' : 'play';
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NS = 'http://www.w3.org/2000/svg';
+  var LANES = D.lanes.map(function (l) { return l === 'seventh' ? LINE7 : l; });
+  var ACTIVE = {}; LANES.forEach(function (l) { ACTIVE[l] = 1; });
+  var LINES = D.lines;
+  var ST = D.stations.map(function (s) {
+    var c = Object.assign({}, s); c.lines = s.lines.filter(function (l) { return ACTIVE[l]; }); return c;
+  }).filter(function (s) { return s.lines.length; });
+  var BY = {}; ST.forEach(function (s) { BY[s.id] = s; });
+  var HOME = D.home;
+  function col(l) { return 'var(--l-' + l + ')'; }
+  function $(id) { return document.getElementById(id); }
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function h(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function picto(key, cls) { return '<svg class="' + (cls || '') + '" viewBox="0 0 1024 1024" aria-hidden="true"><use href="#p-' + key + '"/></svg>'; }
+
+  /* ---------------- storage (per-viewer convenience only) ---------------- */
+  var KEY = 'era2-ride-v1';
+  var state = { seen: {}, punched: {}, riders: [], xfers: {} };
+  try { var saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if (saved) state = Object.assign(state, saved); } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+
+  /* ---------------- sound: ElevenLabs files, mixed here ---------------- */
+  var A = (function () {
+    var on = false, ctx = null, master = null, musicGain = null, useWA = /^https?:/.test(location.protocol);
+    var cache = {}, music = null, voice = null, loopH = null;
+    function init() {
+      if (!useWA || ctx) return;
+      try {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        master = ctx.createGain(); master.connect(ctx.destination);
+        musicGain = ctx.createGain(); musicGain.gain.value = 0; musicGain.connect(master);
+      } catch (e) { useWA = false; }
+    }
+    function buf(url) {
+      if (!cache[url]) cache[url] = fetch(url).then(function (r) { if (!r.ok) throw new Error('x'); return r.arrayBuffer(); })
+        .then(function (b) { return new Promise(function (res, rej) { ctx.decodeAudioData(b, res, rej); }); });
+      return cache[url];
+    }
+    function play(url, o) {
+      o = o || {};
+      if (!on) return { stop: function () {} };
+      var vol = o.vol == null ? 1 : o.vol;
+      var hnd = { stop: function () {}, done: null };
+      if (useWA && ctx) {
+        hnd.done = buf(url).then(function (b) {
+          if (!on) return;
+          var s = ctx.createBufferSource(); s.buffer = b; s.loop = !!o.loop;
+          var g = ctx.createGain(); g.gain.value = vol; s.connect(g); g.connect(o.bus || master); s.start();
+          hnd.stop = function (f) { f = f || 0.25; try { g.gain.setTargetAtTime(0, ctx.currentTime, f / 3); s.stop(ctx.currentTime + f + 0.05); } catch (e) {} };
+          return new Promise(function (res) { s.onended = res; });
+        }).catch(function () { useWA = false; return elPlay(url, o, hnd); });
+        return hnd;
+      }
+      elPlay(url, o, hnd);
+      return hnd;
+    }
+    function elPlay(url, o, hnd) {
+      var a = new Audio(url); a.volume = Math.min(1, o.vol == null ? 1 : o.vol); a.loop = !!o.loop;
+      a.play().catch(function () {});
+      hnd.stop = function () { a.pause(); };
+      hnd.done = new Promise(function (res) { a.onended = res; });
+      return hnd.done;
+    }
+    function duck(v) { if (musicGain) musicGain.gain.setTargetAtTime(v, ctx.currentTime, 0.15); else if (music && music.el) music.el.volume = v; }
+    return {
+      get on() { return on; },
+      enable: function () {
+        init(); on = true; if (ctx && ctx.state === 'suspended') ctx.resume();
+        if (!music) {
+          if (useWA && ctx) { music = play('assets/audio/music.mp3', { loop: true, vol: 1, bus: musicGain }); duck(0.22); }
+          else { var m = new Audio('assets/audio/music.mp3'); m.loop = true; m.volume = 0.22; m.play().catch(function () {}); music = { el: m, stop: function () { m.pause(); } }; }
+        }
+      },
+      disable: function () { on = false; if (music) { music.stop(0.4); music = null; } if (voice) voice.stop(); if (loopH) loopH.stop(); },
+      sfx: function (n, vol) { return play('assets/audio/sfx/' + n + '.mp3', { vol: vol == null ? 0.8 : vol }); },
+      say: function (id) {
+        if (!on) return Promise.resolve();
+        if (voice) voice.stop(0.1);
+        duck(0.07);
+        voice = play('assets/audio/voice/' + id + '.mp3', { vol: 1 });
+        var p = (voice.done || Promise.resolve()).then(function () { duck(0.22); });
+        return p;
+      },
+      train: function (go) { if (go) { if (loopH) loopH.stop(); loopH = play('assets/audio/sfx/train.mp3', { loop: true, vol: 0.55 }); } else if (loopH) { loopH.stop(0.4); loopH = null; } }
+    };
+  })();
+
+  /* ---------------- geometry ---------------- */
+  var COL = 70, LANE = 50, BAND = 190, PADL = 360;
+  var TOP = BAND + 34;
+  var MIDY = TOP + 3 * LANE;
+  var ORIGX = 112;
+  function laneY(l) { return TOP + LANES.indexOf(l) * LANE; }
+  ST.forEach(function (s, i) { s.x = PADL + i * COL; });
+  var LASTX = ST[ST.length - 1].x;
+  var HOMEX = LASTX + 250;
+  var W = HOMEX + (window.innerWidth >= 900 ? 520 : 230), H = TOP + 6 * LANE + 110;
+
+  ST.forEach(function (s) {
+    s.y = {};
+    s.lines.forEach(function (l) { s.y[l] = laneY(l); });
+    var ys = s.lines.map(function (l) { return s.y[l]; });
+    s.top = Math.min.apply(null, ys); s.bot = Math.max.apply(null, ys); s.xfer = s.lines.length > 1;
+  });
+  var PTS = {};
+  LANES.forEach(function (l) {
+    var ly = laneY(l), d = Math.abs(ly - MIDY);
+    PTS[l] = [[ORIGX, MIDY], [ORIGX + d + 14, ly], [HOMEX - d - 34, ly], [HOMEX - 20, MIDY]];
+  });
+  function pathD(P) {
+    var d = 'M' + P[0][0] + ',' + P[0][1];
+    for (var i = 1; i < P.length; i++) {
+      var x1 = P[i - 1][0], y1 = P[i - 1][1], x2 = P[i][0], y2 = P[i][1], ad = Math.abs(y2 - y1), dx = x2 - x1;
+      if (ad < 0.5) { d += ' L' + x2 + ',' + y2; continue; }
+      if (ad < dx - 2) { var xm = (x1 + x2) / 2; d += ' L' + (xm - ad / 2).toFixed(1) + ',' + y1 + ' L' + (xm + ad / 2).toFixed(1) + ',' + y2 + ' L' + x2 + ',' + y2; }
+      else d += ' L' + x2 + ',' + y2;
+    }
+    return d + ' L' + HOMEX + ',' + MIDY;
+  }
+
+  /* ---------------- draw the map ---------------- */
+  var svg = $('map');
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  svg.removeAttribute('hidden');
+  var gYears = el('g', { 'class': 'm-ruler' }, svg);
+  var gLines = el('g', {}, svg);
+  var gLabels = el('g', {}, svg);
+  var gSt = el('g', {}, svg);
+  var gFx = el('g', {}, svg);
+
+  // year ruler
+  var RY = TOP + 6 * LANE + 66, lastYear = '';
+  el('line', { x1: PADL - 40, y1: RY - 30, x2: HOMEX, y2: RY - 30 }, gYears);
+  ST.forEach(function (s) {
+    var yr = s.sort.slice(0, 4);
+    if (yr !== lastYear) {
+      lastYear = yr;
+      el('line', { x1: s.x, y1: RY - 38, x2: s.x, y2: RY - 22 }, gYears);
+      var t = el('text', { x: s.x - 4, y: RY + 4 }, gYears); t.textContent = yr;
+    }
+  });
+
+  var pathEl = {};
+  LANES.forEach(function (l, i) {
+    var p = el('path', { d: pathD(PTS[l]), 'class': 'm-line', stroke: col(l), 'data-line': l }, gLines);
+    pathEl[l] = p;
+    // line badge on its lane, before the first station
+    var ly = laneY(l), bx = PADL - 62;
+    var g = el('g', { 'class': 'm-badge', transform: 'translate(' + bx + ',' + ly + ')', 'data-line': l, style: 'cursor:pointer' }, gSt);
+    g.innerHTML = '<rect x="-19" y="-19" width="38" height="38" rx="9" fill="' + col(l) + '" stroke="var(--paper)" stroke-width="3"/>' +
+      '<svg x="-14" y="-14" width="28" height="28" viewBox="0 0 1024 1024" style="color:#fff;--knock:' + col(l) + '"><use href="#p-' + LINES[l].picto + '"/></svg>';
+    g.addEventListener('click', function () { board(l, true); });
+    g.style.transformBox = 'fill-box'; g.style.transformOrigin = 'center';
+    g.setAttribute('data-i', i);
+  });
+
+  // origin
+  var go = el('g', { 'class': 'm-orig' }, gSt);
+  el('circle', { cx: ORIGX, cy: MIDY, r: 15, fill: 'var(--paper)', stroke: 'var(--ink)', 'stroke-width': 5 }, go);
+  var ot = el('text', { x: ORIGX - 24, y: MIDY - 3, 'text-anchor': 'end' }, go); ot.textContent = 'From Era 1';
+  var ot2 = el('text', { x: ORIGX - 24, y: MIDY + 15, 'text-anchor': 'end' }, go); ot2.textContent = '2011';
+
+  // stations
+  var stEl = {};
+  ST.forEach(function (s) {
+    var c = col(s.lines[0]);
+    var g = el('g', { 'class': 'm-st' + (state.seen[s.id] ? ' seen' : ''), tabindex: 0, role: 'button', 'aria-label': s.name + ', ' + s.when, style: '--c:' + c, 'data-x': s.x }, gSt);
+    var lx = s.x, labY = BAND - 2;
+    el('line', { x1: lx, y1: labY + 30, x2: lx, y2: s.top - 15, 'class': 'm-lead' }, gLabels);
+    var ic = el('svg', { x: lx - 13, y: labY + 2, width: 26, height: 26, viewBox: '0 0 1024 1024', 'class': 'm-ico', style: '--c:' + c + ';color:' + c }, g);
+    ic.innerHTML = '<use href="#p-' + s.picto + '"/>';
+    var t = el('text', { x: lx + 2, y: labY - 4, 'class': 'm-lab', transform: 'rotate(-52 ' + (lx + 2) + ' ' + (labY - 4) + ')' }, g);
+    t.textContent = s.name;
+    if (s.xfer) {
+      el('rect', { x: s.x - 14, y: s.top - 14, width: 28, height: s.bot - s.top + 28, rx: 14, 'class': 'm-cap' }, g);
+      s.lines.forEach(function (l) { el('circle', { cx: s.x, cy: s.y[l], r: 4.5, fill: col(l) }, g); });
+    } else {
+      el('circle', { cx: s.x, cy: s.top, r: 10, 'class': 'm-dot', stroke: c }, g);
+    }
+    el('rect', { x: s.x - 26, y: labY - 120, width: 52, height: s.bot - labY + 150, 'class': 'hit' }, g);
+    if (s.ghost) {
+      var gy = s.top - 25;
+      el('circle', { cx: s.x, cy: gy, r: 9, 'class': 'ghost' }, g);
+      var gt = el('text', { x: s.x + 14, y: gy + 4, 'class': 'ghost-t' }, g); gt.textContent = s.ghost;
+    }
+    g.addEventListener('click', function () { explore(s); });
+    g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); explore(s); } });
+    stEl[s.id] = g;
+  });
+
+  // terminus
+  var gh = el('g', { 'class': 'm-home m-st', tabindex: 0, role: 'button', 'aria-label': 'All Roads Lead Home', 'data-x': HOMEX }, gSt);
+  el('circle', { cx: HOMEX, cy: MIDY, r: 70, 'class': 'ring' }, gh);
+  el('circle', { cx: HOMEX, cy: MIDY, r: 46, fill: 'var(--ink)' }, gh);
+  var hs = el('svg', { x: HOMEX - 30, y: MIDY - 30, width: 60, height: 60, viewBox: '0 0 1024 1024', style: 'color:var(--paper)' }, gh);
+  hs.innerHTML = '<use href="#p-st_signpost"/>';
+  var ht1 = el('text', { x: HOMEX - 60, y: MIDY - 70 }, gh); ht1.textContent = 'All Roads';
+  var ht2 = el('text', { x: HOMEX - 60, y: MIDY + 86 }, gh); ht2.textContent = 'Lead Home';
+  el('rect', { x: HOMEX - 80, y: MIDY - 110, width: 170, height: 220, fill: 'transparent' }, gh);
+  gh.addEventListener('click', function () { arriveHome(); });
+
+  // train
+  var train = el('g', { id: 'train', style: 'opacity:0' }, gFx);
+  var trainInner = el('g', {}, train);
+  trainInner.innerHTML = '<rect x="-42" y="-21" width="84" height="42" rx="21" fill="var(--paper)"/>' +
+    '<rect class="train-body" x="-38" y="-17" width="76" height="34" rx="17" fill="var(--ink)"/>' +
+    '<rect class="train-win" x="-24" y="-8" width="14" height="11" rx="3"/><rect class="train-win" x="-6" y="-8" width="14" height="11" rx="3"/>' +
+    '<circle cx="27" cy="0" r="5" fill="#fff"/>';
+  var tBadge = el('g', { transform: 'translate(34,-24)', style: 'display:none' }, train);
+  el('circle', { r: 11, fill: 'var(--paper)', stroke: 'var(--ink)', 'stroke-width': 2.5 }, tBadge);
+  var tN = el('text', { 'class': 'train-n', 'text-anchor': 'middle', y: 4 }, tBadge);
+
+  /* ---------------- path lengths per station ---------------- */
+  var LEN = {};
+  function lenAtX(p, x) {
+    var lo = 0, hi = p.getTotalLength();
+    for (var i = 0; i < 28; i++) { var m = (lo + hi) / 2; if (p.getPointAtLength(m).x < x) lo = m; else hi = m; }
+    return (lo + hi) / 2;
+  }
+  function stopsOf(l) { return ST.filter(function (s) { return s.y[l] !== undefined; }); }
+  LANES.forEach(function (l) {
+    LEN[l] = {}; var p = pathEl[l];
+    stopsOf(l).forEach(function (s) { LEN[l][s.id] = lenAtX(p, s.x); });
+    LEN[l]._home = p.getTotalLength(); LEN[l]._start = lenAtX(p, PADL - 62);
+  });
+
+  /* ---------------- camera ---------------- */
+  var wrap = $('mapwrap');
+  function scale() { return svg.getBoundingClientRect().height / H; }
+  function camTo(x, instant) {
+    var target = x * scale() - wrap.clientWidth * (window.innerWidth >= 900 ? 0.32 : 0.42);
+    target = Math.max(0, target);
+    if (instant || RM) wrap.scrollLeft = target; else wrap.scrollTo({ left: target, behavior: 'smooth' });
+  }
+  var follow = false;
+  function camFollow(x) { var t = x * scale() - wrap.clientWidth * (window.innerWidth >= 900 ? 0.32 : 0.42); wrap.scrollLeft += (Math.max(0, t) - wrap.scrollLeft) * 0.18; }
+
+  /* ---------------- ride state ---------------- */
+  var cur = { line: null, idx: -1, len: 0, moving: false, auto: false, autoLines: [], autoT: null };
+  function setTrainColor(l) {
+    trainInner.querySelector('.train-body').setAttribute('fill', col(l));
+    LANES.forEach(function (k) { pathEl[k].classList.toggle('dim', !!l && k !== l); pathEl[k].classList.toggle('hot', k === l); });
+  }
+  function placeTrain(l, len) {
+    var p = pathEl[l], a = p.getPointAtLength(len), b = p.getPointAtLength(Math.min(len + 2, p.getTotalLength()));
+    var ang = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI;
+    train.setAttribute('transform', 'translate(' + a.x.toFixed(1) + ',' + a.y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ')');
+    cur.len = len;
+    return a;
+  }
+  var glideToken = 0;
+  function ease(t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+  function glide(l, to, done) {
+    var from = cur.len, dist = Math.abs(to - from);
+    if (RM || dist < 1) { var pt = placeTrain(l, to); camTo(pt.x, true); done(); return; }
+    var dur = Math.max(900, Math.min(2600, dist * 2.1)), t0 = performance.now(), tok = ++glideToken;
+    cur.moving = true; A.train(true);
+    function step(now) {
+      if (tok !== glideToken) return;
+      var k = Math.min(1, (now - t0) / dur), pt = placeTrain(l, from + (to - from) * ease(k));
+      camFollow(pt.x);
+      if (k < 1) requestAnimationFrame(step);
+      else { cur.moving = false; A.train(false); done(); }
+    }
+    requestAnimationFrame(step);
+  }
+  function pulseAt(x, y, colors) {
+    if (RM) return;
+    colors.forEach(function (c, i) {
+      var r = el('circle', { cx: x, cy: y, r: 12, 'class': 'pulse', stroke: c }, gFx);
+      r.animate([{ r: 12, opacity: .9 }, { r: 70, opacity: 0 }], { duration: 900, delay: i * 140, easing: 'cubic-bezier(.2,.8,.3,1)' }).onfinish = function () { r.remove(); };
+      // r as CSS property is supported in Chromium; WebKit falls back to transform scale
+      r.style.transformBox = 'fill-box'; r.style.transformOrigin = 'center';
+      if (!('r' in document.body.style)) r.animate([{ transform: 'scale(1)', opacity: .9 }, { transform: 'scale(5.5)', opacity: 0 }], { duration: 900, delay: i * 140 });
+    });
+  }
+  function popSt(id) {
+    var g = stEl[id]; if (!g || RM) return;
+    g.style.transformBox = 'fill-box'; g.style.transformOrigin = '50% 100%';
+    g.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.18)' }, { transform: 'scale(1)' }], { duration: 420, easing: 'cubic-bezier(.2,1.6,.4,1)' });
+  }
+
+  function board(l, announce) {
+    clearAuto(false);
+    cur.line = l; cur.idx = -1;
+    setTrainColor(l);
+    train.style.opacity = 1;
+    var pt = placeTrain(l, LEN[l]._start);
+    camTo(pt.x, false);
+    hideBoard(); enRoute(stopsOf(l)[0], l, true);
+    renderTicket();
+    if (!RM) trainInner.animate([{ transform: 'scale(0)' }, { transform: 'scale(1.25)' }, { transform: 'scale(1)' }], { duration: 500, easing: 'cubic-bezier(.2,1.6,.4,1)' });
+    var p = announce ? A.say('board_' + l) : Promise.resolve();
+    setTimeout(function () { next(); }, RM ? 200 : 1100);
+    return p;
+  }
+  function next() {
+    if (cur.moving || !cur.line) return;
+    var stops = stopsOf(cur.line);
+    if (cur.idx + 1 >= stops.length) { goHome(); return; }
+    var s = stops[cur.idx + 1];
+    enRoute(s, cur.line, false);
+    A.say(s.id);
+    glide(cur.line, LEN[cur.line][s.id], function () { cur.idx++; arrive(s); });
+  }
+  function goHome() {
+    enRoute(null, cur.line, false);
+    A.say('home');
+    glide(cur.line, LEN[cur.line]._home, function () { arriveHome(); });
+  }
+  function arrive(s) {
+    A.sfx('chime', 0.7);
+    popSt(s.id);
+    if (s.xfer) {
+      setTimeout(function () { A.sfx('transfer', 0.6); }, 350);
+      pulseAt(s.x, (s.top + s.bot) / 2, s.lines.map(col));
+      if (!state.xfers[s.id]) { state.xfers[s.id] = 1; }
+    }
+    markSeen(s);
+    openCard(s);
+    if (cur.auto) scheduleAuto();
+  }
+  function markSeen(s) {
+    state.seen[s.id] = 1; save();
+    stEl[s.id] && stEl[s.id].classList.add('seen');
+    document.querySelectorAll('.tt-row[data-st="' + s.id + '"]').forEach(function (r) { r.classList.add('seen'); });
+    renderTicket();
+  }
+  function explore(s) {
+    clearAuto(false);
+    var l = (cur.line && s.y[cur.line] !== undefined) ? cur.line : s.lines[0];
+    train.style.opacity = 1;
+    var stops = stopsOf(l), sameLine = (l === cur.line) && cur.idx >= 0;
+    if (l !== cur.line) { cur.line = l; setTrainColor(l); renderTicket(); }
+    hideBoard();
+    var fromIdx = cur.idx, toIdx = stops.indexOf(s);
+    if (sameLine && toIdx > fromIdx && toIdx - fromIdx <= 3 && !RM && !cur.moving) { cur.idx = toIdx - 1; next(); return; }
+    glideToken++; cur.moving = false; A.train(false);
+    // far jump: fade the train across
+    var pt = placeTrain(l, LEN[l][s.id]); cur.idx = toIdx;
+    camTo(pt.x, false);
+    if (!RM) train.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400 });
+    A.say(s.id);
+    arrive(s);
+  }
+
+  /* ---------------- ride all lines ---------------- */
+  function rideAll() {
+    cur.auto = true; cur.autoLines = LANES.slice();
+    A.say('rideall');
+    var l = cur.autoLines.shift();
+    setTimeout(function () { var a = cur.auto; board(l, false); cur.auto = a; }, RM ? 100 : 2600);
+    hideBoard();
+  }
+  function scheduleAuto() {
+    clearTimeout(cur.autoT);
+    cur.autoT = setTimeout(function () { if (cur.auto && !cur.moving) next(); }, 6500);
+  }
+  function clearAuto(keep) { clearTimeout(cur.autoT); if (!keep) cur.auto = false; renderTicket(); }
+
+  /* ---------------- ticket / progress ---------------- */
+  var ticket = $('ticket');
+  function renderTicket() {
+    ticket.hidden = false;
+    var html = '';
+    LANES.forEach(function (l) {
+      var stops = stopsOf(l), n = stops.filter(function (s) { return state.seen[s.id]; }).length;
+      html += '<button class="tk-l' + (cur.line === l ? ' on' : '') + '" type="button" data-l="' + l + '" style="--c:' + col(l) + '" aria-label="' + esc(LINES[l].name) + ': ' + n + ' of ' + stops.length + ' visited. Board it.">' +
+        '<span class="sq">' + picto(LINES[l].picto) + '</span><b>' + n + '/' + stops.length + '</b></button>';
+    });
+    var seen = ST.filter(function (s) { return state.seen[s.id]; }).length;
+    var xs = ST.filter(function (s) { return s.xfer; }), xn = xs.filter(function (s) { return state.seen[s.id]; }).length;
+    html += '<span class="tk-sum"><span>' + seen + ' of ' + ST.length + ' stops</span><span>' + xn + '/' + xs.length + ' transfers</span>' +
+      (state.riders.length ? '<span>' + state.riders.length + ' aboard</span>' : '') +
+      (cur.auto ? '<button class="tk-auto" type="button" id="stopAuto">Stop the express</button>' : '') + '</span>';
+    ticket.innerHTML = html;
+    ticket.querySelectorAll('.tk-l').forEach(function (b) { b.onclick = function () { board(b.getAttribute('data-l'), true); }; });
+    var sa = $('stopAuto'); if (sa) sa.onclick = function () { clearAuto(false); };
+    if (state.riders.length) { tBadge.style.display = ''; tN.textContent = state.riders.length; } else tBadge.style.display = 'none';
+  }
+
+  /* ---------------- departures board ---------------- */
+  var boardEl = $('board'), stage = $('stage');
+  var FIRST = LINE7 === 'play' ? 'play' : 'story';
+  function showBoard() {
+    boardEl.hidden = false; stage.classList.add('boarded');
+    requestAnimationFrame(function () { boardEl.classList.add('up'); });
+  }
+  function hideBoard() { boardEl.classList.remove('up'); stage.classList.remove('boarded'); }
+  (function buildBoard() {
+    $('goName').textContent = LINES[FIRST].short;
+    $('go').style.background = col(FIRST);
+    $('go').querySelector('use').setAttribute('href', '#p-' + LINES[FIRST].picto);
+    var chips = $('chips');
+    LANES.forEach(function (l) {
+      if (l === FIRST) return;
+      var b = h('button', 'chip', '<span class="sq">' + picto(LINES[l].picto) + '</span><span>' + esc(LINES[l].short) + '<small>' + stopsOf(l).length + ' stops</small></span>');
+      b.type = 'button'; b.style.setProperty('--c', col(l));
+      b.onclick = function () { startSound(); board(l, true); };
+      chips.appendChild(b);
+    });
+    $('go').onclick = function () { startSound(); board(FIRST, true); };
+    $('rideAll').onclick = function () { startSound(); rideAll(); };
+  })();
+
+  /* ---------------- sound toggle ---------------- */
+  var sndBtn = $('snd'); sndBtn.hidden = false;
+  var soundWanted = true;
+  try { soundWanted = localStorage.getItem('era2-sound') !== 'off'; } catch (e) {}
+  function startSound() { if (soundWanted && !A.on) { A.enable(); sndBtn.setAttribute('aria-pressed', 'true'); } }
+  sndBtn.onclick = function () {
+    if (A.on) { A.disable(); soundWanted = false; sndBtn.setAttribute('aria-pressed', 'false'); }
+    else { soundWanted = true; A.enable(); sndBtn.setAttribute('aria-pressed', 'true'); A.sfx('chime', 0.6); }
+    try { localStorage.setItem('era2-sound', soundWanted ? 'on' : 'off'); } catch (e) {}
+  };
+
+  /* ---------------- clock ---------------- */
+  function tick() {
+    var d = new Date();
+    $('clock').innerHTML = '<span class="d">' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) + ', </span>' +
+      d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+  }
+  tick(); setInterval(tick, 15000);
+
+  /* ---------------- station card ---------------- */
+  var card = $('card');
+  function closeCard() { card.classList.remove('up'); stage.classList.remove('carded'); }
+  /* phone: the card is a draggable bottom sheet (peek, half, full); the map stays visible above it */
+  var PHONE = function () { return window.innerWidth < 900; };
+  var SNAPS = [0.2, 0.45, 0.88], sheetK = 0.45;
+  function stageH() { return stage.clientHeight; }
+  function setSheet(k, animate) {
+    sheetK = k;
+    if (!PHONE()) { card.style.height = ''; stage.style.removeProperty('--sheet'); return; }
+    var px = Math.round(stageH() * k);
+    card.classList.toggle('dragging', !animate);
+    card.style.height = px + 'px';
+    // the map keeps the half-sheet height as its floor, so it never rescales while reading
+    stage.style.setProperty('--sheet', Math.min(px, Math.round(stageH() * 0.45)) + 'px');
+    card.classList.toggle('peek', k < 0.3);
+  }
+  function showCard() {
+    card.hidden = false;
+    if (PHONE()) setSheet(0.45, true);
+    requestAnimationFrame(function () { card.classList.add('up'); stage.classList.add('carded'); });
+  }
+  (function dragSheet() {
+    var y0 = 0, h0 = 0, t0 = 0, dragging = false, moved = false;
+    card.addEventListener('pointerdown', function (e) {
+      if (!PHONE() || !e.target.closest('.grab, .c-head') || e.target.closest('button, a')) return;
+      e.preventDefault(); dragging = true; moved = false; y0 = e.clientY; h0 = card.getBoundingClientRect().height; t0 = performance.now();
+      card.setPointerCapture && card.setPointerCapture(e.pointerId);
+    });
+    card.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      var dy = e.clientY - y0; if (Math.abs(dy) > 4) moved = true;
+      if (!moved) return;
+      var k = Math.max(0.12, Math.min(0.92, (h0 - dy) / stageH()));
+      card.classList.add('dragging'); card.style.height = Math.round(k * stageH()) + 'px';
+    });
+    function end(e) {
+      if (!dragging) return; dragging = false;
+      var dy = e.clientY - y0, v = dy / Math.max(1, performance.now() - t0);
+      var k = card.getBoundingClientRect().height / stageH();
+      if (!moved) { k = sheetK < 0.6 ? 0.88 : 0.45; }
+      else if (Math.abs(dy) < 120 && v > 0.6) k = sheetK > 0.6 ? 0.45 : 0.2;
+      else if (Math.abs(dy) < 120 && v < -0.6) k = sheetK < 0.3 ? 0.45 : 0.88;
+      else k = SNAPS.reduce(function (a, b) { return Math.abs(b - k) < Math.abs(a - k) ? b : a; });
+      setSheet(k, true);
+      if (cur.line) setTimeout(function () { camTo(pathEl[cur.line].getPointAtLength(cur.len).x, false); }, 320);
+    }
+    card.addEventListener('pointerup', end); card.addEventListener('pointercancel', end);
+    window.addEventListener('resize', function () { if (card.classList.contains('up')) setSheet(sheetK, true); });
+  })();
+  var GRAB = '<div class="grab" aria-hidden="true"><i></i></div>';
+  function enRoute(s, l, boarding) {
+    var c = col(l);
+    card.style.setProperty('--c', c);
+    var nm = s ? s.name : 'All Roads Lead Home', wh = s ? s.when : 'Now';
+    card.innerHTML = GRAB + '<div class="c-head enroute"><div class="c-art" style="--c:' + c + '">' + picto(s ? s.picto : 'st_signpost') + '</div>' +
+      '<div><p class="c-when">' + (boarding ? 'Now boarding: ' + esc(LINES[l].name) : 'Next stop') + '</p><h2 class="c-name">' + esc(nm) + '</h2><p class="c-when">' + esc(wh) + '</p></div>' +
+      '<button class="c-x" type="button" aria-label="Close">\u00d7</button></div><p class="c-text moving">The train is moving. Watch the map.</p>';
+    card.querySelector('.c-x').onclick = closeCard;
+    if (!PHONE() && !card.classList.contains('up')) return;
+    showCard();
+  }
+  function lineChips(s) {
+    return s.lines.map(function (l) { return '<span style="--c:' + col(l) + '">' + esc(LINES[l].short) + '</span>'; }).join('');
+  }
+  function quote(q) {
+    return q ? '<blockquote class="c-q"><p>“' + esc(q.t) + '”</p><cite>' + esc(q.d) + ', ' + esc(q.src) + '</cite></blockquote>' : '';
+  }
+  function openCard(s) {
+    var c = col(cur.line && s.y[cur.line] !== undefined ? cur.line : s.lines[0]);
+    card.style.setProperty('--c', c);
+    var stops = stopsOf(cur.line || s.lines[0]), nx = stops[stops.indexOf(s) + 1];
+    var html = GRAB + '<div class="c-head"><div class="c-art" style="--c:' + c + '">' + picto(s.picto) + '</div>' +
+      '<div><p class="c-when">' + esc(s.when) + '</p><h2 class="c-name">' + esc(s.name) + '</h2><div class="c-lines">' + lineChips(s) + '</div></div>' +
+      '<button class="c-x" type="button" aria-label="Close">×</button></div>' +
+      '<p class="c-text">' + esc(s.text) + '</p>' + (s.hideQuote ? '' : quote(s.quote)) + (s.hideQuote2 ? '' : quote(s.quote2)) +
+      (s.link ? '<p><a class="c-link" href="' + s.link.href + '" target="_blank" rel="noopener">' + esc(s.link.t) + '</a></p>' : '') +
+      '<div class="beat" id="beat"></div>' +
+      '<p class="c-src">Source: ' + esc(s.src) + '. ' + esc(s.tag) + '.</p><p class="illus">Pictogram is an illustration.</p>' +
+      '<div class="c-nav" id="cnav"></div>';
+    card.innerHTML = html;
+    card.scrollTop = 0; showCard();
+    setTimeout(function () { camTo(s.x, false); }, 480);
+    card.querySelector('.c-x').onclick = function () { closeCard(); };
+    var nav = $('cnav');
+    var nb = h('button', 'btn pri', nx ? 'Next stop: ' + esc(nx.name) : 'Ride home');
+    nb.type = 'button'; nb.onclick = function () { clearAuto(true); next(); };
+    if (cur.line && s.y[cur.line] !== undefined) nav.appendChild(nb);
+    s.lines.forEach(function (l) {
+      if (l === cur.line) return;
+      var b = h('button', 'btn xf', 'Change to ' + esc(LINES[l].short));
+      b.type = 'button'; b.style.setProperty('--c', col(l));
+      b.onclick = function () { transferTo(l, s); };
+      nav.appendChild(b);
+    });
+    var mb = h('button', 'btn', 'All lines'); mb.type = 'button'; mb.onclick = function () { clearAuto(false); closeCard(); showBoard(); };
+    nav.appendChild(mb);
+    card.addEventListener('pointerdown', function () { if (cur.auto) { clearTimeout(cur.autoT); } }, { once: true });
+    runBeat(s, $('beat'), c);
+  }
+  function transferTo(l, s) {
+    clearAuto(false);
+    A.sfx('transfer', 0.7);
+    A.say('board_' + l);
+    pulseAt(s.x, (s.top + s.bot) / 2, [col(l)]);
+    var y0 = s.y[cur.line] !== undefined ? s.y[cur.line] : s.top, y1 = s.y[l];
+    cur.line = l; setTrainColor(l);
+    cur.idx = stopsOf(l).indexOf(s);
+    cur.len = LEN[l][s.id];
+    if (RM) placeTrain(l, LEN[l][s.id]);
+    else {
+      // slide through the interchange from one line to the other, turning as it goes
+      var t0 = performance.now(), tok = ++glideToken;
+      (function slide(now) {
+        if (tok !== glideToken) return;
+        var k = Math.min(1, (now - t0) / 700), e = ease(k), y = y0 + (y1 - y0) * e;
+        train.setAttribute('transform', 'translate(' + s.x + ',' + y.toFixed(1) + ') rotate(' + (Math.sin(k * Math.PI) * (y1 > y0 ? 90 : -90)).toFixed(1) + ')');
+        if (k < 1) requestAnimationFrame(slide); else placeTrain(l, LEN[l][s.id]);
+      })(t0);
+    }
+    renderTicket();
+    openCard(s);
+  }
+
+  /* ---------------- beats ---------------- */
+  function finish(box, s, msg) {
+    if (box.querySelector('.b-done')) return;
+    A.sfx('punch', 0.8);
+    state.punched[s.id] = 1; save();
+    var d = h('div', 'b-done', '<span class="punch"></span><span>' + esc(msg || 'Ticket punched.') + '</span>');
+    box.appendChild(d);
+    if (cur.auto) scheduleAuto();
+  }
+  function addRiders(names) {
+    names.forEach(function (n) { if (!/^A /.test(n) && state.riders.indexOf(n) < 0) state.riders.push(n); });
+    save(); renderTicket();
+  }
+  function runBeat(s, box, c) {
+    var b = s.beat || { type: 'stamp', verb: 'Punch the ticket' };
+    box.innerHTML = '<p class="b-verb">' + esc(b.verb) + '</p>';
+    var f = BEATS[b.type] || BEATS.stamp;
+    f(s, b, box, c);
+  }
+  var BEATS = {
+    stamp: function (s, b, box) {
+      var btn = h('button', 'tapbtn', esc(b.verb)); btn.type = 'button';
+      btn.onclick = function () { btn.disabled = true; finish(box, s); };
+      box.appendChild(btn);
+    },
+    call: function (s, b, box) {
+      box.appendChild(h('p', 'b-q', esc(b.q)));
+      var row = h('div', 'b-opts'); box.appendChild(row);
+      b.opts.forEach(function (o, i) {
+        var bt = h('button', 'b-opt', esc(o)); bt.type = 'button';
+        bt.onclick = function () {
+          row.querySelectorAll('button').forEach(function (x, j) { x.disabled = true; x.classList.add(j === b.right ? 'right' : 'wrong'); });
+          box.appendChild(h('p', 'b-reveal', esc(b.reveal)));
+          if (b.cite) box.appendChild(h('div', '', quote(b.cite)));
+          finish(box, s, i === b.right ? 'Called it.' : 'Now you know.');
+        };
+        row.appendChild(bt);
+      });
+    },
+    bring: function (s, b, box) {
+      var row = h('div', 'seats'); box.appendChild(row);
+      var left = b.who.length;
+      b.who.forEach(function (w) {
+        var st = h('button', 'seat', '<span class="plus">+</span><span>Bring in ' + esc(w) + '</span>'); st.type = 'button';
+        st.onclick = function () {
+          if (st.classList.contains('in')) return;
+          st.classList.add('in'); st.innerHTML = picto('st_people') + '<span>' + esc(w) + '</span>';
+          A.sfx('punch', 0.5);
+          if (--left === 0) { addRiders(b.who); box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, 'Aboard.'); }
+        };
+        row.appendChild(st);
+      });
+    },
+    catch: function (s, b, box) {
+      var court = h('div', 'court'); box.appendChild(court);
+      var msg = h('div', 'court-msg', 'Tap the ball'); court.appendChild(msg);
+      var got = 0, n = b.n || 1;
+      function throwBall() {
+        var fromRight = Math.random() < 0.5;
+        court.querySelectorAll('.call').forEach(function (x) { x.remove(); });
+        if (b.calls) court.appendChild(h('div', 'call ' + (fromRight ? 'r' : 'l'), fromRight ? 'BALL RIGHT!' : 'BALL LEFT!'));
+        var ball = h('button', 'ball' + (RM ? '' : (fromRight ? ' fly-r' : ' fly-l'))); ball.type = 'button'; ball.setAttribute('aria-label', 'Catch the ball');
+        if (RM) ball.style.left = 'calc(50% - 27px)';
+        court.appendChild(ball);
+        ball.addEventListener('animationend', function () { if (!ball.classList.contains('caught')) { ball.remove(); msg.textContent = 'Again!'; setTimeout(throwBall, 350); } });
+        ball.onclick = function () {
+          if (ball.classList.contains('caught')) return;
+          var r = ball.getBoundingClientRect(), cr = court.getBoundingClientRect();
+          ball.style.left = (r.left - cr.left) + 'px'; ball.style.top = (r.top - cr.top + 27) + 'px';
+          ball.classList.add('caught');
+          A.sfx('catch', 0.9);
+          if (!RM) for (var i = 0; i < 9; i++) {
+            var sp = h('i', 'spark'); var a = i / 9 * 6.28;
+            sp.style.left = (r.left - cr.left + 22) + 'px'; sp.style.top = (r.top - cr.top + 22) + 'px';
+            sp.style.setProperty('--dx', Math.cos(a) * 70 + 'px'); sp.style.setProperty('--dy', Math.sin(a) * 50 + 'px');
+            court.appendChild(sp); setTimeout(function (x) { x.remove(); }.bind(null, sp), 650);
+          }
+          got++; msg.textContent = 'CAUGHT ' + got + ' of ' + n;
+          setTimeout(function () { ball.remove(); if (got < n) throwBall(); else { msg.textContent = 'CAUGHT!'; box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, 'Catching wins games.'); } }, 450);
+        };
+      }
+      setTimeout(throwBall, 400);
+    },
+    tap: function (s, b, box) {
+      var n = b.n, k = 0;
+      var btn = h('button', 'tapbtn', esc(b.label)); btn.type = 'button';
+      var dots = h('div', 'dots'); for (var i = 0; i < n; i++) dots.appendChild(h('i'));
+      var said = h('div', 'said', '');
+      box.appendChild(btn); if (n > 1) box.appendChild(dots); if (b.ten || b.count) box.appendChild(said);
+      btn.onclick = function () {
+        if (k >= n) return;
+        k++; dots.children[k - 1] && dots.children[k - 1].classList.add('f');
+        if (!RM) btn.animate([{ transform: 'scale(.9)' }, { transform: 'scale(1)' }], { duration: 160 });
+        if (b.ten) { said.textContent = 'black is beautiful'; said.style.fontSize = [14, 26, 18, 22, 16, 24, 19, 21, 20, 20][k - 1] + 'px'; }
+        if (b.count) said.textContent = b.label + ' ' + k;
+        A.sfx(k === n ? 'punch' : 'chime', k === n ? 0.8 : 0.18 + k * 0.04);
+        if (k === n) { btn.disabled = true; box.appendChild(h('p', 'b-reveal', esc(b.after || ''))); finish(box, s); }
+      };
+    },
+    days: function (s, b, box) {
+      var num = h('div', 'bignum', '0'), lab = h('p', 'b-reveal', esc(b.after));
+      var btn = h('button', 'tapbtn', 'Count them'); btn.type = 'button';
+      box.appendChild(btn);
+      btn.onclick = function () {
+        btn.remove(); box.appendChild(num);
+        var from = new Date(b.from + 'T12:00:00'), now = new Date();
+        var target = Math.floor((now - from) / 86400000), t0 = performance.now(), dur = RM ? 1 : 1800;
+        (function step(t) { var k = Math.min(1, (t - t0) / dur); num.textContent = Math.round(target * ease(k)).toLocaleString('en-US'); if (k < 1) requestAnimationFrame(step); else { box.appendChild(lab); finish(box, s); } })(t0);
+      };
+    },
+    countdown: function (s, b, box) {
+      var num = h('div', 'bignum', '2:09'), bar = h('div', 'bar', '<i></i>');
+      var btn = h('button', 'tapbtn', 'Play the 2:09'); btn.type = 'button';
+      box.appendChild(btn);
+      btn.onclick = function () {
+        btn.remove(); box.appendChild(num); box.appendChild(bar);
+        var t0 = performance.now(), dur = RM ? 1 : 4300, total = b.seconds;
+        (function step(t) {
+          var k = Math.min(1, (t - t0) / dur), left = Math.round(total * (1 - k));
+          num.textContent = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0'); bar.firstChild.style.width = (k * 100) + '%';
+          if (k < 1) requestAnimationFrame(step); else { box.appendChild(h('p', 'b-reveal', 'Cut by Brennan: ' + esc(b.after))); finish(box, s); }
+        })(t0);
+      };
+    },
+    steps: function (s, b, box) {
+      var stage2 = h('div', 'steps', ''), k = 0;
+      var btn = h('button', 'tapbtn', 'Next'); btn.type = 'button';
+      box.appendChild(stage2); box.appendChild(btn);
+      function show() { stage2.innerHTML = '<span>' + esc(b.steps[k]) + '</span>'; }
+      show();
+      btn.onclick = function () {
+        k++; A.sfx('chime', 0.25);
+        if (k < b.steps.length) { show(); if (k === b.steps.length - 1) btn.textContent = 'Done'; }
+        else { btn.remove(); box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s); }
+      };
+    },
+    trophy: function (s, b, box) {
+      var grid = h('div', 'trophies'), people = 0, need = 5;
+      var tally = h('div', 'tally', '<span>Trophies counted: 0</span><span id="pc">People counted: 0</span>');
+      var items = ['t', 'p', 'p', 't', 'p', 'p', 't', 'p', 't', 't'];
+      items.forEach(function (k) {
+        var it = h('button', 'tro ' + (k === 'p' ? 'person' : 'trophy'), picto(k === 'p' ? 'line_family' : 'st_trophy')); it.type = 'button';
+        it.setAttribute('aria-label', k === 'p' ? 'Count the people' : 'Count a trophy');
+        it.onclick = function () {
+          if (k === 't') { it.classList.remove('shake'); void it.offsetWidth; it.classList.add('shake'); return; }
+          if (it.classList.contains('lit')) return;
+          it.classList.add('lit'); people++; tally.querySelector('#pc').textContent = 'People counted: ' + people;
+          A.sfx('chime', 0.25);
+          if (people === need) { box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, 'That is what he counts.'); }
+        };
+        grid.appendChild(it);
+      });
+      box.appendChild(h('p', 'b-q', 'Tap what he counts.')); box.appendChild(grid); box.appendChild(tally);
+    },
+    ab: function (s, b, box) {
+      var ab = h('div', 'ab', '<span class="track"></span><span class="pt a">A</span><span class="pt b">B</span><span class="runner"></span>');
+      var btn = h('button', 'tapbtn', 'Help them get there'); btn.type = 'button';
+      box.appendChild(ab); box.appendChild(btn);
+      btn.onclick = function () { btn.remove(); ab.querySelector('.runner').style.left = 'calc(100% - 36px)'; setTimeout(function () { box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s); }, RM ? 50 : 1450); };
+    },
+    clear: function (s, b, box) {
+      var lane = h('div', 'lane'), left = b.n;
+      var walker = h('span', 'walker'); lane.appendChild(walker);
+      [30, 52, 74].forEach(function (p) {
+        var blk = h('button', 'blk'); blk.type = 'button'; blk.style.left = p + '%'; blk.setAttribute('aria-label', 'Move this out of the way');
+        blk.onclick = function () {
+          if (blk.classList.contains('gone')) return; blk.classList.add('gone'); A.sfx('punch', 0.35);
+          if (--left === 0) { walker.style.left = 'calc(100% - 40px)'; setTimeout(function () { box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s); }, RM ? 50 : 1300); }
+        };
+        lane.appendChild(blk);
+      });
+      box.appendChild(h('p', 'b-q', 'Tap the furniture to clear the way.')); box.appendChild(lane);
+    },
+    count: function (s, b, box) {
+      box.appendChild(h('p', 'b-q', esc(b.q)));
+      var row = h('div', 'b-opts'); box.appendChild(row);
+      b.opts.forEach(function (o, i) {
+        var bt = h('button', 'b-opt', String(o)); bt.type = 'button';
+        bt.onclick = function () {
+          row.querySelectorAll('button').forEach(function (x, j) { x.disabled = true; x.classList.add(j === b.right ? 'right' : 'wrong'); });
+          var num = h('div', 'bignum', '0'); box.appendChild(num);
+          var target = b.opts[b.right], t0 = performance.now(), dur = RM ? 1 : 1600;
+          (function step(t) { var k = Math.min(1, (t - t0) / dur); num.textContent = Math.round(target * ease(k)); if (k < 1) requestAnimationFrame(step); else { box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, i === b.right ? 'Read it right.' : 'Now you know.'); } })(t0);
+        };
+        row.appendChild(bt);
+      });
+    },
+    mix: function (s, b, box) {
+      var room = h('div', 'mixroom', '<span class="mx-pulse"></span><span class="mx-bpm">pick two tracks</span>');
+      var row = h('div', 'mx-row'), picked = [], done = false;
+      b.tracks.forEach(function (t) {
+        var bt = h('button', 'mx-sph mx-' + t.c, '<b>' + t.bpm + '</b><span>BPM</span>'); bt.type = 'button';
+        bt.setAttribute('aria-label', 'Track at ' + t.bpm + ' beats per minute');
+        bt.onclick = function () {
+          if (done || bt.classList.contains('on')) return;
+          bt.classList.add('on'); picked.push({ t: t, el: bt }); A.sfx('chime', 0.2);
+          if (picked.length < 2) { room.querySelector('.mx-bpm').textContent = t.bpm + ' BPM, pick one more'; return; }
+          if (picked[0].t.bpm === picked[1].t.bpm) {
+            done = true;
+            room.style.setProperty('--beat', (60 / t.bpm).toFixed(3) + 's');
+            room.classList.add('locked'); room.querySelector('.mx-bpm').textContent = t.bpm + ' + ' + t.bpm + ': locked';
+            box.appendChild(h('p', 'b-reveal', esc(b.after)));
+            if (b.quote) box.appendChild(h('blockquote', 'b-quote', '"' + esc(b.quote.t) + '"<cite>' + esc(b.quote.src) + '</cite>'));
+            finish(box, s, 'The room moved.');
+          } else {
+            room.classList.add('off'); room.querySelector('.mx-bpm').textContent = picked[0].t.bpm + ' and ' + picked[1].t.bpm + ': off beat. Try two that match.';
+            var p = picked; picked = [];
+            setTimeout(function () { room.classList.remove('off'); p.forEach(function (x) { x.el.classList.remove('on'); }); }, RM ? 50 : 900);
+          }
+        };
+        row.appendChild(bt);
+      });
+      box.appendChild(h('p', 'b-q', esc(b.verbq || 'Match two tracks by tempo.')));
+      box.appendChild(row); box.appendChild(room);
+    },
+    table: function (s, b, box) {
+      var seats = ST.filter(function (x) { return x.lines.indexOf('advisor') >= 0; });
+      var tb = h('div', 'boardtable');
+      seats.forEach(function (x) {
+        var mine = x.id === s.id, filled = state.punched[x.id] && !mine;
+        var st = h(mine ? 'button' : 'span', 'bseat' + (filled ? ' in' : '') + (mine ? ' mine' : ''), filled ? esc(x.name) : (mine ? '+' : ''));
+        if (mine) { st.type = 'button'; st.setAttribute('aria-label', 'Take the seat at ' + x.name); }
+        tb.appendChild(st);
+        if (mine) st.onclick = function () {
+          if (st.classList.contains('in')) return;
+          st.classList.add('in'); st.textContent = x.name;
+          var n = seats.filter(function (y) { return state.punched[y.id] || y.id === s.id; }).length;
+          box.appendChild(h('p', 'b-reveal', esc(b.after) + ' Seats at his table so far: ' + n + ' of ' + seats.length + '.'));
+          finish(box, s, 'Seated.');
+        };
+      });
+      box.appendChild(h('p', 'b-q', 'Every advisor stop is a seat at one table. Take this one.'));
+      box.appendChild(tb);
+    },
+    name: function (s, b, box) {
+      var plot = h('div', 'plot', '<button class="lot" type="button" aria-label="' + esc(b.prompt || 'Place it') + '">' + esc(b.plot) + '</button><span class="b-q">' + esc(b.prompt || 'Tap the empty plot to place it.') + '</span>');
+      box.appendChild(plot);
+      var lot = plot.querySelector('.lot');
+      lot.onclick = function () {
+        if (lot.classList.contains('built')) return;
+        lot.classList.add('built'); lot.innerHTML = picto(b.icon || 'st_signpost');
+        plot.querySelector('.b-q').innerHTML = '<b>' + esc(b.plot) + ' ' + esc(b.named) + '</b>';
+        box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, b.done || 'Named and placed.');
+      };
+    },
+    roster: function (s, b, box) {
+      var row = h('div', 'roster'); var cap = h('div', 'cap', 'Captain<br>slot');
+      b.nums.forEach(function (n) {
+        var j = h('button', 'jn', String(n)); j.type = 'button'; j.setAttribute('aria-label', 'Jersey ' + n);
+        j.onclick = function () {
+          if (n !== b.right) { j.animate && j.animate([{ transform: 'translateX(-5px)' }, { transform: 'translateX(5px)' }, { transform: 'none' }], { duration: 300 }); return; }
+          j.remove(); cap.classList.add('set'); cap.textContent = '4'; addRiders(['Werten']);
+          box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s, 'Roster set.');
+        };
+        row.appendChild(j);
+      });
+      row.appendChild(cap);
+      box.appendChild(h('p', 'b-q', 'Which number goes in the captain slot?')); box.appendChild(row);
+    },
+    merge: function (s, b, box) {
+      var colors = ['var(--l-story)', 'var(--l-family)', 'var(--l-maker)', 'var(--l-play)'];
+      var tabs = h('div', 'tabs', b.tabs.map(function (t, i) { return '<span style="background:' + colors[i % 4] + '">' + esc(t) + '</span>'; }).join(''));
+      var btn = h('button', 'tapbtn', 'Bring them together'); btn.type = 'button';
+      box.appendChild(h('p', 'b-q', 'He kept these in separate compartments.')); box.appendChild(tabs); box.appendChild(btn);
+      btn.onclick = function () { btn.remove(); tabs.classList.add('merged'); A.sfx('transfer', 0.6); setTimeout(function () { box.appendChild(h('p', 'b-reveal', esc(b.after))); finish(box, s); }, RM ? 50 : 850); };
+    }
+  };
+
+  /* ---------------- home ---------------- */
+  function arriveHome() {
+    clearAuto(true);
+    if (cur.moving) { glideToken++; cur.moving = false; A.train(false); }
+    A.sfx('fanfare', 0.7);
+    if (!RM) pulseAt(HOMEX, MIDY, LANES.map(col));
+    LANES.forEach(function (k) { pathEl[k].classList.remove('dim'); });
+    camTo(HOMEX, false);
+    state.seen.home = 1; save();
+    card.style.setProperty('--c', 'var(--ink)');
+    var lines = LANES.map(function (l, i) {
+      var y = 10 + i * 15;
+      return '<path d="M0,' + y + ' L120,' + y + ' L200,55 L320,55" fill="none" stroke="' + col(l) + '" stroke-width="7" stroke-linejoin="round" pathLength="1" style="stroke-dasharray:1;stroke-dashoffset:' + (RM ? 0 : 1) + ';' + (RM ? '' : 'animation:drawl 1.2s ' + (i * 0.12) + 's ease forwards') + '"/>';
+    }).join('');
+    var riders = state.riders.length ? '<p class="b-q">Riding home with you:</p><div class="riders">' + state.riders.map(function (r) { return '<span>' + esc(r) + '</span>'; }).join('') + '</div>' : '';
+    card.innerHTML = GRAB + '<div class="c-head"><div class="c-art" style="--c:var(--ink)">' + picto('st_signpost') + '</div><div><p class="c-when">Now</p><h2 class="c-name">All Roads Lead Home</h2><div class="c-lines"><span style="--c:var(--ink)">Every line</span></div></div><button class="c-x" type="button" aria-label="Close">×</button></div>' +
+      '<style>@keyframes drawl{to{stroke-dashoffset:0}}</style>' +
+      '<svg class="merge" viewBox="0 0 340 110" aria-hidden="true">' + lines + '<circle cx="322" cy="55" r="14" fill="var(--ink)"/></svg>' +
+      '<p class="c-text">' + esc(HOME.text) + '</p>' +
+      '<div class="desk"><div class="obj">' + picto('st_trophy') + '<span class="plate">ROOKIE OF THE YEAR<br>1994<br>Electronic Arts</span></div>' +
+      '<div class="obj"><div class="label-card"><b>2020</b>Vanguard Award<br>Games for Change</div></div></div>' +
+      '<figure class="handoff"><img src="../shared/rookie-bat-1994-illustration.webp" alt="Era 1 poster illustration of the gold batter trophy" loading="lazy" onerror="this.parentNode.remove()"><figcaption>Arrived from Era 1: the same trophy, in Era 1\'s poster style (illustration).</figcaption></figure>' +
+      quote(HOME.quote) + riders +
+      '<p class="c-src">Source: ' + esc(HOME.src) + '. ' + esc(HOME.tag) + '. The trophy pictogram is an illustration of a gold batter figure; the Vanguard Award is named, not drawn.</p>' +
+      '<div class="c-nav"><a class="btn pri" href="../era1/index.html">Ride back to 1970: Era 1</a><button class="btn" type="button" id="again">Ride another line</button></div>';
+    card.scrollTop = 0; showCard();
+    card.querySelector('.c-x').onclick = closeCard;
+    $('again').onclick = function () { closeCard(); showBoard(); };
+    if (cur.auto && cur.autoLines.length) {
+      cur.autoT = setTimeout(function () { if (!cur.auto) return; var l = cur.autoLines.shift(); var a = cur.auto; board(l, true); cur.auto = a; renderTicket(); }, 7000);
+    } else cur.auto = false;
+    renderTicket();
+  }
+
+  /* ---------------- timetable rows ride the map ---------------- */
+  document.querySelectorAll('.tt-row').forEach(function (r) {
+    var s = BY[r.getAttribute('data-st')]; if (!s) return;
+    if (state.seen[s.id]) r.classList.add('seen');
+    r.addEventListener('click', function (e) { if (e.target.closest('a')) return; window.scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' }); setTimeout(function () { explore(s); }, RM ? 0 : 450); });
+  });
+
+  /* ---------------- intro: the map draws itself ---------------- */
+  function intro() {
+    renderTicket();
+    stage.classList.add('boarded');
+    var paths = LANES.map(function (l) { return pathEl[l]; });
+    if (RM) { showBoard(); return; }
+    paths.forEach(function (p, i) {
+      var L = p.getTotalLength();
+      p.style.strokeDasharray = L; p.style.strokeDashoffset = L;
+      p.animate([{ strokeDashoffset: L }, { strokeDashoffset: 0 }], { duration: 1500, delay: 150 + i * 230, easing: 'cubic-bezier(.4,0,.2,1)', fill: 'forwards' })
+        .onfinish = function () { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; };
+    });
+    gSt.querySelectorAll('.m-st, .m-badge').forEach(function (g) {
+      var x = +(g.getAttribute('data-x') || 0);
+      var delay = g.classList.contains('m-badge') ? 150 + (+g.getAttribute('data-i')) * 230 : 500 + Math.min(1700, x * 0.45);
+      g.style.transformBox = 'fill-box'; g.style.transformOrigin = 'center';
+      g.animate([{ opacity: 0, transform: 'scale(.3)' }, { opacity: 1, transform: 'scale(1.15)' }, { opacity: 1, transform: 'scale(1)' }], { duration: 520, delay: delay, easing: 'cubic-bezier(.2,1.5,.4,1)', fill: 'backwards' });
+    });
+    // a slow look down the line, then back to the start
+    setTimeout(function () { showBoard(); }, 2300);
+  }
+  // reflect a visit already in progress
+  if (Object.keys(state.seen).length) { /* returning rider: progress already shown */ }
+  window.addEventListener('resize', function () { if (cur.line) camTo(cur.len ? pathEl[cur.line].getPointAtLength(cur.len).x : 0, true); });
+  intro();
+  // expose for QA only
+  window.__era2 = { board: board, next: next, explore: function (id) { explore(BY[id]); }, home: arriveHome, rideAll: rideAll, state: state };
+})();
+
+</script>
+</body>
+</html>
