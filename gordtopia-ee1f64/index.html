@@ -249,10 +249,11 @@ th { font: 600 .66rem var(--f-m); text-transform: uppercase; letter-spacing: .1e
 
 
 /* the nether */
-:root { --ember: #ff8a4c } @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --ember: #b8441a } } :root[data-theme="light"] { --ember: #b8441a }
-.neth { background: linear-gradient(180deg, color-mix(in srgb, var(--night) 70%, #3a0e0a), var(--night)) }
+:root { --ember: #ff8a4c; --nbg: color-mix(in srgb, var(--night) 70%, #3a0e0a) } @media (prefers-color-scheme: light) { :root:not([data-theme="dark"]) { --ember: #b8441a; --nbg: #f8e8e0 } } :root[data-theme="light"] { --ember: #b8441a; --nbg: #f8e8e0 }
+.neth { background: linear-gradient(180deg, var(--nbg), var(--night)) }
 .neth .w > *, .pgrid > *, .hwy > *, .neth .two > * { min-width: 0 }
-.snd { margin-top: 12px; width: max-content }
+.snd { margin-top: 12px; width: max-content; color: #fff !important; background: rgba(20, 6, 4, .55) !important; border-color: #ff9a4a !important }
+.snd[aria-pressed="true"] { background: #ff9a4a !important; color: #1a0a06 !important }
 .pgrid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; align-items: center }
 .conv { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto minmax(0, 1.6fr); gap: 10px; align-items: end; background: var(--card); padding: 16px; border-left: 6px solid var(--ember) }
 .conv label { display: grid; gap: 4px; font: 600 .75rem var(--f-m); color: var(--soft) }
